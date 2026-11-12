@@ -31,6 +31,16 @@ def replay(instance: dict) -> dict:
         raise ValueError("grid exceeds the adapter limits or contains an unsupported symbol")
     if not isinstance(route, str) or any(key not in "UDLRA" for key in route):
         raise ValueError("route must contain only uppercase U D L R A")
+    # Canonical starting rooms only: flat cells cannot encode a hero on a goal.
+    active = "FTWPBD"
+    identities = {hero: str(index + 1) for index, hero in enumerate(active)}
+    heroes = [identities.get(ch, ch) for row in grid for ch in row if ch in active + "123456"]
+    active_count = sum(ch in active for row in grid for ch in row)
+    goal_count = sum(row.count("G") for row in grid)
+    if active_count != 1 or len(set(heroes)) != len(heroes):
+        raise ValueError("canonical starting rooms require one active hero and distinct hero identities")
+    if goal_count == 0 or goal_count != len(heroes):
+        raise ValueError("canonical starting rooms require one goal per hero and at least one goal")
     # This adapter's semantics are restricted to the interpreter's accepted grid.
     # Source URLs and dates are attribution, not a pinned external ruleset.
     problem = {"adapter": "heroes-of-sokoban-ascii-v1", "part": part, "grid": grid, "goal": "heroes occupy exactly the goal cells", "termination": "alive and first win on final key"}

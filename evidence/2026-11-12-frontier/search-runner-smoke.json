@@ -1,7 +1,7 @@
 {
   "evidence_level": "bounded_heuristic_search",
   "formal_proof_checked": false,
-  "seed_certificate_sha256": "88639d2d160e020d7b655b1b1341693b8b08c8fa7e8feca76fdf15563626f891",
+  "seed_certificate_sha256": "cf1c9a4b920989bc6df994dfc9fce29bea3e4836f73e2243b50b7c0503c89da6",
   "source_sha256": "7fb10fc6c80139ba6a7440bdc097c175c65d71c50ac547421a392c8b137f27b6",
   "compiler": "Apple clang version 21.0.0 (clang-2100.3.34.2)",
   "parameters": {
@@ -23,7 +23,7 @@
     "formal_proof_checked": false,
     "external_spec_pinned": false,
     "acceptance_checker_pins": {
-      "replay_adapter_sha256": "db6587385b72693f2603d8a0c6a98096883e9b2f2ff503c7b2b43f7f3da19976",
+      "replay_adapter_sha256": "8343c61d75d6169653efe015ab43ce14192eb42508bc0ba5c60871ae6e505e6f",
       "engine_bridge_sha256": "87e02d682598a4a761f6ff981286d0bcc333a3948962b762e186e376b420605b"
     },
     "instance_sha256": "04f60ede74a647d02f86be3aadb87d39bfbeae56ced99ed7de1ecb14e3b4bd9e",
@@ -78,8 +78,8 @@
       "The captured live record may change after capture.",
       "The source URL does not pin the external engine or establish its license."
     ],
-    "certificate_sha256": "88639d2d160e020d7b655b1b1341693b8b08c8fa7e8feca76fdf15563626f891"
+    "certificate_sha256": "cf1c9a4b920989bc6df994dfc9fce29bea3e4836f73e2243b50b7c0503c89da6"
   },
   "status": "CANDIDATE_ACCEPTED",
-  "elapsed_seconds": 0.143
+  "elapsed_seconds": 0.25
 }

@@ -4,7 +4,7 @@
   "formal_proof_checked": false,
   "external_spec_pinned": false,
   "acceptance_checker_pins": {
-    "replay_adapter_sha256": "db6587385b72693f2603d8a0c6a98096883e9b2f2ff503c7b2b43f7f3da19976",
+    "replay_adapter_sha256": "8343c61d75d6169653efe015ab43ce14192eb42508bc0ba5c60871ae6e505e6f",
     "engine_bridge_sha256": "87e02d682598a4a761f6ff981286d0bcc333a3948962b762e186e376b420605b"
   },
   "instance_sha256": "a4b09ef360afc094ddbfdc5291749e0a3be4419f710ccda7e59e0797f703ef1c",
@@ -76,5 +76,5 @@
     "The captured live record may change after capture.",
     "The source URL does not pin the external engine or establish its license."
   ],
-  "certificate_sha256": "faad34f90fa1242eafb5d96ee14d8d332a3b17d7e5da4bc33a30fbafaa28b17f"
+  "certificate_sha256": "f2d61e0c679b111b831ff2f329267505651685b58044ec14aca051305780bb4e"
 }

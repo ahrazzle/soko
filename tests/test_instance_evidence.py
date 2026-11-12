@@ -57,6 +57,11 @@ class InstanceEvidenceTests(unittest.TestCase):
         self.assertFalse(result["valid_winning_route"])
         self.assertFalse(result["beats_observed_record"])
 
+    def test_rejects_noncanonical_starting_rooms(self):
+        for grid in (["..."], ["G.."], ["F.."], ["FFGG"], ["F1GG"], ["F2G"], ["12GG"]):
+            with self.subTest(grid=grid), self.assertRaises(ValueError):
+                module.replay({"part": 1, "grid": grid, "route": ""})
+
     def test_rejects_malformed_inputs(self):
         for change in ({"part": True}, {"grid": ["?F.G"]}, {"grid": ["##", "#"]}, {"route": "R R"}, {"route": "rr"}):
             with self.subTest(change=change), self.assertRaises(ValueError):

@@ -14,7 +14,7 @@ A later every-start window scan also found no improvement. It performed 39,495,9
 | `iii20-search.json`, `iii21-search.json` | Results from the recovered C++ optimizer: 84 to 84 and 316 to 316 |
 | `iii21-dual-python-replay.json` | Raw current-repository replay output |
 | `recovered-package-tests.txt` | Six historical package tests run against the recovered source with GCC 16. This is not the current repository test suite |
-| `repo-tests.txt` | Thirteen tests run against the composed repository and new evidence adapter |
+| `repo-tests.txt` | Fourteen tests run against the composed repository and new evidence adapter |
 | `search-runner-smoke.json` | Portable clang build and direct candidate-generator runner on a two-move corridor |
 
 The baseline searches used beam width 40,000 and a configured 60-second beam budget. III-20 used the default 14-key window. III-21 used an 18-key window and took 83.96 seconds. The recovered optimizer does not bound the whole search with that budget. The new runner adds a process timeout.

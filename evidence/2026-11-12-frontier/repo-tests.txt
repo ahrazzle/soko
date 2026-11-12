@@ -9,11 +9,12 @@ test_binds_problem_and_route_and_labels_scope (test_instance_evidence.InstanceEv
 test_incomplete_route_is_not_a_win (test_instance_evidence.InstanceEvidenceTests.test_incomplete_route_is_not_a_win) ... ok
 test_instance_hash_changes_with_grid (test_instance_evidence.InstanceEvidenceTests.test_instance_hash_changes_with_grid) ... ok
 test_rejects_malformed_inputs (test_instance_evidence.InstanceEvidenceTests.test_rejects_malformed_inputs) ... ok
+test_rejects_noncanonical_starting_rooms (test_instance_evidence.InstanceEvidenceTests.test_rejects_noncanonical_starting_rooms) ... ok
 test_route_at_record_is_not_a_new_record (test_instance_evidence.InstanceEvidenceTests.test_route_at_record_is_not_a_new_record) ... ok
 test_compiler_failure_writes_failed_evidence (test_instance_evidence.SearchFailureEvidenceTests.test_compiler_failure_writes_failed_evidence) ... ok
 
 ----------------------------------------------------------------------
-Ran 13 tests in 0.133s
+Ran 14 tests in 0.129s
 
 OK
 {

@@ -10,6 +10,8 @@ The C++ source came from the team's `2026-11-11_soko-verified-mcp-final.zip` pac
 
 The recovered engine predates the current repository's trajectory-digest interface. It is used only to propose candidates. Every candidate is replayed with the current repository's two Python interpreters. Do not copy it into `cpp/soko_engine.cpp` without porting and testing that interface.
 
+The replay adapter accepts canonical starting rooms with one active hero, distinct hero identities and one goal per hero. Its flat grid cannot represent a hero initially sharing a cell with a goal. Empty or already-overlapping starting problems are outside this adapter.
+
 ## Re-run
 
 From the repository root:
