@@ -1,0 +1,17 @@
+{
+  "README.md": "d3d5ff404ea17b66138414eeceecfed0ccc43577bc48744b984b742ee96fc83d",
+  "baseline-comparison.json": "fff4280a44f2bacabcdf212c42929d914b006de90e8fb7a94415ca74b2dbbe2c",
+  "focused-tests.txt": "3c8961a1c25de3997cd4fdfde70a674ae325fac0170e1bc7c2d3e2ed6849f1b8",
+  "full-tests.txt": "3ffbe7e281e938095751b761eb222f35c9112d6217e8f08b1b42da4d707dd27b",
+  "global47-bundle.json.gz": "e88f9921be39a66c178a8c1448ca5fb66e0c38e6e4bc30bdf6c74177d2b6d852",
+  "global47-result.json": "fa7f9c2a9d9a6eb9fcd1bfaf7f624875824f2b69d7101d900d93b19602fc7c39",
+  "manifest-check.txt": "f801e6995c839744bb276cb7afd8a580de218b606694beb995202524707e30c1",
+  "recheck-result.json": "dc31ca41bd7507bc868a34c877b815e224095ae1ee17986362f0437d9c1e216d",
+  "recheck.py": "468db92e5602497d9e2ca03c7a23bc1ad510f01461a0778daf15c5c03772ff35",
+  "reference48-bundle.json.gz": "ca8d4dfa8c7acb038b1eee0d5488b560160e43637896bac449b5145316f1412c",
+  "reference48-original.json": "5786fd117ba6df0100c8db4c8cc6f3a07d51ff11573efaaa763dd18a92989a65",
+  "reference48-result.json": "0645940d6a6f76049903d314308e1dcde321405987ace01ebc49c4d77a9f2132",
+  "strict-integrity.txt": "0e187e12cfbcd7d995bce72d240e6491669ecb2f1e1f0ace277220ebd1bde8fe",
+  "unsat-control-bundle.json.gz": "9f782f871ad4c9234893ca96064d6eb020efcc394f1e862fc94e462da0dd1ed7",
+  "unsat-control-result.json": "485d4af81dc1c1bee7c9b4733d1f66557cdfba0e8cb35c7a09c0b36881099de6"
+}
