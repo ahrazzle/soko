@@ -1,0 +1,70 @@
+{
+  "artifacts": {
+    "actions.json": "c881bc4f467a0f80ab7286d6a379f993f4e75c13aca55c7102c10ae32bef518a",
+    "problem.cnf": "d613986fa0ffbbf482c767926e11baed44eab4257b6708785579b832634681ad"
+  },
+  "build_seconds": 1.4753466549991572,
+  "cnf_bytes": 15826292,
+  "cnf_clauses": 412763,
+  "cnf_variables": 58452,
+  "compile_seconds": 2.036104045000684,
+  "horizon": 47,
+  "kind": "global_transport_relaxation",
+  "model_contract": {
+    "action_encoding": "one-hot Boolean variables named action_{zero_based_step}_{action}",
+    "actions": [
+      "U",
+      "D",
+      "L",
+      "R",
+      "A"
+    ],
+    "bard_transport": "if Bard steps, each harvested token within prior Chebyshev distance two may independently stay or take the same step",
+    "board": "original 15x7",
+    "deleted_material_representation": "persistent optional-staying ghost tokens",
+    "external_lower_bound_assumed": false,
+    "goal_absorbing": true,
+    "harvest": "Druid targets an unharvested token with a directional input and stays in place",
+    "ignored_rules": [
+      "collisions",
+      "walls",
+      "doors",
+      "material freezing",
+      "material deletion"
+    ],
+    "inactive_druid_transport": "if Bard steps, Druid within prior Chebyshev distance two may stay or take the same step",
+    "kind": "global sound nine-token transport relaxation",
+    "objective": "historical nine-token switch landmark, then both heroes at distinct goals by horizon",
+    "original_game_equivalence_proved": false,
+    "prefix_or_neighborhood_restriction": false,
+    "room": "III-14",
+    "solver_result_semantics": {
+      "sat": "relaxation feasible; no puzzle solution or upper bound follows",
+      "unknown": "inconclusive",
+      "unsat": "no modeled transport trace by horizon; transfers to original game only under the soundness argument"
+    },
+    "source_guard": "existing exact III-14 source and grid guard is checked for every build",
+    "state_encoding": "4-bit x and 3-bit y coordinates; active, harvested and landmark booleans",
+    "token_labels": "nine switch positions in row-major order",
+    "token_origins": "existential pairwise-distinct original border wall cells",
+    "version": 1
+  },
+  "original_game_equivalence_proved": false,
+  "preparation_seconds": 3.512126713001635,
+  "projection_soundness": "written simulation argument; not proof-assistant checked",
+  "record_claim": false,
+  "room": "III-14",
+  "source_sha256": {
+    "experiments/exact_frontier/certified_sat.py": "68a440b51c69dd1a338f8b088b5c3066a8494e97750215d4aa6863b80e39ff6e",
+    "experiments/exact_frontier/cnf_search.py": "e6a443352f7750edf9f3daecac61e8b5602db903e27ce18d4e33d45336c90c60",
+    "experiments/exact_frontier/iii14_problem.py": "255c0c4bd049ee511b9087b03ba19bb253671711927965003fe0bd5d702ea29c",
+    "experiments/exact_frontier/iii14_smt.py": "4d40f35450837ec903f63322054f8ffc88486189c63db8d67bfc91c1708ba248",
+    "experiments/transport_relaxation/model.py": "e37a3c20fe6dde00ef3aa9278b9d4155b5d35977e10f065d9d6f57bbd36417bb",
+    "experiments/transport_relaxation/project.py": "87597d9bb12ea7832dd628f036ed88126b0b065ab611512d2f62975282b7cde6",
+    "experiments/transport_relaxation/run.py": "6ece27507441c63e507b990b99b7ccc798eb3040cd2ef0d8b8131ed5ff668b81",
+    "soko_mcp/data/catalog.json": "c79e2ddf755039ad09ee57d30e06efc594d0310d20cbdba26b40a4bd9ae5c8bc",
+    "soko_mcp/oracle.py": "8145f311051a3f6bfa94467da7a6d9a30535f9edf1bb00662982da70e9cc9853"
+  },
+  "status": "prepared",
+  "z3_version": "5.4.1"
+}

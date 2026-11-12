@@ -1,0 +1,96 @@
+{
+  "new_record": false,
+  "new_original_game_lower_bound": false,
+  "inspiration": {
+    "url": "https://github.com/Foundation-0/incentre-lattices",
+    "commit": "2d374fff2a59cc9331566733043a4bb25c1040bf",
+    "code_copied": false
+  },
+  "global_relaxation_query": {
+    "horizon": 47,
+    "cnf_variables": 58452,
+    "cnf_clauses": 412763,
+    "cnf_bytes": 15826292,
+    "preparation_seconds": 3.512126713001635
+  },
+  "global_sat_run_status": "unknown after 60-second budget",
+  "subsequent_abstract_feasibility": "47-input witness constructed conditionally and accepted with all symbolic frames pinned",
+  "original_47_wins": false,
+  "local_first_hero_disagreement": {
+    "frame": 26,
+    "key": "U",
+    "expected_abstract": {
+      "bard": [
+        4,
+        4
+      ],
+      "druid": [
+        6,
+        3
+      ],
+      "active": false
+    },
+    "original": {
+      "bard": [
+        4,
+        4
+      ],
+      "druid": [
+        6,
+        2
+      ],
+      "active": false
+    }
+  },
+  "matched_conditional_control": {
+    "scope": "reference route and every hero frame fixed, landmark at frame 43; tokens otherwise unconstrained",
+    "allocation_status": "feasible",
+    "allocation_seconds": 0.016217169002629817,
+    "z3_build_seconds": 1.9782175190011912,
+    "z3_setup_seconds": 0.008120978000079049,
+    "z3_solve_seconds": 0.8765391249980894,
+    "z3_status": "sat",
+    "z3_reason": null,
+    "z3_timeout_ms": 10000,
+    "pinned_allocation_status": "sat",
+    "pinned_allocation_seconds": 0.06535796699972707,
+    "landmark_frame": 43
+  },
+  "capacity_flow_controls": {
+    "baseline_48_frame_43": {
+      "landmark_frame": 43,
+      "status": "feasible",
+      "flow_value": 9,
+      "flow_seconds": 0.06430347900095512,
+      "capacity_check": true,
+      "pinned_model_check": {
+        "status": "sat",
+        "reason": null
+      },
+      "witness_check_seconds": 2.4812142759983544
+    },
+    "constructed_47_frame_42": {
+      "landmark_frame": 42,
+      "status": "feasible",
+      "flow_value": 9,
+      "flow_seconds": 0.04711649100136128,
+      "capacity_check": true,
+      "pinned_model_check": {
+        "status": "sat",
+        "reason": null
+      },
+      "witness_check_seconds": 3.838553763998789
+    }
+  },
+  "global_master_cut_loop_implemented": false,
+  "focused_tests_passed": 54,
+  "full_suite": {
+    "tests": 175,
+    "failures": 26,
+    "errors": 10,
+    "skipped": 4,
+    "same_failing_test_multiset_as_previous_151_test_run": true
+  },
+  "integrity_manifest": "passed",
+  "trust_boundary": "Written existential projection and exact conditional decomposition; Z3 encoding/compilation and original-mechanics mapping are not proof-assistant verified."
+}

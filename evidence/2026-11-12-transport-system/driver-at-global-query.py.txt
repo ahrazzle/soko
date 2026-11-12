@@ -1,0 +1,205 @@
+"""Compile and check a global transport relaxation, never label abstract SAT a record."""
+from __future__ import annotations
+
+import argparse
+from dataclasses import fields
+import json
+from pathlib import Path
+import re
+import sys
+import time
+
+ROOT = Path(__file__).resolve().parents[2]
+if str(ROOT) not in sys.path:
+    sys.path.insert(0, str(ROOT))
+
+import z3
+
+from experiments.exact_frontier.certified_sat import solve_cnf
+from experiments.exact_frontier.cnf_search import compile_cnf
+from experiments.exact_frontier.record_system import decode_route, sha, write_json
+from experiments.transport_relaxation import model
+from soko_mcp.oracle import PuzzleScriptOracle
+
+
+def source_identity():
+    names = ('experiments/transport_relaxation/model.py',
+             'experiments/transport_relaxation/project.py',
+             'experiments/transport_relaxation/run.py',
+             'experiments/exact_frontier/iii14_problem.py',
+             'experiments/exact_frontier/iii14_smt.py',
+             'experiments/exact_frontier/cnf_search.py',
+             'experiments/exact_frontier/certified_sat.py',
+             'soko_mcp/oracle.py', 'soko_mcp/data/catalog.json')
+    return {name: sha(ROOT / name) for name in names}
+
+
+def pin_frame(solver, frame, values):
+    for field in fields(frame):
+        variables, actual = getattr(frame, field.name), getattr(values, field.name)
+        if isinstance(variables, tuple):
+            if len(variables) != len(actual):
+                raise ValueError('projected frame shape differs')
+            solver.add(*[v == a for v, a in zip(variables, actual)])
+        else:
+            solver.add(variables == actual)
+
+
+def prepare(output: Path, horizon: int, *, control=False):
+    output.mkdir(parents=True, exist_ok=True)
+    if any(output.iterdir()):
+        raise ValueError('use an empty output directory')
+    began = time.monotonic()
+    sources = source_identity()
+    report = {'room': 'III-14', 'horizon': horizon,
+              'kind': 'reference_projection_control' if control else 'global_transport_relaxation',
+              'status': 'building', 'model_contract': model.MODEL_CONTRACT,
+              'source_sha256': sources, 'z3_version': z3.get_version_string(),
+              'original_game_equivalence_proved': False,
+              'projection_soundness': 'written simulation argument; not proof-assistant checked',
+              'record_claim': False}
+    write_json(output / 'progress.json', report)
+    solver, actions, frames = model.build_problem(horizon)
+    if control:
+        from experiments.transport_relaxation.project import project
+        projection = project()
+        if horizon != len(projection.route):
+            raise ValueError('reference control horizon must equal reference length')
+        for variables, values in zip(frames, projection.frames):
+            pin_frame(solver, variables, values)
+        for selected, key in zip(actions, projection.route):
+            solver.add(selected['UDLRA'.index(key)])
+        write_json(output / 'projection.json', {
+            'route': projection.route, 'origins': projection.origins,
+            'landmark_frame': projection.landmark,
+            'frames': [{f.name: getattr(frame, f.name) for f in fields(frame)}
+                       for frame in projection.frames]})
+    report.update(status='compiling', build_seconds=time.monotonic() - began)
+    write_json(output / 'progress.json', report)
+    start_compile = time.monotonic()
+    cnf, aliases = compile_cnf(solver)
+    header = re.search(r'^p cnf (\d+) (\d+)$', cnf, re.M)
+    if header is None:
+        raise ValueError('missing CNF header')
+    if int(header[1]) and len(aliases) != 5 * horizon:
+        raise ValueError('nontrivial formula lost action aliases')
+    (output / 'problem.cnf').write_text(cnf)
+    write_json(output / 'actions.json', aliases)
+    if source_identity() != sources:
+        raise ValueError('sources changed during preparation')
+    artifacts = {name: sha(output / name) for name in ('problem.cnf', 'actions.json')}
+    if control:
+        artifacts['projection.json'] = sha(output / 'projection.json')
+    report.update(status='prepared', compile_seconds=time.monotonic() - start_compile,
+                  preparation_seconds=time.monotonic() - began,
+                  cnf_variables=int(header[1]), cnf_clauses=int(header[2]),
+                  cnf_bytes=len(cnf.encode()), artifacts=artifacts)
+    write_json(output / 'bundle.json', report)
+    write_json(output / 'progress.json', report)
+    return report
+
+
+def checked_bundle(output):
+    bundle = json.loads((output / 'bundle.json').read_text())
+    if bundle['source_sha256'] != source_identity():
+        raise ValueError('bundle sources differ; prepare a fresh bundle')
+    for name, expected in bundle['artifacts'].items():
+        path = output / name
+        if path.resolve().parent != output.resolve() or sha(path) != expected:
+            raise ValueError('bundle artifact changed: ' + name)
+    return bundle
+
+
+def reconstruct(route, timeout_ms=15000):
+    """Recover an abstract state trace from checked action literals for inspection."""
+    solver, actions, frames = model.build_problem(len(route))
+    for row, key in zip(actions, route):
+        solver.add(row['UDLRA'.index(key)])
+    solver.set(timeout=timeout_ms)
+    status = solver.check()
+    if status != z3.sat:
+        return {'status': str(status), 'reason': solver.reason_unknown() if status == z3.unknown else 'reconstruction rejected'}
+    assignment = solver.model()
+    def value(expr):
+        resolved = assignment.eval(expr, model_completion=True)
+        return z3.is_true(resolved) if z3.is_bool(expr) else resolved.as_long()
+    return {'status': 'sat', 'frames': [
+        {f.name: [value(x) for x in getattr(frame, f.name)]
+         if isinstance(getattr(frame, f.name), tuple) else value(getattr(frame, f.name))
+         for f in fields(frame)} for frame in frames]}
+
+
+def local_replay(route):
+    oracle = PuzzleScriptOracle(3, model.ROWS)
+    for i, key in enumerate(route):
+        alive, won = oracle.step(key)
+        if not alive:
+            return {'winning': False, 'reason': 'hero_lost', 'input': i + 1}
+        if won:
+            return {'winning': True, 'first_win': i + 1, 'route': route[:i + 1],
+                    'original_replay_and_live_record_comparison_required': True}
+    return {'winning': False, 'reason': 'not_won', 'final_board': oracle.render_ascii()}
+
+
+def solve(output: Path, timeout_seconds=60, proof_checker=None, html=None):
+    bundle = checked_bundle(output)
+    result = solve_cnf(output / 'problem.cnf', output / 'sat', timeout_seconds, proof_checker)
+    report = {'kind': bundle['kind'], 'horizon': bundle['horizon'], 'solver': result,
+              'bundle_sha256': sha(output / 'bundle.json'),
+              'record_claim': False, 'original_game_equivalence_proved': False}
+    if result['status'] == 'sat':
+        if result['checker_status'] != 'assignment_verified':
+            raise ValueError('SAT assignment was not independently checked')
+        aliases = json.loads((output / 'actions.json').read_text())
+        route = decode_route(json.loads(Path(result['assignment_path']).read_text()), aliases, bundle['horizon'])
+        report.update(status='abstract_plan', route=route, inputs=len(route),
+                      concrete_local_replay=local_replay(route))
+        trace = reconstruct(route)
+        write_json(output / 'abstract-trace.json', trace)
+        report['trace_reconstruction'] = trace['status']
+        if bundle['kind'] == 'reference_projection_control':
+            from soko_mcp.original import replay
+            from soko_mcp.catalog import get_room
+            room = get_room('III-14')
+            original = replay(room['part'], room['room'], route, html=html)
+            write_json(output / 'original-replay.json', original)
+            if not original.get('valid_winning_route'):
+                raise ValueError('original reference replay rejected')
+            report.update(status='reference_control_passed', original_replay='passed',
+                          original_replay_sha256=sha(output / 'original-replay.json'))
+    elif result['status'] == 'unsat':
+        if result['checker_status'] == 'verified':
+            report.update(status='certified_abstract_cnf_unsat',
+                          abstract_lower_bound=bundle['horizon'] + 1,
+                          conclusion='No abstract plan within the horizon. Transfer to the original puzzle requires the documented projection argument and correct encoding/compilation.')
+        else:
+            report.update(status='unverified_unsat_claim')
+    else:
+        report['status'] = result['status']
+    write_json(output / 'result.json', report)
+    return report
+
+
+def main():
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument('command', choices=('prepare', 'solve', 'control'))
+    parser.add_argument('--output', type=Path, required=True)
+    parser.add_argument('--horizon', type=int, default=47)
+    parser.add_argument('--timeout-seconds', type=float, default=60)
+    parser.add_argument('--proof-checker', type=Path)
+    parser.add_argument('--html', type=Path)
+    args = parser.parse_args()
+    args.output = args.output.resolve()
+    if args.command == 'solve':
+        report = solve(args.output, args.timeout_seconds, args.proof_checker, args.html)
+    else:
+        from experiments.exact_frontier.iii14_smt import ROUTE
+        horizon = len(ROUTE) if args.command == 'control' else args.horizon
+        report = prepare(args.output, horizon, control=args.command == 'control')
+        if args.command == 'control':
+            report = solve(args.output, args.timeout_seconds, args.proof_checker, args.html)
+    print(json.dumps(report, indent=2))
+
+
+if __name__ == '__main__':
+    main()

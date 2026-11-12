@@ -130,6 +130,13 @@ topology relaxation in `structure_system.md` specifies shared wall-cut constrain
 without double-counting heroes using the same opening. Simply deleting objects
 is unsound: a removed crate may have been a Wizard anchor or a Bard blocker.
 
+The [transport-relaxation pilot](../transport_relaxation/README.md) develops
+this direction from shortest-path duality. It replaces full occupancy with
+nine existentially selected material histories and decomposes allocation for
+fixed hero trajectories into exact matching or capacity flow. Its abstract
+47-input witness does not win the original game. Global cut generation remains
+proposed; no new original-game lower bound is established.
+
 The older `iii14_smt`, `iii20_bitvector` CLI experiments and their result files
 preserve the exploratory history. They are not the global system's search loop.
 Their restricted UNSAT results and timeouts establish no new Frontier record or
