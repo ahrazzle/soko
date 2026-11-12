@@ -1,0 +1,4 @@
+cal_246_official 316 rust_win=true candidate-cal_246_official-316.txt
+cal_246_official 316 rust_win=true candidate-cal_246_official-316.txt
+cal_246_A_WD 316 rust_win=true candidate-cal_246_A_WD-316.txt
+cal_232_official 316 rust_win=true candidate-cal_232_official-316.txt

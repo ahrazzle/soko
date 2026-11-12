@@ -1,0 +1,131 @@
+SHOT plans=1 secs=90 width=40000 cap=10000000
+
+======== cal_246_official prefix=246 remaining<= 70 assign=F(12,11) T(12,6) W(10,11) P(10,1) B(12,1) D(10,6)
+  jobs GateHeld > Shaft(1) > WFree > Deliver > Win
+  start sh1=## sh2=## Wfree=false mid=0 right=0 w1010=false w1210=true gate=false hog=1 act=B done=0 prog=3 guide=76 GateHeld > Shaft(1) > WFree > Deliver > Win
+  -- GateHeld states=1 already=0 path=0 left=70
+    bfs GateHeld depth 0 seen=5 exp=1 hits=0 t=0.0s
+    bfs GateHeld depth 1 seen=17 exp=5 hits=0 t=0.0s
+    bfs GateHeld depth 2 seen=61 exp=17 hits=0 t=0.0s
+    bfs GateHeld FIRST at g=4 sh1=## sh2=## Wfree=false mid=0 right=0 w1010=false w1210=true gate=true hog=0 act=B seen=89 t=0.0s
+    bfs GateHeld depth 3 seen=196 exp=61 hits=1 t=0.0s
+    bfs GateHeld depth 4 seen=578 exp=196 hits=4 t=0.0s
+    bfs GateHeld depth 5 seen=1666 exp=578 hits=8 t=0.0s
+    bfs GateHeld depth 6 seen=4688 exp=1666 hits=8 t=0.0s
+    bfs GateHeld depth 7 seen=12979 exp=4688 hits=8 t=0.0s
+    bfs GateHeld collected hits=8 best_len=4 exp=4688 seen=12979 t=0.0s
+    realized GateHeld n=8 best_len=4 sh1=## sh2=## Wfree=false mid=0 right=0 w1010=false w1210=true gate=true hog=0 act=B
+  -- Shaft(1) states=8 already=0 path=4 left=66
+    bfs Shaft(1)-wall1 depth 0 seen=17 exp=4 hits=0 t=0.0s
+    bfs Shaft(1)-wall1 depth 1 seen=55 exp=17 hits=0 t=0.0s
+    bfs Shaft(1)-wall1 depth 2 seen=178 exp=55 hits=0 t=0.0s
+    bfs Shaft(1)-wall1 depth 3 seen=551 exp=178 hits=0 t=0.0s
+    bfs Shaft(1)-wall1 FIRST at g=5 sh1=*# sh2=## Wfree=false mid=0 right=0 w1010=false w1210=true gate=true hog=0 act=D seen=617 t=0.0s
+    bfs Shaft(1)-wall1 depth 4 seen=1631 exp=551 hits=5 t=0.0s
+    bfs Shaft(1)-wall1 depth 5 seen=4639 exp=1631 hits=8 t=0.0s
+    bfs Shaft(1)-wall1 depth 6 seen=12673 exp=4639 hits=8 t=0.0s
+    bfs Shaft(1)-wall1 depth 7 seen=33229 exp=12673 hits=8 t=0.1s
+    bfs Shaft(1)-wall1 depth 8 seen=83812 exp=33229 hits=8 t=0.2s
+    bfs Shaft(1)-wall1 depth 9 seen=203873 exp=83812 hits=8 t=0.5s
+    bfs Shaft(1)-wall1 collected hits=8 best_len=10 exp=83812 seen=203873 t=0.5s
+    shaft wall1 n=8 best_len=10 sh1=*# sh2=## Wfree=false mid=0 right=0 w1010=false w1210=true gate=true hog=0 act=D
+    bfs Shaft(1)-open depth 0 seen=40 exp=8 hits=0 t=0.0s
+    bfs Shaft(1)-open depth 1 seen=142 exp=40 hits=0 t=0.0s
+    bfs Shaft(1)-open depth 2 seen=463 exp=142 hits=0 t=0.0s
+    bfs Shaft(1)-open depth 3 seen=1389 exp=463 hits=0 t=0.0s
+    bfs Shaft(1)-open depth 4 seen=3949 exp=1389 hits=0 t=0.0s
+    bfs Shaft(1)-open depth 5 seen=10702 exp=3949 hits=0 t=0.0s
+    bfs Shaft(1)-open depth 6 seen=27788 exp=10702 hits=0 t=0.1s
+    bfs Shaft(1)-open depth 7 seen=69237 exp=27788 hits=0 t=0.2s
+    bfs Shaft(1)-open depth 8 seen=165654 exp=69237 hits=0 t=0.3s
+    bfs Shaft(1)-open depth 9 seen=381030 exp=165654 hits=0 t=0.7s
+    bfs Shaft(1)-open depth 10 seen=844570 exp=381030 hits=0 t=1.3s
+    bfs Shaft(1)-open depth 11 seen=1808663 exp=844570 hits=0 t=2.4s
+    bfs Shaft(1)-open FIRST at g=13 sh1=.* sh2=*# Wfree=false mid=0 right=0 w1010=false w1210=true gate=true hog=0 act=D seen=3723815 t=6.5s
+    bfs Shaft(1)-open depth 12 seen=3753934 exp=1808663 hits=1 t=6.5s
+    bfs Shaft(1)-open depth 13 seen=7575498 exp=3753934 hits=8 t=15.2s
+    bfs Shaft(1)-open cap at g=14 seen=10000000 exp=5069559 hits=8
+    bfs Shaft(1)-open cap hits=8 best_len=24 exp=5069559 seen=10000000 t=18.9s
+    realized Shaft(1) n=8 best_len=24 sh1=.* sh2=*# Wfree=false mid=0 right=0 w1010=false w1210=true gate=true hog=0 act=D
+  -- WFree states=8 already=0 path=24 left=46
+    bfs WFree depth 0 seen=24 exp=4 hits=0 t=0.0s
+    bfs WFree depth 1 seen=84 exp=24 hits=0 t=0.0s
+    bfs WFree depth 2 seen=252 exp=84 hits=0 t=0.0s
+    bfs WFree FIRST at g=4 sh1=.. sh2=*# Wfree=true mid=0 right=0 w1010=false w1210=true gate=true hog=0 act=W seen=319 t=0.0s
+    bfs WFree depth 3 seen=720 exp=252 hits=4 t=0.0s
+    bfs WFree depth 4 seen=2016 exp=720 hits=8 t=0.0s
+    bfs WFree depth 5 seen=5574 exp=2016 hits=8 t=0.0s
+    bfs WFree depth 6 seen=15098 exp=5574 hits=8 t=0.0s
+    bfs WFree depth 7 seen=39808 exp=15098 hits=8 t=0.1s
+    bfs WFree collected hits=8 best_len=28 exp=15098 seen=39808 t=0.1s
+    realized WFree n=8 best_len=28 sh1=.. sh2=*# Wfree=true mid=0 right=0 w1010=false w1210=true gate=true hog=0 act=W
+  -- Deliver states=8 already=0 path=28 left=42
+    finish beam 0 path=28 maxd=42 sh1=.. sh2=*# Wfree=true mid=0 right=0 w1010=false w1210=true gate=true hog=0 act=W
+  start sh1=.. sh2=*# Wfree=true mid=0 right=0 w1010=false w1210=true gate=true hog=0 act=W done=3 prog=3076 guide=75 GateHeld > Shaft(1) > WFree > Deliver > Win
+  d=1 kept=3 prog=3076 best_h=73 sh1=.. sh2=*# Wfree=true mid=0 right=0 w1010=false w1210=true gate=true hog=0 act=P seen=4 t=0.0s shaft=true wfree=true minDx=1 official_h=75 official_p=3076 sh1=.. sh2=*# Wfree=true mid=0 right=0 w1010=false w1210=true gate=true hog=0 act=W rank=None
+  d=2 kept=7 prog=3076 best_h=71 sh1=.. sh2=*# Wfree=true mid=0 right=0 w1010=false w1210=true gate=true hog=0 act=B seen=11 t=0.0s shaft=true wfree=true minDx=1 official_h=75 official_p=3076 sh1=.. sh2=*# Wfree=true mid=0 right=0 w1010=false w1210=true gate=true hog=0 act=W rank=None
+  d=3 kept=19 prog=3076 best_h=69 sh1=.. sh2=*# Wfree=true mid=0 right=0 w1010=false w1210=true gate=true hog=0 act=B seen=30 t=0.0s shaft=true wfree=true minDx=1 official_h=75 official_p=3076 sh1=.. sh2=*# Wfree=true mid=0 right=0 w1010=false w1210=true gate=true hog=0 act=W rank=None
+  d=4 kept=48 prog=3076 best_h=67 sh1=.. sh2=*# Wfree=true mid=0 right=0 w1010=false w1210=true gate=true hog=0 act=B seen=78 t=0.0s shaft=true wfree=true minDx=1 official_h=75 official_p=3076 sh1=.. sh2=*# Wfree=true mid=0 right=0 w1010=false w1210=true gate=true hog=0 act=W rank=None
+  d=5 kept=122 prog=3076 best_h=61 sh1=.. sh2=*# Wfree=true mid=0 right=0 w1010=false w1210=true gate=true hog=0 act=D seen=200 t=0.0s shaft=true wfree=true minDx=1 official_h=75 official_p=3076 sh1=.. sh2=*# Wfree=true mid=0 right=0 w1010=false w1210=true gate=true hog=0 act=W rank=None
+  d=6 kept=332 prog=3076 best_h=59 sh1=.. sh2=*# Wfree=true mid=0 right=0 w1010=false w1210=true gate=true hog=0 act=D seen=532 t=0.0s shaft=true wfree=true minDx=1 official_h=75 official_p=3076 sh1=.. sh2=*# Wfree=true mid=0 right=0 w1010=false w1210=true gate=true hog=0 act=W rank=None
+  d=7 kept=921 prog=3090 best_h=70 sh1=.. sh2=*# Wfree=true mid=0 right=0 w1010=false w1210=true gate=true hog=1 act=F seen=1453 t=0.0s shaft=true wfree=true minDx=1 official_h=75 official_p=3076 sh1=.. sh2=*# Wfree=true mid=0 right=0 w1010=false w1210=true gate=true hog=0 act=W rank=None
+  d=8 kept=2628 prog=3090 best_h=68 sh1=.. sh2=*# Wfree=true mid=0 right=0 w1010=false w1210=true gate=true hog=1 act=T seen=4081 t=0.0s shaft=true wfree=true minDx=1 official_h=73 official_p=3076 sh1=.. sh2=*# Wfree=true mid=0 right=0 w1010=false w1210=true gate=true hog=0 act=P rank=None
+  d=9 kept=7468 prog=3090 best_h=59 sh1=.. sh2=*# Wfree=true mid=0 right=0 w1010=false w1210=true gate=true hog=1 act=T seen=11549 t=0.0s shaft=true wfree=true minDx=1 official_h=73 official_p=3076 sh1=.. sh2=*# Wfree=true mid=0 right=0 w1010=false w1210=true gate=true hog=0 act=P rank=None
+  d=10 kept=20917 prog=3098 best_h=57 sh1=.. sh2=*# Wfree=true mid=0 right=0 w1010=false w1210=true gate=true hog=2 act=T seen=32466 t=0.1s shaft=true wfree=true minDx=1 official_h=73 official_p=3076 sh1=.. sh2=*# Wfree=true mid=0 right=0 w1010=false w1210=true gate=true hog=0 act=P rank=None
+  d=11 kept=40000 prog=3098 best_h=55 sh1=.. sh2=*# Wfree=true mid=0 right=0 w1010=false w1210=true gate=true hog=2 act=T seen=89654 t=0.3s shaft=true wfree=true minDx=1 official_h=73 official_p=3076 sh1=.. sh2=*# Wfree=true mid=0 right=0 w1010=false w1210=true gate=true hog=0 act=P rank=None
+  d=12 kept=40000 prog=3104 best_h=64 sh1=.. sh2=*# Wfree=true mid=0 right=0 w1010=false w1210=true gate=true hog=2 act=T seen=199199 t=0.6s shaft=true wfree=true minDx=1 official_h=73 official_p=3076 sh1=.. sh2=*# Wfree=true mid=0 right=0 w1010=false w1210=true gate=true hog=0 act=P rank=None
+  d=13 kept=40000 prog=3104 best_h=62 sh1=.. sh2=*# Wfree=true mid=0 right=0 w1010=false w1210=true gate=true hog=2 act=W seen=307629 t=0.8s shaft=true wfree=true minDx=1 official_h=71 official_p=3076 sh1=.. sh2=*# Wfree=true mid=0 right=0 w1010=false w1210=true gate=true hog=0 act=B rank=None
+  d=14 kept=40000 prog=3104 best_h=56 sh1=.. sh2=*# Wfree=true mid=0 right=0 w1010=false w1210=true gate=true hog=2 act=T seen=413007 t=1.0s shaft=true wfree=true minDx=1 official_h=73 official_p=3076 sh1=.. sh2=*# Wfree=true mid=0 right=0 w1010=false w1210=true gate=true hog=0 act=B rank=None
+  d=15 kept=40000 prog=3104 best_h=54 sh1=.. sh2=*# Wfree=true mid=0 right=0 w1010=false w1210=true gate=true hog=2 act=W seen=511168 t=1.2s shaft=true wfree=true minDx=1 official_h=74 official_p=3076 sh1=.. sh2=*# Wfree=true mid=0 right=0 w1010=false w1210=true gate=true hog=0 act=B rank=None
+  d=16 kept=40000 prog=3112 best_h=58 sh1=.. sh2=*# Wfree=true mid=0 right=0 w1010=false w1210=true gate=false hog=3 act=T seen=606204 t=1.4s shaft=true wfree=true minDx=1 official_h=74 official_p=3076 sh1=.. sh2=*# Wfree=true mid=0 right=0 w1010=false w1210=true gate=true hog=0 act=B rank=None
+  d=17 kept=40000 prog=3112 best_h=55 sh1=.. sh2=*# Wfree=true mid=0 right=0 w1010=false w1210=true gate=false hog=3 act=W seen=703819 t=1.6s shaft=true wfree=true minDx=1 official_h=72 official_p=3076 sh1=.. sh2=*# Wfree=true mid=0 right=0 w1010=false w1210=true gate=true hog=0 act=D rank=None
+  d=18 kept=40000 prog=3112 best_h=55 sh1=.. sh2=*# Wfree=true mid=0 right=0 w1010=false w1210=true gate=false hog=3 act=W seen=801061 t=1.8s shaft=true wfree=true minDx=1 official_h=72 official_p=3076 sh1=.. sh2=*# Wfree=true mid=0 right=0 w1010=false w1210=true gate=true hog=0 act=D rank=None
+  d=19 kept=40000 prog=3112 best_h=49 sh1=.. sh2=*# Wfree=true mid=0 right=0 w1010=false w1210=true gate=false hog=3 act=F seen=892379 t=2.0s shaft=true wfree=true minDx=1 official_h=76 official_p=3076 sh1=.. sh2=*# Wfree=true mid=0 right=0 w1010=false w1210=true gate=true hog=0 act=F rank=None
+  d=20 kept=40000 prog=3112 best_h=45 sh1=.. sh2=*# Wfree=true mid=0 right=0 w1010=false w1210=true gate=false hog=3 act=F seen=981508 t=2.1s shaft=true wfree=true minDx=1 official_h=80 official_p=3076 sh1=.. sh2=*# Wfree=true mid=0 right=0 w1010=false w1210=true gate=true hog=0 act=T rank=None
+  d=21 kept=40000 prog=3118 best_h=54 sh1=.. sh2=*# Wfree=true mid=0 right=0 w1010=false w1210=true gate=false hog=3 act=F seen=1068327 t=2.3s shaft=true wfree=true minDx=1 official_h=78 official_p=3076 sh1=.. sh2=*# Wfree=true mid=0 right=0 w1010=false w1210=true gate=true hog=0 act=W rank=None
+  d=22 kept=40000 prog=3118 best_h=51 sh1=.. sh2=*# Wfree=true mid=0 right=0 w1010=false w1210=true gate=false hog=3 act=T seen=1159349 t=2.5s shaft=true wfree=true minDx=1 official_h=78 official_p=3076 sh1=.. sh2=*# Wfree=true mid=0 right=0 w1010=false w1210=true gate=true hog=0 act=W rank=None
+  d=23 kept=40000 prog=3118 best_h=48 sh1=.. sh2=*# Wfree=true mid=0 right=0 w1010=false w1210=true gate=false hog=3 act=W seen=1257315 t=2.6s shaft=true wfree=true minDx=1 official_h=78 official_p=2052 sh1=.* sh2=*# Wfree=false mid=0 right=0 w1010=false w1210=true gate=true hog=0 act=W rank=None
+  d=24 kept=40000 prog=3118 best_h=48 sh1=.. sh2=*# Wfree=true mid=0 right=0 w1010=false w1210=true gate=false hog=3 act=W seen=1361350 t=2.8s shaft=true wfree=true minDx=0 official_h=78 official_p=3076 sh1=.. sh2=*# Wfree=true mid=0 right=0 w1010=false w1210=true gate=true hog=0 act=W rank=None
+  d=25 kept=40000 prog=3126 best_h=50 sh1=.. sh2=*# Wfree=true mid=0 right=0 w1010=false w1210=true gate=false hog=4 act=P seen=1473426 t=3.0s shaft=true wfree=true minDx=0 official_h=78 official_p=3076 sh1=.. sh2=*# Wfree=true mid=0 right=0 w1010=false w1210=true gate=true hog=0 act=W rank=None
+  d=26 kept=40000 prog=3126 best_h=50 sh1=.. sh2=*# Wfree=true mid=0 right=0 w1010=false w1210=true gate=false hog=4 act=T seen=1590859 t=3.2s shaft=true wfree=true minDx=1 official_h=76 official_p=3076 sh1=.. sh2=*# Wfree=true mid=0 right=0 w1010=false w1210=true gate=true hog=0 act=P rank=None
+  d=27 kept=40000 prog=3126 best_h=47 sh1=.. sh2=*# Wfree=true mid=0 right=0 w1010=false w1210=true gate=false hog=4 act=W seen=1710380 t=3.4s shaft=true wfree=true minDx=1 official_h=76 official_p=3076 sh1=.. sh2=*# Wfree=true mid=0 right=0 w1010=false w1210=true gate=true hog=0 act=P rank=None
+  d=28 kept=40000 prog=3126 best_h=47 sh1=.. sh2=*# Wfree=true mid=0 right=0 w1010=false w1210=true gate=false hog=4 act=W seen=1828368 t=3.6s shaft=true wfree=true minDx=1 official_h=76 official_p=3076 sh1=.. sh2=*# Wfree=true mid=0 right=0 w1010=false w1210=true gate=true hog=0 act=P rank=None
+  d=29 kept=40000 prog=3126 best_h=39 sh1=.. sh2=*# Wfree=true mid=0 right=0 w1010=false w1210=true gate=false hog=4 act=P seen=1945710 t=3.7s shaft=true wfree=true minDx=1 official_h=76 official_p=3076 sh1=.. sh2=*# Wfree=true mid=0 right=0 w1010=false w1210=true gate=true hog=0 act=P rank=None
+  d=30 kept=40000 prog=3126 best_h=37 sh1=.. sh2=*# Wfree=true mid=0 right=0 w1010=false w1210=true gate=false hog=4 act=B seen=2064433 t=3.9s shaft=true wfree=true minDx=1 official_h=76 official_p=3076 sh1=.. sh2=*# Wfree=true mid=0 right=0 w1010=false w1210=true gate=true hog=0 act=P rank=None
+  d=31 kept=40000 prog=3126 best_h=34 sh1=.. sh2=*# Wfree=true mid=0 right=0 w1010=false w1210=true gate=false hog=4 act=D seen=2179233 t=4.1s shaft=true wfree=true minDx=1 official_h=74 official_p=3076 sh1=.. sh2=*# Wfree=true mid=0 right=0 w1010=false w1210=true gate=true hog=0 act=B rank=None
+  d=32 kept=40000 prog=3132 best_h=50 sh1=.. sh2=*# Wfree=true mid=0 right=0 w1010=false w1210=true gate=false hog=4 act=P seen=2291339 t=4.3s shaft=true wfree=true minDx=1 official_h=72 official_p=3076 sh1=.. sh2=*# Wfree=true mid=0 right=0 w1010=false w1210=true gate=true hog=0 act=D rank=None
+  d=33 kept=40000 prog=3132 best_h=48 sh1=.. sh2=*# Wfree=true mid=0 right=0 w1010=false w1210=true gate=false hog=4 act=B seen=2400715 t=4.4s shaft=true wfree=true minDx=0 official_h=76 official_p=3076 sh1=.. sh2=*# Wfree=true mid=0 right=0 w1010=false w1210=true gate=true hog=0 act=F rank=None
+  d=34 kept=40000 prog=3132 best_h=48 sh1=.. sh2=*# Wfree=true mid=0 right=0 w1010=false w1210=true gate=false hog=4 act=B seen=2514374 t=4.6s shaft=true wfree=true minDx=0 official_h=76 official_p=3076 sh1=.. sh2=*# Wfree=true mid=0 right=0 w1010=false w1210=true gate=true hog=0 act=F rank=None
+  d=35 kept=40000 prog=3132 best_h=48 sh1=*. sh2=.# Wfree=true mid=0 right=0 w1010=false w1210=true gate=false hog=4 act=B seen=2630915 t=4.8s shaft=true wfree=true minDx=1 official_h=80 official_p=3076 sh1=.. sh2=*# Wfree=true mid=0 right=0 w1010=false w1210=true gate=true hog=0 act=T rank=None
+  d=36 kept=40000 prog=3132 best_h=50 sh1=*. sh2=.# Wfree=true mid=0 right=0 w1010=false w1210=true gate=false hog=4 act=D seen=2747960 t=5.0s shaft=true wfree=true minDx=0 official_h=78 official_p=3076 sh1=.. sh2=*# Wfree=true mid=0 right=0 w1010=false w1210=true gate=true hog=0 act=W rank=None
+  d=37 kept=40000 prog=3132 best_h=47 sh1=.. sh2=*# Wfree=true mid=0 right=0 w1010=false w1210=true gate=false hog=4 act=W seen=2868764 t=5.1s shaft=true wfree=true minDx=0 official_h=78 official_p=3076 sh1=.. sh2=*# Wfree=true mid=0 right=0 w1010=false w1210=true gate=true hog=0 act=W rank=None
+  d=38 kept=40000 prog=3132 best_h=46 sh1=.. sh2=*# Wfree=true mid=0 right=0 w1010=false w1210=true gate=false hog=4 act=D seen=2987876 t=5.3s shaft=true wfree=true minDx=1 official_h=78 official_p=3076 sh1=.. sh2=*# Wfree=true mid=0 right=0 w1010=false w1210=true gate=true hog=0 act=W rank=None
+  d=39 kept=40000 prog=3132 best_h=44 sh1=.. sh2=*# Wfree=true mid=0 right=0 w1010=false w1210=true gate=false hog=4 act=D seen=3105880 t=5.5s shaft=true wfree=true minDx=1 official_h=78 official_p=3076 sh1=.. sh2=*# Wfree=true mid=0 right=0 w1010=false w1210=true gate=true hog=0 act=W rank=None
+  d=40 kept=40000 prog=3132 best_h=44 sh1=.. sh2=*# Wfree=true mid=0 right=0 w1010=false w1210=true gate=false hog=4 act=D seen=3224352 t=5.7s shaft=true wfree=true minDx=1 official_h=78 official_p=3076 sh1=.. sh2=*# Wfree=true mid=0 right=0 w1010=false w1210=true gate=true hog=0 act=W rank=None
+  d=41 kept=40000 prog=3134 best_h=41 sh1=.. sh2=*# Wfree=true mid=0 right=0 w1010=false w1210=true gate=false hog=5 act=D seen=3343476 t=5.9s shaft=true wfree=true minDx=1 official_h=78 official_p=3076 sh1=.. sh2=*# Wfree=true mid=0 right=0 w1010=false w1210=true gate=true hog=0 act=W rank=None
+  d=42 kept=40000 prog=3134 best_h=41 sh1=.. sh2=*# Wfree=true mid=0 right=0 w1010=false w1210=true gate=false hog=5 act=D seen=3459019 t=6.1s shaft=true wfree=true minDx=1 official_h=78 official_p=3076 sh1=.. sh2=*# Wfree=true mid=0 right=0 w1010=false w1210=true gate=true hog=0 act=W rank=None
+    finish maxd exp=1272466 seen=3459019 path_len=0
+    finish beam 1 path=29 maxd=41 sh1=.. sh2=*# Wfree=true mid=0 right=0 w1010=false w1210=true gate=true hog=0 act=W
+  start sh1=.. sh2=*# Wfree=true mid=0 right=0 w1010=false w1210=true gate=true hog=0 act=W done=3 prog=3076 guide=75 GateHeld > Shaft(1) > WFree > Deliver > Win
+  d=1 kept=3 prog=3076 best_h=73 sh1=.. sh2=*# Wfree=true mid=0 right=0 w1010=false w1210=true gate=true hog=0 act=P seen=4 t=0.0s shaft=true wfree=true minDx=1 official_h=75 official_p=3076 sh1=.. sh2=*# Wfree=true mid=0 right=0 w1010=false w1210=true gate=true hog=0 act=W rank=None
+  d=2 kept=7 prog=3076 best_h=71 sh1=.. sh2=*# Wfree=true mid=0 right=0 w1010=false w1210=true gate=true hog=0 act=B seen=11 t=0.0s shaft=true wfree=true minDx=1 official_h=75 official_p=3076 sh1=.. sh2=*# Wfree=true mid=0 right=0 w1010=false w1210=true gate=true hog=0 act=W rank=None
+  d=3 kept=20 prog=3076 best_h=69 sh1=.. sh2=*# Wfree=true mid=0 right=0 w1010=false w1210=true gate=true hog=0 act=B seen=31 t=0.0s shaft=true wfree=true minDx=1 official_h=75 official_p=3076 sh1=.. sh2=*# Wfree=true mid=0 right=0 w1010=false w1210=true gate=true hog=0 act=W rank=None
+  d=4 kept=50 prog=3076 best_h=67 sh1=.. sh2=*# Wfree=true mid=0 right=0 w1010=false w1210=true gate=true hog=0 act=B seen=81 t=0.0s shaft=true wfree=true minDx=1 official_h=75 official_p=3076 sh1=.. sh2=*# Wfree=true mid=0 right=0 w1010=false w1210=true gate=true hog=0 act=W rank=None
+  d=5 kept=126 prog=3076 best_h=61 sh1=.. sh2=*# Wfree=true mid=0 right=0 w1010=false w1210=true gate=true hog=0 act=D seen=207 t=0.0s shaft=true wfree=true minDx=1 official_h=75 official_p=3076 sh1=.. sh2=*# Wfree=true mid=0 right=0 w1010=false w1210=true gate=true hog=0 act=W rank=None
+  d=6 kept=343 prog=3076 best_h=59 sh1=.. sh2=*# Wfree=true mid=0 right=0 w1010=false w1210=true gate=true hog=0 act=D seen=550 t=0.0s shaft=true wfree=true minDx=1 official_h=75 official_p=3076 sh1=.. sh2=*# Wfree=true mid=0 right=0 w1010=false w1210=true gate=true hog=0 act=W rank=None
+  d=7 kept=963 prog=3090 best_h=70 sh1=.. sh2=*# Wfree=true mid=0 right=0 w1010=false w1210=true gate=true hog=1 act=F seen=1513 t=0.0s shaft=true wfree=true minDx=1 official_h=75 official_p=3076 sh1=.. sh2=*# Wfree=true mid=0 right=0 w1010=false w1210=true gate=true hog=0 act=W rank=None
+  d=8 kept=2765 prog=3090 best_h=68 sh1=.. sh2=*# Wfree=true mid=0 right=0 w1010=false w1210=true gate=true hog=1 act=T seen=4278 t=0.0s shaft=true wfree=true minDx=1 official_h=73 official_p=3076 sh1=.. sh2=*# Wfree=true mid=0 right=0 w1010=false w1210=true gate=true hog=0 act=P rank=None
+  d=9 kept=7903 prog=3090 best_h=59 sh1=.. sh2=*# Wfree=true mid=0 right=0 w1010=false w1210=true gate=true hog=1 act=T seen=12181 t=0.0s shaft=true wfree=true minDx=1 official_h=73 official_p=3076 sh1=.. sh2=*# Wfree=true mid=0 right=0 w1010=false w1210=true gate=true hog=0 act=P rank=None
+  d=10 kept=22231 prog=3098 best_h=57 sh1=.. sh2=*# Wfree=true mid=0 right=0 w1010=false w1210=true gate=true hog=2 act=T seen=34412 t=0.1s shaft=true wfree=true minDx=1 official_h=73 official_p=3076 sh1=.. sh2=*# Wfree=true mid=0 right=0 w1010=false w1210=true gate=true hog=0 act=P rank=None
+  d=11 kept=40000 prog=3098 best_h=55 sh1=.. sh2=*# Wfree=true mid=0 right=0 w1010=false w1210=true gate=true hog=2 act=T seen=95416 t=0.4s shaft=true wfree=true minDx=1 official_h=73 official_p=3076 sh1=.. sh2=*# Wfree=true mid=0 right=0 w1010=false w1210=true gate=true hog=0 act=P rank=None
+  d=12 kept=40000 prog=3104 best_h=64 sh1=.. sh2=*# Wfree=true mid=0 right=0 w1010=false w1210=true gate=true hog=2 act=T seen=205463 t=0.7s shaft=true wfree=true minDx=1 official_h=73 official_p=3076 sh1=.. sh2=*# Wfree=true mid=0 right=0 w1010=false w1210=true gate=true hog=0 act=P rank=None
+  d=13 kept=40000 prog=3104 best_h=62 sh1=.. sh2=*# Wfree=true mid=0 right=0 w1010=false w1210=true gate=true hog=2 act=W seen=314616 t=0.9s shaft=true wfree=true minDx=1 official_h=71 official_p=3076 sh1=.. sh2=*# Wfree=true mid=0 right=0 w1010=false w1210=true gate=true hog=0 act=B rank=None
+  d=14 kept=40000 prog=3104 best_h=56 sh1=.. sh2=*# Wfree=true mid=0 right=0 w1010=false w1210=true gate=true hog=2 act=T seen=420374 t=1.1s shaft=true wfree=true minDx=1 official_h=73 official_p=3076 sh1=.. sh2=*# Wfree=true mid=0 right=0 w1010=false w1210=true gate=true hog=0 act=B rank=None
+  d=15 kept=40000 prog=3104 best_h=54 sh1=.. sh2=*# Wfree=true mid=0 right=0 w1010=false w1210=true gate=true hog=2 act=W seen=518248 t=1.3s shaft=true wfree=true minDx=1 official_h=74 official_p=3076 sh1=.. sh2=*# Wfree=true mid=0 right=0 w1010=false w1210=true gate=true hog=0 act=B rank=None
+  d=16 kept=40000 prog=3112 best_h=58 sh1=.. sh2=*# Wfree=true mid=0 right=0 w1010=false w1210=true gate=false hog=3 act=T seen=614242 t=1.5s shaft=true wfree=true minDx=1 official_h=74 official_p=3076 sh1=.. sh2=*# Wfree=true mid=0 right=0 w1010=false w1210=true gate=true hog=0 act=B rank=None
+  d=17 kept=40000 prog=3112 best_h=55 sh1=.. sh2=*# Wfree=true mid=0 right=0 w1010=false w1210=true gate=false hog=3 act=W seen=712286 t=1.6s shaft=true wfree=true minDx=1 official_h=72 official_p=3076 sh1=.. sh2=*# Wfree=true mid=0 right=0 w1010=false w1210=true gate=true hog=0 act=D rank=None
+  d=18 kept=40000 prog=3112 best_h=55 sh1=.. sh2=*# Wfree=true mid=0 right=0 w1010=false w1210=true gate=false hog=3 act=W seen=809497 t=1.8s shaft=true wfree=true minDx=0 official_h=72 official_p=3076 sh1=.. sh2=*# Wfree=true mid=0 right=0 w1010=false w1210=true gate=true hog=0 act=D rank=None
+  d=19 kept=40000 prog=3112 best_h=49 sh1=.. sh2=*# Wfree=true mid=0 right=0 w1010=false w1210=true gate=false hog=3 act=F seen=898681 t=2.0s shaft=true wfree=true minDx=1 official_h=76 official_p=3076 sh1=.. sh2=*# Wfree=true mid=0 right=0 w1010=false w1210=true gate=true hog=0 act=F rank=None
+  d=20 kept=40000 prog=3112 best_h=45 sh1=.. sh2=*# Wfree=true mid=0 right=0 w1010=false w1210=true gate=false hog=3 act=F seen=987355 t=2.1s shaft=true wfree=true minDx=0 official_h=80 official_p=3076 sh1=.. sh2=*# Wfree=true mid=0 right=0 w1010=false w1210=true gate=true hog=0 act=T rank=None
+  d=21 kept=40000 prog=3118 best_h=54 sh1=.. sh2=*# Wfree=true mid=0 right=0 w1010=false w1210=true gate=false hog=3 act=F seen=1072416 t=2.3s shaft=true wfree=true minDx=0 official_h=78 official_p=3076 sh1=.. sh2=*# Wfree=true mid=0 right=0 w1010=false w1210=true gate=true hog=0 act=W rank=None
+  d=22 kept=40000 prog=3118 best_h=51 sh1=.. sh2=*# Wfree=true mid=0 right=0 w1010=false w1210=true gate=false hog=3 act=T seen=1163117 t=2.5s shaft=true wfree=true minDx=0 official_h=78 official_p=3076 sh1=.. sh2=*# Wfree=true mid=0 right=0 w1010=false w1210=true gate=true hog=0 act=W rank=None

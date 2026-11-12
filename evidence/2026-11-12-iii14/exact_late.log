@@ -1,0 +1,23 @@
+=== cut41 remain7 sw=8/9 B=(6,5) D=(8,5) act=B ===
+  [cut41] WIN 48 suffix 7 LLULULULRURURURURUAUDRRDDAUARRDLRAULDLDRARURURAU t=0.0s exp=654
+[cut41] done t=0.0s exp=654 seen=880 q=0 best=48
+  verified=True 48 LLULULULRURURURURUAUDRRDDAUARRDLRAULDLDRARURURAU
+=== cut40 remain8 sw=8/9 B=(6,5) D=(8,5) act=D ===
+  [cut40] WIN 48 suffix 8 LLULULULRURURURURUAUDRRDDAUARRDLRAULDLDRARURURAU t=0.1s exp=1961
+[cut40] done t=0.1s exp=1961 seen=2035 q=0 best=48
+  verified=True 48 LLULULULRURURURURUAUDRRDDAUARRDLRAULDLDRARURURAU
+=== cut38 remain10 sw=8/9 B=(6,5) D=(7,4) act=D ===
+  [cut38] WIN 48 suffix 10 LLULULULRURURURURUAUDRRDDAUARRDLRAULDLDRARURURAU t=0.4s exp=9023
+[cut38] done t=0.4s exp=9023 seen=13463 q=0 best=48
+  verified=True 48 LLULULULRURURURURUAUDRRDDAUARRDLRAULDLDRARURURAU
+=== cut34 remain14 sw=8/9 B=(6,5) D=(7,4) act=D ===
+  [cut34] WIN 48 suffix 14 LLULULULRURURURURUAUDRRDDAUARRDLRAULDLDRARURURAU t=11.3s exp=216242
+[cut34] done t=11.3s exp=216242 seen=435375 q=0 best=48
+  verified=True 48 LLULULULRURURURURUAUDRRDDAUARRDLRAULDLDRARURURAU
+=== cut33 remain15 sw=8/9 B=(6,5) D=(7,4) act=B ===
+[cut33] done t=45.0s exp=902635 seen=1090027 q=187392 best=none
+=== cut28 remain20 sw=4/9 B=(4,4) D=(6,3) act=B ===
+[cut28] done t=60.0s exp=1112225 seen=2693641 q=1581416 best=none
+=== cut25 remain23 sw=4/9 B=(4,4) D=(6,3) act=B ===
+[cut25] done t=90.0s exp=1627914 seen=4004296 q=2376382 best=none
+LATE DONE

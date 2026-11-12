@@ -1,0 +1,66 @@
+======= BEAM H17A (17-key harvest D=5,1) max 30 =======
+BEAM from max_d=30 beam=150000 t=60 B=(2,2) D=(5,1) bard=false crates=9 seed=false
+  [from] d=1 kept=5 seen=6 top_sc=999155 top_sw=1/9 9/9cum=0 t=0.0s
+  [from] d=2 kept=18 seen=24 top_sc=999165 top_sw=1/9 9/9cum=0 t=0.0s
+  [from] d=3 kept=62 seen=86 top_sc=999865 top_sw=1/9 9/9cum=0 t=0.0s
+  [from] d=4 kept=197 seen=283 top_sc=2999865 top_sw=3/9 9/9cum=0 t=0.0s
+  [from] d=6 kept=1792 seen=2677 top_sc=5000265 top_sw=5/9 9/9cum=0 t=0.0s
+  [from] d=8 kept=14184 seen=21982 top_sc=6001365 top_sw=6/9 9/9cum=0 t=0.1s
+  [from] d=10 kept=99522 seen=159517 top_sc=8001265 top_sw=8/9 9/9cum=0 t=0.2s
+  [from] first 9/9 at 12 t=0.51s B=(5,4) D=(6,4) LLAULDRRRDRD
+  [from] d=12 kept=150000 seen=818283 top_sc=59001265 top_sw=9/9 9/9cum=7 t=1.0s
+  [from] d=14 kept=150000 seen=1670888 top_sc=59021060 top_sw=9/9 9/9cum=293 t=1.9s
+  [from] d=16 kept=150000 seen=2544370 top_sc=59060670 top_sw=9/9 9/9cum=3520 t=2.9s
+  [from] d=18 kept=150000 seen=3410879 top_sc=59080175 top_sw=9/9 9/9cum=18596 t=3.8s
+  [from] d=20 kept=150000 seen=4274502 top_sc=59080570 top_sw=9/9 9/9cum=75309 t=4.9s
+  [from] d=22 kept=150000 seen=5119370 top_sc=59100180 top_sw=9/9 9/9cum=247232 t=5.8s
+  [from] d=24 kept=150000 seen=5940947 top_sc=59100385 top_sw=9/9 9/9cum=746193 t=6.6s
+  [from] d=26 kept=150000 seen=6761691 top_sc=59100190 top_sw=9/9 9/9cum=1885004 t=7.4s
+  [from] d=28 kept=150000 seen=7559625 top_sc=59120085 top_sw=9/9 9/9cum=3070139 t=9.0s
+  [from] d=30 kept=150000 seen=8356247 top_sc=59120080 top_sw=9/9 9/9cum=4282398 t=9.8s
+[from] done t=9.81s seen=8356247 best=None first99=Some(12)
+NONE
+======= BEAM H16 (16-key harvest D=2,1) max 31 =======
+BEAM from max_d=31 beam=150000 t=60 B=(2,2) D=(2,1) bard=false crates=9 seed=false
+  [from] d=1 kept=4 seen=5 top_sc=-1035 top_sw=0/9 9/9cum=0 t=0.0s
+  [from] d=2 kept=14 seen=19 top_sc=-935 top_sw=0/9 9/9cum=0 t=0.0s
+  [from] d=3 kept=47 seen=66 top_sc=999165 top_sw=1/9 9/9cum=0 t=0.0s
+  [from] d=4 kept=145 seen=211 top_sc=1999665 top_sw=2/9 9/9cum=0 t=0.0s
+  [from] d=6 kept=1317 seen=1968 top_sc=5000865 top_sw=5/9 9/9cum=0 t=0.0s
+  [from] d=8 kept=11156 seen=17001 top_sc=7000855 top_sw=7/9 9/9cum=0 t=0.0s
+  [from] d=10 kept=85249 seen=133430 top_sc=7020670 top_sw=7/9 9/9cum=0 t=0.2s
+  [from] first 9/9 at 12 t=0.47s B=(6,3) D=(6,2) ARDDLURRRRDU
+  [from] d=12 kept=150000 seen=779740 top_sc=59001265 top_sw=9/9 9/9cum=2 t=0.9s
+  [from] d=14 kept=150000 seen=1618972 top_sc=59021060 top_sw=9/9 9/9cum=245 t=1.8s
+  [from] d=16 kept=150000 seen=2481430 top_sc=59060680 top_sw=9/9 9/9cum=2402 t=2.9s
+  [from] d=18 kept=150000 seen=3350012 top_sc=59080485 top_sw=9/9 9/9cum=9972 t=3.7s
+  [from] d=20 kept=150000 seen=4176516 top_sc=59100280 top_sw=9/9 9/9cum=35108 t=5.2s
+  [from] d=22 kept=150000 seen=4996723 top_sc=59100280 top_sw=9/9 9/9cum=93208 t=6.0s
+  [from] d=24 kept=150000 seen=5817867 top_sc=59100485 top_sw=9/9 9/9cum=245606 t=6.9s
+  [from] d=26 kept=150000 seen=6631056 top_sc=59120095 top_sw=9/9 9/9cum=716824 t=7.7s
+  [from] d=28 kept=150000 seen=7447472 top_sc=59120280 top_sw=9/9 9/9cum=1863907 t=9.2s
+  [from] d=30 kept=150000 seen=8246528 top_sc=59120390 top_sw=9/9 9/9cum=3058513 t=10.0s
+[from] done t=10.46s seen=8639918 best=None first99=Some(12)
+NONE
+======= BEAM H17B (17-key D=7,5 bottom) max 30 =======
+BEAM from max_d=30 beam=150000 t=50 B=(2,2) D=(7,5) bard=false crates=9 seed=false
+  [from] d=1 kept=5 seen=6 top_sc=-835 top_sw=0/9 9/9cum=0 t=0.0s
+  [from] d=2 kept=17 seen=23 top_sc=999155 top_sw=1/9 9/9cum=0 t=0.0s
+  [from] d=3 kept=56 seen=79 top_sc=999365 top_sw=1/9 9/9cum=0 t=0.0s
+  [from] d=4 kept=166 seen=245 top_sc=999565 top_sw=1/9 9/9cum=0 t=0.0s
+  [from] d=6 kept=1079 seen=1763 top_sc=1999865 top_sw=2/9 9/9cum=0 t=0.0s
+  [from] d=8 kept=5733 seen=10021 top_sc=5000165 top_sw=5/9 9/9cum=0 t=0.0s
+  [from] d=10 kept=28286 seen=51088 top_sc=6001065 top_sw=6/9 9/9cum=0 t=0.1s
+  [from] d=12 kept=139576 seen=253255 top_sc=8001265 top_sw=8/9 9/9cum=0 t=0.3s
+  [from] d=14 kept=150000 seen=944017 top_sc=8021060 top_sw=8/9 9/9cum=0 t=1.0s
+  [from] first 9/9 at 15 t=0.99s B=(5,2) D=(6,2) UADLRDURRRDUURL
+  [from] d=16 kept=150000 seen=1770644 top_sc=59020960 top_sw=9/9 9/9cum=191 t=1.8s
+  [from] d=18 kept=150000 seen=2633413 top_sc=59040865 top_sw=9/9 9/9cum=1894 t=2.9s
+  [from] d=20 kept=150000 seen=3496841 top_sc=59060680 top_sw=9/9 9/9cum=8942 t=3.6s
+  [from] d=22 kept=150000 seen=4351841 top_sc=59080385 top_sw=9/9 9/9cum=33596 t=4.9s
+  [from] d=24 kept=150000 seen=5216363 top_sc=59100180 top_sw=9/9 9/9cum=116441 t=5.9s
+  [from] d=26 kept=150000 seen=6046854 top_sc=59100180 top_sw=9/9 9/9cum=364226 t=7.0s
+  [from] d=28 kept=150000 seen=6872048 top_sc=59100180 top_sw=9/9 9/9cum=1090749 t=8.0s
+  [from] d=30 kept=150000 seen=7681936 top_sc=59100380 top_sw=9/9 9/9cum=2244478 t=9.5s
+[from] done t=9.50s seen=7681936 best=None first99=Some(15)
+NONE
