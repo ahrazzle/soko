@@ -1,0 +1,5 @@
+{"inventory":[11,6,3,8,3,6],"macros":37,"directions":241,"progress_combinations":84672}
+{"baseline_macro_control":"passed","length":316}
+{"expanded":92780,"states":116000,"queue":23220,"cost":174,"elapsed":5.00015,"rss_kib":158848}
+{"expanded":164186,"states":170649,"queue":6463,"cost":203,"elapsed":10.0001,"rss_kib":231936}
+{"expanded":255428,"states":260785,"queue":5357,"cost":281,"elapsed":15.0001,"rss_kib":388352}

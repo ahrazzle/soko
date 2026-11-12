@@ -1,0 +1,18 @@
+{
+  "url": "https://soko.banteg.xyz/api/frontier",
+  "raw_response_sha256": "07850c7e7221f29e6510fead7ca37282f99852c144075d31e3e28a483fcdbccc",
+  "room": {
+    "part": 3,
+    "room": 21,
+    "lower": 268,
+    "known": 316,
+    "id": 159,
+    "length": 316,
+    "uid": 17,
+    "handle": "futarchist",
+    "seed": 0,
+    "model": null,
+    "avatar": 1
+  },
+  "comparison_scope": "dated observation; not a current global bound"
+}

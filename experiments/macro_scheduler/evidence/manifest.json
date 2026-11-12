@@ -1,0 +1,21 @@
+{
+  "README.md": "2eaeacc6dbce0bf284d1c9ee9c32f63059e9061d8954d6eff2ed4f588d396a15",
+  "evidence/baseline-frames.jsonl": "269225dab42c5e1360a08f8d8e29fd2f3dcbbcad7dc020b4ac1d7ddcf8c5c122",
+  "evidence/baseline-original-replay.json": "f110b25b60f803df2b5c3ab84f789f265579d3e53b0b66cb53fdf927ada24ffd",
+  "evidence/calibration.json": "0ec26a88542c12a032b8513d251f9258d3e7c9bbd03d51b14c7f1d684f9519e0",
+  "evidence/earlier-truncations.json": "666adaf03108e5d85a65f4f00394e092fcf8a8677e7be12b0dabbd320870caa8",
+  "evidence/fixed/input.txt": "c587efa42769b0f9cf7914a2c77728ed96ad7466857fea674b2a45dc56988640",
+  "evidence/fixed/progress.jsonl": "bd4605b225113e5148c9d33149501ba9608143a60bd0bd17d094d06c0872bbb8",
+  "evidence/fixed/result.jsonl": "907294339445b5d2fb4cce2f672050f484798857e3e042da9633148d599faaee",
+  "evidence/frontier-observation.json": "146757673f3bf85258d048853c6427578d1cef8a5fa4a81c54854b49f872db68",
+  "evidence/goal-completed/input.txt": "902030666efc3c4f02aa6a3ebdcd94b859ab013c03ba124ce4fbcf7c13da9753",
+  "evidence/goal-completed/progress.jsonl": "092031e4b4de93aba2dace7731c02c218e33d863d29b2a6650f7d2bc11f170a1",
+  "evidence/goal-completed/result.jsonl": "a2cb4fec76fb414122ebaa3944629d88aa6176d60f709b5a17bdea7c6dfa3712",
+  "evidence/instance.json": "2384839753f0e0677f20d91781a844b1389d7ab9de8d9f0c333be60924c642bc",
+  "evidence/priority-unit.json": "95bed8eba164be3921ff873993efaf459ded9cee360077dcb10692f6d5e10f21",
+  "evidence/summary.json": "920d973d4b4949b6178776e70382f84c94a8dc41256091c111347f9380152c80",
+  "evidence/validation.json": "8cbfbbc99aa635f461c7e59b9c41be120656fc3d4171aa30cdc381342e141e87",
+  "macro_scheduler.cpp": "8738547f68664861f62b123625efa5499936483ca2959a190590ba675dd8f864",
+  "native_engine.hpp": "8f472c0a0373da2fcd7e8cc7c5da74ef77c0e70098d314e2180d0b7f890d161d",
+  "verify_controls.py": "360788af9e59eaefda0c6a47ed5ec77d5bb8493ccd4a1ab75c9c5a2854f71319"
+}

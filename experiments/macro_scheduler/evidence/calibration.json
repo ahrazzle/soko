@@ -1,0 +1,26 @@
+{
+  "status": "passed",
+  "baseline_length": 316,
+  "native_python_exact_frames": 317,
+  "pinned_original_accepted": true,
+  "live_record": {
+    "part": 3,
+    "room": 21,
+    "lower": 268,
+    "known": 316,
+    "id": 159,
+    "length": 316,
+    "uid": 17,
+    "handle": "futarchist",
+    "seed": 0,
+    "model": null,
+    "avatar": 1
+  },
+  "source_hashes": {
+    "historical_fixed_scheduler_cpp": "5e45f7d611fd0b52a1c3bbc89685d08b379ded7d6aa2d91519c5968dd47b5022",
+    "historical_guided_cpp": "5e604d674198204e209077dbb7c8c106ea2060e578dc0dcc69b501cc1b76f94d",
+    "historical_native_engine_hpp": "de9d386b32a379e77a4bb5ec5447fbc79e86d1fecfc2ae066fd06e810745d0c9",
+    "bundled_native_engine_hpp": "8f472c0a0373da2fcd7e8cc7c5da74ef77c0e70098d314e2180d0b7f890d161d"
+  },
+  "packaging_note": "Only one extra blank line at the end of the historical native header was removed."
+}

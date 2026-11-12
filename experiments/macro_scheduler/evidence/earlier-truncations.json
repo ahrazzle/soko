@@ -1,0 +1,48 @@
+[
+  {
+    "label": "actual-cost-dijkstra",
+    "result": {
+      "status": "memory_limit",
+      "objective": "emitted inputs with full-state noops omitted",
+      "action_cap": 75,
+      "expanded": 1418217,
+      "generated": 4981709,
+      "states": 1506066,
+      "queue": 88958,
+      "max_popped_cost": 182,
+      "dead_macros": 2142793,
+      "bound_pruned": 40385,
+      "omitted_inputs_seen": 9635864,
+      "elapsed_seconds": 150.42,
+      "peak_rss_kib": 2031620,
+      "original_optimality_claim": false
+    },
+    "memory_mib": 2048,
+    "original_result_sha256": "e46c111d71f9148ef5278e760c902de4f4af231e236ba82ee9f68803e7789ffe",
+    "meaning": "resource truncation; not an impossibility result"
+  },
+  {
+    "label": "goal-directed-2g",
+    "result": {
+      "status": "memory_limit",
+      "objective": "emitted inputs with full-state noops omitted",
+      "queue_priority": "g plus remaining literal keys (ordering only)",
+      "first_goal_optimality_claim": false,
+      "action_cap": 75,
+      "expanded": 1690524,
+      "generated": 5685125,
+      "states": 1506456,
+      "queue": 55446,
+      "max_popped_cost": 244,
+      "dead_macros": 2542008,
+      "bound_pruned": 51911,
+      "omitted_inputs_seen": 10795307,
+      "elapsed_seconds": 204.979,
+      "peak_rss_kib": 2031628,
+      "original_optimality_claim": false
+    },
+    "memory_mib": 2048,
+    "original_result_sha256": "4298e339d2cca1d1ead1a320ddf06a57c22d7aea881f11c356fe3c6ea9468b84",
+    "meaning": "resource truncation; not an impossibility result"
+  }
+]
