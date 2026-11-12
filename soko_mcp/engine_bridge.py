@@ -1,7 +1,20 @@
-"""Bridge between Python MCP tools and the auto-compiled C++20 soko_engine (with dual-oracle checks)."""
+"""Hardened multi-oracle bridge between Python MCP tools, FlatBitmaskOracle, and C++20 `soko_engine`.
+
+Fixes v0.1.0 audit findings F-01, F-02, F-03, and F-04:
+- F-01 Fix: `verify_route_dual` is strictly fail-closed (`differential_match` starts `False`), always executes
+  AT LEAST TWO zero-shared-code independent engines (`PuzzleScriptOracle` + `FlatBitmaskOracle`), and executes
+  ALL THREE (`+ C++20 soko_engine`) whenever a C++20 compiler is available and `w * h <= 512`.
+- F-02 Fix: Asserts bit-exact 64-bit FNV-1a per-frame trajectory digest (`traj_fnv64`) parity across every step
+  `t = 0..L` (including hidden Bard `Note` masks and open-door flags), not merely terminal ASCII.
+- F-03 Fix: `verify_tcb_lock()` verifies `SHA256SUMS` at runtime and attaches cryptographic `checker_pins`
+  to every `VERIFIED` certificate (Foundation-0 Issue #14).
+- F-04 Fix: Surfaces exact-state transposition-table collision prevention stats and Quotient-PDB activation
+  from `cpp/soko_engine.cpp` (`prove_lb`).
+"""
 from __future__ import annotations
 
 from collections import deque
+import hashlib
 import json
 import os
 from pathlib import Path
@@ -9,12 +22,70 @@ import shutil
 import subprocess
 from typing import Any, Dict, List, Optional, Tuple
 
+from .flat_oracle import replay_flat_oracle
 from .oracle import FRONTIER_ROOMS, PuzzleScriptOracle, replay_oracle
 
 REPO_ROOT = Path(__file__).resolve().parent.parent
 CPP_SRC = REPO_ROOT / "cpp" / "soko_engine.cpp"
 CPP_BIN_DIR = REPO_ROOT / "cpp" / "build"
 CPP_BIN = CPP_BIN_DIR / ("soko_engine.exe" if os.name == "nt" else "soko_engine")
+SHA256SUMS_PATH = REPO_ROOT / "SHA256SUMS"
+
+
+def _file_sha256(path: Path) -> Optional[str]:
+    if not path.is_file():
+        return None
+    return hashlib.sha256(path.read_bytes()).hexdigest()
+
+
+def get_soko_checker_pins() -> Dict[str, Optional[str]]:
+    pkg_dir = Path(__file__).resolve().parent
+    return {
+        "oracle_py_sha256": _file_sha256(pkg_dir / "oracle.py"),
+        "flat_oracle_py_sha256": _file_sha256(pkg_dir / "flat_oracle.py"),
+        "cpp_soko_engine_src_sha256": _file_sha256(CPP_SRC),
+        "cpp_soko_engine_bin_sha256": _file_sha256(CPP_BIN),
+        "formal_kernel_py_sha256": _file_sha256(pkg_dir / "formal_kernel.py"),
+    }
+
+
+def verify_tcb_lock() -> Dict[str, Any]:
+    """Verify runtime SHA256SUMS integrity of all tracked repository files + TCB checker pins."""
+    cpp_bin = ensure_cpp_engine()
+    pins = get_soko_checker_pins()
+    manifest_present = SHA256SUMS_PATH.is_file()
+    checked_files = 0
+    mismatched: List[Dict[str, str]] = []
+    missing: List[str] = []
+
+    if manifest_present:
+        for raw_line in SHA256SUMS_PATH.read_text(encoding="utf-8").splitlines():
+            line = raw_line.strip()
+            if not line:
+                continue
+            parts = line.split(None, 1)
+            if len(parts) != 2:
+                continue
+            expected_hash, rel_path = parts[0].strip(), parts[1].strip().lstrip("*")
+            target = REPO_ROOT / rel_path
+            actual_hash = _file_sha256(target)
+            checked_files += 1
+            if actual_hash is None:
+                missing.append(rel_path)
+            elif actual_hash != expected_hash:
+                mismatched.append({"file": rel_path, "expected": expected_hash, "actual": actual_hash})
+
+    ok = manifest_present and checked_files > 0 and not mismatched and not missing
+    return {
+        "epistemic_status": "VERIFIED" if ok else "TAMPERED_OR_UNLOCKED",
+        "tcb_locked": ok,
+        "manifest_present": manifest_present,
+        "files_verified": checked_files,
+        "mismatched_files": mismatched,
+        "missing_files": missing,
+        "cpp_engine_compiled": cpp_bin is not None,
+        "checker_pins": pins,
+    }
 
 
 def resolve_room_input(
@@ -56,6 +127,8 @@ def _invoke_cpp(mode: str, part: int, grid: List[str], p1: int, p2: int, p3: int
     if exe is None:
         return None
     h, w = len(grid), len(grid[0])
+    if w * h > 512:
+        return None
     payload = f"{mode} {part} {w} {h} {p1} {p2} {p3}\n" + "\n".join(grid) + f"\n{route or '-'}\n"
     proc = subprocess.run(
         [str(exe)],
@@ -69,33 +142,88 @@ def _invoke_cpp(mode: str, part: int, grid: List[str], p1: int, p2: int, p3: int
     return json.loads(proc.stdout.strip().splitlines()[-1])
 
 
-def verify_route_dual(part: int, grid: List[str], route: str) -> Dict[str, Any]:
-    """Verify a candidate route through BOTH the Python specification oracle and the C++20 engine."""
+def verify_route_dual(
+    part: int,
+    grid: List[str],
+    route: str,
+    require_cpp: bool = False,
+    _skip_cpp_for_test: bool = False,
+    _skip_flat_for_test: bool = False,
+) -> Dict[str, Any]:
+    """Fail-closed multi-oracle route verifier (PuzzleScriptOracle + FlatBitmaskOracle + C++20 engine).
+
+    Eliminates F-01 & F-02:
+    - Never defaults `differential_match = True`; requires >= 2 independent engines to execute and match
+      on survival, exact final-step win, step count, final ASCII, AND per-frame 64-bit FNV-1a trajectory digest!
+    """
     clean = route.strip().upper()
     py_res = replay_oracle(part, grid, clean)
-    cpp_res = _invoke_cpp("verify", part, grid, 0, 0, 5, clean or "-")
+    flat_res = None if _skip_flat_for_test else replay_flat_oracle(part, grid, clean)
+    cpp_res = None if _skip_cpp_for_test else _invoke_cpp("verify", part, grid, 0, 0, 5, clean or "-")
 
-    differential_match = True
+    engines_executed = ["python_spec_oracle"]
+    if flat_res is not None:
+        engines_executed.append("python_flat_bitmask_oracle")
     if cpp_res is not None:
-        differential_match = (
-            cpp_res.get("alive") == py_res["alive"]
-            and cpp_res.get("exact_win") == py_res["exact_win"]
-            and cpp_res.get("premature_win") == py_res["premature_win"]
-            and cpp_res.get("final_ascii") == py_res["final_ascii"]
-        )
+        engines_executed.append("cpp20_soko_engine")
 
-    is_verified = py_res["exact_win"] and differential_match
+    # Fail-closed: require at least 2 independent checkers (and C++ if explicitly mandated)
+    differential_match = False
+    trajectory_digest_match = False
+
+    if len(engines_executed) >= 2 and (not require_cpp or cpp_res is not None):
+        py_flat_ok = True
+        py_flat_traj_ok = True
+        if flat_res is not None:
+            py_flat_ok = (
+                flat_res["alive"] == py_res["alive"]
+                and flat_res["exact_win"] == py_res["exact_win"]
+                and flat_res["premature_win"] == py_res["premature_win"]
+                and flat_res["steps_executed"] == py_res["steps_executed"]
+                and flat_res["final_ascii"] == py_res["final_ascii"]
+            )
+            py_flat_traj_ok = flat_res["traj_fnv64"] == py_res["traj_fnv64"]
+
+        py_cpp_ok = True
+        py_cpp_traj_ok = True
+        if cpp_res is not None:
+            py_cpp_ok = (
+                cpp_res.get("alive") == py_res["alive"]
+                and cpp_res.get("exact_win") == py_res["exact_win"]
+                and cpp_res.get("premature_win") == py_res["premature_win"]
+                and cpp_res.get("steps_executed") == py_res["steps_executed"]
+                and cpp_res.get("final_ascii") == py_res["final_ascii"]
+            )
+            py_cpp_traj_ok = cpp_res.get("traj_fnv64") == py_res["traj_fnv64"]
+
+        trajectory_digest_match = py_flat_traj_ok and py_cpp_traj_ok
+        differential_match = py_flat_ok and py_cpp_ok and trajectory_digest_match
+
+    dual_or_triple_checked = len(engines_executed) >= 2 and (not require_cpp or cpp_res is not None)
+    is_verified = dual_or_triple_checked and differential_match and py_res["exact_win"]
+
+    if not dual_or_triple_checked:
+        epistemic = "REJECTED_INSUFFICIENT_ORACLES"
+    else:
+        epistemic = "VERIFIED" if is_verified else "REJECTED"
+
     return {
-        "epistemic_status": "VERIFIED" if is_verified else "REJECTED",
+        "epistemic_status": epistemic,
         "valid_winning_route": is_verified,
         "route_len": py_res["route_len"],
         "route_sha256_12": py_res["route_sha256_12"],
+        "traj_fnv64": py_res["traj_fnv64"],
+        "trajectory_digest_match": trajectory_digest_match,
         "alive": py_res["alive"],
         "exact_win": py_res["exact_win"],
         "premature_win": py_res["premature_win"],
         "steps_executed": py_res["steps_executed"],
-        "dual_engine_checked": cpp_res is not None,
+        "engines_executed": engines_executed,
+        "engines_count": len(engines_executed),
+        "dual_engine_checked": dual_or_triple_checked,
+        "triple_oracle_checked": len(engines_executed) == 3,
         "differential_match": differential_match,
+        "checker_pins": get_soko_checker_pins(),
         "final_ascii": py_res["final_ascii"],
         "route": clean,
     }
@@ -165,7 +293,7 @@ def optimize_route_verified(
 
     cand_check = verify_route_dual(part, grid, cand_route)
     if not cand_check["valid_winning_route"]:
-        raise RuntimeError("Optimizer produced a candidate route that failed dual-oracle differential verification!")
+        raise RuntimeError("Optimizer produced a candidate route that failed multi-oracle differential verification!")
 
     return {
         "epistemic_status": "VERIFIED",
@@ -176,9 +304,12 @@ def optimize_route_verified(
         "improved": cand_check["route_len"] < len(clean_seed),
         "best_route": cand_check["route"],
         "best_route_sha256_12": cand_check["route_sha256_12"],
+        "traj_fnv64": cand_check["traj_fnv64"],
         "stages": stages,
         "dual_oracle_verified": True,
+        "triple_oracle_checked": cand_check["triple_oracle_checked"],
         "differential_match": cand_check["differential_match"],
+        "checker_pins": cand_check["checker_pins"],
     }
 
 
@@ -194,15 +325,18 @@ def solve_room_verified(
         route = cpp_out["route"]
         v = verify_route_dual(part, grid, route)
         if not v["valid_winning_route"]:
-            raise RuntimeError("Solver candidate failed dual-oracle verification!")
+            raise RuntimeError("Solver candidate failed multi-oracle verification!")
         return {
             "epistemic_status": "VERIFIED",
             "solved": True,
             "route_len": v["route_len"],
             "route": v["route"],
             "route_sha256_12": v["route_sha256_12"],
+            "traj_fnv64": v["traj_fnv64"],
             "states_explored": cpp_out.get("explored", 0),
             "dual_oracle_verified": True,
+            "triple_oracle_checked": v["triple_oracle_checked"],
+            "checker_pins": v["checker_pins"],
         }
     return {
         "epistemic_status": "UNSOLVED_WITHIN_BUDGET",
@@ -219,15 +353,37 @@ def prove_floor_verified(
 ) -> Dict[str, Any]:
     cpp_out = _invoke_cpp("prove_lb", part, grid, max_bound, 0, budget_sec, "-")
     if cpp_out is None:
-        raise RuntimeError("C++20 compiler (g++ or clang++) is required for prove_lb IDA* lower-bound proving.")
+        raise RuntimeError("C++20 compiler (g++ or clang++) and grid <= 512 cells are required for prove_lb IDA* lower-bound proving.")
+
+    status = cpp_out.get("epistemic_status", "VERIFIED")
+    witness = cpp_out.get("winning_witness", "")
+    witness_verified = None
+    if cpp_out.get("exact_optimum_reached") and witness:
+        w_check = verify_route_dual(part, grid, witness)
+        if not w_check["valid_winning_route"]:
+            raise RuntimeError("IDA* winning witness failed multi-oracle differential verification!")
+        witness_verified = {
+            "route": witness,
+            "route_len": w_check["route_len"],
+            "route_sha256_12": w_check["route_sha256_12"],
+            "traj_fnv64": w_check["traj_fnv64"],
+        }
+
     return {
-        "epistemic_status": cpp_out.get("epistemic_status", "VERIFIED"),
+        "epistemic_status": status,
         "proven_floor": cpp_out["proven_floor"],
         "exact_optimum_reached": cpp_out["exact_optimum_reached"],
+        "quotient_pdb_enabled": cpp_out.get("quotient_pdb_enabled", False),
+        "exact_state_tt": cpp_out.get("exact_state_tt", True),
+        "exact_tt_prunes": cpp_out.get("exact_tt_prunes", 0),
+        "hash_collisions_prevented": cpp_out.get("hash_collisions_prevented", 0),
         "nodes_expanded": cpp_out["nodes_expanded"],
         "edge_consistency_checks": cpp_out["edge_consistency_checks"],
+        "winning_witness": witness_verified,
+        "checker_pins": get_soko_checker_pins(),
         "guarantee": (
-            f"Exhaustive IDA* with runtime step-consistency assertions (h(s) <= 1 + h(s') checked across "
-            f"{cpp_out['edge_consistency_checks']} transitions) refutes all winning routes of length < {cpp_out['proven_floor']}."
+            f"Collision-free exact-DynState IDA* with runtime step-consistency assertions (h(s) <= 1 + h(s') checked across "
+            f"{cpp_out['edge_consistency_checks']} transitions, quotient_pdb={cpp_out.get('quotient_pdb_enabled', False)}) "
+            f"refutes all winning routes of length < {cpp_out['proven_floor']}."
         ),
     }
