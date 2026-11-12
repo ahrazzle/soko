@@ -1,0 +1,50 @@
+{
+  "repository": "ahrazzle/soko",
+  "commit": "73fbf3363c6a8e3dfd8a3fc9a2e41bb16d160acf",
+  "files": {
+    ".gitignore": {
+      "git_blob_sha1": "f9ce2056fc64d311428ecce7e6ab2be6bc5c55ed",
+      "sha256": "a42a10071aeea5bcd4e52e8a7c2f00d5c6a36b0eb37cad4fd485fb10808bc15a"
+    },
+    ".mcp.json": {
+      "git_blob_sha1": "ebc10be534abca989a358d6dcbf60b7b3db49776",
+      "sha256": "444ce9b3e4770e06d935779e28fa742902f95ed22c5cfa8698e8f8583410d920"
+    },
+    "README.md": {
+      "git_blob_sha1": "c7d342e07ee5f00db5f9039715b56b9c955ecf90",
+      "sha256": "0e1428b86a41779e0619c123ac5824f773a6cfd4509a4029b008247c48b41cc3"
+    },
+    "pyproject.toml": {
+      "git_blob_sha1": "0ce12d4e8f0486cdddb705d5b5db1974c65b5666",
+      "sha256": "7e96075411dde4c731b4f0212659db8e3f6adc633993c624894f86588e3e81fa"
+    },
+    "soko_mcp/__init__.py": {
+      "git_blob_sha1": "2b3e8c0d05505026ecf53b38b7ca4320fbe02ab7",
+      "sha256": "851c5c02ba22ac94bcc7a6463d0667c2242e6489e46af804887fdaf48eb5611f"
+    },
+    "soko_mcp/__main__.py": {
+      "git_blob_sha1": "d67f374d9fc154721525659f748fcad7dfac5a99",
+      "sha256": "c7d12917adf941b29ae015795b53e2c2415cd5d5fa8ec24b6e754682c7847646"
+    },
+    "soko_mcp/analyzer.py": {
+      "git_blob_sha1": "241f3f1094d156248df880da8d3eccc63a9ce9cb",
+      "sha256": "95799867c2b717b97967d35a273c7375c0edd4ed49b1e0d22eaff8549d6fc45b"
+    },
+    "soko_mcp/engine_bridge.py": {
+      "git_blob_sha1": "defdfa87756250be89c0d1b4d516061e602f0573",
+      "sha256": "3e6f89ca67214422e9bfce008726c50c353ebd8ae240b9c81e06f5b8c6bb9057"
+    },
+    "soko_mcp/flat_oracle.py": {
+      "git_blob_sha1": "62c694bdb821f55fae5a4b5db0d608484c36fafc",
+      "sha256": "d47e37cf2aaf86a2a171f6ea296ddbd22db55a65bd7c93cdfb86777eb8001ecd"
+    },
+    "soko_mcp/oracle.py": {
+      "git_blob_sha1": "b0c93b5fbef60f21f3f10f48804514d06e5315f6",
+      "sha256": "0203c5a1c391979b5d460d76e222f5ba2df8f056a5f4c10978e190ba83670be1"
+    },
+    "soko_mcp/server.py": {
+      "git_blob_sha1": "6636fb1cb9d0f5ace1ace000bd87f2495696c2da",
+      "sha256": "92df1eb6d9962775912fb9cfba038a2638179e2b744b00e3d8395037f31d1b47"
+    }
+  }
+}

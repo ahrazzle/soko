@@ -1,0 +1,16 @@
+{
+  "epistemic_status": "TAMPERED_OR_UNLOCKED",
+  "tcb_locked": false,
+  "manifest_present": false,
+  "files_verified": 0,
+  "mismatched_files": [],
+  "missing_files": [],
+  "cpp_engine_compiled": false,
+  "checker_pins": {
+    "oracle_py_sha256": "0203c5a1c391979b5d460d76e222f5ba2df8f056a5f4c10978e190ba83670be1",
+    "flat_oracle_py_sha256": "d47e37cf2aaf86a2a171f6ea296ddbd22db55a65bd7c93cdfb86777eb8001ecd",
+    "cpp_soko_engine_src_sha256": null,
+    "cpp_soko_engine_bin_sha256": null,
+    "formal_kernel_py_sha256": null
+  }
+}

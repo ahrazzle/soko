@@ -1,0 +1,28 @@
+{
+  "source_url": "https://drive.google.com/file/d/1JRV4b1EmWqxuPpBM56xUtR3ySQ9sPo4e/view",
+  "archive_name": "2026-11-11_soko-verified-mcp-final.zip",
+  "archive_sha256": "518c36ca4ed2f4a3fe310e84fb2355fd3ecf7a5a32710057e6fca3703e855661",
+  "drive_uploaded_at": "2026-11-12T11:57:12.959Z",
+  "original_manifest_check": "14 listed files passed SHA256SUMS check",
+  "attribution": "Carbon-agent contribution supplied by Raz; individual agent identity not supplied. Original puzzle: Jonah Ostroff.",
+  "files": {
+    "archive/.gitignore": "a42a10071aeea5bcd4e52e8a7c2f00d5c6a36b0eb37cad4fd485fb10808bc15a",
+    "archive/.mcp.json": "444ce9b3e4770e06d935779e28fa742902f95ed22c5cfa8698e8f8583410d920",
+    "archive/SHA256SUMS": "73a88c45ad3a178846457a1b37a20f52720753aebf43a2788cfe50ad83ffa8b8",
+    "archive/cpp/frontier_iii14_iii20_prover.cpp": "1cb9bac7e1ac32651f9a8cd261d7a13c4abb915fcf468750b7ba353f7a761b1f",
+    "archive/cpp/soko_engine.cpp": "6d86e0f1068053019fe50d9766c50d1cd84c95152c7ce117c7fbb63b9e5e741d",
+    "archive/docs/frontier-dossier.md": "ea164ca5ecfdefa05bb45d9ab81ce8bc5301c8661fffd37234acaa9bc7d9532b",
+    "archive/pyproject.toml": "d32eb6c5ca72094af377242aca1cae9bb08ebb868cf7e87b7c67532959499a3b",
+    "archive/soko_mcp/__init__.py": "47c1c50ff495f9e9e6e0d0d4d89309e0d8cdb85964d7d03b3b6b16daf1b3271e",
+    "archive/soko_mcp/__main__.py": "06f6400b229f595a3d431481e697e0cef7aca79d9e58fa3def2f5fcade2c1667",
+    "archive/soko_mcp/analyzer.py": "eaa1a896777974cf189deec7c01022f94bd2d5fc71d536a2cbffa308dbd512ee",
+    "archive/soko_mcp/engine_bridge.py": "3256938cc8089b7e18f0f446deb6a36fa4ab3d99bf0d33ca8d8550b6738a8d6d",
+    "archive/soko_mcp/oracle.py": "b5b872d4b5f5a41dabd1003749b0dfb74164da8505b3b15275acc9569459c499",
+    "archive/soko_mcp/server.py": "a585a9c4bd283041515a8a24558830a2e0ea20ec98818159c38e6b37d72f9704",
+    "archive/tests/test_mcp_server.py": "097f6284cccadbb6632c30211f8bb228deab797353febff17c4daa17b84c64d5",
+    "counterexample.cpp": "58ec3544d82a7387eb15518916c0a12855738fe6807dd01b3b5c5dcf45e2abad",
+    "prover-run.json": "ae0442cc177fafe64032d28404ee08e2f25a0dafe0d4ccf5ccc172ef30ab5f15"
+  },
+  "archive_payload_files": 15,
+  "publication": "Full extracted bundle approved by Raz after explicit publication question on 2026-11-12."
+}

@@ -1,0 +1,29 @@
+{
+  "epistemic_status": "VERIFIED",
+  "valid_winning_route": true,
+  "route_len": 316,
+  "route_sha256_12": "39362103ceed",
+  "traj_fnv64": "565d5ad06cfe2b52",
+  "trajectory_digest_match": true,
+  "alive": true,
+  "exact_win": true,
+  "premature_win": false,
+  "steps_executed": 316,
+  "engines_executed": [
+    "python_spec_oracle",
+    "python_flat_bitmask_oracle"
+  ],
+  "engines_count": 2,
+  "dual_engine_checked": true,
+  "triple_oracle_checked": false,
+  "differential_match": true,
+  "checker_pins": {
+    "oracle_py_sha256": "0203c5a1c391979b5d460d76e222f5ba2df8f056a5f4c10978e190ba83670be1",
+    "flat_oracle_py_sha256": "d47e37cf2aaf86a2a171f6ea296ddbd22db55a65bd7c93cdfb86777eb8001ecd",
+    "cpp_soko_engine_src_sha256": null,
+    "cpp_soko_engine_bin_sha256": null,
+    "formal_kernel_py_sha256": null
+  },
+  "final_ascii": "#######################\n#.....*..#P.5#......*.#\n#...#....#...#....#...#\n#######.........#######\n#####.#####.#####.#####\n#.*##O#.*#..*#..#.##..#\n#*........6.2#........#\n#.*##O#.....**..#.##..#\n#.*##.####.#*####*#####\n#.#####..#**......#####\n#...###.##.#.##......*#\n#*..###.##3.1##...#...#\n#######################",
+  "route": "RRRDRRDRRRURRDRRUURRRRRLLLLDDAUAADLLULLLLLDDAAALLLULDDDRDLULDDLLUUAAAULLULAAUADLLLLLAAADLAAALDADRAAAALLDAULAALARUAAARRRRRAUAARDRAAARRDRRUADDRRDDRLAAUAAAULLRRURURDDAURULDDRRRRLLLLAAUUAAARDDRRRDRRRRRAAAAAULLULULULLLDUURLDLLUALLLUUAAAALLLLLDLLLDULLULLLLLLLADDRDALDDAUAAALDURADDUUAAAUAARRRRRRRRUUURUUADRDDDAAAUUURDDDAUUL"
+}

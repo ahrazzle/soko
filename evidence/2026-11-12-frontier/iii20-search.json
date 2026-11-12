@@ -1,0 +1,14 @@
+{
+  "epistemic_status": "VERIFIED",
+  "backend": "cpp20_zero_alloc_engine",
+  "initial_len": 84,
+  "best_len": 84,
+  "keys_saved": 0,
+  "improved": false,
+  "best_route": "ADDDRRADAAADRULARADAAADDLLALAAAARRRRUULAAUALLRADRRRRADRULRURRRRRARRUURURAURRRDDRAUUR",
+  "best_route_sha256_12": "eecbea96b091",
+  "stages": [],
+  "dual_oracle_verified": true,
+  "differential_match": true,
+  "room_id": "III-20"
+}
