@@ -23,9 +23,11 @@ from .formal_kernel import (
     define_formal_system,
     export_formal_ledger,
     solve_formal_system,
+    synthesize_formal_invariant,
     triage_formal_portfolio,
     verify_formal_trace,
 )
+from .evidence import digest
 from .oracle import FRONTIER_ROOMS, run_planted_bug_audit
 
 SUPPORTED_PROTOCOLS = [
@@ -42,13 +44,16 @@ SERVER_INFO = {
 }
 
 SERVER_INSTRUCTIONS = (
-    "Domain-General Formal-Systems & Verified-Bar MCP Server v0.2.0 implementing the Foundation-0 and Proven-Commons "
-    "methodology: (1) Use the 6 `formal_*` tools (`formal_define_system`, `formal_verify_trace`, `formal_solve_system`, "
-    "`formal_certify_lower_bound`, `formal_triage_portfolio`, `formal_export_ledger`) to model ANY discrete planning, "
-    "scheduling, protocol safety, or optimization problem as an AST-sandboxed dual-checker state system with mandatory "
-    "negative controls, mutation-kill gates, exact Dijkstra / Beam / Window-LNS search, and Quotient Homomorphism or "
-    "Inductive Potential lower-bound proofs; (2) Use the 8 hardened `soko_*` tools for triple-oracle PuzzleScript / "
-    "Sokobanteg Frontier verification, Chiral-Mirror Tube Beam optimization, and collision-free Quotient-PDB IDA* floor proving."
+    "Domain-General Formal-Systems & Verified-Bar MCP Server v0.3.0 implementing the Foundation-0 and Proven-Commons "
+    "methodology: (1) Use the 7 `formal_*` tools (`formal_define_system`, `formal_verify_trace`, `formal_solve_system`, "
+    "`formal_certify_lower_bound`, `formal_synthesize_invariant`, `formal_triage_portfolio`, `formal_export_ledger`) to model "
+    "ANY discrete planning, scheduling, protocol safety, or optimization problem as an AST-sandboxed dual-checker system with "
+    "mandatory negative controls, mutation-kill gates, exact Dijkstra / Beam / Window-LNS search, Quotient Homomorphism / "
+    "Inductive Potential lower bounds, and Houdini inductive safety or irreversible deadlock-trap synthesis; (2) Use the "
+    "hardened `soko_*` tools including `soko_get_room`, `soko_replay_original`, and `soko_play` for the source-pinned "
+    "original trilogy catalog plus `soko_capabilities`, `soko_verify_tcb_lock`, and `soko_prove_floor` (Multi-Core "
+    "Exact-State Bucketed A*, PairAtomQuotientPDB, BardDruidQuotientPDB, and WizardRayGoalBound) for Sokoban Eval Frontier "
+    "verification and proofs."
 )
 
 ROOM_INPUT_PROPERTIES: Dict[str, Any] = {
@@ -70,12 +75,6 @@ ROOM_INPUT_PROPERTIES: Dict[str, Any] = {
 
 TOOLS: List[Dict[str, Any]] = [
     # ==================== SOKOBAN EVAL SUITE (8 TOOLS, BACKWARD-COMPATIBLE + HARDENED) ====================
-    {
-        "name": "soko_capabilities",
-        "description": "Report available backends and missing implementations in this checkout.",
-        "inputSchema": {"type": "object", "additionalProperties": False},
-        "annotations": {"readOnlyHint": True, "idempotentHint": True, "openWorldHint": False},
-    },
     {
         "name": "soko_list_rooms",
         "title": "List Built-In Frontier Benchmark Rooms",
@@ -173,8 +172,8 @@ TOOLS: List[Dict[str, Any]] = [
     },
     {
         "name": "soko_prove_floor",
-        "title": "Certify Lower Bound via Exact-State-TT & Quotient-PDB IDA*",
-        "description": "Prove a machine-checked lower bound (floor >= B) using collision-free exact-DynState transposition-table IDA*, automatic Bard+Druid Quotient-PDB construction, and runtime step-consistency assertions (h(s) <= 1 + h(s')) on every transition.",
+        "title": "Certify Lower Bound via Multi-Core Exact-State A* & Pair-Atom Quotient PDB",
+        "description": "Prove a machine-checked lower bound (floor >= B) using Multi-Core Exact-State Bucketed A* (or collision-free Exact-DynState IDA*), automatic PairAtomQuotientPDB + BardDruidQuotientPDB + WizardRayGoalBound construction, fail-closed witness verification, and runtime step-consistency assertions (h(s) <= 1 + h(s')) on every transition.",
         "inputSchema": {
             "type": "object",
             "properties": {
@@ -221,6 +220,66 @@ TOOLS: List[Dict[str, Any]] = [
         "inputSchema": {"type": "object", "additionalProperties": False},
         "annotations": {"readOnlyHint": True, "idempotentHint": True, "openWorldHint": False},
     },
+    {
+        "name": "soko_capabilities",
+        "title": "Inspect Runtime Backend Readiness & Verification Capabilities",
+        "description": "Report executable backend readiness (C++20 compiler availability, triple-oracle vs dual-Python verification, lower-bound abstractions, TCB manifest status, and formal kernel tools) without conflating missing backends with search budget exhaustion.",
+        "inputSchema": {"type": "object", "additionalProperties": False},
+        "annotations": {"readOnlyHint": True, "idempotentHint": True, "openWorldHint": False},
+    },
+]
+
+for _name, _description, _properties, _required in [
+    (
+        "soko_get_room",
+        "Get full source-pinned original room metadata, grid, tutorials and reference baseline provenance.",
+        {"room_id": {"type": "string"}},
+        ["room_id"],
+    ),
+    (
+        "soko_replay_original",
+        "Replay UDLRA keys in the pinned original PuzzleScript browser engine. Incomplete prefixes are observable; valid_winning_route reports exact final-key wins.",
+        {
+            "room_id": {"type": "string"},
+            "route": {"type": "string"},
+            "baseline": {"type": "boolean", "default": False},
+            "include_frames": {"type": "boolean", "default": False},
+        },
+        ["room_id"],
+    ),
+    (
+        "soko_play",
+        "Stateless original-engine play. Portable JSON checkpoints bind room, source pins and route; every call reconstructs hidden state. Undo removes one key; reset returns to the initial room. Keys after win/death are rejected.",
+        {
+            "room_id": {"type": "string"},
+            "prefix": {"type": "string", "default": ""},
+            "checkpoint": {"type": "object"},
+            "action": {"type": "string", "enum": ["step", "undo", "reset", "observe"], "default": "step"},
+            "keys": {"type": "string", "default": ""},
+        },
+        [],
+    ),
+]:
+    TOOLS.append(
+        {
+            "name": _name,
+            "description": _description,
+            "inputSchema": {
+                "type": "object",
+                "properties": _properties,
+                "required": _required,
+                "additionalProperties": False,
+            },
+            "annotations": {
+                "readOnlyHint": True,
+                "idempotentHint": True,
+                "openWorldHint": _name in ("soko_replay_original", "soko_play"),
+            },
+        }
+    )
+
+TOOLS.extend(
+    [
     # ==================== DOMAIN-GENERAL FORMAL-SYSTEMS SUITE (6 UNIVERSAL TOOLS) ====================
     {
         "name": "formal_define_system",
@@ -353,8 +412,40 @@ TOOLS: List[Dict[str, Any]] = [
                 },
                 "claimed_lower_bound": {"type": "integer"},
                 "max_concrete_states": {"type": "integer", "default": 100000, "minimum": 10, "maximum": 500000},
+                "universe_code": {
+                    "type": "string",
+                    "description": "Optional pure Python module defining `enumerate_states()` to verify inductive closure across an explicit universal state domain.",
+                },
             },
             "required": ["system_id", "proof_mode", "certificate_code", "claimed_lower_bound"],
+            "additionalProperties": False,
+        },
+        "annotations": {"readOnlyHint": True, "idempotentHint": True, "openWorldHint": False},
+    },
+    {
+        "name": "formal_synthesize_invariant",
+        "title": "Synthesize Maximal Inductive Safety Invariants (Houdini) or Deadlock Traps",
+        "description": "Automatically compute the greatest fixed-point inductive conjunction (`houdini_safety`) or maximal forward-closed goal-disjoint trap union (`deadlock_trap`) from candidate predicates in `candidates_code`, machine-checking inductive closure across `SPEC` and `IMPL`.",
+        "inputSchema": {
+            "type": "object",
+            "properties": {
+                "system_id": {"type": "string"},
+                "synthesis_mode": {
+                    "type": "string",
+                    "enum": ["houdini_safety", "deadlock_trap"],
+                    "default": "houdini_safety",
+                },
+                "candidates_code": {
+                    "type": "string",
+                    "description": "Pure Python module defining `predicates() -> dict[str, Callable[[state], bool]]` and optional `enumerate_states()`.",
+                },
+                "universe_code": {
+                    "type": "string",
+                    "description": "Optional pure Python module defining `enumerate_states()` for universal state-space induction without reachability enumeration.",
+                },
+                "max_concrete_states": {"type": "integer", "default": 100000, "minimum": 10, "maximum": 500000},
+            },
+            "required": ["system_id", "candidates_code"],
             "additionalProperties": False,
         },
         "annotations": {"readOnlyHint": True, "idempotentHint": True, "openWorldHint": False},
@@ -417,8 +508,15 @@ TOOLS: List[Dict[str, Any]] = [
         "annotations": {"readOnlyHint": True, "idempotentHint": True, "openWorldHint": False},
     },
 ]
+)
 
 RESOURCES: List[Dict[str, Any]] = [
+    {
+        "uri": "soko://catalog/trilogy",
+        "name": "Original Heroes of Sokoban Trilogy Catalog",
+        "description": "All 66 canonical rooms, source pins, reference baselines and tutorial messages.",
+        "mimeType": "application/json",
+    },
     {
         "uri": "soko://methodology/verified-bar",
         "name": "Proven-Commons Verified Bar Methodology for PuzzleScript",
@@ -484,26 +582,28 @@ PROMPTS: List[Dict[str, Any]] = [
 
 
 def _read_resource_content(uri: str) -> Dict[str, Any]:
-    if uri == "soko://benchmarks/frontier":
+    if uri in ("soko://benchmarks/frontier", "soko://catalog/trilogy"):
+        from .catalog import load_catalog
+
+        payload = FRONTIER_ROOMS if uri == "soko://benchmarks/frontier" else load_catalog()
         return {
             "uri": uri,
             "mimeType": "application/json",
-            "text": json.dumps(FRONTIER_ROOMS, indent=2),
+            "text": json.dumps(payload, indent=2),
         }
     if uri == "soko://methodology/verified-bar":
         text = (
-            "# Proven-Commons Verified Bar Applied to Sokoban Eval\n\n"
-            "1. **Spec / Implementation Separation:** `soko_mcp/oracle.py` is a readable declarative Python reference "
-            "interpreter; `cpp/soko_engine.cpp` is a zero-allocation C++20 bit/array solver.\n"
-            "2. **Dual-Oracle Differential Replay:** Every winning route must pass frame-by-frame replay in BOTH engines "
-            "with identical final ASCII boards before receiving `epistemic_status = VERIFIED`.\n"
-            "3. **Planted-Bug Mutation Audit:** `soko_run_planted_bug_audit` injects 10 realistic PuzzleScript physics bugs "
-            "and requires 10/10 detection.\n"
-            "4. **Chiral-Mirror & Iterative Tube Beam:** When `soko_inspect_room` detects symmetric walls/goals paired with "
-            "asymmetric hero slots, `soko_optimize_route` reflects the seed trajectory across the symmetry axis into a "
-            "role-agnostic target tube and iteratively refines shorter trajectories.\n"
-            "5. **Step-Consistent Lower Bounds:** `soko_prove_floor` asserts `h(s) <= 1 + h(s')` on every expanded edge "
-            "so heuristic bugs fail closed rather than silently pruning optimal branches.\n"
+            "# Proven-Commons Verified Bar Applied to Sokoban Eval (v0.3.0)\n\n"
+            "1. **Triple-Oracle Separation:** `soko_mcp/oracle.py` (2D declarative spec), `soko_mcp/flat_oracle.py` "
+            "(zero-shared-code 1D bitmask engine), and `cpp/soko_engine.cpp` (zero-allocation C++20 solver).\n"
+            "2. **Fail-Closed Per-Frame Trajectory Digest:** Every winning route must agree across >= 2 independent engines "
+            "on every frame `t = 0..L` via 64-bit FNV-1a full-state digests (`traj_fnv64`) before receiving `VERIFIED`.\n"
+            "3. **Planted-Bug & Cross-Engine Audit:** `soko_run_planted_bug_audit` verifies 0 cross-oracle discrepancies "
+            "and 10/10 mutation kills.\n"
+            "4. **Chiral-Mirror & Iterative Tube Beam:** Reflects seed trajectories across exact dungeon symmetry axes "
+            "into role-agnostic tubes.\n"
+            "5. **Collision-Free Quotient-PDB Lower Bounds:** `soko_prove_floor` verifies exact `DynState` equality in its "
+            "transposition table (zero hash-collision pruning) and checks `h(s) <= 1 + h(s')` on every expanded edge.\n"
         )
         return {"uri": uri, "mimeType": "text/markdown", "text": text}
     if uri == "soko://rules/puzzlescript-trilogy":
@@ -519,9 +619,19 @@ def _read_resource_content(uri: str) -> Dict[str, Any]:
         )
         return {"uri": uri, "mimeType": "text/markdown", "text": text}
     if uri == "formal://methodology/foundation0-verified-bar":
-        from . import formal_kernel as fk
-
-        text = (fk.__doc__ or "").strip()
+        text = (
+            "# Domain-General Formal Verification Workflow (`formal_*`)\n\n"
+            "1. **Author Dual Independent Checkers (`formal_define_system`):** Write a readable `spec_code` (e.g. tuple records / "
+            "frozensets) and an algorithmically independent `impl_code` (e.g. bitmask integers or flat arrays, bridged via "
+            "`project_obs(s)`). Supply at least one `must_fail_controls` negative trace and `planted_mutations`.\n"
+            "2. **Solve or Hunt Counterexamples (`formal_solve_system`):** Use `mode='reach_goal'` (`exact_dijkstra` or "
+            "`diversified_beam`) for constructive synthesis, `mode='find_invariant_violation'` for model-checking safety bugs, "
+            "or `mode='optimize_trace'` for Sliding-Window LNS trajectory compression.\n"
+            "3. **Certify Lower Bounds (`formal_certify_lower_bound`):** Supply either a finite `project(state)` Quotient "
+            "Homomorphism or an Inductive Potential `potential(state)` (`V(s) <= cost(s,a,s') + V(s')`) to obtain a `PROVEN` "
+            "lower bound without trusting solver heuristics.\n"
+            "4. **Export Ledger (`formal_export_ledger`):** Emit SHA-256-pinned claims under `PROVEN`, `VERIFIED`, `KNOWN`, or `CONJECTURE`.\n"
+        )
         return {"uri": uri, "mimeType": "text/markdown", "text": text}
     if uri == "formal://examples/lease-fencing-spec":
         return {"uri": uri, "mimeType": "text/markdown", "text": LEASE_EXAMPLE_MD}
@@ -529,8 +639,8 @@ def _read_resource_content(uri: str) -> Dict[str, Any]:
 
 
 def _get_prompt_messages(name: str, arguments: Dict[str, Any]) -> Dict[str, Any]:
-    room_id = arguments.get("room_id", "III-20")
     if name == "break_room_record":
+        room_id = arguments.get("room_id", "III-20")
         return {
             "description": f"Verified-Bar record-breaking workflow for room {room_id}",
             "messages": [
@@ -540,16 +650,17 @@ def _get_prompt_messages(name: str, arguments: Dict[str, Any]) -> Dict[str, Any]
                         "type": "text",
                         "text": (
                             f"Apply the Proven-Commons Verified Bar workflow to optimize room `{room_id}`:\n"
-                            f"1. Call `soko_inspect_room` on `{room_id}` to identify exact dungeon symmetries, hero-switch chirality, and bottlenecks.\n"
-                            f"2. Call `soko_verify_route` on the current baseline route to confirm `VERIFIED` baseline replay.\n"
+                            f"1. Call `soko_verify_tcb_lock` and `soko_inspect_room` on `{room_id}`.\n"
+                            f"2. Call `soko_verify_route` on the current baseline route to confirm triple-oracle `VERIFIED` replay.\n"
                             f"3. Call `soko_optimize_route` to run Windowed BFS + Chiral-Mirror Tube Beam + Iterative Tube Refinement.\n"
-                            f"4. Report the verified route, SHA-256 digest, keys saved, and exact epistemic status (`VERIFIED` for validity, `CONJECTURE` if optimality above proven floor remains open)."
+                            f"4. Report the verified route, SHA-256 digest, per-frame `traj_fnv64`, keys saved, and exact epistemic status."
                         ),
                     },
                 }
             ],
         }
     if name == "certify_room_floor":
+        room_id = arguments.get("room_id", "III-14")
         return {
             "description": f"Step-consistent lower-bound certification workflow for room {room_id}",
             "messages": [
@@ -559,46 +670,46 @@ def _get_prompt_messages(name: str, arguments: Dict[str, Any]) -> Dict[str, Any]
                         "type": "text",
                         "text": (
                             f"Certify a machine-checked lower bound for room `{room_id}`:\n"
-                            f"1. Call `soko_run_planted_bug_audit` to confirm 10/10 engine mutation catches.\n"
-                            f"2. Call `soko_prove_floor` on `{room_id}` and report `proven_floor`, `nodes_expanded`, and `edge_consistency_checks`."
+                            f"1. Call `soko_run_planted_bug_audit` to confirm 10/10 engine mutation catches and cross-oracle parity.\n"
+                            f"2. Call `soko_prove_floor` on `{room_id}` and report `proven_floor`, `quotient_pdb_enabled`, `nodes_expanded`, and `edge_consistency_checks`."
                         ),
                     },
                 }
             ],
         }
     if name == "model_problem_formally":
-        summary = arguments.get("problem_summary", "the target problem")
+        summary = arguments.get("problem_summary", "custom combinatorial system")
         return {
-            "description": "Domain-general formal modeling workflow",
+            "description": "Guided domain-general formal modeling and optimality proof workflow",
             "messages": [
                 {
                     "role": "user",
                     "content": {
                         "type": "text",
                         "text": (
-                            f"Model `{summary}` as a dual-checker formal system:\n"
-                            "1. Call `formal_define_system` with distinct `spec_code` and `impl_code`, negative controls, and optional planted mutations.\n"
-                            "2. Call `formal_solve_system` (reach_goal or find_invariant_violation) and `formal_verify_trace` on any witness.\n"
-                            "3. Call `formal_certify_lower_bound` when a deductive or finite LB certificate is available; export claims with `formal_export_ledger`."
+                            f"Model and solve the following problem as a formally verified system: {summary}\n"
+                            "1. Formulate immutable exact state & action types and write two independent checkers (`spec_code` and `impl_code`) plus `must_fail_controls` and `planted_mutations` in `formal_define_system`.\n"
+                            "2. Call `formal_solve_system` (`mode='reach_goal'`) to obtain a dual-verified constructive witness.\n"
+                            "3. Call `formal_certify_lower_bound` (`quotient_homomorphism` or `inductive_potential`) to prove `OPT >= B`.\n"
+                            "4. Call `formal_export_ledger` to emit SHA-256-pinned `PROVEN` / `VERIFIED` certificates."
                         ),
                     },
                 }
             ],
         }
     if name == "prove_protocol_safety":
-        protocol = arguments.get("protocol_name", "the protocol")
+        proto = arguments.get("protocol_name", "stateful protocol")
         return {
-            "description": "Protocol safety model-checking workflow",
+            "description": f"Model-checking safety workflow for {proto}",
             "messages": [
                 {
                     "role": "user",
                     "content": {
                         "type": "text",
                         "text": (
-                            f"Prove global safety for `{protocol}`:\n"
-                            "1. Register the protocol with `formal_define_system` (set `allow_invariant_violations_in_fuzz` if hunting bugs).\n"
-                            "2. Run `formal_solve_system` with mode `find_invariant_violation`; dual-verify counterexamples with `formal_verify_trace`.\n"
-                            "3. After patching, re-run exhaustive search; export `PROVEN` / `VERIFIED` status via `formal_export_ledger`."
+                            f"Verify safety invariants for `{proto}`:\n"
+                            "1. Register the protocol via `formal_define_system(..., allow_invariant_violations_in_fuzz=True)` with an explicit `invariant(state) -> (bool, reason)`.\n"
+                            "2. Call `formal_solve_system(mode='find_invariant_violation', strategy='exact_dijkstra')` to either extract a minimal `VERIFIED` bug trace or obtain an `EXHAUSTIVE_GLOBAL_SAFETY_PROOF` (`PROVEN`)."
                         ),
                     },
                 }
@@ -608,22 +719,63 @@ def _get_prompt_messages(name: str, arguments: Dict[str, Any]) -> Dict[str, Any]
 
 
 def dispatch_tool_call(name: str, args: Dict[str, Any]) -> Dict[str, Any]:
-    if name == "soko_capabilities":
-        return get_capabilities()
+    # --- Sokoban Suite ---
     if name == "soko_list_rooms":
-        summary = {}
-        for rid, meta in FRONTIER_ROOMS.items():
-            summary[rid] = {
-                "part": meta["part"],
-                "title": meta["title"],
-                "dimensions": f"{len(meta['grid'][0])}x{len(meta['grid'])}",
-                "proven_floor": meta["proven_floor"],
-                "shortest_known": meta["shortest_known"],
-                "frontier_record": meta["frontier_record"],
-                "reference_route_len": len(meta["reference_route"]),
+        from .catalog import list_rooms
+
+        rooms = list_rooms()
+        summaries = [
+            {
+                "room_id": room["id"],
+                "part": room["part"],
+                "room": room["room"],
+                "dimensions": f"{room['width']}x{room['height']}",
+                "reference_route_len": len(room["reference_route"]),
+                "reported_lower_bound": room["proven_floor"],
             }
-        capabilities = get_capabilities()
-        return {"cpp_engine_ready": capabilities["cpp_engine_ready"], "capabilities": capabilities, "rooms": summary}
+            for room in rooms
+        ]
+        result = {
+            "rooms": summaries,
+            "room_count": len(rooms),
+            "scope": "source-pinned original trilogy; baseline cost is not a current record",
+            "details_tool": "soko_get_room",
+            "cpp_engine_ready": ensure_cpp_engine() is not None,
+        }
+        if args.get("include_fixtures", False):
+            result["fixtures"] = {"fixture:" + rid: meta for rid, meta in FRONTIER_ROOMS.items()}
+        return result
+
+    if name == "soko_get_room":
+        from .catalog import get_room
+
+        return get_room(args.get("room_id"))
+
+    if name == "soko_replay_original":
+        from .catalog import get_room
+        from .original import replay
+
+        meta = get_room(args.get("room_id"))
+        if args.get("baseline") and "route" in args:
+            raise ValueError("Provide route or baseline, not both")
+        route = meta["reference_route"] if args.get("baseline") else args.get("route")
+        if route is None:
+            raise ValueError("Provide route (empty prefix allowed) or baseline=true")
+        result = replay(
+            meta["part"],
+            meta["room"],
+            route,
+            include_frames=args.get("include_frames", False),
+        )
+        result["room_id"] = args["room_id"]
+        result.pop("certificate_sha256", None)
+        result["certificate_sha256"] = digest(result)
+        return result
+
+    if name == "soko_play":
+        from .play import play
+
+        return play(**args)
 
     if name == "soko_inspect_room":
         rid, part, grid, meta = resolve_room_input(args.get("room_id"), args.get("part"), args.get("grid"))
@@ -642,7 +794,12 @@ def dispatch_tool_call(name: str, args: Dict[str, Any]) -> Dict[str, Any]:
         rid, part, grid, _ = resolve_room_input(args.get("room_id"), args.get("part"), args.get("grid"))
         if "route" not in args:
             raise ValueError("Missing required parameter 'route'")
-        res = verify_route_dual(part, grid, str(args["route"]))
+        res = verify_route_dual(
+            part,
+            grid,
+            str(args["route"]),
+            require_cpp=bool(args.get("require_cpp", False)),
+        )
         if rid:
             res["room_id"] = rid
         return res
@@ -684,7 +841,7 @@ def dispatch_tool_call(name: str, args: Dict[str, Any]) -> Dict[str, Any]:
         res = prove_floor_verified(
             part=part,
             grid=grid,
-            max_bound=int(args.get("max_bound", 25)),
+            max_bound=int(args.get("max_bound", 32)),
             budget_sec=int(args.get("budget_sec", 12)),
         )
         if rid:
@@ -697,6 +854,10 @@ def dispatch_tool_call(name: str, args: Dict[str, Any]) -> Dict[str, Any]:
     if name == "soko_verify_tcb_lock":
         return verify_tcb_lock()
 
+    if name == "soko_capabilities":
+        return get_capabilities()
+
+    # --- Domain-General Formal-Systems Suite ---
     if name == "formal_define_system":
         return define_formal_system(
             system_id=str(args["system_id"]),
@@ -715,7 +876,7 @@ def dispatch_tool_call(name: str, args: Dict[str, Any]) -> Dict[str, Any]:
     if name == "formal_verify_trace":
         return verify_formal_trace(
             system_id=str(args["system_id"]),
-            trace=args["trace"],
+            trace=list(args["trace"]),
             verification_goal=str(args.get("verification_goal", "goal_witness")),
             require_exact_terminal_goal=bool(args.get("require_exact_terminal_goal", True)),
         )
@@ -740,13 +901,23 @@ def dispatch_tool_call(name: str, args: Dict[str, Any]) -> Dict[str, Any]:
             certificate_code=str(args["certificate_code"]),
             claimed_lower_bound=int(args["claimed_lower_bound"]),
             max_concrete_states=int(args.get("max_concrete_states", 100000)),
+            universe_code=args.get("universe_code"),
+        )
+
+    if name == "formal_synthesize_invariant":
+        return synthesize_formal_invariant(
+            system_id=str(args["system_id"]),
+            candidates_code=str(args["candidates_code"]),
+            synthesis_mode=str(args.get("synthesis_mode", "houdini_safety")),
+            universe_code=args.get("universe_code"),
+            max_concrete_states=int(args.get("max_concrete_states", 100000)),
         )
 
     if name == "formal_triage_portfolio":
-        return triage_formal_portfolio(items=list(args["items"]))
+        return triage_formal_portfolio(list(args["items"]))
 
     if name == "formal_export_ledger":
-        return export_formal_ledger(extra_claims=args.get("extra_claims"))
+        return export_formal_ledger(args.get("extra_claims"))
 
     raise KeyError(f"Unknown tool: {name}")
 
@@ -783,7 +954,11 @@ def handle_jsonrpc_message(msg: Dict[str, Any]) -> Optional[Dict[str, Any]]:
             "id": msg_id,
             "result": {
                 "protocolVersions": SUPPORTED_PROTOCOLS,
-                "capabilities": {"tools": {}, "resources": {}, "prompts": {}},
+                "capabilities": {
+                    "tools": {},
+                    "resources": {},
+                    "prompts": {},
+                },
                 "serverInfo": SERVER_INFO,
                 "instructions": SERVER_INSTRUCTIONS,
             },

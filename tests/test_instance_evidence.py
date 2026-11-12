@@ -68,27 +68,105 @@ class InstanceEvidenceTests(unittest.TestCase):
                 module.replay(self.instance() | change)
 
 
-if __name__ == "__main__":
-    unittest.main()
-
-
 class SearchFailureEvidenceTests(unittest.TestCase):
-    def test_compiler_failure_writes_failed_evidence(self):
+    @classmethod
+    def setUpClass(cls):
         sys.path.insert(0, str(ROOT / "experiments/frontier_mac"))
         try:
             import run_search
+            cls.runner = run_search
         finally:
             sys.path.pop(0)
+
+    def run_experiment(self, *, replay_effect=None, process_effect=None, compiler="clang++", instance_data=None):
+        seed = {"valid_winning_route": True, "certificate_sha256": "seed-certificate"}
+        candidate = {"valid_winning_route": True, "certificate_sha256": "candidate-certificate"}
+        if replay_effect is None:
+            replay_effect = [seed, candidate]
+        if process_effect is None:
+            process_effect = [subprocess.CompletedProcess("compiler", 0),
+                              subprocess.CompletedProcess("search", 0, '{"best_route": "RR"}')]
         with tempfile.TemporaryDirectory() as tmp:
             instance = Path(tmp) / "instance.json"
             output = Path(tmp) / "result.json"
-            instance.write_text(json.dumps({"part": 1, "grid": ["#####", "#F.G#", "#####"], "route": "RR"}))
+            instance.write_text(instance_data if instance_data is not None else json.dumps(
+                {"part": 1, "grid": ["#####", "#F.G#", "#####"], "route": "RR"}))
             args = ["run_search", str(instance), "--output", str(output)]
-            with patch.object(sys, "argv", args), patch.object(run_search.shutil, "which", return_value="clang++"), patch.object(run_search.subprocess, "check_output", return_value="test compiler\n"), patch.object(run_search.subprocess, "run", side_effect=subprocess.CalledProcessError(1, "compiler")):
-                self.assertEqual(run_search.main(), 1)
+            with patch.object(sys, "argv", args), \
+                 patch.object(self.runner, "replay", side_effect=replay_effect), \
+                 patch.object(self.runner.shutil, "which", return_value=compiler), \
+                 patch.object(self.runner.subprocess, "check_output", return_value="test compiler\n"), \
+                 patch.object(self.runner.subprocess, "run", side_effect=process_effect) as processes:
+                code = self.runner.main()
             result = json.loads(output.read_text())
-            self.assertEqual(result["status"], "BACKEND_FAILED")
-            self.assertEqual(result["error_type"], "CalledProcessError")
-            self.assertEqual(result["return_code"], 1)
-            self.assertEqual(result["error_stage"], "compile")
             self.assertNotIn(str(Path(tmp)), json.dumps(result))
+            return code, result, processes.call_count
+
+    def test_compiler_failure_writes_failed_evidence(self):
+        code, result, calls = self.run_experiment(process_effect=subprocess.CalledProcessError(1, "compiler"))
+        self.assertEqual(code, 1)
+        self.assertEqual(result["status"], "BACKEND_FAILED")
+        self.assertEqual(result["error_type"], "CalledProcessError")
+        self.assertEqual(result["return_code"], 1)
+        self.assertEqual(result["error_stage"], "compile")
+        self.assertEqual(calls, 1)
+
+    def test_seed_backend_failure_writes_evidence_before_search(self):
+        code, result, calls = self.run_experiment(replay_effect=subprocess.CalledProcessError(2, "seed-engine"))
+        self.assertEqual(code, 1)
+        self.assertEqual(result["status"], "BACKEND_FAILED")
+        self.assertEqual(result["error_stage"], "seed_replay")
+        self.assertEqual(result["return_code"], 2)
+        self.assertEqual(calls, 0)
+        self.assertNotIn("candidate_certificate", result)
+
+    def test_rejected_seed_prevents_search(self):
+        code, result, calls = self.run_experiment(replay_effect=[{"valid_winning_route": False}])
+        self.assertEqual((code, result["status"], calls), (1, "SEED_REJECTED", 0))
+
+    def test_missing_compiler_writes_unavailable_evidence(self):
+        code, result, calls = self.run_experiment(compiler=None)
+        self.assertEqual((code, result["status"], calls), (1, "UNAVAILABLE_BACKEND", 0))
+        self.assertEqual(result["error_stage"], "compiler_discovery")
+
+    def test_invalid_json_writes_failed_evidence(self):
+        code, result, calls = self.run_experiment(instance_data="not JSON")
+        self.assertEqual((code, result["status"], calls), (1, "BACKEND_FAILED", 0))
+        self.assertEqual(result["error_stage"], "instance_read")
+
+    def test_search_timeout_does_not_claim_a_candidate(self):
+        code, result, calls = self.run_experiment(process_effect=[
+            subprocess.CompletedProcess("compiler", 0), subprocess.TimeoutExpired("search", 105)])
+        self.assertEqual((code, result["status"], calls), (1, "TIMEOUT_NO_CANDIDATE_RETURNED", 2))
+        self.assertNotIn("candidate_certificate", result)
+        self.assertIn("elapsed_seconds", result)
+
+    def test_candidate_replay_timeout_is_not_a_search_timeout(self):
+        code, result, calls = self.run_experiment(replay_effect=[
+            {"valid_winning_route": True, "certificate_sha256": "seed-certificate"},
+            subprocess.TimeoutExpired("candidate-engine", 5)])
+        self.assertEqual((code, result["status"], calls), (1, "BACKEND_FAILED", 2))
+        self.assertEqual(result["error_stage"], "candidate_replay")
+        self.assertIn("search", result)
+        self.assertNotIn("candidate_certificate", result)
+        self.assertIn("elapsed_seconds", result)
+
+    def test_malformed_candidate_output_is_recorded(self):
+        code, result, calls = self.run_experiment(process_effect=[
+            subprocess.CompletedProcess("compiler", 0), subprocess.CompletedProcess("search", 0, "[]")])
+        self.assertEqual((code, result["status"], calls), (1, "BACKEND_FAILED", 2))
+        self.assertEqual(result["error_stage"], "search_output")
+        self.assertNotIn("candidate_certificate", result)
+
+    def test_success_requires_accepted_candidate_replay(self):
+        code, result, calls = self.run_experiment()
+        self.assertEqual((code, result["status"], calls), (0, "CANDIDATE_ACCEPTED", 2))
+        self.assertEqual(result["candidate_certificate"]["certificate_sha256"], "candidate-certificate")
+        code, result, calls = self.run_experiment(replay_effect=[
+            {"valid_winning_route": True, "certificate_sha256": "seed-certificate"},
+            {"valid_winning_route": False}])
+        self.assertEqual((code, result["status"], calls), (1, "CANDIDATE_REJECTED", 2))
+
+
+if __name__ == "__main__":
+    unittest.main()

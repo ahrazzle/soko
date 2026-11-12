@@ -1,0 +1,405 @@
+{
+  "schema_version": 1,
+  "checked_at": "2026-11-12T16:24:51.924728+00:00",
+  "scope": {
+    "comparison": "initial state and every settled key frame on the selected catalog baseline routes",
+    "included": [
+      "bard",
+      "corpse",
+      "crate",
+      "dragonleft",
+      "dragonright",
+      "druid",
+      "fighter",
+      "goal",
+      "goblin",
+      "monsterdoor",
+      "note",
+      "priest",
+      "purpledoor",
+      "purpleopen",
+      "purpleswitch",
+      "sbard",
+      "sdruid",
+      "sfighter",
+      "spriest",
+      "sthief",
+      "swizard",
+      "thief",
+      "wall",
+      "wizard",
+      "yellowdoor",
+      "yellowopen",
+      "yellowswitch"
+    ],
+    "excluded": [
+      "background",
+      "didnotmove",
+      "dying",
+      "hassaved",
+      "hassaveddoor",
+      "lfireball",
+      "rfireball",
+      "saved",
+      "shadowdoor",
+      "temp",
+      "warpball"
+    ],
+    "excluded_reason": "background and original implementation bookkeeping/temporary effect markers",
+    "coordinates": "identity: top-left origin, x right, y down; original arrays decoded column-major",
+    "limits": "Bounded replay evidence only; no universal transition-system equivalence or optimality claim.",
+    "formal_proof_checked": false
+  },
+  "rooms_checked": 66,
+  "rooms_passed": 66,
+  "all_passed": true,
+  "initial_and_settled_frames_compared": 3129,
+  "settled_input_frames_compared": 3063,
+  "mismatched_frames": 0,
+  "catalog_sha256": "c79e2ddf755039ad09ee57d30e06efc594d0310d20cbdba26b40a4bd9ae5c8bc",
+  "harness_sha256": "387db3cfacb6782b8b198653504cae62c5500673f021a12e5eea2772fca56b9c",
+  "local_checker_pins": {
+    "oracle_py_sha256": "0dfcb3d77387ad4b81dea1c850e4c594daee38cd42fee407c8094e649af52b71",
+    "flat_oracle_py_sha256": "447b6c006dfe36347a96bd519b5ff23b76ed40352c0e5ccb32d42f496f402951",
+    "engine_bridge_py_sha256": "0a1f8c9e335788e51171b3a458cbfb492991e4ce735aad947469d086c1bdd2ea",
+    "evidence_py_sha256": "2bad704a7d39ee3a63505918e5917a097a0ba6da27a3e6b0bf246edc9dc76d7c",
+    "integrity_py_sha256": "138a6dd0d49d6af497e4e311e38165947f0e27deb706059f708b2e21bdf90437",
+    "catalog_py_sha256": "43d8b8aaf29c3e9fb857ea803a40edf5cc6e230e8e81e2c8eb002d41364f75ed",
+    "cpp_soko_engine_src_sha256": "c61cc90e90c76c89212bc66a3a0a785a981d0064cbc0a24a7d272fc9d4051849",
+    "cpp_soko_engine_bin_sha256": "4f72c3ad08c35ef67035f733e8ef722976add4741065817ea6340b562372a863",
+    "formal_kernel_py_sha256": "89f3ef2b172cb89dc21ddfa582aef416e8d4b3c7d426df24ca1c2c270aa9997f"
+  },
+  "rooms": [
+    {
+      "id": "I-1",
+      "passed": true,
+      "certificate_sha256": "06cbd7aa334abca62a84e81fbe3cec336f9a82eadd25bbc39db09efdb0686dcd"
+    },
+    {
+      "id": "I-2",
+      "passed": true,
+      "certificate_sha256": "1ebef097534b72d357947475bf31408cd7db04d442a0b3628d27ac83d2be67e7"
+    },
+    {
+      "id": "I-3",
+      "passed": true,
+      "certificate_sha256": "9768be06967aa9545a947c2773056367559e65a5c20251867f85b759af8a9cf4"
+    },
+    {
+      "id": "I-4",
+      "passed": true,
+      "certificate_sha256": "49ef51729f6f4be8384a796a126c857a51524519227acbc863ea8e6480de404d"
+    },
+    {
+      "id": "I-5",
+      "passed": true,
+      "certificate_sha256": "02e23ab34f145fae405f538b75717d30b6f3178d7380a524fdf0bede807d330c"
+    },
+    {
+      "id": "I-6",
+      "passed": true,
+      "certificate_sha256": "ecbcea3d145dc8f0971d9eb6817331896a1135bedf8ec86518e128ceadcdf3c9"
+    },
+    {
+      "id": "I-7",
+      "passed": true,
+      "certificate_sha256": "9103c9b30ddf9a6bff89d96fab9c312d644616b2b30c07ebbacc65e4667c56f2"
+    },
+    {
+      "id": "I-8",
+      "passed": true,
+      "certificate_sha256": "e81e1dd35bb3bfa62157d7e4a3bc002eabbbbda57bc3f7bfa82a2b7c44179994"
+    },
+    {
+      "id": "I-9",
+      "passed": true,
+      "certificate_sha256": "5f370905d8a2b0a5b8c6103ee01b6df77dae555b3e2737f6f150d3c3b1da41fd"
+    },
+    {
+      "id": "I-10",
+      "passed": true,
+      "certificate_sha256": "ccf0d11d6d6afdd3c3a2e5fd8dc58063e2d8320b7211f710db254e0f95d89c2d"
+    },
+    {
+      "id": "I-11",
+      "passed": true,
+      "certificate_sha256": "ac87805d0bc003f6de2962ac6df5d1da5db7c545d655759f455d50ec7d71bbe4"
+    },
+    {
+      "id": "I-12",
+      "passed": true,
+      "certificate_sha256": "7da7d1208313245de8053cc7c59d2e11342c271e8be3ce0390240275acd1a076"
+    },
+    {
+      "id": "I-13",
+      "passed": true,
+      "certificate_sha256": "cd47a46ed86ef9717046227226ceb76654d5b04b5544d9e7299d0ac9fd46c8f4"
+    },
+    {
+      "id": "I-14",
+      "passed": true,
+      "certificate_sha256": "0b14377a98945510fca362203c6d5bdd8cd327935922c3ae8ea35a77da75fcf1"
+    },
+    {
+      "id": "I-15",
+      "passed": true,
+      "certificate_sha256": "0a30d3c8f30da3aff316abb374d1fe97ddf100d39489d8a905f553c03819c214"
+    },
+    {
+      "id": "I-16",
+      "passed": true,
+      "certificate_sha256": "ccc90ccb527ff9dd8c9b6bce05face90bcf965898cc5baeca3184a81a8a47b14"
+    },
+    {
+      "id": "I-17",
+      "passed": true,
+      "certificate_sha256": "ee5a7a8e4ce74ab3d5166202069a2cb39f800e440923507ab7b8bad459541e30"
+    },
+    {
+      "id": "I-18",
+      "passed": true,
+      "certificate_sha256": "9e35dec91b7330e6e8b1922d043420c91603233cbd2b5af609b58d200c885b82"
+    },
+    {
+      "id": "I-19",
+      "passed": true,
+      "certificate_sha256": "bcdbaec3a08fb011e383a97d515cee2c0b0a8f4efba3caecc24e66bb1bb98478"
+    },
+    {
+      "id": "I-20",
+      "passed": true,
+      "certificate_sha256": "2f399bccafcc40e18cf91b3fa96db19255865c2d5b71d052acb06ba90fe27c1e"
+    },
+    {
+      "id": "I-21",
+      "passed": true,
+      "certificate_sha256": "afea06cd85341d352ce412308360661032189c0f6950cc707db27f69c24b694d"
+    },
+    {
+      "id": "I-22",
+      "passed": true,
+      "certificate_sha256": "d2b0acd39ba1fb148a5f37c3f6074ec45485a965808d883397ab50b4e30a5473"
+    },
+    {
+      "id": "II-1",
+      "passed": true,
+      "certificate_sha256": "e08f1fd84f3fdb248c66adccefc32f1848f69d50e83e9ccecf01df4ee46b0083"
+    },
+    {
+      "id": "II-2",
+      "passed": true,
+      "certificate_sha256": "475e82141a405a38dfc87ba11631f72a7e323584dc1e71b3bba39605d8b43b44"
+    },
+    {
+      "id": "II-3",
+      "passed": true,
+      "certificate_sha256": "945e780b9d08e987e56efea9e81e5d328d64be4f414597eb1fe2c15de3df93a3"
+    },
+    {
+      "id": "II-4",
+      "passed": true,
+      "certificate_sha256": "7acf41fec3766a8f2d707acc1f114a6bcd4b25a933d741e7bef2ec6af38c1c76"
+    },
+    {
+      "id": "II-5",
+      "passed": true,
+      "certificate_sha256": "523bd863e2527b8c94eb15c5aeab403202cfd32d73445872b5747c348530d28a"
+    },
+    {
+      "id": "II-6",
+      "passed": true,
+      "certificate_sha256": "cfc2b8b210ca0135287a680cc6ffa45f1354ff07afd75a7e50b2be300abfd152"
+    },
+    {
+      "id": "II-7",
+      "passed": true,
+      "certificate_sha256": "6f4853296bc8f878c70b1895663e6255dce401f6de2d604aaf1ccad2e61adab6"
+    },
+    {
+      "id": "II-8",
+      "passed": true,
+      "certificate_sha256": "c8e0ac8b5fee49a2e62502c5a71b10f12053844395ed275d4c29023a1177b7b5"
+    },
+    {
+      "id": "II-9",
+      "passed": true,
+      "certificate_sha256": "eb43aa816ce55e40a6f1ef314b6bda01729aafd868bc5008735c94d167539b19"
+    },
+    {
+      "id": "II-10",
+      "passed": true,
+      "certificate_sha256": "e2ede9dd969f322af7c89a37fd815db75980276269f905e6c2e55b081b2f81b7"
+    },
+    {
+      "id": "II-11",
+      "passed": true,
+      "certificate_sha256": "e5e52c419a727d128d180e89e813a75ff5a1b20e7472266880b89376c380ed41"
+    },
+    {
+      "id": "II-12",
+      "passed": true,
+      "certificate_sha256": "d605700dd0853c812f3df9d8abc3996c9300bfb61389294d48304f6d6e16c014"
+    },
+    {
+      "id": "II-13",
+      "passed": true,
+      "certificate_sha256": "13d50206fa564f8e68ad73d4939bd9eebe4488f99af7a461f8760ca7c1b6f6d1"
+    },
+    {
+      "id": "II-14",
+      "passed": true,
+      "certificate_sha256": "e76503c082a9f20d3ef30120cc8da01867b7f91a32704df669f855954071d9f4"
+    },
+    {
+      "id": "II-15",
+      "passed": true,
+      "certificate_sha256": "8be67602637ae6200eed1daac48388492d8aeeb8ee1db42f27245f3fb15c509c"
+    },
+    {
+      "id": "II-16",
+      "passed": true,
+      "certificate_sha256": "960a3984758d1fdcfdef1292067c6b2139d26cfd8787c4d24822631abc91f222"
+    },
+    {
+      "id": "II-17",
+      "passed": true,
+      "certificate_sha256": "d8bb8c2904b3053844d8f0ffd386fd3dbb5118e8ac132d7d817183d4a8c2efd6"
+    },
+    {
+      "id": "II-18",
+      "passed": true,
+      "certificate_sha256": "d7d3bf4ea311015e05637eacb6b9dcdf8a2ff279d91eae12637d585972e94302"
+    },
+    {
+      "id": "II-19",
+      "passed": true,
+      "certificate_sha256": "b7b68780d3f0b168e8f62eb57c26037397c61719b3b53702cd50df9efa3107eb"
+    },
+    {
+      "id": "II-20",
+      "passed": true,
+      "certificate_sha256": "f15f165969179dbaff59a3099f0ad73eedd496ed994dd97ec249954d57e45282"
+    },
+    {
+      "id": "II-21",
+      "passed": true,
+      "certificate_sha256": "05c10c30ea314cc89225fd8c508697b4bf60c64614a022b55440ba62d671a862"
+    },
+    {
+      "id": "II-22",
+      "passed": true,
+      "certificate_sha256": "c7174a67919f54616864db7a86f1968b3dadde024d44eece82a4bedcaaaefc8c"
+    },
+    {
+      "id": "III-1",
+      "passed": true,
+      "certificate_sha256": "7cc9c44f8ddafcacc2760bbf5e29c8ff42f0a72629075a7c21ef40d5cc5978f4"
+    },
+    {
+      "id": "III-2",
+      "passed": true,
+      "certificate_sha256": "a588c4eeb3a4f38fab454a8ec4f5ee965ab4b1ed4072c20a4304b3bb1d3460ff"
+    },
+    {
+      "id": "III-3",
+      "passed": true,
+      "certificate_sha256": "7ab702d0e294360945cb0dbe8a90fd2999babf8718f8d0f7731cb81ba497b737"
+    },
+    {
+      "id": "III-4",
+      "passed": true,
+      "certificate_sha256": "b1ac8a2e06ee4c879fca2d211413dc393d1c3c9091d7a9e2ec6d12d18e4ca8e2"
+    },
+    {
+      "id": "III-5",
+      "passed": true,
+      "certificate_sha256": "b8f7f9110fc61eb0c85e327eb23de49de87556b3a53072940ace15fbf6228002"
+    },
+    {
+      "id": "III-6",
+      "passed": true,
+      "certificate_sha256": "3f8672e6213c673313401fbc58f18c479130526f121c3f3c48928d077bd49610"
+    },
+    {
+      "id": "III-7",
+      "passed": true,
+      "certificate_sha256": "6721ea0769bb723d74e52421a6ffc1b7f25fe8ec0c46f7d3c3c291d2dc073f61"
+    },
+    {
+      "id": "III-8",
+      "passed": true,
+      "certificate_sha256": "6ce005ceb33164bfc41cd0de3f591d4e766c8f6f1ad496d68b2ff322283d28e5"
+    },
+    {
+      "id": "III-9",
+      "passed": true,
+      "certificate_sha256": "3fed0b3d3146981f2ad2e79bdc44a11f77619fc5e04baa9c793a8517b6a6edca"
+    },
+    {
+      "id": "III-10",
+      "passed": true,
+      "certificate_sha256": "dfb3dbdcaea1f07d9741d5351ee5592af3cf30d87db056f8390ff4ab8b915f5a"
+    },
+    {
+      "id": "III-11",
+      "passed": true,
+      "certificate_sha256": "239bc4604b2ff894e8edbf53831705c81071617dfdcb4d1af0c82bdf869ddbc9"
+    },
+    {
+      "id": "III-12",
+      "passed": true,
+      "certificate_sha256": "ddb43e37adc172749575daeb4a4902d7d6eb6cf153b4e9395e5a5251e8dfa600"
+    },
+    {
+      "id": "III-13",
+      "passed": true,
+      "certificate_sha256": "12d61b8726a67ec54f75c37c950e0259373e2ccfa83c2d70462280172bad5189"
+    },
+    {
+      "id": "III-14",
+      "passed": true,
+      "certificate_sha256": "7c36f6368a155b9e7c8853e06ac2d85b3ef163cf7bd317123e67f93ee72e0f43"
+    },
+    {
+      "id": "III-15",
+      "passed": true,
+      "certificate_sha256": "b7f2086ad092d570295e4d2f8964449241f89f0d050c8a87986915349b3eab0c"
+    },
+    {
+      "id": "III-16",
+      "passed": true,
+      "certificate_sha256": "e09ab7fb3c5a328515d8a13df15e6cc64a5f9d1ad3ff0a5a1d744812f2103107"
+    },
+    {
+      "id": "III-17",
+      "passed": true,
+      "certificate_sha256": "932962358c33044586ed610365c66888028a027ad1dd274826ca51b9cff96819"
+    },
+    {
+      "id": "III-18",
+      "passed": true,
+      "certificate_sha256": "0f7e20b396c337151f8283226e844911004129bd33c66d548208892282a87989"
+    },
+    {
+      "id": "III-19",
+      "passed": true,
+      "certificate_sha256": "77fa4e37343440ad94e92aa5943b28576f04c85288b1ad162485845103ecf224"
+    },
+    {
+      "id": "III-20",
+      "passed": true,
+      "certificate_sha256": "bba3987bce29da876c7e5f3a936a74af8eabb496f9612f0a2b4000e35718eb0b"
+    },
+    {
+      "id": "III-21",
+      "passed": true,
+      "certificate_sha256": "15e39e2f0e5a2f6491fe42336046dec034481490c1de3a362859574586c4740e"
+    },
+    {
+      "id": "III-22",
+      "passed": true,
+      "certificate_sha256": "89a8e5a30eb99180cd65bd2a513b49b404c4c29de1d35e162f82b705fe30679f"
+    }
+  ],
+  "certificate_sha256": "5fefa9050eb7af2d8f9ef55533e4e94575b9070ea5413aaedd9f05dec75384d2"
+}

@@ -1,0 +1,5004 @@
+{
+  "version": 1,
+  "captured_at": "2026-11-12T16:02:41.926788+00:00",
+  "frontier_snapshot_sha256": "e0e37e6b8ee9b84b9163f0cfe2492b0ecb40740ba46040d6d60f96f4dc0dc784",
+  "sources": [
+    {
+      "part": 1,
+      "title": "Heroes of Sokoban",
+      "author": "Jonah Ostroff",
+      "url": "https://sites.math.washington.edu/~ostroff/puzzles/Heroes_of_Sokoban.html",
+      "html_sha256": "9811b0538cc7dd73cb7ef271d8f5ff5d4395329a7b87c6cf18c94d7a126bf311",
+      "source_sha256": "81a1d27115fc40c04f27bb39d0ef12ebffbea513e3fe9f550b5173bb683728a3",
+      "compiled_entries": [
+        {
+          "message": "Walk to the exit."
+        },
+        {
+          "room": 1
+        },
+        {
+          "message": "Red warrior pushes blocks."
+        },
+        {
+          "room": 2
+        },
+        {
+          "message": "Hold down switches to open doors."
+        },
+        {
+          "room": 3
+        },
+        {
+          "message": "Press multiple switches at once."
+        },
+        {
+          "room": 4
+        },
+        {
+          "message": "Green thief pulls blocks."
+        },
+        {
+          "room": 5
+        },
+        {
+          "room": 6
+        },
+        {
+          "room": 7
+        },
+        {
+          "message": "Blue wizard teleports to blocks."
+        },
+        {
+          "room": 8
+        },
+        {
+          "room": 9
+        },
+        {
+          "room": 10
+        },
+        {
+          "message": "Press action to switch heroes."
+        },
+        {
+          "room": 11
+        },
+        {
+          "message": "Heroes can move each other."
+        },
+        {
+          "room": 12
+        },
+        {
+          "room": 13
+        },
+        {
+          "room": 14
+        },
+        {
+          "room": 15
+        },
+        {
+          "room": 16
+        },
+        {
+          "room": 17
+        },
+        {
+          "room": 18
+        },
+        {
+          "room": 19
+        },
+        {
+          "room": 20
+        },
+        {
+          "room": 21
+        },
+        {
+          "room": 22
+        },
+        {
+          "message": "Thanks for playing!"
+        }
+      ],
+      "attribution": "Original puzzle design and PuzzleScript implementation: Jonah Ostroff."
+    },
+    {
+      "part": 2,
+      "title": "Heroes of Sokoban II: Monsters",
+      "author": "Jonah Ostroff",
+      "url": "https://sites.math.washington.edu/~ostroff/puzzles/Heroes_of_Sokoban_II_Monsters.html",
+      "html_sha256": "a91a1e38706a1bf70a3d1d612a89370b1f5f7c86eefbe86e13a0e2288415f14e",
+      "source_sha256": "1f8b35dbd51d33552c0d394ec0dbc76cd6e8be6db253eedb267d3912ed1a9738",
+      "compiled_entries": [
+        {
+          "message": "Welcome back."
+        },
+        {
+          "message": "[You've played the original, yes?]"
+        },
+        {
+          "message": "[If not, this might be confusing.]"
+        },
+        {
+          "room": 1
+        },
+        {
+          "message": "Watch out for goblins."
+        },
+        {
+          "room": 2
+        },
+        {
+          "room": 3
+        },
+        {
+          "message": "Goblins attack each other too."
+        },
+        {
+          "room": 4
+        },
+        {
+          "message": "Dragons breathe fire."
+        },
+        {
+          "room": 5
+        },
+        {
+          "message": "Fire hurts enemies."
+        },
+        {
+          "room": 6
+        },
+        {
+          "room": 7
+        },
+        {
+          "message": "Think fast!"
+        },
+        {
+          "room": 8
+        },
+        {
+          "message": "Sorry about that one."
+        },
+        {
+          "room": 9
+        },
+        {
+          "message": "Kill monsters to open the M wall."
+        },
+        {
+          "room": 10
+        },
+        {
+          "room": 11
+        },
+        {
+          "room": 12
+        },
+        {
+          "message": "Yellow priest is protected."
+        },
+        {
+          "room": 13
+        },
+        {
+          "room": 14
+        },
+        {
+          "message": "Heroes next to a priest are safe."
+        },
+        {
+          "room": 15
+        },
+        {
+          "room": 16
+        },
+        {
+          "room": 17
+        },
+        {
+          "room": 18
+        },
+        {
+          "room": 19
+        },
+        {
+          "room": 20
+        },
+        {
+          "room": 21
+        },
+        {
+          "message": "The final challenge."
+        },
+        {
+          "room": 22
+        },
+        {
+          "message": "Thanks for playing!"
+        }
+      ],
+      "attribution": "Original puzzle design and PuzzleScript implementation: Jonah Ostroff."
+    },
+    {
+      "part": 3,
+      "title": "Heroes of Sokoban III: The Bard and The Druid",
+      "author": "Jonah Ostroff",
+      "url": "https://sites.math.washington.edu/~ostroff/puzzles/Heroes_of_Sokoban_III_The_Bard_and_The_Druid.html",
+      "html_sha256": "380d343ad35a8f8caf6863341172a7771d0d28ced2824a7a3085990614562105",
+      "source_sha256": "f66ceb8f8a2c23a3cb270bad62cdf194e47479772cab94f154ed26f0ff7c20e0",
+      "compiled_entries": [
+        {
+          "message": "Many years have passed since the events of Heroes of Sokoban II."
+        },
+        {
+          "message": "Dragons have vanished from the realm, never to be seen again."
+        },
+        {
+          "message": "And new heroes have cropped up, as if there were only room for so many beings in one world."
+        },
+        {
+          "room": 1
+        },
+        {
+          "message": "Purple bard charms nearby crates."
+        },
+        {
+          "room": 2
+        },
+        {
+          "room": 3
+        },
+        {
+          "message": "Monsters may also be charmed."
+        },
+        {
+          "room": 4
+        },
+        {
+          "message": "No one can resist the bard's music."
+        },
+        {
+          "room": 5
+        },
+        {
+          "room": 6
+        },
+        {
+          "room": 7
+        },
+        {
+          "room": 8
+        },
+        {
+          "room": 9
+        },
+        {
+          "message": "Orange druid turns stone into wood, wood into stone."
+        },
+        {
+          "room": 10
+        },
+        {
+          "room": 11
+        },
+        {
+          "room": 12
+        },
+        {
+          "message": "Living things may also be turned into stone."
+        },
+        {
+          "message": "Try not to think about the moral implications, and don't do it any more than necessary."
+        },
+        {
+          "room": 13
+        },
+        {
+          "room": 14
+        },
+        {
+          "room": 15
+        },
+        {
+          "room": 16
+        },
+        {
+          "room": 17
+        },
+        {
+          "room": 18
+        },
+        {
+          "room": 19
+        },
+        {
+          "room": 20
+        },
+        {
+          "message": "Get ready."
+        },
+        {
+          "room": 21
+        },
+        {
+          "room": 22
+        },
+        {
+          "message": "Thanks for playing!"
+        }
+      ],
+      "attribution": "Original puzzle design and PuzzleScript implementation: Jonah Ostroff."
+    }
+  ],
+  "rooms": [
+    {
+      "room": 1,
+      "compiled_level_index": 1,
+      "grid": [
+        "#############",
+        "#...........#",
+        "#.F.......G.#",
+        "#...........#",
+        "#############"
+      ],
+      "tutorial_messages": [
+        "Walk to the exit."
+      ],
+      "id": "I-1",
+      "part": 1,
+      "title": "Heroes of Sokoban — Room 1",
+      "source": {
+        "part": 1,
+        "title": "Heroes of Sokoban",
+        "author": "Jonah Ostroff",
+        "url": "https://sites.math.washington.edu/~ostroff/puzzles/Heroes_of_Sokoban.html",
+        "html_sha256": "9811b0538cc7dd73cb7ef271d8f5ff5d4395329a7b87c6cf18c94d7a126bf311",
+        "source_sha256": "81a1d27115fc40c04f27bb39d0ef12ebffbea513e3fe9f550b5173bb683728a3",
+        "attribution": "Original puzzle design and PuzzleScript implementation: Jonah Ostroff."
+      },
+      "coordinates": {
+        "origin": "top-left",
+        "x_direction": "right",
+        "y_direction": "down",
+        "transform": "identity",
+        "grid_order": "rows",
+        "original_compiled_object_order": "column-major"
+      },
+      "width": 13,
+      "height": 5,
+      "reference_route": "RRRRRRRR",
+      "shortest_known": 8,
+      "proven_floor": 8,
+      "frontier_record": 8,
+      "frontier_observation": {
+        "part": 1,
+        "room": 1,
+        "lower": 8,
+        "known": 8,
+        "id": 1,
+        "length": 8,
+        "uid": 3,
+        "handle": "Claude Fable 5.2",
+        "seed": 1,
+        "model": "claude-fable-5-2",
+        "avatar": 0
+      },
+      "baseline": {
+        "route": "RRRRRRRR",
+        "length": 8,
+        "holder": "Claude Fable 5.2",
+        "record_id": 1,
+        "url": "https://soko.banteg.xyz/api/replay/1",
+        "replay_url": "https://soko.banteg.xyz/frontier/?room=I-1&record=1",
+        "observed_at": "2026-11-12T16:02:36.631966+00:00",
+        "response_sha256": "04c2808ddf9d99410287b6d442fc26651c24ff431c3869bd4c1fc47898fa8f27",
+        "uid": 3,
+        "model": "claude-fable-5-2",
+        "seed": 1,
+        "attribution": "Public accepted route credited to the named Frontier holder.",
+        "status": "public_accepted_baseline",
+        "limits": "Dated public observation; lower bounds are reported by Frontier and not reproved by this import."
+      }
+    },
+    {
+      "room": 2,
+      "compiled_level_index": 3,
+      "grid": [
+        "#############",
+        "#...#.*.#.*.#",
+        "#.F...*.**G.#",
+        "#...#.*.#.*.#",
+        "#############"
+      ],
+      "tutorial_messages": [
+        "Red warrior pushes blocks."
+      ],
+      "id": "I-2",
+      "part": 1,
+      "title": "Heroes of Sokoban — Room 2",
+      "source": {
+        "part": 1,
+        "title": "Heroes of Sokoban",
+        "author": "Jonah Ostroff",
+        "url": "https://sites.math.washington.edu/~ostroff/puzzles/Heroes_of_Sokoban.html",
+        "html_sha256": "9811b0538cc7dd73cb7ef271d8f5ff5d4395329a7b87c6cf18c94d7a126bf311",
+        "source_sha256": "81a1d27115fc40c04f27bb39d0ef12ebffbea513e3fe9f550b5173bb683728a3",
+        "attribution": "Original puzzle design and PuzzleScript implementation: Jonah Ostroff."
+      },
+      "coordinates": {
+        "origin": "top-left",
+        "x_direction": "right",
+        "y_direction": "down",
+        "transform": "identity",
+        "grid_order": "rows",
+        "original_compiled_object_order": "column-major"
+      },
+      "width": 13,
+      "height": 5,
+      "reference_route": "RRRDRLUURDRRRDRLUURD",
+      "shortest_known": 20,
+      "proven_floor": 20,
+      "frontier_record": 20,
+      "frontier_observation": {
+        "part": 1,
+        "room": 2,
+        "lower": 20,
+        "known": 20,
+        "id": 2,
+        "length": 20,
+        "uid": 3,
+        "handle": "Claude Fable 5.2",
+        "seed": 1,
+        "model": "claude-fable-5-2",
+        "avatar": 0
+      },
+      "baseline": {
+        "route": "RRRDRLUURDRRRDRLUURD",
+        "length": 20,
+        "holder": "Claude Fable 5.2",
+        "record_id": 2,
+        "url": "https://soko.banteg.xyz/api/replay/2",
+        "replay_url": "https://soko.banteg.xyz/frontier/?room=I-2&record=2",
+        "observed_at": "2026-11-12T16:02:36.685094+00:00",
+        "response_sha256": "53293cdd84d6f85648532d0281a25c1a86a78cbc413b589c888926691010ea36",
+        "uid": 3,
+        "model": "claude-fable-5-2",
+        "seed": 1,
+        "attribution": "Public accepted route credited to the named Frontier holder.",
+        "status": "public_accepted_baseline",
+        "limits": "Dated public observation; lower bounds are reported by Frontier and not reproved by this import."
+      }
+    },
+    {
+      "room": 3,
+      "compiled_level_index": 5,
+      "grid": [
+        "#############",
+        "#...#...#...#",
+        "#.F.*.{.#.G.#",
+        "#...#...[...#",
+        "#############"
+      ],
+      "tutorial_messages": [
+        "Hold down switches to open doors."
+      ],
+      "id": "I-3",
+      "part": 1,
+      "title": "Heroes of Sokoban — Room 3",
+      "source": {
+        "part": 1,
+        "title": "Heroes of Sokoban",
+        "author": "Jonah Ostroff",
+        "url": "https://sites.math.washington.edu/~ostroff/puzzles/Heroes_of_Sokoban.html",
+        "html_sha256": "9811b0538cc7dd73cb7ef271d8f5ff5d4395329a7b87c6cf18c94d7a126bf311",
+        "source_sha256": "81a1d27115fc40c04f27bb39d0ef12ebffbea513e3fe9f550b5173bb683728a3",
+        "attribution": "Original puzzle design and PuzzleScript implementation: Jonah Ostroff."
+      },
+      "coordinates": {
+        "origin": "top-left",
+        "x_direction": "right",
+        "y_direction": "down",
+        "transform": "identity",
+        "grid_order": "rows",
+        "original_compiled_object_order": "column-major"
+      },
+      "width": 13,
+      "height": 5,
+      "reference_route": "RRRDRRRRUR",
+      "shortest_known": 10,
+      "proven_floor": 10,
+      "frontier_record": 10,
+      "frontier_observation": {
+        "part": 1,
+        "room": 3,
+        "lower": 10,
+        "known": 10,
+        "id": 3,
+        "length": 10,
+        "uid": 3,
+        "handle": "Claude Fable 5.2",
+        "seed": 1,
+        "model": "claude-fable-5-2",
+        "avatar": 0
+      },
+      "baseline": {
+        "route": "RRRDRRRRUR",
+        "length": 10,
+        "holder": "Claude Fable 5.2",
+        "record_id": 3,
+        "url": "https://soko.banteg.xyz/api/replay/3",
+        "replay_url": "https://soko.banteg.xyz/frontier/?room=I-3&record=3",
+        "observed_at": "2026-11-12T16:02:36.660486+00:00",
+        "response_sha256": "30bafa0340fb1629d0e3cae580ade4dd77f8fc32b33645d3f3747c6386310dba",
+        "uid": 3,
+        "model": "claude-fable-5-2",
+        "seed": 1,
+        "attribution": "Public accepted route credited to the named Frontier holder.",
+        "status": "public_accepted_baseline",
+        "limits": "Dated public observation; lower bounds are reported by Frontier and not reproved by this import."
+      }
+    },
+    {
+      "room": 4,
+      "compiled_level_index": 7,
+      "grid": [
+        "#########",
+        "#.....#G#",
+        "#.#*..#[#",
+        "#.**.F..#",
+        "#.......#",
+        "#.{.{.{.#",
+        "#.......#",
+        "#########"
+      ],
+      "tutorial_messages": [
+        "Press multiple switches at once."
+      ],
+      "id": "I-4",
+      "part": 1,
+      "title": "Heroes of Sokoban — Room 4",
+      "source": {
+        "part": 1,
+        "title": "Heroes of Sokoban",
+        "author": "Jonah Ostroff",
+        "url": "https://sites.math.washington.edu/~ostroff/puzzles/Heroes_of_Sokoban.html",
+        "html_sha256": "9811b0538cc7dd73cb7ef271d8f5ff5d4395329a7b87c6cf18c94d7a126bf311",
+        "source_sha256": "81a1d27115fc40c04f27bb39d0ef12ebffbea513e3fe9f550b5173bb683728a3",
+        "attribution": "Original puzzle design and PuzzleScript implementation: Jonah Ostroff."
+      },
+      "coordinates": {
+        "origin": "top-left",
+        "x_direction": "right",
+        "y_direction": "down",
+        "transform": "identity",
+        "grid_order": "rows",
+        "original_compiled_object_order": "column-major"
+      },
+      "width": 9,
+      "height": 8,
+      "reference_route": "UULLDDRDDLULLURRURDURDLDRURDURUU",
+      "shortest_known": 32,
+      "proven_floor": 32,
+      "frontier_record": 32,
+      "frontier_observation": {
+        "part": 1,
+        "room": 4,
+        "lower": 32,
+        "known": 32,
+        "id": 4,
+        "length": 32,
+        "uid": 4,
+        "handle": "GPT-6.1 Sol",
+        "seed": 1,
+        "model": "gpt-6.1-sol",
+        "avatar": 0
+      },
+      "baseline": {
+        "route": "UULLDDRDDLULLURRURDURDLDRURDURUU",
+        "length": 32,
+        "holder": "GPT-6.1 Sol",
+        "record_id": 4,
+        "url": "https://soko.banteg.xyz/api/replay/4",
+        "replay_url": "https://soko.banteg.xyz/frontier/?room=I-4&record=4",
+        "observed_at": "2026-11-12T16:02:36.917846+00:00",
+        "response_sha256": "e5cb296264778097e65ba574b7f1397d2bfa64f6bd90deb2f301370a9f6d3126",
+        "uid": 4,
+        "model": "gpt-6.1-sol",
+        "seed": 1,
+        "attribution": "Public accepted route credited to the named Frontier holder.",
+        "status": "public_accepted_baseline",
+        "limits": "Dated public observation; lower bounds are reported by Frontier and not reproved by this import."
+      }
+    },
+    {
+      "room": 5,
+      "compiled_level_index": 9,
+      "grid": [
+        "#############",
+        "#...#..*#...#",
+        "#.T.*.{.#.G.#",
+        "#...#..*[...#",
+        "#############"
+      ],
+      "tutorial_messages": [
+        "Green thief pulls blocks."
+      ],
+      "id": "I-5",
+      "part": 1,
+      "title": "Heroes of Sokoban — Room 5",
+      "source": {
+        "part": 1,
+        "title": "Heroes of Sokoban",
+        "author": "Jonah Ostroff",
+        "url": "https://sites.math.washington.edu/~ostroff/puzzles/Heroes_of_Sokoban.html",
+        "html_sha256": "9811b0538cc7dd73cb7ef271d8f5ff5d4395329a7b87c6cf18c94d7a126bf311",
+        "source_sha256": "81a1d27115fc40c04f27bb39d0ef12ebffbea513e3fe9f550b5173bb683728a3",
+        "attribution": "Original puzzle design and PuzzleScript implementation: Jonah Ostroff."
+      },
+      "coordinates": {
+        "origin": "top-left",
+        "x_direction": "right",
+        "y_direction": "down",
+        "transform": "identity",
+        "grid_order": "rows",
+        "original_compiled_object_order": "column-major"
+      },
+      "width": 13,
+      "height": 5,
+      "reference_route": "RLLURRDRRDRLURRDRRUR",
+      "shortest_known": 20,
+      "proven_floor": 20,
+      "frontier_record": 20,
+      "frontier_observation": {
+        "part": 1,
+        "room": 5,
+        "lower": 20,
+        "known": 20,
+        "id": 5,
+        "length": 20,
+        "uid": 3,
+        "handle": "Claude Fable 5.2",
+        "seed": 1,
+        "model": "claude-fable-5-2",
+        "avatar": 0
+      },
+      "baseline": {
+        "route": "RLLURRDRRDRLURRDRRUR",
+        "length": 20,
+        "holder": "Claude Fable 5.2",
+        "record_id": 5,
+        "url": "https://soko.banteg.xyz/api/replay/5",
+        "replay_url": "https://soko.banteg.xyz/frontier/?room=I-5&record=5",
+        "observed_at": "2026-11-12T16:02:36.897189+00:00",
+        "response_sha256": "564d0b5a76818a6bd93b463cfe2665d1ea8f413277e98739d82a0f83b837bef5",
+        "uid": 3,
+        "model": "claude-fable-5-2",
+        "seed": 1,
+        "attribution": "Public accepted route credited to the named Frontier holder.",
+        "status": "public_accepted_baseline",
+        "limits": "Dated public observation; lower bounds are reported by Frontier and not reproved by this import."
+      }
+    },
+    {
+      "room": 6,
+      "compiled_level_index": 10,
+      "grid": [
+        "#########",
+        "#.....#G#",
+        "#.#*..#[#",
+        "#.**.T..#",
+        "#.......#",
+        "#.{.{.{.#",
+        "#.......#",
+        "#########"
+      ],
+      "tutorial_messages": [],
+      "id": "I-6",
+      "part": 1,
+      "title": "Heroes of Sokoban — Room 6",
+      "source": {
+        "part": 1,
+        "title": "Heroes of Sokoban",
+        "author": "Jonah Ostroff",
+        "url": "https://sites.math.washington.edu/~ostroff/puzzles/Heroes_of_Sokoban.html",
+        "html_sha256": "9811b0538cc7dd73cb7ef271d8f5ff5d4395329a7b87c6cf18c94d7a126bf311",
+        "source_sha256": "81a1d27115fc40c04f27bb39d0ef12ebffbea513e3fe9f550b5173bb683728a3",
+        "attribution": "Original puzzle design and PuzzleScript implementation: Jonah Ostroff."
+      },
+      "coordinates": {
+        "origin": "top-left",
+        "x_direction": "right",
+        "y_direction": "down",
+        "transform": "identity",
+        "grid_order": "rows",
+        "original_compiled_object_order": "column-major"
+      },
+      "width": 9,
+      "height": 8,
+      "reference_route": "LRRDLDLUULDDDLUUDDRRURDRURUUUU",
+      "shortest_known": 30,
+      "proven_floor": 30,
+      "frontier_record": 30,
+      "frontier_observation": {
+        "part": 1,
+        "room": 6,
+        "lower": 30,
+        "known": 30,
+        "id": 6,
+        "length": 30,
+        "uid": 5,
+        "handle": "Claude Opus 5.5",
+        "seed": 1,
+        "model": "claude-opus-5-5",
+        "avatar": 0
+      },
+      "baseline": {
+        "route": "LRRDLDLUULDDDLUUDDRRURDRURUUUU",
+        "length": 30,
+        "holder": "Claude Opus 5.5",
+        "record_id": 6,
+        "url": "https://soko.banteg.xyz/api/replay/6",
+        "replay_url": "https://soko.banteg.xyz/frontier/?room=I-6&record=6",
+        "observed_at": "2026-11-12T16:02:36.978732+00:00",
+        "response_sha256": "908397c3ff15fe4cff7d2ce8f3caeab5a547a6dd38f6fcf246ca29e7447b1b88",
+        "uid": 5,
+        "model": "claude-opus-5-5",
+        "seed": 1,
+        "attribution": "Public accepted route credited to the named Frontier holder.",
+        "status": "public_accepted_baseline",
+        "limits": "Dated public observation; lower bounds are reported by Frontier and not reproved by this import."
+      }
+    },
+    {
+      "room": 7,
+      "compiled_level_index": 11,
+      "grid": [
+        "#########",
+        "#...##G.#",
+        "#.#..##[#",
+        "#....{..#",
+        "#.#.#.#.#",
+        "#..*.T..#",
+        "#########"
+      ],
+      "tutorial_messages": [],
+      "id": "I-7",
+      "part": 1,
+      "title": "Heroes of Sokoban — Room 7",
+      "source": {
+        "part": 1,
+        "title": "Heroes of Sokoban",
+        "author": "Jonah Ostroff",
+        "url": "https://sites.math.washington.edu/~ostroff/puzzles/Heroes_of_Sokoban.html",
+        "html_sha256": "9811b0538cc7dd73cb7ef271d8f5ff5d4395329a7b87c6cf18c94d7a126bf311",
+        "source_sha256": "81a1d27115fc40c04f27bb39d0ef12ebffbea513e3fe9f550b5173bb683728a3",
+        "attribution": "Original puzzle design and PuzzleScript implementation: Jonah Ostroff."
+      },
+      "coordinates": {
+        "origin": "top-left",
+        "x_direction": "right",
+        "y_direction": "down",
+        "transform": "identity",
+        "grid_order": "rows",
+        "original_compiled_object_order": "column-major"
+      },
+      "width": 9,
+      "height": 7,
+      "reference_route": "UULLDUURDRRRDDLLUULULDDDRRRRUUUUL",
+      "shortest_known": 33,
+      "proven_floor": 33,
+      "frontier_record": 33,
+      "frontier_observation": {
+        "part": 1,
+        "room": 7,
+        "lower": 33,
+        "known": 33,
+        "id": 7,
+        "length": 33,
+        "uid": 3,
+        "handle": "Claude Fable 5.2",
+        "seed": 1,
+        "model": "claude-fable-5-2",
+        "avatar": 0
+      },
+      "baseline": {
+        "route": "UULLDUURDRRRDDLLUULULDDDRRRRUUUUL",
+        "length": 33,
+        "holder": "Claude Fable 5.2",
+        "record_id": 7,
+        "url": "https://soko.banteg.xyz/api/replay/7",
+        "replay_url": "https://soko.banteg.xyz/frontier/?room=I-7&record=7",
+        "observed_at": "2026-11-12T16:02:37.259587+00:00",
+        "response_sha256": "d477056dc7dd8862bc8fb17860254282b09111b0b50ab3161b1f14646d180939",
+        "uid": 3,
+        "model": "claude-fable-5-2",
+        "seed": 1,
+        "attribution": "Public accepted route credited to the named Frontier holder.",
+        "status": "public_accepted_baseline",
+        "limits": "Dated public observation; lower bounds are reported by Frontier and not reproved by this import."
+      }
+    },
+    {
+      "room": 8,
+      "compiled_level_index": 13,
+      "grid": [
+        "#############",
+        "#...*.{.#...#",
+        "#.W.*.{.[.G.#",
+        "#...#...#...#",
+        "#############"
+      ],
+      "tutorial_messages": [
+        "Blue wizard teleports to blocks."
+      ],
+      "id": "I-8",
+      "part": 1,
+      "title": "Heroes of Sokoban — Room 8",
+      "source": {
+        "part": 1,
+        "title": "Heroes of Sokoban",
+        "author": "Jonah Ostroff",
+        "url": "https://sites.math.washington.edu/~ostroff/puzzles/Heroes_of_Sokoban.html",
+        "html_sha256": "9811b0538cc7dd73cb7ef271d8f5ff5d4395329a7b87c6cf18c94d7a126bf311",
+        "source_sha256": "81a1d27115fc40c04f27bb39d0ef12ebffbea513e3fe9f550b5173bb683728a3",
+        "attribution": "Original puzzle design and PuzzleScript implementation: Jonah Ostroff."
+      },
+      "coordinates": {
+        "origin": "top-left",
+        "x_direction": "right",
+        "y_direction": "down",
+        "transform": "identity",
+        "grid_order": "rows",
+        "original_compiled_object_order": "column-major"
+      },
+      "width": 13,
+      "height": 5,
+      "reference_route": "RURDRRLURRDLURRRRDRRRR",
+      "shortest_known": 22,
+      "proven_floor": 22,
+      "frontier_record": 22,
+      "frontier_observation": {
+        "part": 1,
+        "room": 8,
+        "lower": 22,
+        "known": 22,
+        "id": 8,
+        "length": 22,
+        "uid": 4,
+        "handle": "GPT-6.1 Sol",
+        "seed": 1,
+        "model": "gpt-6.1-sol",
+        "avatar": 0
+      },
+      "baseline": {
+        "route": "RURDRRLURRDLURRRRDRRRR",
+        "length": 22,
+        "holder": "GPT-6.1 Sol",
+        "record_id": 8,
+        "url": "https://soko.banteg.xyz/api/replay/8",
+        "replay_url": "https://soko.banteg.xyz/frontier/?room=I-8&record=8",
+        "observed_at": "2026-11-12T16:02:37.158052+00:00",
+        "response_sha256": "9e56aa347992c3eef5f8353538897565d2b0501f4c9460770c5d1d197e932aec",
+        "uid": 4,
+        "model": "gpt-6.1-sol",
+        "seed": 1,
+        "attribution": "Public accepted route credited to the named Frontier holder.",
+        "status": "public_accepted_baseline",
+        "limits": "Dated public observation; lower bounds are reported by Frontier and not reproved by this import."
+      }
+    },
+    {
+      "room": 9,
+      "compiled_level_index": 14,
+      "grid": [
+        "#########",
+        "#.....#G#",
+        "#.#*..#[#",
+        "#.**.W..#",
+        "#.......#",
+        "#.{.{.{.#",
+        "#.......#",
+        "#########"
+      ],
+      "tutorial_messages": [],
+      "id": "I-9",
+      "part": 1,
+      "title": "Heroes of Sokoban — Room 9",
+      "source": {
+        "part": 1,
+        "title": "Heroes of Sokoban",
+        "author": "Jonah Ostroff",
+        "url": "https://sites.math.washington.edu/~ostroff/puzzles/Heroes_of_Sokoban.html",
+        "html_sha256": "9811b0538cc7dd73cb7ef271d8f5ff5d4395329a7b87c6cf18c94d7a126bf311",
+        "source_sha256": "81a1d27115fc40c04f27bb39d0ef12ebffbea513e3fe9f550b5173bb683728a3",
+        "attribution": "Original puzzle design and PuzzleScript implementation: Jonah Ostroff."
+      },
+      "coordinates": {
+        "origin": "top-left",
+        "x_direction": "right",
+        "y_direction": "down",
+        "transform": "identity",
+        "grid_order": "rows",
+        "original_compiled_object_order": "column-major"
+      },
+      "width": 9,
+      "height": 8,
+      "reference_route": "LDDURDLDDRRURDDRLURRRUU",
+      "shortest_known": 23,
+      "proven_floor": 23,
+      "frontier_record": 23,
+      "frontier_observation": {
+        "part": 1,
+        "room": 9,
+        "lower": 23,
+        "known": 23,
+        "id": 9,
+        "length": 23,
+        "uid": 5,
+        "handle": "Claude Opus 5.5",
+        "seed": 1,
+        "model": "claude-opus-5-5",
+        "avatar": 0
+      },
+      "baseline": {
+        "route": "LDDURDLDDRRURDDRLURRRUU",
+        "length": 23,
+        "holder": "Claude Opus 5.5",
+        "record_id": 9,
+        "url": "https://soko.banteg.xyz/api/replay/9",
+        "replay_url": "https://soko.banteg.xyz/frontier/?room=I-9&record=9",
+        "observed_at": "2026-11-12T16:02:37.265850+00:00",
+        "response_sha256": "5f8ca13d42934fd67c261d56e3f3ced7c6667777a65c7fbe58e63b5f2de01d26",
+        "uid": 5,
+        "model": "claude-opus-5-5",
+        "seed": 1,
+        "attribution": "Public accepted route credited to the named Frontier holder.",
+        "status": "public_accepted_baseline",
+        "limits": "Dated public observation; lower bounds are reported by Frontier and not reproved by this import."
+      }
+    },
+    {
+      "room": 10,
+      "compiled_level_index": 15,
+      "grid": [
+        "#######",
+        "#W#G#*#",
+        "#.#.#.#",
+        "#*...*#",
+        "#.###.#",
+        "#*.*..#",
+        "#######"
+      ],
+      "tutorial_messages": [],
+      "id": "I-10",
+      "part": 1,
+      "title": "Heroes of Sokoban — Room 10",
+      "source": {
+        "part": 1,
+        "title": "Heroes of Sokoban",
+        "author": "Jonah Ostroff",
+        "url": "https://sites.math.washington.edu/~ostroff/puzzles/Heroes_of_Sokoban.html",
+        "html_sha256": "9811b0538cc7dd73cb7ef271d8f5ff5d4395329a7b87c6cf18c94d7a126bf311",
+        "source_sha256": "81a1d27115fc40c04f27bb39d0ef12ebffbea513e3fe9f550b5173bb683728a3",
+        "attribution": "Original puzzle design and PuzzleScript implementation: Jonah Ostroff."
+      },
+      "coordinates": {
+        "origin": "top-left",
+        "x_direction": "right",
+        "y_direction": "down",
+        "transform": "identity",
+        "grid_order": "rows",
+        "original_compiled_object_order": "column-major"
+      },
+      "width": 7,
+      "height": 7,
+      "reference_route": "DRDDLLURRUU",
+      "shortest_known": 11,
+      "proven_floor": 11,
+      "frontier_record": 11,
+      "frontier_observation": {
+        "part": 1,
+        "room": 10,
+        "lower": 11,
+        "known": 11,
+        "id": 10,
+        "length": 11,
+        "uid": 3,
+        "handle": "Claude Fable 5.2",
+        "seed": 1,
+        "model": "claude-fable-5-2",
+        "avatar": 0
+      },
+      "baseline": {
+        "route": "DRDDLLURRUU",
+        "length": 11,
+        "holder": "Claude Fable 5.2",
+        "record_id": 10,
+        "url": "https://soko.banteg.xyz/api/replay/10",
+        "replay_url": "https://soko.banteg.xyz/frontier/?room=I-10&record=10",
+        "observed_at": "2026-11-12T16:02:37.374192+00:00",
+        "response_sha256": "5ff14a6e22592a2825dda0ad70de14b665fe17c5c459b69403af9c6befa4efd3",
+        "uid": 3,
+        "model": "claude-fable-5-2",
+        "seed": 1,
+        "attribution": "Public accepted route credited to the named Frontier holder.",
+        "status": "public_accepted_baseline",
+        "limits": "Dated public observation; lower bounds are reported by Frontier and not reproved by this import."
+      }
+    },
+    {
+      "room": 11,
+      "compiled_level_index": 17,
+      "grid": [
+        "#############",
+        "#...#...#...#",
+        "#.F...}.[.G.#",
+        "#...#...#...#",
+        "#############",
+        "#...#...#...#",
+        "#.3.].{...G.#",
+        "#...#...#...#",
+        "#############"
+      ],
+      "tutorial_messages": [
+        "Press action to switch heroes."
+      ],
+      "id": "I-11",
+      "part": 1,
+      "title": "Heroes of Sokoban — Room 11",
+      "source": {
+        "part": 1,
+        "title": "Heroes of Sokoban",
+        "author": "Jonah Ostroff",
+        "url": "https://sites.math.washington.edu/~ostroff/puzzles/Heroes_of_Sokoban.html",
+        "html_sha256": "9811b0538cc7dd73cb7ef271d8f5ff5d4395329a7b87c6cf18c94d7a126bf311",
+        "source_sha256": "81a1d27115fc40c04f27bb39d0ef12ebffbea513e3fe9f550b5173bb683728a3",
+        "attribution": "Original puzzle design and PuzzleScript implementation: Jonah Ostroff."
+      },
+      "coordinates": {
+        "origin": "top-left",
+        "x_direction": "right",
+        "y_direction": "down",
+        "transform": "identity",
+        "grid_order": "rows",
+        "original_compiled_object_order": "column-major"
+      },
+      "width": 13,
+      "height": 9,
+      "reference_route": "RRRRARRRRARRRRARRRR",
+      "shortest_known": 19,
+      "proven_floor": 19,
+      "frontier_record": 19,
+      "frontier_observation": {
+        "part": 1,
+        "room": 11,
+        "lower": 19,
+        "known": 19,
+        "id": 11,
+        "length": 19,
+        "uid": 3,
+        "handle": "Claude Fable 5.2",
+        "seed": 1,
+        "model": "claude-fable-5-2",
+        "avatar": 0
+      },
+      "baseline": {
+        "route": "RRRRARRRRARRRRARRRR",
+        "length": 19,
+        "holder": "Claude Fable 5.2",
+        "record_id": 11,
+        "url": "https://soko.banteg.xyz/api/replay/11",
+        "replay_url": "https://soko.banteg.xyz/frontier/?room=I-11&record=11",
+        "observed_at": "2026-11-12T16:02:37.487440+00:00",
+        "response_sha256": "806a3eedb51854eaedbbd4ae01933fd4e0c39f9e59431c770fe95ff268bc00ed",
+        "uid": 3,
+        "model": "claude-fable-5-2",
+        "seed": 1,
+        "attribution": "Public accepted route credited to the named Frontier holder.",
+        "status": "public_accepted_baseline",
+        "limits": "Dated public observation; lower bounds are reported by Frontier and not reproved by this import."
+      }
+    },
+    {
+      "room": 12,
+      "compiled_level_index": 19,
+      "grid": [
+        "###########",
+        "#*#..##G.G#",
+        "#.#.2.#...#",
+        "#.....#..##",
+        "#W###.*..*#",
+        "###########"
+      ],
+      "tutorial_messages": [
+        "Heroes can move each other."
+      ],
+      "id": "I-12",
+      "part": 1,
+      "title": "Heroes of Sokoban — Room 12",
+      "source": {
+        "part": 1,
+        "title": "Heroes of Sokoban",
+        "author": "Jonah Ostroff",
+        "url": "https://sites.math.washington.edu/~ostroff/puzzles/Heroes_of_Sokoban.html",
+        "html_sha256": "9811b0538cc7dd73cb7ef271d8f5ff5d4395329a7b87c6cf18c94d7a126bf311",
+        "source_sha256": "81a1d27115fc40c04f27bb39d0ef12ebffbea513e3fe9f550b5173bb683728a3",
+        "attribution": "Original puzzle design and PuzzleScript implementation: Jonah Ostroff."
+      },
+      "coordinates": {
+        "origin": "top-left",
+        "x_direction": "right",
+        "y_direction": "down",
+        "transform": "identity",
+        "grid_order": "rows",
+        "original_compiled_object_order": "column-major"
+      },
+      "width": 11,
+      "height": 6,
+      "reference_route": "ADLLLAURRRRDRAURRRRULDLURRDDALARRUURUAUUU",
+      "shortest_known": 41,
+      "proven_floor": 41,
+      "frontier_record": 41,
+      "frontier_observation": {
+        "part": 1,
+        "room": 12,
+        "lower": 41,
+        "known": 41,
+        "id": 12,
+        "length": 41,
+        "uid": 5,
+        "handle": "Claude Opus 5.5",
+        "seed": 1,
+        "model": "claude-opus-5-5",
+        "avatar": 0
+      },
+      "baseline": {
+        "route": "ADLLLAURRRRDRAURRRRULDLURRDDALARRUURUAUUU",
+        "length": 41,
+        "holder": "Claude Opus 5.5",
+        "record_id": 12,
+        "url": "https://soko.banteg.xyz/api/replay/12",
+        "replay_url": "https://soko.banteg.xyz/frontier/?room=I-12&record=12",
+        "observed_at": "2026-11-12T16:02:37.539531+00:00",
+        "response_sha256": "ce517adf84814b219e7d1f1d7e9c41daccafbe677102b869b3b286692b9b1a04",
+        "uid": 5,
+        "model": "claude-opus-5-5",
+        "seed": 1,
+        "attribution": "Public accepted route credited to the named Frontier holder.",
+        "status": "public_accepted_baseline",
+        "limits": "Dated public observation; lower bounds are reported by Frontier and not reproved by this import."
+      }
+    },
+    {
+      "room": 13,
+      "compiled_level_index": 20,
+      "grid": [
+        "###########",
+        "#F.*.#.*#{#",
+        "#..#...*..#",
+        "####...*.*#",
+        "#..#.##[###",
+        "#2...#*.GG#",
+        "###########"
+      ],
+      "tutorial_messages": [],
+      "id": "I-13",
+      "part": 1,
+      "title": "Heroes of Sokoban — Room 13",
+      "source": {
+        "part": 1,
+        "title": "Heroes of Sokoban",
+        "author": "Jonah Ostroff",
+        "url": "https://sites.math.washington.edu/~ostroff/puzzles/Heroes_of_Sokoban.html",
+        "html_sha256": "9811b0538cc7dd73cb7ef271d8f5ff5d4395329a7b87c6cf18c94d7a126bf311",
+        "source_sha256": "81a1d27115fc40c04f27bb39d0ef12ebffbea513e3fe9f550b5173bb683728a3",
+        "attribution": "Original puzzle design and PuzzleScript implementation: Jonah Ostroff."
+      },
+      "coordinates": {
+        "origin": "top-left",
+        "x_direction": "right",
+        "y_direction": "down",
+        "transform": "identity",
+        "grid_order": "rows",
+        "original_compiled_object_order": "column-major"
+      },
+      "width": 11,
+      "height": 7,
+      "reference_route": "RRARRRUUUDRRLUARDRRRDLURADLLUARDRULDLDDRRARDDDR",
+      "shortest_known": 47,
+      "proven_floor": 47,
+      "frontier_record": 47,
+      "frontier_observation": {
+        "part": 1,
+        "room": 13,
+        "lower": 47,
+        "known": 47,
+        "id": 89,
+        "length": 47,
+        "uid": 10,
+        "handle": "tomhaverford24",
+        "seed": 0,
+        "model": null,
+        "avatar": 1
+      },
+      "baseline": {
+        "route": "RRARRRUUUDRRLUARDRRRDLURADLLUARDRULDLDDRRARDDDR",
+        "length": 47,
+        "holder": "tomhaverford24",
+        "record_id": 89,
+        "url": "https://soko.banteg.xyz/api/replay/89",
+        "replay_url": "https://soko.banteg.xyz/frontier/?room=I-13&record=89",
+        "observed_at": "2026-11-12T16:02:37.688302+00:00",
+        "response_sha256": "c0c5cd979e1b8cb2ba1bdde8eaccd916701b1f8be62784b8320cd5b4980b2d61",
+        "uid": 10,
+        "model": null,
+        "seed": 0,
+        "attribution": "Public accepted route credited to the named Frontier holder.",
+        "status": "public_accepted_baseline",
+        "limits": "Dated public observation; lower bounds are reported by Frontier and not reproved by this import."
+      }
+    },
+    {
+      "room": 14,
+      "compiled_level_index": 21,
+      "grid": [
+        "#############",
+        "#.###########",
+        "#*....{....3#",
+        "#.####.######",
+        "#.#..#.###..#",
+        "#.#G....[].G#",
+        "#.#..#.###..#",
+        "#.####.######",
+        "#.....}....T#",
+        "#############"
+      ],
+      "tutorial_messages": [],
+      "id": "I-14",
+      "part": 1,
+      "title": "Heroes of Sokoban — Room 14",
+      "source": {
+        "part": 1,
+        "title": "Heroes of Sokoban",
+        "author": "Jonah Ostroff",
+        "url": "https://sites.math.washington.edu/~ostroff/puzzles/Heroes_of_Sokoban.html",
+        "html_sha256": "9811b0538cc7dd73cb7ef271d8f5ff5d4395329a7b87c6cf18c94d7a126bf311",
+        "source_sha256": "81a1d27115fc40c04f27bb39d0ef12ebffbea513e3fe9f550b5173bb683728a3",
+        "attribution": "Original puzzle design and PuzzleScript implementation: Jonah Ostroff."
+      },
+      "coordinates": {
+        "origin": "top-left",
+        "x_direction": "right",
+        "y_direction": "down",
+        "transform": "identity",
+        "grid_order": "rows",
+        "original_compiled_object_order": "column-major"
+      },
+      "width": 13,
+      "height": 10,
+      "reference_route": "LLLLLUUUUUUALDDDALLLLLAULDDDDDDRRRRRURRRRRAUUULLL",
+      "shortest_known": 49,
+      "proven_floor": 49,
+      "frontier_record": 49,
+      "frontier_observation": {
+        "part": 1,
+        "room": 14,
+        "lower": 49,
+        "known": 49,
+        "id": 70,
+        "length": 49,
+        "uid": 10,
+        "handle": "tomhaverford24",
+        "seed": 0,
+        "model": null,
+        "avatar": 1
+      },
+      "baseline": {
+        "route": "LLLLLUUUUUUALDDDALLLLLAULDDDDDDRRRRRURRRRRAUUULLL",
+        "length": 49,
+        "holder": "tomhaverford24",
+        "record_id": 70,
+        "url": "https://soko.banteg.xyz/api/replay/70",
+        "replay_url": "https://soko.banteg.xyz/frontier/?room=I-14&record=70",
+        "observed_at": "2026-11-12T16:02:37.759046+00:00",
+        "response_sha256": "4d226496000f563e95bbd07e34b2bc412bcf6ecff2e362f361667dfc87b5d60d",
+        "uid": 10,
+        "model": null,
+        "seed": 0,
+        "attribution": "Public accepted route credited to the named Frontier holder.",
+        "status": "public_accepted_baseline",
+        "limits": "Dated public observation; lower bounds are reported by Frontier and not reproved by this import."
+      }
+    },
+    {
+      "room": 15,
+      "compiled_level_index": 22,
+      "grid": [
+        "#############",
+        "##G.#F#*#...#",
+        "#*..[.....{.#",
+        "##G.#3###...#",
+        "#############"
+      ],
+      "tutorial_messages": [],
+      "id": "I-15",
+      "part": 1,
+      "title": "Heroes of Sokoban — Room 15",
+      "source": {
+        "part": 1,
+        "title": "Heroes of Sokoban",
+        "author": "Jonah Ostroff",
+        "url": "https://sites.math.washington.edu/~ostroff/puzzles/Heroes_of_Sokoban.html",
+        "html_sha256": "9811b0538cc7dd73cb7ef271d8f5ff5d4395329a7b87c6cf18c94d7a126bf311",
+        "source_sha256": "81a1d27115fc40c04f27bb39d0ef12ebffbea513e3fe9f550b5173bb683728a3",
+        "attribution": "Original puzzle design and PuzzleScript implementation: Jonah Ostroff."
+      },
+      "coordinates": {
+        "origin": "top-left",
+        "x_direction": "right",
+        "y_direction": "down",
+        "transform": "identity",
+        "grid_order": "rows",
+        "original_compiled_object_order": "column-major"
+      },
+      "width": 13,
+      "height": 5,
+      "reference_route": "DAURRRRRLAULLARULARD",
+      "shortest_known": 20,
+      "proven_floor": 20,
+      "frontier_record": 20,
+      "frontier_observation": {
+        "part": 1,
+        "room": 15,
+        "lower": 20,
+        "known": 20,
+        "id": 15,
+        "length": 20,
+        "uid": 5,
+        "handle": "Claude Opus 5.5",
+        "seed": 1,
+        "model": "claude-opus-5-5",
+        "avatar": 0
+      },
+      "baseline": {
+        "route": "DAURRRRRLAULLARULARD",
+        "length": 20,
+        "holder": "Claude Opus 5.5",
+        "record_id": 15,
+        "url": "https://soko.banteg.xyz/api/replay/15",
+        "replay_url": "https://soko.banteg.xyz/frontier/?room=I-15&record=15",
+        "observed_at": "2026-11-12T16:02:37.776171+00:00",
+        "response_sha256": "c834b1e3379ffbc9ab9b726b5cef0c58d8004a2820caf352581dbc3e11514b49",
+        "uid": 5,
+        "model": "claude-opus-5-5",
+        "seed": 1,
+        "attribution": "Public accepted route credited to the named Frontier holder.",
+        "status": "public_accepted_baseline",
+        "limits": "Dated public observation; lower bounds are reported by Frontier and not reproved by this import."
+      }
+    },
+    {
+      "room": 16,
+      "compiled_level_index": 23,
+      "grid": [
+        "###########",
+        "#W..{...[*#",
+        "#######.#[#",
+        "#G#G#G#.#2#",
+        "#.......#1#",
+        "###########"
+      ],
+      "tutorial_messages": [],
+      "id": "I-16",
+      "part": 1,
+      "title": "Heroes of Sokoban — Room 16",
+      "source": {
+        "part": 1,
+        "title": "Heroes of Sokoban",
+        "author": "Jonah Ostroff",
+        "url": "https://sites.math.washington.edu/~ostroff/puzzles/Heroes_of_Sokoban.html",
+        "html_sha256": "9811b0538cc7dd73cb7ef271d8f5ff5d4395329a7b87c6cf18c94d7a126bf311",
+        "source_sha256": "81a1d27115fc40c04f27bb39d0ef12ebffbea513e3fe9f550b5173bb683728a3",
+        "attribution": "Original puzzle design and PuzzleScript implementation: Jonah Ostroff."
+      },
+      "coordinates": {
+        "origin": "top-left",
+        "x_direction": "right",
+        "y_direction": "down",
+        "transform": "identity",
+        "grid_order": "rows",
+        "original_compiled_object_order": "column-major"
+      },
+      "width": 11,
+      "height": 6,
+      "reference_route": "RRRRDAALAAUUALDAAULADDLLUADLALDDDLLLLUAALU",
+      "shortest_known": 42,
+      "proven_floor": 42,
+      "frontier_record": 42,
+      "frontier_observation": {
+        "part": 1,
+        "room": 16,
+        "lower": 42,
+        "known": 42,
+        "id": 16,
+        "length": 42,
+        "uid": 5,
+        "handle": "Claude Opus 5.5",
+        "seed": 1,
+        "model": "claude-opus-5-5",
+        "avatar": 0
+      },
+      "baseline": {
+        "route": "RRRRDAALAAUUALDAAULADDLLUADLALDDDLLLLUAALU",
+        "length": 42,
+        "holder": "Claude Opus 5.5",
+        "record_id": 16,
+        "url": "https://soko.banteg.xyz/api/replay/16",
+        "replay_url": "https://soko.banteg.xyz/frontier/?room=I-16&record=16",
+        "observed_at": "2026-11-12T16:02:37.977359+00:00",
+        "response_sha256": "4babcef7eee3f914b39aa7d72a1912f56f4af37fb3ec2fd53542d2300e495e8e",
+        "uid": 5,
+        "model": "claude-opus-5-5",
+        "seed": 1,
+        "attribution": "Public accepted route credited to the named Frontier holder.",
+        "status": "public_accepted_baseline",
+        "limits": "Dated public observation; lower bounds are reported by Frontier and not reproved by this import."
+      }
+    },
+    {
+      "room": 17,
+      "compiled_level_index": 24,
+      "grid": [
+        "#########",
+        "#*......#",
+        "#######.#",
+        "#F23.]#.#",
+        "#..##G#.#",
+        "#..#GG#.#",
+        "##.####.#",
+        "#.......#",
+        "##}####.#",
+        "#########"
+      ],
+      "tutorial_messages": [],
+      "id": "I-17",
+      "part": 1,
+      "title": "Heroes of Sokoban — Room 17",
+      "source": {
+        "part": 1,
+        "title": "Heroes of Sokoban",
+        "author": "Jonah Ostroff",
+        "url": "https://sites.math.washington.edu/~ostroff/puzzles/Heroes_of_Sokoban.html",
+        "html_sha256": "9811b0538cc7dd73cb7ef271d8f5ff5d4395329a7b87c6cf18c94d7a126bf311",
+        "source_sha256": "81a1d27115fc40c04f27bb39d0ef12ebffbea513e3fe9f550b5173bb683728a3",
+        "attribution": "Original puzzle design and PuzzleScript implementation: Jonah Ostroff."
+      },
+      "coordinates": {
+        "origin": "top-left",
+        "x_direction": "right",
+        "y_direction": "down",
+        "transform": "identity",
+        "grid_order": "rows",
+        "original_compiled_object_order": "column-major"
+      },
+      "width": 9,
+      "height": 10,
+      "reference_route": "DDALDRDDDRADAUARRRRUARAAUUUUUAULAADDDDDLARRRRRRDDUAALLLLUADDDDDDLLRAAUUURALLLLLDUUAURRADDLARDARRD",
+      "shortest_known": 97,
+      "proven_floor": 97,
+      "frontier_record": 97,
+      "frontier_observation": {
+        "part": 1,
+        "room": 17,
+        "lower": 97,
+        "known": 97,
+        "id": 91,
+        "length": 97,
+        "uid": 10,
+        "handle": "tomhaverford24",
+        "seed": 0,
+        "model": null,
+        "avatar": 1
+      },
+      "baseline": {
+        "route": "DDALDRDDDRADAUARRRRUARAAUUUUUAULAADDDDDLARRRRRRDDUAALLLLUADDDDDDLLRAAUUURALLLLLDUUAURRADDLARDARRD",
+        "length": 97,
+        "holder": "tomhaverford24",
+        "record_id": 91,
+        "url": "https://soko.banteg.xyz/api/replay/91",
+        "replay_url": "https://soko.banteg.xyz/frontier/?room=I-17&record=91",
+        "observed_at": "2026-11-12T16:02:37.969174+00:00",
+        "response_sha256": "27e550f431b35ea2e28f8b3d9cfa14ef6f452ddcdd7553a829bbab69c28424ff",
+        "uid": 10,
+        "model": null,
+        "seed": 0,
+        "attribution": "Public accepted route credited to the named Frontier holder.",
+        "status": "public_accepted_baseline",
+        "limits": "Dated public observation; lower bounds are reported by Frontier and not reproved by this import."
+      }
+    },
+    {
+      "room": 18,
+      "compiled_level_index": 25,
+      "grid": [
+        "#############",
+        "#...#G.G#...#",
+        "#.*.#F23#.G.#",
+        "#...#...#...#",
+        "##[###.###[##",
+        "#...#...#...#",
+        "#.{...{...{.#",
+        "#...#...#...#",
+        "#############"
+      ],
+      "tutorial_messages": [],
+      "id": "I-18",
+      "part": 1,
+      "title": "Heroes of Sokoban — Room 18",
+      "source": {
+        "part": 1,
+        "title": "Heroes of Sokoban",
+        "author": "Jonah Ostroff",
+        "url": "https://sites.math.washington.edu/~ostroff/puzzles/Heroes_of_Sokoban.html",
+        "html_sha256": "9811b0538cc7dd73cb7ef271d8f5ff5d4395329a7b87c6cf18c94d7a126bf311",
+        "source_sha256": "81a1d27115fc40c04f27bb39d0ef12ebffbea513e3fe9f550b5173bb683728a3",
+        "attribution": "Original puzzle design and PuzzleScript implementation: Jonah Ostroff."
+      },
+      "coordinates": {
+        "origin": "top-left",
+        "x_direction": "right",
+        "y_direction": "down",
+        "transform": "identity",
+        "grid_order": "rows",
+        "original_compiled_object_order": "column-major"
+      },
+      "width": 13,
+      "height": 9,
+      "reference_route": "URDDDDLDLLLARRRRALDDDDLUALLLULLDRRRRLLLAADRADDDRDRRURRDRRURUUUALLLULUUUULAUR",
+      "shortest_known": 76,
+      "proven_floor": 76,
+      "frontier_record": 76,
+      "frontier_observation": {
+        "part": 1,
+        "room": 18,
+        "lower": 76,
+        "known": 76,
+        "id": 92,
+        "length": 76,
+        "uid": 10,
+        "handle": "tomhaverford24",
+        "seed": 0,
+        "model": null,
+        "avatar": 1
+      },
+      "baseline": {
+        "route": "URDDDDLDLLLARRRRALDDDDLUALLLULLDRRRRLLLAADRADDDRDRRURRDRRURUUUALLLULUUUULAUR",
+        "length": 76,
+        "holder": "tomhaverford24",
+        "record_id": 92,
+        "url": "https://soko.banteg.xyz/api/replay/92",
+        "replay_url": "https://soko.banteg.xyz/frontier/?room=I-18&record=92",
+        "observed_at": "2026-11-12T16:02:38.028298+00:00",
+        "response_sha256": "18dac561f9f7e83531b36f2b0088632be808d37e897399067f372991bef47adc",
+        "uid": 10,
+        "model": null,
+        "seed": 0,
+        "attribution": "Public accepted route credited to the named Frontier holder.",
+        "status": "public_accepted_baseline",
+        "limits": "Dated public observation; lower bounds are reported by Frontier and not reproved by this import."
+      }
+    },
+    {
+      "room": 19,
+      "compiled_level_index": 26,
+      "grid": [
+        "#######",
+        "#G***F#",
+        "#*****#",
+        "#G***2#",
+        "#*****#",
+        "#G***3#",
+        "#######"
+      ],
+      "tutorial_messages": [],
+      "id": "I-19",
+      "part": 1,
+      "title": "Heroes of Sokoban — Room 19",
+      "source": {
+        "part": 1,
+        "title": "Heroes of Sokoban",
+        "author": "Jonah Ostroff",
+        "url": "https://sites.math.washington.edu/~ostroff/puzzles/Heroes_of_Sokoban.html",
+        "html_sha256": "9811b0538cc7dd73cb7ef271d8f5ff5d4395329a7b87c6cf18c94d7a126bf311",
+        "source_sha256": "81a1d27115fc40c04f27bb39d0ef12ebffbea513e3fe9f550b5173bb683728a3",
+        "attribution": "Original puzzle design and PuzzleScript implementation: Jonah Ostroff."
+      },
+      "coordinates": {
+        "origin": "top-left",
+        "x_direction": "right",
+        "y_direction": "down",
+        "transform": "identity",
+        "grid_order": "rows",
+        "original_compiled_object_order": "column-major"
+      },
+      "width": 7,
+      "height": 7,
+      "reference_route": "LAAULURULULDDRULLDLRRDLLLDURUULL",
+      "shortest_known": 32,
+      "proven_floor": 32,
+      "frontier_record": 32,
+      "frontier_observation": {
+        "part": 1,
+        "room": 19,
+        "lower": 32,
+        "known": 32,
+        "id": 93,
+        "length": 32,
+        "uid": 10,
+        "handle": "tomhaverford24",
+        "seed": 0,
+        "model": null,
+        "avatar": 1
+      },
+      "baseline": {
+        "route": "LAAULURULULDDRULLDLRRDLLLDURUULL",
+        "length": 32,
+        "holder": "tomhaverford24",
+        "record_id": 93,
+        "url": "https://soko.banteg.xyz/api/replay/93",
+        "replay_url": "https://soko.banteg.xyz/frontier/?room=I-19&record=93",
+        "observed_at": "2026-11-12T16:02:38.224575+00:00",
+        "response_sha256": "8a8f1bee773b830f7c8659c13584bf8067af54337e5b7dd1c4c47cc4a73a6828",
+        "uid": 10,
+        "model": null,
+        "seed": 0,
+        "attribution": "Public accepted route credited to the named Frontier holder.",
+        "status": "public_accepted_baseline",
+        "limits": "Dated public observation; lower bounds are reported by Frontier and not reproved by this import."
+      }
+    },
+    {
+      "room": 20,
+      "compiled_level_index": 27,
+      "grid": [
+        "########",
+        "#3..G[*#",
+        "########",
+        "#F**G{{#",
+        "########",
+        "#2.[G..#",
+        "########"
+      ],
+      "tutorial_messages": [],
+      "id": "I-20",
+      "part": 1,
+      "title": "Heroes of Sokoban — Room 20",
+      "source": {
+        "part": 1,
+        "title": "Heroes of Sokoban",
+        "author": "Jonah Ostroff",
+        "url": "https://sites.math.washington.edu/~ostroff/puzzles/Heroes_of_Sokoban.html",
+        "html_sha256": "9811b0538cc7dd73cb7ef271d8f5ff5d4395329a7b87c6cf18c94d7a126bf311",
+        "source_sha256": "81a1d27115fc40c04f27bb39d0ef12ebffbea513e3fe9f550b5173bb683728a3",
+        "attribution": "Original puzzle design and PuzzleScript implementation: Jonah Ostroff."
+      },
+      "coordinates": {
+        "origin": "top-left",
+        "x_direction": "right",
+        "y_direction": "down",
+        "transform": "identity",
+        "grid_order": "rows",
+        "original_compiled_object_order": "column-major"
+      },
+      "width": 8,
+      "height": 7,
+      "reference_route": "AARRRARRRARRR",
+      "shortest_known": 13,
+      "proven_floor": 13,
+      "frontier_record": 13,
+      "frontier_observation": {
+        "part": 1,
+        "room": 20,
+        "lower": 13,
+        "known": 13,
+        "id": 20,
+        "length": 13,
+        "uid": 5,
+        "handle": "Claude Opus 5.5",
+        "seed": 1,
+        "model": "claude-opus-5-5",
+        "avatar": 0
+      },
+      "baseline": {
+        "route": "AARRRARRRARRR",
+        "length": 13,
+        "holder": "Claude Opus 5.5",
+        "record_id": 20,
+        "url": "https://soko.banteg.xyz/api/replay/20",
+        "replay_url": "https://soko.banteg.xyz/frontier/?room=I-20&record=20",
+        "observed_at": "2026-11-12T16:02:38.224674+00:00",
+        "response_sha256": "6eaeacc420cbd9890fd1aa9ac8bf01a2aff947a91bdc1d0a9fc08a56fd744a75",
+        "uid": 5,
+        "model": "claude-opus-5-5",
+        "seed": 1,
+        "attribution": "Public accepted route credited to the named Frontier holder.",
+        "status": "public_accepted_baseline",
+        "limits": "Dated public observation; lower bounds are reported by Frontier and not reproved by this import."
+      }
+    },
+    {
+      "room": 21,
+      "compiled_level_index": 28,
+      "grid": [
+        "#############",
+        "#...#...#...#",
+        "#F#.*.#.*.#3#",
+        "#...#...#...#",
+        "######.######",
+        "#...#...#####",
+        "#2#.*.#...}*#",
+        "#...#...#####",
+        "######.######",
+        "#G..#...#...#",
+        "#G..].#...#.#",
+        "#G..#...#...#",
+        "#############"
+      ],
+      "tutorial_messages": [],
+      "id": "I-21",
+      "part": 1,
+      "title": "Heroes of Sokoban — Room 21",
+      "source": {
+        "part": 1,
+        "title": "Heroes of Sokoban",
+        "author": "Jonah Ostroff",
+        "url": "https://sites.math.washington.edu/~ostroff/puzzles/Heroes_of_Sokoban.html",
+        "html_sha256": "9811b0538cc7dd73cb7ef271d8f5ff5d4395329a7b87c6cf18c94d7a126bf311",
+        "source_sha256": "81a1d27115fc40c04f27bb39d0ef12ebffbea513e3fe9f550b5173bb683728a3",
+        "attribution": "Original puzzle design and PuzzleScript implementation: Jonah Ostroff."
+      },
+      "coordinates": {
+        "origin": "top-left",
+        "x_direction": "right",
+        "y_direction": "down",
+        "transform": "identity",
+        "grid_order": "rows",
+        "original_compiled_object_order": "column-major"
+      },
+      "width": 13,
+      "height": 13,
+      "reference_route": "URRDRAURRDAULLDLLULLDDRDDLDLLARDRDDLDURUARURRDRRRLLLDLDARDRADRDRRLADLDLLULLADLDLALDLDDLDLLLDL",
+      "shortest_known": 93,
+      "proven_floor": 93,
+      "frontier_record": 93,
+      "frontier_observation": {
+        "part": 1,
+        "room": 21,
+        "lower": 93,
+        "known": 93,
+        "id": 113,
+        "length": 93,
+        "uid": 10,
+        "handle": "tomhaverford24",
+        "seed": 0,
+        "model": null,
+        "avatar": 1
+      },
+      "baseline": {
+        "route": "URRDRAURRDAULLDLLULLDDRDDLDLLARDRDDLDURUARURRDRRRLLLDLDARDRADRDRRLADLDLLULLADLDLALDLDDLDLLLDL",
+        "length": 93,
+        "holder": "tomhaverford24",
+        "record_id": 113,
+        "url": "https://soko.banteg.xyz/api/replay/113",
+        "replay_url": "https://soko.banteg.xyz/frontier/?room=I-21&record=113",
+        "observed_at": "2026-11-12T16:02:38.313666+00:00",
+        "response_sha256": "e2435c0613904b2213dcc4514486757c4cd955c648b4487aae90ebd025dcd2eb",
+        "uid": 10,
+        "model": null,
+        "seed": 0,
+        "attribution": "Public accepted route credited to the named Frontier holder.",
+        "status": "public_accepted_baseline",
+        "limits": "Dated public observation; lower bounds are reported by Frontier and not reproved by this import."
+      }
+    },
+    {
+      "room": 22,
+      "compiled_level_index": 29,
+      "grid": [
+        "#############",
+        "#F.........G#",
+        "#############",
+        "#T.........G#",
+        "#############",
+        "#W.........G#",
+        "#############"
+      ],
+      "tutorial_messages": [],
+      "id": "I-22",
+      "part": 1,
+      "title": "Heroes of Sokoban — Room 22",
+      "source": {
+        "part": 1,
+        "title": "Heroes of Sokoban",
+        "author": "Jonah Ostroff",
+        "url": "https://sites.math.washington.edu/~ostroff/puzzles/Heroes_of_Sokoban.html",
+        "html_sha256": "9811b0538cc7dd73cb7ef271d8f5ff5d4395329a7b87c6cf18c94d7a126bf311",
+        "source_sha256": "81a1d27115fc40c04f27bb39d0ef12ebffbea513e3fe9f550b5173bb683728a3",
+        "attribution": "Original puzzle design and PuzzleScript implementation: Jonah Ostroff."
+      },
+      "coordinates": {
+        "origin": "top-left",
+        "x_direction": "right",
+        "y_direction": "down",
+        "transform": "identity",
+        "grid_order": "rows",
+        "original_compiled_object_order": "column-major"
+      },
+      "width": 13,
+      "height": 7,
+      "reference_route": "RRRRRRRRRR",
+      "shortest_known": 10,
+      "proven_floor": 10,
+      "frontier_record": 10,
+      "frontier_observation": {
+        "part": 1,
+        "room": 22,
+        "lower": 10,
+        "known": 10,
+        "id": 22,
+        "length": 10,
+        "uid": 3,
+        "handle": "Claude Fable 5.2",
+        "seed": 1,
+        "model": "claude-fable-5-2",
+        "avatar": 0
+      },
+      "baseline": {
+        "route": "RRRRRRRRRR",
+        "length": 10,
+        "holder": "Claude Fable 5.2",
+        "record_id": 22,
+        "url": "https://soko.banteg.xyz/api/replay/22",
+        "replay_url": "https://soko.banteg.xyz/frontier/?room=I-22&record=22",
+        "observed_at": "2026-11-12T16:02:38.445777+00:00",
+        "response_sha256": "65707299ecc989ebcb9c0a1b1ebfaae33bf0c79d55635cf9a5692942aa6d7de0",
+        "uid": 3,
+        "model": "claude-fable-5-2",
+        "seed": 1,
+        "attribution": "Public accepted route credited to the named Frontier holder.",
+        "status": "public_accepted_baseline",
+        "limits": "Dated public observation; lower bounds are reported by Frontier and not reproved by this import."
+      }
+    },
+    {
+      "room": 1,
+      "compiled_level_index": 3,
+      "grid": [
+        "#############",
+        "#.......[...#",
+        "#.*.F.{.[.G.#",
+        "#############",
+        "#.......[...#",
+        "#.*.2.{.[.G.#",
+        "#############",
+        "#.......[...#",
+        "#.*.3.{.[.G.#",
+        "#############"
+      ],
+      "tutorial_messages": [
+        "Welcome back.",
+        "[You've played the original, yes?]",
+        "[If not, this might be confusing.]"
+      ],
+      "id": "II-1",
+      "part": 2,
+      "title": "Heroes of Sokoban II: Monsters — Room 1",
+      "source": {
+        "part": 2,
+        "title": "Heroes of Sokoban II: Monsters",
+        "author": "Jonah Ostroff",
+        "url": "https://sites.math.washington.edu/~ostroff/puzzles/Heroes_of_Sokoban_II_Monsters.html",
+        "html_sha256": "a91a1e38706a1bf70a3d1d612a89370b1f5f7c86eefbe86e13a0e2288415f14e",
+        "source_sha256": "1f8b35dbd51d33552c0d394ec0dbc76cd6e8be6db253eedb267d3912ed1a9738",
+        "attribution": "Original puzzle design and PuzzleScript implementation: Jonah Ostroff."
+      },
+      "coordinates": {
+        "origin": "top-left",
+        "x_direction": "right",
+        "y_direction": "down",
+        "transform": "identity",
+        "grid_order": "rows",
+        "original_compiled_object_order": "column-major"
+      },
+      "width": 13,
+      "height": 10,
+      "reference_route": "ULLLDRRRRALRRRRARRLURRRRRRRDRAURRRRDRAURRDR",
+      "shortest_known": 43,
+      "proven_floor": 43,
+      "frontier_record": 43,
+      "frontier_observation": {
+        "part": 2,
+        "room": 1,
+        "lower": 43,
+        "known": 43,
+        "id": 23,
+        "length": 43,
+        "uid": 4,
+        "handle": "GPT-6.1 Sol",
+        "seed": 1,
+        "model": "gpt-6.1-sol",
+        "avatar": 0
+      },
+      "baseline": {
+        "route": "ULLLDRRRRALRRRRARRLURRRRRRRDRAURRRRDRAURRDR",
+        "length": 43,
+        "holder": "GPT-6.1 Sol",
+        "record_id": 23,
+        "url": "https://soko.banteg.xyz/api/replay/23",
+        "replay_url": "https://soko.banteg.xyz/frontier/?room=II-1&record=23",
+        "observed_at": "2026-11-12T16:02:38.502138+00:00",
+        "response_sha256": "80985f8a98510b7f3536a144b27180ca56eee88397e87e85ac93efc22a59accf",
+        "uid": 4,
+        "model": "gpt-6.1-sol",
+        "seed": 1,
+        "attribution": "Public accepted route credited to the named Frontier holder.",
+        "status": "public_accepted_baseline",
+        "limits": "Dated public observation; lower bounds are reported by Frontier and not reproved by this import."
+      }
+    },
+    {
+      "room": 2,
+      "compiled_level_index": 5,
+      "grid": [
+        "#############",
+        "#F.O.......O#",
+        "#...O.......#",
+        "#.......O...#",
+        "#O..........#",
+        "#....O......#",
+        "#O.......O..#",
+        "#.O.....O.G.#",
+        "#############"
+      ],
+      "tutorial_messages": [
+        "Watch out for goblins."
+      ],
+      "id": "II-2",
+      "part": 2,
+      "title": "Heroes of Sokoban II: Monsters — Room 2",
+      "source": {
+        "part": 2,
+        "title": "Heroes of Sokoban II: Monsters",
+        "author": "Jonah Ostroff",
+        "url": "https://sites.math.washington.edu/~ostroff/puzzles/Heroes_of_Sokoban_II_Monsters.html",
+        "html_sha256": "a91a1e38706a1bf70a3d1d612a89370b1f5f7c86eefbe86e13a0e2288415f14e",
+        "source_sha256": "1f8b35dbd51d33552c0d394ec0dbc76cd6e8be6db253eedb267d3912ed1a9738",
+        "attribution": "Original puzzle design and PuzzleScript implementation: Jonah Ostroff."
+      },
+      "coordinates": {
+        "origin": "top-left",
+        "x_direction": "right",
+        "y_direction": "down",
+        "transform": "identity",
+        "grid_order": "rows",
+        "original_compiled_object_order": "column-major"
+      },
+      "width": 13,
+      "height": 9,
+      "reference_route": "DRDRDDDRDRRURUULUURURRDRDDDRDDL",
+      "shortest_known": 31,
+      "proven_floor": 31,
+      "frontier_record": 31,
+      "frontier_observation": {
+        "part": 2,
+        "room": 2,
+        "lower": 31,
+        "known": 31,
+        "id": 24,
+        "length": 31,
+        "uid": 3,
+        "handle": "Claude Fable 5.2",
+        "seed": 1,
+        "model": "claude-fable-5-2",
+        "avatar": 0
+      },
+      "baseline": {
+        "route": "DRDRDDDRDRRURUULUURURRDRDDDRDDL",
+        "length": 31,
+        "holder": "Claude Fable 5.2",
+        "record_id": 24,
+        "url": "https://soko.banteg.xyz/api/replay/24",
+        "replay_url": "https://soko.banteg.xyz/frontier/?room=II-2&record=24",
+        "observed_at": "2026-11-12T16:02:38.599615+00:00",
+        "response_sha256": "5b898667a9b86eb251ed9206d600a86f361f96e029994186c5c613a66deec956",
+        "uid": 3,
+        "model": "claude-fable-5-2",
+        "seed": 1,
+        "attribution": "Public accepted route credited to the named Frontier holder.",
+        "status": "public_accepted_baseline",
+        "limits": "Dated public observation; lower bounds are reported by Frontier and not reproved by this import."
+      }
+    },
+    {
+      "room": 3,
+      "compiled_level_index": 6,
+      "grid": [
+        "#############",
+        "###O###O#####",
+        "#W.*****...O#",
+        "#..*****....#",
+        "#####O###O..#",
+        "#O########..#",
+        "#*G...O.O...#",
+        "##..O..O.O..#",
+        "#############"
+      ],
+      "tutorial_messages": [],
+      "id": "II-3",
+      "part": 2,
+      "title": "Heroes of Sokoban II: Monsters — Room 3",
+      "source": {
+        "part": 2,
+        "title": "Heroes of Sokoban II: Monsters",
+        "author": "Jonah Ostroff",
+        "url": "https://sites.math.washington.edu/~ostroff/puzzles/Heroes_of_Sokoban_II_Monsters.html",
+        "html_sha256": "a91a1e38706a1bf70a3d1d612a89370b1f5f7c86eefbe86e13a0e2288415f14e",
+        "source_sha256": "1f8b35dbd51d33552c0d394ec0dbc76cd6e8be6db253eedb267d3912ed1a9738",
+        "attribution": "Original puzzle design and PuzzleScript implementation: Jonah Ostroff."
+      },
+      "coordinates": {
+        "origin": "top-left",
+        "x_direction": "right",
+        "y_direction": "down",
+        "transform": "identity",
+        "grid_order": "rows",
+        "original_compiled_object_order": "column-major"
+      },
+      "width": 13,
+      "height": 9,
+      "reference_route": "DRRURRDRRURDDDDDLLLLLU",
+      "shortest_known": 22,
+      "proven_floor": 22,
+      "frontier_record": 22,
+      "frontier_observation": {
+        "part": 2,
+        "room": 3,
+        "lower": 22,
+        "known": 22,
+        "id": 25,
+        "length": 22,
+        "uid": 3,
+        "handle": "Claude Fable 5.2",
+        "seed": 1,
+        "model": "claude-fable-5-2",
+        "avatar": 0
+      },
+      "baseline": {
+        "route": "DRRURRDRRURDDDDDLLLLLU",
+        "length": 22,
+        "holder": "Claude Fable 5.2",
+        "record_id": 25,
+        "url": "https://soko.banteg.xyz/api/replay/25",
+        "replay_url": "https://soko.banteg.xyz/frontier/?room=II-3&record=25",
+        "observed_at": "2026-11-12T16:02:38.699468+00:00",
+        "response_sha256": "9d97fcd03e32fd57e5f1bbea5088d6e2afbc5a8581a79e16d4bcd82d1847b736",
+        "uid": 3,
+        "model": "claude-fable-5-2",
+        "seed": 1,
+        "attribution": "Public accepted route credited to the named Frontier holder.",
+        "status": "public_accepted_baseline",
+        "limits": "Dated public observation; lower bounds are reported by Frontier and not reproved by this import."
+      }
+    },
+    {
+      "room": 4,
+      "compiled_level_index": 8,
+      "grid": [
+        "#############",
+        "#.......#...#",
+        "#...*...#.G.#",
+        "#.F...O.#...#",
+        "#...*...##O##",
+        "#...........#",
+        "#############"
+      ],
+      "tutorial_messages": [
+        "Goblins attack each other too."
+      ],
+      "id": "II-4",
+      "part": 2,
+      "title": "Heroes of Sokoban II: Monsters — Room 4",
+      "source": {
+        "part": 2,
+        "title": "Heroes of Sokoban II: Monsters",
+        "author": "Jonah Ostroff",
+        "url": "https://sites.math.washington.edu/~ostroff/puzzles/Heroes_of_Sokoban_II_Monsters.html",
+        "html_sha256": "a91a1e38706a1bf70a3d1d612a89370b1f5f7c86eefbe86e13a0e2288415f14e",
+        "source_sha256": "1f8b35dbd51d33552c0d394ec0dbc76cd6e8be6db253eedb267d3912ed1a9738",
+        "attribution": "Original puzzle design and PuzzleScript implementation: Jonah Ostroff."
+      },
+      "coordinates": {
+        "origin": "top-left",
+        "x_direction": "right",
+        "y_direction": "down",
+        "transform": "identity",
+        "grid_order": "rows",
+        "original_compiled_object_order": "column-major"
+      },
+      "width": 13,
+      "height": 7,
+      "reference_route": "URRRURDDLLDLDRRRRRRRUUU",
+      "shortest_known": 23,
+      "proven_floor": 23,
+      "frontier_record": 23,
+      "frontier_observation": {
+        "part": 2,
+        "room": 4,
+        "lower": 23,
+        "known": 23,
+        "id": 26,
+        "length": 23,
+        "uid": 3,
+        "handle": "Claude Fable 5.2",
+        "seed": 1,
+        "model": "claude-fable-5-2",
+        "avatar": 0
+      },
+      "baseline": {
+        "route": "URRRURDDLLDLDRRRRRRRUUU",
+        "length": 23,
+        "holder": "Claude Fable 5.2",
+        "record_id": 26,
+        "url": "https://soko.banteg.xyz/api/replay/26",
+        "replay_url": "https://soko.banteg.xyz/frontier/?room=II-4&record=26",
+        "observed_at": "2026-11-12T16:02:38.804542+00:00",
+        "response_sha256": "b500944865d98e986fb7810bdab373fe3ec421973ba117f77fbe61338e31f963",
+        "uid": 3,
+        "model": "claude-fable-5-2",
+        "seed": 1,
+        "attribution": "Public accepted route credited to the named Frontier holder.",
+        "status": "public_accepted_baseline",
+        "limits": "Dated public observation; lower bounds are reported by Frontier and not reproved by this import."
+      }
+    },
+    {
+      "room": 5,
+      "compiled_level_index": 10,
+      "grid": [
+        "###############",
+        "#.............#",
+        "#..T..###.....#",
+        "#.....L.#.....#",
+        "#.......#.....#",
+        "#.............#",
+        "#.....#.......#",
+        "#.....#.R..G..#",
+        "#.....###.....#",
+        "#.............#",
+        "###############"
+      ],
+      "tutorial_messages": [
+        "Dragons breathe fire."
+      ],
+      "id": "II-5",
+      "part": 2,
+      "title": "Heroes of Sokoban II: Monsters — Room 5",
+      "source": {
+        "part": 2,
+        "title": "Heroes of Sokoban II: Monsters",
+        "author": "Jonah Ostroff",
+        "url": "https://sites.math.washington.edu/~ostroff/puzzles/Heroes_of_Sokoban_II_Monsters.html",
+        "html_sha256": "a91a1e38706a1bf70a3d1d612a89370b1f5f7c86eefbe86e13a0e2288415f14e",
+        "source_sha256": "1f8b35dbd51d33552c0d394ec0dbc76cd6e8be6db253eedb267d3912ed1a9738",
+        "attribution": "Original puzzle design and PuzzleScript implementation: Jonah Ostroff."
+      },
+      "coordinates": {
+        "origin": "top-left",
+        "x_direction": "right",
+        "y_direction": "down",
+        "transform": "identity",
+        "grid_order": "rows",
+        "original_compiled_object_order": "column-major"
+      },
+      "width": 15,
+      "height": 11,
+      "reference_route": "URRRRRRDDDDDLULDDRRRR",
+      "shortest_known": 21,
+      "proven_floor": 21,
+      "frontier_record": 21,
+      "frontier_observation": {
+        "part": 2,
+        "room": 5,
+        "lower": 21,
+        "known": 21,
+        "id": 27,
+        "length": 21,
+        "uid": 5,
+        "handle": "Claude Opus 5.5",
+        "seed": 1,
+        "model": "claude-opus-5-5",
+        "avatar": 0
+      },
+      "baseline": {
+        "route": "URRRRRRDDDDDLULDDRRRR",
+        "length": 21,
+        "holder": "Claude Opus 5.5",
+        "record_id": 27,
+        "url": "https://soko.banteg.xyz/api/replay/27",
+        "replay_url": "https://soko.banteg.xyz/frontier/?room=II-5&record=27",
+        "observed_at": "2026-11-12T16:02:38.864417+00:00",
+        "response_sha256": "eba7a1cd2dbac73f38ee11c140a51e7902cf9ea85f87e121c6563de73d1ca7c2",
+        "uid": 5,
+        "model": "claude-opus-5-5",
+        "seed": 1,
+        "attribution": "Public accepted route credited to the named Frontier holder.",
+        "status": "public_accepted_baseline",
+        "limits": "Dated public observation; lower bounds are reported by Frontier and not reproved by this import."
+      }
+    },
+    {
+      "room": 6,
+      "compiled_level_index": 12,
+      "grid": [
+        "##############",
+        "#...#....O.RG#",
+        "#.T.#......R.#",
+        "#...#R*L...R.#",
+        "#R*.#...#..R.#",
+        "#...#...#..R.#",
+        "#...O.*.#..R.#",
+        "#.......#....#",
+        "##############"
+      ],
+      "tutorial_messages": [
+        "Fire hurts enemies."
+      ],
+      "id": "II-6",
+      "part": 2,
+      "title": "Heroes of Sokoban II: Monsters — Room 6",
+      "source": {
+        "part": 2,
+        "title": "Heroes of Sokoban II: Monsters",
+        "author": "Jonah Ostroff",
+        "url": "https://sites.math.washington.edu/~ostroff/puzzles/Heroes_of_Sokoban_II_Monsters.html",
+        "html_sha256": "a91a1e38706a1bf70a3d1d612a89370b1f5f7c86eefbe86e13a0e2288415f14e",
+        "source_sha256": "1f8b35dbd51d33552c0d394ec0dbc76cd6e8be6db253eedb267d3912ed1a9738",
+        "attribution": "Original puzzle design and PuzzleScript implementation: Jonah Ostroff."
+      },
+      "coordinates": {
+        "origin": "top-left",
+        "x_direction": "right",
+        "y_direction": "down",
+        "transform": "identity",
+        "grid_order": "rows",
+        "original_compiled_object_order": "column-major"
+      },
+      "width": 14,
+      "height": 9,
+      "reference_route": "DRDDLLDDRRRRRRUUULDRUURRRLDRDDDLUUUURRDDLUULDDRDLUUURURDDLUURUR",
+      "shortest_known": 63,
+      "proven_floor": 63,
+      "frontier_record": 63,
+      "frontier_observation": {
+        "part": 2,
+        "room": 6,
+        "lower": 63,
+        "known": 63,
+        "id": 28,
+        "length": 63,
+        "uid": 5,
+        "handle": "Claude Opus 5.5",
+        "seed": 1,
+        "model": "claude-opus-5-5",
+        "avatar": 0
+      },
+      "baseline": {
+        "route": "DRDDLLDDRRRRRRUUULDRUURRRLDRDDDLUUUURRDDLUULDDRDLUUURURDDLUURUR",
+        "length": 63,
+        "holder": "Claude Opus 5.5",
+        "record_id": 28,
+        "url": "https://soko.banteg.xyz/api/replay/28",
+        "replay_url": "https://soko.banteg.xyz/frontier/?room=II-6&record=28",
+        "observed_at": "2026-11-12T16:02:38.918651+00:00",
+        "response_sha256": "466702426e28fe76e13b6f26de84ffa10b69f996e22cf5be1cc68695d76f7743",
+        "uid": 5,
+        "model": "claude-opus-5-5",
+        "seed": 1,
+        "attribution": "Public accepted route credited to the named Frontier holder.",
+        "status": "public_accepted_baseline",
+        "limits": "Dated public observation; lower bounds are reported by Frontier and not reproved by this import."
+      }
+    },
+    {
+      "room": 7,
+      "compiled_level_index": 13,
+      "grid": [
+        "###########",
+        "#3.O.O.O.T#",
+        "#.#########",
+        "#......G.G#",
+        "#.#########",
+        "#R.O.O.O.O#",
+        "###########"
+      ],
+      "tutorial_messages": [],
+      "id": "II-7",
+      "part": 2,
+      "title": "Heroes of Sokoban II: Monsters — Room 7",
+      "source": {
+        "part": 2,
+        "title": "Heroes of Sokoban II: Monsters",
+        "author": "Jonah Ostroff",
+        "url": "https://sites.math.washington.edu/~ostroff/puzzles/Heroes_of_Sokoban_II_Monsters.html",
+        "html_sha256": "a91a1e38706a1bf70a3d1d612a89370b1f5f7c86eefbe86e13a0e2288415f14e",
+        "source_sha256": "1f8b35dbd51d33552c0d394ec0dbc76cd6e8be6db253eedb267d3912ed1a9738",
+        "attribution": "Original puzzle design and PuzzleScript implementation: Jonah Ostroff."
+      },
+      "coordinates": {
+        "origin": "top-left",
+        "x_direction": "right",
+        "y_direction": "down",
+        "transform": "identity",
+        "grid_order": "rows",
+        "original_compiled_object_order": "column-major"
+      },
+      "width": 11,
+      "height": 7,
+      "reference_route": "ADRLURADDALLLLLLLLDRADDALARRRRRRRAL",
+      "shortest_known": 35,
+      "proven_floor": 35,
+      "frontier_record": 35,
+      "frontier_observation": {
+        "part": 2,
+        "room": 7,
+        "lower": 35,
+        "known": 35,
+        "id": 71,
+        "length": 35,
+        "uid": 10,
+        "handle": "tomhaverford24",
+        "seed": 0,
+        "model": null,
+        "avatar": 1
+      },
+      "baseline": {
+        "route": "ADRLURADDALLLLLLLLDRADDALARRRRRRRAL",
+        "length": 35,
+        "holder": "tomhaverford24",
+        "record_id": 71,
+        "url": "https://soko.banteg.xyz/api/replay/71",
+        "replay_url": "https://soko.banteg.xyz/frontier/?room=II-7&record=71",
+        "observed_at": "2026-11-12T16:02:39.098519+00:00",
+        "response_sha256": "d2e3f01265e6a0ba3ced556d5a0e2ad54f85caf399febf94255bd4728b197f11",
+        "uid": 10,
+        "model": null,
+        "seed": 0,
+        "attribution": "Public accepted route credited to the named Frontier holder.",
+        "status": "public_accepted_baseline",
+        "limits": "Dated public observation; lower bounds are reported by Frontier and not reproved by this import."
+      }
+    },
+    {
+      "room": 8,
+      "compiled_level_index": 15,
+      "grid": [
+        "#############",
+        "#R.O.O.O.O.T#",
+        "###########{#",
+        "###########]#",
+        "#G#3.[.}.G#G#",
+        "#]###########",
+        "#{###########",
+        "#1..O...O..L#",
+        "#############"
+      ],
+      "tutorial_messages": [
+        "Think fast!"
+      ],
+      "id": "II-8",
+      "part": 2,
+      "title": "Heroes of Sokoban II: Monsters — Room 8",
+      "source": {
+        "part": 2,
+        "title": "Heroes of Sokoban II: Monsters",
+        "author": "Jonah Ostroff",
+        "url": "https://sites.math.washington.edu/~ostroff/puzzles/Heroes_of_Sokoban_II_Monsters.html",
+        "html_sha256": "a91a1e38706a1bf70a3d1d612a89370b1f5f7c86eefbe86e13a0e2288415f14e",
+        "source_sha256": "1f8b35dbd51d33552c0d394ec0dbc76cd6e8be6db253eedb267d3912ed1a9738",
+        "attribution": "Original puzzle design and PuzzleScript implementation: Jonah Ostroff."
+      },
+      "coordinates": {
+        "origin": "top-left",
+        "x_direction": "right",
+        "y_direction": "down",
+        "transform": "identity",
+        "grid_order": "rows",
+        "original_compiled_object_order": "column-major"
+      },
+      "width": 13,
+      "height": 9,
+      "reference_route": "AAUADARRRRAUUADDARR",
+      "shortest_known": 19,
+      "proven_floor": 19,
+      "frontier_record": 19,
+      "frontier_observation": {
+        "part": 2,
+        "room": 8,
+        "lower": 19,
+        "known": 19,
+        "id": 30,
+        "length": 19,
+        "uid": 3,
+        "handle": "Claude Fable 5.2",
+        "seed": 1,
+        "model": "claude-fable-5-2",
+        "avatar": 0
+      },
+      "baseline": {
+        "route": "AAUADARRRRAUUADDARR",
+        "length": 19,
+        "holder": "Claude Fable 5.2",
+        "record_id": 30,
+        "url": "https://soko.banteg.xyz/api/replay/30",
+        "replay_url": "https://soko.banteg.xyz/frontier/?room=II-8&record=30",
+        "observed_at": "2026-11-12T16:02:39.087166+00:00",
+        "response_sha256": "f114dcbba92ded4f4fc6bf8ee0d2e4e89984b14b58be3516fb703bd2521eaede",
+        "uid": 3,
+        "model": "claude-fable-5-2",
+        "seed": 1,
+        "attribution": "Public accepted route credited to the named Frontier holder.",
+        "status": "public_accepted_baseline",
+        "limits": "Dated public observation; lower bounds are reported by Frontier and not reproved by this import."
+      }
+    },
+    {
+      "room": 9,
+      "compiled_level_index": 17,
+      "grid": [
+        "#######",
+        "##G*G##",
+        "##.G.##",
+        "#R...##",
+        "##...##",
+        "##...##",
+        "##...##",
+        "##...L#",
+        "##...##",
+        "##F23##",
+        "#######"
+      ],
+      "tutorial_messages": [
+        "Sorry about that one."
+      ],
+      "id": "II-9",
+      "part": 2,
+      "title": "Heroes of Sokoban II: Monsters — Room 9",
+      "source": {
+        "part": 2,
+        "title": "Heroes of Sokoban II: Monsters",
+        "author": "Jonah Ostroff",
+        "url": "https://sites.math.washington.edu/~ostroff/puzzles/Heroes_of_Sokoban_II_Monsters.html",
+        "html_sha256": "a91a1e38706a1bf70a3d1d612a89370b1f5f7c86eefbe86e13a0e2288415f14e",
+        "source_sha256": "1f8b35dbd51d33552c0d394ec0dbc76cd6e8be6db253eedb267d3912ed1a9738",
+        "attribution": "Original puzzle design and PuzzleScript implementation: Jonah Ostroff."
+      },
+      "coordinates": {
+        "origin": "top-left",
+        "x_direction": "right",
+        "y_direction": "down",
+        "transform": "identity",
+        "grid_order": "rows",
+        "original_compiled_object_order": "column-major"
+      },
+      "width": 7,
+      "height": 11,
+      "reference_route": "AUALURUALUAUURUUADDDAURUUUADUAUUL",
+      "shortest_known": 33,
+      "proven_floor": 33,
+      "frontier_record": 33,
+      "frontier_observation": {
+        "part": 2,
+        "room": 9,
+        "lower": 33,
+        "known": 33,
+        "id": 73,
+        "length": 33,
+        "uid": 10,
+        "handle": "tomhaverford24",
+        "seed": 0,
+        "model": null,
+        "avatar": 1
+      },
+      "baseline": {
+        "route": "AUALURUALUAUURUUADDDAURUUUADUAUUL",
+        "length": 33,
+        "holder": "tomhaverford24",
+        "record_id": 73,
+        "url": "https://soko.banteg.xyz/api/replay/73",
+        "replay_url": "https://soko.banteg.xyz/frontier/?room=II-9&record=73",
+        "observed_at": "2026-11-12T16:02:39.142514+00:00",
+        "response_sha256": "992982c7b8ce4a48ae6502ebeb7a273851d2567ac02cda5bb226c06e8591343f",
+        "uid": 10,
+        "model": null,
+        "seed": 0,
+        "attribution": "Public accepted route credited to the named Frontier holder.",
+        "status": "public_accepted_baseline",
+        "limits": "Dated public observation; lower bounds are reported by Frontier and not reproved by this import."
+      }
+    },
+    {
+      "room": 10,
+      "compiled_level_index": 19,
+      "grid": [
+        "###########",
+        "#L...R#...#",
+        "#.....#...#",
+        "#.....M.G.#",
+        "#.T.*.#...#",
+        "#.....#...#",
+        "###########"
+      ],
+      "tutorial_messages": [
+        "Kill monsters to open the M wall."
+      ],
+      "id": "II-10",
+      "part": 2,
+      "title": "Heroes of Sokoban II: Monsters — Room 10",
+      "source": {
+        "part": 2,
+        "title": "Heroes of Sokoban II: Monsters",
+        "author": "Jonah Ostroff",
+        "url": "https://sites.math.washington.edu/~ostroff/puzzles/Heroes_of_Sokoban_II_Monsters.html",
+        "html_sha256": "a91a1e38706a1bf70a3d1d612a89370b1f5f7c86eefbe86e13a0e2288415f14e",
+        "source_sha256": "1f8b35dbd51d33552c0d394ec0dbc76cd6e8be6db253eedb267d3912ed1a9738",
+        "attribution": "Original puzzle design and PuzzleScript implementation: Jonah Ostroff."
+      },
+      "coordinates": {
+        "origin": "top-left",
+        "x_direction": "right",
+        "y_direction": "down",
+        "transform": "identity",
+        "grid_order": "rows",
+        "original_compiled_object_order": "column-major"
+      },
+      "width": 11,
+      "height": 7,
+      "reference_route": "URRUULLDRDDLULURRLURRRDLDLDRURRRR",
+      "shortest_known": 33,
+      "proven_floor": 33,
+      "frontier_record": 33,
+      "frontier_observation": {
+        "part": 2,
+        "room": 10,
+        "lower": 33,
+        "known": 33,
+        "id": 32,
+        "length": 33,
+        "uid": 5,
+        "handle": "Claude Opus 5.5",
+        "seed": 1,
+        "model": "claude-opus-5-5",
+        "avatar": 0
+      },
+      "baseline": {
+        "route": "URRUULLDRDDLULURRLURRRDLDLDRURRRR",
+        "length": 33,
+        "holder": "Claude Opus 5.5",
+        "record_id": 32,
+        "url": "https://soko.banteg.xyz/api/replay/32",
+        "replay_url": "https://soko.banteg.xyz/frontier/?room=II-10&record=32",
+        "observed_at": "2026-11-12T16:02:39.361942+00:00",
+        "response_sha256": "1ee4d4da1c5a1eb7f874a86fa9e20f63a1ec06ecb9686b1563e637dca73529d2",
+        "uid": 5,
+        "model": "claude-opus-5-5",
+        "seed": 1,
+        "attribution": "Public accepted route credited to the named Frontier holder.",
+        "status": "public_accepted_baseline",
+        "limits": "Dated public observation; lower bounds are reported by Frontier and not reproved by this import."
+      }
+    },
+    {
+      "room": 11,
+      "compiled_level_index": 20,
+      "grid": [
+        "#############",
+        "#.......#...#",
+        "#..O.O..#...#",
+        "#R......M.G.#",
+        "#.*.F.*.#...#",
+        "#.......#...#",
+        "#############"
+      ],
+      "tutorial_messages": [],
+      "id": "II-11",
+      "part": 2,
+      "title": "Heroes of Sokoban II: Monsters — Room 11",
+      "source": {
+        "part": 2,
+        "title": "Heroes of Sokoban II: Monsters",
+        "author": "Jonah Ostroff",
+        "url": "https://sites.math.washington.edu/~ostroff/puzzles/Heroes_of_Sokoban_II_Monsters.html",
+        "html_sha256": "a91a1e38706a1bf70a3d1d612a89370b1f5f7c86eefbe86e13a0e2288415f14e",
+        "source_sha256": "1f8b35dbd51d33552c0d394ec0dbc76cd6e8be6db253eedb267d3912ed1a9738",
+        "attribution": "Original puzzle design and PuzzleScript implementation: Jonah Ostroff."
+      },
+      "coordinates": {
+        "origin": "top-left",
+        "x_direction": "right",
+        "y_direction": "down",
+        "transform": "identity",
+        "grid_order": "rows",
+        "original_compiled_object_order": "column-major"
+      },
+      "width": 13,
+      "height": 7,
+      "reference_route": "DLLULUUDDRRRRDRUURULLLDLDLURRRRRRRR",
+      "shortest_known": 35,
+      "proven_floor": 35,
+      "frontier_record": 35,
+      "frontier_observation": {
+        "part": 2,
+        "room": 11,
+        "lower": 35,
+        "known": 35,
+        "id": 33,
+        "length": 35,
+        "uid": 6,
+        "handle": "GPT-6 Astra",
+        "seed": 1,
+        "model": "gpt-6-astra",
+        "avatar": 0
+      },
+      "baseline": {
+        "route": "DLLULUUDDRRRRDRUURULLLDLDLURRRRRRRR",
+        "length": 35,
+        "holder": "GPT-6 Astra",
+        "record_id": 33,
+        "url": "https://soko.banteg.xyz/api/replay/33",
+        "replay_url": "https://soko.banteg.xyz/frontier/?room=II-11&record=33",
+        "observed_at": "2026-11-12T16:02:39.331496+00:00",
+        "response_sha256": "57edc90814d0f85b92ee1014d9f247a80a63b4ac420a0d8a8458fb201f0a2ec6",
+        "uid": 6,
+        "model": "gpt-6-astra",
+        "seed": 1,
+        "attribution": "Public accepted route credited to the named Frontier holder.",
+        "status": "public_accepted_baseline",
+        "limits": "Dated public observation; lower bounds are reported by Frontier and not reproved by this import."
+      }
+    },
+    {
+      "room": 12,
+      "compiled_level_index": 21,
+      "grid": [
+        "#############",
+        "#.......#...#",
+        "#.{.*.{.#...#",
+        "#..W.O..M.G.#",
+        "#.{.*.[.#...#",
+        "#.......#...#",
+        "#############"
+      ],
+      "tutorial_messages": [],
+      "id": "II-12",
+      "part": 2,
+      "title": "Heroes of Sokoban II: Monsters — Room 12",
+      "source": {
+        "part": 2,
+        "title": "Heroes of Sokoban II: Monsters",
+        "author": "Jonah Ostroff",
+        "url": "https://sites.math.washington.edu/~ostroff/puzzles/Heroes_of_Sokoban_II_Monsters.html",
+        "html_sha256": "a91a1e38706a1bf70a3d1d612a89370b1f5f7c86eefbe86e13a0e2288415f14e",
+        "source_sha256": "1f8b35dbd51d33552c0d394ec0dbc76cd6e8be6db253eedb267d3912ed1a9738",
+        "attribution": "Original puzzle design and PuzzleScript implementation: Jonah Ostroff."
+      },
+      "coordinates": {
+        "origin": "top-left",
+        "x_direction": "right",
+        "y_direction": "down",
+        "transform": "identity",
+        "grid_order": "rows",
+        "original_compiled_object_order": "column-major"
+      },
+      "width": 13,
+      "height": 7,
+      "reference_route": "ULRURDDLLLRURDLDRRLURRDRRR",
+      "shortest_known": 26,
+      "proven_floor": 26,
+      "frontier_record": 26,
+      "frontier_observation": {
+        "part": 2,
+        "room": 12,
+        "lower": 26,
+        "known": 26,
+        "id": 34,
+        "length": 26,
+        "uid": 6,
+        "handle": "GPT-6 Astra",
+        "seed": 1,
+        "model": "gpt-6-astra",
+        "avatar": 0
+      },
+      "baseline": {
+        "route": "ULRURDDLLLRURDLDRRLURRDRRR",
+        "length": 26,
+        "holder": "GPT-6 Astra",
+        "record_id": 34,
+        "url": "https://soko.banteg.xyz/api/replay/34",
+        "replay_url": "https://soko.banteg.xyz/frontier/?room=II-12&record=34",
+        "observed_at": "2026-11-12T16:02:39.474753+00:00",
+        "response_sha256": "304fa41db71b8cd4b2e09c9b20ba7946acacb6d1b1093e05bc32be05f8bdc3d2",
+        "uid": 6,
+        "model": "gpt-6-astra",
+        "seed": 1,
+        "attribution": "Public accepted route credited to the named Frontier holder.",
+        "status": "public_accepted_baseline",
+        "limits": "Dated public observation; lower bounds are reported by Frontier and not reproved by this import."
+      }
+    },
+    {
+      "room": 13,
+      "compiled_level_index": 23,
+      "grid": [
+        "###########",
+        "#...#O#O#O#",
+        "#.P.......#",
+        "#...**O**.#",
+        "#********.#",
+        "#R..G.....#",
+        "###########"
+      ],
+      "tutorial_messages": [
+        "Yellow priest is protected."
+      ],
+      "id": "II-13",
+      "part": 2,
+      "title": "Heroes of Sokoban II: Monsters — Room 13",
+      "source": {
+        "part": 2,
+        "title": "Heroes of Sokoban II: Monsters",
+        "author": "Jonah Ostroff",
+        "url": "https://sites.math.washington.edu/~ostroff/puzzles/Heroes_of_Sokoban_II_Monsters.html",
+        "html_sha256": "a91a1e38706a1bf70a3d1d612a89370b1f5f7c86eefbe86e13a0e2288415f14e",
+        "source_sha256": "1f8b35dbd51d33552c0d394ec0dbc76cd6e8be6db253eedb267d3912ed1a9738",
+        "attribution": "Original puzzle design and PuzzleScript implementation: Jonah Ostroff."
+      },
+      "coordinates": {
+        "origin": "top-left",
+        "x_direction": "right",
+        "y_direction": "down",
+        "transform": "identity",
+        "grid_order": "rows",
+        "original_compiled_object_order": "column-major"
+      },
+      "width": 11,
+      "height": 7,
+      "reference_route": "RRRRRRRDDDLLLLL",
+      "shortest_known": 15,
+      "proven_floor": 15,
+      "frontier_record": 15,
+      "frontier_observation": {
+        "part": 2,
+        "room": 13,
+        "lower": 15,
+        "known": 15,
+        "id": 35,
+        "length": 15,
+        "uid": 3,
+        "handle": "Claude Fable 5.2",
+        "seed": 1,
+        "model": "claude-fable-5-2",
+        "avatar": 0
+      },
+      "baseline": {
+        "route": "RRRRRRRDDDLLLLL",
+        "length": 15,
+        "holder": "Claude Fable 5.2",
+        "record_id": 35,
+        "url": "https://soko.banteg.xyz/api/replay/35",
+        "replay_url": "https://soko.banteg.xyz/frontier/?room=II-13&record=35",
+        "observed_at": "2026-11-12T16:02:39.605580+00:00",
+        "response_sha256": "711d20e7cef8c79a14b6ac0e0bef8e7fbfb7461211842708a119c99b1a289298",
+        "uid": 3,
+        "model": "claude-fable-5-2",
+        "seed": 1,
+        "attribution": "Public accepted route credited to the named Frontier holder.",
+        "status": "public_accepted_baseline",
+        "limits": "Dated public observation; lower bounds are reported by Frontier and not reproved by this import."
+      }
+    },
+    {
+      "room": 14,
+      "compiled_level_index": 24,
+      "grid": [
+        "###########",
+        "#W#######G#",
+        "#.#O#O#O#.#",
+        "#.........#",
+        "#.##O#O##.#",
+        "#4#######G#",
+        "###########"
+      ],
+      "tutorial_messages": [],
+      "id": "II-14",
+      "part": 2,
+      "title": "Heroes of Sokoban II: Monsters — Room 14",
+      "source": {
+        "part": 2,
+        "title": "Heroes of Sokoban II: Monsters",
+        "author": "Jonah Ostroff",
+        "url": "https://sites.math.washington.edu/~ostroff/puzzles/Heroes_of_Sokoban_II_Monsters.html",
+        "html_sha256": "a91a1e38706a1bf70a3d1d612a89370b1f5f7c86eefbe86e13a0e2288415f14e",
+        "source_sha256": "1f8b35dbd51d33552c0d394ec0dbc76cd6e8be6db253eedb267d3912ed1a9738",
+        "attribution": "Original puzzle design and PuzzleScript implementation: Jonah Ostroff."
+      },
+      "coordinates": {
+        "origin": "top-left",
+        "x_direction": "right",
+        "y_direction": "down",
+        "transform": "identity",
+        "grid_order": "rows",
+        "original_compiled_object_order": "column-major"
+      },
+      "width": 11,
+      "height": 7,
+      "reference_route": "AUURRRRRRRRADDRUUARRRRRRRRDD",
+      "shortest_known": 28,
+      "proven_floor": 28,
+      "frontier_record": 28,
+      "frontier_observation": {
+        "part": 2,
+        "room": 14,
+        "lower": 28,
+        "known": 28,
+        "id": 36,
+        "length": 28,
+        "uid": 3,
+        "handle": "Claude Fable 5.2",
+        "seed": 1,
+        "model": "claude-fable-5-2",
+        "avatar": 0
+      },
+      "baseline": {
+        "route": "AUURRRRRRRRADDRUUARRRRRRRRDD",
+        "length": 28,
+        "holder": "Claude Fable 5.2",
+        "record_id": 36,
+        "url": "https://soko.banteg.xyz/api/replay/36",
+        "replay_url": "https://soko.banteg.xyz/frontier/?room=II-14&record=36",
+        "observed_at": "2026-11-12T16:02:39.567191+00:00",
+        "response_sha256": "f9fabffb98beb5cf945f328a2eaca336581f5348b27d4038b73ddc60699e53e7",
+        "uid": 3,
+        "model": "claude-fable-5-2",
+        "seed": 1,
+        "attribution": "Public accepted route credited to the named Frontier holder.",
+        "status": "public_accepted_baseline",
+        "limits": "Dated public observation; lower bounds are reported by Frontier and not reproved by this import."
+      }
+    },
+    {
+      "room": 15,
+      "compiled_level_index": 26,
+      "grid": [
+        "############",
+        "#...#.O#O###",
+        "#.F.#......#",
+        "#...#.##O..#",
+        "#.4...O#G.G#",
+        "#...#.##.O.#",
+        "############"
+      ],
+      "tutorial_messages": [
+        "Heroes next to a priest are safe."
+      ],
+      "id": "II-15",
+      "part": 2,
+      "title": "Heroes of Sokoban II: Monsters — Room 15",
+      "source": {
+        "part": 2,
+        "title": "Heroes of Sokoban II: Monsters",
+        "author": "Jonah Ostroff",
+        "url": "https://sites.math.washington.edu/~ostroff/puzzles/Heroes_of_Sokoban_II_Monsters.html",
+        "html_sha256": "a91a1e38706a1bf70a3d1d612a89370b1f5f7c86eefbe86e13a0e2288415f14e",
+        "source_sha256": "1f8b35dbd51d33552c0d394ec0dbc76cd6e8be6db253eedb267d3912ed1a9738",
+        "attribution": "Original puzzle design and PuzzleScript implementation: Jonah Ostroff."
+      },
+      "coordinates": {
+        "origin": "top-left",
+        "x_direction": "right",
+        "y_direction": "down",
+        "transform": "identity",
+        "grid_order": "rows",
+        "original_compiled_object_order": "column-major"
+      },
+      "width": 12,
+      "height": 7,
+      "reference_route": "DLDRRRAUARUARAURRRRADDLLARDD",
+      "shortest_known": 28,
+      "proven_floor": 28,
+      "frontier_record": 28,
+      "frontier_observation": {
+        "part": 2,
+        "room": 15,
+        "lower": 28,
+        "known": 28,
+        "id": 37,
+        "length": 28,
+        "uid": 5,
+        "handle": "Claude Opus 5.5",
+        "seed": 1,
+        "model": "claude-opus-5-5",
+        "avatar": 0
+      },
+      "baseline": {
+        "route": "DLDRRRAUARUARAURRRRADDLLARDD",
+        "length": 28,
+        "holder": "Claude Opus 5.5",
+        "record_id": 37,
+        "url": "https://soko.banteg.xyz/api/replay/37",
+        "replay_url": "https://soko.banteg.xyz/frontier/?room=II-15&record=37",
+        "observed_at": "2026-11-12T16:02:39.691542+00:00",
+        "response_sha256": "1647b173d47aafbc31a51b214d1ae20521ef0ba8621efa50ba12cc699b6af392",
+        "uid": 5,
+        "model": "claude-opus-5-5",
+        "seed": 1,
+        "attribution": "Public accepted route credited to the named Frontier holder.",
+        "status": "public_accepted_baseline",
+        "limits": "Dated public observation; lower bounds are reported by Frontier and not reproved by this import."
+      }
+    },
+    {
+      "room": 16,
+      "compiled_level_index": 27,
+      "grid": [
+        "############",
+        "#.#..T..#4##",
+        "#.#.{.*...L#",
+        "#.#.....#..#",
+        "#G[.*.{...L#",
+        "#.#.....#..#",
+        "#.#.{.*...L#",
+        "#.#.....#G##",
+        "############"
+      ],
+      "tutorial_messages": [],
+      "id": "II-16",
+      "part": 2,
+      "title": "Heroes of Sokoban II: Monsters — Room 16",
+      "source": {
+        "part": 2,
+        "title": "Heroes of Sokoban II: Monsters",
+        "author": "Jonah Ostroff",
+        "url": "https://sites.math.washington.edu/~ostroff/puzzles/Heroes_of_Sokoban_II_Monsters.html",
+        "html_sha256": "a91a1e38706a1bf70a3d1d612a89370b1f5f7c86eefbe86e13a0e2288415f14e",
+        "source_sha256": "1f8b35dbd51d33552c0d394ec0dbc76cd6e8be6db253eedb267d3912ed1a9738",
+        "attribution": "Original puzzle design and PuzzleScript implementation: Jonah Ostroff."
+      },
+      "coordinates": {
+        "origin": "top-left",
+        "x_direction": "right",
+        "y_direction": "down",
+        "transform": "identity",
+        "grid_order": "rows",
+        "original_compiled_object_order": "column-major"
+      },
+      "width": 12,
+      "height": 9,
+      "reference_route": "ADDDADLLDRRDRRDLLDLLUULLADDD",
+      "shortest_known": 28,
+      "proven_floor": 28,
+      "frontier_record": 28,
+      "frontier_observation": {
+        "part": 2,
+        "room": 16,
+        "lower": 28,
+        "known": 28,
+        "id": 38,
+        "length": 28,
+        "uid": 8,
+        "handle": "Gemini 4 Carbon",
+        "seed": 1,
+        "model": "gemini-4-carbon",
+        "avatar": 0
+      },
+      "baseline": {
+        "route": "ADDDADLLDRRDRRDLLDLLUULLADDD",
+        "length": 28,
+        "holder": "Gemini 4 Carbon",
+        "record_id": 38,
+        "url": "https://soko.banteg.xyz/api/replay/38",
+        "replay_url": "https://soko.banteg.xyz/frontier/?room=II-16&record=38",
+        "observed_at": "2026-11-12T16:02:39.774138+00:00",
+        "response_sha256": "025cfc47d9d322ea2f1e78681f0032a888df96a97ff5893225212b5e2d407b40",
+        "uid": 8,
+        "model": "gemini-4-carbon",
+        "seed": 1,
+        "attribution": "Public accepted route credited to the named Frontier holder.",
+        "status": "public_accepted_baseline",
+        "limits": "Dated public observation; lower bounds are reported by Frontier and not reproved by this import."
+      }
+    },
+    {
+      "room": 17,
+      "compiled_level_index": 28,
+      "grid": [
+        "###########",
+        "#W...O#...#",
+        "#.....#.G.#",
+        "#..4..M...#",
+        "#.....#.G.#",
+        "#O...O#...#",
+        "###########"
+      ],
+      "tutorial_messages": [],
+      "id": "II-17",
+      "part": 2,
+      "title": "Heroes of Sokoban II: Monsters — Room 17",
+      "source": {
+        "part": 2,
+        "title": "Heroes of Sokoban II: Monsters",
+        "author": "Jonah Ostroff",
+        "url": "https://sites.math.washington.edu/~ostroff/puzzles/Heroes_of_Sokoban_II_Monsters.html",
+        "html_sha256": "a91a1e38706a1bf70a3d1d612a89370b1f5f7c86eefbe86e13a0e2288415f14e",
+        "source_sha256": "1f8b35dbd51d33552c0d394ec0dbc76cd6e8be6db253eedb267d3912ed1a9738",
+        "attribution": "Original puzzle design and PuzzleScript implementation: Jonah Ostroff."
+      },
+      "coordinates": {
+        "origin": "top-left",
+        "x_direction": "right",
+        "y_direction": "down",
+        "transform": "identity",
+        "grid_order": "rows",
+        "original_compiled_object_order": "column-major"
+      },
+      "width": 11,
+      "height": 7,
+      "reference_route": "AUUARADRRRRARDDLUURURALDLADLUULURDRRURARRRRDR",
+      "shortest_known": 45,
+      "proven_floor": 45,
+      "frontier_record": 45,
+      "frontier_observation": {
+        "part": 2,
+        "room": 17,
+        "lower": 45,
+        "known": 45,
+        "id": 39,
+        "length": 45,
+        "uid": 5,
+        "handle": "Claude Opus 5.5",
+        "seed": 1,
+        "model": "claude-opus-5-5",
+        "avatar": 0
+      },
+      "baseline": {
+        "route": "AUUARADRRRRARDDLUURURALDLADLUULURDRRURARRRRDR",
+        "length": 45,
+        "holder": "Claude Opus 5.5",
+        "record_id": 39,
+        "url": "https://soko.banteg.xyz/api/replay/39",
+        "replay_url": "https://soko.banteg.xyz/frontier/?room=II-17&record=39",
+        "observed_at": "2026-11-12T16:02:39.812117+00:00",
+        "response_sha256": "696e0f3ebedaac1f2040cd0cd638ea6d6a4a0fcc94f90a312f8710b3a0a5eb4f",
+        "uid": 5,
+        "model": "claude-opus-5-5",
+        "seed": 1,
+        "attribution": "Public accepted route credited to the named Frontier holder.",
+        "status": "public_accepted_baseline",
+        "limits": "Dated public observation; lower bounds are reported by Frontier and not reproved by this import."
+      }
+    },
+    {
+      "room": 18,
+      "compiled_level_index": 29,
+      "grid": [
+        "###########",
+        "#.T.##O#O##",
+        "#.........#",
+        "#.4.#O#O..#",
+        "########.##",
+        "#G..####.O#",
+        "#G#.O###.##",
+        "###.###O..#",
+        "#O..O#....#",
+        "##...*....#",
+        "###########"
+      ],
+      "tutorial_messages": [],
+      "id": "II-18",
+      "part": 2,
+      "title": "Heroes of Sokoban II: Monsters — Room 18",
+      "source": {
+        "part": 2,
+        "title": "Heroes of Sokoban II: Monsters",
+        "author": "Jonah Ostroff",
+        "url": "https://sites.math.washington.edu/~ostroff/puzzles/Heroes_of_Sokoban_II_Monsters.html",
+        "html_sha256": "a91a1e38706a1bf70a3d1d612a89370b1f5f7c86eefbe86e13a0e2288415f14e",
+        "source_sha256": "1f8b35dbd51d33552c0d394ec0dbc76cd6e8be6db253eedb267d3912ed1a9738",
+        "attribution": "Original puzzle design and PuzzleScript implementation: Jonah Ostroff."
+      },
+      "coordinates": {
+        "origin": "top-left",
+        "x_direction": "right",
+        "y_direction": "down",
+        "transform": "identity",
+        "grid_order": "rows",
+        "original_compiled_object_order": "column-major"
+      },
+      "width": 11,
+      "height": 11,
+      "reference_route": "DURDRRRRRRDLDDDDDDLLRRRALDAULLLDLLLLAULARUUARAUULLDAULL",
+      "shortest_known": 55,
+      "proven_floor": 55,
+      "frontier_record": 55,
+      "frontier_observation": {
+        "part": 2,
+        "room": 18,
+        "lower": 55,
+        "known": 55,
+        "id": 40,
+        "length": 55,
+        "uid": 5,
+        "handle": "Claude Opus 5.5",
+        "seed": 1,
+        "model": "claude-opus-5-5",
+        "avatar": 0
+      },
+      "baseline": {
+        "route": "DURDRRRRRRDLDDDDDDLLRRRALDAULLLDLLLLAULARUUARAUULLDAULL",
+        "length": 55,
+        "holder": "Claude Opus 5.5",
+        "record_id": 40,
+        "url": "https://soko.banteg.xyz/api/replay/40",
+        "replay_url": "https://soko.banteg.xyz/frontier/?room=II-18&record=40",
+        "observed_at": "2026-11-12T16:02:39.913847+00:00",
+        "response_sha256": "63d8df7821e8c75f958d783c666215242aa8b12853767fb5f0bcfe6d0141c5dc",
+        "uid": 5,
+        "model": "claude-opus-5-5",
+        "seed": 1,
+        "attribution": "Public accepted route credited to the named Frontier holder.",
+        "status": "public_accepted_baseline",
+        "limits": "Dated public observation; lower bounds are reported by Frontier and not reproved by this import."
+      }
+    },
+    {
+      "room": 19,
+      "compiled_level_index": 30,
+      "grid": [
+        "###########",
+        "#{*F#.4#.3#",
+        "#{*.#..#..#",
+        "###[#[###.#",
+        "#R[.......#",
+        "####O#.##.#",
+        "######.##.#",
+        "#G.G.G.#O*#",
+        "###########"
+      ],
+      "tutorial_messages": [],
+      "id": "II-19",
+      "part": 2,
+      "title": "Heroes of Sokoban II: Monsters — Room 19",
+      "source": {
+        "part": 2,
+        "title": "Heroes of Sokoban II: Monsters",
+        "author": "Jonah Ostroff",
+        "url": "https://sites.math.washington.edu/~ostroff/puzzles/Heroes_of_Sokoban_II_Monsters.html",
+        "html_sha256": "a91a1e38706a1bf70a3d1d612a89370b1f5f7c86eefbe86e13a0e2288415f14e",
+        "source_sha256": "1f8b35dbd51d33552c0d394ec0dbc76cd6e8be6db253eedb267d3912ed1a9738",
+        "attribution": "Original puzzle design and PuzzleScript implementation: Jonah Ostroff."
+      },
+      "coordinates": {
+        "origin": "top-left",
+        "x_direction": "right",
+        "y_direction": "down",
+        "transform": "identity",
+        "grid_order": "rows",
+        "original_compiled_object_order": "column-major"
+      },
+      "width": 11,
+      "height": 9,
+      "reference_route": "LRDLAALDDDLARDDRRRDAARRDAADADDDLLLLAUAULDDDLAALLLDDDLLLALARDDDL",
+      "shortest_known": 63,
+      "proven_floor": 63,
+      "frontier_record": 63,
+      "frontier_observation": {
+        "part": 2,
+        "room": 19,
+        "lower": 63,
+        "known": 63,
+        "id": 74,
+        "length": 63,
+        "uid": 10,
+        "handle": "tomhaverford24",
+        "seed": 0,
+        "model": null,
+        "avatar": 1
+      },
+      "baseline": {
+        "route": "LRDLAALDDDLARDDRRRDAARRDAADADDDLLLLAUAULDDDLAALLLDDDLLLALARDDDL",
+        "length": 63,
+        "holder": "tomhaverford24",
+        "record_id": 74,
+        "url": "https://soko.banteg.xyz/api/replay/74",
+        "replay_url": "https://soko.banteg.xyz/frontier/?room=II-19&record=74",
+        "observed_at": "2026-11-12T16:02:39.987555+00:00",
+        "response_sha256": "ab39c00b0bb7728435811914cdc02b1d5ec8458de53a8d32ee28ebe8ab39d596",
+        "uid": 10,
+        "model": null,
+        "seed": 0,
+        "attribution": "Public accepted route credited to the named Frontier holder.",
+        "status": "public_accepted_baseline",
+        "limits": "Dated public observation; lower bounds are reported by Frontier and not reproved by this import."
+      }
+    },
+    {
+      "room": 20,
+      "compiled_level_index": 31,
+      "grid": [
+        "###########",
+        "#.T.####O##",
+        "#.3......O#",
+        "#.4.###O.##",
+        "#####O##.##",
+        "#.G..*.O.##",
+        "#G.G#O##.##",
+        "###########"
+      ],
+      "tutorial_messages": [],
+      "id": "II-20",
+      "part": 2,
+      "title": "Heroes of Sokoban II: Monsters — Room 20",
+      "source": {
+        "part": 2,
+        "title": "Heroes of Sokoban II: Monsters",
+        "author": "Jonah Ostroff",
+        "url": "https://sites.math.washington.edu/~ostroff/puzzles/Heroes_of_Sokoban_II_Monsters.html",
+        "html_sha256": "a91a1e38706a1bf70a3d1d612a89370b1f5f7c86eefbe86e13a0e2288415f14e",
+        "source_sha256": "1f8b35dbd51d33552c0d394ec0dbc76cd6e8be6db253eedb267d3912ed1a9738",
+        "attribution": "Original puzzle design and PuzzleScript implementation: Jonah Ostroff."
+      },
+      "coordinates": {
+        "origin": "top-left",
+        "x_direction": "right",
+        "y_direction": "down",
+        "transform": "identity",
+        "grid_order": "rows",
+        "original_compiled_object_order": "column-major"
+      },
+      "width": 11,
+      "height": 8,
+      "reference_route": "AARURRRRARDRRRARRRARDRDDDARRALDRDADDAAUUAALDDDLLRRADLAAULARUUUDAARAUAALAAUALLLLLLDADDLALLLLLD",
+      "shortest_known": 93,
+      "proven_floor": 93,
+      "frontier_record": 93,
+      "frontier_observation": {
+        "part": 2,
+        "room": 20,
+        "lower": 93,
+        "known": 93,
+        "id": 42,
+        "length": 93,
+        "uid": 5,
+        "handle": "Claude Opus 5.5",
+        "seed": 1,
+        "model": "claude-opus-5-5",
+        "avatar": 0
+      },
+      "baseline": {
+        "route": "AARURRRRARDRRRARRRARDRDDDARRALDRDADDAAUUAALDDDLLRRADLAAULARUUUDAARAUAALAAUALLLLLLDADDLALLLLLD",
+        "length": 93,
+        "holder": "Claude Opus 5.5",
+        "record_id": 42,
+        "url": "https://soko.banteg.xyz/api/replay/42",
+        "replay_url": "https://soko.banteg.xyz/frontier/?room=II-20&record=42",
+        "observed_at": "2026-11-12T16:02:40.050693+00:00",
+        "response_sha256": "add9a99ed28c558e126f2b37fc821bc9946033ab10da83f413afb5fb6f99e50e",
+        "uid": 5,
+        "model": "claude-opus-5-5",
+        "seed": 1,
+        "attribution": "Public accepted route credited to the named Frontier holder.",
+        "status": "public_accepted_baseline",
+        "limits": "Dated public observation; lower bounds are reported by Frontier and not reproved by this import."
+      }
+    },
+    {
+      "room": 21,
+      "compiled_level_index": 32,
+      "grid": [
+        "###########",
+        "##O#O#O#O##",
+        "#T[.[.[.[.#",
+        "##{#{#{#{.#",
+        "#.........#",
+        "#.3G*G*G4.#",
+        "#.........#",
+        "###########"
+      ],
+      "tutorial_messages": [],
+      "id": "II-21",
+      "part": 2,
+      "title": "Heroes of Sokoban II: Monsters — Room 21",
+      "source": {
+        "part": 2,
+        "title": "Heroes of Sokoban II: Monsters",
+        "author": "Jonah Ostroff",
+        "url": "https://sites.math.washington.edu/~ostroff/puzzles/Heroes_of_Sokoban_II_Monsters.html",
+        "html_sha256": "a91a1e38706a1bf70a3d1d612a89370b1f5f7c86eefbe86e13a0e2288415f14e",
+        "source_sha256": "1f8b35dbd51d33552c0d394ec0dbc76cd6e8be6db253eedb267d3912ed1a9738",
+        "attribution": "Original puzzle design and PuzzleScript implementation: Jonah Ostroff."
+      },
+      "coordinates": {
+        "origin": "top-left",
+        "x_direction": "right",
+        "y_direction": "down",
+        "transform": "identity",
+        "grid_order": "rows",
+        "original_compiled_object_order": "column-major"
+      },
+      "width": 11,
+      "height": 8,
+      "reference_route": "AURRUDRURRDLLURUDLLUUALUARRADLLDUADRRAADLLDRDLUULUDRURRRUAARRADLLUARRUARRADRRRRDURDLLDLRADAAULUDLLUUAUARRDDLDLADLDALLDL",
+      "shortest_known": 119,
+      "proven_floor": 119,
+      "frontier_record": 119,
+      "frontier_observation": {
+        "part": 2,
+        "room": 21,
+        "lower": 119,
+        "known": 119,
+        "id": 98,
+        "length": 119,
+        "uid": 10,
+        "handle": "tomhaverford24",
+        "seed": 0,
+        "model": null,
+        "avatar": 1
+      },
+      "baseline": {
+        "route": "AURRUDRURRDLLURUDLLUUALUARRADLLDUADRRAADLLDRDLUULUDRURRRUAARRADLLUARRUARRADRRRRDURDLLDLRADAAULUDLLUUAUARRDDLDLADLDALLDL",
+        "length": 119,
+        "holder": "tomhaverford24",
+        "record_id": 98,
+        "url": "https://soko.banteg.xyz/api/replay/98",
+        "replay_url": "https://soko.banteg.xyz/frontier/?room=II-21&record=98",
+        "observed_at": "2026-11-12T16:02:40.118426+00:00",
+        "response_sha256": "1fa9a207bc11c8502080de9ea2724bf79746d250b8b3e668b7169681df4509b6",
+        "uid": 10,
+        "model": null,
+        "seed": 0,
+        "attribution": "Public accepted route credited to the named Frontier holder.",
+        "status": "public_accepted_baseline",
+        "limits": "Dated public observation; lower bounds are reported by Frontier and not reproved by this import."
+      }
+    },
+    {
+      "room": 22,
+      "compiled_level_index": 34,
+      "grid": [
+        "#############",
+        "#...#O.O#...#",
+        "#.F.#G.G#.2.#",
+        "#...#.O.#...#",
+        "##.###*###.##",
+        "#R*L.....R*L#",
+        "#.#.......#.#",
+        "#R*L.....R*L#",
+        "##.###M###.##",
+        "#...#...#...#",
+        "#.3.#G.G#.4.#",
+        "#...#...#...#",
+        "#############"
+      ],
+      "tutorial_messages": [
+        "The final challenge."
+      ],
+      "id": "II-22",
+      "part": 2,
+      "title": "Heroes of Sokoban II: Monsters — Room 22",
+      "source": {
+        "part": 2,
+        "title": "Heroes of Sokoban II: Monsters",
+        "author": "Jonah Ostroff",
+        "url": "https://sites.math.washington.edu/~ostroff/puzzles/Heroes_of_Sokoban_II_Monsters.html",
+        "html_sha256": "a91a1e38706a1bf70a3d1d612a89370b1f5f7c86eefbe86e13a0e2288415f14e",
+        "source_sha256": "1f8b35dbd51d33552c0d394ec0dbc76cd6e8be6db253eedb267d3912ed1a9738",
+        "attribution": "Original puzzle design and PuzzleScript implementation: Jonah Ostroff."
+      },
+      "coordinates": {
+        "origin": "top-left",
+        "x_direction": "right",
+        "y_direction": "down",
+        "transform": "identity",
+        "grid_order": "rows",
+        "original_compiled_object_order": "column-major"
+      },
+      "width": 13,
+      "height": 13,
+      "reference_route": "DDADDUUULDDRDDLDULDDRLLLULLDRAAUUULLULLLLLDAARAURUDDLLURRAURRRADRRRDRURRRDLLULUULUADDDRARALD",
+      "shortest_known": 92,
+      "proven_floor": 92,
+      "frontier_record": 92,
+      "frontier_observation": {
+        "part": 2,
+        "room": 22,
+        "lower": 92,
+        "known": 92,
+        "id": 144,
+        "length": 92,
+        "uid": 17,
+        "handle": "futarchist",
+        "seed": 0,
+        "model": null,
+        "avatar": 1
+      },
+      "baseline": {
+        "route": "DDADDUUULDDRDDLDULDDRLLLULLDRAAUUULLULLLLLDAARAURUDDLLURRAURRRADRRRDRURRRDLLULUULUADDDRARALD",
+        "length": 92,
+        "holder": "futarchist",
+        "record_id": 144,
+        "url": "https://soko.banteg.xyz/api/replay/144",
+        "replay_url": "https://soko.banteg.xyz/frontier/?room=II-22&record=144",
+        "observed_at": "2026-11-12T16:02:40.217627+00:00",
+        "response_sha256": "6c8412249e71a7a7f87aeab1d12716683f7eba56284d1d19150b91227959fb2a",
+        "uid": 17,
+        "model": null,
+        "seed": 0,
+        "attribution": "Public accepted route credited to the named Frontier holder.",
+        "status": "public_accepted_baseline",
+        "limits": "Dated public observation; lower bounds are reported by Frontier and not reproved by this import."
+      }
+    },
+    {
+      "room": 1,
+      "compiled_level_index": 3,
+      "grid": [
+        "###################",
+        "#.F.#.........#**G#",
+        "#***#...*****.#..*#",
+        "#.G.#...*...*.#2..#",
+        "#####...*...*.#####",
+        "#.......*...*.....#",
+        "#.......*...*.....#",
+        "#####..**..**.#####",
+        "#*..#.***.***.#..G#",
+        "#*G*#..*...*..#.O.#",
+        "#3.*#.........#4..#",
+        "###################"
+      ],
+      "tutorial_messages": [
+        "Many years have passed since the events of Heroes of Sokoban II.",
+        "Dragons have vanished from the realm, never to be seen again.",
+        "And new heroes have cropped up, as if there were only room for so many beings in one world."
+      ],
+      "id": "III-1",
+      "part": 3,
+      "title": "Heroes of Sokoban III: The Bard and The Druid — Room 1",
+      "source": {
+        "part": 3,
+        "title": "Heroes of Sokoban III: The Bard and The Druid",
+        "author": "Jonah Ostroff",
+        "url": "https://sites.math.washington.edu/~ostroff/puzzles/Heroes_of_Sokoban_III_The_Bard_and_The_Druid.html",
+        "html_sha256": "380d343ad35a8f8caf6863341172a7771d0d28ced2824a7a3085990614562105",
+        "source_sha256": "f66ceb8f8a2c23a3cb270bad62cdf194e47479772cab94f154ed26f0ff7c20e0",
+        "attribution": "Original puzzle design and PuzzleScript implementation: Jonah Ostroff."
+      },
+      "coordinates": {
+        "origin": "top-left",
+        "x_direction": "right",
+        "y_direction": "down",
+        "transform": "identity",
+        "grid_order": "rows",
+        "original_compiled_object_order": "column-major"
+      },
+      "width": 19,
+      "height": 12,
+      "reference_route": "LDURRDLDARULDRRUUAUURDARRUU",
+      "shortest_known": 27,
+      "proven_floor": 27,
+      "frontier_record": 27,
+      "frontier_observation": {
+        "part": 3,
+        "room": 1,
+        "lower": 27,
+        "known": 27,
+        "id": 45,
+        "length": 27,
+        "uid": 6,
+        "handle": "GPT-6 Astra",
+        "seed": 1,
+        "model": "gpt-6-astra",
+        "avatar": 0
+      },
+      "baseline": {
+        "route": "LDURRDLDARULDRRUUAUURDARRUU",
+        "length": 27,
+        "holder": "GPT-6 Astra",
+        "record_id": 45,
+        "url": "https://soko.banteg.xyz/api/replay/45",
+        "replay_url": "https://soko.banteg.xyz/frontier/?room=III-1&record=45",
+        "observed_at": "2026-11-12T16:02:40.262513+00:00",
+        "response_sha256": "65c5cd8a0161daf995429b3cb67805d2d2027fe2b868cb87bfe26ad98ad2da19",
+        "uid": 6,
+        "model": "gpt-6-astra",
+        "seed": 1,
+        "attribution": "Public accepted route credited to the named Frontier holder.",
+        "status": "public_accepted_baseline",
+        "limits": "Dated public observation; lower bounds are reported by Frontier and not reproved by this import."
+      }
+    },
+    {
+      "room": 2,
+      "compiled_level_index": 5,
+      "grid": [
+        "#############",
+        "#{#....{#...#",
+        "#.#.*#B.[.G.#",
+        "#*#.....#...#",
+        "#############"
+      ],
+      "tutorial_messages": [
+        "Purple bard charms nearby crates."
+      ],
+      "id": "III-2",
+      "part": 3,
+      "title": "Heroes of Sokoban III: The Bard and The Druid — Room 2",
+      "source": {
+        "part": 3,
+        "title": "Heroes of Sokoban III: The Bard and The Druid",
+        "author": "Jonah Ostroff",
+        "url": "https://sites.math.washington.edu/~ostroff/puzzles/Heroes_of_Sokoban_III_The_Bard_and_The_Druid.html",
+        "html_sha256": "380d343ad35a8f8caf6863341172a7771d0d28ced2824a7a3085990614562105",
+        "source_sha256": "f66ceb8f8a2c23a3cb270bad62cdf194e47479772cab94f154ed26f0ff7c20e0",
+        "attribution": "Original puzzle design and PuzzleScript implementation: Jonah Ostroff."
+      },
+      "coordinates": {
+        "origin": "top-left",
+        "x_direction": "right",
+        "y_direction": "down",
+        "transform": "identity",
+        "grid_order": "rows",
+        "original_compiled_object_order": "column-major"
+      },
+      "width": 13,
+      "height": 5,
+      "reference_route": "DLLRRURULLRDDLLLUURDDRRURRRR",
+      "shortest_known": 28,
+      "proven_floor": 28,
+      "frontier_record": 28,
+      "frontier_observation": {
+        "part": 3,
+        "room": 2,
+        "lower": 28,
+        "known": 28,
+        "id": 67,
+        "length": 28,
+        "uid": 10,
+        "handle": "tomhaverford24",
+        "seed": 0,
+        "model": null,
+        "avatar": 1
+      },
+      "baseline": {
+        "route": "DLLRRURULLRDDLLLUURDDRRURRRR",
+        "length": 28,
+        "holder": "tomhaverford24",
+        "record_id": 67,
+        "url": "https://soko.banteg.xyz/api/replay/67",
+        "replay_url": "https://soko.banteg.xyz/frontier/?room=III-2&record=67",
+        "observed_at": "2026-11-12T16:02:40.396280+00:00",
+        "response_sha256": "b25d97c3cca6fd715b63be04e46fc782af4a25da17b01d4844767501c80045a7",
+        "uid": 10,
+        "model": null,
+        "seed": 0,
+        "attribution": "Public accepted route credited to the named Frontier holder.",
+        "status": "public_accepted_baseline",
+        "limits": "Dated public observation; lower bounds are reported by Frontier and not reproved by this import."
+      }
+    },
+    {
+      "room": 3,
+      "compiled_level_index": 6,
+      "grid": [
+        "###############",
+        "#..############",
+        "#.B..****.....#",
+        "#..######.#####",
+        "#########G#####",
+        "###############"
+      ],
+      "tutorial_messages": [],
+      "id": "III-3",
+      "part": 3,
+      "title": "Heroes of Sokoban III: The Bard and The Druid — Room 3",
+      "source": {
+        "part": 3,
+        "title": "Heroes of Sokoban III: The Bard and The Druid",
+        "author": "Jonah Ostroff",
+        "url": "https://sites.math.washington.edu/~ostroff/puzzles/Heroes_of_Sokoban_III_The_Bard_and_The_Druid.html",
+        "html_sha256": "380d343ad35a8f8caf6863341172a7771d0d28ced2824a7a3085990614562105",
+        "source_sha256": "f66ceb8f8a2c23a3cb270bad62cdf194e47479772cab94f154ed26f0ff7c20e0",
+        "attribution": "Original puzzle design and PuzzleScript implementation: Jonah Ostroff."
+      },
+      "coordinates": {
+        "origin": "top-left",
+        "x_direction": "right",
+        "y_direction": "down",
+        "transform": "identity",
+        "grid_order": "rows",
+        "original_compiled_object_order": "column-major"
+      },
+      "width": 15,
+      "height": 6,
+      "reference_route": "RRLLULDRRRRLLLULDRRRRRRRRDD",
+      "shortest_known": 27,
+      "proven_floor": 27,
+      "frontier_record": 27,
+      "frontier_observation": {
+        "part": 3,
+        "room": 3,
+        "lower": 27,
+        "known": 27,
+        "id": 47,
+        "length": 27,
+        "uid": 3,
+        "handle": "Claude Fable 5.2",
+        "seed": 1,
+        "model": "claude-fable-5-2",
+        "avatar": 0
+      },
+      "baseline": {
+        "route": "RRLLULDRRRRLLLULDRRRRRRRRDD",
+        "length": 27,
+        "holder": "Claude Fable 5.2",
+        "record_id": 47,
+        "url": "https://soko.banteg.xyz/api/replay/47",
+        "replay_url": "https://soko.banteg.xyz/frontier/?room=III-3&record=47",
+        "observed_at": "2026-11-12T16:02:40.442835+00:00",
+        "response_sha256": "3ca7b50397371cba7500977d825cb0e46e03267c1199e5167651b173f5220c87",
+        "uid": 3,
+        "model": "claude-fable-5-2",
+        "seed": 1,
+        "attribution": "Public accepted route credited to the named Frontier holder.",
+        "status": "public_accepted_baseline",
+        "limits": "Dated public observation; lower bounds are reported by Frontier and not reproved by this import."
+      }
+    },
+    {
+      "room": 4,
+      "compiled_level_index": 8,
+      "grid": [
+        "#############",
+        "#.......#...#",
+        "#...#...#...#",
+        "#O..B..OM.G.#",
+        "#...#...#...#",
+        "#.......#...#",
+        "#############"
+      ],
+      "tutorial_messages": [
+        "Monsters may also be charmed."
+      ],
+      "id": "III-4",
+      "part": 3,
+      "title": "Heroes of Sokoban III: The Bard and The Druid — Room 4",
+      "source": {
+        "part": 3,
+        "title": "Heroes of Sokoban III: The Bard and The Druid",
+        "author": "Jonah Ostroff",
+        "url": "https://sites.math.washington.edu/~ostroff/puzzles/Heroes_of_Sokoban_III_The_Bard_and_The_Druid.html",
+        "html_sha256": "380d343ad35a8f8caf6863341172a7771d0d28ced2824a7a3085990614562105",
+        "source_sha256": "f66ceb8f8a2c23a3cb270bad62cdf194e47479772cab94f154ed26f0ff7c20e0",
+        "attribution": "Original puzzle design and PuzzleScript implementation: Jonah Ostroff."
+      },
+      "coordinates": {
+        "origin": "top-left",
+        "x_direction": "right",
+        "y_direction": "down",
+        "transform": "identity",
+        "grid_order": "rows",
+        "original_compiled_object_order": "column-major"
+      },
+      "width": 13,
+      "height": 7,
+      "reference_route": "LUURRDDRUURDLDRRRR",
+      "shortest_known": 18,
+      "proven_floor": 18,
+      "frontier_record": 18,
+      "frontier_observation": {
+        "part": 3,
+        "room": 4,
+        "lower": 18,
+        "known": 18,
+        "id": 48,
+        "length": 18,
+        "uid": 3,
+        "handle": "Claude Fable 5.2",
+        "seed": 1,
+        "model": "claude-fable-5-2",
+        "avatar": 0
+      },
+      "baseline": {
+        "route": "LUURRDDRUURDLDRRRR",
+        "length": 18,
+        "holder": "Claude Fable 5.2",
+        "record_id": 48,
+        "url": "https://soko.banteg.xyz/api/replay/48",
+        "replay_url": "https://soko.banteg.xyz/frontier/?room=III-4&record=48",
+        "observed_at": "2026-11-12T16:02:40.529796+00:00",
+        "response_sha256": "839d07985a960894dc5b4da51b5666acd9bd4f51adcdf533a67514d103360fe8",
+        "uid": 3,
+        "model": "claude-fable-5-2",
+        "seed": 1,
+        "attribution": "Public accepted route credited to the named Frontier holder.",
+        "status": "public_accepted_baseline",
+        "limits": "Dated public observation; lower bounds are reported by Frontier and not reproved by this import."
+      }
+    },
+    {
+      "room": 5,
+      "compiled_level_index": 10,
+      "grid": [
+        "############",
+        "#G#.F.{..O.#",
+        "#.[........#",
+        "#G#.5.{..O.#",
+        "############"
+      ],
+      "tutorial_messages": [
+        "No one can resist the bard's music."
+      ],
+      "id": "III-5",
+      "part": 3,
+      "title": "Heroes of Sokoban III: The Bard and The Druid — Room 5",
+      "source": {
+        "part": 3,
+        "title": "Heroes of Sokoban III: The Bard and The Druid",
+        "author": "Jonah Ostroff",
+        "url": "https://sites.math.washington.edu/~ostroff/puzzles/Heroes_of_Sokoban_III_The_Bard_and_The_Druid.html",
+        "html_sha256": "380d343ad35a8f8caf6863341172a7771d0d28ced2824a7a3085990614562105",
+        "source_sha256": "f66ceb8f8a2c23a3cb270bad62cdf194e47479772cab94f154ed26f0ff7c20e0",
+        "attribution": "Original puzzle design and PuzzleScript implementation: Jonah Ostroff."
+      },
+      "coordinates": {
+        "origin": "top-left",
+        "x_direction": "right",
+        "y_direction": "down",
+        "transform": "identity",
+        "grid_order": "rows",
+        "original_compiled_object_order": "column-major"
+      },
+      "width": 12,
+      "height": 5,
+      "reference_route": "DRDAURRRLLLALLLAUALD",
+      "shortest_known": 20,
+      "proven_floor": 20,
+      "frontier_record": 20,
+      "frontier_observation": {
+        "part": 3,
+        "room": 5,
+        "lower": 20,
+        "known": 20,
+        "id": 49,
+        "length": 20,
+        "uid": 6,
+        "handle": "GPT-6 Astra",
+        "seed": 1,
+        "model": "gpt-6-astra",
+        "avatar": 0
+      },
+      "baseline": {
+        "route": "DRDAURRRLLLALLLAUALD",
+        "length": 20,
+        "holder": "GPT-6 Astra",
+        "record_id": 49,
+        "url": "https://soko.banteg.xyz/api/replay/49",
+        "replay_url": "https://soko.banteg.xyz/frontier/?room=III-5&record=49",
+        "observed_at": "2026-11-12T16:02:40.625439+00:00",
+        "response_sha256": "626d79281ffe8b83aeb66f846725a102a64ac2476276772676c8314995cfe139",
+        "uid": 6,
+        "model": "gpt-6-astra",
+        "seed": 1,
+        "attribution": "Public accepted route credited to the named Frontier holder.",
+        "status": "public_accepted_baseline",
+        "limits": "Dated public observation; lower bounds are reported by Frontier and not reproved by this import."
+      }
+    },
+    {
+      "room": 6,
+      "compiled_level_index": 11,
+      "grid": [
+        "############",
+        "##[[[[[[[###",
+        "##[#####[###",
+        "##[##[[[[{*#",
+        "#...#[######",
+        "#.T.#......#",
+        "#...#.5.G.G#",
+        "############"
+      ],
+      "tutorial_messages": [],
+      "id": "III-6",
+      "part": 3,
+      "title": "Heroes of Sokoban III: The Bard and The Druid — Room 6",
+      "source": {
+        "part": 3,
+        "title": "Heroes of Sokoban III: The Bard and The Druid",
+        "author": "Jonah Ostroff",
+        "url": "https://sites.math.washington.edu/~ostroff/puzzles/Heroes_of_Sokoban_III_The_Bard_and_The_Druid.html",
+        "html_sha256": "380d343ad35a8f8caf6863341172a7771d0d28ced2824a7a3085990614562105",
+        "source_sha256": "f66ceb8f8a2c23a3cb270bad62cdf194e47479772cab94f154ed26f0ff7c20e0",
+        "attribution": "Original puzzle design and PuzzleScript implementation: Jonah Ostroff."
+      },
+      "coordinates": {
+        "origin": "top-left",
+        "x_direction": "right",
+        "y_direction": "down",
+        "transform": "identity",
+        "grid_order": "rows",
+        "original_compiled_object_order": "column-major"
+      },
+      "width": 12,
+      "height": 8,
+      "reference_route": "AURRLAUUUURRRRRRDDADLULALLDADRRRARRD",
+      "shortest_known": 36,
+      "proven_floor": 36,
+      "frontier_record": 36,
+      "frontier_observation": {
+        "part": 3,
+        "room": 6,
+        "lower": 36,
+        "known": 36,
+        "id": 50,
+        "length": 36,
+        "uid": 5,
+        "handle": "Claude Opus 5.5",
+        "seed": 1,
+        "model": "claude-opus-5-5",
+        "avatar": 0
+      },
+      "baseline": {
+        "route": "AURRLAUUUURRRRRRDDADLULALLDADRRRARRD",
+        "length": 36,
+        "holder": "Claude Opus 5.5",
+        "record_id": 50,
+        "url": "https://soko.banteg.xyz/api/replay/50",
+        "replay_url": "https://soko.banteg.xyz/frontier/?room=III-6&record=50",
+        "observed_at": "2026-11-12T16:02:40.677519+00:00",
+        "response_sha256": "a67dec476b6f9babd925069ea7358fa9b7d1778093bcc16f5188ad19c596d52a",
+        "uid": 5,
+        "model": "claude-opus-5-5",
+        "seed": 1,
+        "attribution": "Public accepted route credited to the named Frontier holder.",
+        "status": "public_accepted_baseline",
+        "limits": "Dated public observation; lower bounds are reported by Frontier and not reproved by this import."
+      }
+    },
+    {
+      "room": 7,
+      "compiled_level_index": 12,
+      "grid": [
+        "########",
+        "#*G{####",
+        "###.####",
+        "#...[W##",
+        "###.#.5#",
+        "#*G*####",
+        "########"
+      ],
+      "tutorial_messages": [],
+      "id": "III-7",
+      "part": 3,
+      "title": "Heroes of Sokoban III: The Bard and The Druid — Room 7",
+      "source": {
+        "part": 3,
+        "title": "Heroes of Sokoban III: The Bard and The Druid",
+        "author": "Jonah Ostroff",
+        "url": "https://sites.math.washington.edu/~ostroff/puzzles/Heroes_of_Sokoban_III_The_Bard_and_The_Druid.html",
+        "html_sha256": "380d343ad35a8f8caf6863341172a7771d0d28ced2824a7a3085990614562105",
+        "source_sha256": "f66ceb8f8a2c23a3cb270bad62cdf194e47479772cab94f154ed26f0ff7c20e0",
+        "attribution": "Original puzzle design and PuzzleScript implementation: Jonah Ostroff."
+      },
+      "coordinates": {
+        "origin": "top-left",
+        "x_direction": "right",
+        "y_direction": "down",
+        "transform": "identity",
+        "grid_order": "rows",
+        "original_compiled_object_order": "column-major"
+      },
+      "width": 8,
+      "height": 7,
+      "reference_route": "DRAUALUARADRAUALUARADRAUALUARADRAUALULAUALLRARALUALLDDL",
+      "shortest_known": 55,
+      "proven_floor": 55,
+      "frontier_record": 55,
+      "frontier_observation": {
+        "part": 3,
+        "room": 7,
+        "lower": 55,
+        "known": 55,
+        "id": 51,
+        "length": 55,
+        "uid": 5,
+        "handle": "Claude Opus 5.5",
+        "seed": 1,
+        "model": "claude-opus-5-5",
+        "avatar": 0
+      },
+      "baseline": {
+        "route": "DRAUALUARADRAUALUARADRAUALUARADRAUALULAUALLRARALUALLDDL",
+        "length": 55,
+        "holder": "Claude Opus 5.5",
+        "record_id": 51,
+        "url": "https://soko.banteg.xyz/api/replay/51",
+        "replay_url": "https://soko.banteg.xyz/frontier/?room=III-7&record=51",
+        "observed_at": "2026-11-12T16:02:40.786604+00:00",
+        "response_sha256": "0e8ad6ba07b8a720b67e968c3a8fec56544b26ca503a6e4447afb219a4aca1f0",
+        "uid": 5,
+        "model": "claude-opus-5-5",
+        "seed": 1,
+        "attribution": "Public accepted route credited to the named Frontier holder.",
+        "status": "public_accepted_baseline",
+        "limits": "Dated public observation; lower bounds are reported by Frontier and not reproved by this import."
+      }
+    },
+    {
+      "room": 8,
+      "compiled_level_index": 13,
+      "grid": [
+        "#########",
+        "#....G#G#",
+        "#.#*..#[#",
+        "#.**....#",
+        "#.......#",
+        "#.{4{B{.#",
+        "#...{...#",
+        "#########"
+      ],
+      "tutorial_messages": [],
+      "id": "III-8",
+      "part": 3,
+      "title": "Heroes of Sokoban III: The Bard and The Druid — Room 8",
+      "source": {
+        "part": 3,
+        "title": "Heroes of Sokoban III: The Bard and The Druid",
+        "author": "Jonah Ostroff",
+        "url": "https://sites.math.washington.edu/~ostroff/puzzles/Heroes_of_Sokoban_III_The_Bard_and_The_Druid.html",
+        "html_sha256": "380d343ad35a8f8caf6863341172a7771d0d28ced2824a7a3085990614562105",
+        "source_sha256": "f66ceb8f8a2c23a3cb270bad62cdf194e47479772cab94f154ed26f0ff7c20e0",
+        "attribution": "Original puzzle design and PuzzleScript implementation: Jonah Ostroff."
+      },
+      "coordinates": {
+        "origin": "top-left",
+        "x_direction": "right",
+        "y_direction": "down",
+        "transform": "identity",
+        "grid_order": "rows",
+        "original_compiled_object_order": "column-major"
+      },
+      "width": 9,
+      "height": 8,
+      "reference_route": "UDDLARURAUUUURDDDRAURUUAUULUU",
+      "shortest_known": 29,
+      "proven_floor": 29,
+      "frontier_record": 29,
+      "frontier_observation": {
+        "part": 3,
+        "room": 8,
+        "lower": 29,
+        "known": 29,
+        "id": 90,
+        "length": 29,
+        "uid": 10,
+        "handle": "tomhaverford24",
+        "seed": 0,
+        "model": null,
+        "avatar": 1
+      },
+      "baseline": {
+        "route": "UDDLARURAUUUURDDDRAURUUAUULUU",
+        "length": 29,
+        "holder": "tomhaverford24",
+        "record_id": 90,
+        "url": "https://soko.banteg.xyz/api/replay/90",
+        "replay_url": "https://soko.banteg.xyz/frontier/?room=III-8&record=90",
+        "observed_at": "2026-11-12T16:02:40.921321+00:00",
+        "response_sha256": "34ec823488ef746b198aa319deaefdc87526fec020a2559b877de951656e33b5",
+        "uid": 10,
+        "model": null,
+        "seed": 0,
+        "attribution": "Public accepted route credited to the named Frontier holder.",
+        "status": "public_accepted_baseline",
+        "limits": "Dated public observation; lower bounds are reported by Frontier and not reproved by this import."
+      }
+    },
+    {
+      "room": 9,
+      "compiled_level_index": 14,
+      "grid": [
+        "############",
+        "#*.{..{.**{#",
+        "############",
+        "#B21.......#",
+        "##########[#",
+        "#.G..G..G..#",
+        "############"
+      ],
+      "tutorial_messages": [],
+      "id": "III-9",
+      "part": 3,
+      "title": "Heroes of Sokoban III: The Bard and The Druid — Room 9",
+      "source": {
+        "part": 3,
+        "title": "Heroes of Sokoban III: The Bard and The Druid",
+        "author": "Jonah Ostroff",
+        "url": "https://sites.math.washington.edu/~ostroff/puzzles/Heroes_of_Sokoban_III_The_Bard_and_The_Druid.html",
+        "html_sha256": "380d343ad35a8f8caf6863341172a7771d0d28ced2824a7a3085990614562105",
+        "source_sha256": "f66ceb8f8a2c23a3cb270bad62cdf194e47479772cab94f154ed26f0ff7c20e0",
+        "attribution": "Original puzzle design and PuzzleScript implementation: Jonah Ostroff."
+      },
+      "coordinates": {
+        "origin": "top-left",
+        "x_direction": "right",
+        "y_direction": "down",
+        "transform": "identity",
+        "grid_order": "rows",
+        "original_compiled_object_order": "column-major"
+      },
+      "width": 12,
+      "height": 7,
+      "reference_route": "RRRRRARAALLLAARRRRARADDLLLLLLLLARDDLLLLLARDDLL",
+      "shortest_known": 46,
+      "proven_floor": 46,
+      "frontier_record": 46,
+      "frontier_observation": {
+        "part": 3,
+        "room": 9,
+        "lower": 46,
+        "known": 46,
+        "id": 53,
+        "length": 46,
+        "uid": 3,
+        "handle": "Claude Fable 5.2",
+        "seed": 1,
+        "model": "claude-fable-5-2",
+        "avatar": 0
+      },
+      "baseline": {
+        "route": "RRRRRARAALLLAARRRRARADDLLLLLLLLARDDLLLLLARDDLL",
+        "length": 46,
+        "holder": "Claude Fable 5.2",
+        "record_id": 53,
+        "url": "https://soko.banteg.xyz/api/replay/53",
+        "replay_url": "https://soko.banteg.xyz/frontier/?room=III-9&record=53",
+        "observed_at": "2026-11-12T16:02:40.930710+00:00",
+        "response_sha256": "e3e8ebb7ecdf89e7120d6cd9b80b821567a906b5bb1610ead895a783a79224e0",
+        "uid": 3,
+        "model": "claude-fable-5-2",
+        "seed": 1,
+        "attribution": "Public accepted route credited to the named Frontier holder.",
+        "status": "public_accepted_baseline",
+        "limits": "Dated public observation; lower bounds are reported by Frontier and not reproved by this import."
+      }
+    },
+    {
+      "room": 10,
+      "compiled_level_index": 16,
+      "grid": [
+        "#############",
+        "#.[.{.2.#.D.#",
+        "#.#########.#",
+        "#....G.G..#.#",
+        "#############"
+      ],
+      "tutorial_messages": [
+        "Orange druid turns stone into wood, wood into stone."
+      ],
+      "id": "III-10",
+      "part": 3,
+      "title": "Heroes of Sokoban III: The Bard and The Druid — Room 10",
+      "source": {
+        "part": 3,
+        "title": "Heroes of Sokoban III: The Bard and The Druid",
+        "author": "Jonah Ostroff",
+        "url": "https://sites.math.washington.edu/~ostroff/puzzles/Heroes_of_Sokoban_III_The_Bard_and_The_Druid.html",
+        "html_sha256": "380d343ad35a8f8caf6863341172a7771d0d28ced2824a7a3085990614562105",
+        "source_sha256": "f66ceb8f8a2c23a3cb270bad62cdf194e47479772cab94f154ed26f0ff7c20e0",
+        "attribution": "Original puzzle design and PuzzleScript implementation: Jonah Ostroff."
+      },
+      "coordinates": {
+        "origin": "top-left",
+        "x_direction": "right",
+        "y_direction": "down",
+        "transform": "identity",
+        "grid_order": "rows",
+        "original_compiled_object_order": "column-major"
+      },
+      "width": 13,
+      "height": 5,
+      "reference_route": "LLARLLLLALLLLLRRRRRRDDLALLDDRRRRRRRRLLLLALLLL",
+      "shortest_known": 45,
+      "proven_floor": 45,
+      "frontier_record": 45,
+      "frontier_observation": {
+        "part": 3,
+        "room": 10,
+        "lower": 45,
+        "known": 45,
+        "id": 54,
+        "length": 45,
+        "uid": 5,
+        "handle": "Claude Opus 5.5",
+        "seed": 1,
+        "model": "claude-opus-5-5",
+        "avatar": 0
+      },
+      "baseline": {
+        "route": "LLARLLLLALLLLLRRRRRRDDLALLDDRRRRRRRRLLLLALLLL",
+        "length": 45,
+        "holder": "Claude Opus 5.5",
+        "record_id": 54,
+        "url": "https://soko.banteg.xyz/api/replay/54",
+        "replay_url": "https://soko.banteg.xyz/frontier/?room=III-10&record=54",
+        "observed_at": "2026-11-12T16:02:41.050630+00:00",
+        "response_sha256": "371579840ff3714cc2fa17b9cd012978e4db3a90b63a92830f2f4869643ac745",
+        "uid": 5,
+        "model": "claude-opus-5-5",
+        "seed": 1,
+        "attribution": "Public accepted route credited to the named Frontier holder.",
+        "status": "public_accepted_baseline",
+        "limits": "Dated public observation; lower bounds are reported by Frontier and not reproved by this import."
+      }
+    },
+    {
+      "room": 11,
+      "compiled_level_index": 17,
+      "grid": [
+        "#############",
+        "#...#####{{{#",
+        "#.D.##...{{{#",
+        "#...##.##{{{#",
+        "#############",
+        "#...#..######",
+        "#.1.#..##G.G#",
+        "#...#..#[...#",
+        "#############"
+      ],
+      "tutorial_messages": [],
+      "id": "III-11",
+      "part": 3,
+      "title": "Heroes of Sokoban III: The Bard and The Druid — Room 11",
+      "source": {
+        "part": 3,
+        "title": "Heroes of Sokoban III: The Bard and The Druid",
+        "author": "Jonah Ostroff",
+        "url": "https://sites.math.washington.edu/~ostroff/puzzles/Heroes_of_Sokoban_III_The_Bard_and_The_Druid.html",
+        "html_sha256": "380d343ad35a8f8caf6863341172a7771d0d28ced2824a7a3085990614562105",
+        "source_sha256": "f66ceb8f8a2c23a3cb270bad62cdf194e47479772cab94f154ed26f0ff7c20e0",
+        "attribution": "Original puzzle design and PuzzleScript implementation: Jonah Ostroff."
+      },
+      "coordinates": {
+        "origin": "top-left",
+        "x_direction": "right",
+        "y_direction": "down",
+        "transform": "identity",
+        "grid_order": "rows",
+        "original_compiled_object_order": "column-major"
+      },
+      "width": 13,
+      "height": 9,
+      "reference_route": "DDRRDAUUUURDARADDARALDRRAURULUDDARURULRAUULUUAULLLAUULUAURLAUUARRRRLLLLUADULUDLULUARRRLDDDDLULURRRRRLLLDDDARRADRRRRUAUR",
+      "shortest_known": 119,
+      "proven_floor": 119,
+      "frontier_record": 119,
+      "frontier_observation": {
+        "part": 3,
+        "room": 11,
+        "lower": 119,
+        "known": 119,
+        "id": 148,
+        "length": 119,
+        "uid": 16,
+        "handle": "SJanuskas",
+        "seed": 0,
+        "model": null,
+        "avatar": 1
+      },
+      "baseline": {
+        "route": "DDRRDAUUUURDARADDARALDRRAURULUDDARURULRAUULUUAULLLAUULUAURLAUUARRRRLLLLUADULUDLULUARRRLDDDDLULURRRRRLLLDDDARRADRRRRUAUR",
+        "length": 119,
+        "holder": "SJanuskas",
+        "record_id": 148,
+        "url": "https://soko.banteg.xyz/api/replay/148",
+        "replay_url": "https://soko.banteg.xyz/frontier/?room=III-11&record=148",
+        "observed_at": "2026-11-12T16:02:41.152653+00:00",
+        "response_sha256": "bd594a7a2d1c95c918e076a2e96226f2efad74b5118d85a1e3c2f9b2a9af721f",
+        "uid": 16,
+        "model": null,
+        "seed": 0,
+        "attribution": "Public accepted route credited to the named Frontier holder.",
+        "status": "public_accepted_baseline",
+        "limits": "Dated public observation; lower bounds are reported by Frontier and not reproved by this import."
+      }
+    },
+    {
+      "room": 12,
+      "compiled_level_index": 18,
+      "grid": [
+        "#############",
+        "#O*....{...3#",
+        "##.####.#####",
+        "##.###O.O##G#",
+        "##.####.###.#",
+        "##D[....###G#",
+        "#############"
+      ],
+      "tutorial_messages": [],
+      "id": "III-12",
+      "part": 3,
+      "title": "Heroes of Sokoban III: The Bard and The Druid — Room 12",
+      "source": {
+        "part": 3,
+        "title": "Heroes of Sokoban III: The Bard and The Druid",
+        "author": "Jonah Ostroff",
+        "url": "https://sites.math.washington.edu/~ostroff/puzzles/Heroes_of_Sokoban_III_The_Bard_and_The_Druid.html",
+        "html_sha256": "380d343ad35a8f8caf6863341172a7771d0d28ced2824a7a3085990614562105",
+        "source_sha256": "f66ceb8f8a2c23a3cb270bad62cdf194e47479772cab94f154ed26f0ff7c20e0",
+        "attribution": "Original puzzle design and PuzzleScript implementation: Jonah Ostroff."
+      },
+      "coordinates": {
+        "origin": "top-left",
+        "x_direction": "right",
+        "y_direction": "down",
+        "transform": "identity",
+        "grid_order": "rows",
+        "original_compiled_object_order": "column-major"
+      },
+      "width": 13,
+      "height": 7,
+      "reference_route": "UUUUALLLLADDDRRRRRADAURURURUDRDAURRRDRDDDADD",
+      "shortest_known": 44,
+      "proven_floor": 44,
+      "frontier_record": 44,
+      "frontier_observation": {
+        "part": 3,
+        "room": 12,
+        "lower": 44,
+        "known": 44,
+        "id": 99,
+        "length": 44,
+        "uid": 9,
+        "handle": "yabirgb",
+        "seed": 0,
+        "model": null,
+        "avatar": 1
+      },
+      "baseline": {
+        "route": "UUUUALLLLADDDRRRRRADAURURURUDRDAURRRDRDDDADD",
+        "length": 44,
+        "holder": "yabirgb",
+        "record_id": 99,
+        "url": "https://soko.banteg.xyz/api/replay/99",
+        "replay_url": "https://soko.banteg.xyz/frontier/?room=III-12&record=99",
+        "observed_at": "2026-11-12T16:02:41.204173+00:00",
+        "response_sha256": "a001050d8ace5b0e68b1b736071f69cc87ff9bec3d2881647d2c4a2e3a1e7430",
+        "uid": 9,
+        "model": null,
+        "seed": 0,
+        "attribution": "Public accepted route credited to the named Frontier holder.",
+        "status": "public_accepted_baseline",
+        "limits": "Dated public observation; lower bounds are reported by Frontier and not reproved by this import."
+      }
+    },
+    {
+      "room": 13,
+      "compiled_level_index": 21,
+      "grid": [
+        "#############",
+        "####.4..##G.#",
+        "#O..F..OM#.G#",
+        "####.6..##G.#",
+        "#############"
+      ],
+      "tutorial_messages": [
+        "Living things may also be turned into stone.",
+        "Try not to think about the moral implications, and don't do it any more than necessary."
+      ],
+      "id": "III-13",
+      "part": 3,
+      "title": "Heroes of Sokoban III: The Bard and The Druid — Room 13",
+      "source": {
+        "part": 3,
+        "title": "Heroes of Sokoban III: The Bard and The Druid",
+        "author": "Jonah Ostroff",
+        "url": "https://sites.math.washington.edu/~ostroff/puzzles/Heroes_of_Sokoban_III_The_Bard_and_The_Druid.html",
+        "html_sha256": "380d343ad35a8f8caf6863341172a7771d0d28ced2824a7a3085990614562105",
+        "source_sha256": "f66ceb8f8a2c23a3cb270bad62cdf194e47479772cab94f154ed26f0ff7c20e0",
+        "attribution": "Original puzzle design and PuzzleScript implementation: Jonah Ostroff."
+      },
+      "coordinates": {
+        "origin": "top-left",
+        "x_direction": "right",
+        "y_direction": "down",
+        "transform": "identity",
+        "grid_order": "rows",
+        "original_compiled_object_order": "column-major"
+      },
+      "width": 13,
+      "height": 5,
+      "reference_route": "DRADAURRULLDARRULLLAALADARRDARRRRRRRARRURRRAAUARDRUAURRRD",
+      "shortest_known": 57,
+      "proven_floor": 57,
+      "frontier_record": 57,
+      "frontier_observation": {
+        "part": 3,
+        "room": 13,
+        "lower": 57,
+        "known": 57,
+        "id": 57,
+        "length": 57,
+        "uid": 5,
+        "handle": "Claude Opus 5.5",
+        "seed": 1,
+        "model": "claude-opus-5-5",
+        "avatar": 0
+      },
+      "baseline": {
+        "route": "DRADAURRULLDARRULLLAALADARRDARRRRRRRARRURRRAAUARDRUAURRRD",
+        "length": 57,
+        "holder": "Claude Opus 5.5",
+        "record_id": 57,
+        "url": "https://soko.banteg.xyz/api/replay/57",
+        "replay_url": "https://soko.banteg.xyz/frontier/?room=III-13&record=57",
+        "observed_at": "2026-11-12T16:02:41.254868+00:00",
+        "response_sha256": "591b6d9d14ec90e47a4b422285e5ed89bc2de12f096b4c73ad8edfe49160ba77",
+        "uid": 5,
+        "model": "claude-opus-5-5",
+        "seed": 1,
+        "attribution": "Public accepted route credited to the named Frontier holder.",
+        "status": "public_accepted_baseline",
+        "limits": "Dated public observation; lower bounds are reported by Frontier and not reproved by this import."
+      }
+    },
+    {
+      "room": 14,
+      "compiled_level_index": 22,
+      "grid": [
+        "###############",
+        "#.............#",
+        "#.5.}}}.]]]]].#",
+        "#...}}}.]G.G].#",
+        "#.D.}}}.]]]]].#",
+        "#.............#",
+        "###############"
+      ],
+      "tutorial_messages": [],
+      "id": "III-14",
+      "part": 3,
+      "title": "Heroes of Sokoban III: The Bard and The Druid — Room 14",
+      "source": {
+        "part": 3,
+        "title": "Heroes of Sokoban III: The Bard and The Druid",
+        "author": "Jonah Ostroff",
+        "url": "https://sites.math.washington.edu/~ostroff/puzzles/Heroes_of_Sokoban_III_The_Bard_and_The_Druid.html",
+        "html_sha256": "380d343ad35a8f8caf6863341172a7771d0d28ced2824a7a3085990614562105",
+        "source_sha256": "f66ceb8f8a2c23a3cb270bad62cdf194e47479772cab94f154ed26f0ff7c20e0",
+        "attribution": "Original puzzle design and PuzzleScript implementation: Jonah Ostroff."
+      },
+      "coordinates": {
+        "origin": "top-left",
+        "x_direction": "right",
+        "y_direction": "down",
+        "transform": "identity",
+        "grid_order": "rows",
+        "original_compiled_object_order": "column-major"
+      },
+      "width": 15,
+      "height": 7,
+      "reference_route": "LLULULULRURURURURUAUDRRDDAUARRDLRAULDLDRARURDUUR",
+      "shortest_known": 48,
+      "proven_floor": 43,
+      "frontier_record": 48,
+      "frontier_observation": {
+        "part": 3,
+        "room": 14,
+        "lower": 43,
+        "known": 48,
+        "id": 137,
+        "length": 48,
+        "uid": 16,
+        "handle": "SJanuskas",
+        "seed": 0,
+        "model": null,
+        "avatar": 1
+      },
+      "baseline": {
+        "route": "LLULULULRURURURURUAUDRRDDAUARRDLRAULDLDRARURDUUR",
+        "length": 48,
+        "holder": "SJanuskas",
+        "record_id": 137,
+        "url": "https://soko.banteg.xyz/api/replay/137",
+        "replay_url": "https://soko.banteg.xyz/frontier/?room=III-14&record=137",
+        "observed_at": "2026-11-12T16:02:41.374944+00:00",
+        "response_sha256": "71762dcfd4e8341351c80487d0254f933a6cd2a8927337b9e093d5cec3ff686a",
+        "uid": 16,
+        "model": null,
+        "seed": 0,
+        "attribution": "Public accepted route credited to the named Frontier holder.",
+        "status": "public_accepted_baseline",
+        "limits": "Dated public observation; lower bounds are reported by Frontier and not reproved by this import."
+      }
+    },
+    {
+      "room": 15,
+      "compiled_level_index": 23,
+      "grid": [
+        "#########",
+        "#G#####W#",
+        "#########",
+        "#G#####6#",
+        "#########"
+      ],
+      "tutorial_messages": [],
+      "id": "III-15",
+      "part": 3,
+      "title": "Heroes of Sokoban III: The Bard and The Druid — Room 15",
+      "source": {
+        "part": 3,
+        "title": "Heroes of Sokoban III: The Bard and The Druid",
+        "author": "Jonah Ostroff",
+        "url": "https://sites.math.washington.edu/~ostroff/puzzles/Heroes_of_Sokoban_III_The_Bard_and_The_Druid.html",
+        "html_sha256": "380d343ad35a8f8caf6863341172a7771d0d28ced2824a7a3085990614562105",
+        "source_sha256": "f66ceb8f8a2c23a3cb270bad62cdf194e47479772cab94f154ed26f0ff7c20e0",
+        "attribution": "Original puzzle design and PuzzleScript implementation: Jonah Ostroff."
+      },
+      "coordinates": {
+        "origin": "top-left",
+        "x_direction": "right",
+        "y_direction": "down",
+        "transform": "identity",
+        "grid_order": "rows",
+        "original_compiled_object_order": "column-major"
+      },
+      "width": 9,
+      "height": 5,
+      "reference_route": "AULADDALAULDRALAULDALALURALADLUALALDRALAULDALALURALADLUALALDLRAUAULLU",
+      "shortest_known": 69,
+      "proven_floor": 69,
+      "frontier_record": 69,
+      "frontier_observation": {
+        "part": 3,
+        "room": 15,
+        "lower": 69,
+        "known": 69,
+        "id": 59,
+        "length": 69,
+        "uid": 5,
+        "handle": "Claude Opus 5.5",
+        "seed": 1,
+        "model": "claude-opus-5-5",
+        "avatar": 0
+      },
+      "baseline": {
+        "route": "AULADDALAULDRALAULDALALURALADLUALALDRALAULDALALURALADLUALALDLRAUAULLU",
+        "length": 69,
+        "holder": "Claude Opus 5.5",
+        "record_id": 59,
+        "url": "https://soko.banteg.xyz/api/replay/59",
+        "replay_url": "https://soko.banteg.xyz/frontier/?room=III-15&record=59",
+        "observed_at": "2026-11-12T16:02:41.420199+00:00",
+        "response_sha256": "5c7d925603477d0131e9e7875dbad375a5b6191a2a408c7c14a709ae03ae34ea",
+        "uid": 5,
+        "model": "claude-opus-5-5",
+        "seed": 1,
+        "attribution": "Public accepted route credited to the named Frontier holder.",
+        "status": "public_accepted_baseline",
+        "limits": "Dated public observation; lower bounds are reported by Frontier and not reproved by this import."
+      }
+    },
+    {
+      "room": 16,
+      "compiled_level_index": 24,
+      "grid": [
+        "#############",
+        "#......O.G.G#",
+        "#.###########",
+        "#.###########",
+        "#...#########",
+        "#B.6#########",
+        "#############"
+      ],
+      "tutorial_messages": [],
+      "id": "III-16",
+      "part": 3,
+      "title": "Heroes of Sokoban III: The Bard and The Druid — Room 16",
+      "source": {
+        "part": 3,
+        "title": "Heroes of Sokoban III: The Bard and The Druid",
+        "author": "Jonah Ostroff",
+        "url": "https://sites.math.washington.edu/~ostroff/puzzles/Heroes_of_Sokoban_III_The_Bard_and_The_Druid.html",
+        "html_sha256": "380d343ad35a8f8caf6863341172a7771d0d28ced2824a7a3085990614562105",
+        "source_sha256": "f66ceb8f8a2c23a3cb270bad62cdf194e47479772cab94f154ed26f0ff7c20e0",
+        "attribution": "Original puzzle design and PuzzleScript implementation: Jonah Ostroff."
+      },
+      "coordinates": {
+        "origin": "top-left",
+        "x_direction": "right",
+        "y_direction": "down",
+        "transform": "identity",
+        "grid_order": "rows",
+        "original_compiled_object_order": "column-major"
+      },
+      "width": 13,
+      "height": 7,
+      "reference_route": "UUUURRRRLLLAULURALDDDRULDRAUUUAULAULARRUURRRRRR",
+      "shortest_known": 47,
+      "proven_floor": 47,
+      "frontier_record": 47,
+      "frontier_observation": {
+        "part": 3,
+        "room": 16,
+        "lower": 47,
+        "known": 47,
+        "id": 110,
+        "length": 47,
+        "uid": 10,
+        "handle": "tomhaverford24",
+        "seed": 0,
+        "model": null,
+        "avatar": 1
+      },
+      "baseline": {
+        "route": "UUUURRRRLLLAULURALDDDRULDRAUUUAULAULARRUURRRRRR",
+        "length": 47,
+        "holder": "tomhaverford24",
+        "record_id": 110,
+        "url": "https://soko.banteg.xyz/api/replay/110",
+        "replay_url": "https://soko.banteg.xyz/frontier/?room=III-16&record=110",
+        "observed_at": "2026-11-12T16:02:41.465418+00:00",
+        "response_sha256": "0b1a1d5d8d4754c606f37046371b731816091a11649048b2f606919040b0edec",
+        "uid": 10,
+        "model": null,
+        "seed": 0,
+        "attribution": "Public accepted route credited to the named Frontier holder.",
+        "status": "public_accepted_baseline",
+        "limits": "Dated public observation; lower bounds are reported by Frontier and not reproved by this import."
+      }
+    },
+    {
+      "room": 17,
+      "compiled_level_index": 25,
+      "grid": [
+        "################",
+        "#...#...########",
+        "#.G.#.}.....{[O#",
+        "#...#.F.########",
+        "#...#...########",
+        "#.G.].4.########",
+        "#...#...########",
+        "#...#.5.########",
+        "#.G.#.}.....{[O#",
+        "#...#...########",
+        "################"
+      ],
+      "tutorial_messages": [],
+      "id": "III-17",
+      "part": 3,
+      "title": "Heroes of Sokoban III: The Bard and The Druid — Room 17",
+      "source": {
+        "part": 3,
+        "title": "Heroes of Sokoban III: The Bard and The Druid",
+        "author": "Jonah Ostroff",
+        "url": "https://sites.math.washington.edu/~ostroff/puzzles/Heroes_of_Sokoban_III_The_Bard_and_The_Druid.html",
+        "html_sha256": "380d343ad35a8f8caf6863341172a7771d0d28ced2824a7a3085990614562105",
+        "source_sha256": "f66ceb8f8a2c23a3cb270bad62cdf194e47479772cab94f154ed26f0ff7c20e0",
+        "attribution": "Original puzzle design and PuzzleScript implementation: Jonah Ostroff."
+      },
+      "coordinates": {
+        "origin": "top-left",
+        "x_direction": "right",
+        "y_direction": "down",
+        "transform": "identity",
+        "grid_order": "rows",
+        "original_compiled_object_order": "column-major"
+      },
+      "width": 16,
+      "height": 11,
+      "reference_route": "RURRRRRARDDADRRRRRRLLLLLLULDALLLLLDDDDDDRRRRRAAURUUUUURRRRRRLLLLLLDDLDRDLDRALLLLLLAUALUAURUUAALLDDLDAULLULUU",
+      "shortest_known": 108,
+      "proven_floor": 108,
+      "frontier_record": 108,
+      "frontier_observation": {
+        "part": 3,
+        "room": 17,
+        "lower": 108,
+        "known": 108,
+        "id": 117,
+        "length": 108,
+        "uid": 10,
+        "handle": "tomhaverford24",
+        "seed": 0,
+        "model": null,
+        "avatar": 1
+      },
+      "baseline": {
+        "route": "RURRRRRARDDADRRRRRRLLLLLLULDALLLLLDDDDDDRRRRRAAURUUUUURRRRRRLLLLLLDDLDRDLDRALLLLLLAUALUAURUUAALLDDLDAULLULUU",
+        "length": 108,
+        "holder": "tomhaverford24",
+        "record_id": 117,
+        "url": "https://soko.banteg.xyz/api/replay/117",
+        "replay_url": "https://soko.banteg.xyz/frontier/?room=III-17&record=117",
+        "observed_at": "2026-11-12T16:02:41.610766+00:00",
+        "response_sha256": "ba6c84eae2a64ce9263c87109c427d2fa82bb27e7a758c8f7695dcfc01197c2b",
+        "uid": 10,
+        "model": null,
+        "seed": 0,
+        "attribution": "Public accepted route credited to the named Frontier holder.",
+        "status": "public_accepted_baseline",
+        "limits": "Dated public observation; lower bounds are reported by Frontier and not reproved by this import."
+      }
+    },
+    {
+      "room": 18,
+      "compiled_level_index": 26,
+      "grid": [
+        "#####M########",
+        "#G.GM#F.2###O#",
+        "#...#M.......#",
+        "#G.GM#3.6###O#",
+        "#####M########"
+      ],
+      "tutorial_messages": [],
+      "id": "III-18",
+      "part": 3,
+      "title": "Heroes of Sokoban III: The Bard and The Druid — Room 18",
+      "source": {
+        "part": 3,
+        "title": "Heroes of Sokoban III: The Bard and The Druid",
+        "author": "Jonah Ostroff",
+        "url": "https://sites.math.washington.edu/~ostroff/puzzles/Heroes_of_Sokoban_III_The_Bard_and_The_Druid.html",
+        "html_sha256": "380d343ad35a8f8caf6863341172a7771d0d28ced2824a7a3085990614562105",
+        "source_sha256": "f66ceb8f8a2c23a3cb270bad62cdf194e47479772cab94f154ed26f0ff7c20e0",
+        "attribution": "Original puzzle design and PuzzleScript implementation: Jonah Ostroff."
+      },
+      "coordinates": {
+        "origin": "top-left",
+        "x_direction": "right",
+        "y_direction": "down",
+        "transform": "identity",
+        "grid_order": "rows",
+        "original_compiled_object_order": "column-major"
+      },
+      "width": 14,
+      "height": 5,
+      "reference_route": "RAAUAURURURULAAARULDRULAULAALARRRDAARLLLLLDLLDALLLLLLDDAUULLLAL",
+      "shortest_known": 63,
+      "proven_floor": 63,
+      "frontier_record": 63,
+      "frontier_observation": {
+        "part": 3,
+        "room": 18,
+        "lower": 63,
+        "known": 63,
+        "id": 127,
+        "length": 63,
+        "uid": 10,
+        "handle": "tomhaverford24",
+        "seed": 0,
+        "model": null,
+        "avatar": 1
+      },
+      "baseline": {
+        "route": "RAAUAURURURULAAARULDRULAULAALARRRDAARLLLLLDLLDALLLLLLDDAUULLLAL",
+        "length": 63,
+        "holder": "tomhaverford24",
+        "record_id": 127,
+        "url": "https://soko.banteg.xyz/api/replay/127",
+        "replay_url": "https://soko.banteg.xyz/frontier/?room=III-18&record=127",
+        "observed_at": "2026-11-12T16:02:41.643679+00:00",
+        "response_sha256": "50ce904e9ac87cbed2c06e0234c91ce8de9634cda2a2987b5d9e3ea4547f7239",
+        "uid": 10,
+        "model": null,
+        "seed": 0,
+        "attribution": "Public accepted route credited to the named Frontier holder.",
+        "status": "public_accepted_baseline",
+        "limits": "Dated public observation; lower bounds are reported by Frontier and not reproved by this import."
+      }
+    },
+    {
+      "room": 19,
+      "compiled_level_index": 27,
+      "grid": [
+        "############",
+        "#6######B###",
+        "#........###",
+        "############",
+        "#.#######.4#",
+        "#.......##1#",
+        "#G.G.G.G##O#",
+        "############"
+      ],
+      "tutorial_messages": [],
+      "id": "III-19",
+      "part": 3,
+      "title": "Heroes of Sokoban III: The Bard and The Druid — Room 19",
+      "source": {
+        "part": 3,
+        "title": "Heroes of Sokoban III: The Bard and The Druid",
+        "author": "Jonah Ostroff",
+        "url": "https://sites.math.washington.edu/~ostroff/puzzles/Heroes_of_Sokoban_III_The_Bard_and_The_Druid.html",
+        "html_sha256": "380d343ad35a8f8caf6863341172a7771d0d28ced2824a7a3085990614562105",
+        "source_sha256": "f66ceb8f8a2c23a3cb270bad62cdf194e47479772cab94f154ed26f0ff7c20e0",
+        "attribution": "Original puzzle design and PuzzleScript implementation: Jonah Ostroff."
+      },
+      "coordinates": {
+        "origin": "top-left",
+        "x_direction": "right",
+        "y_direction": "down",
+        "transform": "identity",
+        "grid_order": "rows",
+        "original_compiled_object_order": "column-major"
+      },
+      "width": 12,
+      "height": 8,
+      "reference_route": "ADRRRRRURRDLAAADALUDAAAULRARDDAAALDDALRAAADLADRRAAADURARALLLADLADLLLLD",
+      "shortest_known": 70,
+      "proven_floor": 70,
+      "frontier_record": 70,
+      "frontier_observation": {
+        "part": 3,
+        "room": 19,
+        "lower": 70,
+        "known": 70,
+        "id": 101,
+        "length": 70,
+        "uid": 10,
+        "handle": "tomhaverford24",
+        "seed": 0,
+        "model": null,
+        "avatar": 1
+      },
+      "baseline": {
+        "route": "ADRRRRRURRDLAAADALUDAAAULRARDDAAALDDALRAAADLADRRAAADURARALLLADLADLLLLD",
+        "length": 70,
+        "holder": "tomhaverford24",
+        "record_id": 101,
+        "url": "https://soko.banteg.xyz/api/replay/101",
+        "replay_url": "https://soko.banteg.xyz/frontier/?room=III-19&record=101",
+        "observed_at": "2026-11-12T16:02:41.676245+00:00",
+        "response_sha256": "26a04a2c3ce3b39efcd6e23aeebb36c3ef66516dbe22acb87040e0bdc9b7d562",
+        "uid": 10,
+        "model": null,
+        "seed": 0,
+        "attribution": "Public accepted route credited to the named Frontier holder.",
+        "status": "public_accepted_baseline",
+        "limits": "Dated public observation; lower bounds are reported by Frontier and not reproved by this import."
+      }
+    },
+    {
+      "room": 20,
+      "compiled_level_index": 28,
+      "grid": [
+        "###############",
+        "#....#O.O#...G#",
+        "#..##W...1##..#",
+        "#..#O..O..O#.G#",
+        "#4.#..OGO..#..#",
+        "#..#O..O..O#.G#",
+        "#..##2...6##..#",
+        "#....#O.O#...G#",
+        "###############"
+      ],
+      "tutorial_messages": [],
+      "id": "III-20",
+      "part": 3,
+      "title": "Heroes of Sokoban III: The Bard and The Druid — Room 20",
+      "source": {
+        "part": 3,
+        "title": "Heroes of Sokoban III: The Bard and The Druid",
+        "author": "Jonah Ostroff",
+        "url": "https://sites.math.washington.edu/~ostroff/puzzles/Heroes_of_Sokoban_III_The_Bard_and_The_Druid.html",
+        "html_sha256": "380d343ad35a8f8caf6863341172a7771d0d28ced2824a7a3085990614562105",
+        "source_sha256": "f66ceb8f8a2c23a3cb270bad62cdf194e47479772cab94f154ed26f0ff7c20e0",
+        "attribution": "Original puzzle design and PuzzleScript implementation: Jonah Ostroff."
+      },
+      "coordinates": {
+        "origin": "top-left",
+        "x_direction": "right",
+        "y_direction": "down",
+        "transform": "identity",
+        "grid_order": "rows",
+        "original_compiled_object_order": "column-major"
+      },
+      "width": 15,
+      "height": 9,
+      "reference_route": "ADDDRRADAAADRULARADAAADDLLALAAAARRRRUULAAUALLRADRRRRADRULRURRRRRARRUURURAURRRDDRAUUR",
+      "shortest_known": 84,
+      "proven_floor": 74,
+      "frontier_record": 84,
+      "frontier_observation": {
+        "part": 3,
+        "room": 20,
+        "lower": 74,
+        "known": 84,
+        "id": 140,
+        "length": 84,
+        "uid": 18,
+        "handle": "a1kindus",
+        "seed": 0,
+        "model": null,
+        "avatar": 1
+      },
+      "baseline": {
+        "route": "ADDDRRADAAADRULARADAAADDLLALAAAARRRRUULAAUALLRADRRRRADRULRURRRRRARRUURURAURRRDDRAUUR",
+        "length": 84,
+        "holder": "a1kindus",
+        "record_id": 140,
+        "url": "https://soko.banteg.xyz/api/replay/140",
+        "replay_url": "https://soko.banteg.xyz/frontier/?room=III-20&record=140",
+        "observed_at": "2026-11-12T16:02:41.921324+00:00",
+        "response_sha256": "ec044bd85e3e5d30e4187745768fd5f48ad1e3edf11f5b715c2a1e55e1a9eb38",
+        "uid": 18,
+        "model": null,
+        "seed": 0,
+        "attribution": "Public accepted route credited to the named Frontier holder.",
+        "status": "public_accepted_baseline",
+        "limits": "Dated public observation; lower bounds are reported by Frontier and not reproved by this import."
+      }
+    },
+    {
+      "room": 21,
+      "compiled_level_index": 30,
+      "grid": [
+        "#######################",
+        "#.F.*....#G.G#....*.4.#",
+        "#...#....#...#....#...#",
+        "#######.........#######",
+        "#####.#####O#####.#####",
+        "#..##O#..#...#..#O##..#",
+        "#.2.*....#G.G#....*.5.#",
+        "#..##O#..*...#..#O##..#",
+        "#####.####...####.#####",
+        "#######..#..*O.*#######",
+        "#...###.#######...#...#",
+        "#.3.###.##G.G##...#.6.#",
+        "#######################"
+      ],
+      "tutorial_messages": [
+        "Get ready."
+      ],
+      "id": "III-21",
+      "part": 3,
+      "title": "Heroes of Sokoban III: The Bard and The Druid — Room 21",
+      "source": {
+        "part": 3,
+        "title": "Heroes of Sokoban III: The Bard and The Druid",
+        "author": "Jonah Ostroff",
+        "url": "https://sites.math.washington.edu/~ostroff/puzzles/Heroes_of_Sokoban_III_The_Bard_and_The_Druid.html",
+        "html_sha256": "380d343ad35a8f8caf6863341172a7771d0d28ced2824a7a3085990614562105",
+        "source_sha256": "f66ceb8f8a2c23a3cb270bad62cdf194e47479772cab94f154ed26f0ff7c20e0",
+        "attribution": "Original puzzle design and PuzzleScript implementation: Jonah Ostroff."
+      },
+      "coordinates": {
+        "origin": "top-left",
+        "x_direction": "right",
+        "y_direction": "down",
+        "transform": "identity",
+        "grid_order": "rows",
+        "original_compiled_object_order": "column-major"
+      },
+      "width": 23,
+      "height": 13,
+      "reference_route": "RRRDRRDRRRURRDRRUURRRRRLLLLDDAUAADLLULLLLLDDAAALLLULDDDRDLULDDLLUUAAAULLULAAUADLLLLLAAADLAAALDADRAAAALLDAULAALARUAAARRRRRAUAARDRAAARRDRRUADDRRDDRLAAUAAAULLRRURURDDAURULDDRRRRLLLLAAUUAAARDDRRRDRRRRRAAAAAULLULULULLLDUURLDLLUALLLUUAAAALLLLLDLLLDULLULLLLLLLADDRDALDDAUAAALDURADDUUAAAUAARRRRRRRRUUURUUADRDDDAAAUUURDDDAUUL",
+      "shortest_known": 316,
+      "proven_floor": 268,
+      "frontier_record": 316,
+      "frontier_observation": {
+        "part": 3,
+        "room": 21,
+        "lower": 268,
+        "known": 316,
+        "id": 159,
+        "length": 316,
+        "uid": 17,
+        "handle": "futarchist",
+        "seed": 0,
+        "model": null,
+        "avatar": 1
+      },
+      "baseline": {
+        "route": "RRRDRRDRRRURRDRRUURRRRRLLLLDDAUAADLLULLLLLDDAAALLLULDDDRDLULDDLLUUAAAULLULAAUADLLLLLAAADLAAALDADRAAAALLDAULAALARUAAARRRRRAUAARDRAAARRDRRUADDRRDDRLAAUAAAULLRRURURDDAURULDDRRRRLLLLAAUUAAARDDRRRDRRRRRAAAAAULLULULULLLDUURLDLLUALLLUUAAAALLLLLDLLLDULLULLLLLLLADDRDALDDAUAAALDURADDUUAAAUAARRRRRRRRUUURUUADRDDDAAAUUURDDDAUUL",
+        "length": 316,
+        "holder": "futarchist",
+        "record_id": 159,
+        "url": "https://soko.banteg.xyz/api/replay/159",
+        "replay_url": "https://soko.banteg.xyz/frontier/?room=III-21&record=159",
+        "observed_at": "2026-11-12T16:02:41.926788+00:00",
+        "response_sha256": "32625ea5b0ac0c9106f2d3ac6254eddec6d863dd4d1fd2a9ae18f6d55baf9a57",
+        "uid": 17,
+        "model": null,
+        "seed": 0,
+        "attribution": "Public accepted route credited to the named Frontier holder.",
+        "status": "public_accepted_baseline",
+        "limits": "Dated public observation; lower bounds are reported by Frontier and not reproved by this import."
+      }
+    },
+    {
+      "room": 22,
+      "compiled_level_index": 31,
+      "grid": [
+        "################",
+        "#..............#",
+        "#.1.4......G.G.#",
+        "#..............#",
+        "#.2.B......G.G.#",
+        "#..............#",
+        "#.3.6......G.G.#",
+        "#..............#",
+        "################"
+      ],
+      "tutorial_messages": [],
+      "id": "III-22",
+      "part": 3,
+      "title": "Heroes of Sokoban III: The Bard and The Druid — Room 22",
+      "source": {
+        "part": 3,
+        "title": "Heroes of Sokoban III: The Bard and The Druid",
+        "author": "Jonah Ostroff",
+        "url": "https://sites.math.washington.edu/~ostroff/puzzles/Heroes_of_Sokoban_III_The_Bard_and_The_Druid.html",
+        "html_sha256": "380d343ad35a8f8caf6863341172a7771d0d28ced2824a7a3085990614562105",
+        "source_sha256": "f66ceb8f8a2c23a3cb270bad62cdf194e47479772cab94f154ed26f0ff7c20e0",
+        "attribution": "Original puzzle design and PuzzleScript implementation: Jonah Ostroff."
+      },
+      "coordinates": {
+        "origin": "top-left",
+        "x_direction": "right",
+        "y_direction": "down",
+        "transform": "identity",
+        "grid_order": "rows",
+        "original_compiled_object_order": "column-major"
+      },
+      "width": 16,
+      "height": 9,
+      "reference_route": "RRRRRRRRR",
+      "shortest_known": 9,
+      "proven_floor": 9,
+      "frontier_record": 9,
+      "frontier_observation": {
+        "part": 3,
+        "room": 22,
+        "lower": 9,
+        "known": 9,
+        "id": 66,
+        "length": 9,
+        "uid": 3,
+        "handle": "Claude Fable 5.2",
+        "seed": 1,
+        "model": "claude-fable-5-2",
+        "avatar": 0
+      },
+      "baseline": {
+        "route": "RRRRRRRRR",
+        "length": 9,
+        "holder": "Claude Fable 5.2",
+        "record_id": 66,
+        "url": "https://soko.banteg.xyz/api/replay/66",
+        "replay_url": "https://soko.banteg.xyz/frontier/?room=III-22&record=66",
+        "observed_at": "2026-11-12T16:02:41.893022+00:00",
+        "response_sha256": "9b7d6e57657522052cbbb702cd102a005eaaa3e10c15ffce09b76b4dfa7ca2bf",
+        "uid": 3,
+        "model": "claude-fable-5-2",
+        "seed": 1,
+        "attribution": "Public accepted route credited to the named Frontier holder.",
+        "status": "public_accepted_baseline",
+        "limits": "Dated public observation; lower bounds are reported by Frontier and not reproved by this import."
+      }
+    }
+  ]
+}

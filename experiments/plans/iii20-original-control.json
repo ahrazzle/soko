@@ -1,0 +1,33 @@
+{
+  "schema_version": 1,
+  "id": "iii20-original-baseline-replay",
+  "purpose": "calibration",
+  "question": "Does the pinned original Part III engine accept the existing 84-key III-20 baseline on its final key?",
+  "hypothesis": "The baseline matches the original instance and wins exactly at key 84 without death or restart.",
+  "intervention": "Replay the repository's captured baseline in the independently pinned original engine.",
+  "control": "The public record for III-20 is the same 84-key route; separate checker regression controls reject its 83-key prefix and an 85-key extension.",
+  "prediction": "valid_winning_route=true, first_win=84, first_death=null; this establishes a calibration result, not a new gain.",
+  "decision_rule": "If baseline replay fails, stop candidate search and investigate source/instance/engine mismatch. Do not reinterpret a checker failure as a shorter solution.",
+  "instance": {
+    "part": 3,
+    "room": 20,
+    "source_url": "https://sites.math.washington.edu/~ostroff/puzzles/Heroes_of_Sokoban_III_The_Bard_and_The_Druid.html",
+    "source_sha256": "380d343ad35a8f8caf6863341172a7771d0d28ced2824a7a3085990614562105"
+  },
+  "baseline": {
+    "as_of": "2026-11-12",
+    "keys": 84,
+    "source_url": "https://soko.banteg.xyz/api/replay/140",
+    "holder": "a1kindus",
+    "claim": "Dated existing accepted route; no model-authorship inference from the public account."
+  },
+  "wall_seconds": 45,
+  "seed": null,
+  "seed_reason": "Deterministic baseline replay.",
+  "tracked_files": [
+    "experiments/original_engine/check.py",
+    "soko_mcp/original.py",
+    "evidence/2026-11-12-frontier/iii20-live-instance.json"
+  ],
+  "artifacts": ["replay.json"]
+}

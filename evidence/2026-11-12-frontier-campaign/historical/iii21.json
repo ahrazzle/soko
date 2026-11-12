@@ -1,0 +1,71 @@
+{
+  "objective": "III-21 route below316 keys",
+  "outcome": "no shorter candidate found",
+  "verified_improvement_keys": 0,
+  "baseline_instance": "/workspace/soko/evidence/2026-11-12-frontier/iii21-live-instance.json",
+  "runs": [
+    {
+      "name": "window",
+      "last_progress": "L=92 expanded=8434781 secs=151.768 nodes=700001",
+      "completed_windows": 27,
+      "result": ""
+    },
+    {
+      "name": "guided",
+      "last_progress": "L=96 R=134 expanded=4713502 secs=90.435 nodes=500001",
+      "completed_windows": 25,
+      "result": ""
+    },
+    {
+      "name": "window-tail",
+      "last_progress": "L=196 expanded=5078515 secs=82.3333 nodes=1000002",
+      "completed_windows": 13,
+      "result": ""
+    },
+    {
+      "name": "guided-tail",
+      "last_progress": "L=314 R=316 expanded=10357447 secs=198.396 nodes=1",
+      "completed_windows": 66,
+      "result": "{\"no_improvement\":true,\"windows\":66,\"expanded\":10357447,\"elapsed\":198.397}\n"
+    },
+    {
+      "name": "suffix232.json",
+      "result": {
+        "no_improvement": true,
+        "L": 232
+      }
+    },
+    {
+      "name": "suffix253-layer.json",
+      "result": {
+        "no_improvement": true,
+        "L": 253
+      }
+    },
+    {
+      "name": "suffix282-layer.json",
+      "result": {
+        "no_improvement": true,
+        "L": 282
+      }
+    }
+  ],
+  "mutations": {
+    "no_improvement": true,
+    "tested": 184390,
+    "steps": 17538036,
+    "elapsed": 60.0002
+  },
+  "scope": [
+    "Exact-window searches were deliberately interrupted after cap-heavy intervals; their logs record completed offsets.",
+    "Search uses recovered engine only as incomplete candidate generator.",
+    "Hash-only dedup and heuristic cutoffs do not establish optimality or original-engine equivalence.",
+    "No external submission occurred."
+  ],
+  "source_hashes": {
+    "guided.cpp": "5e604d674198204e209077dbb7c8c106ea2060e578dc0dcc69b501cc1b76f94d",
+    "suffix.cpp": "c35ebac8ceb5190891a529a470fcc29341e9d8392589b622e53ea7053ef4a1be",
+    "suffix-layer.cpp": "2d1e1b2d06eb7a470d2f467265b974355e2e326d69ea834be9c9d4200a7f802e",
+    "window.cpp": "f9940db759c7a0c1c69326d170677152942502bd213881f6736c491295d9e603"
+  }
+}

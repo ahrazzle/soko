@@ -1,3 +1,3 @@
-"""soko-verified-mcp: Domain-General Formal-Systems & Proven-Commons Verified Bar MCP Server."""
+"""Heroes of Sokoban catalog, original-engine replay and bounded local search."""
 
-__version__ = "0.2.0"
+__version__ = "0.3.0"

@@ -1,0 +1,48 @@
+{
+  "schema_version": 1,
+  "started_at": "2026-11-12T15:43:52.714971+00:00",
+  "plan_sha256": "e5285ecd015026c4af37af83a0f2073ef5872ec335c1040e1c58a4a2d5ffa690",
+  "plan_id": "iii20-original-baseline-replay",
+  "runner_sha256": "e84c1d6d3c76fca6ec9803d371deea1f832c85a5b2ebff19e97e1ab2b8d943e9",
+  "command": [
+    "python3",
+    "experiments/original_engine/check.py",
+    "--room",
+    "20",
+    "--instance",
+    "evidence/2026-11-12-frontier/iii20-live-instance.json",
+    "--html",
+    "/workspace/soko-search/original/part3.html",
+    "--output",
+    "evidence/2026-11-12-research-loop-control/replay.json"
+  ],
+  "cwd": "/workspace/soko",
+  "source_hashes_before": {
+    "experiments/original_engine/check.py": "29c1112028fe417a4b65a34253a5b16ae39f2fa4f11bc97ff86b7ba184d1c6b7",
+    "evidence/2026-11-12-frontier/iii20-live-instance.json": "a78c1c7ce3c88acab6223220f3f2c77dcbd74d75adb2227302b800ca641b6151"
+  },
+  "wall_seconds": 45,
+  "acceptance": "not_evaluated",
+  "verified_gain": null,
+  "executable": "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python3",
+  "executable_sha256": "fa67443527ed9647f760d807e2a38f26340757123e643c4639cf273ed15d5ea7",
+  "status": "COMPLETED",
+  "returncode": 0,
+  "elapsed_seconds": 2.587798,
+  "source_hashes_after": {
+    "experiments/original_engine/check.py": "29c1112028fe417a4b65a34253a5b16ae39f2fa4f11bc97ff86b7ba184d1c6b7",
+    "evidence/2026-11-12-frontier/iii20-live-instance.json": "a78c1c7ce3c88acab6223220f3f2c77dcbd74d75adb2227302b800ca641b6151"
+  },
+  "sources_unchanged": true,
+  "outputs": {
+    "stdout.log": "aff9476feb5b9b712149f3e70c5b6a9d43e07bc1a4ef2c7d33b621b2ce26825a",
+    "stderr.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  "artifacts": {
+    "replay.json": {
+      "sha256": "648e7580588988ff9a11e11ff1152ae6c3568dee9668fdb796c9a0a1c75eb0c0",
+      "bytes": 2911
+    }
+  },
+  "missing_artifacts": []
+}

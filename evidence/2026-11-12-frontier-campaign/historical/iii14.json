@@ -1,0 +1,243 @@
+{
+  "room": "III-14",
+  "baseline_keys": 48,
+  "verified_gain_keys": 0,
+  "new_proven_lower_bound": null,
+  "actual_instance": "Original15x7; initial bitfields matched public evaluator by independent original-engine checker",
+  "runs": [
+    {
+      "log": "forced-bottom.log",
+      "completed": true,
+      "candidate_found": false,
+      "transition_attempts": 81403265,
+      "last_lines": [
+        "depth 30 beam 1000000 seen 17280653 expanded 81403265 time 144.599",
+        "NO_IMPROVEMENT variant 11 expanded 81403265"
+      ],
+      "sha256": "d22e3310952e810f98c3ddf356e44066548edd586828d8feb28790cab697a586"
+    },
+    {
+      "log": "forced-left-role.log",
+      "completed": true,
+      "candidate_found": false,
+      "transition_attempts": 90319880,
+      "last_lines": [
+        "depth 30 beam 1000000 seen 19063976 expanded 90319880 time 138.025",
+        "NO_IMPROVEMENT variant 8 expanded 90319880"
+      ],
+      "sha256": "bc82cee0c32a34ddba844fed5cb2a2666bfa469fadade413669e25baa640d36c"
+    },
+    {
+      "log": "forced-left.log",
+      "completed": true,
+      "candidate_found": false,
+      "transition_attempts": 47077155,
+      "last_lines": [
+        "depth 30 beam 500000 seen 9915431 expanded 47077155 time 61.6145",
+        "NO_IMPROVEMENT variant 10 expanded 47077155"
+      ],
+      "sha256": "d01d7eb7abdf97e7c55c9d90fde97c348a2896f85e0eda5ddd15f5eb4bff3ce9"
+    },
+    {
+      "log": "run-v0.log",
+      "completed": true,
+      "candidate_found": false,
+      "transition_attempts": 3741420,
+      "last_lines": [
+        "depth 47 beam 20000 seen 768284 expanded 3741420 time 2.38328",
+        "NO_IMPROVEMENT variant 0 expanded 3741420"
+      ],
+      "sha256": "5ac072c1ab3065353839e53d974d88bb6fb813c47d02ddc9c862d3866db52c85"
+    },
+    {
+      "log": "run-v1.log",
+      "completed": true,
+      "candidate_found": false,
+      "transition_attempts": 21083490,
+      "last_lines": [
+        "depth 47 beam 120000 seen 4336698 expanded 21083490 time 31.124",
+        "NO_IMPROVEMENT variant 1 expanded 21083490"
+      ],
+      "sha256": "91c8af82d2ff2b5e8b49a5604278d0091fad693ccedc509cf7fb6889d25b2cc6"
+    },
+    {
+      "log": "run-v10.log",
+      "completed": true,
+      "candidate_found": false,
+      "transition_attempts": 21083490,
+      "last_lines": [
+        "depth 47 beam 120000 seen 4336698 expanded 21083490 time 23.1457",
+        "NO_IMPROVEMENT variant 10 expanded 21083490"
+      ],
+      "sha256": "f3d73b47dc8ab4f4d21386ae8e5eef23867960cb87bafc1cec29b49f68dad8ec"
+    },
+    {
+      "log": "run-v11.log",
+      "completed": true,
+      "candidate_found": false,
+      "transition_attempts": 21083490,
+      "last_lines": [
+        "depth 47 beam 120000 seen 4336698 expanded 21083490 time 21.6159",
+        "NO_IMPROVEMENT variant 11 expanded 21083490"
+      ],
+      "sha256": "88d079c341d4838d1394bf642d3d425c217897903b4477448d98553024258994"
+    },
+    {
+      "log": "run-v12.log",
+      "completed": true,
+      "candidate_found": false,
+      "transition_attempts": 21083490,
+      "last_lines": [
+        "depth 47 beam 120000 seen 4336698 expanded 21083490 time 18.6585",
+        "NO_IMPROVEMENT variant 12 expanded 21083490"
+      ],
+      "sha256": "65d35acc8adda08b5b48a896a61a0ec41a5a7d2244d55f127218d79c76ef5017"
+    },
+    {
+      "log": "run-v13.log",
+      "completed": true,
+      "candidate_found": false,
+      "transition_attempts": 21083490,
+      "last_lines": [
+        "depth 47 beam 120000 seen 4336698 expanded 21083490 time 18.786",
+        "NO_IMPROVEMENT variant 13 expanded 21083490"
+      ],
+      "sha256": "eb013ee86b48b60fe0ba1ff4dd50aaba73e0a1eb2f0cda9b77549770e34ff876"
+    },
+    {
+      "log": "run-v14.log",
+      "completed": true,
+      "candidate_found": false,
+      "transition_attempts": 21083490,
+      "last_lines": [
+        "depth 47 beam 120000 seen 4336698 expanded 21083490 time 22.8773",
+        "NO_IMPROVEMENT variant 14 expanded 21083490"
+      ],
+      "sha256": "8136810d9a7759e7bdb45462c8b9608aeb1b093204455dba025829ba9b416a32"
+    },
+    {
+      "log": "run-v15.log",
+      "completed": true,
+      "candidate_found": false,
+      "transition_attempts": 21083490,
+      "last_lines": [
+        "depth 47 beam 120000 seen 4336698 expanded 21083490 time 24.0559",
+        "NO_IMPROVEMENT variant 15 expanded 21083490"
+      ],
+      "sha256": "41a88ce51bff4dcf6dbaa52a8ebf1dfa63b43f724038e75a8e1dda6333702e0b"
+    },
+    {
+      "log": "run-v2.log",
+      "completed": true,
+      "candidate_found": false,
+      "transition_attempts": 21083490,
+      "last_lines": [
+        "depth 47 beam 120000 seen 4336698 expanded 21083490 time 26.2025",
+        "NO_IMPROVEMENT variant 2 expanded 21083490"
+      ],
+      "sha256": "435723cc93c762a8ab2c4662afbd669a63427e9db9ad173b926a424f5118c44d"
+    },
+    {
+      "log": "run-v3.log",
+      "completed": true,
+      "candidate_found": false,
+      "transition_attempts": 21083490,
+      "last_lines": [
+        "depth 47 beam 120000 seen 4336698 expanded 21083490 time 27.7659",
+        "NO_IMPROVEMENT variant 3 expanded 21083490"
+      ],
+      "sha256": "ebd2fa4a5e8e05f31a4add9c2131eca58ff5bf503a33ffa04801c7d428054eff"
+    },
+    {
+      "log": "run-v4.log",
+      "completed": true,
+      "candidate_found": false,
+      "transition_attempts": 21083490,
+      "last_lines": [
+        "depth 47 beam 120000 seen 4336698 expanded 21083490 time 26.0997",
+        "NO_IMPROVEMENT variant 4 expanded 21083490"
+      ],
+      "sha256": "b550b6cb0f00705a4310318dbf60095d0be0d2b1665092de1b23dfdb50a9051b"
+    },
+    {
+      "log": "run-v5.log",
+      "completed": true,
+      "candidate_found": false,
+      "transition_attempts": 21083490,
+      "last_lines": [
+        "depth 47 beam 120000 seen 4336698 expanded 21083490 time 29.816",
+        "NO_IMPROVEMENT variant 5 expanded 21083490"
+      ],
+      "sha256": "dc4cebb25957c4065e30e7f4a0f8c2217b2fc7a58056a61614e0a8767a4a66d6"
+    },
+    {
+      "log": "run-v6.log",
+      "completed": true,
+      "candidate_found": false,
+      "transition_attempts": 21083490,
+      "last_lines": [
+        "depth 47 beam 120000 seen 4336698 expanded 21083490 time 25.0567",
+        "NO_IMPROVEMENT variant 6 expanded 21083490"
+      ],
+      "sha256": "4947e2104358ef2ffe00a15482aed03e7326eef3b10c66f539cd23f6ee67f6c6"
+    },
+    {
+      "log": "run-v7.log",
+      "completed": true,
+      "candidate_found": false,
+      "transition_attempts": 21083490,
+      "last_lines": [
+        "depth 47 beam 120000 seen 4336698 expanded 21083490 time 20.9552",
+        "NO_IMPROVEMENT variant 7 expanded 21083490"
+      ],
+      "sha256": "faae90841388f81c0ec92cf3d2779d44aa6d346a9e28eb82ed303320c1067949"
+    },
+    {
+      "log": "run-v8.log",
+      "completed": true,
+      "candidate_found": false,
+      "transition_attempts": 21083490,
+      "last_lines": [
+        "depth 47 beam 120000 seen 4336698 expanded 21083490 time 34.1805",
+        "NO_IMPROVEMENT variant 8 expanded 21083490"
+      ],
+      "sha256": "f2e9c2ad0fd95822be19c9518a6b2c2ff00e4d63d7575a89790e4cf889563aeb"
+    },
+    {
+      "log": "run-v9.log",
+      "completed": true,
+      "candidate_found": false,
+      "transition_attempts": 21083490,
+      "last_lines": [
+        "depth 47 beam 120000 seen 4336698 expanded 21083490 time 34.804",
+        "NO_IMPROVEMENT variant 9 expanded 21083490"
+      ],
+      "sha256": "d72c6c906540cf881e15a408ed000f00856f142cf59693ae5862a476a35ab9aa"
+    },
+    {
+      "log": "suffix24.log",
+      "completed": true,
+      "candidate_found": false,
+      "transition_attempts": 55169430,
+      "last_lines": [
+        "depth 23 beam 1000000 seen 12033886 expanded 55169430 time 85.118",
+        "NO_IMPROVEMENT variant 8 expanded 55169430"
+      ],
+      "sha256": "72191791f16e9e393b390ef52f217d2f06b2e885816d48158c991ec82113305b"
+    }
+  ],
+  "source_hashes": {
+    "strategic_edits.cpp": "d5e005dcf8d13c6f15f641d4877a05dd40a70b3e8672d9967f67ecb202b15f02",
+    "forced.cpp": "b2640d4aeeaec7ed9243757ca00774c763c50a7e0fed75374716f04f75fdb128",
+    "search.cpp": "84260fb3603f140f15b02298ded66b79de612c1394d023d2aa62e9adc2942c99",
+    "suffix.cpp": "4fb7f4e4423a5d747a00c482ea635b42d3ef196ca90a68e7809419e9f1d007b5",
+    "base.cpp": "1086cef0ce92eca8d3fa384edb058651ffeaffe6466950a2d99aa2194adaa42f",
+    "search-role-guide.cpp": "c6fb1166d252ec6a37bde6fef75ff9d6d70f78e4df6f2a664bd438f9c735d946"
+  },
+  "limits": [
+    "Heuristic beam search is incomplete.",
+    "expanded counters in these root beam logs count attempted transitions, not unique states.",
+    "No new shorter route found; no optimality claim.",
+    "The candidate generator was edited between batches; source variants are preserved; historical runs use recorded variant flags and logs."
+  ]
+}
