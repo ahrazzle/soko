@@ -19,6 +19,30 @@ HERO_NAMES = {
     "6": "Druid (transmutes Wall <-> Crate and Moveable -> Wall)",
 }
 
+_CANON_OBJ_CODE: Dict[Optional[str], int] = {
+    None: 0,
+    "F": 1,
+    "T": 2,
+    "W": 3,
+    "P": 4,
+    "B": 5,
+    "D": 6,
+    "1": 7,
+    "2": 8,
+    "3": 9,
+    "4": 10,
+    "5": 11,
+    "6": 12,
+    "#": 13,
+    "*": 14,
+    "O": 15,
+    "L": 16,
+    "R": 17,
+    "[": 18,
+    "]": 19,
+    "M": 20,
+}
+
 CYCLE_ORDER_STD = ["1", "2", "3", "4", "5", "6"]
 CYCLE_ORDER_BUG09 = ["1", "3", "2", "4", "5", "6"]
 
@@ -66,6 +90,8 @@ class PuzzleScriptOracle:
         self.floor: List[List[Optional[str]]] = [[None] * self.w for _ in range(self.h)]
         self.obj: List[List[Optional[str]]] = [[None] * self.w for _ in range(self.h)]
         self.notes: Set[Tuple[int, int]] = set()
+        self.has_ydoors_init = False
+        self.has_pdoors_init = False
 
         for y, row in enumerate(rows):
             for x, ch in enumerate(row):
@@ -75,6 +101,10 @@ class PuzzleScriptOracle:
                     self.floor[y][x] = ch
                 elif ch in ("#", "*", "O", "L", "R", "[", "]", "M") or ch in ACTIVE_HEROES or ch in INACTIVE_HEROES:
                     self.obj[y][x] = ch
+                    if ch == "[":
+                        self.has_ydoors_init = True
+                    elif ch == "]":
+                        self.has_pdoors_init = True
                 else:
                     raise ValueError(f"Unrecognized level symbol {ch!r} at ({x}, {y})")
 
@@ -89,6 +119,8 @@ class PuzzleScriptOracle:
         cp.floor = [r[:] for r in self.floor]
         cp.obj = [r[:] for r in self.obj]
         cp.notes = set(self.notes)
+        cp.has_ydoors_init = self.has_ydoors_init
+        cp.has_pdoors_init = self.has_pdoors_init
         return cp
 
     def render_ascii(self) -> str:
@@ -106,6 +138,29 @@ class PuzzleScriptOracle:
                     line.append(".")
             lines.append("".join(line))
         return "\n".join(lines)
+
+    def fold_canonical_digest(self, acc: int) -> int:
+        """Fold exact full-state frame (objects + Note aura + open-door layers) into 64-bit FNV-1a digest."""
+        prime = 1099511628211
+        mask64 = 0xFFFFFFFFFFFFFFFF
+        h = acc
+        y_open_eff = 0
+        p_open_eff = 0
+        for y in range(self.h):
+            for x in range(self.w):
+                f = self.floor[y][x]
+                if f == "YO":
+                    y_open_eff = 1
+                elif f == "PO":
+                    p_open_eff = 1
+                code = _CANON_OBJ_CODE.get(self.obj[y][x], 31)
+                nbit = 1 if (x, y) in self.notes else 0
+                bval = (code & 0x1F) | (nbit << 5)
+                h = ((h ^ bval) * prime) & mask64
+        door_flags = (y_open_eff & 1) | ((p_open_eff & 1) << 1)
+        h = ((h ^ door_flags) * prime) & mask64
+        h = ((h ^ 0xFF) * prime) & mask64
+        return h
 
     def state_signature(self) -> Tuple:
         return (
@@ -516,7 +571,7 @@ FRONTIER_ROOMS: Dict[str, Dict[str, Any]] = {
     },
     "III-14": {
         "part": 3,
-        "title": "Part III, Room 14 (Bard, Druid, and Nine Purple Switches)",
+        "title": "Part III, Room 14 (Bard, Druid, and Nine Purple Switches - 14x7)",
         "proven_floor": 43,
         "shortest_known": 48,
         "frontier_record": 48,
@@ -529,6 +584,23 @@ FRONTIER_ROOMS: Dict[str, Dict[str, Any]] = {
             "#.D.}}}.]]]]]#",
             "#............#",
             "##############",
+        ],
+    },
+    "III-14-15x7": {
+        "part": 3,
+        "title": "Part III, Room 14 (Verbatim 15x7 PuzzleScript Editor Variant)",
+        "proven_floor": 43,
+        "shortest_known": 48,
+        "frontier_record": 48,
+        "reference_route": "LLULULULRURURURURUAUDRRDDAUARRDLRAULDLDRARURDUUR",
+        "grid": [
+            "###############",
+            "#.............#",
+            "#.5.}}}.]]]]].#",
+            "#...}}}.]G.G].#",
+            "#.D.}}}.]]]]].#",
+            "#.............#",
+            "###############",
         ],
     },
     "III-15": {
@@ -592,6 +664,7 @@ FRONTIER_ROOMS: Dict[str, Dict[str, Any]] = {
 def replay_oracle(part: int, grid: List[str], route: str, flags: MutatorFlags = MutatorFlags()) -> Dict[str, Any]:
     sim = PuzzleScriptOracle(part, grid, flags=flags)
     clean_route = route.strip().upper()
+    digest = sim.fold_canonical_digest(14695981039346656037)
     premature_win = False
     alive = True
     steps_executed = 0
@@ -601,6 +674,7 @@ def replay_oracle(part: int, grid: List[str], route: str, flags: MutatorFlags = 
         if not ok_alive:
             alive = False
             break
+        digest = sim.fold_canonical_digest(digest)
         if won and idx + 1 < len(clean_route):
             premature_win = True
             break
@@ -612,19 +686,24 @@ def replay_oracle(part: int, grid: List[str], route: str, flags: MutatorFlags = 
         "steps_executed": steps_executed,
         "route_len": len(clean_route),
         "route_sha256_12": hashlib.sha256(clean_route.encode("utf-8")).hexdigest()[:12],
+        "traj_fnv64": f"{digest:016x}",
         "final_ascii": sim.render_ascii(),
         "signature": sim.state_signature(),
     }
 
 
 def run_planted_bug_audit(extra_vectors: Optional[List[Dict[str, Any]]] = None) -> Dict[str, Any]:
-    """Run the 10-mutation Proven-Commons Planted-Bug Suite against built-in + custom vectors."""
+    """Run the 10-mutation Proven-Commons Planted-Bug Suite AND cross-engine parity check against FlatBitmaskOracle."""
+    from .flat_oracle import replay_flat_oracle
+
     vectors: List[Tuple[str, int, List[str], str, bool, bool]] = [
         ("II-22_94", 2, FRONTIER_ROOMS["II-22"]["grid"], FRONTIER_ROOMS["II-22"]["reference_route"], True, True),
         ("III-14_48", 3, FRONTIER_ROOMS["III-14"]["grid"], FRONTIER_ROOMS["III-14"]["reference_route"], True, True),
+        ("III-14_15x7_48", 3, FRONTIER_ROOMS["III-14-15x7"]["grid"], FRONTIER_ROOMS["III-14-15x7"]["reference_route"], True, True),
         ("III-15_69", 3, FRONTIER_ROOMS["III-15"]["grid"], FRONTIER_ROOMS["III-15"]["reference_route"], True, True),
         ("III-20_87", 3, FRONTIER_ROOMS["III-20"]["grid"], FRONTIER_ROOMS["III-20"]["prior_record_route_87"], True, True),
         ("III-20_84", 3, FRONTIER_ROOMS["III-20"]["grid"], FRONTIER_ROOMS["III-20"]["reference_route"], True, True),
+        ("III-20_84_ALT", 3, FRONTIER_ROOMS["III-20"]["grid"], FRONTIER_ROOMS["III-20"]["alternate_route_84"], True, True),
         ("III-22_9", 3, FRONTIER_ROOMS["III-22"]["grid"], FRONTIER_ROOMS["III-22"]["reference_route"], True, True),
         ("MICRO_GOBLIN_SIMUL", 3, ["########", "#....G.#", "#F*O.O.#", "########"], "RRRRU", True, True),
         ("MICRO_MULTI_PUSH", 3, ["#########", "#..G....#", "#F***...#", "#########"], "RRU", True, True),
@@ -640,15 +719,31 @@ def run_planted_bug_audit(extra_vectors: Optional[List[Dict[str, Any]]] = None) 
         ))
 
     baseline: Dict[str, Tuple] = {}
+    cross_engine_mismatches: List[str] = []
     for name, part, grid, route, exp_alive, exp_win in vectors:
         res = replay_oracle(part, grid, route)
+        flat_res = replay_flat_oracle(part, grid, route)
         if res["alive"] != exp_alive or res["exact_win"] != exp_win:
             return {
                 "epistemic_status": "FAILED_BASELINE",
                 "failed_vector": name,
                 "detail": {k: v for k, v in res.items() if k != "signature"},
             }
-        baseline[name] = res["signature"]
+        if (
+            flat_res["alive"] != res["alive"]
+            or flat_res["exact_win"] != res["exact_win"]
+            or flat_res["premature_win"] != res["premature_win"]
+            or flat_res["traj_fnv64"] != res["traj_fnv64"]
+            or flat_res["final_ascii"] != res["final_ascii"]
+        ):
+            cross_engine_mismatches.append(name)
+        baseline[name] = (res["signature"], flat_res["traj_fnv64"])
+
+    if cross_engine_mismatches:
+        return {
+            "epistemic_status": "FAILED_CROSS_ORACLE_PARITY",
+            "cross_engine_mismatches": cross_engine_mismatches,
+        }
 
     p2_cancel_dragon = ["#######", "#R..OG#", "#..4FG#", "#######"]
     b_clean = PuzzleScriptOracle(2, p2_cancel_dragon)
@@ -662,7 +757,8 @@ def run_planted_bug_audit(extra_vectors: Optional[List[Dict[str, Any]]] = None) 
         failing_vectors: List[str] = []
         for name, part, grid, route, exp_alive, exp_win in vectors:
             r = replay_oracle(part, grid, route, flags=flags)
-            if r["alive"] != exp_alive or r["exact_win"] != exp_win or r["signature"] != baseline[name]:
+            sig_ref, traj_ref = baseline[name]
+            if r["alive"] != exp_alive or r["exact_win"] != exp_win or r["signature"] != sig_ref or r["traj_fnv64"] != traj_ref:
                 failing_vectors.append(name)
         b_mut = PuzzleScriptOracle(2, p2_cancel_dragon, flags=flags)
         b_mut.step("D")
@@ -679,11 +775,14 @@ def run_planted_bug_audit(extra_vectors: Optional[List[Dict[str, Any]]] = None) 
             "failing_vectors": failing_vectors,
         })
 
+    all_ok = (caught_count == len(PLANTED_BUGS)) and (len(cross_engine_mismatches) == 0)
     return {
-        "epistemic_status": "VERIFIED" if caught_count == len(PLANTED_BUGS) else "INCOMPLETE",
+        "epistemic_status": "VERIFIED" if all_ok else "INCOMPLETE",
         "planted_bugs_total": len(PLANTED_BUGS),
         "planted_bugs_caught": caught_count,
-        "all_caught": caught_count == len(PLANTED_BUGS),
+        "all_caught": all_ok,
+        "cross_oracle_parity_vectors": len(vectors),
+        "cross_oracle_mismatches": 0,
         "vectors_evaluated": len(vectors) + 1,
         "mutations": results,
     }
