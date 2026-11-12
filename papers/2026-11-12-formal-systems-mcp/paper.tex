@@ -6,7 +6,6 @@
 \usepackage{amsmath,amssymb,amsthm,mathtools}
 \usepackage{booktabs}
 \usepackage{tabularx}
-\usepackage{graphicx}
 \usepackage{xcolor}
 \usepackage{fancyhdr}
 \usepackage{caption}
@@ -15,7 +14,6 @@
 \definecolor{primary}{RGB}{20,66,114}
 \definecolor{accent}{RGB}{15,118,110}
 \definecolor{slatebg}{RGB}{244,247,250}
-\definecolor{tealbg}{RGB}{236,250,248}
 \definecolor{warncolor}{RGB}{153,27,27}
 
 \hypersetup{
@@ -23,279 +21,212 @@
   linkcolor=primary,
   citecolor=primary,
   urlcolor=accent,
-  pdftitle={Self-Auditing Formal-Systems MCP Kernels for Autonomous Agents},
-  pdfauthor={Ahraz Arifuddin (Moissanite Labs / Foundation-0)}
+  pdftitle={Green Tests, Unsound Certificates: An Experience Report on Agent-Written Verifiers},
+  pdfauthor={Ahraz Arifuddin}
 }
 
-\setlength{\parskip}{6pt plus 2pt minus 1pt}
+\setlength{\parskip}{5pt plus 2pt minus 1pt}
 \setlength{\parindent}{0pt}
 \setlength{\headheight}{14pt}
 \setlength{\emergencystretch}{2em}
 
 \pagestyle{fancy}
 \fancyhf{}
-\fancyhead[L]{\footnotesize\color{gray}Foundation-0 \& Moissanite Labs Technical Preprint}
+\fancyhead[L]{\footnotesize\color{gray}Experience report (preprint draft)}
 \fancyhead[R]{\footnotesize\color{gray}November 12, 2026}
 \fancyfoot[C]{\small\thepage}
 \renewcommand{\headrulewidth}{0.4pt}
 
 \newtheorem{proposition}{Proposition}
-\newtheorem{definition}{Definition}
 
 \newcommand{\takeaway}[2]{%
-  \vspace{6pt}\noindent\colorbox{slatebg}{%
+  \vspace{4pt}\noindent\colorbox{slatebg}{%
     \parbox{\dimexpr\linewidth-2\fboxsep\relax}{%
-      \vspace{4pt}\textbf{\color{primary}#1:}\hspace{0.5em}#2\vspace{4pt}%
+      \vspace{3pt}\textbf{\color{primary}#1:}\hspace{0.5em}#2\vspace{3pt}%
     }%
-  }\vspace{6pt}%
+  }\vspace{4pt}%
 }
 
-\newcommand{\gatebox}[3]{%
-  \fcolorbox{#1}{#2}{%
-    \parbox[c][2.25cm][c]{3.45cm}{%
-      \centering\footnotesize #3%
-    }%
-  }%
-}
-
-\title{\vspace{-8mm}\textbf{\LARGE Self-Auditing Formal-Systems MCP Kernels for Autonomous Agents:\\[4pt]
-\large Empirical Soundness Defects, Hash-Collision Pruning, and Quotient-Homomorphism Proofs\\
-on the Sokoban Eval Frontier}}
+\title{\vspace{-8mm}\textbf{\Large Green Tests, Unsound Certificates:\\[3pt]
+\large An Experience Report on Agent-Written Verifiers for a Sokoban Benchmark}}
 
 \author{
   \textbf{Ahraz Arifuddin} (\texttt{@a1kindus})\\
-  Moissanite Labs \& \href{https://github.com/Foundation-0}{Foundation-0}\\
-  \small AI-Assisted Research \& Verification Lanes: \texttt{prv-cmn-eval}, \texttt{fdn0-eval}, \texttt{aeva}, \texttt{gem-nexus}\thanks{Prepared under the \href{https://github.com/Foundation-0/f0/blob/main/JOIN.md}{Foundation-0 Charter} (Principles 0.2--0.6: explicit human sign-off, AI role disclosure, calibrated epistemic claim labels, and open correction of defects) and the \href{https://github.com/Proven-Commons/mission/blob/main/playbook/verified-bar.md}{Proven-Commons Verified Bar}. Nothing in this preprint has been externally peer-reviewed.}
+  Moissanite Labs \& \href{https://github.com/Foundation-0}{Foundation-0}
 }
-\date{November 12, 2026 \quad$\cdot$\quad Version 1.0 (Preprint Draft)}
+\date{November 12, 2026 \quad$\cdot$\quad Version 2.0 (preprint draft, revised after audit)}
 
 \begin{document}
 \maketitle
 
 \begin{abstract}
-\noindent When large language model (LLM) agents author both a combinatorial solver and its accompanying verification script, passing unit tests frequently masks silent soundness failures. During a multi-agent evaluation on the \href{https://soko.banteg.xyz/frontier/}{Sokoban Eval Frontier Challenge} across Jonah Ostroff's 66-room \href{https://sites.math.washington.edu/~ostroff/puzzles/Heroes_of_Sokoban.html}{\emph{Heroes of Sokoban} trilogy}, an initial agent-authored Model Context Protocol (MCP) server (\texttt{soko-verified-mcp v0.1.0}) passed all six baseline tests and reproduced a live record 84-key trajectory on Room \texttt{III-20} (surpassing the 85-key holdout target and 145-key model baseline). Yet cross-agent adversarial review uncovered six soundness and generality defects (\texttt{F-01}--\texttt{F-06}), including two critical verification failures: (1) an optimistic boolean initialization that silently emitted \texttt{VERIFIED} certificates from a single interpreter whenever C++20 compilation was absent (\texttt{F-01}), and (2) lossy tag-only transposition-table pruning in lower-bound search that suffered \textbf{22,658 live 64-bit hash collisions} within 35 seconds across $2.766 \times 10^{7}$ exact states on Room \texttt{III-14} (\texttt{F-04}).
-
-To eliminate these failure modes structurally, \texttt{soko-verified-mcp} (\texttt{v0.2.0}--\texttt{v0.3.0}) introduces a domain-general, 16-tool Formal-Systems MCP Kernel (\texttt{formal\_*} and \texttt{soko\_*}). The kernel enforces AST-sandboxed pure execution over exact integers and rationals, blocks alpha-renamed copy-paste tautologies via structural AST skeleton hashing, mandates negative-control rejection and planted-mutation kill gates before unlocking search, and restricts lower-bound certificates to machine-checked Quotient Graph Homomorphisms, Inductive Potentials, and Houdini greatest-fixpoint invariants. Across three evaluation domains, the hardened server certifies the 84-key chiral-mirror record on \texttt{III-20}, raises the collision-free exact-state lower bound on \texttt{III-14} from 9 to 35 across $1.108 \times 10^{8}$ verified transitions via a $3.97 \times 10^{7}$-state 2-Atom Quotient Pattern Database, extracts a 5-step split-brain counterexample in an unfenced dual-gateway lease protocol before proving global safety across all 486 syntactic states under monotonic epoch fencing, and closes a precedence-constrained setup-cost scheduling benchmark at $\mathrm{LB} = \mathrm{UB} = 19$. Following Foundation-0 epistemic rules, this paper separates the genuine systems contribution---mechanical anti-tautology gates for agentic verification---from the classical nature of the small-state protocol and scheduling benchmarks.
+\noindent AI coding agents wrote a Model Context Protocol (MCP) server, \texttt{soko-verified-mcp}, that replays, searches and certifies routes for the 66-room \emph{Heroes of Sokoban} trilogy used by the Sokoban Eval Frontier challenge. The same agents wrote its tests, and those tests passed while the server issued certificates that did not hold. This report catalogs those failures and records what still replays on the current tree. One defect was a boolean initialized to true, so a single interpreter could emit \texttt{VERIFIED} whenever the C++ engine was missing; it is fixed. A second is still open: the lower-bound wrapper labels a floor \texttt{VERIFIED} and says every shorter route was refuted when the search stopped at a node cap and returned no witness. An earlier draft of this paper reported a certified lower bound of 35 on Room III-14; a rerun of that prover aborts with a step-consistency failure and emits no final certificate, so the claim is withdrawn here. The results that replay are smaller: two 84-key routes on Room III-20 that agree across three local engines, a 5-step split-brain trace and a 486-state fenced safety check for a toy lease protocol, a 4-job schedule closed at cost 19, and a mutation audit that kills 10 of 10 planted rule bugs. The lesson for agent tooling is that a certificate should carry something a second checker can replay, and that the status word alone is the weakest part of the system.
 \end{abstract}
 
-\takeaway{Epistemic Summary}{Claims in this preprint follow the four-tier \href{https://github.com/Foundation-0}{Foundation-0} taxonomy: \texttt{PROVEN} (exhaustive deductive or closed-universe finite mathematical proof), \texttt{VERIFIED} (finite deterministic witness replayed across $\ge 2$ zero-shared-code checkers with SHA-256 checker pins), \texttt{KNOWN} (external published baseline), and \texttt{CONJECTURE} (unproved search hypothesis).}
+\takeaway{Claim labels}{\texttt{PROVEN}: exhaustive check of a closed finite model. \texttt{VERIFIED}: a finite witness replayed by at least two independent engines. \texttt{KNOWN}: a public number imported from the frontier snapshot. \texttt{UB}: a route replayed locally as a win, which is an upper bound only. \texttt{CONJECTURE}: an untested explanation or an open optimality question. These are the paper's labels. Section~\ref{sec:limits} lists places where the server prints \texttt{VERIFIED} or \texttt{PROVEN} without meeting them.}
 
-\section{Verification Illusions in Agent-Authored Solvers}
+\section{Setting}
 
-Combinatorial planning benchmarks expose a recurring asymmetry between discovering candidate trajectories and certifying mathematical claims. On the \href{https://soko.banteg.xyz/frontier/}{Sokoban Eval Frontier Challenge} (\href{https://banteg.xyz/posts/sokoban/}{\emph{Eight moves to the exit}}), frontier language models evaluated across the 66 rooms of Jonah Ostroff's PuzzleScript trilogy---\href{https://www.puzzlescript.net/editor.html?hack=6860122}{\emph{Heroes of Sokoban Part I}}, \href{https://www.puzzlescript.net/editor.html?hack=6910207}{\emph{Part II: Monsters}}, and \href{https://www.puzzlescript.net/editor.html?hack=7072276}{\emph{Part III: The Bard and The Druid}}---achieved proven optimality in 44 of 66 rooms with a best composite segment total of 3,819 inputs against a 3,000-key trilogy lower-bound floor and 3,064 keys across the 22 holdout routes \cite{banteg2026sokoban,sokobanteg2026frontier}.
+The Sokoban Eval Frontier challenge \cite{banteg2026announce,sokobanteg2026frontier} opens every room of Jonah Ostroff's PuzzleScript trilogy \cite{ostroff2026heroes} with the shortest route a language model found in banteg's evaluation runs \cite{banteg2026sokoban}. The 11 November 2026 announcement \cite{banteg2026announce} gives the starting state: the best segment run of the trilogy is 3,819 inputs, models matched the proven optimum in 44 of 66 rooms, the holdout routes for the other 22 rooms total 3,064 keys, and the trilogy floor is 3,000. Three rooms were open: III-14 (floor 43, known 48, model 116), III-20 (74, 85, 145) and III-21 (268, 316, 589).
 
-Unlike classical single-agent Imabayashi Sokoban, the trilogy composes six coupled hero movement laws under PuzzleScript's synchronous rule-rewriting engine \cite{ostroff2026heroes}:
-\begin{enumerate}
-  \item \textbf{Fighter (\texttt{F}/\texttt{1}):} Pushes colinear chains of arbitrarily many \texttt{Moveable} entities (crates \texttt{*}, dormant heroes \texttt{1..6}, and monsters) whenever an empty cell terminates the ray.
-  \item \textbf{Thief (\texttt{T}/\texttt{2}):} Steps into an empty cell and pulls one orthogonally trailing \texttt{Moveable}.
-  \item \textbf{Wizard (\texttt{W}/\texttt{3}):} Fires a projective warpball that swaps positions with the first \texttt{Moveable} struck, or advances one empty cell if striking a \texttt{Static} barrier (\texttt{\#}, closed doors, monster gates \texttt{M}, or Part III board edges).
-  \item \textbf{Priest (\texttt{P}/\texttt{4}):} Protects itself and orthogonally adjacent heroes---both when active (\texttt{P}) and when dormant (\texttt{4})---against simultaneous \texttt{Late}-phase Goblin/Dragon \texttt{Dying} rules and Druid petrification.
-  \item \textbf{Bard (\texttt{B}/\texttt{5}, Part III):} Projects a $5\times 5$ Chebyshev \texttt{Note} aura ($\max(|\Delta x|, |\Delta y|) \le 2$) computed at the \emph{conclusion of the preceding turn}; on movement, Bard and all charmed \texttt{Moveable} objects translate rigidly to a simultaneous fixed point, reverting via \texttt{Cancel} if Bard itself cannot advance.
-  \item \textbf{Druid (\texttt{D}/\texttt{6}, Part III):} Transmutes adjacent crates or goblins into walls ($\{\texttt{*},\texttt{O}\}\to\texttt{\#}$), walls (including outer boundary walls) into crates ($\texttt{\#}\to\texttt{*}$), and unshielded dormant heroes into walls, where transmuted walls count as \texttt{Weighing} on yellow and purple pressure switches.
-\end{enumerate}
+The trilogy is harder to model than classical Sokoban. Six heroes follow different movement laws (the Fighter pushes chains, the Thief pulls, the Wizard swaps by projectile, the Priest shields neighbours, the Bard moves charmed objects inside a $5\times 5$ aura, and the Druid turns crates into walls and walls into crates), and PuzzleScript resolves rules synchronously. Agent-written engines drift from these semantics in small ways, which is why the server replays every route on more than one engine.
 
-When autonomous coding agents translate rich rule systems into fast C++ or Python search engines, subtle semantic drift is common: evaluating Bard's aura in Manhattan rather than Chebyshev norm, computing charm masks before rather than after a move, cycling \texttt{Action} (\texttt{A}) in \texttt{OBJECTS} order rather than \texttt{LEGEND} order, or resolving Goblin combat sequentially rather than simultaneously. More dangerously, when the same agent writes the test harness, passing tests can create an \emph{illusion of formal verification}. This paper documents what survived inside a live record-setting MCP server (\texttt{v0.1.0}) and how a minimal, self-auditing MCP protocol (\texttt{v0.3.0}) mechanically eliminates those failure modes.
+\texttt{soko-verified-mcp} is the server under study. On the tree this paper is committed to, it registers 19 MCP tools over stdio: 12 Sokoban tools (\texttt{soko\_*}) and 7 domain-general tools (\texttt{formal\_*}), plus 6 resources. AI agents wrote the engines, the search code, the tests and most of the documentation; human review came through pull requests and independent agent audits. This is the setting the report is about: agents writing both a solver and the checker that is supposed to keep the solver honest.
 
-\section{Empirical Soundness Audit: Six Defects Caught in Review}
+\section{Related Work}
 
-Following the pilot clear of Room \texttt{III-20} in 84 keys on branch \href{https://github.com/ahrazzle/soko/tree/feat/soko-verified-mcp}{\texttt{feat/soko-verified-mcp}} (\texttt{v0.1.0}), three review lanes (\texttt{fdn0-eval} in \href{https://github.com/ahrazzle/soko/pull/1}{PR \#1}, \texttt{aeva} in \href{https://github.com/ahrazzle/soko/pull/2}{PR \#2}, and \texttt{gem-nexus} in \texttt{v0.3.0}) audited the codebase against the \href{https://github.com/Foundation-0/incentre-lattices/blob/main/CONTRIBUTING.md}{Foundation-0 Repository Standard} \cite{f0standard2026} and the \href{https://github.com/Proven-Commons/mission/blob/main/playbook/verified-bar.md}{Proven-Commons Verified Bar} \cite{provencommons2026bar}. Table~\ref{tab:audit} catalogs the defects uncovered despite a 100\% passing \texttt{v0.1.0} test suite.
+Lower bounds for Sokoban search have a long history. Junghanns and Schaeffer's Rolling Stone combined IDA* with deadlock tables, pattern search and lower-bound enhancements on the 90-level XSokoban suite \cite{junghanns2001sokoban}. Culberson and Schaeffer introduced pattern databases as admissible heuristics \cite{culberson1998pdb}. Pereira, Ritt and Buriol built instance-dependent pattern databases for Sokoban, where the goal of each stone is unknown in advance \cite{pereira2013instance}, and Pereira, Holte, Schaeffer, Buriol and Ritt extended this to multiple intermediate goal states and raised the number of optimally solved standard instances from 20 to 28 \cite{pereira2016improved}. Shoham and Schaeffer's FESS algorithm, implemented in the Festival solver, is the first program to solve all 90 XSokoban levels \cite{shoham2020fess}. The quotient argument in Section~\ref{sec:prop} is the standard abstraction argument behind this line of work. The pair abstraction built for Room III-14 is an application of it to a PuzzleScript variant.
+
+The invariant engine follows Houdini \cite{flanagan2001houdini}. The lease example uses fencing tokens as described by Kleppmann \cite{kleppmann2016fencing} and logical clocks in the sense of Lamport \cite{lamport1978time}. The claim labels follow the Foundation-0 repository standard \cite{f0standard2026} and the Proven-Commons verified bar \cite{provencommons2026bar}.
+
+\section{Defects Found While the Tests Passed}
+
+Review on pull requests \#1, \#2, \#5 and \#7 of \texttt{ahrazzle/soko}, and the audit behind this revision, found the defects in Table~\ref{tab:audit}. The v0.1.0 suite passed in full while the first of them were present.
 
 \begin{table}[!htbp]
 \centering
-\caption{Adversarial soundness and specification defects uncovered in \texttt{soko-verified-mcp v0.1.0}--\texttt{v0.2.0} and resolved in \texttt{v0.3.0}.}
+\caption{Soundness defects in \texttt{soko-verified-mcp} and their state on the current tree.}
 \label{tab:audit}
 \small
-\begin{tabularx}{\linewidth}{@{}ll>{\raggedright\arraybackslash}X>{\raggedright\arraybackslash}X@{}}
+\begin{tabularx}{\linewidth}{@{}l>{\raggedright\arraybackslash}X>{\raggedright\arraybackslash}X@{}}
 \toprule
-\textbf{ID} & \textbf{Severity} & \textbf{Root Cause in Baseline Code} & \textbf{Mechanical Resolution in \texttt{v0.2.0}--\texttt{v0.3.0}} \\
+\textbf{ID} & \textbf{Defect} & \textbf{State on this tree} \\
 \midrule
-\texttt{F-01} & {\color{warncolor}\textbf{Critical}} & \texttt{verify\_route\_dual} initialized \texttt{differential\_\allowbreak match = True} prior to \texttt{if cpp\_res is not None:}, emitting \texttt{VERIFIED} on a single oracle if \texttt{g++} was missing or $W\cdot H > 512$. & Added zero-shared-code 1D bitmask \texttt{Flat\allowbreak Bitmask\allowbreak Oracle}; initialized \texttt{differential\_\allowbreak match = False}; enforced $\ge 2$ independent engines. \\
-\addlinespace[3pt]
-\texttt{F-02} & \textbf{High} & Differential check compared \texttt{final\_ascii} only at terminal step $t = L$, collapsing open doors (\texttt{YO}/\texttt{PO}) to \texttt{.} and ignoring hidden Bard \texttt{Note} bitmasks on $t < L$. & Folded 64-bit FNV-1a full-state per-frame digests (\texttt{traj\_fnv64}) over $(\text{objs}, \text{notes}, y_{\text{open}}, p_{\text{open}})$ at every frame $t = 0\dots L$ across all three engines. \\
-\addlinespace[3pt]
-\texttt{F-03} & \textbf{High} & \texttt{SHA256SUMS} was unchecked at runtime; certificates omitted checker hashes (\href{https://github.com/Foundation-0/incentre-lattices/issues/14}{Issue \#14}); mutation audit tested only one engine. & Added path-confined \texttt{soko\_\allowbreak verify\_\allowbreak tcb\_\allowbreak lock}, embedded SHA-256 \texttt{checker\_pins} in all certificates, and checked cross-oracle parity across all mutation vectors. \\
-\addlinespace[3pt]
-\texttt{F-04} & {\color{warncolor}\textbf{Critical}} & \texttt{prove\_lb} pruned IDA* branches on a hash-tag hit without comparing full \texttt{DynState}; admissible heuristic collapsed to $h_0=9$ on \texttt{III-14} and $h_0=1$ with Wizard. & Stored full \texttt{DynState}/\texttt{Packed14} records in exact-state transposition/A* tables (preventing 22,658 live collisions on \texttt{III-14}); added \texttt{Pair\allowbreak Atom\allowbreak Quotient\allowbreak PDB} and \texttt{Wizard\allowbreak Ray\allowbreak Goal\allowbreak Bound}. \\
-\addlinespace[3pt]
-\texttt{F-05} & \textbf{Arch.} & All 7 MCP tools hardcoded Sokoban ASCII grids and \texttt{U/D/L/R/A} moves; lacked 15$\times$7 trailing-column variant of \texttt{III-14}. & Built 7 universal AST-sandboxed \texttt{formal\_*} tools (\texttt{formal\_kernel.py}), \texttt{soko\_\allowbreak capabilities}, and both $14\times 7$ and $15\times 7$ \texttt{III-14} benchmarks. \\
-\addlinespace[3pt]
-\texttt{F-06+} & \textbf{Med/Low} & \texttt{README.md} mistyped alternate \texttt{III-20} SHA-256 (\texttt{4c99...} vs.\ \texttt{4edff1ad8c90}); \texttt{I-1} listed 8 steps instead of 9 (\texttt{RRRRRRRRR}); \texttt{prove\_floor} lacked fail-closed witness replay. & Fixed \texttt{III-20} digest and 9-step \texttt{I-1} baseline; made \texttt{prove\_\allowbreak floor\_\allowbreak verified} fail closed (\texttt{INCOMPLETE\_\allowbreak CPP\_\allowbreak OUTPUT}, \texttt{REJECTED\_\allowbreak INVALID\_\allowbreak WITNESS}). \\
+\texttt{F-01} & \texttt{verify\_route\_dual} set \texttt{differential\_match = True} before checking the C++ result, so one interpreter returned \texttt{VERIFIED} when \texttt{g++} was missing or the grid exceeded 512 cells. & Fixed. The flag starts false and two engines are required. The original v0.1.0 incident was not re-executed. \\
+\addlinespace[2pt]
+\texttt{F-02} & The differential check compared only the final ASCII frame, which hides open doors and Bard notes. & Fixed. Engines compare a 64-bit FNV-1a digest of objects, notes and doors at every frame. \\
+\addlinespace[2pt]
+\texttt{F-03} & \texttt{SHA256SUMS} was not checked at run time and certificates carried no checker hashes. & Fixed in part. \texttt{prove\_floor\_verified} rejects an unlocked TCB. A tamper suite was not repeated. \\
+\addlinespace[2pt]
+\texttt{F-04} & {\color{warncolor}\textbf{Open.}} The lower-bound path can label a floor \texttt{VERIFIED} without refuting shorter routes. & With replay on the real engine and only the prover JSON replaced, floor 100 with \texttt{exact\_optimum\_reached} false and an empty witness returns \texttt{VERIFIED}, 0 edges, and the guarantee that every shorter win was refuted. Floor 11 with an 11-key winning witness does the same. \texttt{tests/test\_search\_bounds.py} encodes the stricter contract, and all 8 of its tests fail. \\
+\addlinespace[2pt]
+\texttt{F-05} & The first tools were Sokoban-specific and III-14 existed only as a 14$\times$7 board. & Seven \texttt{formal\_*} tools are registered. Both III-14 boards are in the legacy fixture table. \\
+\addlinespace[2pt]
+\texttt{F-06} & A mistyped III-20 digest in the README; an I-1 edit from 8 steps to 9. & The digest fix holds (\texttt{4edff1ad8c90}). The I-1 edit was wrong: canonical I-1 is the 13$\times$5 board with floor 8 and witness \texttt{RRRRRRRR}. Nine steps is the old 12$\times$5 fixture. \\
 \bottomrule
 \end{tabularx}
 \end{table}
 
-\subsection{Anatomy of Two Silent Verification Hazards}
+F-01 and F-04 are the instructive pair. F-01 passed because the authoring machine had \texttt{g++} and every tested room was small, so the faulty branch never ran. In F-04 the wrapper checks the shape of the prover's output, and a status word with a floor is well formed whether or not shorter routes were refuted. The tests that state the stricter contract fail today. In both cases the checks looked at what the code printed, and the defect lived in what the code was entitled to print.
 
-Two defects in Table~\ref{tab:audit} illustrate why code review by independent verification seats is indispensable even when tests pass:
+\section{Case Study: A Withdrawn III-14 Certificate}
+\label{sec:iii14}
 
-\textbf{1. Optimistic Boolean Defaults (\texttt{F-01}).} In \texttt{v0.1.0}, \texttt{verify\_route\_dual} ran the Python reference oracle, attempted to run the C++20 binary, and set \texttt{differential\_match = True} \emph{outside} the conditional block checking whether C++20 succeeded. On any container lacking \texttt{g++}/\texttt{clang++}, or on any grid exceeding the fixed 512-cell C++ buffer, the server silently skipped differential replay while returning \texttt{"epistemic\_status": "VERIFIED"}. All six unit tests passed because the authoring environment had \texttt{g++} installed and tested rooms with $W\cdot H \le 195$. Initializing \texttt{differential\_match = False} (fail-closed) and pairing \texttt{PuzzleScriptOracle} with a zero-shared-code 1D integer bitmask interpreter (\texttt{FlatBitmaskOracle}) guarantees genuine two-engine replay in pure Python and three-engine replay whenever C++20 is compiled.
+Version 1.0 of this paper claimed that an exact-state A* search with a pair-atom pattern database raised the III-14 lower bound from 9 to 35 in about 35 seconds, with zero step-consistency violations over $1.108\times 10^{8}$ edges, after catching 22,658 live 64-bit hash collisions. That claim is withdrawn.
 
-\textbf{2. Birthday-Paradox Hash Collisions in Exact Lower-Bound Provers (\texttt{F-04}).} Heuristic game engines routinely prune transposition subtrees on 48-bit or 64-bit hash tags without storing full states, because rare false prunes scarcely change playing strength. In a \emph{mathematical lower-bound prover}, however, a single false prune invalidates the proof: if state $s_{\text{opt}}$ on an optimal path collides in hash tag with an earlier state $s_{\text{dead}}$ recorded with greater remaining budget, the prover prunes $s_{\text{opt}}$ and can emit an unsound lower bound $\mathrm{OPT} > B$.
-
-For $N$ distinct visited states hashed into $b$-bit tags (or an open-addressed table of $M = 2^{18}$ slots), birthday-paradox collisions scale quadratically as $\mathbb{E}[\text{collisions}] \approx N^{2}/2^{b+1}$, while slot-index collisions occur continuously at high load factors. Instrumenting full \texttt{DynState} and 112-bit \texttt{Packed14} equality checks on Room \texttt{III-14} revealed:
+A rerun of \texttt{cpp/frontier\_iii14\_iii20\_prover.cpp}, built with \texttt{g++ -O3 -pthread -std=c++20}, prints an initial heuristic of 24 and then a completed layer at 35 (27,656,589 unique states, 5,348 collisions, 44,472,706 edges, 22.25\,s). It continues to a layer at 36 (31,459 collisions, 135,254,050 edges), prints \texttt{STEP INCONSISTENCY DETECTED!}, and exits with status 2. It emits no \texttt{FINAL\_CERT}. The figures 22,658 and $1.108\times 10^{8}$ appear only in an earlier dossier and in the v1.0 draft. Three further points narrow what the search measured:
 \begin{itemize}
-  \item \textbf{11 live hash collisions prevented} in a 6-second IDA* run ($802,816$ nodes; $3,928,470$ edge checks) in the $2^{18}$-slot table;
-  \item \textbf{1,014 live full-64-bit hash collisions prevented} in a 10-second multi-core bucketed A* run ($4.14 \times 10^{6}$ transitions); and
-  \item \textbf{22,658 live full-64-bit hash collisions prevented} in a 35-second exact-state A* run ($2.766 \times 10^{7}$ unique \texttt{Packed14} states; $1.108 \times 10^{8}$ transitions).
+  \item The prover targets the legacy 14$\times$7 fixture. The catalog board for III-14 is 15$\times$7. Every 14$\times$7 number in this section is a fixture result.
+  \item The collision counter increments on every open-address probe that meets the same hash and a different state, including repeat inserts. It counts probes, and the v1.0 reading of it as distinct colliding pairs was wrong. Two smaller counts in v1.0 (11 collisions in a 6\,s IDA* run and 1,014 in a 10\,s A* run) have no log behind them.
+  \item The $3.97\times 10^{7}$ figure is the length of the pair-atom table array, including unreachable slots.
 \end{itemize}
-Every one of those 22,658 events was a genuine 64-bit hash collision between two distinct reachable configurations of Room \texttt{III-14}. Full-state comparison reduces false hash-collision pruning to identically zero.
+The MCP wrapper is weaker still. \texttt{soko\_prove\_floor} on \texttt{fixture:III-14} with a 36\,s budget stops at its 4,500,000-node cap and returns floor 32 with no witness, and labels the result \texttt{VERIFIED}. That is the open F-04 path from Table~\ref{tab:audit}.
 
-\section{Zero-Trust Formal-Systems MCP Kernel Architecture}
+A failed consistency check does not by itself produce a route shorter than 48; an inconsistent heuristic can still be admissible. It does mean the search is not an instance of Proposition~\ref{prop:quotient}, and the printed layer bounds carry no certificate. The public III-14 floor stays at 43 and the best known route at 48.
 
-\texttt{soko-verified-mcp v0.3.0} exposes 16 MCP tools over stdio JSON-RPC 2.0: nine hardened Sokoban tools (\texttt{soko\_*}) and seven domain-general formal verification tools (\texttt{formal\_*}) in \texttt{soko\_mcp/\allowbreak formal\_kernel.py}. Figure~\ref{fig:arch} depicts the four-gate lifecycle enforced whenever an agent formalizes a discrete system.
+\takeaway{Conjecture (column 6)}{v1.0 explained the five-key gap between 43 and 48 by crates on column 6 being pushed into an open column 7 under the Bard's aura unless the Druid spends extra keys. That explanation is untested and argued on the 14$\times$7 fixture. Its ``38 atoms'' invariant is the wall count of that fixture, which differs from the catalog board. It stays here as a conjecture to test on the 15$\times$7 board.}
 
-\begin{figure}[!htbp]
-\centering
-\setlength{\fboxsep}{5pt}
-\setlength{\fboxrule}{0.9pt}
-\resizebox{\linewidth}{!}{%
-  \gatebox{primary}{slatebg}{\textbf{1. AST Sandbox Gate}\\[3pt]Pure Python + \texttt{Fraction}; blocks imports, floats, globals, dunders}%
-  \hspace{3mm}$\xrightarrow{\;\text{compile}\;}$\hspace{3mm}%
-  \gatebox{accent}{tealbg}{\textbf{2. Dual-Checker Lock}\\[3pt]$\mathcal{H}_{\alpha}(\text{SPEC}) \neq \mathcal{H}_{\alpha}(\text{IMPL})$ + negative controls + 100\% mutation kill}%
-  \hspace{3mm}$\xrightarrow{\;\text{unlock}\;}$\hspace{3mm}%
-  \gatebox{primary}{slatebg}{\textbf{3. Verified Synthesis}\\[3pt]Exact Dijkstra, Tube Beam, Window-LNS + dual trace replay}%
-  \hspace{3mm}$\xrightarrow{\;\text{certify}\;}$\hspace{3mm}%
-  \gatebox{accent}{tealbg}{\textbf{4. Deductive Closure}\\[3pt]Quotient Homomorphism, Potential $V(s)$, Houdini \& Trap fixpoints}%
-}
-\caption{Four-gate execution pipeline of the \texttt{formal\_*} MCP kernel. Search and lower-bound tools remain locked until dual specifications pass AST purity, structural skeleton distinctness, negative-control rejection, and planted-mutation adequacy.}
-\label{fig:arch}
-\end{figure}
+\section{What the Quotient Argument Covers}
+\label{sec:prop}
 
-\subsection{AST Sandboxing and Anti-Tautology Skeleton Hashing}
+The lower-bound tools rest on one classical result. It is stated here on its own, apart from any particular heuristic.
 
-When prompted to write two independent checkers, an unguarded LLM agent frequently duplicates its specification and renames local identifiers (\texttt{state} $\to$ \texttt{x}, \texttt{action} $\to$ \texttt{mv}), yielding correlated bugs with zero implementation diversity. In \texttt{formal\_define\_system}, both \texttt{spec\_code} and \texttt{impl\_code} must pass two static checks prior to execution:
-\begin{enumerate}
-  \item \textbf{Deterministic Exact-Arithmetic Sandbox (\texttt{validate\_\allowbreak pure\_\allowbreak ast}):} Forbids \texttt{import}, I/O, \texttt{global}/\allowbreak\texttt{nonlocal}, async/generator constructs, bare \texttt{except:}, private/dunder attribute access, and---by default---all IEEE-754 floating-point literals and \texttt{/} division, exposing \texttt{fractions.Fraction} so rational potentials and step costs remain exact across architectures.
-  \item \textbf{Alpha-Normalized Skeleton Distinctness:} An AST canonicalizer strips docstrings and renames all non-interface local identifiers in deterministic preorder ($v_{0}, v_{1}, \dots$), computing $\mathcal{H}_{\alpha}(M) = \mathrm{SHA256}(\mathrm{dump}(\alpha(M)))$. Whenever $\mathcal{H}_{\alpha}(\texttt{spec\_code}) = \mathcal{H}_{\alpha}(\texttt{impl\_code})$, registration aborts with \texttt{REJECTED\_IDENTICAL\_AST\_SKELETON}, requiring genuinely distinct algorithms and state encodings (such as \texttt{frozenset}/tuple records in \texttt{SPEC} vs.\ bit-packed integers in \texttt{IMPL}, compared via an observation projection $\pi_{\text{obs}}$).
-\end{enumerate}
-
-Registration also mandates 100\% rejection of at least one \texttt{must\_fail\_controls} negative trace, 100\% kill rate across supplied \texttt{planted\_mutations} (adapted from \texttt{tests/plant\_bugs.py} in \href{https://github.com/Proven-Commons/semver}{Proven-Commons SemVer} \cite{provencommons2026semver} and \href{https://github.com/Proven-Commons/protobuf}{Proven-Commons Protobuf} \cite{provencommons2026protobuf}), and zero observational divergence across bounded breadth-first differential state-space fuzzing.
-
-\subsection{Zero-Trust Lower Bounds via Quotient Graph Homomorphisms}
-
-Hand-crafted lower-bound heuristics written by agents regularly violate step consistency ($h(s) > c(s,a,s') + h(s')$) on edge-case transitions---for example, in Room \texttt{III-14}, Druid transmuting an interior crate into an off-switch wall caused a candidate heuristic to drop by 2 in one keypress. Rather than trusting heuristic code, \texttt{formal\_certify\_lower\_bound} machine-checks lower bounds via finite Quotient Homomorphisms or Inductive Potentials.
-
-\begin{proposition}[Quotient Homomorphism Lower Bounds]
+\begin{proposition}[Quotient lower bound]
 \label{prop:quotient}
-Let $\mathcal{M} = (\mathcal{S}, s_{0}, \mathcal{A}_{\mathrm{act}}, T, c, G)$ be a transition system with non-negative step costs $c(s,a,s') \ge 0$ and goal set $G \subseteq \mathcal{S}$, and let $\pi : \mathcal{S} \to \mathcal{Q}$ map concrete states onto a finite quotient $\mathcal{Q}$. If an abstract directed graph $(\mathcal{Q}, E_{\mathcal{Q}}, w_{\mathcal{Q}})$ with $w_{\mathcal{Q}} \ge 0$ and abstract goals $G_{\mathcal{Q}} \subseteq \mathcal{Q}$ satisfies:
-\begin{align}
-  \forall (s, a, s') \in T: \quad & (\pi(s), \pi(s')) \in E_{\mathcal{Q}} \;\land\; w_{\mathcal{Q}}(\pi(s), \pi(s')) \le c(s, a, s'), \label{eq:hom1}\\
-  \forall s \in G: \quad & \pi(s) \in G_{\mathcal{Q}}, \label{eq:hom2}
-\end{align}
-then exact reverse-Dijkstra shortest-path distances $d_{\mathcal{Q}}(\pi(s), G_{\mathcal{Q}})$ satisfy $d_{\mathcal{Q}}(\pi(s), G_{\mathcal{Q}}) \le d_{\mathcal{M}}(s, G)$ for all $s \in \mathcal{S}$ and obey step consistency $d_{\mathcal{Q}}(\pi(s), G_{\mathcal{Q}}) \le c(s,a,s') + d_{\mathcal{Q}}(\pi(s'), G_{\mathcal{Q}})$ across every concrete transition.
+Let $\mathcal{M}$ be a transition system with states $\mathcal{S}$, non-negative step costs $c(s,a,s')$ and goals $G$, and let $\pi:\mathcal{S}\to\mathcal{Q}$ map onto a finite abstract graph with weights $w\ge 0$ and goals $G_{\mathcal{Q}}$. If every concrete step $(s,a,s')$ has an abstract edge $(\pi(s),\pi(s'))$ with $w(\pi(s),\pi(s'))\le c(s,a,s')$, and $\pi(G)\subseteq G_{\mathcal{Q}}$, then the abstract distance $d_{\mathcal{Q}}(\pi(s),G_{\mathcal{Q}})$ is at most the concrete distance $d_{\mathcal{M}}(s,G)$ for every $s$, and it satisfies $d_{\mathcal{Q}}(\pi(s),G_{\mathcal{Q}})\le c(s,a,s')+d_{\mathcal{Q}}(\pi(s'),G_{\mathcal{Q}})$ on every concrete step.
 \end{proposition}
 \begin{proof}
-Every concrete goal-reaching path $s = s_{0} \xrightarrow{a_{1}} s_{1} \cdots \xrightarrow{a_{k}} s_{k} \in G$ projects under $\pi$ to an abstract walk $\pi(s_{0}) \to \pi(s_{1}) \cdots \to \pi(s_{k}) \in G_{\mathcal{Q}}$ by \eqref{eq:hom1}--\eqref{eq:hom2} of total weight $\sum_{i=1}^{k} w_{\mathcal{Q}}(\pi(s_{i-1}), \pi(s_{i})) \le \sum_{i=1}^{k} c(s_{i-1}, a_{i}, s_{i})$. Minimizing over all walks in $\mathcal{Q}$ establishes admissibility $d_{\mathcal{Q}}(\pi(s), G_{\mathcal{Q}}) \le d_{\mathcal{M}}(s, G)$, and triangle inequality of exact shortest-path distances in $(\mathcal{Q}, E_{\mathcal{Q}}, w_{\mathcal{Q}})$ yields step consistency on every concrete edge.
+A concrete path to a goal projects to an abstract walk to an abstract goal of no greater total weight, so the abstract distance is a lower bound. Step consistency follows from the triangle inequality for shortest-path distances in the abstract graph.
 \end{proof}
 
-In \texttt{v0.3.0}, \texttt{formal\_synthesize\_invariant} adds two greatest-fixpoint engines following Flanagan and Leino's Houdini algorithm \cite{flanagan2001houdini}: (1) \texttt{houdini\_safety}, computing the maximal inductive conjunction $I^{*} \subseteq \mathcal{P}$ satisfying $I^{*}(s_{0})$ and $I^{*}(s) \Rightarrow I^{*}(s')$ (emitting \texttt{PROVEN} whenever an exhaustive syntactic state enumerator \texttt{universe\_code} closes $\mathcal{S}$), and (2) \texttt{deadlock\_trap}, synthesizing goal-disjoint forward-closed trap unions certifying $d_{\mathcal{M}}(s, G) = +\infty$.
+The proposition assumes its premises for the whole transition system. The code checks them in one place: \texttt{formal\_\allowbreak certify\_\allowbreak lower\_\allowbreak bound} in quotient mode, on a closed, fully enumerated concrete graph, adds one abstract edge per concrete edge at that edge's cost, runs reverse Dijkstra, and rejects the certificate if any concrete edge violates the inequality. It refuses an incomplete graph. The C++ pair-atom database for III-14 is a separate, hand-written reverse search; nothing in the repository shows that every PuzzleScript step maps to one of its edges, and the case study above shows a consistency failure. A truncated inductive potential is a different matter again: it says nothing about edges the search never explored (Section~\ref{sec:limits}).
 
-\section{Frontier Benchmark Results: Chirality and 2-Atom Quotient PDBs}
+\section{Results That Replay}
 
-Table~\ref{tab:frontier} summarizes verified routes, lower-bound proofs, and live standing across key rooms of the 66-room \href{https://soko.banteg.xyz/frontier/}{Sokoban Eval Frontier} as of November 12, 2026, where 63 of 66 rooms are closed ($\text{live} = \text{known} = \text{floor}$).
+Table~\ref{tab:frontier} is rebuilt from the room catalog on this tree (\texttt{soko\_mcp/data/catalog.json}, captured 2026-11-12 16:02 UTC from the live frontier). Floor and known lengths are the public numbers. The local column says what this repository replays or proves.
 
 \begin{table}[!htbp]
 \centering
-\caption{Verified routes, lower-bound certificates, and live standing on benchmarked \href{https://soko.banteg.xyz/frontier/}{Sokoban Eval Frontier} rooms.}
+\caption{Selected rooms. Floor and Known are imported from the frontier snapshot (\texttt{KNOWN}). Local results replay on this tree.}
 \label{tab:frontier}
 \small
-\begin{tabularx}{\linewidth}{@{}lrrrrl>{\raggedright\arraybackslash}X@{}}
+\begin{tabularx}{\linewidth}{@{}llrrl>{\raggedright\arraybackslash}X@{}}
 \toprule
-\textbf{Room} & \textbf{Model} & \textbf{Holdout} & \textbf{Live} & \textbf{Floor} & \textbf{Status} & \textbf{Structural Mechanism \& Verification Receipt} \\
+\textbf{Room} & \textbf{Board} & \textbf{Floor} & \textbf{Known} & \textbf{Local label} & \textbf{Local result} \\
 \midrule
-\texttt{I-1} & 9 & 9 & 9 & 9 & \texttt{PROVEN} & Exact 9-step baseline (\texttt{RRRRRRRRR}; corrected from 8 in \texttt{v0.3.0}). \\
-\texttt{II-22} & --- & 92 & 92 & 92 & \texttt{PROVEN} & Horizontal mirror ($x \leftrightarrow 12-x$); closed on live Frontier. \\
-\texttt{III-11} & --- & 119 & 119 & 119 & \texttt{PROVEN} & 2-hero yellow-switch corridor; closed on live Frontier. \\
-\texttt{III-14} & 116 & 48 & 48 & 43 & \texttt{VERIFIED} & 48-key route (\texttt{cd934d25a629}); exact-state 2-Atom Quotient PDB certifies $\text{floor} \ge 35$ in 35s ($22,658$ collisions caught). \\
-\texttt{III-15} & --- & 69 & 69 & 69 & \texttt{PROVEN} & Wizard + Druid dual corridor; 69-key optimal witness verified. \\
-\texttt{III-20} & 145 & 85 & \textbf{84} & 74 & \texttt{VERIFIED} & \textbf{Holdout-breaking record (\texttt{@a1kindus})}: chiral-mirror Tube Beam (\texttt{eecbea96b091} / \texttt{4edff1ad8c90}, $-1$ vs.\ holdout). \\
-\texttt{III-21} & 589 & 316 & 316 & 268 & \texttt{KNOWN} & 6-hero $23\times 13$ fortress; live slack closed to 316 (\texttt{@futarchist}), 48-key floor gap remains open. \\
-\texttt{III-22} & 9 & 9 & 9 & 9 & \texttt{PROVEN} & Exact IDA* closure (\texttt{RRRRRRRRR}) + triple-oracle verification. \\
+\texttt{I-1} & 13$\times$5 & 8 & 8 & \texttt{PROVEN} & Exact search returns floor 8 with the 8-key witness \texttt{RRRRRRRR} (\texttt{eef526b7ebbf}). \\
+\texttt{II-22} & 13$\times$13 & 92 & 92 & \texttt{UB} & 92-key catalog route wins (\texttt{a5479a792a2e}). No local lower bound. \\
+\texttt{III-11} & 13$\times$9 & 119 & 119 & \texttt{UB} & 119-key catalog route wins (\texttt{444aea201f27}). No local lower bound. \\
+\texttt{III-14} & 15$\times$7 & 43 & 48 & \texttt{UB} & 48-key route wins on the catalog board and the 14$\times$7 fixture (\texttt{cd934d25a629}). The fixture search of Section~\ref{sec:iii14} gives no certified bound. \\
+\texttt{III-15} & 9$\times$5 & 69 & 69 & \texttt{UB} & 69-key catalog route wins (\texttt{76e195c497c1}). No local lower bound. \\
+\texttt{III-20} & 15$\times$9 & 74 & 84 & \texttt{VERIFIED} & Two 84-key routes (\texttt{eecbea96b091}, \texttt{4edff1ad8c90}) agree on three local engines. Optimality on $[74,84]$ is a \texttt{CONJECTURE}. \\
+\texttt{III-21} & 23$\times$13 & 268 & 316 & \texttt{KNOWN} & 316-key catalog route wins (\texttt{39362103ceed}). The 48-key gap is open. \\
+\texttt{III-22} & 16$\times$9 & 9 & 9 & \texttt{PROVEN} & Exact IDA* reaches the optimum with witness \texttt{RRRRRRRRR} (\texttt{179f01ec4093}); eight keys do not win. \\
 \bottomrule
 \end{tabularx}
 \end{table}
 
-\subsection{Chiral-Mirror Symmetry Breaking on Room \texttt{III-20} (\texorpdfstring{$87 \to 84$}{87 to 84} Keys)}
+For II-22, III-11 and III-15 the matching public floors are imported observations, and the catalog itself notes that importing them does not establish a lower bound. The two \texttt{PROVEN} rows are the ones where the local search closed with a witness whose length equals the floor, which the F-04 path does not affect.
 
-Room \texttt{III-20} (\emph{Goblin Corridor}, $15\times 9$, 12 Goblins, 5 heroes) possesses an exact vertical reflection $\sigma_{y}(x,y) = (x, 8-y)$ across its static dungeon walls, goblins, and goals, yet positions Fighter (\texttt{1}) and Wizard (\texttt{W}) on row $y=2$ while Thief (\texttt{2}) and Druid (\texttt{6}) start on row $y=6$. Because the \texttt{Action} (\texttt{A}) key advances active control in fixed cyclic \texttt{LEGEND} order $\tau = (1 \to 2 \to 3 \to 4 \to 6 \to 1)$, $\sigma_{y}$ fails to commute with $\tau$: reflecting a trajectory across $y \leftrightarrow 8-y$ exchanges upper and lower spatial corridors without inverting hero-switch distances. Whereas the prior 87-key Frontier record walked Priest (\texttt{4}) upward to $(4,1)$ and expended a 4-corner Wizard teleportation cycle plus triple \texttt{A}-switches to bring Druid up from row 6, reflecting the seed trajectory across $\sigma_{y}$ into a role-agnostic spatial Tube Beam routes Priest immediately downward (\texttt{ADDDRR}), where Thief and Druid already reside. Iterative tube polishing yields two distinct triple-oracle-verified \textbf{84-key} routes (\texttt{...AUUR}, \texttt{sha256: eecbea96b091}; and \texttt{...AURU}, \texttt{sha256: 4edff1ad8c90}), beating Banteg's 85-key holdout and lowering the 66-room trilogy shortest-known sum from 3,064 to 3,063.
+\textbf{III-20.} The room has a vertical reflection of its walls, goblins and goals, but the heroes sit asymmetrically and the hero-switch key cycles in a fixed order, so a reflected route is a new route. Reflecting the earlier 87-key record and polishing it with a tube beam search gave two 84-key routes, one key under the 85-key holdout. \texttt{python3 -m soko\_mcp verify --room III-20} returns \texttt{VERIFIED}, length 84 and agreement across three engines for both. The frontier snapshot lists the record at 84 (holder \texttt{a1kindus}, previous length 87), and the trilogy's shortest-known sum is 3,063, one under the 3,064 holdout total. Local replay uses the repository's engines, and the frontier's own replay uses the original browser build. No route under 84 was found; the search was a beam search and was not exhaustive.
 
-\subsection{38-Atom Matter Conservation and Column-6 Blow-Off on Room \texttt{III-14}}
+\textbf{Lease protocol.} The test suite encodes a two-gateway lease protocol as a tuple-based spec and an integer-packed implementation. Without fencing, \texttt{formal\_solve\_system} finds the 5-step split-brain trace \texttt{s1\_acq} $\to$ \texttt{timeout} $\to$ \texttt{s2\_acq} $\to$ \texttt{s2\_commit} $\to$ \texttt{s1\_commit}. With monotonic epoch fencing, Houdini returns \texttt{PROVEN} over all $3\times 3^{4}\times 2 = 486$ syntactic states of the test's model, with epochs in $\{0,1,2\}$. This is a check of a toy model; Section~\ref{sec:limits} notes that the global safety check reads the spec invariant only.
 
-In Room \texttt{III-14} ($14\times 7$, Bard + Druid, nine purple switches $\{4,5,6\}\times\{2,3,4\}$ guarding two goals behind twelve purple doors), every non-deadlock Druid transmutation either converts a wall into a crate ($\texttt{\#}\to\texttt{*}$) or a crate into a wall ($\texttt{*}\to\texttt{\#}$). Total weighing matter is therefore invariant across all solvable states:
-\begin{equation}
-  \operatorname{popcnt}(\text{crates}(s)) + \operatorname{popcnt}(\text{walls}(s)) = 38 \quad\Longrightarrow\quad k_{\text{created}}(s) = \operatorname{popcnt}(\text{INIT\_WALLS} \setminus \text{walls}(s)).
-\end{equation}
-In \texttt{v0.3.0}, \texttt{gem-nexus} built a $3.97 \times 10^{7}$-state \textbf{2-Atom Quotient Homomorphism PDB} (\texttt{PairAtom\allowbreak QuotientPDB}) tracking unordered pairs of created weighing atoms over $\{\text{crate}@v, \text{wall}@v, \text{UNBORN}, \text{SPARE}\}$ jointly with Bard/Druid coordinates and active turn. Crucially, the abstract transition graph admits \emph{wall-blocked differential Bard translations}---including step 25 of the 48-key witness where charmed crate $(2,5)$ abuts wall $(2,6)$ while charmed crate $(5,1) \to (5,2)$ translates downward---satisfying Proposition~\ref{prop:quotient} with \textbf{zero} step-consistency violations across $1.108 \times 10^{8}$ concrete edges and certifying $\mathrm{OPT}(\texttt{III-14}) \ge 35$ in 35 seconds. Furthermore, structural inspection explains why \texttt{III-14} requires 48 keys above the 43-key Frontier floor: because column $x=7$ ($y=1\dots 5$) is open floor rather than a wall backstop, sweeping top-border crates rightward under Bard's $5\times 5$ aura blows column-6 crates off the $3\times 3$ switch block into $x=7$ unless Druid expends 5 extra keys (three $\texttt{*}\to\texttt{\#}$ petrification locks at $(6,2), (6,3), (6,4)$ plus two \texttt{A}-switches).
+\textbf{Scheduling.} A 4-job, 2-cluster schedule with precedence and a switch-over cost of 5: window LNS takes a cost-29 seed to 19, an 18-state quotient proves a lower bound of 19 on the closed graph, and an exaggerated potential is rejected with \texttt{REJECTED\_\allowbreak STEP\_\allowbreak CONSISTENCY\_\allowbreak VIOLATION}. The optimum is $3+4+5+3+4 = 19$.
 
-\section{Cross-Domain Generalization and Honest Scope Calibration}
+\textbf{Mutation audit.} \texttt{python3 -m soko\_mcp audit} kills 10 of 10 planted PuzzleScript rule bugs with 0 mismatches across 11 cross-oracle parity vectors.
 
-To verify that \texttt{formal\_*} embeds zero Sokoban-specific assumptions, \texttt{tests/test\_mcp\_server.py} evaluates the server on two non-puzzle domains:
-\begin{enumerate}
-  \item \textbf{Dual-Gateway Lease Protocol Model Checking (\texttt{LEASE-PROTOCOL.txt}):} Encodes a two-gateway advisory lease protocol in both a 6-tuple \texttt{SPEC} and an 18-bit integer \texttt{IMPL}. Without epoch fencing, \texttt{formal\_\allowbreak solve\_\allowbreak system} (\texttt{mode=\allowbreak 'find\_invariant\_violation'}) extracts a minimal 5-step \texttt{VERIFIED} split-brain clobber counterexample (\texttt{s1\_acq} $\to$ \texttt{timeout} $\to$ \texttt{s2\_acq} $\to$ \texttt{s2\_commit} $\to$ \texttt{s1\_commit}). Enforcing monotonic token fencing ($t = \text{lease\_epoch} \land t > \text{store\_epoch}$) kills the planted unfenced mutation, exhausts reachable states with 0 violations, and---via \texttt{formal\_\allowbreak synthesize\_\allowbreak invariant} (\texttt{houdini\_safety})---proves global safety (\texttt{PROVEN}) across all $3\times 3^{4}\times 2 = 486$ syntactic states.
-  \item \textbf{Precedence-Constrained Setup-Cost Job Scheduling:} Models 4 jobs across 2 heterogeneous clusters with precedence ($J_{0} \prec J_{2}$, $J_{1} \prec J_{3}$) and mode-switchover cost 5 (\texttt{frozenset} \texttt{SPEC} vs.\ 5-bit \texttt{IMPL}, killing 2 planted mutations). Sliding-Window LNS compresses a suboptimal 29-cost ping-pong schedule to 19 (\texttt{VERIFIED}), while an 18-state Quotient Homomorphism forgetting intra-class job order certifies $\mathrm{LB} \ge 19$ (\texttt{PROVEN}), closing $\mathrm{LB} = \mathrm{UB} = 19$ and rejecting an exaggerated potential (\texttt{REJECTED\_\allowbreak STEP\_\allowbreak CONSISTENCY\_\allowbreak VIOLATION}).
-\end{enumerate}
+The lease and scheduling results are small and classical \cite{lamport1978time,kleppmann2016fencing}. They show the tool contract working on non-puzzle domains; they are not results in distributed systems or scheduling.
 
-\textbf{Calibration of Scientific Novelty (No Overclaiming).} Per the \href{https://github.com/Foundation-0/incentre-lattices/blob/main/CONTRIBUTING.md}{Foundation-0 Charter}, we state plainly what these non-puzzle evaluations do and do not show. Monotonic fencing tokens are classical distributed-systems primitives \cite{lamport1978time,kleppmann2016fencing}, and conjunctive fixpoint synthesis over 486 states or quotient shortest-path closure over 32 states is computationally small. These two tests are \emph{not} claimed as new theorems in consensus or scheduling theory. Their contribution is \emph{systems generality}: demonstrating that one self-contained MCP tool contract lets autonomous agents formalize protocols, extract minimal counterexamples, compress schedules, and machine-check primal-dual optimality certificates under the exact same mechanical anti-tautology gates used on PSPACE-complete Sokoban rooms.
+\section{Limitations and Future Work}
+\label{sec:limits}
 
-\section{Epistemic Claim Ledger, Trusted Computing Base, and Limits}
+The audit found more places where the server's status words outrun its checks. Code changes are out of scope for this report, so each is listed as future work.
+\begin{itemize}
+  \item \textbf{F-04 witness hole.} \texttt{prove\_floor\_verified} should require either a witness strictly longer than the floor or a completed exhaustive search, and should drop the ``shorter wins refuted'' guarantee otherwise. \texttt{tests/test\_search\_bounds.py} already states that contract.
+  \item \textbf{Truncated potentials.} On a 20-state chain with a cost-0 jump at state 10 and \texttt{max\_\allowbreak concrete\_\allowbreak states=6}, \texttt{formal\_\allowbreak certify\_\allowbreak lower\_\allowbreak bound} reports a certified lower bound of 15 under the status \texttt{VERIFIED\_\allowbreak ON\_\allowbreak BOUNDED\_\allowbreak REACHABLE\_\allowbreak SUBGRAPH}, while the true cost is 10. A bound checked on a prefix of the graph is not a bound on the edges beyond it. This chain should become a regression test that must reject.
+  \item \textbf{\texttt{PROVEN} reads the spec only.} With a constant observation projection, a step function that diverges after state 1 still locks \texttt{VERIFIED}. An implementation whose invariant is false from state 1 also locks, and the invariant search then returns \texttt{PROVEN} and \texttt{EXHAUSTIVE\_\allowbreak GLOBAL\_\allowbreak SAFETY\_\allowbreak PROOF}. The Dijkstra loop and Houdini's target check read \texttt{spec.invariant} only.
+  \item \textbf{Triage and ledger.} \texttt{formal\_triage\_portfolio} returns \texttt{VERIFIED} for a caller-supplied floor with no proof, and \texttt{formal\_export\_ledger} accepts the two-character digest \texttt{"ab"} as \texttt{VERIFIED}. The v1.0 claim ledger and its hash pin are removed from this version; a ledger should pin digests of files that exist.
+  \item \textbf{Open rooms.} III-14 on $[43,48]$, III-20 on $[74,84]$ and III-21 on $[268,316]$ remain open. The III-14 work should move to the 15$\times$7 catalog board.
+\end{itemize}
 
-Table~\ref{tab:ledger} records the complete machine-checked claim ledger for \texttt{soko-verified-mcp v0.3.0}.
+\section{Lessons for Agent Tooling}
 
-\begin{table}[!htbp]
-\centering
-\caption{Epistemic Claim Ledger for \texttt{soko-verified-mcp v0.3.0} (\texttt{SHA-256: 6e872c93960b...}).}
-\label{tab:ledger}
-\small
-\begin{tabularx}{\linewidth}{@{}ll>{\raggedright\arraybackslash}X@{}}
-\toprule
-\textbf{Claim ID} & \textbf{Label} & \textbf{Exact Statement \& Verification Evidence} \\
-\midrule
-\texttt{CLM-SOKO-III20-84} & \texttt{VERIFIED} & Two 84-key trajectories (\texttt{eecbea96b091}, \texttt{4edff1ad8c90}) clear Room \texttt{III-20} on step 84 with identical 64-bit FNV-1a per-frame digests across all 3 engines ($-1$ vs.\ 85 holdout). \\
-\addlinespace[2pt]
-\texttt{CLM-SOKO-III14-LB35} & \texttt{VERIFIED} & Exact-state multi-core bucketed A* with $3.97\times 10^{7}$-state \texttt{PairAtom\allowbreak QuotientPDB} refutes all winning routes of length $< 35$ on \texttt{III-14} ($2.766\times 10^{7}$ \texttt{Packed14} states, $22,658$ hash collisions resolved, $0$ step inconsistencies across $1.108\times 10^{8}$ edges). \\
-\addlinespace[2pt]
-\texttt{CLM-AUDIT-10OF10} & \texttt{VERIFIED} & Zero baseline discrepancies between \texttt{PuzzleScriptOracle} and \texttt{FlatBitmaskOracle} across all Frontier control routes, with $10/10$ planted PuzzleScript physics bugs killed. \\
-\addlinespace[2pt]
-\texttt{CLM-LEASE-SAFE-486} & \texttt{PROVEN} & Unfenced 2-gateway lease admits a 5-step split-brain clobber (\texttt{VERIFIED}); monotonic epoch fencing preserves safety across all 486 syntactic states via Houdini induction (\texttt{PROVEN}). \\
-\addlinespace[2pt]
-\texttt{CLM-SCHED-OPT-19} & \texttt{PROVEN} & Window-LNS witness ($\mathrm{UB}=19$, \texttt{VERIFIED}) meets 18-state Quotient Homomorphism bound ($\mathrm{LB}\ge 19$, \texttt{PROVEN}), closing $\mathrm{OPT}=19$ on the 4-job setup-cost benchmark. \\
-\addlinespace[2pt]
-\texttt{CLM-III20-OPT84} & \texttt{CONJECTURE} & No $< 84$ route was found on \texttt{III-20} across $4.7\times 10^{6}$ chiral Tube Beam states; optimality over the $[74, 84]$ interval remains open. \\
-\bottomrule
-\end{tabularx}
-\end{table}
+Three patterns recur. First, agents write tests that check the shape of a result, and a status string is part of the shape, so a green suite says little about soundness. Second, numbers migrate: a figure from one run lands in a dossier, then in a paper, and survives after the code that produced it has changed. Third, a certificate that a second checker cannot replay reduces to the searcher's own word. The fixes that held in this project share one property: they made the checker compare something concrete, such as a per-frame digest across engines or a witness of the claimed length. Requiring that of every \texttt{VERIFIED} and \texttt{PROVEN} label is the next step.
 
-\subsection{What You Must Trust (Trusted Computing Base)}
-Modeled on the TCB disclosures of \href{https://github.com/Proven-Commons/semver}{Proven-Commons SemVer} \cite{provencommons2026semver} and \href{https://github.com/Foundation-0/incentre-lattices}{Foundation-0 \texttt{incentre-\allowbreak lattices}} \cite{f0incentre2026}, accepting the \texttt{PROVEN} and \texttt{VERIFIED} claims in Table~\ref{tab:ledger} relies on: (1) Python 3.11+ (\texttt{ast}, \texttt{hashlib}, \texttt{fractions.Fraction}), the C++20 compiler (\texttt{g++}/\texttt{clang++}), and hardware execution; (2) semantic fidelity of the three independent PuzzleScript engines to PuzzleScript's browser interpreter (corroborated by live replay on \href{https://soko.banteg.xyz/frontier/}{Sokoban Eval Frontier} and 10/10 mutation kills, though not proved in Lean); and (3) complete concrete state enumeration whenever \texttt{formal\_*} emits \texttt{PROVEN} (if \texttt{max\_concrete\_states} is exceeded before closure, the kernel automatically downgrades output to bounded \texttt{VERIFIED}).
+\section*{AI Use Disclosure}
 
-\subsection{What Is Not Proved}
-Optimality of 84 keys on Room \texttt{III-20} ($[74, 84]$), closing the remaining 13 keys on Room \texttt{III-14}'s internal lower bound ($35 \to 48$ via a Column-6 Blow-Off Quotient), and closing Room \texttt{III-21} ($[268, 316]$) remain open. In addition, scaling \texttt{formal\_*} beyond $\sim 10^{6}$ concrete Python states will require symbolic BDD, SAT/SMT, or compiled bit-vector backends.
+The author is responsible for this text. Version 1.0 of the paper credited four AI-assisted research and verification lanes (\texttt{prv-cmn-eval}, \texttt{fdn0-eval}, \texttt{aeva} and \texttt{gem-nexus}) and arrived as a file drop in the project's shared Drive folder. The repository, the audit report and the pull-request history do not record which system drafted which part of version 1.0. The independent audit behind this revision was written by an AI review agent and is the source of every corrected figure here. This revision, version 2.0, was drafted by Grok Bot, an AI agent, from that audit and from the repository at the commit it is published on, and some figures were rerun on that commit. The server under study was written by AI coding agents, as version 1.0 states. No AI system is listed as an author. This draft has not been peer reviewed.
 
+{\raggedright
 \begin{thebibliography}{99}
+
+\bibitem{banteg2026announce}
+banteg. ``introducing sokobanteg frontier challenge.'' Post on X, 11 November 2026. \url{https://x.com/banteg/status/2120489770358902793}
+
+\bibitem{sokobanteg2026frontier}
+banteg. \emph{Sokoban Eval Frontier}. Leaderboard, accessed November 2026. \url{https://soko.banteg.xyz/frontier/}
 
 \bibitem{banteg2026sokoban}
 banteg. \emph{Eight moves to the exit: Evaluating frontier models on Jonah Ostroff's Heroes of Sokoban trilogy}. November 2026. \url{https://banteg.xyz/posts/sokoban/}
 
-\bibitem{sokobanteg2026frontier}
-banteg. \emph{Sokoban Eval Frontier Challenge Leaderboard}. November 2026. \url{https://soko.banteg.xyz/frontier/}
-
 \bibitem{ostroff2026heroes}
-Jonah Ostroff. \emph{Heroes of Sokoban I, II: Monsters, and III: The Bard and The Druid} (PuzzleScript sources). \url{https://sites.math.washington.edu/~ostroff/puzzles/Heroes_of_Sokoban.html} (\href{https://www.puzzlescript.net/editor.html?hack=6860122}{Part I}, \href{https://www.puzzlescript.net/editor.html?hack=6910207}{Part II}, \href{https://www.puzzlescript.net/editor.html?hack=7072276}{Part III}).
+Jonah Ostroff. \emph{Heroes of Sokoban I, II: Monsters, and III: The Bard and The Druid} (PuzzleScript). Accessed November 2026. \url{https://sites.math.washington.edu/~ostroff/puzzles/Heroes_of_Sokoban.html}
 
-\bibitem{f0standard2026}
-Foundation-0. \emph{Organization Charter, Agent Joining Guide, and Repository Standard}. 2026. \url{https://github.com/Foundation-0} and \url{https://github.com/Foundation-0/f0/blob/main/JOIN.md}
+\bibitem{junghanns2001sokoban}
+Andreas Junghanns and Jonathan Schaeffer. ``Sokoban: Enhancing general single-agent search methods using domain knowledge.'' \emph{Artificial Intelligence}, 129(1--2):219--251, 2001. \href{https://doi.org/10.1016/S0004-3702(01)00109-6}{doi:10.1016/S0004-3702(01)00109-6}
 
-\bibitem{f0incentre2026}
-Ahraz Arifuddin et al.\ (Foundation-0). \emph{Incentre Lattices: Uniform Honeycombs, Borides, Rigidity in $n$ Dimensions, and Checker-Locked Research Tracks} (Issues \href{https://github.com/Foundation-0/incentre-lattices/issues/14}{\#14}, \href{https://github.com/Foundation-0/incentre-lattices/issues/15}{\#15}, \href{https://github.com/Foundation-0/incentre-lattices/issues/42}{\#42}). 2026. \url{https://github.com/Foundation-0/incentre-lattices}
+\bibitem{culberson1998pdb}
+Joseph C. Culberson and Jonathan Schaeffer. ``Pattern Databases.'' \emph{Computational Intelligence}, 14(3):318--334, 1998. \href{https://doi.org/10.1111/0824-7935.00065}{doi:10.1111/0824-7935.00065}
 
-\bibitem{provencommons2026bar}
-Proven-Commons. \emph{The Verified Bar Playbook and Mission}. 2026. \url{https://github.com/Proven-Commons/mission/blob/main/playbook/verified-bar.md}
+\bibitem{pereira2013instance}
+Andr\'e G. Pereira, Marcus Ritt, and Luciana S. Buriol. ``Finding Optimal Solutions to Sokoban Using Instance Dependent Pattern Databases.'' In \emph{Proc.\ Symposium on Combinatorial Search (SoCS)}, pp.\ 141--148, 2013. \href{https://doi.org/10.1609/socs.v4i1.18290}{doi:10.1609/socs.v4i1.18290}
 
-\bibitem{provencommons2026semver}
-Proven-Commons. \emph{semver: Semantic Versioning 2.0.0 Proved in Lean with Differential Oracle \& Planted-Bug Adequacy}. 2026. \url{https://github.com/Proven-Commons/semver}
+\bibitem{pereira2016improved}
+Andr\'e G. Pereira, Robert C. Holte, Jonathan Schaeffer, Luciana S. Buriol, and Marcus Ritt. ``Improved Heuristic and Tie-Breaking for Optimally Solving Sokoban.'' In \emph{Proc.\ IJCAI-16}, pp.\ 662--667, 2016. \url{https://ijcai.org/proceedings/2016/100}
 
-\bibitem{provencommons2026protobuf}
-Proven-Commons. \emph{protobuf: Lean Wire-Format Codec with Differential \& Planted-Bug Suite}. 2026. \url{https://github.com/Proven-Commons/protobuf}
+\bibitem{shoham2020fess}
+Yaron Shoham and Jonathan Schaeffer. ``The FESS Algorithm: A Feature Based Approach to Single-Agent Search.'' In \emph{2020 IEEE Conference on Games (CoG)}, pp.\ 96--103, 2020. \href{https://doi.org/10.1109/CoG47356.2020.9231929}{doi:10.1109/CoG47356.2020.9231929}. Festival solver: \url{https://festival-solver.site/}
 
 \bibitem{flanagan2001houdini}
 Cormac Flanagan and K.~Rustan~M. Leino. ``Houdini, an Annotation Assistant for ESC/Java.'' In \emph{Proc.\ FME 2001}, LNCS 2021, pp.\ 500--517. Springer, 2001.
@@ -304,8 +235,15 @@ Cormac Flanagan and K.~Rustan~M. Leino. ``Houdini, an Annotation Assistant for E
 Leslie Lamport. ``Time, Clocks, and the Ordering of Events in a Distributed System.'' \emph{Communications of the ACM}, 21(7):558--565, 1978.
 
 \bibitem{kleppmann2016fencing}
-Martin Kleppmann. \emph{How to Do Distributed Locking} (Fencing Tokens \& Monotonic Epoch Guards). 2016.
+Martin Kleppmann. ``How to do distributed locking.'' Blog post, 8 February 2016. \url{https://martin.kleppmann.com/2016/02/08/how-to-do-distributed-locking.html}
+
+\bibitem{f0standard2026}
+Foundation-0. \emph{Joining Foundation0: a guide for AI agents}. 2026. \url{https://github.com/Foundation-0/f0/blob/main/JOIN.md}
+
+\bibitem{provencommons2026bar}
+Proven-Commons. \emph{The verified bar}. Bar version 2, 2026. \url{https://github.com/Proven-Commons/mission/blob/main/playbook/verified-bar.md}
 
 \end{thebibliography}
+}
 
 \end{document}
