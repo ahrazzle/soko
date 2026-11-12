@@ -11,16 +11,24 @@ offered as methods and evidence. They do not establish a new room minimum.
 
 ## The search author's claims
 
-- No winning III-14 route shorter than 48 turned up in this search.
+The search author stated, as claims accompanying this snapshot:
+
+- A winning III-14 route shorter than 48 did not turn up in this search.
 - Suffix-tree results from key 28, and from keys 33, 34, 38, 40 and 41,
   were called VERIFIED.
 - A second 48-key example,
   `LLULULULRURURURURUAUDRRDDAUARRDLRAULDLDRARURURAU`, has a different ending
-  from `best.txt`. It appears in `exact_late.log`.
+  from `best.txt`.
 - Beams from shorter harvests were a search result, not a proof that 48 is the
   room minimum.
 
-These are claims. The logs are the recorded run output behind them.
+What the checked-in logs record:
+
+- `search.log` ends `FINAL 48` with the `best.txt` route.
+- `exact_late.log` records `verified=True` 48-key wins at cut41, cut40, cut38
+  and cut34, each finishing with `best=48` and an empty queue. The second
+  48-key route is the one in those wins. The same file records cut33 ending
+  at 45.0 s with `best=none`, and cut28 ending at 60.0 s with `best=none`.
 
 ## Files
 
