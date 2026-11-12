@@ -72,7 +72,7 @@ def incumbent(snapshot: dict, room: dict) -> dict:
 def source_identity() -> dict:
     # All modeling, compilation and local checking code is bound to the bundle.
     paths = [Path(__file__).parent/name for name in
-             ('record_system.py', 'cnf_search.py', 'iii14_smt.py', 'iii14_problem.py',
+             ('record_system.py', 'cnf_search.py', 'iii14_smt.py', 'iii14_problem.py', 'iii14_compact.py',
               'iii20_bitvector.py', 'iii20_problem.py')]
     paths += [ROOT/'soko_mcp'/p for p in
               ('oracle.py', 'flat_oracle.py', 'original.py', 'catalog.py')]

@@ -1,5 +1,5 @@
 {
-  "version": 2,
+  "version": 3,
   "room": "III-14",
   "board": "original 15x7",
   "objective": "first win at or before horizon inputs",
@@ -21,6 +21,7 @@
     "A"
   ],
   "action_encoding": "one-hot Boolean variables named action_{zero_based_step}_{action}",
+  "transition_encoding": "selected action with shared movement and late phases; legacy transition retained for equivalence checks",
   "goal_absorbing": true,
   "all_board_cells_modeled": true,
   "hero_loss_pruned": "Druid petrifying Bard and closing door on either hero are losing because both heroes are necessary for the two goals",

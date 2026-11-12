@@ -1,0 +1,114 @@
+{
+  "scope": "arbitrary-state one-step equivalence to the legacy III-14 model",
+  "original_game_equivalence_proved": false,
+  "certificate_scope": "the five transformed difference CNFs are unsatisfiable",
+  "trusted_transformations": "Z3 symbolic expression construction, simplification and bit-blasting; DRAT checks only the resulting CNF",
+  "state_assumptions": [],
+  "action_assumption": "exactly one of UDLRA; all five cases checked",
+  "z3_version": "5.4.1",
+  "source_sha256": {
+    "iii14_smt.py": "4d40f35450837ec903f63322054f8ffc88486189c63db8d67bfc91c1708ba248",
+    "iii14_compact.py": "16a9250a9213d73da8a4ee6458af9d539518ab56afcc2ebe144a462ce103f290",
+    "cnf_search.py": "e6a443352f7750edf9f3daecac61e8b5602db903e27ce18d4e33d45336c90c60",
+    "certified_sat.py": "68a440b51c69dd1a338f8b088b5c3066a8494e97750215d4aa6863b80e39ff6e"
+  },
+  "checker_source_sha256": "d258129fc85cde574179830709cb484dc99cdfd9c26e5ab92acd5901035257de",
+  "cases": {
+    "U": {
+      "status": "unsat",
+      "cnf_sha256": "415079b7779cff4aa95505d898bf283fed4ef85109e765212fe3ac0fde37290b",
+      "assignment_path": null,
+      "proof_path": "/tmp/soko-compact-equivalence-pinned/U/proof.drat",
+      "proof_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b",
+      "checker_status": "verified",
+      "checker_sha256": "0535c9a92e0902c1432067de7741bd3e28054e1762d0bf58de90ab45005c5bdc",
+      "stats": {
+        "restarts": 0,
+        "conflicts": 0,
+        "decisions": 0,
+        "propagations": 0
+      },
+      "phase": "complete",
+      "checker_output": "\nc parsing input formula with 0 variables and 1 clauses\n\nc finished parsing\n\nc trivial UNSAT\ns VERIFIED\n\nc verification time: 0.229 seconds\n",
+      "elapsed_seconds": 0.3155031520000193,
+      "compile_seconds": 0.14621766900017974
+    },
+    "D": {
+      "status": "unsat",
+      "cnf_sha256": "415079b7779cff4aa95505d898bf283fed4ef85109e765212fe3ac0fde37290b",
+      "assignment_path": null,
+      "proof_path": "/tmp/soko-compact-equivalence-pinned/D/proof.drat",
+      "proof_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b",
+      "checker_status": "verified",
+      "checker_sha256": "0535c9a92e0902c1432067de7741bd3e28054e1762d0bf58de90ab45005c5bdc",
+      "stats": {
+        "restarts": 0,
+        "conflicts": 0,
+        "decisions": 0,
+        "propagations": 0
+      },
+      "phase": "complete",
+      "checker_output": "\nc parsing input formula with 0 variables and 1 clauses\n\nc finished parsing\n\nc trivial UNSAT\ns VERIFIED\n\nc verification time: 0.423 seconds\n",
+      "elapsed_seconds": 0.5432473970031424,
+      "compile_seconds": 0.02784888700261945
+    },
+    "L": {
+      "status": "unsat",
+      "cnf_sha256": "415079b7779cff4aa95505d898bf283fed4ef85109e765212fe3ac0fde37290b",
+      "assignment_path": null,
+      "proof_path": "/tmp/soko-compact-equivalence-pinned/L/proof.drat",
+      "proof_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b",
+      "checker_status": "verified",
+      "checker_sha256": "0535c9a92e0902c1432067de7741bd3e28054e1762d0bf58de90ab45005c5bdc",
+      "stats": {
+        "restarts": 0,
+        "conflicts": 0,
+        "decisions": 0,
+        "propagations": 0
+      },
+      "phase": "complete",
+      "checker_output": "\nc parsing input formula with 0 variables and 1 clauses\n\nc finished parsing\n\nc trivial UNSAT\ns VERIFIED\n\nc verification time: 0.104 seconds\n",
+      "elapsed_seconds": 0.21429764300046372,
+      "compile_seconds": 0.06130622599812341
+    },
+    "R": {
+      "status": "unsat",
+      "cnf_sha256": "415079b7779cff4aa95505d898bf283fed4ef85109e765212fe3ac0fde37290b",
+      "assignment_path": null,
+      "proof_path": "/tmp/soko-compact-equivalence-pinned/R/proof.drat",
+      "proof_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b",
+      "checker_status": "verified",
+      "checker_sha256": "0535c9a92e0902c1432067de7741bd3e28054e1762d0bf58de90ab45005c5bdc",
+      "stats": {
+        "restarts": 0,
+        "conflicts": 0,
+        "decisions": 0,
+        "propagations": 0
+      },
+      "phase": "complete",
+      "checker_output": "\nc parsing input formula with 0 variables and 1 clauses\n\nc finished parsing\n\nc trivial UNSAT\ns VERIFIED\n\nc verification time: 0.225 seconds\n",
+      "elapsed_seconds": 0.33514480300073046,
+      "compile_seconds": 0.07452804499916965
+    },
+    "A": {
+      "status": "unsat",
+      "cnf_sha256": "415079b7779cff4aa95505d898bf283fed4ef85109e765212fe3ac0fde37290b",
+      "assignment_path": null,
+      "proof_path": "/tmp/soko-compact-equivalence-pinned/A/proof.drat",
+      "proof_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b",
+      "checker_status": "verified",
+      "checker_sha256": "0535c9a92e0902c1432067de7741bd3e28054e1762d0bf58de90ab45005c5bdc",
+      "stats": {
+        "restarts": 0,
+        "conflicts": 0,
+        "decisions": 0,
+        "propagations": 0
+      },
+      "phase": "complete",
+      "checker_output": "\nc parsing input formula with 0 variables and 1 clauses\n\nc finished parsing\n\nc trivial UNSAT\ns VERIFIED\n\nc verification time: 0.062 seconds\n",
+      "elapsed_seconds": 0.17092753800170613,
+      "compile_seconds": 0.020670164998591645
+    }
+  },
+  "status": "encoding_equivalence_checked"
+}

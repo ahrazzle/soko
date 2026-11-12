@@ -1,0 +1,30 @@
+{
+  "bundle_sha256": "69812a6ba008f41a68ffa107b6adb4f3b0eee3eabeae0f2c090c6601c78b11a6",
+  "length": 48,
+  "mode": "reference_control",
+  "original_certificate_sha256": "37a5d595af33c72badc4ea87e94eeacc079d168f2e0aef9f50abfd67f19b7ec7",
+  "original_replay": "passed",
+  "public_submission": false,
+  "room": "III-14",
+  "route": "LLULULULRURURURURUAUDRRDDAUARRDLRAULDLDRARURDUUR",
+  "semantic_equivalence_proved": false,
+  "solver": {
+    "assignment_path": "/tmp/soko-compact-control/sat/assignment.json",
+    "checker_sha256": "0535c9a92e0902c1432067de7741bd3e28054e1762d0bf58de90ab45005c5bdc",
+    "checker_status": "assignment_verified",
+    "cnf_sha256": "b5617e28c8e833ed71d71591c5709d6de3fa834d2b028477473ced9fdebda82c",
+    "elapsed_seconds": 0.1966214130006847,
+    "phase": "complete",
+    "proof_path": null,
+    "proof_sha256": null,
+    "stats": {
+      "conflicts": 0,
+      "decisions": 0,
+      "propagations": 28023,
+      "restarts": 0
+    },
+    "status": "sat"
+  },
+  "solver_source_sha256": "68a440b51c69dd1a338f8b088b5c3066a8494e97750215d4aa6863b80e39ff6e",
+  "status": "reference_control_passed"
+}

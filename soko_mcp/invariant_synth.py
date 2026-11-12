@@ -91,7 +91,13 @@ def synthesize_formal_invariant(
     state_idx = {st: i for i, st in enumerate(concrete_states)}
     num_states, num_preds = len(concrete_states), len(pred_items)
     truth = [[bool(pfn(st)) for st in concrete_states] for _, pfn in pred_items]
-    idx_edges = [(state_idx[s], act, state_idx[ns]) for s, act, ns in concrete_edges]
+    # A capped traversal can contain edges to successors that were not admitted.
+    # Those edges do not belong to the explored subgraph and must not be
+    # mistaken for checked induction obligations.
+    open_edges = sum(ns not in state_idx for _, _, ns in concrete_edges)
+    idx_edges = [(state_idx[s], act, state_idx[ns]) for s, act, ns in concrete_edges if ns in state_idx]
+    proof_scope = ("enumerated_closed_domain" if universal_domain else
+                   "complete_reachable_states" if complete_space else "explored_reachable_subgraph")
     s0_idx = state_idx[s0]
 
     if synthesis_mode == "houdini_safety":
@@ -118,6 +124,8 @@ def synthesize_formal_invariant(
             "synthesis_mode": synthesis_mode,
             "universal_domain_induction": universal_domain,
             "complete_domain_closed": complete_space,
+            "proof_scope": proof_scope,
+            "open_transitions": open_edges,
             "implies_target_invariant": implies_target,
             "synthesized_conjuncts": active_names,
             "fixpoint_rounds": rounds,
@@ -164,6 +172,8 @@ def synthesize_formal_invariant(
             "synthesis_mode": synthesis_mode,
             "universal_domain_induction": universal_domain,
             "complete_domain_closed": complete_space,
+            "proof_scope": proof_scope,
+            "open_transitions": open_edges,
             "synthesized_traps": trap_names,
             "fixpoint_rounds": rounds,
             "deadlocked_states_certified": len(trapped),
