@@ -1,0 +1,14 @@
+{
+  "solver": "cadical300",
+  "cnf_sha256": "2a75653630a4411910df83f4a64b272a7b61237fb290266dff3f5fc56057e7f2",
+  "guide": "LLULULULRURURURURUAUDRRDDAUARRDLRAULDLDRARURDUU",
+  "guide_is_constraint": false,
+  "global_horizon": 47,
+  "original_game_optimality_claim": false,
+  "status": "unknown",
+  "elapsed_seconds": 1800,
+  "hinted_variables": 235,
+  "reason": "1800-second wall-clock timeout",
+  "last_stage": "solving",
+  "candidate_found": false
+}

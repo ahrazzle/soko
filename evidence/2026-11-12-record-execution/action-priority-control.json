@@ -1,0 +1,20 @@
+{
+  "status": "verified_control",
+  "elapsed_seconds": 46.56494930300323,
+  "cnf_sha256": "5e0a8c163be29b878ad63f0779e18690554ad7c9a3903fb792961cc6cf6eb07c",
+  "solver": "cadical300",
+  "soft_hint_only": true,
+  "decisions": 47,
+  "backtracks": 0,
+  "stats": {
+    "restarts": 0,
+    "conflicts": 0,
+    "decisions": 89209,
+    "propagations": 732796
+  },
+  "route": "LLULULULRURURURURUAUDRRDDAUARRDLRAULDLDRARURDUUR",
+  "length": 48,
+  "assignment_clause_check": "passed",
+  "original_game_replay": "passed",
+  "original_replay_sha256": "be3b258b7b17a77bf8694bfd0db573581dcf6587e7fa76780e2744f9473d3e3d"
+}

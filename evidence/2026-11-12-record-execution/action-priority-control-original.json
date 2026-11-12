@@ -1,0 +1,683 @@
+{
+  "room": 14,
+  "compiled_level_index": 22,
+  "width": 15,
+  "height": 7,
+  "object_count": 31,
+  "stride": 1,
+  "object_ids": {
+    "background": 0,
+    "goal": 3,
+    "wall": 26,
+    "fighter": 13,
+    "wizard": 14,
+    "thief": 15,
+    "priest": 16,
+    "bard": 17,
+    "druid": 18,
+    "sfighter": 21,
+    "swizard": 19,
+    "sthief": 20,
+    "spriest": 22,
+    "sbard": 23,
+    "sdruid": 24,
+    "crate": 25,
+    "yellowswitch": 5,
+    "yellowopen": 6,
+    "yellowdoor": 11,
+    "purpleswitch": 4,
+    "purpledoor": 10,
+    "purpleopen": 7,
+    "monsterdoor": 12,
+    "warpball": 1,
+    "shadowdoor": 8,
+    "goblin": 27,
+    "dying": 2,
+    "saved": 29,
+    "hassaveddoor": 9,
+    "corpse": 28,
+    "note": 30
+  },
+  "final_objects": [
+    67108865,
+    1,
+    1,
+    1,
+    1,
+    67108865,
+    67108865,
+    67108865,
+    1,
+    1,
+    1,
+    1,
+    1,
+    67108865,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    67108865,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    67108865,
+    1,
+    1,
+    33554449,
+    33554449,
+    33554449,
+    1,
+    67108865,
+    1,
+    1,
+    33554449,
+    33554449,
+    33554449,
+    1,
+    67108865,
+    1,
+    1,
+    67108881,
+    67108881,
+    67108881,
+    1,
+    67108865,
+    67108865,
+    1,
+    1,
+    1,
+    1,
+    1,
+    67108865,
+    67108865,
+    1,
+    129,
+    129,
+    129,
+    1,
+    67108865,
+    67108865,
+    1,
+    129,
+    131081,
+    129,
+    1,
+    67108865,
+    67108865,
+    1,
+    129,
+    1,
+    129,
+    1,
+    67108865,
+    67108865,
+    1,
+    129,
+    1090519049,
+    129,
+    1,
+    67108865,
+    67108865,
+    1,
+    129,
+    129,
+    129,
+    1,
+    67108865,
+    67108865,
+    1,
+    1,
+    1,
+    1,
+    1,
+    67108865,
+    67108865,
+    67108865,
+    67108865,
+    67108865,
+    67108865,
+    67108865,
+    67108865
+  ],
+  "initial_objects": [
+    67108865,
+    67108865,
+    67108865,
+    67108865,
+    67108865,
+    67108865,
+    67108865,
+    67108865,
+    1,
+    1,
+    1,
+    1,
+    1,
+    67108865,
+    67108865,
+    1,
+    8388609,
+    1,
+    262145,
+    1,
+    67108865,
+    67108865,
+    1,
+    1,
+    1,
+    1,
+    1,
+    67108865,
+    67108865,
+    1,
+    17,
+    17,
+    17,
+    1,
+    67108865,
+    67108865,
+    1,
+    17,
+    17,
+    17,
+    1,
+    67108865,
+    67108865,
+    1,
+    17,
+    17,
+    17,
+    1,
+    67108865,
+    67108865,
+    1,
+    1,
+    1,
+    1,
+    1,
+    67108865,
+    67108865,
+    1,
+    1025,
+    1025,
+    1025,
+    1,
+    67108865,
+    67108865,
+    1,
+    1025,
+    9,
+    1025,
+    1,
+    67108865,
+    67108865,
+    1,
+    1025,
+    1,
+    1025,
+    1,
+    67108865,
+    67108865,
+    1,
+    1025,
+    9,
+    1025,
+    1,
+    67108865,
+    67108865,
+    1,
+    1025,
+    1025,
+    1025,
+    1,
+    67108865,
+    67108865,
+    1,
+    1,
+    1,
+    1,
+    1,
+    67108865,
+    67108865,
+    67108865,
+    67108865,
+    67108865,
+    67108865,
+    67108865,
+    67108865
+  ],
+  "first_win": 48,
+  "first_death": null,
+  "restarts": 0,
+  "again_limit_hit": false,
+  "schema_version": 1,
+  "evidence_level": "original_build_replay",
+  "part": 3,
+  "source_url": "https://sites.math.washington.edu/~ostroff/puzzles/Heroes_of_Sokoban_III_The_Bard_and_The_Druid.html",
+  "html_sha256": "380d343ad35a8f8caf6863341172a7771d0d28ced2824a7a3085990614562105",
+  "puzzlescript_source_sha256": "f66ceb8f8a2c23a3cb270bad62cdf194e47479772cab94f154ed26f0ff7c20e0",
+  "checker_sha256": "e9b288556c51363e1edbb161c2c119c540ad8aa6e5ae31e23739a6284f2800a6",
+  "browser_version": "156.0.8078.79",
+  "checked_at": "2026-11-12T18:08:13.664073+00:00",
+  "route": "LLULULULRURURURURUAUDRRDDAUARRDLRAULDLDRARURDUUR",
+  "route_len": 48,
+  "route_sha256": "cd934d25a629be95f1e0be283bdbe7a419e76b58f604e7628d2ad1ce8fc33083",
+  "instance_sha256": "4f53eba41efd796cfcd97bd40074fe0ab7b4349132523e97557459cef0f96177",
+  "trajectory_sha256": "75f93280c70d01c0d576cbdde89b8577ec1f38fd43bf619eda6ed66625e6bd19",
+  "steps_executed": 48,
+  "valid_winning_route": true,
+  "blocked_resource_requests": 0,
+  "public_submission": false,
+  "formal_proof_checked": false,
+  "source_pins": {
+    "html_sha256": "380d343ad35a8f8caf6863341172a7771d0d28ced2824a7a3085990614562105",
+    "puzzlescript_source_sha256": "f66ceb8f8a2c23a3cb270bad62cdf194e47479772cab94f154ed26f0ff7c20e0",
+    "checker_sha256": "e9b288556c51363e1edbb161c2c119c540ad8aa6e5ae31e23739a6284f2800a6",
+    "source_url": "https://sites.math.washington.edu/~ostroff/puzzles/Heroes_of_Sokoban_III_The_Bard_and_The_Druid.html"
+  },
+  "final_layers": [
+    [
+      [
+        "background",
+        "wall"
+      ],
+      [
+        "background",
+        "wall"
+      ],
+      [
+        "background"
+      ],
+      [
+        "background"
+      ],
+      [
+        "background"
+      ],
+      [
+        "background"
+      ],
+      [
+        "background"
+      ],
+      [
+        "background",
+        "wall"
+      ],
+      [
+        "background",
+        "wall"
+      ],
+      [
+        "background",
+        "wall"
+      ],
+      [
+        "background",
+        "wall"
+      ],
+      [
+        "background",
+        "wall"
+      ],
+      [
+        "background",
+        "wall"
+      ],
+      [
+        "background",
+        "wall"
+      ],
+      [
+        "background",
+        "wall"
+      ]
+    ],
+    [
+      [
+        "background"
+      ],
+      [
+        "background"
+      ],
+      [
+        "background"
+      ],
+      [
+        "background"
+      ],
+      [
+        "background"
+      ],
+      [
+        "background"
+      ],
+      [
+        "background"
+      ],
+      [
+        "background"
+      ],
+      [
+        "background"
+      ],
+      [
+        "background"
+      ],
+      [
+        "background"
+      ],
+      [
+        "background"
+      ],
+      [
+        "background"
+      ],
+      [
+        "background"
+      ],
+      [
+        "background",
+        "wall"
+      ]
+    ],
+    [
+      [
+        "background"
+      ],
+      [
+        "background"
+      ],
+      [
+        "background"
+      ],
+      [
+        "background"
+      ],
+      [
+        "background",
+        "crate",
+        "purpleswitch"
+      ],
+      [
+        "background",
+        "crate",
+        "purpleswitch"
+      ],
+      [
+        "background",
+        "purpleswitch",
+        "wall"
+      ],
+      [
+        "background"
+      ],
+      [
+        "background",
+        "purpleopen"
+      ],
+      [
+        "background",
+        "purpleopen"
+      ],
+      [
+        "background",
+        "purpleopen"
+      ],
+      [
+        "background",
+        "purpleopen"
+      ],
+      [
+        "background",
+        "purpleopen"
+      ],
+      [
+        "background"
+      ],
+      [
+        "background",
+        "wall"
+      ]
+    ],
+    [
+      [
+        "background"
+      ],
+      [
+        "background"
+      ],
+      [
+        "background"
+      ],
+      [
+        "background"
+      ],
+      [
+        "background",
+        "crate",
+        "purpleswitch"
+      ],
+      [
+        "background",
+        "crate",
+        "purpleswitch"
+      ],
+      [
+        "background",
+        "purpleswitch",
+        "wall"
+      ],
+      [
+        "background"
+      ],
+      [
+        "background",
+        "purpleopen"
+      ],
+      [
+        "background",
+        "bard",
+        "goal"
+      ],
+      [
+        "background"
+      ],
+      [
+        "background",
+        "goal",
+        "note",
+        "sdruid"
+      ],
+      [
+        "background",
+        "purpleopen"
+      ],
+      [
+        "background"
+      ],
+      [
+        "background",
+        "wall"
+      ]
+    ],
+    [
+      [
+        "background"
+      ],
+      [
+        "background"
+      ],
+      [
+        "background"
+      ],
+      [
+        "background"
+      ],
+      [
+        "background",
+        "crate",
+        "purpleswitch"
+      ],
+      [
+        "background",
+        "crate",
+        "purpleswitch"
+      ],
+      [
+        "background",
+        "purpleswitch",
+        "wall"
+      ],
+      [
+        "background"
+      ],
+      [
+        "background",
+        "purpleopen"
+      ],
+      [
+        "background",
+        "purpleopen"
+      ],
+      [
+        "background",
+        "purpleopen"
+      ],
+      [
+        "background",
+        "purpleopen"
+      ],
+      [
+        "background",
+        "purpleopen"
+      ],
+      [
+        "background"
+      ],
+      [
+        "background",
+        "wall"
+      ]
+    ],
+    [
+      [
+        "background",
+        "wall"
+      ],
+      [
+        "background"
+      ],
+      [
+        "background"
+      ],
+      [
+        "background"
+      ],
+      [
+        "background"
+      ],
+      [
+        "background"
+      ],
+      [
+        "background"
+      ],
+      [
+        "background"
+      ],
+      [
+        "background"
+      ],
+      [
+        "background"
+      ],
+      [
+        "background"
+      ],
+      [
+        "background"
+      ],
+      [
+        "background"
+      ],
+      [
+        "background"
+      ],
+      [
+        "background",
+        "wall"
+      ]
+    ],
+    [
+      [
+        "background",
+        "wall"
+      ],
+      [
+        "background",
+        "wall"
+      ],
+      [
+        "background",
+        "wall"
+      ],
+      [
+        "background",
+        "wall"
+      ],
+      [
+        "background",
+        "wall"
+      ],
+      [
+        "background",
+        "wall"
+      ],
+      [
+        "background",
+        "wall"
+      ],
+      [
+        "background",
+        "wall"
+      ],
+      [
+        "background",
+        "wall"
+      ],
+      [
+        "background",
+        "wall"
+      ],
+      [
+        "background",
+        "wall"
+      ],
+      [
+        "background",
+        "wall"
+      ],
+      [
+        "background",
+        "wall"
+      ],
+      [
+        "background",
+        "wall"
+      ],
+      [
+        "background",
+        "wall"
+      ]
+    ]
+  ],
+  "final_ascii": "##.....########\n..............#\n....**#.?????.#\n....**#.?B.6?.#\n....**#.?????.#\n#.............#\n###############",
+  "certificate_sha256": "6fd1a09b3b7dce2171f6cdd59df647ac6b6929c8a1437e08eb577e6777016cf9"
+}

@@ -39,9 +39,10 @@ in 46.6 seconds including input loading, 47 external decisions and no
 backtracks. An independent full-clause check passed, and browser replay in the
 original game verified the known 48-input winning route. This is a positive
 control, not a record. There was no matched default-solver horizon-48 run, so it
-does not establish a speedup. The route and complete replay report are in the
-local control evidence at `/tmp/soko-action-priority/verified.json` and
-`/tmp/soko-action-priority/original-replay.json` when available.
+does not establish a speedup. The [control result](../../evidence/2026-11-12-record-execution/action-priority-control.json)
+and [complete replay report](../../evidence/2026-11-12-record-execution/action-priority-control-original.json)
+are archived in the repository. The corresponding unrestricted horizon-47
+record attempt timed out after 900 seconds without a candidate or proof.
 
 `tests/test_action_priority.py` exercises preference validation, assignment
 and fixed-literal tracking across backtracks, and satisfiable and unsatisfiable
