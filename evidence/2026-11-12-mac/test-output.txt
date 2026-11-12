@@ -1,0 +1,11 @@
+test_available_cpp_and_no_solution_is_budget_result (test_capabilities.CapabilityTests.test_available_cpp_and_no_solution_is_budget_result) ... ok
+test_backend_failure_is_not_budget_exhaustion (test_capabilities.CapabilityTests.test_backend_failure_is_not_budget_exhaustion) ... ok
+test_cli_tcb_lock_and_capabilities (test_capabilities.CapabilityTests.test_cli_tcb_lock_and_capabilities) ... ok
+test_existing_python_route_verification (test_capabilities.CapabilityTests.test_existing_python_route_verification) ... ok
+test_missing_cpp_source_reports_unavailable (test_capabilities.CapabilityTests.test_missing_cpp_source_reports_unavailable) ... ok
+test_tcb_tool_is_registered_and_missing_manifest_fails_closed (test_capabilities.CapabilityTests.test_tcb_tool_is_registered_and_missing_manifest_fails_closed) ... ok
+
+----------------------------------------------------------------------
+Ran 6 tests in 0.127s
+
+OK

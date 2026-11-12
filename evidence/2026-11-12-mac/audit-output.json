@@ -1,0 +1,130 @@
+{
+  "epistemic_status": "VERIFIED",
+  "planted_bugs_total": 10,
+  "planted_bugs_caught": 10,
+  "all_caught": true,
+  "cross_oracle_parity_vectors": 10,
+  "cross_oracle_mismatches": 0,
+  "vectors_evaluated": 11,
+  "mutations": [
+    {
+      "bug_id": "BUG_01_IMABAYASHI_SINGLE_PUSH",
+      "description": "Fighter refuses to push >=2 Moveables in a line",
+      "caught": true,
+      "failing_vector_count": 6,
+      "failing_vectors": [
+        "II-22_94",
+        "III-20_87",
+        "III-20_84",
+        "III-20_84_ALT",
+        "MICRO_GOBLIN_SIMUL",
+        "MICRO_MULTI_PUSH"
+      ]
+    },
+    {
+      "bug_id": "BUG_02_FIGHTER_RULE_ORDER_SWAP",
+      "description": "Fighter push rule order swapped (single-push collapse)",
+      "caught": true,
+      "failing_vector_count": 6,
+      "failing_vectors": [
+        "II-22_94",
+        "III-20_87",
+        "III-20_84",
+        "III-20_84_ALT",
+        "MICRO_GOBLIN_SIMUL",
+        "MICRO_MULTI_PUSH"
+      ]
+    },
+    {
+      "bug_id": "BUG_03_BARD_MANHATTAN_RADIUS",
+      "description": "Bard uses Manhattan radius <=2 instead of 5x5 Chebyshev square",
+      "caught": true,
+      "failing_vector_count": 3,
+      "failing_vectors": [
+        "III-14_48",
+        "III-14_15x7_48",
+        "III-22_9"
+      ]
+    },
+    {
+      "bug_id": "BUG_04_BARD_POST_MOVE_CHARM",
+      "description": "Bard evaluates Note aura after stepping instead of end of prior turn",
+      "caught": true,
+      "failing_vector_count": 3,
+      "failing_vectors": [
+        "III-14_48",
+        "III-14_15x7_48",
+        "III-22_9"
+      ]
+    },
+    {
+      "bug_id": "BUG_05_WALL_NOT_WEIGHING_PART_III",
+      "description": "Excludes transmuted Wall (#) from Weighing on switches in Part III",
+      "caught": true,
+      "failing_vector_count": 2,
+      "failing_vectors": [
+        "III-14_48",
+        "III-14_15x7_48"
+      ]
+    },
+    {
+      "bug_id": "BUG_06_WIZARD_ADJACENT_NO_SWAP",
+      "description": "Blocks Wizard warpball swap when Moveable is orthogonally adjacent",
+      "caught": true,
+      "failing_vector_count": 5,
+      "failing_vectors": [
+        "II-22_94",
+        "III-15_69",
+        "III-20_87",
+        "III-20_84",
+        "III-20_84_ALT"
+      ]
+    },
+    {
+      "bug_id": "BUG_07_PRIEST_INACTIVE_NO_HEAL",
+      "description": "Inactive SPriest (4) fails to shield adjacent heroes from Goblins",
+      "caught": true,
+      "failing_vector_count": 4,
+      "failing_vectors": [
+        "II-22_94",
+        "III-20_87",
+        "III-20_84",
+        "III-20_84_ALT"
+      ]
+    },
+    {
+      "bug_id": "BUG_08_GOBLIN_SEQUENTIAL_KILL",
+      "description": "Resolves Goblin attacks sequentially instead of simultaneous Dying layer",
+      "caught": true,
+      "failing_vector_count": 5,
+      "failing_vectors": [
+        "II-22_94",
+        "III-20_87",
+        "III-20_84",
+        "III-20_84_ALT",
+        "MICRO_GOBLIN_SIMUL"
+      ]
+    },
+    {
+      "bug_id": "BUG_09_HERO_CYCLE_SWIZARD_STHIEF_ORDER",
+      "description": "Cycles 1->3->2 (OBJECTS order) instead of 1->2->3 (LEGEND order)",
+      "caught": true,
+      "failing_vector_count": 4,
+      "failing_vectors": [
+        "II-22_94",
+        "III-20_87",
+        "III-20_84",
+        "III-20_84_ALT"
+      ]
+    },
+    {
+      "bug_id": "BUG_10_PART_II_NO_CANCEL_ON_BLOCKED_MOVE",
+      "description": "Omits Late [Player DidNotMove] -> Cancel on blocked Part I/II moves",
+      "caught": true,
+      "failing_vector_count": 1,
+      "failing_vectors": [
+        "PART_II_BLOCKED_CANCEL_DRAGON"
+      ]
+    }
+  ]
+}

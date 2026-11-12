@@ -9,6 +9,8 @@ from . import __version__
 from .analyzer import inspect_room
 from .engine_bridge import (
     ensure_cpp_engine,
+    get_capabilities,
+    verify_tcb_lock,
     optimize_route_verified,
     prove_floor_verified,
     resolve_room_input,
@@ -56,6 +58,18 @@ ROOM_INPUT_PROPERTIES: Dict[str, Any] = {
 }
 
 TOOLS: List[Dict[str, Any]] = [
+    {
+        "name": "soko_capabilities",
+        "description": "Report available backends and missing implementations in this checkout.",
+        "inputSchema": {"type": "object", "additionalProperties": False},
+        "annotations": {"readOnlyHint": True, "idempotentHint": True, "openWorldHint": False},
+    },
+    {
+        "name": "soko_verify_tcb_lock",
+        "description": "Check the SHA256SUMS manifest and report checker hashes. Missing manifests fail closed.",
+        "inputSchema": {"type": "object", "additionalProperties": False},
+        "annotations": {"readOnlyHint": True, "idempotentHint": True, "openWorldHint": False},
+    },
     {
         "name": "soko_list_rooms",
         "title": "List Built-In Frontier Benchmark Rooms",
@@ -310,6 +324,10 @@ def _get_prompt_messages(name: str, arguments: Dict[str, Any]) -> Dict[str, Any]
 
 
 def dispatch_tool_call(name: str, args: Dict[str, Any]) -> Dict[str, Any]:
+    if name == "soko_capabilities":
+        return get_capabilities()
+    if name == "soko_verify_tcb_lock":
+        return verify_tcb_lock()
     if name == "soko_list_rooms":
         summary = {}
         for rid, meta in FRONTIER_ROOMS.items():
@@ -322,7 +340,8 @@ def dispatch_tool_call(name: str, args: Dict[str, Any]) -> Dict[str, Any]:
                 "frontier_record": meta["frontier_record"],
                 "reference_route_len": len(meta["reference_route"]),
             }
-        return {"cpp_engine_ready": ensure_cpp_engine() is not None, "rooms": summary}
+        capabilities = get_capabilities()
+        return {"cpp_engine_ready": capabilities["cpp_engine_ready"], "capabilities": capabilities, "rooms": summary}
 
     if name == "soko_inspect_room":
         rid, part, grid, meta = resolve_room_input(args.get("room_id"), args.get("part"), args.get("grid"))

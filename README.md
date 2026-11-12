@@ -1,5 +1,12 @@
 # soko (`soko-verified-mcp` v0.2.0 — Domain-General Formal-Systems & Verified-Bar MCP Server)
 
+## Checkout status
+
+This checkout contains the Python room interpreters, route checks and a fallback route optimizer. It does not contain the C++ search engine, general `formal_*` tools, Lean proofs or a `SHA256SUMS` manifest. The feature and route tables below describe earlier work. They are not proof that those files or guarantees are present here.
+
+Run `python3 -m soko_mcp capabilities` to check which backends are available. When the C++ source is absent, solving from scratch returns `UNAVAILABLE_BACKEND`, not a search budget result. `python3 -m soko_mcp tcb-lock` reports `TAMPERED_OR_UNLOCKED` when the manifest is missing. Route checks compare the two Python interpreters but do not establish agreement with a pinned external specification or formal proof.
+
+
 Model Context Protocol (MCP) server and C++20 verification/search toolkit implementing the [Foundation-0 Repository Standard](https://github.com/Foundation-0) and [Proven-Commons Verified Bar](https://github.com/Proven-Commons/mission/blob/main/playbook/verified-bar.md) across **arbitrary discrete state systems** (`formal_*` suite) as well as Jonah Ostroff's PuzzleScript trilogy ([Part I](https://www.puzzlescript.net/editor.html?hack=6860122), [Part II: Monsters](https://www.puzzlescript.net/editor.html?hack=6910207), [Part III: The Bard and The Druid](https://www.puzzlescript.net/editor.html?hack=7072276)) on the [Sokoban Eval Frontier](https://soko.banteg.xyz/frontier/) benchmark ([write-up](https://banteg.xyz/posts/sokoban/)).
 
 Zero third-party Python packages are required (`python >= 3.10` standard library only). On first Sokoban tool call, `soko_mcp` automatically compiles the hardened C++20 engine (`cpp/soko_engine.cpp`) via `g++` or `clang++` (`-O3 -pthread -std=c++20`), while maintaining fail-closed dual-Python verification (`PuzzleScriptOracle` + zero-shared-code `FlatBitmaskOracle`) even when no C++20 compiler is present.
