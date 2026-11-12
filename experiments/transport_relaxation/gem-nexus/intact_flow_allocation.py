@@ -7,49 +7,30 @@ standalone witness and min-cut certificate verifiers.
 """
 from __future__ import annotations
 
-from collections import deque
-from dataclasses import dataclass
-from typing import Dict, List, Optional, Sequence, Set, Tuple
+from typing import Dict, List, Optional, Sequence, Tuple
 
 try:
     from . import allocation as _repo_alloc
     from . import model as _repo_model
+    from .dinic_kernel import CertifiedDinic, FlowEdge, verify_9flow_min_cut
     _HAS_REPO = True
 except Exception:
     _repo_alloc = _repo_model = None
     _HAS_REPO = False
+    from dinic_kernel import CertifiedDinic, FlowEdge, verify_9flow_min_cut
 
 W: int = _repo_model.W if _HAS_REPO else 15
 H: int = _repo_model.H if _HAS_REPO else 7
 ROWS: Tuple[str, ...] = tuple(_repo_model.ROWS) if _HAS_REPO else (
-    "###############",
-    "#.............#",
-    "#.5.}}}.]]]]].#",
-    "#...}}}.]G.G].#",
-    "#.D.}}}.]]]]].#",
-    "#.............#",
-    "###############",
+    "###############", "#.............#", "#.5.}}}.]]]]].#",
+    "#...}}}.]G.G].#", "#.D.}}}.]]]]].#", "#.............#", "###############",
 )
-BORDER: Tuple[Tuple[int, int], ...] = (
-    tuple(_repo_model.BORDER) if _HAS_REPO
-    else tuple((x, y) for y in range(H) for x in range(W) if ROWS[y][x] == "#")
-)
-SWITCHES: Tuple[Tuple[int, int], ...] = (
-    tuple(_repo_model.SWITCHES) if _HAS_REPO
-    else tuple((x, y) for y in range(H) for x in range(W) if ROWS[y][x] == "}")
-)
-GOALS: Tuple[Tuple[int, int], ...] = (
-    tuple(_repo_model.GOALS) if _HAS_REPO
-    else tuple((x, y) for y in range(H) for x in range(W) if ROWS[y][x] == "G")
-)
-PDOORS: Tuple[Tuple[int, int], ...] = tuple(
-    (x, y) for y in range(H) for x in range(W) if ROWS[y][x] == "]"
-)
+BORDER: Tuple[Tuple[int, int], ...] = tuple(_repo_model.BORDER) if _HAS_REPO else tuple((x, y) for y in range(H) for x in range(W) if ROWS[y][x] == "#")
+SWITCHES: Tuple[Tuple[int, int], ...] = tuple(_repo_model.SWITCHES) if _HAS_REPO else tuple((x, y) for y in range(H) for x in range(W) if ROWS[y][x] == "}")
+GOALS: Tuple[Tuple[int, int], ...] = tuple(_repo_model.GOALS) if _HAS_REPO else tuple((x, y) for y in range(H) for x in range(W) if ROWS[y][x] == "G")
+PDOORS: Tuple[Tuple[int, int], ...] = tuple((x, y) for y in range(H) for x in range(W) if ROWS[y][x] == "]")
 KEYS: str = _repo_model.KEYS if _HAS_REPO else "UDLRA"
-DIRECTIONS: Dict[str, Tuple[int, int]] = (
-    dict(_repo_model.DIRECTIONS) if _HAS_REPO
-    else {"U": (0, -1), "D": (0, 1), "L": (-1, 0), "R": (1, 0)}
-)
+DIRECTIONS: Dict[str, Tuple[int, int]] = dict(_repo_model.DIRECTIONS) if _HAS_REPO else {"U": (0, -1), "D": (0, 1), "L": (-1, 0), "R": (1, 0)}
 BORDER_INDEX: Dict[Tuple[int, int], int] = {pt: i for i, pt in enumerate(BORDER)}
 
 
@@ -77,10 +58,8 @@ def is_goal_pair(frame: Dict[str, object]) -> bool:
 def normalize_heroes(route: str, hero_frames: Sequence[Dict[str, object]]) -> List[Dict[str, object]]:
     if _HAS_REPO:
         return list(_repo_alloc._heroes(route, hero_frames))
-    if not isinstance(route, str) or any(ch not in KEYS for ch in route):
-        raise ValueError("route must be a string over UDLRA")
-    if len(hero_frames) != len(route) + 1:
-        raise ValueError("hero_frames length mismatch")
+    if not isinstance(route, str) or any(ch not in KEYS for ch in route) or len(hero_frames) != len(route) + 1:
+        raise ValueError("invalid route or hero_frames length")
     norm = []
     for raw in hero_frames:
         bx, by, dx, dy = int(raw["bard_x"]), int(raw["bard_y"]), int(raw["druid_x"]), int(raw["druid_y"])
@@ -92,8 +71,7 @@ def normalize_heroes(route: str, hero_frames: Sequence[Dict[str, object]]) -> Li
         raise ValueError("invalid III-14 initial hero frame")
     for idx, key in enumerate(route):
         bf, af = norm[idx], norm[idx + 1]
-        b0, b1 = hero_point(bf, "bard"), hero_point(af, "bard")
-        d0, d1 = hero_point(bf, "druid"), hero_point(af, "druid")
+        b0, b1, d0, d1 = hero_point(bf, "bard"), hero_point(af, "bard"), hero_point(bf, "druid"), hero_point(af, "druid")
         if key == "A":
             if b1 != b0 or d1 != d0 or af["active"] == bf["active"]:
                 raise ValueError(f"invalid switch at {idx}")
@@ -111,9 +89,7 @@ def normalize_heroes(route: str, hero_frames: Sequence[Dict[str, object]]) -> Li
     return norm
 
 
-def first_harvest_frames(
-    route: str, heroes: Sequence[Dict[str, object]], upto_frame: Optional[int] = None
-) -> Dict[Tuple[int, int], int]:
+def first_harvest_frames(route: str, heroes: Sequence[Dict[str, object]], upto_frame: Optional[int] = None) -> Dict[Tuple[int, int], int]:
     limit = len(route) if upto_frame is None else min(len(route), upto_frame)
     out: Dict[Tuple[int, int], int] = {}
     for i in range(limit):
@@ -125,126 +101,7 @@ def first_harvest_frames(
     return out
 
 
-@dataclass
-class FlowEdge:
-    to: int
-    reverse: int
-    capacity: int
-    original_capacity: int
-    kind: str = "one"
-    params: Tuple[object, ...] = ()
-
-
-class CertifiedDinic:
-    def __init__(self) -> None:
-        self.labels: List[str] = []
-        self.graph: List[List[FlowEdge]] = []
-        self.forward_edges: List[Tuple[int, int]] = []
-
-    def add_node(self, label: str) -> int:
-        self.labels.append(label)
-        self.graph.append([])
-        return len(self.graph) - 1
-
-    def add_edge(self, u: int, v: int, capacity: int = 1, kind: str = "one", params: Tuple[object, ...] = ()) -> None:
-        if type(capacity) is not int or capacity < 0 or u == v:
-            raise ValueError("invalid edge")
-        self.forward_edges.append((u, len(self.graph[u])))
-        self.graph[u].append(FlowEdge(v, len(self.graph[v]), capacity, capacity, kind, params))
-        self.graph[v].append(FlowEdge(u, len(self.graph[u]) - 1, 0, 0, "residual", ()))
-
-    def max_flow(self, source: int, sink: int) -> int:
-        total = 0
-        while True:
-            levels = [-1] * len(self.graph)
-            levels[source] = 0
-            q = deque([source])
-            while q:
-                u = q.popleft()
-                for e in self.graph[u]:
-                    if e.capacity > 0 and levels[e.to] < 0:
-                        levels[e.to] = levels[u] + 1
-                        q.append(e.to)
-            if levels[sink] < 0:
-                return total
-            cursors = [0] * len(self.graph)
-            cap_max = sum(e.capacity for e in self.graph[source])
-            while True:
-                nodes, limits, path, pushed = [source], [cap_max], [], 0
-                while nodes:
-                    u = nodes[-1]
-                    if u == sink:
-                        pushed = limits[-1]
-                        for pn, pi in path:
-                            fe = self.graph[pn][pi]
-                            fe.capacity -= pushed
-                            self.graph[fe.to][fe.reverse].capacity += pushed
-                        break
-                    while cursors[u] < len(self.graph[u]):
-                        ce = self.graph[u][cursors[u]]
-                        if ce.capacity > 0 and levels[ce.to] == levels[u] + 1:
-                            break
-                        cursors[u] += 1
-                    if cursors[u] == len(self.graph[u]):
-                        nodes.pop()
-                        limits.pop()
-                        if path:
-                            cursors[path.pop()[0]] += 1
-                        continue
-                    ei = cursors[u]
-                    ce = self.graph[u][ei]
-                    path.append((u, ei))
-                    nodes.append(ce.to)
-                    limits.append(min(limits[-1], ce.capacity))
-                if not pushed:
-                    break
-                total += pushed
-
-    def min_cut(self, source: int) -> Dict[str, object]:
-        reach, q = {source}, deque([source])
-        while q:
-            u = q.popleft()
-            for e in self.graph[u]:
-                if e.capacity > 0 and e.to not in reach:
-                    reach.add(e.to)
-                    q.append(e.to)
-        crossing = [
-            {
-                "from": self.labels[u], "to": self.labels[self.graph[u][i].to],
-                "capacity": self.graph[u][i].original_capacity,
-                "flow": self.graph[u][i].original_capacity - self.graph[u][i].capacity,
-                "kind": self.graph[u][i].kind, "params": list(self.graph[u][i].params),
-            }
-            for u, i in self.forward_edges
-            if u in reach and self.graph[u][i].to not in reach and self.graph[u][i].original_capacity > 0
-        ]
-        return {
-            "capacity": sum(c["capacity"] for c in crossing), "crossing_edges": crossing,
-            "source_side": [self.labels[u] for u in sorted(reach)],
-            "sink_side_count": len(self.graph) - len(reach),
-        }
-
-
-def verify_9flow_min_cut(net: CertifiedDinic, source: int, sink: int, cut: Dict[str, object]) -> bool:
-    lbl_map = {lbl: idx for idx, lbl in enumerate(net.labels)}
-    try:
-        src_side = {lbl_map[lbl] for lbl in cut.get("source_side", [])}
-    except Exception:
-        return False
-    if source not in src_side or sink in src_side:
-        return False
-    true_pairs = [
-        (net.labels[u], net.labels[net.graph[u][i].to], net.graph[u][i].original_capacity)
-        for u, i in net.forward_edges
-        if u in src_side and net.graph[u][i].to not in src_side and net.graph[u][i].original_capacity > 0
-    ]
-    rep_pairs = [(c["from"], c["to"], c["capacity"]) for c in cut.get("crossing_edges", [])]
-    return cut.get("capacity") == sum(p[2] for p in true_pairs) and sorted(true_pairs) == sorted(rep_pairs)
-
-
-def build_intact_9flow_network(
-    route: str, heroes: Sequence[Dict[str, object]], landmark_frame: int, constrain_intact_border: bool = True
-) -> Tuple[CertifiedDinic, int, int]:
+def build_intact_9flow_network(route: str, heroes: Sequence[Dict[str, object]], landmark_frame: int, constrain_intact_border: bool = True) -> Tuple[CertifiedDinic, int, int]:
     net = CertifiedDinic()
     src, snk = net.add_node("source"), net.add_node("sink")
     origins = [net.add_node(f"origin_{j}") for j in range(len(BORDER))]
@@ -291,10 +148,7 @@ def build_intact_9flow_network(
     return net, src, snk
 
 
-def verify_9flow_witness(
-    route: str, hero_frames: Sequence[Dict[str, object]], landmark_frame: int,
-    report: Dict[str, object], constrain_intact_border: bool = True,
-) -> bool:
+def verify_9flow_witness(route: str, hero_frames: Sequence[Dict[str, object]], landmark_frame: int, report: Dict[str, object], constrain_intact_border: bool = True) -> bool:
     if not report.get("feasible"):
         return False
     heroes = normalize_heroes(route, hero_frames)
@@ -331,17 +185,10 @@ def verify_9flow_witness(
     return True
 
 
-def allocate_intact_9flow(
-    route: str, hero_frames: Sequence[Dict[str, object]], landmark_frame: int, constrain_intact_border: bool = True
-) -> Dict[str, object]:
+def allocate_intact_9flow(route: str, hero_frames: Sequence[Dict[str, object]], landmark_frame: int, constrain_intact_border: bool = True) -> Dict[str, object]:
     if _HAS_REPO and hasattr(_repo_model, "exact"):
         _repo_model.exact._guard_current_source()
-    report: Dict[str, object] = {
-        "status": "invalid_trajectory", "feasible": None,
-        "unharvested_occupancy_constrained": bool(constrain_intact_border),
-        "route": route if isinstance(route, str) else None,
-        "landmark_frame": landmark_frame if type(landmark_frame) is int else None, "frames": [],
-    }
+    report: Dict[str, object] = {"status": "invalid_trajectory", "feasible": None, "unharvested_occupancy_constrained": bool(constrain_intact_border), "route": route if isinstance(route, str) else None, "landmark_frame": landmark_frame if type(landmark_frame) is int else None, "frames": []}
     try:
         heroes = normalize_heroes(route, hero_frames)
     except ValueError as exc:
@@ -380,8 +227,7 @@ def allocate_intact_9flow(
         paths.append(lbls)
     by_sw, matching = {}, []
     for path in paths:
-        oi = int(next(s for s in path if s.startswith("origin_")).split("_")[1])
-        si = int(next(s for s in path if s.startswith("switch_")).split("_")[1])
+        oi, si = int(next(s for s in path if s.startswith("origin_")).split("_")[1]), int(next(s for s in path if s.startswith("switch_")).split("_")[1])
         orig = BORDER[oi]
         pos = {int(s.split("_")[2]): (int(s.split("_")[3]), int(s.split("_")[4])) for s in path if s.startswith("cell_in_")}
         rel = min(pos)
