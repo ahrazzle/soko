@@ -171,6 +171,7 @@ def _alpha_normalize_skeleton(tree: ast.AST) -> str:
         "project",
         "potential",
         "enumerate_states",
+        "predicates",
     }
 
     def map_name(name: str) -> str:
@@ -1124,6 +1125,7 @@ def certify_formal_lower_bound(
     certificate_code: str,
     claimed_lower_bound: int,
     max_concrete_states: int = 100000,
+    universe_code: Optional[str] = None,
 ) -> Dict[str, Any]:
     """Machine-check a lower bound (`OPT >= B`) via Quotient Homomorphism or Inductive Potential Certificate."""
     reg = _get_locked_system(system_id)
@@ -1140,6 +1142,13 @@ def certify_formal_lower_bound(
     s0 = spec.initial_state()
     u0 = impl.initial_state()
     explicit_enum = cert_ns.get("enumerate_states")
+    if universe_code is not None and universe_code.strip():
+        u_tree, _ = validate_pure_ast(universe_code, f"{system_id}.UNIVERSE", exact_arithmetic_only=reg.exact_only)
+        u_ns: Dict[str, Any] = {"__builtins__": dict(SAFE_BUILTINS)}
+        exec(compile(u_tree, filename=f"<{system_id}.UNIVERSE>", mode="exec"), u_ns, u_ns)  # nosec
+        if not callable(u_ns.get("enumerate_states")):
+            raise ValueError("universe_code must define callable `enumerate_states()`")
+        explicit_enum = u_ns["enumerate_states"]
 
     concrete_states: List[Any] = []
     concrete_edges: List[Tuple[Any, Any, Any, int]] = []
@@ -1377,6 +1386,287 @@ def certify_formal_lower_bound(
     raise ValueError(f"Unsupported proof_mode {proof_mode!r}; use 'quotient_homomorphism' or 'inductive_potential'")
 
 
+def synthesize_formal_invariant(
+    system_id: str,
+    candidates_code: str,
+    synthesis_mode: str = "houdini_safety",
+    universe_code: Optional[str] = None,
+    max_concrete_states: int = 100000,
+) -> Dict[str, Any]:
+    """Synthesize and machine-check maximal inductive invariants (`houdini_safety`) or deadlock traps (`deadlock_trap`)."""
+    reg = _get_locked_system(system_id)
+    spec = reg.spec
+    impl = reg.impl
+
+    c_tree, cand_skel = validate_pure_ast(candidates_code, f"{system_id}.SYNTH", exact_arithmetic_only=reg.exact_only)
+    cand_ns: Dict[str, Any] = {"__builtins__": dict(SAFE_BUILTINS)}
+    exec(compile(c_tree, filename=f"<{system_id}.SYNTH>", mode="exec"), cand_ns, cand_ns)  # nosec
+    cand_sha256 = _sha256_hex(candidates_code)
+
+    pred_fn = cand_ns.get("predicates")
+    if not callable(pred_fn):
+        raise ValueError("candidates_code must define `predicates() -> dict[str, Callable[[state], bool]]`")
+    raw_preds = pred_fn()
+    if isinstance(raw_preds, dict):
+        pred_items: List[Tuple[str, Callable[[Any], Any]]] = [(str(k), v) for k, v in raw_preds.items()]
+    elif isinstance(raw_preds, (tuple, list)):
+        pred_items = [(str(k), v) for k, v in raw_preds]
+    else:
+        raise ValueError("predicates() must return a dict or sequence of (name, callable) pairs")
+    if not pred_items or not all(callable(fn) for _, fn in pred_items):
+        raise ValueError("predicates() must contain at least one callable predicate")
+
+    explicit_enum = cand_ns.get("enumerate_states")
+    universe_sha256: Optional[str] = None
+    if universe_code is not None and universe_code.strip():
+        u_tree, _ = validate_pure_ast(universe_code, f"{system_id}.UNIVERSE", exact_arithmetic_only=reg.exact_only)
+        u_ns: Dict[str, Any] = {"__builtins__": dict(SAFE_BUILTINS)}
+        exec(compile(u_tree, filename=f"<{system_id}.UNIVERSE>", mode="exec"), u_ns, u_ns)  # nosec
+        if not callable(u_ns.get("enumerate_states")):
+            raise ValueError("universe_code must define callable `enumerate_states()`")
+        explicit_enum = u_ns["enumerate_states"]
+        universe_sha256 = _sha256_hex(universe_code)
+
+    s0 = spec.initial_state()
+    u0 = impl.initial_state()
+    concrete_states: List[Any] = []
+    concrete_edges: List[Tuple[Any, Any, Any]] = []
+    complete_space = False
+    universal_domain = False
+
+    if callable(explicit_enum):
+        universal_domain = True
+        raw_states = list(explicit_enum())
+        state_set = set(raw_states)
+        if s0 not in state_set:
+            return {
+                "epistemic_status": "REJECTED_INITIAL_STATE_NOT_IN_DOMAIN",
+                "system_id": reg.system_id,
+                "reason": "enumerate_states() failed to contain initial_state().",
+            }
+        for st in raw_states:
+            assert_exact_immutable(st, "enumerate_states", reg.exact_only)
+            concrete_states.append(st)
+            for act in spec.actions(st):
+                ns = spec.step(st, act)
+                if ns is None:
+                    continue
+                if ns not in state_set:
+                    return {
+                        "epistemic_status": "REJECTED_DOMAIN_NOT_INDUCTIVELY_CLOSED",
+                        "system_id": reg.system_id,
+                        "escaping_transition": [_canonical_repr(st), _canonical_repr(act), _canonical_repr(ns)],
+                    }
+                concrete_edges.append((st, act, ns))
+        complete_space = True
+    else:
+        q: deque[Tuple[Any, Any]] = deque([(s0, u0)])
+        visited: Set[Any] = {s0}
+        truncated = False
+        while q:
+            sc, uc = q.popleft()
+            if spec.project_obs(sc) != impl.project_obs(uc):
+                raise RuntimeError("SPEC/IMPL observation divergence during invariant synthesis")
+            concrete_states.append(sc)
+            for act in spec.actions(sc):
+                ns = spec.step(sc, act)
+                nu = impl.step(uc, act)
+                if (ns is None) != (nu is None):
+                    raise RuntimeError("SPEC/IMPL survival divergence during invariant synthesis")
+                if ns is None:
+                    continue
+                if spec.project_obs(ns) != impl.project_obs(nu):
+                    raise RuntimeError("SPEC/IMPL next-state divergence during invariant synthesis")
+                concrete_edges.append((sc, act, ns))
+                if ns not in visited:
+                    if len(visited) >= max_concrete_states:
+                        truncated = True
+                        continue
+                    visited.add(ns)
+                    q.append((ns, nu))
+        complete_space = not truncated
+
+    state_idx = {st: i for i, st in enumerate(concrete_states)}
+    num_states = len(concrete_states)
+    num_preds = len(pred_items)
+
+    # Pre-evaluate boolean truth table [pred_i][state_j] deterministically
+    truth: List[List[bool]] = []
+    for pname, pfn in pred_items:
+        row: List[bool] = []
+        for st in concrete_states:
+            val = pfn(st)
+            if not isinstance(val, bool):
+                raise TypeError(f"Predicate {pname!r} must return bool, got {type(val).__name__}")
+            row.append(val)
+        truth.append(row)
+
+    idx_edges = [(state_idx[s], act, state_idx[ns]) for s, act, ns in concrete_edges]
+    s0_idx = state_idx[s0]
+
+    if synthesis_mode == "houdini_safety":
+        active: Set[int] = set(range(num_preds))
+        refuted: List[Dict[str, Any]] = []
+        for pid in sorted(list(active)):
+            if not truth[pid][s0_idx]:
+                active.remove(pid)
+                refuted.append({
+                    "predicate": pred_items[pid][0],
+                    "reason": "falsified_at_initial_state",
+                    "round": 0,
+                })
+
+        rounds = 0
+        changed = True
+        while changed and active:
+            changed = False
+            rounds += 1
+            for u_i, act, v_i in idx_edges:
+                if all(truth[p][u_i] for p in active):
+                    drop_now = [p for p in sorted(active) if not truth[p][v_i]]
+                    for p in drop_now:
+                        active.remove(p)
+                        changed = True
+                        refuted.append({
+                            "predicate": pred_items[p][0],
+                            "reason": "inductive_step_violation",
+                            "round": rounds,
+                            "transition": [
+                                _canonical_repr(concrete_states[u_i]),
+                                _canonical_repr(act),
+                                _canonical_repr(concrete_states[v_i]),
+                            ],
+                        })
+
+        active_names = [pred_items[p][0] for p in sorted(active)]
+        inductive_states = [i for i in range(num_states) if all(truth[p][i] for p in active)]
+        implies_target = True
+        violating_witness: Optional[str] = None
+        for i in inductive_states:
+            inv_ok, _ = spec.invariant(concrete_states[i])
+            if not inv_ok:
+                implies_target = False
+                if violating_witness is None:
+                    violating_witness = _canonical_repr(concrete_states[i])
+
+        if complete_space and implies_target:
+            epistemic = "PROVEN"
+        elif complete_space:
+            epistemic = "VERIFIED_INDUCTIVE_LEMMA_TOO_WEAK_FOR_TARGET"
+        else:
+            epistemic = "VERIFIED_ON_BOUNDED_REACHABLE_SUBGRAPH"
+
+        cert_h = {
+            "epistemic_status": epistemic,
+            "certificate_kind": "HOUDINI_INDUCTIVE_SAFETY_INVARIANT",
+            "system_id": reg.system_id,
+            "synthesis_mode": synthesis_mode,
+            "universal_domain_induction": universal_domain,
+            "complete_domain_closed": complete_space,
+            "implies_target_invariant": implies_target,
+            "unexcluded_bad_state_sample": violating_witness,
+            "synthesized_conjuncts": active_names,
+            "conjuncts_retained": len(active_names),
+            "conjuncts_refuted": len(refuted),
+            "refuted_details": refuted[:16],
+            "fixpoint_rounds": rounds,
+            "states_checked": num_states,
+            "transitions_checked": len(idx_edges),
+            "inductive_subspace_size": len(inductive_states),
+            "checker_pins": {
+                "spec_sha256": spec.code_sha256,
+                "impl_sha256": impl.code_sha256,
+                "candidates_sha256": cand_sha256,
+                "candidates_skeleton_sha256": cand_skel,
+                "universe_sha256": universe_sha256,
+                "formal_kernel_sha256": kernel_sha256(),
+            },
+        }
+        if epistemic == "PROVEN":
+            reg.certificates.append(cert_h)
+        return cert_h
+
+    if synthesis_mode == "deadlock_trap":
+        goal_flags = [spec.is_goal(st) for st in concrete_states]
+        active_t: Set[int] = set(range(num_preds))
+        refuted_t: List[Dict[str, Any]] = []
+
+        # Step 1: No trap predicate may hold on any goal state
+        for pid in sorted(list(active_t)):
+            bad_goal = next((i for i in range(num_states) if truth[pid][i] and goal_flags[i]), None)
+            if bad_goal is not None:
+                active_t.remove(pid)
+                refuted_t.append({
+                    "predicate": pred_items[pid][0],
+                    "reason": "holds_on_goal_state",
+                    "goal_state": _canonical_repr(concrete_states[bad_goal]),
+                    "round": 0,
+                })
+
+        # Step 2: Greatest fixed point of forward trap-union closure: T_p(s) => OR_{q in active_t} T_q(ns)
+        rounds = 0
+        changed = True
+        while changed and active_t:
+            changed = False
+            rounds += 1
+            in_union = [any(truth[q][i] for q in active_t) for i in range(num_states)]
+            for u_i, act, v_i in idx_edges:
+                if in_union[u_i] and not in_union[v_i]:
+                    drop_now = [p for p in sorted(active_t) if truth[p][u_i]]
+                    for p in drop_now:
+                        active_t.remove(p)
+                        changed = True
+                        refuted_t.append({
+                            "predicate": pred_items[p][0],
+                            "reason": "trap_escaped_on_transition",
+                            "round": rounds,
+                            "escaping_transition": [
+                                _canonical_repr(concrete_states[u_i]),
+                                _canonical_repr(act),
+                                _canonical_repr(concrete_states[v_i]),
+                            ],
+                        })
+                    in_union = [any(truth[q][i] for q in active_t) for i in range(num_states)]
+
+        active_trap_names = [pred_items[p][0] for p in sorted(active_t)]
+        trapped_indices = [i for i in range(num_states) if any(truth[p][i] for p in active_t)]
+        epistemic_t = (
+            "PROVEN"
+            if (complete_space and len(active_trap_names) > 0)
+            else ("REJECTED_NO_SOUND_TRAP_FOUND" if len(active_trap_names) == 0 else "VERIFIED_ON_BOUNDED_REACHABLE_SUBGRAPH")
+        )
+        cert_t = {
+            "epistemic_status": epistemic_t,
+            "certificate_kind": "IRREVERSIBLE_DEADLOCK_TRAP_CERTIFICATE",
+            "system_id": reg.system_id,
+            "synthesis_mode": synthesis_mode,
+            "universal_domain_induction": universal_domain,
+            "complete_domain_closed": complete_space,
+            "synthesized_traps": active_trap_names,
+            "traps_retained": len(active_trap_names),
+            "traps_refuted": len(refuted_t),
+            "refuted_details": refuted_t[:16],
+            "fixpoint_rounds": rounds,
+            "deadlocked_states_certified": len(trapped_indices),
+            "initial_state_trapped": (s0_idx in trapped_indices),
+            "states_checked": num_states,
+            "transitions_checked": len(idx_edges),
+            "checker_pins": {
+                "spec_sha256": spec.code_sha256,
+                "impl_sha256": impl.code_sha256,
+                "candidates_sha256": cand_sha256,
+                "candidates_skeleton_sha256": cand_skel,
+                "universe_sha256": universe_sha256,
+                "formal_kernel_sha256": kernel_sha256(),
+            },
+        }
+        if epistemic_t == "PROVEN":
+            reg.certificates.append(cert_t)
+        return cert_t
+
+    raise ValueError(f"Unsupported synthesis_mode {synthesis_mode!r}; use 'houdini_safety' or 'deadlock_trap'")
+
+
 def triage_formal_portfolio(items: List[Dict[str, Any]]) -> Dict[str, Any]:
     """Rank open problem instances by Proven-Commons expected verified gain per CPU-second."""
     ranked: List[Dict[str, Any]] = []
@@ -1482,4 +1772,3 @@ multi-seat collaboration protocols before deploying them:
      reachable states across both `SPEC` (tuple records) and `IMPL` (bit-packed integers) with `0` violations,
      emitting `"epistemic_status": "PROVEN"` (`EXHAUSTIVE_GLOBAL_SAFETY_PROOF`).
 """
-

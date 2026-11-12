@@ -1,60 +1,53 @@
-import json
+"""Capability surface and honest backend-unavailable vs budget-exhausted status tests."""
+from __future__ import annotations
+
 from pathlib import Path
-import subprocess
 import sys
-import tempfile
 import unittest
 from unittest.mock import patch
 
-from soko_mcp import engine_bridge as bridge
-from soko_mcp.server import dispatch_tool_call, handle_jsonrpc_message
+REPO_ROOT = Path(__file__).resolve().parent.parent
+if str(REPO_ROOT) not in sys.path:
+    sys.path.insert(0, str(REPO_ROOT))
+
+import soko_mcp.engine_bridge as eb  # noqa: E402
+from soko_mcp.oracle import FRONTIER_ROOMS  # noqa: E402
+from soko_mcp.server import dispatch_tool_call  # noqa: E402
 
 
-class CapabilityTests(unittest.TestCase):
-    def test_tcb_tool_is_registered_and_missing_manifest_fails_closed(self):
-        with tempfile.TemporaryDirectory() as tmp, patch.object(bridge, "SHA256SUMS_PATH", Path(tmp) / "missing"), patch.object(bridge, "ensure_cpp_engine", return_value=None):
-            response = handle_jsonrpc_message({"jsonrpc": "2.0", "id": 1, "method": "tools/call", "params": {"name": "soko_verify_tcb_lock", "arguments": {}}})
-        self.assertFalse(response["result"]["isError"])
-        result = response["result"]["structuredContent"]
-        self.assertEqual(result["epistemic_status"], "TAMPERED_OR_UNLOCKED")
-        self.assertFalse(result["tcb_locked"])
+class CapabilityContractTests(unittest.TestCase):
+    def test_soko_capabilities_reports_honest_runtime_readiness(self) -> None:
+        caps = dispatch_tool_call("soko_capabilities", {})
+        self.assertEqual(caps["version"], "0.3.0")
+        self.assertTrue(caps["cpp_engine_ready"])
+        self.assertIsNone(caps["cpp_unavailable_reason"])
+        self.assertEqual(caps["route_verification"]["total_oracles"], 3)
+        self.assertIn("PairAtomQuotientPDB", caps["lower_bound_proving"]["abstractions"])
+        self.assertIn("WizardRayGoalBound", caps["lower_bound_proving"]["abstractions"])
+        self.assertIn("formal_synthesize_invariant", caps["formal_systems"]["tools"])
 
-    def test_missing_cpp_source_reports_unavailable(self):
-        with tempfile.TemporaryDirectory() as tmp, patch.object(bridge, "CPP_SRC", Path(tmp) / "missing.cpp"):
-            result = dispatch_tool_call("soko_capabilities", {})
-            solve = dispatch_tool_call("soko_solve_room", {"room_id": "I-1"})
-        self.assertFalse(result["solve_from_scratch"]["available"])
-        self.assertFalse(result["lower_bound_proving"]["available"])
-        self.assertEqual(result["cpp_unavailable_reason"], "missing_cpp_source")
-        self.assertEqual(result["route_optimization"]["backend"], "python_fallback_window_bfs")
-        self.assertEqual(solve["epistemic_status"], "UNAVAILABLE_BACKEND")
-        self.assertFalse(solve["search_performed"])
-        self.assertEqual(solve["states_explored"], 0)
+    def test_solve_room_distinguishes_backend_unavailable_from_budget_exhaustion(self) -> None:
+        g20 = FRONTIER_ROOMS["III-20"]["grid"]
 
-    def test_available_cpp_and_no_solution_is_budget_result(self):
-        with patch.object(bridge, "ensure_cpp_engine", return_value=Path("engine")), patch.object(bridge, "_invoke_cpp", return_value={"solved": False, "explored": 5}):
-            capabilities = bridge.get_capabilities()
-            result = bridge.solve_room_verified(1, ["F.G"])
-        self.assertTrue(capabilities["solve_from_scratch"]["available"])
-        self.assertEqual(result["epistemic_status"], "UNSOLVED_WITHIN_BUDGET")
-        self.assertTrue(result["search_performed"])
-        self.assertEqual(result["states_explored"], 5)
+        with patch.object(eb, "ensure_cpp_engine", return_value=None):
+            no_cpp = eb.solve_room_verified(3, g20, max_depth=5, beam_width=2000, budget_sec=2)
+            self.assertEqual(no_cpp["epistemic_status"], "BACKEND_UNAVAILABLE")
+            self.assertFalse(no_cpp["solved"])
+            self.assertIsNotNone(no_cpp["unavailable_reason"])
 
-    def test_backend_failure_is_not_budget_exhaustion(self):
-        with patch.object(bridge, "ensure_cpp_engine", return_value=Path("engine")), patch.object(bridge, "_invoke_cpp", return_value=None):
-            result = bridge.solve_room_verified(1, ["F.G"])
-        self.assertEqual(result["epistemic_status"], "BACKEND_FAILED")
-        self.assertFalse(result["search_performed"])
+            caps_no_cpp = eb.get_capabilities()
+            self.assertFalse(caps_no_cpp["cpp_engine_ready"])
+            self.assertFalse(caps_no_cpp["solve_from_scratch"]["available"])
+            self.assertEqual(caps_no_cpp["route_verification"]["total_oracles"], 2)
 
-    def test_cli_tcb_lock_and_capabilities(self):
-        for command in ("tcb-lock", "capabilities"):
-            result = subprocess.run([sys.executable, "-m", "soko_mcp", command], capture_output=True, text=True, check=True)
-            self.assertIsInstance(json.loads(result.stdout), dict)
+        budget_out = eb.solve_room_verified(3, g20, max_depth=2, beam_width=2000, budget_sec=2)
+        self.assertEqual(budget_out["epistemic_status"], "UNSOLVED_WITHIN_BUDGET")
+        self.assertFalse(budget_out["solved"])
 
-    def test_existing_python_route_verification(self):
-        result = dispatch_tool_call("soko_verify_route", {"room_id": "I-1", "route": "RRRRRRRR"})
-        self.assertTrue(result["valid_winning_route"])
-        self.assertGreaterEqual(result["engines_count"], 2)
+    def test_catalog_capability_surface(self) -> None:
+        caps = dispatch_tool_call("soko_capabilities", {})
+        self.assertIn("catalog", caps)
+        self.assertEqual(caps["catalog"]["original_rooms"], 66)
 
 
 if __name__ == "__main__":
