@@ -1,4 +1,4 @@
-"""Standards-compliant Model Context Protocol (MCP) stdio JSON-RPC 2.0 server for Verified-Bar Sokoban."""
+"""MCP stdio JSON-RPC server for Sokoban differential replay and bounded exact-state search."""
 from __future__ import annotations
 
 import json
@@ -34,10 +34,11 @@ SERVER_INFO = {
 }
 
 SERVER_INSTRUCTIONS = (
-    "Sokoban differential replay and bounded exact-state search. VERIFIED route outputs mean agreement "
-    "between local interpreters, not a formal proof, an external engine replay, or a source-lock assertion. "
-    "Use canonical starting rooms, inspect search completion/budgets, and distinguish historical registry "
-    "records from current public records. formal_* tools are not available."
+    "Sokoban differential replay and bounded exact-state search through nine soko_* MCP tools. "
+    "VERIFIED on a route means at least two local checkers executed and agreed on survival, exact win, "
+    "steps, final grid, and trajectory digest, with required checker source hashes present. "
+    "Use canonical starting rooms, read search termination and budget fields, and treat built-in registry "
+    "floors and reference routes as historical metadata."
 )
 
 ROOM_INPUT_PROPERTIES: Dict[str, Any] = {
@@ -67,7 +68,7 @@ TOOLS: List[Dict[str, Any]] = [
     {
         "name": "soko_list_rooms",
         "title": "List Built-In Frontier Benchmark Rooms",
-        "description": "List historical built-in room metadata and reference routes. Registry floors and records are not fresh external observations.",
+        "description": "List built-in Frontier room metadata and reference routes from the repository registry, including historical floor and record fields.",
         "inputSchema": {"type": "object", "additionalProperties": False},
         "annotations": {"readOnlyHint": True, "idempotentHint": True, "openWorldHint": False},
     },
@@ -85,7 +86,7 @@ TOOLS: List[Dict[str, Any]] = [
     {
         "name": "soko_verify_route",
         "title": "Dual-Oracle Differential Route Verifier",
-        "description": "Replay a canonical starting room with two independent Python interpreters and C++ when available; return instance-bound differential evidence, not a formal proof.",
+        "description": "Replay a canonical starting room through the Python specification oracle, flat bitmask oracle, and C++ engine when compiled; return instance-bound differential evidence (evidence_level differential_replay).",
         "inputSchema": {
             "type": "object",
             "properties": {
@@ -157,7 +158,7 @@ TOOLS: List[Dict[str, Any]] = [
     {
         "name": "soko_prove_floor",
         "title": "Compute a Local Exhaustive-Search Lower Bound",
-        "description": "Report only fully exhausted goal depths under local C++ rules. Timeouts and state caps remain explicit. No heuristic, PDB, or formal kernel proof is claimed.",
+        "description": "Run capped exact-state BFS in the local C++ engine and report exhausted goal depths with termination_reason and completed_depth; quotient PDB stays disabled (quotient_pdb_enabled false).",
         "inputSchema": {
             "type": "object",
             "properties": {
@@ -172,7 +173,7 @@ TOOLS: List[Dict[str, Any]] = [
     {
         "name": "soko_verify_tcb_lock",
         "title": "Verify Runtime SHA256SUMS TCB Lock",
-        "description": "Check the complete portable source manifest. Binary hashes are provenance only, not verified by this manifest; consistency is not independent approval.",
+        "description": "Verify repository source files against SHA256SUMS (lock_scope source_manifest) and report the compiled binary hash separately as provenance.",
         "inputSchema": {"type": "object", "additionalProperties": False},
         "annotations": {"readOnlyHint": True, "idempotentHint": True, "openWorldHint": False},
     },
@@ -210,7 +211,7 @@ RESOURCES: List[Dict[str, Any]] = [
     {
         "uri": "soko://methodology/verified-bar",
         "name": "Proven-Commons Verified Bar Methodology for PuzzleScript",
-        "description": "Scope and limitations of local differential replay, bounded search and source integrity relative to the Verified Bar.",
+        "description": "How local differential replay, bounded search, and source integrity relate to the Proven-Commons Verified Bar in this checkout.",
         "mimeType": "text/markdown",
     },
     {
@@ -230,14 +231,14 @@ RESOURCES: List[Dict[str, Any]] = [
 PROMPTS: List[Dict[str, Any]] = [
     {
         "name": "break_room_record",
-        "description": "Step-by-step Verified-Bar workflow for analyzing a room, auditing the oracle, and shortening a record route.",
+        "description": "Step-by-step workflow for room analysis, oracle audit, and bounded route shortening with differential replay.",
         "arguments": [
             {"name": "room_id", "description": "Built-in room ID (e.g. 'III-20' or 'II-22') or 'custom'", "required": True},
         ],
     },
     {
         "name": "certify_room_floor",
-        "description": "Step-by-step workflow for certifying a machine-checked lower bound with honest epistemic tagging.",
+        "description": "Step-by-step workflow for a bounded exhaustive-search lower bound with explicit epistemic tagging.",
         "arguments": [
             {"name": "room_id", "description": "Built-in room ID or 'custom'", "required": True},
         ],
@@ -255,13 +256,15 @@ def _read_resource_content(uri: str) -> Dict[str, Any]:
     if uri == "soko://methodology/verified-bar":
         text = (
             "# Local evidence and the Verified Bar\n\n"
-            "Routes are checked by independent local interpreters and bound to the input, route and checker hashes. "
-            "Their agreement is empirical evidence, not proof of the original PuzzleScript semantics.\n"
-            "Native search uses exact-state BFS with explicit time and state caps. Only completed goal depths "
-            "support a lower bound. No heuristic-consistency checks, PDB or Lean proof is claimed.\n"
-            "The source manifest checks repository consistency; compiled binary hashes are provenance only. "
-            "Neither the manifest nor the ten-mutation audit establishes independent specification approval. "
-            "This project has not passed the Proven Commons Verified Bar.\n"
+            "Routes are checked by matching outputs from the Python specification oracle, flat bitmask oracle, "
+            "and C++ engine when present, bound to the input, route, and checker hashes. "
+            "Agreement is differential replay evidence under those local rules.\n"
+            "Native search uses exact-state BFS with explicit time and state caps; completed goal depths "
+            "support a reported lower bound. Accepted bounds use search_algorithm exact_bfs with "
+            "quotient_pdb_enabled false in current builds.\n"
+            "The source manifest checks committed source file hashes; the compiled binary hash is recorded "
+            "as provenance. The ten-mutation audit exercises the local oracles on planted physics bugs.\n"
+            "This checkout has not completed Proven-Commons Verified Bar review.\n"
         )
         return {"uri": uri, "mimeType": "text/markdown", "text": text}
     if uri == "soko://rules/puzzlescript-trilogy":
@@ -283,18 +286,18 @@ def _get_prompt_messages(name: str, arguments: Dict[str, Any]) -> Dict[str, Any]
     room_id = arguments.get("room_id", "III-20")
     if name == "break_room_record":
         return {
-            "description": f"Verified-Bar record-breaking workflow for room {room_id}",
+            "description": f"Bounded route optimization workflow for room {room_id}",
             "messages": [
                 {
                     "role": "user",
                     "content": {
                         "type": "text",
                         "text": (
-                            f"Apply the Proven-Commons Verified Bar workflow to optimize room `{room_id}`:\n"
+                            f"Apply the repository evidence workflow to shorten a route on room `{room_id}`:\n"
                             f"1. Call `soko_inspect_room` on `{room_id}` to identify exact dungeon symmetries, hero-switch chirality, and bottlenecks.\n"
-                            f"2. Call `soko_verify_route` on the current baseline route to confirm `VERIFIED` baseline replay.\n"
-                            f"3. Call `soko_optimize_route` to run bounded exact BFS; report termination_reason and completed_depth.\n"
-                            f"4. Report the verified route, SHA-256 digest, keys saved, and exact epistemic status (`VERIFIED` for validity, `CONJECTURE` if optimality above proven floor remains open)."
+                            f"2. Call `soko_verify_route` on the current baseline route to confirm `VERIFIED` differential replay.\n"
+                            f"3. Call `soko_optimize_route` with bounded exact BFS; report `search.termination_reason` and `search.completed_depth` when the C++ backend ran, otherwise `backend` and `stages`.\n"
+                            f"4. Report the verified route, certificate digest, keys saved, and epistemic_status from verification."
                         ),
                     },
                 }
@@ -302,16 +305,16 @@ def _get_prompt_messages(name: str, arguments: Dict[str, Any]) -> Dict[str, Any]
         }
     if name == "certify_room_floor":
         return {
-            "description": f"Step-consistent lower-bound certification workflow for room {room_id}",
+            "description": f"Bounded exhaustive-search lower bound workflow for room {room_id}",
             "messages": [
                 {
                     "role": "user",
                     "content": {
                         "type": "text",
                         "text": (
-                            f"Certify a machine-checked lower bound for room `{room_id}`:\n"
-                            f"1. Call `soko_run_planted_bug_audit` to confirm 10/10 engine mutation catches.\n"
-                            f"2. Call `soko_prove_floor` on `{room_id}` and report `proven_floor`, `nodes_expanded`, and `edge_consistency_checks`."
+                            f"Establish a bounded exhaustive-search lower bound for room `{room_id}`:\n"
+                            f"1. Call `soko_run_planted_bug_audit` to confirm 10/10 planted mutation catches.\n"
+                            f"2. Call `soko_prove_floor` on `{room_id}` and report epistemic_status, proven_floor, nodes_expanded, edge_consistency_checks, termination_reason, and completed_depth from search."
                         ),
                     },
                 }

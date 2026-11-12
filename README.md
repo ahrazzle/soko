@@ -2,7 +2,7 @@
 
 `soko-verified-mcp` provides nine MCP tools for Jonah Ostroff's [Heroes of Sokoban trilogy](https://www.puzzlescript.net/editor.html?hack=7072276) and locally captured [Sokoban Eval Frontier](https://soko.banteg.xyz/frontier/) instances. Python >=3.10 and its standard library are sufficient for replay and fallback optimization. A C++20 compiler enables native search and a third replay engine; the engine builds on first use into ignored `cpp/build/`.
 
-This project has **not passed the Proven Commons Verified Bar**. `VERIFIED` in a route response means agreement between local interpreters, not a formal proof, externally accepted record, or matching source lock. The experimental `formal_kernel.py` is not exposed as `formal_*` MCP tools.
+This checkout has **not completed Proven-Commons Verified Bar review**. `VERIFIED` on a route means at least two local checkers agreed on survival, exact win, steps, final grid, and trajectory digest with checker hashes present. The stdio server exposes nine `soko_*` tools; `formal_kernel.py` ships in the manifest only.
 
 Read [the original evaluation and Frontier assessment](docs/original-eval-and-frontier.md) before using these fixtures as benchmark inputs. In particular, the local `I-1` differs from Ostroff's original eight-key opening room. The MCP exercise is a regression demonstration, not progress on the live Frontier.
 
@@ -39,14 +39,14 @@ The client owns the stdio process. Clients without a `cwd` option can use a shel
 | `soko_capabilities` | Report available backends |
 | `soko_list_rooms` | List historical room metadata and reference routes |
 | `soko_inspect_room` | Analyze board symmetry and constraints |
-| `soko_verify_route` | Compare two independent Python interpreters, plus C++ when available |
+| `soko_verify_route` | Differential replay across the specification oracle, flat bitmask oracle, and C++ when compiled |
 | `soko_optimize_route` | Try a shorter route with bounded exact BFS, then independently replay it |
 | `soko_solve_room` | Bounded exact-state BFS from the starting room |
 | `soko_prove_floor` | Report fully exhausted goal depths under local C++ transition rules |
 | `soko_run_planted_bug_audit` | Run the ten-mutation replay audit |
 | `soko_verify_tcb_lock` | Check complete source-manifest consistency; report binary provenance separately |
 
-The server also lists three resources and two prompts. It does not implement the previously advertised PDB heuristic, tube-beam optimizer or general formal-systems MCP suite.
+The server also lists three resources and two prompts covering methodology, the built-in registry, and PuzzleScript mechanics.
 
 ## Search and evidence contracts
 

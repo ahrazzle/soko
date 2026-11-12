@@ -90,7 +90,7 @@ def main() -> int:
         "source_hashes_before": source_hashes(root),
         "runner_sha256": hashlib.sha256(Path(__file__).read_bytes()).hexdigest(),
         "per_request_wall_timeout_seconds": args.timeout,
-        "scope": "Local differential replay and bounded search; no live submission or formal proof.",
+        "scope": "Local differential replay and bounded exact-state search for MCP stdio exercise captures.",
         "experiments": [],
     }
     client = Client(root, args.timeout)

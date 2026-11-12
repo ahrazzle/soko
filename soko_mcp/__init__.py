@@ -1,3 +1,3 @@
-"""soko-verified-mcp: Domain-General Formal-Systems & Proven-Commons Verified Bar MCP Server."""
+"""soko-verified-mcp: Sokoban differential replay, bounded exact-state search, and source-manifest checks."""
 
 __version__ = "0.2.0"

@@ -17,14 +17,14 @@ def main(argv: list[str] | None = None) -> int:
 
     sub.add_parser("serve", help="Run the MCP JSON-RPC 2.0 server over stdio (default when no args given).")
     sub.add_parser("capabilities", help="Report available backends and missing implementations.")
-    sub.add_parser("list-rooms", help="List built-in Sokoban Eval Frontier rooms.")
+    sub.add_parser("list-rooms", help="List built-in Frontier metadata and reference routes from the registry.")
     sub.add_parser("audit", help="Run the 10-mutation & cross-oracle Proven-Commons Audit.")
     sub.add_parser("tcb-lock", help="Verify runtime SHA256SUMS manifest and TCB checker hashes.")
 
     p_ins = sub.add_parser("inspect", help="Inspect symmetries and bottlenecks of a room.")
     p_ins.add_argument("--room", required=True, help="Built-in room ID (e.g. III-20)")
 
-    p_ver = sub.add_parser("verify", help="Triple-oracle verify a U/D/L/R/A route.")
+    p_ver = sub.add_parser("verify", help="Differential replay of a U/D/L/R/A route across local checkers.")
     p_ver.add_argument("--room", required=True, help="Built-in room ID (e.g. III-20)")
     p_ver.add_argument("--route", required=True, help="Move sequence (U/D/L/R/A)")
 
@@ -34,7 +34,7 @@ def main(argv: list[str] | None = None) -> int:
     p_opt.add_argument("--beam-width", type=int, default=40000)
     p_opt.add_argument("--budget-sec", type=int, default=35)
 
-    p_flr = sub.add_parser("prove-floor", help="Compute a local exhaustive-search lower bound; not a formal proof.")
+    p_flr = sub.add_parser("prove-floor", help="Compute a capped exact-state BFS lower bound via the C++ engine.")
     p_flr.add_argument("--room", required=True, help="Built-in room ID (e.g. I-1, III-14, III-22)")
     p_flr.add_argument("--max-bound", type=int, default=32)
     p_flr.add_argument("--budget-sec", type=int, default=10)

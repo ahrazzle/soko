@@ -478,6 +478,6 @@ def prove_floor_verified(
         "checker_pins_ok": pins_ok,
         "guarantee": (
             f"Exact-state BFS under the local C++ transition rules ruled out winning routes shorter than {proven_floor} keys. "
-            "This is an executable search result, not an independently checked formal proof."
+            "The statement rests on that bounded search and any independently replayed witness."
         ) if accepted else None,
     }
