@@ -1,3 +1,3 @@
-"""soko-verified-mcp: Proven-Commons Verified Bar MCP Server for PuzzleScript & Sokoban Eval."""
+"""soko-verified-mcp: Domain-General Formal-Systems & Proven-Commons Verified Bar MCP Server."""
 
-__version__ = "0.1.0"
+__version__ = "0.2.0"
