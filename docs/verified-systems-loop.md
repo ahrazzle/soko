@@ -29,6 +29,8 @@ Keep candidate generation separate from acceptance. A fast solver, a language mo
 
 Each operation should return a typed state: unavailable, invalid input, failed check, timeout, accepted candidate, or checked proof. Errors should not become an empty successful result. An absent C++ backend previously appeared as a completed unsuccessful search in this checkout. The capability patch separates those states.
 
+The raw interpreter accepts an empty route on a grid containing only walls: no hero cells and no goal cells satisfy its equality test without doing any work. `vacuous-raw-replay.json` records this reproduced case. The new canonical starting-room adapter rejects it. The generic MCP interpreter behavior remains unchanged, so this guard is not a global fix.
+
 ## Evidence identity and invalidation
 
 A reusable result needs more than a route hash. Bind it to the normalized instance, rule version, goal, cost model, termination policy, checker code and proof statement. Keep the complete evidence content hash as well. Changing any of these invalidates the relevant result. An updated live record changes the comparison claim without changing whether the route wins.
