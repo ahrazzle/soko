@@ -5,6 +5,12 @@ win in fewer inputs than the observed record?** It supports III-14 and III-20.
 It has not yet produced a new record. III-21 and the remaining rooms do not yet
 have symbolic models here; the main MCP catalog and replay tools cover all 66.
 
+A separate [transport relaxation](../transport_relaxation/README.md) implements
+an unrestricted hero master with material-flow subproblems and independently
+checked global cuts for III-14. Its [recorded execution](../../evidence/2026-11-12-global-cuts/README.md)
+includes reference recovery, certificate controls and an inconclusive 47-key
+pilot. It is a tested necessary relaxation, not the full original-game model.
+
 III-14 now uses a [compact transition encoding](compact_encoding.md), checked
 symbolically against the retained legacy model. Its unrestricted 47-input
 formula has 50.9% fewer clauses and uses 48.4% less compilation memory. This

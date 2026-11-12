@@ -1,0 +1,13 @@
+{
+  "baseline": "../2026-11-12-transport-system/full-tests.txt",
+  "baseline_summary": [
+    "Ran 175 tests in 65.350s",
+    "FAILED (failures=26, errors=10, skipped=4)"
+  ],
+  "current_summary": [
+    "Ran 209 tests in 75.516s",
+    "FAILED (failures=26, errors=10, skipped=4)"
+  ],
+  "new_failing_tests": [],
+  "resolved_failing_tests": []
+}

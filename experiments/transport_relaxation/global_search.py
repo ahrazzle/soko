@@ -169,6 +169,7 @@ def search(output: Path, horizon: int, timeout_seconds=120, max_iterations=200,
                 write_json(output / 'witness.json', witness)
                 write_json(step_dir / 'result.json', step)
                 replay = local_replay(assignment['route'])
+                remaining()
                 return finish('reference_control_passed' if control else 'relaxed_feasible',
                               route=assignment['route'], landmark=assignment['landmark'],
                               flow_witness_checked=True, witness_sha256=sha(output / 'witness.json'),
@@ -222,6 +223,8 @@ def main():
     if args.command == 'control' and args.horizon < 48:
         parser.error('reference control requires horizon >= 48')
     args.output = args.output.resolve()
+    if args.proof_checker is not None:
+        args.proof_checker = args.proof_checker.resolve()
     if args.worker:
         try:
             result = search(args.output, args.horizon, args.timeout_seconds,
@@ -236,7 +239,12 @@ def main():
         parser.error('use a new or empty output directory')
     args.output.mkdir(parents=True, exist_ok=True)
     command = [sys.executable, '-m', 'experiments.transport_relaxation.global_search',
-               *sys.argv[1:], '--worker']
+               args.command, '--output', str(args.output), '--horizon', str(args.horizon),
+               '--timeout-seconds', str(args.timeout_seconds),
+               '--max-iterations', str(args.max_iterations), '--worker']
+    if args.proof_checker is not None:
+        command += ['--proof-checker', str(args.proof_checker)]
+    worker_started = time.monotonic()
     with (args.output / 'stdout.log').open('w') as stdout, (args.output / 'stderr.log').open('w') as stderr:
         worker = subprocess.Popen(command, cwd=ROOT, stdout=stdout, stderr=stderr,
                                   start_new_session=True)
@@ -251,7 +259,8 @@ def main():
             worker.wait()
             progress = args.output / 'progress.json'
             result = json.loads(progress.read_text()) if progress.exists() else {}
-            result.update(status='unknown', reason='outer wall-clock budget exhausted', record_claim=False)
+            result.update(status='unknown', reason='outer wall-clock budget exhausted',
+                          elapsed_seconds=time.monotonic() - worker_started, record_claim=False)
             write_json(args.output / 'result.json', result)
         else:
             if not (args.output / 'result.json').exists():

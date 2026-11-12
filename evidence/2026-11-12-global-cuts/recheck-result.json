@@ -1,0 +1,23 @@
+[
+  {
+    "bundle": "global47-bundle.json.gz",
+    "cuts_checked": 8,
+    "flow_witness_checked": false,
+    "cnf_proof_rechecked": false,
+    "record_claim": false
+  },
+  {
+    "bundle": "reference48-bundle.json.gz",
+    "cuts_checked": 1,
+    "flow_witness_checked": true,
+    "cnf_proof_rechecked": false,
+    "record_claim": false
+  },
+  {
+    "bundle": "unsat-control-bundle.json.gz",
+    "cuts_checked": 0,
+    "flow_witness_checked": false,
+    "cnf_proof_rechecked": true,
+    "record_claim": false
+  }
+]

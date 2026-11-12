@@ -1,8 +1,13 @@
 """Finite controls for cut-loop completeness and search claim boundaries."""
 from pathlib import Path
+import json
+import os
+import subprocess
+import sys
 from tempfile import TemporaryDirectory
 from types import SimpleNamespace
 import unittest
+from unittest.mock import patch
 
 import z3
 
@@ -86,6 +91,52 @@ class TinyCutLoopTests(unittest.TestCase):
 
 
 class SearchLimitTests(unittest.TestCase):
+    def test_cli_relative_output_and_zero_horizon_uncertified_unsat(self):
+        root = Path(__file__).resolve().parents[1]
+        with TemporaryDirectory() as directory:
+            env = dict(os.environ, PYTHONPATH=str(root))
+            proc = subprocess.run([sys.executable, '-m', 'experiments.transport_relaxation.global_search',
+                                   'run', '--horizon', '0', '--output', 'relative-result',
+                                   '--timeout-seconds', '30'], cwd=directory, env=env,
+                                  capture_output=True, text=True, timeout=40)
+            self.assertEqual(proc.returncode, 0, proc.stderr)
+            result = json.loads((Path(directory) / 'relative-result' / 'result.json').read_text())
+            self.assertEqual(result['status'], 'unverified_master_unsat')
+            self.assertFalse(result['record_claim'])
+            self.assertNotIn('abstract_lower_bound', result)
+
+    def test_cli_tiny_budget_is_unknown(self):
+        root = Path(__file__).resolve().parents[1]
+        with TemporaryDirectory() as directory:
+            proc = subprocess.run([sys.executable, '-m', 'experiments.transport_relaxation.global_search',
+                                   'run', '--horizon', '48', '--output', 'short',
+                                   '--timeout-seconds', '0.01'], cwd=directory,
+                                  env=dict(os.environ, PYTHONPATH=str(root)),
+                                  capture_output=True, text=True, timeout=10)
+            self.assertEqual(proc.returncode, 0, proc.stderr)
+            result = json.loads((Path(directory) / 'short' / 'result.json').read_text())
+            self.assertEqual(result['status'], 'unknown')
+            self.assertFalse(result['record_claim'])
+            self.assertNotIn('abstract_lower_bound', result)
+
+    def test_witness_replay_must_finish_within_budget(self):
+        clock = [0.0]
+        def replay(_route):
+            clock[0] = 100.0
+            return {'valid_winning_route': True}
+        evaluation = {'flow_value': 9, 'flow_edge_paths': [], 'witness': {}}
+        with TemporaryDirectory() as directory, \
+             patch.object(global_search.time, 'monotonic', side_effect=lambda: clock[0]), \
+             patch.object(global_search.universal_flow, 'evaluate_flow', return_value=evaluation), \
+             patch.object(global_search.certificates, 'check_flow_witness', return_value=True), \
+             patch.object(global_search, 'local_replay', side_effect=replay):
+            result = global_search.search(Path(directory), 48, timeout_seconds=30,
+                                          max_iterations=1, control=True)
+        self.assertEqual(result['status'], 'unknown')
+        self.assertIn('budget', result['reason'])
+        self.assertFalse(result['record_claim'])
+        self.assertNotIn('abstract_lower_bound', result)
+
     def test_one_iteration_reference_control_remains_unknown(self):
         with TemporaryDirectory() as directory:
             result = global_search.search(Path(directory), 48, timeout_seconds=30,
