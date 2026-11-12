@@ -48,6 +48,13 @@ class ProblemTests(unittest.TestCase):
             solver.add(*[var == value for var, value in zip(states[i + 1], model.oracle_state(oracle))])
         solver.set(timeout=60000)
         self.assertEqual(solver.check(), z3.sat)
+        assignment = solver.model()
+        recorded = {(x, y) for y, row in enumerate(EXPECTED_ROWS) for x, cell in enumerate(row)
+                    if cell == '#' and z3.is_true(assignment.eval(z3.Bool(f'origin_seen_43_{x}_{y}')))}
+        self.assertEqual(recorded, {(0,4), (0,3), (0,2), (0,1), (2,0), (3,0), (4,0), (5,0), (6,0)})
+        flags = [z3.Bool(f'origin_seen_43_{x}_{y}') for y, row in enumerate(EXPECTED_ROWS) for x, cell in enumerate(row) if cell == '#']
+        solver.add(z3.PbLe([(flag, 1) for flag in flags], 8))
+        self.assertEqual(solver.check(), z3.unsat)
 
     def test_invalid_horizons(self):
         for value in (-1, 1.5, True):
