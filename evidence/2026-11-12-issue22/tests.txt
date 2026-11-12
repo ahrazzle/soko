@@ -1,0 +1,12 @@
+$ python -m unittest tests.test_room_triage -v
+test_age_only_from_matching_unambiguous_current_entry (tests.test_room_triage.RoomTriageTests.test_age_only_from_matching_unambiguous_current_entry) ... ok
+test_catalog_and_exclusions_validated (tests.test_room_triage.RoomTriageTests.test_catalog_and_exclusions_validated) ... ok
+test_complete_screening_and_exclusion (tests.test_room_triage.RoomTriageTests.test_complete_screening_and_exclusion) ... ok
+test_invalid_snapshot_fails_closed (tests.test_room_triage.RoomTriageTests.test_invalid_snapshot_fails_closed) ... ok
+test_known_field_and_proofs_do_not_change_report (tests.test_room_triage.RoomTriageTests.test_known_field_and_proofs_do_not_change_report) ... ok
+test_strict_json_rejects_duplicate_keys_and_nonfinite_numbers (tests.test_room_triage.RoomTriageTests.test_strict_json_rejects_duplicate_keys_and_nonfinite_numbers) ... ok
+
+----------------------------------------------------------------------
+Ran 6 tests in 0.184s
+
+OK
