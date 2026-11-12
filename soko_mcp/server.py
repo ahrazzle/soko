@@ -474,3 +474,46 @@ PROMPTS: List[Dict[str, Any]] = [
         ],
     },
 ]
+from .engine_bridge import get_capabilities as _get_capabilities_v030
+from .invariant_synth import synthesize_formal_invariant as _synthesize_formal_invariant_v030
+SERVER_INSTRUCTIONS = SERVER_INSTRUCTIONS.replace("v0.2.0", "v0.3.0")
+TOOLS.extend([
+    {
+      "name": "soko_capabilities",
+      "title": "Inspect Runtime Backend Readiness & Verification Capabilities",
+      "description": "Report executable backend readiness, oracle count, lower-bound abstractions, and TCB manifest status.",
+      "inputSchema": {"type": "object", "additionalProperties": False},
+      "annotations": {"readOnlyHint": True, "idempotentHint": True, "openWorldHint": False},
+      },
+    {
+      "name": "formal_synthesize_invariant",
+      "title": "Synthesize Maximal Inductive Safety Invariants (Houdini) or Deadlock Traps",
+      "description": "Compute greatest fixed-point inductive safety conjunctions (houdini_safety) or forward-closed deadlock traps (deadlock_trap).",
+      "inputSchema": {
+      "type": "object",
+      "properties": {
+      "system_id": {"type": "string"},
+      "synthesis_mode": {"type": "string", "enum": ["houdini_safety", "deadlock_trap"], "default": "houdini_safety"},
+      "candidates_code": {"type": "string"},
+      "universe_code": {"type": "string"},
+      "max_concrete_states": {"type": "integer", "default": 100000, "minimum": 10, "maximum": 500000},
+      },
+      "required": ["system_id", "candidates_code"],
+      "additionalProperties": False,
+      },
+      "annotations": {"readOnlyHint": True, "idempotentHint": True, "openWorldHint": False},
+      },
+    ])
+_dispatch_v020 = dispatch_tool_call
+def dispatch_tool_call(name: str, args: Dict[str, Any]) -> Dict[str, Any]:
+    if name == "soko_capabilities":
+      return _get_capabilities_v030()
+if name == "formal_synthesize_invariant":
+    return _synthesize_formal_invariant_v030(
+      system_id=str(args["system_id"]),
+      candidates_code=str(args["candidates_code"]),
+      synthesis_mode=str(args.get("synthesis_mode", "houdini_safety")),
+      universe_code=args.get("universe_code"),
+      max_concrete_states=int(args.get("max_concrete_states", 100000)),
+    )
+return _dispatch_v020(name, args)
