@@ -466,7 +466,7 @@ PROMPTS: List[Dict[str, Any]] = [
             {"name": "problem_summary", "description": "Natural-language description of the target problem", "required": True},
         ],
     },
-    {
+    {def _read_resource_content(uri: str) -> Dict[str, Any]:
         "name": "prove_protocol_safety",
         "description": "Guided workflow to hunt invariant counterexamples in a stateful protocol and prove global safety after patching.",
         "arguments": [
