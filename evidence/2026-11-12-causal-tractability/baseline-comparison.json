@@ -1,0 +1,11 @@
+{
+  "prior_summary": [
+    "Ran 209 tests in 75.516s",
+    "FAILED (failures=26, errors=10, skipped=4)"
+  ],
+  "current_summary": [
+    "Ran 256 tests in 121.512s",
+    "FAILED (failures=26, errors=10, skipped=4)"
+  ],
+  "new_failing_tests": []
+}

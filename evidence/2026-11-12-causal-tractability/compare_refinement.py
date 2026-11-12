@@ -1,0 +1,61 @@
+import json,os,signal,subprocess,sys,time,resource
+from pathlib import Path
+ROOT=Path(__file__).resolve().parents[2]
+sys.path.insert(0,str(ROOT))
+OUTPUT=Path('/tmp/causal-refinement-comparison.json')
+
+def child(case,method,out):
+ from experiments.causal_solver import refinement as r
+ from experiments.transport_relaxation.diagnostic import baseline_heroes,shortened_heroes,hero_mappings
+ route,heroes=(baseline_heroes if case=='known48' else shortened_heroes)()
+ assignment={'route':route,'heroes':hero_mappings(heroes)}
+ start=time.perf_counter()
+ ref=r.ExactRefiner(len(route),encoding='compact')
+ result=ref.check(assignment,10) if method=='deterministic' else ref.check_assumptions(r.assignment_descriptors(assignment,len(route)),10)
+ report={'case':case,'method':method,'timeout_seconds':10,'horizon':len(route),'wall_seconds':time.perf_counter()-start,
+         'peak_rss_kib':resource.getrusage(resource.RUSAGE_SELF).ru_maxrss,'metadata':ref.metadata,'result':result}
+ Path(out).write_text(json.dumps(report,indent=2))
+
+def recheck(inp,out):
+ from experiments.causal_solver import refinement as r
+ report=json.loads(Path(inp).read_text())
+ cert=report['result']['certificate']
+ start=time.perf_counter()
+ result=r._check_certificate(cert,10)
+ result['wall_seconds']=time.perf_counter()-start
+ result['peak_rss_kib']=resource.getrusage(resource.RUSAGE_SELF).ru_maxrss
+ Path(out).write_text(json.dumps(result,indent=2))
+
+def bounded(args,out):
+ start=time.perf_counter()
+ log=Path(out+'.log')
+ with log.open('w') as handle:
+  process=subprocess.Popen([sys.executable,__file__,*args],cwd=ROOT,start_new_session=True,stdout=handle,stderr=subprocess.STDOUT)
+  try:
+   code=process.wait(timeout=35)
+  except subprocess.TimeoutExpired:
+   os.killpg(process.pid,signal.SIGTERM)
+   try: process.wait(timeout=3)
+   except subprocess.TimeoutExpired:
+    os.killpg(process.pid,signal.SIGKILL);process.wait()
+   return {'status':'unknown','verified':False,'outer_timeout_seconds':35,'wall_seconds':time.perf_counter()-start,'reason_unknown':'process group wall budget exhausted'}
+ if code or not Path(out).exists():
+  return {'status':'unknown','verified':False,'exit_code':code,'wall_seconds':time.perf_counter()-start,'log':log.read_text()[-2000:]}
+ return json.loads(Path(out).read_text())
+
+if __name__=='__main__':
+ if len(sys.argv)>1:
+  if sys.argv[1]=='child':child(*sys.argv[2:])
+  else:recheck(*sys.argv[2:])
+ else:
+  report={'comparison':'fixed complete assignment, compact exact model, single repetition per cell','solver_timeout_seconds':10,'outer_process_timeout_seconds':35,'runs':[]}
+  for case in ('known48','spurious47'):
+   for method in ('deterministic','guarded_smt'):
+    out=f'/tmp/causal-refinement-{case}-{method}.json'
+    result=bounded(['child',case,method,out],out)
+    if 'result' in result and result['result']['status']=='unsat':
+     checkedout=out+'.checked.json'
+     result['fresh_certificate_recheck']=bounded(['recheck',out,checkedout],checkedout)
+    report['runs'].append(result)
+    OUTPUT.write_text(json.dumps(report,indent=2))
+    print(case,method,result.get('result',result).get('status'),round(result['wall_seconds'],3),flush=True)
