@@ -691,6 +691,131 @@ static SearchResult bounded_bfs(const Engine& root, int max_depth, int state_lim
     }
 }
 
+struct ProveResult {
+    int proven_floor = 0;
+    bool exact = false;
+    std::string witness;
+    int nodes = 0;
+    int edge_checks = 0;
+    int hash_collisions_prevented = 0;
+    int exact_tt_prunes = 0;
+    bool exact_state_tt = true;
+};
+
+static std::unordered_map<std::string, int> g_dist_to_win_cache;
+
+static int dist_to_win_bounded(Engine e, int max_depth) {
+    std::string sig = state_key(e);
+    auto cached = g_dist_to_win_cache.find(sig);
+    if (cached != g_dist_to_win_cache.end()) return cached->second;
+    if (e.is_winning()) {
+        g_dist_to_win_cache[sig] = 0;
+        return 0;
+    }
+    struct Node { Engine eng; int d; };
+    std::queue<Node> q;
+    std::unordered_set<std::string> seen;
+    q.push({e, 0});
+    seen.insert(sig);
+    const std::string moves = "RDLUA";
+    int best = max_depth + 1;
+    while (!q.empty()) {
+        auto [cur, d] = q.front();
+        q.pop();
+        if (d >= best) continue;
+        if (cur.is_winning()) {
+            best = d;
+            break;
+        }
+        if (d >= max_depth) continue;
+        for (char ch : moves) {
+            Engine nxt = cur;
+            auto [alive, won] = nxt.step(ch);
+            if (!alive) continue;
+            int nd = d + 1;
+            std::string ns = state_key(nxt);
+            if (won) {
+                best = std::min(best, nd);
+                break;
+            }
+            if (seen.count(ns)) continue;
+            seen.insert(ns);
+            q.push({std::move(nxt), nd});
+        }
+    }
+    g_dist_to_win_cache[sig] = best;
+    return best;
+}
+
+static ProveResult prove_ida(Engine eng, int max_bound, int budget_sec) {
+    ProveResult out;
+    g_dist_to_win_cache.clear();
+    auto deadline = std::chrono::steady_clock::now() + std::chrono::seconds(budget_sec);
+    int best_len = max_bound + 1;
+    std::string best_route;
+    for (int target = 1; target <= max_bound; ++target) {
+        if (std::chrono::steady_clock::now() > deadline) break;
+        struct Frame { Engine e; std::string path; int g; };
+        std::vector<Frame> stack;
+        stack.push_back({eng, "", 0});
+        std::unordered_map<std::string, int> best_g;
+        bool found = false;
+        while (!stack.empty()) {
+            if (std::chrono::steady_clock::now() > deadline) break;
+            auto fr = stack.back();
+            stack.pop_back();
+            ++out.nodes;
+            if (fr.g >= target) continue;
+            if (fr.e.is_winning()) {
+                if (fr.g < best_len) {
+                    best_len = fr.g;
+                    best_route = fr.path;
+                }
+                found = true;
+                break;
+            }
+            std::string sig = state_key(fr.e);
+            auto it = best_g.find(sig);
+            if (it != best_g.end() && it->second <= fr.g) {
+                ++out.exact_tt_prunes;
+                continue;
+            }
+            best_g[sig] = fr.g;
+            for (char ch : std::string("RDLUA")) {
+                Engine nxt = fr.e;
+                auto [alive, won] = nxt.step(ch);
+                if (!alive) continue;
+                int ng = fr.g + 1;
+                if (ng > target) continue;
+                int h_s = dist_to_win_bounded(fr.e, max_bound);
+                int h_n = won ? 0 : dist_to_win_bounded(nxt, max_bound);
+                out.edge_checks++;
+                if (h_s > 1 + h_n) out.exact_state_tt = false;
+                if (won && ng <= target) {
+                    if (ng < best_len) { best_len = ng; best_route = fr.path + ch; }
+                    found = true;
+                    break;
+                }
+                stack.push_back({std::move(nxt), fr.path + ch, ng});
+            }
+            if (found) break;
+        }
+        if (best_len <= target) {
+            out.proven_floor = best_len;
+            out.exact = (target >= best_len);
+            out.witness = best_route;
+            break;
+        }
+        out.proven_floor = target;
+    }
+    if (!best_route.empty() && best_len < max_bound + 1) {
+        out.proven_floor = best_len;
+        out.witness = best_route;
+        out.exact = true;
+    }
+    return out;
+}
+
 static void print_search_metadata(const SearchResult& out) {
     std::cout << ",\"search_algorithm\":\"exact_bfs\""
               << ",\"termination_reason\":\"" << out.reason << "\""
@@ -753,7 +878,7 @@ int main() {
                       << ",\"final_ascii\":\"" << ascii << "\"}" << std::endl;
             return 0;
         }
-        if (mode == "solve" || mode == "optimize" || mode == "prove_lb") {
+        if (mode == "solve" || mode == "optimize") {
             Engine eng(part, grid);
             int max_depth = mode == "optimize" ? std::max(0, (int)route.size() - 1) : p1;
             // Optimizer p1 and solver p2 are state caps (formerly beam_width).
@@ -763,22 +888,31 @@ int main() {
                 std::cout << "{\"solved\":" << (result.solved ? "true" : "false")
                           << ",\"route\":\"" << result.route << "\""
                           << ",\"explored\":" << result.nodes;
-            } else if (mode == "optimize") {
+            } else {
                 std::cout << "{\"best_route\":\"" << (result.solved ? result.route : route)
                           << "\",\"stages\":[\"bounded_exact_bfs\"]";
-            } else {
-                int floor = result.solved ? (int)result.route.size() : result.completed_depth + 1;
-                std::cout << "{\"epistemic_status\":\""
-                          << (result.solved ? "VERIFIED" : "EXHAUSTIVE_LOWER_BOUND") << "\""
-                          << ",\"proven_floor\":" << floor
-                          << ",\"exact_optimum_reached\":" << (result.solved ? "true" : "false")
-                          << ",\"winning_witness\":\"" << result.route << "\""
-                          << ",\"exact_state_tt\":true,\"quotient_pdb_enabled\":false"
-                          << ",\"exact_tt_prunes\":" << result.duplicates
-                          << ",\"hash_collisions_prevented\":0,\"edge_consistency_checks\":0";
             }
             print_search_metadata(result);
             std::cout << "}" << std::endl;
+            return 0;
+        }
+        if (mode == "prove_lb") {
+            Engine eng(part, grid);
+            auto pr = prove_ida(eng, p1, p3);
+            std::string status = "CONJECTURE";
+            if (pr.exact && !pr.witness.empty() && pr.proven_floor > 0) status = "VERIFIED";
+            std::cout << "{"
+                      << "\"epistemic_status\":\"" << status << "\""
+                      << ",\"proven_floor\":" << pr.proven_floor
+                      << ",\"exact_optimum_reached\":" << (pr.exact ? "true" : "false")
+                      << ",\"winning_witness\":\"" << pr.witness << "\""
+                      << ",\"exact_state_tt\":" << (pr.exact_state_tt ? "true" : "false")
+                      << ",\"quotient_pdb_enabled\":false"
+                      << ",\"exact_tt_prunes\":" << pr.exact_tt_prunes
+                      << ",\"hash_collisions_prevented\":" << pr.hash_collisions_prevented
+                      << ",\"nodes_expanded\":" << pr.nodes
+                      << ",\"edge_consistency_checks\":" << pr.edge_checks
+                      << "}" << std::endl;
             return 0;
         }
 

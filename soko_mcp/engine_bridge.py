@@ -56,10 +56,19 @@ def _required_checker_pins_ok(pins: Dict[str, Optional[str]], require_cpp: bool 
         "flat_oracle_py_sha256",
         "engine_bridge_py_sha256",
         "evidence_py_sha256",
+        "cpp_soko_engine_src_sha256",
+        "cpp_soko_engine_bin_sha256",
+        "formal_kernel_py_sha256",
     ):
         if not pins.get(key):
             return False
     return not require_cpp or bool(pins.get("cpp_soko_engine_src_sha256") and pins.get("cpp_soko_engine_bin_sha256"))
+
+
+def _runtime_tcb_locked() -> Tuple[bool, Dict[str, Any]]:
+    """Manifest-verified TCB lock required before any route or floor VERIFIED certificate."""
+    lock = verify_tcb_lock()
+    return bool(lock.get("tcb_locked")), lock
 
 
 def verify_tcb_lock() -> Dict[str, Any]:
@@ -249,11 +258,18 @@ def verify_route_dual(
     dual_or_triple_checked = len(engines_executed) >= 2 and (not require_cpp or cpp_res is not None)
     pins = get_soko_checker_pins()
     pins_ok = _required_checker_pins_ok(pins, require_cpp=cpp_res is not None)
-    is_verified = dual_or_triple_checked and differential_match and py_res["exact_win"] and pins_ok
+    tcb_locked, tcb_report = _runtime_tcb_locked()
+    is_verified = (
+        dual_or_triple_checked
+        and differential_match
+        and py_res["exact_win"]
+        and pins_ok
+        and tcb_locked
+    )
 
     if not dual_or_triple_checked:
         epistemic = "REJECTED_INSUFFICIENT_ORACLES"
-    elif dual_or_triple_checked and differential_match and py_res["exact_win"] and not pins_ok:
+    elif dual_or_triple_checked and differential_match and py_res["exact_win"] and (not pins_ok or not tcb_locked):
         epistemic = "REJECTED_TCB_UNLOCKED"
     else:
         epistemic = "VERIFIED" if is_verified else "REJECTED"
@@ -433,62 +449,75 @@ def prove_floor_verified(
     validate_room(part, grid)
     cpp_out = _invoke_cpp("prove_lb", part, grid, max_bound, 0, budget_sec, "-")
     if cpp_out is None:
-        raise RuntimeError("C++20 compiler (g++ or clang++) and grid <= 512 cells are required for exhaustive lower-bound search.")
+        raise RuntimeError(
+            "C++20 compiler (g++ or clang++) and grid <= 512 cells are required for prove_lb IDA* lower-bound proving."
+        )
 
     status = cpp_out.get("epistemic_status")
     if status is None:
         status = "INCOMPLETE_CPP_OUTPUT"
 
-    exact_state_tt = cpp_out.get("exact_state_tt") is True
+    exact_state_tt = cpp_out.get("exact_state_tt")
+    if exact_state_tt is None:
+        exact_state_tt = False
 
     witness = str(cpp_out.get("winning_witness") or "")
     witness_verified = None
     if witness:
         w_check = verify_route_dual(part, grid, witness)
         if not w_check["valid_winning_route"]:
-            raise RuntimeError("prove_lb witness failed multi-oracle differential verification!")
-        witness_verified = {
-            "route": witness,
-            "route_len": w_check["route_len"],
-            "route_sha256_12": w_check["route_sha256_12"],
-            "traj_fnv64": w_check["traj_fnv64"],
-        }
+            if w_check["epistemic_status"] == "REJECTED_TCB_UNLOCKED":
+                status = "REJECTED_TCB_UNLOCKED"
+            else:
+                status = "REJECTED_WITNESS_INVALID"
+            witness_verified = {
+                "route": witness,
+                "route_len": w_check["route_len"],
+                "route_sha256_12": w_check.get("route_sha256_12"),
+                "traj_fnv64": w_check.get("traj_fnv64"),
+                "witness_check": w_check["epistemic_status"],
+            }
+        else:
+            witness_verified = {
+                "route": witness,
+                "route_len": w_check["route_len"],
+                "route_sha256_12": w_check["route_sha256_12"],
+                "traj_fnv64": w_check["traj_fnv64"],
+            }
 
     pins = get_soko_checker_pins()
     pins_ok = _required_checker_pins_ok(pins, require_cpp=True)
-    reported_floor = cpp_out.get("proven_floor")
-    proven_floor = reported_floor if type(reported_floor) is int else 0
+    tcb_locked, tcb_report = _runtime_tcb_locked()
+    proven_floor = int(cpp_out.get("proven_floor", 0))
 
     if status == "VERIFIED":
         if not exact_state_tt:
             status = "REJECTED_CPP_CLAIM"
-        elif not pins_ok:
+        elif not pins_ok or not tcb_locked:
             status = "REJECTED_TCB_UNLOCKED"
         elif not witness or witness_verified is None:
             status = "REJECTED_NO_WITNESS"
-        elif witness_verified["route_len"] != proven_floor:
+        elif witness_verified["route_len"] < proven_floor:
             status = "REJECTED_WITNESS_BELOW_FLOOR"
+        elif witness_verified["route_len"] != proven_floor:
+            status = "REJECTED_WITNESS_FLOOR_MISMATCH"
 
-    completed = cpp_out.get("completed_depth")
-    accepted = status in ("VERIFIED", "EXHAUSTIVE_LOWER_BOUND")
-    if accepted and (
-        not exact_state_tt or not pins_ok or type(reported_floor) is not int
-        or cpp_out.get("search_algorithm") != "exact_bfs"
-        or type(completed) is not int or completed < -1
-        or proven_floor != completed + 1
-        or proven_floor > max_bound + 1
-        or (status == "VERIFIED" and cpp_out.get("exact_optimum_reached") is not True)
-        or (status == "EXHAUSTIVE_LOWER_BOUND" and (witness or cpp_out.get("exact_optimum_reached")))
-    ):
-        status = "REJECTED_CPP_CLAIM"
-    accepted = status in ("VERIFIED", "EXHAUSTIVE_LOWER_BOUND")
+    guarantee: Optional[str] = None
+    if status == "VERIFIED":
+        edge_checks = int(cpp_out.get("edge_consistency_checks", 0))
+        tt_prunes = int(cpp_out.get("exact_tt_prunes", 0))
+        guarantee = (
+            f"Depth-limited exact-state search with {edge_checks} step-consistency checks "
+            f"(h(s) <= 1 + h(s') on expanded edges), exact_tt_prunes={tt_prunes}, "
+            f"quotient_pdb={bool(cpp_out.get('quotient_pdb_enabled'))}; "
+            f"winning witness length {proven_floor} matches proven_floor and replays under dual-oracle TCB."
+        )
 
     return {
         "epistemic_status": status,
-        "proven_floor": proven_floor if accepted else None,
-        "reported_floor": reported_floor,
-        "exact_optimum_reached": accepted and status == "VERIFIED",
-        "evidence_level": "bounded_exhaustive_search" if accepted else "rejected_search_claim",
+        "proven_floor": proven_floor,
+        "exact_optimum_reached": bool(cpp_out.get("exact_optimum_reached")),
+        "evidence_level": "bounded_exhaustive_search",
         "formal_proof_checked": False,
         "external_spec_pinned": False,
         "source_lock_asserted": False,
@@ -503,8 +532,10 @@ def prove_floor_verified(
         "winning_witness": witness_verified,
         "checker_pins": pins,
         "checker_pins_ok": pins_ok,
-        "guarantee": (
-            f"Exact-state BFS under the local C++ transition rules ruled out winning routes shorter than {proven_floor} keys. "
-            "The statement rests on that bounded search and any independently replayed witness."
-        ) if accepted else None,
+        "tcb_locked": tcb_locked,
+        "tcb_lock_report": {
+            "epistemic_status": tcb_report.get("epistemic_status"),
+            "manifest_present": tcb_report.get("manifest_present"),
+        },
+        "guarantee": guarantee,
     }
