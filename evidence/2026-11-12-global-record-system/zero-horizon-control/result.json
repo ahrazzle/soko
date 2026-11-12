@@ -1,0 +1,18 @@
+{
+  "status": "unsat",
+  "cnf_sha256": "415079b7779cff4aa95505d898bf283fed4ef85109e765212fe3ac0fde37290b",
+  "assignment_path": null,
+  "proof_path": "/tmp/soko-system-negative-control/zero-verified/proof.drat",
+  "proof_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b",
+  "checker_status": "verified",
+  "checker_sha256": "0535c9a92e0902c1432067de7741bd3e28054e1762d0bf58de90ab45005c5bdc",
+  "stats": {
+    "restarts": 0,
+    "conflicts": 0,
+    "decisions": 0,
+    "propagations": 0
+  },
+  "phase": "complete",
+  "checker_output": "\nc parsing input formula with 0 variables and 1 clauses\n\nc finished parsing\n\nc trivial UNSAT\ns VERIFIED\n\nc verification time: 0.049 seconds\n",
+  "elapsed_seconds": 0.1260984720011038
+}

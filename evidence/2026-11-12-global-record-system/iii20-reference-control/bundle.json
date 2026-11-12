@@ -1,0 +1,98 @@
+{
+  "artifacts": {
+    "actions.json": "c81253bfc11c0c09bbdf15152151db2cfda185748ed5d237263618569902a712",
+    "calibration.json": "0c865209d0be4e44dbdf7d451a1e514dccab73086ffcd51f9e0d6f928a9ef94f",
+    "frontier.json": "07850c7e7221f29e6510fead7ca37282f99852c144075d31e3e28a483fcdbccc",
+    "instance.json": "ba8155369be01f42d3a114a5c4f5db192319f63bfd26a5e916f447f6ef276f28",
+    "problem.cnf": "20ee4fb2c2f5a30380a6619d5786bc56f472888f8ce5bcf961787cc65c27326c"
+  },
+  "frontier_observation": {
+    "mode": "provided_snapshot",
+    "observed_at": "2026-11-12T17:17:49.990526+00:00",
+    "sha256": "07850c7e7221f29e6510fead7ca37282f99852c144075d31e3e28a483fcdbccc",
+    "url": "https://soko.banteg.xyz/api/frontier"
+  },
+  "incumbent": {
+    "avatar": 1,
+    "handle": "a1kindus",
+    "id": 140,
+    "known": 84,
+    "length": 84,
+    "lower": 74,
+    "model": null,
+    "part": 3,
+    "room": 20,
+    "seed": 0,
+    "uid": 18
+  },
+  "mode": "reference_control",
+  "model_contract": {
+    "action_encoding": "native one-hot Boolean aliases action_{zero_based_step}_{action}",
+    "actions": [
+      "U",
+      "D",
+      "L",
+      "R",
+      "A"
+    ],
+    "all_board_cells_modeled": true,
+    "board": "original 15x9",
+    "calibration_limits": "sampled oracle agreement is evidence, not a proof of model equivalence",
+    "druid_behavior": "Druid transforms inactive heroes into walls; switching skips vanished roles",
+    "external_lower_bound_assumed": false,
+    "goal_absorbing": true,
+    "hero_loss_pruned": false,
+    "noops": "actual blocked directional inputs are permitted",
+    "objective": "first win at or before horizon inputs",
+    "prefix_or_neighborhood_restriction": false,
+    "room": "III-20",
+    "solver_result_semantics": {
+      "sat": "candidate requiring independent original-game replay",
+      "unknown": "inconclusive",
+      "unsat": "no modeled win at or before horizon, subject to model correctness"
+    },
+    "state": [
+      "fighter",
+      "thief",
+      "wizard",
+      "priest",
+      "druid",
+      "goblins",
+      "crates",
+      "walls",
+      "active_role"
+    ],
+    "state_encoding": "Eight 135-bit object masks and one 3-bit active-role index (0..4)",
+    "version": 1
+  },
+  "objective": {
+    "first_win_at_or_before": 84,
+    "observed_record_length": 84
+  },
+  "preparation_seconds": 46.899,
+  "room": "III-20",
+  "runtime_versions": {
+    "playwright": "1.62.0",
+    "python-sat": "1.9.dev22",
+    "z3-solver": "5.4.1.0"
+  },
+  "schema_version": 1,
+  "search_restrictions": [
+    "pinned_reference_actions_and_oracle_frames"
+  ],
+  "semantic_equivalence_proved": false,
+  "source_sha256": {
+    "experiments/exact_frontier/cnf_search.py": "e6a443352f7750edf9f3daecac61e8b5602db903e27ce18d4e33d45336c90c60",
+    "experiments/exact_frontier/iii14_problem.py": "ac96ffd0c569a7989929bdbba88ca58272868e1d7ac1d79f9655f22606c41da6",
+    "experiments/exact_frontier/iii14_smt.py": "4d40f35450837ec903f63322054f8ffc88486189c63db8d67bfc91c1708ba248",
+    "experiments/exact_frontier/iii20_bitvector.py": "8df4d05c71e944dae3c76978f4030f4f98ebe77af46f828a425ca4b366be0f6e",
+    "experiments/exact_frontier/iii20_problem.py": "275bded721707323ab18b307a28c23489a69e31ae7fef620ac52fadbf249be5d",
+    "experiments/exact_frontier/record_system.py": "92b844f4ed2be1ceee16e0a5086160e2b3d21adcafe3a2b2e10b698ffd550291",
+    "soko_mcp/catalog.py": "43d8b8aaf29c3e9fb857ea803a40edf5cc6e230e8e81e2c8eb002d41364f75ed",
+    "soko_mcp/data/catalog.json": "c79e2ddf755039ad09ee57d30e06efc594d0310d20cbdba26b40a4bd9ae5c8bc",
+    "soko_mcp/flat_oracle.py": "447b6c006dfe36347a96bd519b5ff23b76ed40352c0e5ccb32d42f496f402951",
+    "soko_mcp/oracle.py": "8145f311051a3f6bfa94467da7a6d9a30535f9edf1bb00662982da70e9cc9853",
+    "soko_mcp/original.py": "e9b288556c51363e1edbb161c2c119c540ad8aa6e5ae31e23739a6284f2800a6"
+  },
+  "status": "prepared"
+}

@@ -1,0 +1,16 @@
+{
+  "approach": "whole-board bitvector SMT",
+  "instance": "III-20",
+  "baseline_length": 84,
+  "proof_claim": null,
+  "start": 24,
+  "end": 84,
+  "horizon": 59,
+  "timeout_ms": 60000,
+  "fixed_switches": true,
+  "build_seconds": 6.598,
+  "status": "unknown",
+  "reason_unknown": "timeout",
+  "statistics": "(:max-memory              1497.29\n :memory                  391.33\n :num-allocs              667062200665.00\n :rlimit-count            167403081\n :sat-backjumps           11480\n :sat-backtracks          684\n :sat-conflicts           12164\n :sat-decisions           122477\n :sat-del-clause          1778123\n :sat-elim-bool-vars-res  509854\n :sat-elim-clauses        320283\n :sat-elim-literals       168358\n :sat-minimized-lits      574039\n :sat-mk-clause-2ary      4860913\n :sat-mk-clause-3ary      876886\n :sat-mk-clause-nary      2702227\n :sat-mk-var              1185152\n :sat-probing-assigned    10682\n :sat-propagations-2ary   50177454\n :sat-propagations-nary   78095725\n :sat-restarts            1150\n :sat-scc-elim-binary     4088\n :sat-scc-elim-vars       62725\n :sat-subs-resolution     10077\n :sat-subs-resolution-dyn 7696\n :sat-subsumed            42975\n :sat-units               174717\n :time                    60.94)",
+  "elapsed_seconds": 67.535
+}

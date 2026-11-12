@@ -1,0 +1,44 @@
+{
+  "version": 1,
+  "room": "III-14",
+  "board": "original 15x7",
+  "objective": "first win at or before horizon inputs",
+  "state": [
+    "walls",
+    "crates",
+    "bard",
+    "druid",
+    "bard_active",
+    "notes",
+    "door_open"
+  ],
+  "state_encoding": "105-bit masks for walls, crates, each hero and notes; booleans for active hero and door",
+  "actions": [
+    "U",
+    "D",
+    "L",
+    "R",
+    "A"
+  ],
+  "action_encoding": "one-hot Boolean variables named action_{zero_based_step}_{action}",
+  "goal_absorbing": true,
+  "all_board_cells_modeled": true,
+  "hero_loss_pruned": "Druid petrifying Bard and closing door on either hero are losing because both heroes are necessary for the two goals",
+  "bard_movement": "prior note aura; fixed point allows each blocked charmed object to remain independently; blocked Bard cancels the turn",
+  "door_behavior": "opens when all switches are weighed; closing can remove walls and crates or kill heroes",
+  "noops": "permitted where the game permits them",
+  "redundant_global_landmarks": {
+    "all_material_switches": "some full-history frame has all nine switches occupied by walls or crates",
+    "wall_to_crate_events": "at least nine Druid wall-to-crate events occur before victory",
+    "proof": "Before both heroes first enter the three-cell goal enclosure, a hero occupies a door while neither is on a switch; therefore nine material tokens weigh the switches. Each began as a boundary wall and must have been converted to a crate to reach a switch. A door closure can delete, but not create, material. See structure_system.md.",
+    "guard": "exact original grid and catalog source hash checked before enabling"
+  },
+  "external_lower_bound_assumed": false,
+  "prefix_or_neighborhood_restriction": false,
+  "solver_result_semantics": {
+    "sat": "candidate requiring independent original-game replay",
+    "unsat": "no modeled win at or before horizon, subject to model correctness",
+    "unknown": "inconclusive"
+  },
+  "calibration_limits": "sampled oracle agreement is evidence, not a proof of model equivalence"
+}

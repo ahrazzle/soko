@@ -1,0 +1,90 @@
+{
+  "room": "III-14 original 15x7",
+  "date": "2026-11-12",
+  "note": "Historical linear encoding runs preceded its replacement by doubling; current commands reproduce search scope but use doubling. Durations are wall clock. unknown is not UNSAT. Prefix and guide runs are restricted.",
+  "runs": [
+    {
+      "command": "/tmp/soko-exact-venv/bin/python experiments/exact_frontier/iii14_smt.py --validate",
+      "encoding": "linear and then doubling",
+      "result": "matched baseline and 410/500 surviving random traces",
+      "seed": 7314
+    },
+    {
+      "command": "/tmp/soko-exact-venv/bin/python experiments/exact_frontier/iii14_smt.py --validate-near",
+      "encoding": "doubling",
+      "result": "matched 89/100 surviving baseline-prefix random-suffix traces",
+      "seed": 149314,
+      "note": "Equivalent command was a Python heredoc before the CLI option was added."
+    },
+    {
+      "command": "/tmp/soko-exact-venv/bin/python experiments/exact_frontier/iii14_smt.py --n 48 --prefix LLULULULRURURURURUAUDRRDDAUARRDLRAULDLDRARURDUUR --timeout 60000",
+      "encoding": "linear",
+      "result": "sat",
+      "build_seconds": 2.02,
+      "solve_seconds": 2.66
+    },
+    {
+      "command": "/tmp/soko-exact-venv/bin/python experiments/exact_frontier/iii14_smt.py --n 48 --timeout 60000",
+      "encoding": "linear",
+      "result": "unknown",
+      "reason": "timeout",
+      "build_seconds": 3.57,
+      "solve_seconds": 66.02
+    },
+    {
+      "command": "/tmp/soko-exact-venv/bin/python experiments/exact_frontier/iii14_smt.py --n 47 --timeout 60000",
+      "encoding": "linear",
+      "result": "unknown",
+      "reason": "timeout",
+      "build_seconds": 5.74,
+      "solve_seconds": 64.96
+    },
+    {
+      "command": "/tmp/soko-exact-venv/bin/python experiments/exact_frontier/iii14_smt.py --n 47 --prefix LLULULULURURURURU --guide LLULULULURURURURUAUDRRDDAUARRDLRAULDLDRARURDUUR --distance 6 --timeout 60000",
+      "encoding": "linear",
+      "result": "unknown",
+      "reason": "timeout",
+      "build_seconds": 2.82,
+      "solve_seconds": 63.88
+    },
+    {
+      "command": "/tmp/soko-exact-venv/bin/python experiments/exact_frontier/iii14_smt.py --n 42 --prefix LLULULULRURURURURUAUDRRDDRRDRUL --milestone --timeout 60000",
+      "encoding": "linear",
+      "result": "unknown",
+      "reason": "timeout",
+      "build_seconds": 1.89,
+      "solve_seconds": 61.22
+    },
+    {
+      "command": "/tmp/soko-exact-venv/bin/python experiments/exact_frontier/iii14_smt.py --n 47 --prefix LLULULULRURURURURUAUDRRDDRRDRUL --timeout 60000",
+      "encoding": "linear",
+      "result": "unknown",
+      "reason": "timeout",
+      "build_seconds": 1.6,
+      "solve_seconds": 61.55
+    },
+    {
+      "command": "/tmp/soko-exact-venv/bin/python experiments/exact_frontier/iii14_smt.py --n 48 --prefix LLULULULRURURURURUAUDRRDDAUARRDLRAULDLDRARURDUUR --onehot --timeout 60000",
+      "encoding": "doubling",
+      "result": "sat",
+      "build_seconds": 1.74,
+      "solve_seconds": 0.75
+    },
+    {
+      "command": "/tmp/soko-exact-venv/bin/python experiments/exact_frontier/iii14_smt.py --n 47 --prefix LLULULULRURURURURUAUDRRDDRRDRUL --onehot --timeout 60000",
+      "encoding": "doubling",
+      "result": "unknown",
+      "reason": "timeout",
+      "build_seconds": 2.69,
+      "solve_seconds": 60.99
+    },
+    {
+      "command": "/tmp/soko-exact-venv/bin/python experiments/exact_frontier/iii14_smt.py --n 40 --prefix LLULULULRURURURURUAUDRRDDRRDRUL --onehot --timeout 30000",
+      "encoding": "doubling",
+      "result": "unknown",
+      "reason": "timeout",
+      "build_seconds": 2.82,
+      "solve_seconds": 30.62
+    }
+  ]
+}

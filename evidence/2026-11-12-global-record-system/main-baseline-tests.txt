@@ -1,0 +1,484 @@
+======================================================================
+ERROR: test_certificate_binds_instance_route_and_checkers (test_evidence_boundary.EvidenceBoundaryTests.test_certificate_binds_instance_route_and_checkers)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/tmp/soko-main-validation/tests/test_evidence_boundary.py", line 31, in test_certificate_binds_instance_route_and_checkers
+    self.assertEqual(result["evidence_level"], "differential_replay")
+                     ~~~~~~^^^^^^^^^^^^^^^^^^
+KeyError: 'evidence_level'
+
+======================================================================
+ERROR: test_mcp_certificate_includes_room_metadata (test_evidence_boundary.EvidenceBoundaryTests.test_mcp_certificate_includes_room_metadata)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/tmp/soko-main-validation/tests/test_evidence_boundary.py", line 56, in test_mcp_certificate_includes_room_metadata
+    certificate_hash = result.pop("certificate_sha256")
+                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+KeyError: 'certificate_sha256'
+
+======================================================================
+ERROR: test_rejected_bound_has_no_guarantee (test_evidence_boundary.EvidenceBoundaryTests.test_rejected_bound_has_no_guarantee) (output={'proven_floor': 900})
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/tmp/soko-main-validation/tests/test_evidence_boundary.py", line 67, in test_rejected_bound_has_no_guarantee
+    self.assertIsNone(result["guarantee"])
+                      ~~~~~~^^^^^^^^^^^^^
+KeyError: 'guarantee'
+
+======================================================================
+ERROR: test_rejected_bound_has_no_guarantee (test_evidence_boundary.EvidenceBoundaryTests.test_rejected_bound_has_no_guarantee) (output={'epistemic_status': 'CONJECTURE', 'proven_floor': 900})
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/tmp/soko-main-validation/tests/test_evidence_boundary.py", line 67, in test_rejected_bound_has_no_guarantee
+    self.assertIsNone(result["guarantee"])
+                      ~~~~~~^^^^^^^^^^^^^
+KeyError: 'guarantee'
+
+======================================================================
+ERROR: test_rejected_bound_has_no_guarantee (test_evidence_boundary.EvidenceBoundaryTests.test_rejected_bound_has_no_guarantee) (output={'epistemic_status': 'EXHAUSTIVE_LOWER_BOUND', 'proven_floor': 900, 'exact_state_tt': True, 'search_algorithm': 'exact_bfs', 'completed_depth': 0})
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/tmp/soko-main-validation/tests/test_evidence_boundary.py", line 67, in test_rejected_bound_has_no_guarantee
+    self.assertIsNone(result["guarantee"])
+                      ~~~~~~^^^^^^^^^^^^^
+KeyError: 'guarantee'
+
+======================================================================
+ERROR: test_depth_limit_does_not_expand_past_requested_depth (test_search_bounds.BoundedSearchTests.test_depth_limit_does_not_expand_past_requested_depth)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/tmp/soko-main-validation/tests/test_search_bounds.py", line 67, in test_depth_limit_does_not_expand_past_requested_depth
+    self.assertEqual(result["completed_depth"], 0)
+                     ~~~~~~^^^^^^^^^^^^^^^^^^^
+KeyError: 'completed_depth'
+
+======================================================================
+ERROR: test_exhausted_reachable_graph_cannot_invent_a_solution (test_search_bounds.BoundedSearchTests.test_exhausted_reachable_graph_cannot_invent_a_solution)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/tmp/soko-main-validation/tests/test_search_bounds.py", line 80, in test_exhausted_reachable_graph_cannot_invent_a_solution
+    self.assertEqual(result["termination_reason"], "exhausted")
+                     ~~~~~~^^^^^^^^^^^^^^^^^^^^^^
+KeyError: 'termination_reason'
+
+======================================================================
+ERROR: test_interrupted_layer_does_not_claim_requested_bound (test_search_bounds.BoundedSearchTests.test_interrupted_layer_does_not_claim_requested_bound)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/tmp/soko-main-validation/tests/test_search_bounds.py", line 48, in test_interrupted_layer_does_not_claim_requested_bound
+    self.assertEqual(result["completed_depth"], 2)
+                     ~~~~~~^^^^^^^^^^^^^^^^^^^
+KeyError: 'completed_depth'
+
+======================================================================
+ERROR: test_optimizer_shortens_real_verified_detour (test_search_bounds.BoundedSearchTests.test_optimizer_shortens_real_verified_detour)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/tmp/soko-main-validation/tests/test_search_bounds.py", line 34, in test_optimizer_shortens_real_verified_detour
+    self.assertEqual(result["search_algorithm"], "exact_bfs")
+                     ~~~~~~^^^^^^^^^^^^^^^^^^^^
+KeyError: 'search_algorithm'
+
+======================================================================
+ERROR: test_shortest_witness_has_completed_smaller_depths (test_search_bounds.BoundedSearchTests.test_shortest_witness_has_completed_smaller_depths)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/tmp/soko-main-validation/tests/test_search_bounds.py", line 59, in test_shortest_witness_has_completed_smaller_depths
+    self.assertEqual(result["completed_depth"], 8)
+                     ~~~~~~^^^^^^^^^^^^^^^^^^^
+KeyError: 'completed_depth'
+
+======================================================================
+FAIL: test_invalid_starts_rejected_before_native_execution (test_evidence_boundary.EvidenceBoundaryTests.test_invalid_starts_rejected_before_native_execution) (part=1, grid=['###'])
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/tmp/soko-main-validation/tests/test_evidence_boundary.py", line 16, in test_invalid_starts_rejected_before_native_execution
+    with self.subTest(part=part, grid=grid), self.assertRaises(ValueError):
+                                             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: ValueError not raised
+
+======================================================================
+FAIL: test_invalid_starts_rejected_before_native_execution (test_evidence_boundary.EvidenceBoundaryTests.test_invalid_starts_rejected_before_native_execution) (part=1, grid=['FGG'])
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/tmp/soko-main-validation/tests/test_evidence_boundary.py", line 16, in test_invalid_starts_rejected_before_native_execution
+    with self.subTest(part=part, grid=grid), self.assertRaises(ValueError):
+                                             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: ValueError not raised
+
+======================================================================
+FAIL: test_invalid_starts_rejected_before_native_execution (test_evidence_boundary.EvidenceBoundaryTests.test_invalid_starts_rejected_before_native_execution) (part=1, grid=['FFGG'])
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/tmp/soko-main-validation/tests/test_evidence_boundary.py", line 16, in test_invalid_starts_rejected_before_native_execution
+    with self.subTest(part=part, grid=grid), self.assertRaises(ValueError):
+                                             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: ValueError not raised
+
+======================================================================
+FAIL: test_invalid_starts_rejected_before_native_execution (test_evidence_boundary.EvidenceBoundaryTests.test_invalid_starts_rejected_before_native_execution) (part=1, grid=['F1GG'])
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/tmp/soko-main-validation/tests/test_evidence_boundary.py", line 16, in test_invalid_starts_rejected_before_native_execution
+    with self.subTest(part=part, grid=grid), self.assertRaises(ValueError):
+                                             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: ValueError not raised
+
+======================================================================
+FAIL: test_invalid_starts_rejected_before_native_execution (test_evidence_boundary.EvidenceBoundaryTests.test_invalid_starts_rejected_before_native_execution) (part=True, grid=['F.G'])
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/tmp/soko-main-validation/tests/test_evidence_boundary.py", line 16, in test_invalid_starts_rejected_before_native_execution
+    with self.subTest(part=part, grid=grid), self.assertRaises(ValueError):
+                                             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: ValueError not raised
+
+======================================================================
+FAIL: test_invalid_starts_rejected_before_native_execution (test_evidence_boundary.EvidenceBoundaryTests.test_invalid_starts_rejected_before_native_execution) (part=1, grid=['F...............................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................G'])
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/tmp/soko-main-validation/tests/test_evidence_boundary.py", line 16, in test_invalid_starts_rejected_before_native_execution
+    with self.subTest(part=part, grid=grid), self.assertRaises(ValueError):
+                                             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: ValueError not raised
+
+======================================================================
+FAIL: test_invalid_starts_rejected_before_native_execution (test_evidence_boundary.EvidenceBoundaryTests.test_invalid_starts_rejected_before_native_execution)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/tmp/soko-main-validation/tests/test_evidence_boundary.py", line 18, in test_invalid_starts_rejected_before_native_execution
+    native.assert_not_called()
+  File "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/unittest/mock.py", line 910, in assert_not_called
+    raise AssertionError(msg)
+AssertionError: Expected '_invoke_cpp' to not have been called. Called 6 times.
+Calls: [call('verify', 1, ['###'], 0, 0, 5, '-'),
+ call().get('alive'),
+ call().get().__eq__(True),
+ call().get('traj_fnv64'),
+ call().get().__eq__('ba3d913f5ab0c537'),
+ call('verify', 1, ['FGG'], 0, 0, 5, '-'),
+ call().get('alive'),
+ call().get().__eq__(True),
+ call().get('traj_fnv64'),
+ call().get().__eq__('d80da3aea7dcdc61'),
+ call('verify', 1, ['FFGG'], 0, 0, 5, '-'),
+ call().get('alive'),
+ call().get().__eq__(True),
+ call().get('traj_fnv64'),
+ call().get().__eq__('07fd80f1b8fb1de6'),
+ call('verify', 1, ['F1GG'], 0, 0, 5, '-'),
+ call().get('alive'),
+ call().get().__eq__(True),
+ call().get('traj_fnv64'),
+ call().get().__eq__('ee9ffe9cbe5cbcac'),
+ call('verify', True, ['F.G'], 0, 0, 5, '-'),
+ call().get('alive'),
+ call().get().__eq__(True),
+ call().get('traj_fnv64'),
+ call().get().__eq__('d80da3aea7dcdc61'),
+ call('verify', 1, ['F...............................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................G'], 0, 0, 5, '-'),
+ call().get('alive'),
+ call().get().__eq__(True),
+ call().get('traj_fnv64'),
+ call().get().__eq__('228352ad2cc6a841')].
+
+======================================================================
+FAIL: test_python_only_replay_does_not_require_absent_cpp_artifact (test_evidence_boundary.EvidenceBoundaryTests.test_python_only_replay_does_not_require_absent_cpp_artifact)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/tmp/soko-main-validation/tests/test_evidence_boundary.py", line 47, in test_python_only_replay_does_not_require_absent_cpp_artifact
+    self.assertTrue(result["valid_winning_route"])
+AssertionError: False is not true
+
+======================================================================
+FAIL: test_stub_floor_one_with_nine_step_witness_rejected (test_f04_close.F04ProveFloorTests.test_stub_floor_one_with_nine_step_witness_rejected)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/tmp/soko-main-validation/tests/test_f04_close.py", line 70, in test_stub_floor_one_with_nine_step_witness_rejected
+    self.assertEqual(out["epistemic_status"], "REJECTED_WITNESS_FLOOR_MISMATCH")
+AssertionError: 'REJECTED_INVALID_WITNESS' != 'REJECTED_WITNESS_FLOOR_MISMATCH'
+- REJECTED_INVALID_WITNESS
++ REJECTED_WITNESS_FLOOR_MISMATCH
+
+
+======================================================================
+FAIL: test_stub_floor_ten_with_eleven_step_detour_rejected (test_f04_close.F04ProveFloorTests.test_stub_floor_ten_with_eleven_step_detour_rejected)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/tmp/soko-main-validation/tests/test_f04_close.py", line 93, in test_stub_floor_ten_with_eleven_step_detour_rejected
+    self.assertEqual(out["epistemic_status"], "REJECTED_WITNESS_FLOOR_MISMATCH")
+AssertionError: 'REJECTED_INVALID_WITNESS' != 'REJECTED_WITNESS_FLOOR_MISMATCH'
+- REJECTED_INVALID_WITNESS
++ REJECTED_WITNESS_FLOOR_MISMATCH
+
+
+======================================================================
+FAIL: test_complete_source_lock_needs_no_compiler_or_binary (test_integrity.SourceManifestTests.test_complete_source_lock_needs_no_compiler_or_binary)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/tmp/soko-main-validation/tests/test_integrity.py", line 31, in test_complete_source_lock_needs_no_compiler_or_binary
+    result = engine_bridge.verify_tcb_lock()
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/tmp/soko-main-validation/soko_mcp/engine_bridge.py", line 96, in verify_tcb_lock
+    cpp_bin = ensure_cpp_engine()
+              ^^^^^^^^^^^^^^^^^^^
+  File "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/unittest/mock.py", line 1139, in __call__
+    return self._mock_call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/unittest/mock.py", line 1143, in _mock_call
+    return self._execute_mock_call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/unittest/mock.py", line 1198, in _execute_mock_call
+    raise effect
+AssertionError: must not build
+
+======================================================================
+FAIL: test_06_solve_from_scratch_and_quotient_pdb_prove_floor_f04 (test_mcp_server.SokoAndFormalVerifiedMcpTests.test_06_solve_from_scratch_and_quotient_pdb_prove_floor_f04)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/tmp/soko-main-validation/tests/test_mcp_server.py", line 260, in test_06_solve_from_scratch_and_quotient_pdb_prove_floor_f04
+    self.assertGreaterEqual(flr14["proven_floor"], 31)
+AssertionError: 22 not greater than or equal to 31
+
+======================================================================
+FAIL: test_07_generic_chiral_optimizer_reproduces_87_to_84_world_record (test_mcp_server.SokoAndFormalVerifiedMcpTests.test_07_generic_chiral_optimizer_reproduces_87_to_84_world_record)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/tmp/soko-main-validation/tests/test_mcp_server.py", line 285, in test_07_generic_chiral_optimizer_reproduces_87_to_84_world_record
+    self.assertEqual(opt["initial_len"], 87)
+AssertionError: 84 != 87
+
+======================================================================
+FAIL: test_complete_unsolved_depth_is_a_lower_bound_without_witness (test_search_bounds.BoundedSearchTests.test_complete_unsolved_depth_is_a_lower_bound_without_witness)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/tmp/soko-main-validation/tests/test_search_bounds.py", line 73, in test_complete_unsolved_depth_is_a_lower_bound_without_witness
+    self.assertEqual(result["proven_floor"], 6)
+AssertionError: 9 != 6
+
+======================================================================
+FAIL: test_solve_and_optimize_honor_zero_budget (test_search_bounds.BoundedSearchTests.test_solve_and_optimize_honor_zero_budget)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/tmp/soko-main-validation/tests/test_search_bounds.py", line 89, in test_solve_and_optimize_honor_zero_budget
+    self.assertFalse(solved["solved"])
+AssertionError: True is not false
+
+======================================================================
+FAIL: test_zero_budget_never_claims_positive_floor (test_search_bounds.BoundedSearchTests.test_zero_budget_never_claims_positive_floor)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/tmp/soko-main-validation/tests/test_search_bounds.py", line 38, in test_zero_budget_never_claims_positive_floor
+    self.assertEqual(result["proven_floor"], 0)
+AssertionError: 9 != 0
+
+======================================================================
+FAIL: test_action_uses_original_rule_order_for_each_initial_player (test_trilogy_mechanics.TrilogyMechanicsTests.test_action_uses_original_rule_order_for_each_initial_player)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/tmp/soko-main-validation/tests/test_trilogy_mechanics.py", line 63, in test_action_uses_original_rule_order_for_each_initial_player
+    self.assert_engines(1, grid, "A", ["#########", "#FT3...G#", "#GG.....#", "#########"])
+  File "/tmp/soko-main-validation/tests/test_trilogy_mechanics.py", line 29, in assert_engines
+    self.assertEqual(native["final_ascii"], readable.render_ascii())
+AssertionError: '#########\n#1TW...G#\n#GG.....#\n#########' != '#########\n#FT3...G#\n#GG.....#\n#########'
+  #########
+- #1TW...G#
+?  ^ ^
++ #FT3...G#
+?  ^ ^
+  #GG.....#
+  #########
+
+
+======================================================================
+FAIL: test_active_followers_move_simultaneously (test_trilogy_mechanics.TrilogyMechanicsTests.test_active_followers_move_simultaneously)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/tmp/soko-main-validation/tests/test_trilogy_mechanics.py", line 58, in test_active_followers_move_simultaneously
+    self.assert_engines(1, grid, "R", ["#########", "#.FTW..G#", "#GG.....#", "#########"])
+  File "/tmp/soko-main-validation/tests/test_trilogy_mechanics.py", line 29, in assert_engines
+    self.assertEqual(native["final_ascii"], readable.render_ascii())
+AssertionError: '#########\n#FTW...G#\n#GG.....#\n#########' != '#########\n#.FTW..G#\n#GG.....#\n#########'
+  #########
+- #FTW...G#
+?       -
++ #.FTW..G#
+?  +
+  #GG.....#
+  #########
+
+
+======================================================================
+FAIL: test_all_original_baselines_win_and_agree (test_trilogy_mechanics.TrilogyMechanicsTests.test_all_original_baselines_win_and_agree) (room='I-22')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/tmp/soko-main-validation/tests/test_trilogy_mechanics.py", line 45, in test_all_original_baselines_win_and_agree
+    self.assertTrue(native["exact_win"])
+AssertionError: False is not true
+
+======================================================================
+FAIL: test_all_original_baselines_win_and_agree (test_trilogy_mechanics.TrilogyMechanicsTests.test_all_original_baselines_win_and_agree) (room='II-12')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/tmp/soko-main-validation/tests/test_trilogy_mechanics.py", line 46, in test_all_original_baselines_win_and_agree
+    self.assertEqual(readable["traj_fnv64"], native["traj_fnv64"])
+AssertionError: '0f97b513bd7bd999' != '3994e776bdf2eae5'
+- 0f97b513bd7bd999
++ 3994e776bdf2eae5
+
+
+======================================================================
+FAIL: test_bard_note_moves_into_active_hero_before_regular_movement (test_trilogy_mechanics.TrilogyMechanicsTests.test_bard_note_moves_into_active_hero_before_regular_movement)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/tmp/soko-main-validation/tests/test_trilogy_mechanics.py", line 80, in test_bard_note_moves_into_active_hero_before_regular_movement
+    self.assert_engines(3, grid, "R", ["########", "#..*B.G#", "#.....G#", "########"])
+  File "/tmp/soko-main-validation/tests/test_trilogy_mechanics.py", line 29, in assert_engines
+    self.assertEqual(native["final_ascii"], readable.render_ascii())
+AssertionError: '########\n#*PB..G#\n#.....G#\n########' != '########\n#..*B.G#\n#.....G#\n########'
+  ########
+- #*PB..G#
+?   - -
++ #..*B.G#
+?  ++
+  #.....G#
+  ########
+
+
+======================================================================
+FAIL: test_bard_overwrites_active_hero_before_that_cells_movement (test_trilogy_mechanics.TrilogyMechanicsTests.test_bard_overwrites_active_hero_before_that_cells_movement)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/tmp/soko-main-validation/tests/test_trilogy_mechanics.py", line 72, in test_bard_overwrites_active_hero_before_that_cells_movement
+    self.assert_engines(3, grid, "L", ["#######", "#B...G#", "#....G#", "#######"])
+  File "/tmp/soko-main-validation/tests/test_trilogy_mechanics.py", line 29, in assert_engines
+    self.assertEqual(native["final_ascii"], readable.render_ascii())
+AssertionError: '#######\n#F.B.G#\n#....G#\n#######' != '#######\n#B...G#\n#....G#\n#######'
+  #######
+- #F.B.G#
+?  ^ ^
++ #B...G#
+?  ^ ^
+  #....G#
+  #######
+
+
+======================================================================
+FAIL: test_door_crush_opens_monster_gate_in_same_late_phase (test_trilogy_mechanics.TrilogyMechanicsTests.test_door_crush_opens_monster_gate_in_same_late_phase)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/tmp/soko-main-validation/tests/test_trilogy_mechanics.py", line 68, in test_door_crush_opens_monster_gate_in_same_late_phase
+    self.assert_engines(2, grid, "RR", ["#########", "#.{F[.G.#", "#..P...G#", "#########"])
+  File "/tmp/soko-main-validation/tests/test_trilogy_mechanics.py", line 29, in assert_engines
+    self.assertEqual(native["final_ascii"], readable.render_ascii())
+AssertionError: '#########\n#.FO[MG.#\n#P.....G#\n#########' != '#########\n#.{F[.G.#\n#..P...G#\n#########'
+  #########
+- #.FO[MG.#
+?    - ^
++ #.{F[.G.#
+?   +  ^
+- #P.....G#
+?  -
++ #..P...G#
+?    +
+  #########
+
+
+======================================================================
+FAIL: test_part_two_action_reactivation_on_an_initial_player_cell_cancels (test_trilogy_mechanics.TrilogyMechanicsTests.test_part_two_action_reactivation_on_an_initial_player_cell_cancels)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/tmp/soko-main-validation/tests/test_trilogy_mechanics.py", line 84, in test_part_two_action_reactivation_on_an_initial_player_cell_cancels
+    self.assert_engines(2, grid, "A", grid)
+  File "/tmp/soko-main-validation/tests/test_trilogy_mechanics.py", line 29, in assert_engines
+    self.assertEqual(native["final_ascii"], readable.render_ascii())
+AssertionError: '#########\n#1TW...G#\n#GG.....#\n#########' != '#########\n#F2W...G#\n#GG.....#\n#########'
+  #########
+- #1TW...G#
+?  ^^
++ #F2W...G#
+?  ^^
+  #GG.....#
+  #########
+
+
+======================================================================
+FAIL: test_part_two_wizard_leaves_inactive_hero_without_canceling (test_trilogy_mechanics.TrilogyMechanicsTests.test_part_two_wizard_leaves_inactive_hero_without_canceling)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/tmp/soko-main-validation/tests/test_trilogy_mechanics.py", line 88, in test_part_two_wizard_leaves_inactive_hero_without_canceling
+    self.assert_engines(2, grid, "R", ["#########", "#.F....G#", "#2.W...G#", "#......G#", "#########"])
+  File "/tmp/soko-main-validation/tests/test_trilogy_mechanics.py", line 29, in assert_engines
+    self.assertEqual(native["final_ascii"], readable.render_ascii())
+AssertionError: '#########\n#.F....G#\n#W.2...G#\n#......G#\n#########' != '#########\n#.F....G#\n#2.W...G#\n#......G#\n#########'
+  #########
+  #.F....G#
+- #W.2...G#
+?   --
++ #2.W...G#
+?  ++
+  #......G#
+  #########
+
+
+======================================================================
+FAIL: test_petrified_active_bard_keeps_movement_but_stops_playing (test_trilogy_mechanics.TrilogyMechanicsTests.test_petrified_active_bard_keeps_movement_but_stops_playing)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/tmp/soko-main-validation/tests/test_trilogy_mechanics.py", line 76, in test_petrified_active_bard_keeps_movement_but_stops_playing
+    self.assert_engines(3, grid, "D", ["#######", "#D.*.G#", "#.G...#", "##....#", "#######"])
+  File "/tmp/soko-main-validation/tests/test_trilogy_mechanics.py", line 29, in assert_engines
+    self.assertEqual(native["final_ascii"], readable.render_ascii())
+AssertionError: '#######\n#D.*.G#\n##G...#\n#.....#\n#######' != '#######\n#D.*.G#\n#.G...#\n##....#\n#######'
+  #######
+  #D.*.G#
+- ##G...#
+?  ^
++ #.G...#
+?  ^
+- #.....#
+?  ^
++ ##....#
+?  ^
+  #######
+
+
+----------------------------------------------------------------------
+Ran 127 tests in 46.714s
+
+FAILED (failures=26, errors=10, skipped=4)
+{
+  "status": "BACKEND_FAILED",
+  "elapsed_seconds": 0.0
+}
+{
+  "status": "BACKEND_FAILED"
+}
+{
+  "status": "BACKEND_FAILED"
+}
+{
+  "status": "BACKEND_FAILED",
+  "elapsed_seconds": 0.0
+}
+{
+  "status": "UNAVAILABLE_BACKEND"
+}
+{
+  "status": "SEED_REJECTED"
+}
+{
+  "status": "TIMEOUT_NO_CANDIDATE_RETURNED",
+  "elapsed_seconds": 0.0
+}
+{
+  "status": "BACKEND_FAILED"
+}
+{
+  "status": "CANDIDATE_ACCEPTED",
+  "elapsed_seconds": 0.0
+}
+{
+  "status": "CANDIDATE_REJECTED",
+  "elapsed_seconds": 0.0
+}

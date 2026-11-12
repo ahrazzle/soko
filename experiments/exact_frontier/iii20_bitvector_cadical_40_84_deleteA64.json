@@ -1,0 +1,28 @@
+{
+  "approach": "whole-board bitvector SMT",
+  "instance": "III-20",
+  "baseline_length": 84,
+  "proof_claim": null,
+  "z3_version": "5.4.1",
+  "model_sha256": "239e85a7f070afb5993bcb7f2d2e23b0e3983d15374330adc3da1f8f726c7018",
+  "oracle_sha256": "447b6c006dfe36347a96bd519b5ff23b76ed40352c0e5ccb32d42f496f402951",
+  "excluded_actions": [
+    "unchanged directional input",
+    "irreversible Druid destruction of a hero"
+  ],
+  "start": 40,
+  "end": 84,
+  "horizon": 43,
+  "timeout_ms": 120000,
+  "fixed_switches": true,
+  "delete_index": 64,
+  "build_seconds": 9.882,
+  "backend": "cadical195",
+  "backend_stage": "solving",
+  "variables": 327500,
+  "clauses": 3489109,
+  "cnf_sha256": "fca1d39d6f5d69eef8a2e0eb7b1ccd1271d05dd38dbcdf543486bb9f1d35021f",
+  "status": "unknown",
+  "reason_unknown": "wall_timeout",
+  "elapsed_seconds": 130.028
+}

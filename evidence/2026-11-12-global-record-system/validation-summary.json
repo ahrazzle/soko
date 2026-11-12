@@ -1,0 +1,21 @@
+{
+  "main_commit": "2399514e39848d39f97481e022060df05802eb10",
+  "focused_tests": 19,
+  "focused_passed": true,
+  "main_suite": {
+    "tests": 127,
+    "failures": 26,
+    "errors": 10,
+    "skipped": 4
+  },
+  "branch_suite": {
+    "tests": 140,
+    "failures": 26,
+    "errors": 10,
+    "skipped": 4
+  },
+  "identical_failure_multiset": true,
+  "new_failures": [],
+  "new_record": false,
+  "new_original_game_lower_bound": false
+}
