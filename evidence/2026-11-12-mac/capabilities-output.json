@@ -1,0 +1,25 @@
+{
+  "cpp_engine_ready": false,
+  "cpp_unavailable_reason": "missing_cpp_source",
+  "route_verification": {
+    "available": true,
+    "python_oracles": 2
+  },
+  "route_optimization": {
+    "available": true,
+    "backend": "python_fallback_window_bfs"
+  },
+  "solve_from_scratch": {
+    "available": false,
+    "unavailable_reason": "missing_cpp_source"
+  },
+  "lower_bound_proving": {
+    "available": false,
+    "unavailable_reason": "missing_cpp_source"
+  },
+  "formal_systems": {
+    "available": false,
+    "unavailable_reason": "not_implemented"
+  },
+  "tcb_manifest_present": false
+}

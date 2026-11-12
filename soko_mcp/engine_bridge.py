@@ -165,6 +165,27 @@ def ensure_cpp_engine() -> Optional[Path]:
     return CPP_BIN
 
 
+def get_capabilities() -> Dict[str, Any]:
+    """Report executable capabilities, not features promised by documentation."""
+    cpp_ready = ensure_cpp_engine() is not None
+    reason = None if cpp_ready else (
+        "missing_cpp_source" if not CPP_SRC.is_file() else "cpp_compile_unavailable_or_failed"
+    )
+    return {
+        "cpp_engine_ready": cpp_ready,
+        "cpp_unavailable_reason": reason,
+        "route_verification": {"available": True, "python_oracles": 2},
+        "route_optimization": {
+            "available": True,
+            "backend": "cpp20_zero_alloc_engine" if cpp_ready else "python_fallback_window_bfs",
+        },
+        "solve_from_scratch": {"available": cpp_ready, "unavailable_reason": reason},
+        "lower_bound_proving": {"available": cpp_ready, "unavailable_reason": reason},
+        "formal_systems": {"available": False, "unavailable_reason": "not_implemented"},
+        "tcb_manifest_present": SHA256SUMS_PATH.is_file(),
+    }
+
+
 def _invoke_cpp(mode: str, part: int, grid: List[str], p1: int, p2: int, p3: int, route: str = "-") -> Optional[Dict[str, Any]]:
     exe = ensure_cpp_engine()
     if exe is None:
@@ -368,6 +389,15 @@ def solve_room_verified(
     beam_width: int = 40000,
     budget_sec: int = 20,
 ) -> Dict[str, Any]:
+    capabilities = get_capabilities()
+    if not capabilities["solve_from_scratch"]["available"]:
+        return {
+            "epistemic_status": "UNAVAILABLE_BACKEND",
+            "solved": False,
+            "search_performed": False,
+            "states_explored": 0,
+            "unavailable_reason": capabilities["cpp_unavailable_reason"],
+        }
     cpp_out = _invoke_cpp("solve", part, grid, max_depth, beam_width, budget_sec, "-")
     if cpp_out is not None and cpp_out.get("solved"):
         route = cpp_out["route"]
@@ -387,8 +417,9 @@ def solve_room_verified(
             "checker_pins": v["checker_pins"],
         }
     return {
-        "epistemic_status": "UNSOLVED_WITHIN_BUDGET",
+        "epistemic_status": "UNSOLVED_WITHIN_BUDGET" if cpp_out is not None else "BACKEND_FAILED",
         "solved": False,
+        "search_performed": cpp_out is not None,
         "states_explored": cpp_out.get("explored", 0) if cpp_out else 0,
     }
 

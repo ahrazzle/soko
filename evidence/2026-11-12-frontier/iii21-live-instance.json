@@ -1,0 +1,27 @@
+{
+  "room_id": "III-21",
+  "part": 3,
+  "source_url": "https://www.puzzlescript.net/editor.html?hack=7072276",
+  "record_url": "https://soko.banteg.xyz/frontier/?room=III-21",
+  "capture_date": "2026-11-12",
+  "source_author": "Jonah Ostroff",
+  "record_holder": "futarchist",
+  "record_keys": 316,
+  "proven_floor_displayed": 268,
+  "grid": [
+    "#######################",
+    "#.F.*....#G.G#....*.4.#",
+    "#...#....#...#....#...#",
+    "#######.........#######",
+    "#####.#####O#####.#####",
+    "#..##O#..#...#..#O##..#",
+    "#.2.*....#G.G#....*.5.#",
+    "#..##O#..*...#..#O##..#",
+    "#####.####...####.#####",
+    "#######..#..*O.*#######",
+    "#...###.#######...#...#",
+    "#.3.###.##G.G##...#.6.#",
+    "#######################"
+  ],
+  "route": "RRRDRRDRRRURRDRRUURRRRRLLLLDDAUAADLLULLLLLDDAAALLLULDDDRDLULDDLLUUAAAULLULAAUADLLLLLAAADLAAALDADRAAAALLDAULAALARUAAARRRRRAUAARDRAAARRDRRUADDRRDDRLAAUAAAULLRRURURDDAURULDDRRRRLLLLAAUUAAARDDRRRDRRRRRAAAAAULLULULULLLDUURLDLLUALLLUUAAAALLLLLDLLLDULLULLLLLLLADDRDALDDAUAAALDURADDUUAAAUAARRRRRRRRUUURUUADRDDDAAAUUURDDDAUUL"
+}

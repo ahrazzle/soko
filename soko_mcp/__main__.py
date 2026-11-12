@@ -16,6 +16,7 @@ def main(argv: list[str] | None = None) -> int:
     sub = parser.add_subparsers(dest="cmd")
 
     sub.add_parser("serve", help="Run the MCP JSON-RPC 2.0 server over stdio (default when no args given).")
+    sub.add_parser("capabilities", help="Report available backends and missing implementations.")
     sub.add_parser("list-rooms", help="List built-in Sokoban Eval Frontier rooms.")
     sub.add_parser("audit", help="Run the 10-mutation & cross-oracle Proven-Commons Audit.")
     sub.add_parser("tcb-lock", help="Verify runtime SHA256SUMS manifest and TCB checker hashes.")
@@ -41,7 +42,9 @@ def main(argv: list[str] | None = None) -> int:
     args = parser.parse_args(argv)
     if args.cmd in (None, "serve"):
         return serve_stdio()
-    if args.cmd == "list-rooms":
+    if args.cmd == "capabilities":
+        out = dispatch_tool_call("soko_capabilities", {})
+    elif args.cmd == "list-rooms":
         out = dispatch_tool_call("soko_list_rooms", {})
     elif args.cmd == "audit":
         out = dispatch_tool_call("soko_run_planted_bug_audit", {})

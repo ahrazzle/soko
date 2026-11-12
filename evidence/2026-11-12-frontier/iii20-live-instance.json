@@ -1,0 +1,23 @@
+{
+  "room_id": "III-20",
+  "part": 3,
+  "source_url": "https://www.puzzlescript.net/editor.html?hack=7072276",
+  "record_url": "https://soko.banteg.xyz/frontier/?room=III-20",
+  "capture_date": "2026-11-12",
+  "source_author": "Jonah Ostroff",
+  "record_holder": "a1kindus",
+  "record_keys": 84,
+  "proven_floor_displayed": 74,
+  "grid": [
+    "###############",
+    "#....#O.O#...G#",
+    "#..##W...1##..#",
+    "#..#O..O..O#.G#",
+    "#4.#..OGO..#..#",
+    "#..#O..O..O#.G#",
+    "#..##2...6##..#",
+    "#....#O.O#...G#",
+    "###############"
+  ],
+  "route": "ADDDRRADAAADRULARADAAADDLLALAAAARRRRUULAAUALLRADRRRRADRULRURRRRRARRUURURAURRRDDRAUUR"
+}

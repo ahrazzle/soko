@@ -1,0 +1,85 @@
+{
+  "evidence_level": "bounded_heuristic_search",
+  "formal_proof_checked": false,
+  "seed_certificate_sha256": "cf1c9a4b920989bc6df994dfc9fce29bea3e4836f73e2243b50b7c0503c89da6",
+  "source_sha256": "7fb10fc6c80139ba6a7440bdc097c175c65d71c50ac547421a392c8b137f27b6",
+  "compiler": "Apple clang version 21.0.0 (clang-2100.3.34.2)",
+  "parameters": {
+    "budget_sec": 1,
+    "beam_width": 2000,
+    "window": 8
+  },
+  "warning": "The original budget bounds beam phases, not the total search. A separate process timeout bounds wall time.",
+  "search": {
+    "initial_len": 2,
+    "best_len": 2,
+    "improved": false,
+    "best_route": "RR",
+    "stages": []
+  },
+  "candidate_certificate": {
+    "schema_version": 1,
+    "evidence_level": "differential_replay",
+    "formal_proof_checked": false,
+    "external_spec_pinned": false,
+    "acceptance_checker_pins": {
+      "replay_adapter_sha256": "8343c61d75d6169653efe015ab43ce14192eb42508bc0ba5c60871ae6e505e6f",
+      "engine_bridge_sha256": "87e02d682598a4a761f6ff981286d0bcc333a3948962b762e186e376b420605b"
+    },
+    "instance_sha256": "04f60ede74a647d02f86be3aadb87d39bfbeae56ced99ed7de1ecb14e3b4bd9e",
+    "route_sha256": "e6c5af58dda1be3d2123e9274eac9111265d7619cb9f70f5d545704d56eb1996",
+    "problem": {
+      "adapter": "heroes-of-sokoban-ascii-v1",
+      "part": 1,
+      "grid": [
+        "#####",
+        "#F.G#",
+        "#####"
+      ],
+      "goal": "heroes occupy exactly the goal cells",
+      "termination": "alive and first win on final key"
+    },
+    "source": {},
+    "observed_record_keys": 2,
+    "valid_winning_route": true,
+    "beats_observed_record": false,
+    "replay": {
+      "epistemic_status": "VERIFIED",
+      "valid_winning_route": true,
+      "route_len": 2,
+      "route_sha256_12": "e6c5af58dda1",
+      "traj_fnv64": "fb61dbbd322eacdb",
+      "trajectory_digest_match": true,
+      "alive": true,
+      "exact_win": true,
+      "premature_win": false,
+      "steps_executed": 2,
+      "engines_executed": [
+        "python_spec_oracle",
+        "python_flat_bitmask_oracle"
+      ],
+      "engines_count": 2,
+      "dual_engine_checked": true,
+      "triple_oracle_checked": false,
+      "differential_match": true,
+      "checker_pins": {
+        "oracle_py_sha256": "0203c5a1c391979b5d460d76e222f5ba2df8f056a5f4c10978e190ba83670be1",
+        "flat_oracle_py_sha256": "d47e37cf2aaf86a2a171f6ea296ddbd22db55a65bd7c93cdfb86777eb8001ecd",
+        "cpp_soko_engine_src_sha256": null,
+        "cpp_soko_engine_bin_sha256": null,
+        "formal_kernel_py_sha256": null
+      },
+      "final_ascii": "#####\n#..F#\n#####",
+      "route": "RR"
+    },
+    "limits": [
+      "Two implementations can share a mistaken interpretation of the rules.",
+      "Route validity does not establish minimality.",
+      "The captured live record may change after capture.",
+      "The source URL does not pin the external engine or establish its license."
+    ],
+    "certificate_sha256": "cf1c9a4b920989bc6df994dfc9fce29bea3e4836f73e2243b50b7c0503c89da6"
+  },
+  "status": "CANDIDATE_ACCEPTED",
+  "elapsed_seconds": 0.25
+}

@@ -1,0 +1,14 @@
+{
+  "evidence/2026-11-12-frontier/window-search/summary.json": "486504869d3dc479c7dec3241f5c06753be99f9af342b3217fa50c10fe2f074a",
+  "evidence/2026-11-12-frontier/window-search/III-21-extension.in": "d7bb27ef9cfdea15608fbb32e13652b4e75c430f624b5ca9f83d61e2cd2f248b",
+  "evidence/2026-11-12-frontier/window-search/III-20.in": "a4313563ca0f66764d1f9da05f3ff59dd11f1815177c0b43eeeefb8d8bdce3c5",
+  "evidence/2026-11-12-frontier/window-search/results.json": "d93d02ac3652b8beb9871ccf7b9b3557047a582f0facc33a79a97ee22e247715",
+  "evidence/2026-11-12-frontier/window-search/III-21.in": "2df06df28a0d2a6bccf79bc9b60a755263c4a51d24168278b43817f4f6dd747a",
+  "evidence/2026-11-12-frontier/window-search/baseline-verification.json": "016413edfffa4f0d6508d651ad918bfeebac64d9cd6f5ed6290f525556504317",
+  "evidence/2026-11-12-frontier/window-search/III-21.jsonl": "ada024600a330f8c1f7e78e35bc7c2f1ca1f8bbe522176346719191f811f25ca",
+  "evidence/2026-11-12-frontier/window-search/III-21-extension.jsonl": "a2256a799cf747cf181ee768f26b645167339209a2e881be5ef8ca9385bd0088",
+  "evidence/2026-11-12-frontier/window-search/III-20.jsonl": "706bbc636f1fa0a28752f5234a15c38d3d5b938e9f28a98992b5b32961a94f27",
+  "evidence/2026-11-12-frontier/window-search/results-extension.json": "4ed31f9d3ded5785e825f865836fac80a75e9371b4722e219530d75e17cf773c",
+  "experiments/frontier_mac/window_search.cpp": "7af38efa1309fd5fd31c0f597c653a6c4d0897c923c41f8759907ab6a1537a77",
+  "experiments/frontier_mac/window_search_continue.cpp": "15cbdeeffe435e2e37a23e1db3230bf490c22ec4768e03925132b531deb33663"
+}
