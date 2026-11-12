@@ -1,0 +1,24 @@
+depth 1 beam 5 seen 6 expanded 5 time 5.2433e-05
+depth 2 beam 18 seen 24 expanded 30 time 0.00017683
+depth 3 beam 65 seen 89 expanded 120 time 0.000254381
+depth 4 beam 210 seen 299 expanded 445 time 0.000464879
+depth 5 beam 629 seen 928 expanded 1495 time 0.000984243
+depth 6 beam 1831 seen 2759 expanded 4640 time 0.00254649
+depth 7 beam 5180 seen 7939 expanded 13795 time 0.00708016
+depth 8 beam 14152 seen 22091 expanded 39695 time 0.0243349
+depth 9 beam 37842 seen 59933 expanded 110455 time 0.209705
+depth 10 beam 98416 seen 158349 expanded 299665 time 0.378316
+depth 11 beam 250453 seen 408802 expanded 791745 time 1.2355
+depth 12 beam 625084 seen 1033886 expanded 2044010 time 6.71809
+depth 13 beam 1000000 seen 2033886 expanded 5169430 time 13.0187
+depth 14 beam 1000000 seen 3033886 expanded 10169430 time 21.0346
+depth 15 beam 1000000 seen 4033886 expanded 15169430 time 26.4964
+depth 16 beam 1000000 seen 5033886 expanded 20169430 time 32.9113
+depth 17 beam 1000000 seen 6033886 expanded 25169430 time 39.7294
+depth 18 beam 1000000 seen 7033886 expanded 30169430 time 44.9089
+depth 19 beam 1000000 seen 8033886 expanded 35169430 time 51.2921
+depth 20 beam 1000000 seen 9033886 expanded 40169430 time 57.6636
+depth 21 beam 1000000 seen 10033886 expanded 45169430 time 65.8575
+depth 22 beam 1000000 seen 11033886 expanded 50169430 time 75.3199
+depth 23 beam 1000000 seen 12033886 expanded 55169430 time 85.118
+NO_IMPROVEMENT variant 8 expanded 55169430

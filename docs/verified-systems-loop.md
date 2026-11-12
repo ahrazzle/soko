@@ -29,7 +29,7 @@ Keep candidate generation separate from acceptance. A fast solver, a language mo
 
 Each operation should return a typed state: unavailable, invalid input, failed check, timeout, accepted candidate, or checked proof. Errors should not become an empty successful result. An absent C++ backend previously appeared as a completed unsuccessful search in this checkout. The capability patch separates those states.
 
-The raw interpreter accepts an empty route on a grid containing only walls: no hero cells and no goal cells satisfy its equality test without doing any work. `vacuous-raw-replay.json` records this reproduced case. The new canonical starting-room adapter rejects it. The generic MCP interpreter behavior remains unchanged, so this guard is not a global fix.
+The raw interpreter accepts an empty route on a grid containing only walls: no hero cells and no goal cells satisfy its equality test without doing any work. `vacuous-raw-replay.json` records this reproduced case. Canonical starting-room validation now rejects it at the MCP replay and search entry points. Direct use of the raw interpreter still needs that validation boundary.
 
 ## Evidence identity and invalidation
 
@@ -49,11 +49,13 @@ The governing standard is [Verified Bar version 2](https://github.com/Proven-Com
 | Claims match statements | Distinguish route feasibility, optimality, bounded search and backend availability. Test whether a useless implementation could still satisfy each claim |
 | Kernel-checked proofs | Add pinned Lean challenge and proof modules, comparator coverage and `lake comparator --paranoid` results |
 | Executed code matches proved code | Make entry points call the proved definitions. Audit compiler escapes, unproved copies and exceptions |
-| Differential testing | Pin the original PuzzleScript oracle and engine version. Add seeded random and mutated inputs, recorded failures and repeatable results |
+| Differential testing | The [original-engine wrapper](../experiments/original_engine/README.md) now pins the Part III build and checks known routes plus negative controls. Add seeded random and mutated inputs, first-divergence records and coverage beyond those controls |
 | Public limits and trust | List unproved semantics, compiler/runtime/hardware, dependencies and exceptions. Keep status consistent with the manifest |
 | Release gate | Add the required workflow and independent branch protection. Do not infer protection from a green local run |
 
 Browser inspection validated existing public replays, not the entire transition system. The live site says submissions replay in Jonah Ostroff's original build. The current editor emitted compatibility warnings while loading the source. Any original-engine differential harness must pin the build actually used by the evaluator, not whichever editor version happens to load today.
+
+The [later campaign](../evidence/2026-11-12-frontier-campaign/README.md) replayed the three baseline routes in the pinned original Part III HTML and matched public initial bitfields for III-14 and III-20. That is narrower than proving the server runs identical code for every transition. The [research loop](research-loop.md) turns these checks and the unsuccessful searches into explicit controls and next experiments.
 
 ## Next implementation boundary
 

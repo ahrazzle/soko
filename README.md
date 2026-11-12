@@ -6,6 +6,8 @@ This project has **not passed the Proven Commons Verified Bar**. `VERIFIED` in a
 
 Read [the original evaluation and Frontier assessment](docs/original-eval-and-frontier.md) before using these fixtures as benchmark inputs. In particular, the local `I-1` differs from Ostroff's original eight-key opening room. The MCP exercise is a regression demonstration, not progress on the live Frontier.
 
+For ongoing work, follow the [research loop](docs/research-loop.md): pin the original instance, calibrate the checker and generator, state a hypothesis and control, run a bounded experiment, and use the result to choose the next test. The [Frontier campaign record](evidence/2026-11-12-frontier-campaign/README.md) preserves negative coverage and useful findings. The [original-engine checker](experiments/original_engine/README.md) validates candidates independently of the rewritten local oracles.
+
 ## Connect
 
 Run from the repository root:

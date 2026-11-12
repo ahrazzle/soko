@@ -1,0 +1,37 @@
+{
+  "as_of": "2026-11-12T14:44:05.202497+00:00",
+  "objective": "Beat current Frontier accepted routes or strengthen defensible lower bounds",
+  "verified_keys_saved": 0,
+  "new_stronger_bounds": 0,
+  "rooms": [
+    {
+      "room": "III-14",
+      "existing_lower": 43,
+      "existing_route": 48,
+      "new_route": null,
+      "new_lower_bound": null
+    },
+    {
+      "room": "III-20",
+      "existing_lower": 74,
+      "existing_route": 84,
+      "new_route": null,
+      "new_lower_bound": null
+    },
+    {
+      "room": "III-21",
+      "existing_lower": 268,
+      "existing_route": 316,
+      "new_route": null,
+      "new_lower_bound": null
+    }
+  ],
+  "original_checker": "original/provenance.json",
+  "search_logs": [
+    "iii14/SUMMARY.json",
+    "iii20/summary.json",
+    "iii21/SUMMARY.json"
+  ],
+  "no_external_submissions": true,
+  "warning": "Negative bounded searches do not prove the existing routes optimal."
+}

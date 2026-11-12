@@ -1,0 +1,62 @@
+{
+  "source_url": "https://sites.math.washington.edu/~ostroff/puzzles/Heroes_of_Sokoban_III_The_Bard_and_The_Druid.html",
+  "html_sha256": "380d343ad35a8f8caf6863341172a7771d0d28ced2824a7a3085990614562105",
+  "checker_sha256": "139657fbfb023f1519542b557b4e964ca144710ec692eae84d1256e59ccf55bc",
+  "baselines": [
+    {
+      "room": 14,
+      "width": 15,
+      "height": 7,
+      "route_len": 48,
+      "first_win": 48,
+      "first_death": null,
+      "valid_winning_route": true,
+      "puzzlescript_source_sha256": "f66ceb8f8a2c23a3cb270bad62cdf194e47479772cab94f154ed26f0ff7c20e0"
+    },
+    {
+      "room": 20,
+      "width": 15,
+      "height": 9,
+      "route_len": 84,
+      "first_win": 84,
+      "first_death": null,
+      "valid_winning_route": true,
+      "puzzlescript_source_sha256": "f66ceb8f8a2c23a3cb270bad62cdf194e47479772cab94f154ed26f0ff7c20e0"
+    },
+    {
+      "room": 21,
+      "width": 23,
+      "height": 13,
+      "route_len": 316,
+      "first_win": 316,
+      "first_death": null,
+      "valid_winning_route": true,
+      "puzzlescript_source_sha256": "f66ceb8f8a2c23a3cb270bad62cdf194e47479772cab94f154ed26f0ff7c20e0"
+    }
+  ],
+  "public_initial_bitfield_matches": {
+    "14": true,
+    "20": true
+  },
+  "negative_controls": [
+    {
+      "route_len": 83,
+      "first_win": null,
+      "first_death": null,
+      "valid_winning_route": false,
+      "case": "truncated"
+    },
+    {
+      "route_len": 85,
+      "first_win": 84,
+      "first_death": null,
+      "valid_winning_route": false,
+      "case": "after_win"
+    }
+  ],
+  "method": "Load original self-contained HTML compiler/engine in Chromium via local HTTP, select nth nonmessage room, invoke original processInput per key; reject corpse, restart or win before final key. No original engine semantics modified.",
+  "limitations": [
+    "This is local original-build execution, not a public route submission.",
+    "Initial raw-state matches establish instance/encoding parity, not a universal equivalence proof for server execution."
+  ]
+}

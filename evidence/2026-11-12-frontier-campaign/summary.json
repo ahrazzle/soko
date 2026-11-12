@@ -1,0 +1,319 @@
+{
+  "schema_version": 1,
+  "campaign_id": "2026-11-12-frontier-campaign",
+  "as_of": "2026-11-12T14:44:05.202497+00:00",
+  "objective": "Beat current Frontier accepted routes or strengthen defensible lower bounds",
+  "outcome": {
+    "verified_keys_saved": 0,
+    "new_stronger_bounds": 0,
+    "shorter_complete_candidates_found": 0,
+    "external_submissions": 0
+  },
+  "baseline_snapshot": [
+    {
+      "room": "III-14",
+      "existing_lower": 43,
+      "existing_route": 48,
+      "new_route": null,
+      "new_lower_bound": null
+    },
+    {
+      "room": "III-20",
+      "existing_lower": 74,
+      "existing_route": 84,
+      "new_route": null,
+      "new_lower_bound": null
+    },
+    {
+      "room": "III-21",
+      "existing_lower": 268,
+      "existing_route": 316,
+      "new_route": null,
+      "new_lower_bound": null
+    }
+  ],
+  "baseline_replay": {
+    "kind": "local_original_build_replay",
+    "historical_report": "historical/original-engine.json",
+    "source_url": "https://sites.math.washington.edu/~ostroff/puzzles/Heroes_of_Sokoban_III_The_Bard_and_The_Druid.html",
+    "html_sha256": "380d343ad35a8f8caf6863341172a7771d0d28ced2824a7a3085990614562105",
+    "puzzlescript_source_sha256": "f66ceb8f8a2c23a3cb270bad62cdf194e47479772cab94f154ed26f0ff7c20e0",
+    "historical_checker_sha256": "139657fbfb023f1519542b557b4e964ca144710ec692eae84d1256e59ccf55bc",
+    "current_reusable_checker": "../../experiments/original_engine/check.py",
+    "historical_checker_identical_to_current_wrapper": false,
+    "accepted_baseline_keys": {
+      "III-14": 48,
+      "III-20": 84,
+      "III-21": 316
+    },
+    "public_initial_bitfield_matches_recorded": [
+      "III-14",
+      "III-20"
+    ],
+    "public_acceptance_claim": false,
+    "formal_proof_checked": false,
+    "controls": {
+      "III-20_first_83_keys": "no_win",
+      "III-20_84_keys_plus_one": "rejected_premature_win_at_84"
+    }
+  },
+  "searches": [
+    {
+      "room": "III-14",
+      "historical_summary": "historical/iii14.json",
+      "instance": {
+        "width": 15,
+        "height": 7,
+        "source": "original Part III build"
+      },
+      "methods": [
+        "trajectory-guided beam variants",
+        "fixed-prefix suffix beams",
+        "short word edits"
+      ],
+      "logged_beam_calls": 20,
+      "transition_attempts": 593963500,
+      "transition_counter_note": "The logs call this expanded; it counts five attempted actions per expanded beam node, including rejected actions. It is not a unique-state count.",
+      "logged_beam_seconds_sum": 816.88358,
+      "full_route_budget": {
+        "max_keys": 47,
+        "beam_widths": [
+          20000,
+          120000
+        ],
+        "logged_calls": 16
+      },
+      "suffix_budgets": [
+        {
+          "log": "logs/iii14-forced-left.log",
+          "beam_width": 500000,
+          "max_suffix_keys": 30,
+          "elapsed_seconds": 61.6145
+        },
+        {
+          "log": "logs/iii14-forced-left-role.log",
+          "beam_width": 1000000,
+          "max_suffix_keys": 30,
+          "elapsed_seconds": 138.025
+        },
+        {
+          "log": "logs/iii14-forced-bottom.log",
+          "beam_width": 1000000,
+          "max_suffix_keys": 30,
+          "elapsed_seconds": 144.599
+        },
+        {
+          "log": "logs/iii14-suffix24.log",
+          "beam_width": 1000000,
+          "max_suffix_keys": 23,
+          "elapsed_seconds": 85.118
+        }
+      ],
+      "hypothesis_probe": "prefix-probe.json",
+      "new_route": null,
+      "source_to_binary_mapping": "not fully pinned; source changed between historical batches",
+      "limits": [
+        "Beam pruning makes all these searches incomplete.",
+        "Repeated identical totals for multiple variants are not evidence of independent search coverage.",
+        "Reported word-edit attempts are excluded from the audited transition total."
+      ]
+    },
+    {
+      "room": "III-20",
+      "historical_summary": "historical/iii20.json",
+      "target_max_keys": 83,
+      "methods": [
+        "trajectory-guided beams",
+        "distance and role guidance variants",
+        "seeded noise",
+        "suffix search",
+        "bounded local shortcut windows"
+      ],
+      "guided_calls": 22,
+      "beam_width_range": [
+        80000,
+        400000
+      ],
+      "configured_guided_seconds_range": [
+        60,
+        180
+      ],
+      "logged_cutoffs": [
+        "Two guided calls stopped near 13 million seen hashes at depth 78.",
+        "One suffix call stopped at 90.3598 seconds and depth 66."
+      ],
+      "window_scan": {
+        "starting_offsets_completed": 83,
+        "max_depth": 28,
+        "state_cap_per_offset": 3000000,
+        "seconds_per_offset": 4,
+        "expansions": 42381256,
+        "limited_offsets": [
+          25,
+          26,
+          27,
+          28,
+          29,
+          30,
+          31,
+          32,
+          33,
+          34,
+          35,
+          36,
+          37,
+          38,
+          39,
+          40,
+          41,
+          42,
+          43,
+          44,
+          45,
+          46,
+          47,
+          48,
+          49,
+          50,
+          51,
+          52,
+          53,
+          54,
+          55,
+          56,
+          57,
+          58,
+          59,
+          60,
+          61,
+          62,
+          63,
+          64,
+          65,
+          66,
+          67
+        ]
+      },
+      "result_zero_meaning": "No candidate; not a zero-key solution.",
+      "new_route": null,
+      "limits": [
+        "Hash-only deduplication, beam pruning, time limits and node caps prevent exhaustiveness.",
+        "A completed window call may be limited; completion is not proof of full coverage."
+      ]
+    },
+    {
+      "room": "III-21",
+      "historical_summary": "historical/iii21.json",
+      "target_max_keys": 315,
+      "methods": [
+        "bounded local shortcut windows",
+        "heuristically ordered endpoint searches",
+        "suffix beams",
+        "route contractions"
+      ],
+      "window_expansions": 28584245,
+      "window_runs": [
+        {
+          "log": "logs/iii21-window-progress.log",
+          "starting_offsets": {
+            "first": 66,
+            "last": 92,
+            "stride": 1
+          },
+          "width": 22,
+          "completed_windows": 27,
+          "node_cap": 700000,
+          "expansions": 8434781,
+          "last_logged_seconds": 151.768,
+          "status": "interrupted_after_cap_heavy_interval"
+        },
+        {
+          "log": "logs/iii21-guided-progress.log",
+          "starting_offsets": {
+            "first": 0,
+            "last": 96,
+            "stride": 4
+          },
+          "width": 38,
+          "completed_windows": 25,
+          "node_cap": 500000,
+          "seconds_per_window": 4,
+          "expansions": 4713502,
+          "last_logged_seconds": 90.435,
+          "status": "interrupted_after_cap_heavy_interval"
+        },
+        {
+          "log": "logs/iii21-window-tail-progress.log",
+          "starting_offsets": {
+            "first": 184,
+            "last": 196,
+            "stride": 1
+          },
+          "width": 30,
+          "completed_windows": 13,
+          "node_cap": 1000000,
+          "expansions": 5078515,
+          "last_logged_seconds": 82.3333,
+          "status": "interrupted_after_cap_heavy_interval"
+        },
+        {
+          "log": "logs/iii21-guided-tail-progress.log",
+          "starting_offsets": {
+            "first": 184,
+            "last": 314,
+            "stride": 2
+          },
+          "width": 50,
+          "completed_windows": 66,
+          "node_cap": 500000,
+          "seconds_per_window": 4,
+          "expansions": 10357447,
+          "last_logged_seconds": 198.396,
+          "status": "completed_configured_offsets"
+        }
+      ],
+      "suffix_starting_offsets": [
+        232,
+        253,
+        282
+      ],
+      "route_contractions": {
+        "tested": 184390,
+        "transitions": 17538036,
+        "elapsed_seconds": 60.0002,
+        "source": "historical/iii21.json"
+      },
+      "new_route": null,
+      "limits": [
+        "Local endpoints and suffix neighborhoods do not cover all routes.",
+        "Node caps can overshoot slightly within a successor batch.",
+        "Hash-only deduplication and heuristic cutoffs are not proof."
+      ]
+    }
+  ],
+  "intermediate_observation": {
+    "room": "III-14",
+    "reference_creation_prefix_keys": 18,
+    "alternate_creation_prefix_keys": 17,
+    "crates_after_either_prefix": 9,
+    "states_equal": false,
+    "unmodified_suffix_after_alternate_wins": false,
+    "local_probe": "probe_iii14_prefix.py",
+    "local_result": "prefix-probe.json",
+    "interpretation": "One cheaper intermediate objective was reproduced, but the remaining state differs and no shorter complete route was found."
+  },
+  "reproducibility": {
+    "manifest": "artifact-manifest.json",
+    "included": "Selected original terminal logs, raw campaign summaries, and a small local-oracle hypothesis probe.",
+    "not_included": "Compiled binaries, upstream original HTML, and historical C++ source snapshots.",
+    "source_hash_purpose": "Identify the available historical snapshots; hashes alone do not recreate omitted files or pin the binary used by every run.",
+    "historical_absolute_paths": "Raw historical summaries preserve workspace paths from capture; use relative links here for repository artifacts.",
+    "complete_historical_campaign_reproducible": false
+  },
+  "global_limits": [
+    "No optimality claim or new lower bound follows from these failed bounded searches.",
+    "Generator behavior is not accepted as original-engine correctness evidence.",
+    "Elapsed sums are per-process logged times, not total campaign wall time.",
+    "Baseline comparisons are a dated snapshot, not a claim about the live leaderboard today."
+  ]
+}
