@@ -1,0 +1,243 @@
+{
+  "schema_version": 1,
+  "scope": "Local-oracle intermediate-hypothesis reproduction; no original-engine or proof claim",
+  "problem": {
+    "part": 3,
+    "grid": [
+      "###############",
+      "#.............#",
+      "#.5.}}}.]]]]].#",
+      "#...}}}.]G.G].#",
+      "#.D.}}}.]]]]].#",
+      "#.............#",
+      "###############"
+    ]
+  },
+  "problem_sha256": "aae49751fcba935b23a3948c264785e9f3baa4f5c66af43d8b8e602a0cb511da",
+  "oracle_sha256": "e52a7056fd70335a2000964db670d48814306b9893f28335d6d73e66be309456",
+  "probe_sha256": "4e2c2d3527cd7fb4579fbaf28d51a858f067fc1be3a946c0f58f41c5de3dd0f8",
+  "cases": {
+    "reference_prefix": {
+      "route": "LLULULULRURURURURU",
+      "keys": 18,
+      "steps_executed": 18,
+      "alive": true,
+      "first_win": null,
+      "valid_winning_route": false,
+      "crate_positions_xy_zero_based": [
+        [
+          2,
+          0
+        ],
+        [
+          3,
+          0
+        ],
+        [
+          4,
+          0
+        ],
+        [
+          5,
+          0
+        ],
+        [
+          6,
+          0
+        ],
+        [
+          0,
+          1
+        ],
+        [
+          0,
+          2
+        ],
+        [
+          0,
+          3
+        ],
+        [
+          0,
+          4
+        ]
+      ],
+      "bard_positions_xy_zero_based": [
+        [
+          2,
+          2
+        ]
+      ],
+      "druid_positions_xy_zero_based": [
+        [
+          6,
+          1
+        ]
+      ]
+    },
+    "alternate_prefix": {
+      "route": "LLULULULURURURURU",
+      "keys": 17,
+      "steps_executed": 17,
+      "alive": true,
+      "first_win": null,
+      "valid_winning_route": false,
+      "crate_positions_xy_zero_based": [
+        [
+          1,
+          0
+        ],
+        [
+          2,
+          0
+        ],
+        [
+          3,
+          0
+        ],
+        [
+          4,
+          0
+        ],
+        [
+          5,
+          0
+        ],
+        [
+          0,
+          1
+        ],
+        [
+          0,
+          2
+        ],
+        [
+          0,
+          3
+        ],
+        [
+          0,
+          4
+        ]
+      ],
+      "bard_positions_xy_zero_based": [
+        [
+          2,
+          2
+        ]
+      ],
+      "druid_positions_xy_zero_based": [
+        [
+          5,
+          1
+        ]
+      ]
+    },
+    "reference_complete": {
+      "route": "LLULULULRURURURURUAUDRRDDAUARRDLRAULDLDRARURDUUR",
+      "keys": 48,
+      "steps_executed": 48,
+      "alive": true,
+      "first_win": 48,
+      "valid_winning_route": true,
+      "crate_positions_xy_zero_based": [
+        [
+          4,
+          2
+        ],
+        [
+          5,
+          2
+        ],
+        [
+          4,
+          3
+        ],
+        [
+          5,
+          3
+        ],
+        [
+          4,
+          4
+        ],
+        [
+          5,
+          4
+        ]
+      ],
+      "bard_positions_xy_zero_based": [
+        [
+          9,
+          3
+        ]
+      ],
+      "druid_positions_xy_zero_based": [
+        [
+          11,
+          3
+        ]
+      ]
+    },
+    "alternate_with_unmodified_reference_suffix": {
+      "route": "LLULULULURURURURUAUDRRDDAUARRDLRAULDLDRARURDUUR",
+      "keys": 47,
+      "steps_executed": 47,
+      "alive": true,
+      "first_win": null,
+      "valid_winning_route": false,
+      "crate_positions_xy_zero_based": [
+        [
+          0,
+          1
+        ],
+        [
+          5,
+          1
+        ],
+        [
+          7,
+          1
+        ],
+        [
+          4,
+          2
+        ],
+        [
+          5,
+          2
+        ],
+        [
+          6,
+          2
+        ],
+        [
+          7,
+          2
+        ],
+        [
+          5,
+          3
+        ],
+        [
+          4,
+          4
+        ]
+      ],
+      "bard_positions_xy_zero_based": [
+        [
+          7,
+          3
+        ]
+      ],
+      "druid_positions_xy_zero_based": [
+        [
+          6,
+          1
+        ]
+      ]
+    }
+  },
+  "expected_observations_reproduced": true,
+  "verified_complete_route_improvement": false
+}

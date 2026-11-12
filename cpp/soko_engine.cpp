@@ -1,4 +1,4 @@
-// Zero-allocation Heroes of Sokoban C++20 engine (FlatBitmaskOracle-compatible replay + IDA* prove_lb).
+// Heroes of Sokoban replay engine and bounded exact-state breadth-first search.
 #include <algorithm>
 #include <array>
 #include <chrono>
@@ -195,11 +195,6 @@ struct Engine {
                     }
                 }
             }
-            bool any_mon = false;
-            for (int c : cells) if (is_monster(c)) { any_mon = true; break; }
-            if (!any_mon)
-                for (int idx = 0; idx < n; ++idx)
-                    if (cells[idx] == MGATE) cells[idx] = EMPTY;
         }
         if (ysw_mask.any()) {
             bool all_w = true, any_w = false;
@@ -245,6 +240,9 @@ struct Engine {
                     }
             }
         }
+        // Colored doors may crush the final monster on this same turn.
+        if (part >= 2 && std::none_of(cells.begin(), cells.end(), [&](int c) { return is_monster(c); }))
+            for (int& c : cells) if (c == MGATE) c = EMPTY;
         if (part == 3 && notes_mask.any()) {
             Mask clean;
             for (int idx = 0; idx < n; ++idx)
@@ -294,6 +292,112 @@ struct Engine {
         return h;
     }
 
+    std::pair<bool, bool> multi_step(char key) {
+        auto before = cells;
+        auto old_notes = notes_mask;
+        int old_y = y_open, old_p = p_open;
+        std::vector<int> players;
+        for (int i = 0; i < n; ++i) if (cells[i] >= ACT_F && cells[i] <= ACT_D) players.push_back(i);
+        auto cancel = [&]() {
+            cells = before; notes_mask = old_notes; y_open = old_y; p_open = old_p;
+            return std::make_pair(true, is_winning());
+        };
+        if (key == 'A') {
+            Mask pending;
+            for (int i : players) pending.set(i);
+            for (int distance = 1; distance < max_slot; ++distance) {
+                for (int code = 1; code <= max_slot; ++code) {
+                    for (int src : players) {
+                        if (!pending.test(src) || before[src] != code) continue;
+                        int target = (code - 1 + distance) % max_slot + 1;
+                        int dst = -1;
+                        for (int at : col_major_indices) if (cells[at] == target + 6) { dst = at; break; }
+                        if (dst >= 0) { cells[src] = code + 6; cells[dst] = target; pending.reset(src); }
+                    }
+                }
+            }
+            if (part == 2) for (int src : players) if (cells[src] >= ACT_F && cells[src] <= ACT_D) return cancel();
+            bool died = apply_late_phase();
+            return {!died, is_winning()};
+        }
+        int dx = key == 'R' ? 1 : key == 'L' ? -1 : 0;
+        int dy = key == 'D' ? 1 : key == 'U' ? -1 : 0;
+        std::vector<int> adjacent(n, -1);
+        for (int i = 0; i < n; ++i) {
+            int x = i % w + dx, y = i / w + dy;
+            if (x >= 0 && x < w && y >= 0 && y < h) adjacent[i] = y * w + x;
+        }
+        Mask moving;
+        for (int i : players) moving.set(i);
+        for (int src : players) {
+            if (before[src] == ACT_F) {
+                int at = adjacent[src];
+                while (at >= 0 && is_moveable(cells[at])) { moving.set(at); at = adjacent[at]; }
+            }
+            if (before[src] == ACT_T) {
+                int x = src % w - dx, y = src / w - dy;
+                if (x >= 0 && x < w && y >= 0 && y < h && is_moveable(cells[y * w + x])) moving.set(y * w + x);
+            }
+        }
+        for (int src : players) {
+            if (before[src] != ACT_W) continue;
+            moving.reset(src);
+            int at = adjacent[src];
+            while (at >= 0) {
+                if (is_static(cells[at])) { moving.set(src); break; }
+                if (is_moveable(cells[at])) { cells[src] = cells[at]; cells[at] = ACT_W; break; }
+                at = adjacent[at];
+            }
+            if (at < 0 && part == 3) moving.set(src);
+        }
+        for (int src : players) {
+            if (before[src] != ACT_D || cells[src] != ACT_D) continue;
+            int at = adjacent[src];
+            if (at < 0 || cells[at] == EMPTY) continue;
+            moving.reset(src);
+            int obj = cells[at];
+            if (obj == CRATE || obj == GOBLIN || obj == WALL) {
+                cells[at] = obj == WALL ? CRATE : WALL;
+            } else if (is_hero(obj) && obj != ACT_P && obj != INA_1 + 3) {
+                bool shielded = false;
+                for (int nb : orth_neighbors[at]) if (cells[nb] == ACT_P || cells[nb] == INA_1 + 3) shielded = true;
+                if (!shielded) cells[at] = WALL;
+            }
+        }
+        Mask bards;
+        for (int src : players) if (before[src] == ACT_B && cells[src] == ACT_B) bards.set(src);
+        if (bards.any()) {
+            Mask pending = bards;
+            for (int i = 0; i < n; ++i) if (notes_mask.test(i) && is_moveable(cells[i])) pending.set(i);
+            moving &= ~bards;
+            bool progress = true;
+            while (progress) {
+                progress = false;
+                for (int at = 0; at < n; ++at) {
+                    if (pending.test(at) && adjacent[at] >= 0 && cells[adjacent[at]] <= ACT_D && cells[adjacent[at]] != ACT_B) {
+                        cells[adjacent[at]] = cells[at]; cells[at] = EMPTY;
+                        pending.reset(at); progress = true;
+                    }
+                }
+            }
+            if ((pending & bards).any()) return cancel();
+        }
+        notes_mask.reset();
+        bool progress = true;
+        while (progress) {
+            progress = false;
+            for (int at = 0; at < n; ++at) {
+                if (moving.test(at) && adjacent[at] >= 0 && cells[adjacent[at]] == EMPTY) {
+                    cells[adjacent[at]] = cells[at]; cells[at] = EMPTY;
+                    moving.reset(at); progress = true;
+                }
+            }
+        }
+        if (part == 2) for (int src : players) if (cells[src] >= ACT_F && cells[src] <= ACT_D) return cancel();
+        bool died = apply_late_phase();
+        return {!died, is_winning()};
+    }
+
     std::pair<bool, bool> step(char key) {
         static const int DX[4] = {0, 0, -1, 1};
         static const int DY[4] = {-1, 1, 0, 0};
@@ -305,6 +409,9 @@ struct Engine {
         else if (key == 'A') dix = 4;
         else return {false, false};
 
+        int active_count = 0;
+        for (int c : cells) if (c >= ACT_F && c <= ACT_D) ++active_count;
+        if (active_count > 1) return multi_step(key);
         int act_idx = -1, act_code = EMPTY;
         for (int i = 0; i < n; ++i)
             if (cells[i] >= ACT_F && cells[i] <= ACT_D) { act_idx = i; act_code = cells[i]; break; }
@@ -493,108 +600,107 @@ static std::string json_escape(const std::string& s) {
     return o;
 }
 
-static std::string bfs_solve(Engine eng, int max_depth, int& explored) {
-    struct Node { Engine e; std::string path; };
-    std::queue<Node> q;
-    std::unordered_set<std::string> seen;
-    q.push({eng, ""});
-    seen.insert(state_key(eng));
-    explored = 0;
-    const std::string moves = "UDLRA";
-    while (!q.empty()) {
-        auto [cur, path] = q.front();
-        q.pop();
-        ++explored;
-        if ((int)path.size() > max_depth) continue;
-        if (cur.is_winning()) return path;
-        for (char ch : moves) {
-            Engine next = cur;
-            auto [alive, won] = next.step(ch);
-            if (!alive) continue;
-            std::string np = path + ch;
-            if (won && (int)np.size() <= max_depth) return np;
-            std::string sig = state_key(next);
-            if (seen.count(sig)) continue;
-            seen.insert(sig);
-            q.push({std::move(next), np});
-        }
+// Search keeps only dynamic-state bytes and parent links. Static room geometry
+// is reconstructed from the root, rather than copied into every queued node.
+static void restore_state(Engine& e, const std::string& key) {
+    size_t pos = 0;
+    for (int& c : e.cells) c = (unsigned char)key[pos++];
+    e.y_open = (unsigned char)key[pos++];
+    e.p_open = (unsigned char)key[pos++];
+    e.notes_mask.reset();
+    for (int i = 0; i < (e.n + 7) / 8; ++i) {
+        unsigned char byte = (unsigned char)key[pos++];
+        for (int b = 0; b < 8 && i * 8 + b < e.n; ++b)
+            if (byte & (1u << b)) e.notes_mask.set(i * 8 + b);
     }
-    return "";
 }
 
-struct ProveResult {
-    int proven_floor = 0;
-    bool exact = false;
-    std::string witness;
-    int nodes = 0;
-    int edge_checks = 0;
-    int hash_collisions_prevented = 0;
-    bool exact_state_tt = true;
+struct SearchResult {
+    bool solved = false;
+    std::string route;
+    // All states at these depths have been checked for the goal. Expanding a
+    // subset of the next layer never increases this value.
+    int completed_depth = -1;
+    int nodes = 0, transitions = 0, duplicates = 0;
+    size_t states_seen = 0;
+    std::string reason = "time_limit";
 };
 
-static ProveResult prove_ida(Engine eng, int max_bound, int budget_sec) {
-    ProveResult out;
-    auto deadline = std::chrono::steady_clock::now() + std::chrono::seconds(budget_sec);
-    int best_len = max_bound + 1;
-    std::string best_route;
-    for (int target = 1; target <= max_bound; ++target) {
-        if (std::chrono::steady_clock::now() > deadline) break;
-        struct Frame { Engine e; std::string path; int g; };
-        std::vector<Frame> stack;
-        stack.push_back({eng, "", 0});
-        std::unordered_map<std::string, int> best_g;
-        bool found = false;
-        while (!stack.empty()) {
-            if (std::chrono::steady_clock::now() > deadline) break;
-            auto fr = stack.back();
-            stack.pop_back();
+static SearchResult bounded_bfs(const Engine& root, int max_depth, int state_limit, int budget_sec) {
+    SearchResult out;
+    const auto deadline = std::chrono::steady_clock::now() + std::chrono::seconds(budget_sec);
+    if (budget_sec <= 0) return out;
+    struct Node { std::string key; size_t parent; char move; };
+    std::vector<Node> nodes;
+    std::unordered_set<std::string> seen;
+    state_limit = std::clamp(state_limit > 0 ? state_limit : 100000, 1, 200000);
+    nodes.push_back({state_key(root), 0, 0});
+    seen.insert(nodes.front().key);
+    out.states_seen = 1;
+    if (root.is_winning()) {
+        out.solved = true;
+        out.reason = "solution";
+        return out;
+    }
+    size_t begin = 0, end = 1;
+    for (int depth = 0; ; ++depth) {
+        // Every node in this layer was goal-tested on insertion, including
+        // all duplicates. This certifies only depths already fully generated.
+        out.completed_depth = depth;
+        if (depth >= max_depth) { out.reason = "depth_limit"; return out; }
+        for (size_t index = begin; index < end; ++index) {
+            if (std::chrono::steady_clock::now() >= deadline) return out;
+            Engine current = root;
+            restore_state(current, nodes[index].key);
             ++out.nodes;
-            if (fr.g >= target) continue;
-            if (fr.e.is_winning()) {
-                if (fr.g < best_len) {
-                    best_len = fr.g;
-                    best_route = fr.path;
-                }
-                found = true;
-                break;
-            }
-            std::string sig = state_key(fr.e);
-            auto it = best_g.find(sig);
-            if (it != best_g.end() && it->second <= fr.g) {
-                ++out.hash_collisions_prevented;
-                continue;
-            }
-            best_g[sig] = fr.g;
-            for (char ch : std::string("RDLUA")) {
-                Engine nxt = fr.e;
-                auto [alive, won] = nxt.step(ch);
+            for (char move : std::string("UDLRA")) {
+                if (std::chrono::steady_clock::now() >= deadline) return out;
+                Engine next = current;
+                auto [alive, won] = next.step(move);
+                ++out.transitions;
                 if (!alive) continue;
-                int ng = fr.g + 1;
-                if (ng > target) continue;
-                out.edge_checks++;
-                if (won && ng <= target) {
-                    if (ng < best_len) { best_len = ng; best_route = fr.path + ch; }
-                    found = true;
-                    break;
+                if (won) {
+                    std::string path(1, move);
+                    for (size_t parent = index; parent != 0; parent = nodes[parent].parent)
+                        path.push_back(nodes[parent].move);
+                    std::reverse(path.begin(), path.end());
+                    out.route = path;
+                    out.solved = true;
+                    out.reason = "solution";
+                    return out;
                 }
-                stack.push_back({std::move(nxt), fr.path + ch, ng});
+                std::string key = state_key(next);
+                if (seen.count(key)) { ++out.duplicates; continue; }
+                if (nodes.size() >= (size_t)state_limit) {
+                    out.reason = "state_limit";
+                    return out;
+                }
+                seen.insert(key);
+                nodes.push_back({std::move(key), index, move});
+                out.states_seen = nodes.size();
             }
-            if (found) break;
         }
-        if (best_len <= target) {
-            out.proven_floor = best_len;
-            out.exact = (target >= best_len);
-            out.witness = best_route;
-            break;
+        if (end == nodes.size()) {
+            // No new states: the entire reachable graph has been exhausted.
+            out.completed_depth = max_depth;
+            out.reason = "exhausted";
+            return out;
         }
-        out.proven_floor = target;
+        begin = end;
+        end = nodes.size();
     }
-    if (!best_route.empty() && best_len < max_bound + 1) {
-        out.proven_floor = best_len;
-        out.witness = best_route;
-        out.exact = true;
-    }
-    return out;
+}
+
+static void print_search_metadata(const SearchResult& out) {
+    std::cout << ",\"search_algorithm\":\"exact_bfs\""
+              << ",\"termination_reason\":\"" << out.reason << "\""
+              << ",\"completed_depth\":" << out.completed_depth
+              << ",\"timed_out\":" << (out.reason == "time_limit" ? "true" : "false")
+              << ",\"state_limit_reached\":" << (out.reason == "state_limit" ? "true" : "false")
+              << ",\"states_seen\":" << out.states_seen
+              << ",\"nodes_expanded\":" << out.nodes
+              << ",\"transitions_checked\":" << out.transitions
+              << ",\"duplicates_pruned\":" << out.duplicates;
 }
 
 int main() {
@@ -604,10 +710,16 @@ int main() {
     std::istringstream hdr(line);
     std::string mode;
     int part, w, h, p1, p2, p3;
-    hdr >> mode >> part >> w >> h >> p1 >> p2 >> p3;
+    if (!(hdr >> mode >> part >> w >> h >> p1 >> p2 >> p3)
+        || part < 1 || part > 3 || w <= 0 || h <= 0 || w > 512 || h > 512
+        || (long long)w * h > 512 || p1 < 0 || p2 < 0 || p3 < 0) {
+        std::cerr << "invalid header or dimensions" << std::endl;
+        return 2;
+    }
     std::vector<std::string> grid;
     for (int y = 0; y < h; ++y) {
         if (!std::getline(std::cin, line)) return 1;
+        if ((int)line.size() != w) return 2;
         grid.push_back(line);
     }
     std::string route = "-";
@@ -641,39 +753,35 @@ int main() {
                       << ",\"final_ascii\":\"" << ascii << "\"}" << std::endl;
             return 0;
         }
-        if (mode == "solve") {
+        if (mode == "solve" || mode == "optimize" || mode == "prove_lb") {
             Engine eng(part, grid);
-            int explored = 0;
-            std::string sol = bfs_solve(eng, p1, explored);
-            if (sol.empty())
-                std::cout << "{\"solved\":false,\"explored\":" << explored << "}" << std::endl;
-            else
-                std::cout << "{\"solved\":true,\"route\":\"" << sol << "\",\"explored\":" << explored << "}" << std::endl;
+            int max_depth = mode == "optimize" ? std::max(0, (int)route.size() - 1) : p1;
+            // Optimizer p1 and solver p2 are state caps (formerly beam_width).
+            int state_limit = mode == "optimize" ? p1 : p2;
+            auto result = bounded_bfs(eng, max_depth, state_limit, p3);
+            if (mode == "solve") {
+                std::cout << "{\"solved\":" << (result.solved ? "true" : "false")
+                          << ",\"route\":\"" << result.route << "\""
+                          << ",\"explored\":" << result.nodes;
+            } else if (mode == "optimize") {
+                std::cout << "{\"best_route\":\"" << (result.solved ? result.route : route)
+                          << "\",\"stages\":[\"bounded_exact_bfs\"]";
+            } else {
+                int floor = result.solved ? (int)result.route.size() : result.completed_depth + 1;
+                std::cout << "{\"epistemic_status\":\""
+                          << (result.solved ? "VERIFIED" : "EXHAUSTIVE_LOWER_BOUND") << "\""
+                          << ",\"proven_floor\":" << floor
+                          << ",\"exact_optimum_reached\":" << (result.solved ? "true" : "false")
+                          << ",\"winning_witness\":\"" << result.route << "\""
+                          << ",\"exact_state_tt\":true,\"quotient_pdb_enabled\":false"
+                          << ",\"exact_tt_prunes\":" << result.duplicates
+                          << ",\"hash_collisions_prevented\":0,\"edge_consistency_checks\":0";
+            }
+            print_search_metadata(result);
+            std::cout << "}" << std::endl;
             return 0;
         }
-        if (mode == "optimize") {
-            std::cout << "{\"best_route\":\"" << route << "\",\"stages\":[\"identity\"]}" << std::endl;
-            return 0;
-        }
-        if (mode == "prove_lb") {
-            Engine eng(part, grid);
-            auto pr = prove_ida(eng, p1, p3);
-            std::string status = "CONJECTURE";
-            if (pr.exact && !pr.witness.empty() && pr.proven_floor > 0) status = "VERIFIED";
-            std::cout << "{"
-                      << "\"epistemic_status\":\"" << status << "\""
-                      << ",\"proven_floor\":" << pr.proven_floor
-                      << ",\"exact_optimum_reached\":" << (pr.exact ? "true" : "false")
-                      << ",\"winning_witness\":\"" << pr.witness << "\""
-                      << ",\"exact_state_tt\":" << (pr.exact_state_tt ? "true" : "false")
-                      << ",\"quotient_pdb_enabled\":false"
-                      << ",\"exact_tt_prunes\":0"
-                      << ",\"hash_collisions_prevented\":" << pr.hash_collisions_prevented
-                      << ",\"nodes_expanded\":" << pr.nodes
-                      << ",\"edge_consistency_checks\":" << pr.edge_checks
-                      << "}" << std::endl;
-            return 0;
-        }
+
     } catch (const std::exception& ex) {
         std::cerr << ex.what() << std::endl;
         return 2;

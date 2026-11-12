@@ -1,15 +1,7 @@
-"""Hardened multi-oracle bridge between Python MCP tools, FlatBitmaskOracle, and C++20 `soko_engine`.
+"""Local differential replay, canonical input validation, and bounded exact BFS.
 
-Fixes v0.1.0 audit findings F-01, F-02, F-03, and F-04:
-- F-01 Fix: `verify_route_dual` is strictly fail-closed (`differential_match` starts `False`), always executes
-  AT LEAST TWO zero-shared-code independent engines (`PuzzleScriptOracle` + `FlatBitmaskOracle`), and executes
-  ALL THREE (`+ C++20 soko_engine`) whenever a C++20 compiler is available and `w * h <= 512`.
-- F-02 Fix: Asserts bit-exact 64-bit FNV-1a per-frame trajectory digest (`traj_fnv64`) parity across every step
-  `t = 0..L` (including hidden Bard `Note` masks and open-door flags), not merely terminal ASCII.
-- F-03 Fix: `verify_tcb_lock()` verifies `SHA256SUMS` at runtime and attaches cryptographic `checker_pins`
-  to every `VERIFIED` certificate (Foundation-0 Issue #14).
-- F-04 Fix: Surfaces exact-state transposition-table collision prevention stats and Quotient-PDB activation
-  from `cpp/soko_engine.cpp` (`prove_lb`).
+Route agreement, exhaustive local search and source integrity are distinct evidence
+levels. None establishes a kernel-checked proof or independent specification approval.
 """
 from __future__ import annotations
 
@@ -20,10 +12,14 @@ import os
 from pathlib import Path
 import shutil
 import subprocess
+import tempfile
+import time
 from typing import Any, Dict, List, Optional, Tuple
 
 from .flat_oracle import replay_flat_oracle
+from .evidence import digest, normalize_route, problem_identity, validate_room
 from .oracle import FRONTIER_ROOMS, PuzzleScriptOracle, replay_oracle
+from .catalog import get_room, load_catalog
 
 REPO_ROOT = Path(__file__).resolve().parent.parent
 CPP_SRC = REPO_ROOT / "cpp" / "soko_engine.cpp"
@@ -43,91 +39,53 @@ def get_soko_checker_pins() -> Dict[str, Optional[str]]:
     return {
         "oracle_py_sha256": _file_sha256(pkg_dir / "oracle.py"),
         "flat_oracle_py_sha256": _file_sha256(pkg_dir / "flat_oracle.py"),
+        "engine_bridge_py_sha256": _file_sha256(pkg_dir / "engine_bridge.py"),
+        "evidence_py_sha256": _file_sha256(pkg_dir / "evidence.py"),
+        "integrity_py_sha256": _file_sha256(pkg_dir / "integrity.py"),
+        "catalog_py_sha256": _file_sha256(pkg_dir / "catalog.py"),
         "cpp_soko_engine_src_sha256": _file_sha256(CPP_SRC),
         "cpp_soko_engine_bin_sha256": _file_sha256(CPP_BIN),
         "formal_kernel_py_sha256": _file_sha256(pkg_dir / "formal_kernel.py"),
     }
 
 
-def _resolve_confined_path(repo_root: Path, rel_path: str) -> Tuple[Optional[Path], Optional[str]]:
-    """Resolve a manifest-relative path only if it stays inside repo_root (reject .. and escapes)."""
-    clean = rel_path.strip().replace("\\", "/")
-    if not clean or clean.startswith("/"):
-        return None, "absolute_or_empty_path"
-    parts = [p for p in clean.split("/") if p not in ("", ".")]
-    if ".." in parts:
-        return None, "parent_segment"
-    target = (repo_root / clean).resolve()
-    try:
-        target.relative_to(repo_root.resolve())
-    except ValueError:
-        return None, "escapes_repo_root"
-    return target, None
-
-
-def _required_checker_pins_ok(pins: Dict[str, Optional[str]]) -> bool:
+def _required_checker_pins_ok(pins: Dict[str, Optional[str]], require_cpp: bool = False) -> bool:
     """Shipped checker artifacts must hash before any VERIFIED certificate."""
     for key in (
         "oracle_py_sha256",
         "flat_oracle_py_sha256",
-        "cpp_soko_engine_src_sha256",
-        "cpp_soko_engine_bin_sha256",
+        "engine_bridge_py_sha256",
+        "evidence_py_sha256",
     ):
         if not pins.get(key):
             return False
-    return True
+    return not require_cpp or bool(pins.get("cpp_soko_engine_src_sha256") and pins.get("cpp_soko_engine_bin_sha256"))
 
 
 def verify_tcb_lock() -> Dict[str, Any]:
-    """Verify runtime SHA256SUMS integrity of all tracked repository files + TCB checker pins."""
-    cpp_bin = ensure_cpp_engine()
+    """Check the portable source manifest; report the local binary hash separately.
+
+    A matching manifest establishes consistency with committed source hashes,
+    not independent review, binary reproducibility, or formal verification.
+    No compilation is required merely to inspect source integrity.
+    """
+    from .integrity import verify_source_manifest
+
+    report = verify_source_manifest(REPO_ROOT, SHA256SUMS_PATH)
     pins = get_soko_checker_pins()
-    manifest_present = SHA256SUMS_PATH.is_file()
-    checked_files = 0
-    mismatched: List[Dict[str, str]] = []
-    missing: List[str] = []
-    unconfined: List[Dict[str, str]] = []
-
-    if manifest_present:
-        for raw_line in SHA256SUMS_PATH.read_text(encoding="utf-8").splitlines():
-            line = raw_line.strip()
-            if not line:
-                continue
-            parts = line.split(None, 1)
-            if len(parts) != 2:
-                continue
-            expected_hash, rel_path = parts[0].strip(), parts[1].strip().lstrip("*")
-            target, confine_err = _resolve_confined_path(REPO_ROOT, rel_path)
-            if confine_err is not None or target is None:
-                unconfined.append({"file": rel_path, "reason": confine_err or "unconfined"})
-                continue
-            actual_hash = _file_sha256(target)
-            checked_files += 1
-            if actual_hash is None:
-                missing.append(rel_path)
-            elif actual_hash != expected_hash:
-                mismatched.append({"file": rel_path, "expected": expected_hash, "actual": actual_hash})
-
-    pins_ok = _required_checker_pins_ok(pins)
-    ok = (
-        manifest_present
-        and checked_files > 0
-        and not mismatched
-        and not missing
-        and not unconfined
-        and pins_ok
-    )
+    ok = report["source_integrity_verified"]
     return {
+        **report,
         "epistemic_status": "VERIFIED" if ok else "TAMPERED_OR_UNLOCKED",
         "tcb_locked": ok,
-        "manifest_present": manifest_present,
-        "files_verified": checked_files,
-        "mismatched_files": mismatched,
-        "missing_files": missing,
-        "unconfined_paths": unconfined,
-        "checker_pins_ok": pins_ok,
-        "cpp_engine_compiled": cpp_bin is not None,
+        "lock_scope": "source_manifest",
+        "checker_pins_ok": _required_checker_pins_ok(pins),
+        "cpp_engine_compiled": CPP_BIN.is_file(),
         "checker_pins": pins,
+        "compiled_binary": {
+            "sha256": pins["cpp_soko_engine_bin_sha256"],
+            "verified_by_manifest": False,
+        },
     }
 
 
@@ -138,14 +96,28 @@ def resolve_room_input(
 ) -> Tuple[Optional[str], int, List[str], Optional[Dict[str, Any]]]:
     if room_id:
         key = room_id.strip()
-        if key not in FRONTIER_ROOMS:
-            raise ValueError(f"Unknown room_id {key!r}. Available built-in rooms: {sorted(FRONTIER_ROOMS)}")
-        meta = FRONTIER_ROOMS[key]
+        if key.startswith("fixture:"):
+            fixture = key.removeprefix("fixture:")
+            if fixture not in FRONTIER_ROOMS:
+                raise ValueError(f"Unknown fixture {fixture!r}")
+            import copy
+            meta = copy.deepcopy(FRONTIER_ROOMS[fixture])
+            meta.update(id=key, room_id=key, is_fixture=True,
+                        source={"kind": "legacy_repository_fixture", "original_instance_asserted": False})
+        else:
+            # Preserve the explicit original-size alias without keeping a
+            # different board behind the canonical III-14 name.
+            if key == "III-14-15x7":
+                key = "III-14"
+            try:
+                meta = get_room(key)
+            except KeyError:
+                raise ValueError(f"Unknown room_id {key!r}; use soko_list_rooms for the original catalog.") from None
         return key, int(meta["part"]), list(meta["grid"]), meta
     if part is None or not grid:
-        raise ValueError("Provide either a built-in room_id (e.g. 'III-20') or both 'part' (1..3) and 'grid' (list of ASCII rows).")
-    clean_rows = [r.rstrip("\r\n") for r in grid if r.strip()]
-    return None, int(part), clean_rows, None
+        raise ValueError("Provide an original room_id (I-1..III-22), an explicit fixture: ID, or both part and grid.")
+    validate_room(part, grid)
+    return None, part, list(grid), None
 
 
 def ensure_cpp_engine() -> Optional[Path]:
@@ -158,10 +130,15 @@ def ensure_cpp_engine() -> Optional[Path]:
     if not compiler:
         return None
     CPP_BIN_DIR.mkdir(parents=True, exist_ok=True)
-    cmd = [compiler, "-O3", "-pthread", "-std=c++20", str(CPP_SRC), "-o", str(CPP_BIN)]
-    res = subprocess.run(cmd, capture_output=True, text=True, timeout=60)
-    if res.returncode != 0:
-        return None
+    # Concurrent agents may compile on first use. Never let a linker truncate
+    # the shared executable while another process is running or opening it.
+    with tempfile.TemporaryDirectory(prefix="compile-", dir=CPP_BIN_DIR) as temporary:
+        candidate = Path(temporary) / CPP_BIN.name
+        cmd = [compiler, "-O3", "-pthread", "-std=c++20", str(CPP_SRC), "-o", str(candidate)]
+        res = subprocess.run(cmd, capture_output=True, text=True, timeout=60)
+        if res.returncode != 0:
+            return None
+        candidate.replace(CPP_BIN)
     return CPP_BIN
 
 
@@ -171,17 +148,22 @@ def get_capabilities() -> Dict[str, Any]:
     reason = None if cpp_ready else (
         "missing_cpp_source" if not CPP_SRC.is_file() else "cpp_compile_unavailable_or_failed"
     )
+    from .original import capability as original_capability
+
     return {
         "cpp_engine_ready": cpp_ready,
         "cpp_unavailable_reason": reason,
         "route_verification": {"available": True, "python_oracles": 2},
         "route_optimization": {
             "available": True,
-            "backend": "cpp20_zero_alloc_engine" if cpp_ready else "python_fallback_window_bfs",
+            "backend": "cpp20_bounded_exact_bfs" if cpp_ready else "python_fallback_window_bfs",
         },
         "solve_from_scratch": {"available": cpp_ready, "unavailable_reason": reason},
         "lower_bound_proving": {"available": cpp_ready, "unavailable_reason": reason},
         "formal_systems": {"available": False, "unavailable_reason": "not_implemented"},
+        "catalog": {"original_rooms": len(load_catalog()), "parts": [1, 2, 3],
+                    "offline": True, "legacy_fixture_prefix": "fixture:"},
+        "original_engine": original_capability(),
         "tcb_manifest_present": SHA256SUMS_PATH.is_file(),
     }
 
@@ -220,7 +202,8 @@ def verify_route_dual(
     - Never defaults `differential_match = True`; requires >= 2 independent engines to execute and match
       on survival, exact final-step win, step count, final ASCII, AND per-frame 64-bit FNV-1a trajectory digest!
     """
-    clean = route.strip().upper()
+    validate_room(part, grid)
+    clean = normalize_route(route)
     py_res = replay_oracle(part, grid, clean)
     flat_res = None if _skip_flat_for_test else replay_flat_oracle(part, grid, clean)
     cpp_res = None if _skip_cpp_for_test else _invoke_cpp("verify", part, grid, 0, 0, 5, clean or "-")
@@ -265,7 +248,7 @@ def verify_route_dual(
 
     dual_or_triple_checked = len(engines_executed) >= 2 and (not require_cpp or cpp_res is not None)
     pins = get_soko_checker_pins()
-    pins_ok = _required_checker_pins_ok(pins)
+    pins_ok = _required_checker_pins_ok(pins, require_cpp=cpp_res is not None)
     is_verified = dual_or_triple_checked and differential_match and py_res["exact_win"] and pins_ok
 
     if not dual_or_triple_checked:
@@ -275,8 +258,14 @@ def verify_route_dual(
     else:
         epistemic = "VERIFIED" if is_verified else "REJECTED"
 
-    return {
+    result = {
         "epistemic_status": epistemic,
+        "evidence_level": "differential_replay",
+        "formal_proof_checked": False,
+        "external_spec_pinned": False,
+        "source_lock_asserted": False,
+        **problem_identity(part, grid),
+        "route_sha256": hashlib.sha256(clean.encode("ascii")).hexdigest(),
         "valid_winning_route": is_verified,
         "route_len": py_res["route_len"],
         "route_sha256_12": py_res["route_sha256_12"],
@@ -296,11 +285,14 @@ def verify_route_dual(
         "final_ascii": py_res["final_ascii"],
         "route": clean,
     }
+    result["certificate_sha256"] = digest(result)
+    return result
 
 
-def _python_window_shortcut(part: int, grid: List[str], route: str, win_len: int = 10) -> str:
+def _python_window_shortcut(part: int, grid: List[str], route: str, win_len: int = 10, budget_sec: int = 35) -> str:
     """Pure-Python BFS fallback optimizer when no C++20 compiler is present."""
     best = route.strip().upper()
+    deadline = time.monotonic() + max(0, budget_sec)
     sim = PuzzleScriptOracle(part, grid)
     traj = [sim.clone()]
     for ch in best:
@@ -314,6 +306,8 @@ def _python_window_shortcut(part: int, grid: List[str], route: str, win_len: int
         seen = {traj[left].state_signature()}
         max_d = (right - left) - 1
         while q and len(seen) < 15000:
+            if time.monotonic() >= deadline:
+                return best
             cur_s, path = q.popleft()
             if len(path) >= max_d:
                 continue
@@ -342,7 +336,7 @@ def optimize_route_verified(
     window_len: int = 14,
     budget_sec: int = 35,
 ) -> Dict[str, Any]:
-    clean_seed = seed_route.strip().upper()
+    clean_seed = normalize_route(seed_route)
     seed_check = verify_route_dual(part, grid, clean_seed)
     if not seed_check["valid_winning_route"]:
         raise ValueError(
@@ -354,9 +348,9 @@ def optimize_route_verified(
     if cpp_out is not None and "best_route" in cpp_out:
         cand_route = cpp_out["best_route"]
         stages = cpp_out.get("stages", [])
-        backend = "cpp20_zero_alloc_engine"
+        backend = "cpp20_bounded_exact_bfs"
     else:
-        cand_route = _python_window_shortcut(part, grid, clean_seed, min(10, window_len))
+        cand_route = _python_window_shortcut(part, grid, clean_seed, min(10, window_len), budget_sec)
         stages = ["python_fallback_window_bfs"] if len(cand_route) < len(clean_seed) else []
         backend = "python_fallback"
 
@@ -379,6 +373,8 @@ def optimize_route_verified(
         "triple_oracle_checked": cand_check["triple_oracle_checked"],
         "differential_match": cand_check["differential_match"],
         "checker_pins": cand_check["checker_pins"],
+        "verification": cand_check,
+        "search": cpp_out,
     }
 
 
@@ -389,6 +385,7 @@ def solve_room_verified(
     beam_width: int = 40000,
     budget_sec: int = 20,
 ) -> Dict[str, Any]:
+    validate_room(part, grid)
     capabilities = get_capabilities()
     if not capabilities["solve_from_scratch"]["available"]:
         return {
@@ -415,12 +412,15 @@ def solve_room_verified(
             "dual_oracle_verified": True,
             "triple_oracle_checked": v["triple_oracle_checked"],
             "checker_pins": v["checker_pins"],
+            "verification": v,
+            "search": cpp_out,
         }
     return {
         "epistemic_status": "UNSOLVED_WITHIN_BUDGET" if cpp_out is not None else "BACKEND_FAILED",
         "solved": False,
         "search_performed": cpp_out is not None,
         "states_explored": cpp_out.get("explored", 0) if cpp_out else 0,
+        "search": cpp_out,
     }
 
 
@@ -430,17 +430,16 @@ def prove_floor_verified(
     max_bound: int = 30,
     budget_sec: int = 15,
 ) -> Dict[str, Any]:
+    validate_room(part, grid)
     cpp_out = _invoke_cpp("prove_lb", part, grid, max_bound, 0, budget_sec, "-")
     if cpp_out is None:
-        raise RuntimeError("C++20 compiler (g++ or clang++) and grid <= 512 cells are required for prove_lb IDA* lower-bound proving.")
+        raise RuntimeError("C++20 compiler (g++ or clang++) and grid <= 512 cells are required for exhaustive lower-bound search.")
 
     status = cpp_out.get("epistemic_status")
     if status is None:
         status = "INCOMPLETE_CPP_OUTPUT"
 
-    exact_state_tt = cpp_out.get("exact_state_tt")
-    if exact_state_tt is None:
-        exact_state_tt = False
+    exact_state_tt = cpp_out.get("exact_state_tt") is True
 
     witness = str(cpp_out.get("winning_witness") or "")
     witness_verified = None
@@ -456,8 +455,9 @@ def prove_floor_verified(
         }
 
     pins = get_soko_checker_pins()
-    pins_ok = _required_checker_pins_ok(pins)
-    proven_floor = int(cpp_out.get("proven_floor", 0))
+    pins_ok = _required_checker_pins_ok(pins, require_cpp=True)
+    reported_floor = cpp_out.get("proven_floor")
+    proven_floor = reported_floor if type(reported_floor) is int else 0
 
     if status == "VERIFIED":
         if not exact_state_tt:
@@ -466,13 +466,34 @@ def prove_floor_verified(
             status = "REJECTED_TCB_UNLOCKED"
         elif not witness or witness_verified is None:
             status = "REJECTED_NO_WITNESS"
-        elif witness_verified["route_len"] < proven_floor:
+        elif witness_verified["route_len"] != proven_floor:
             status = "REJECTED_WITNESS_BELOW_FLOOR"
+
+    completed = cpp_out.get("completed_depth")
+    accepted = status in ("VERIFIED", "EXHAUSTIVE_LOWER_BOUND")
+    if accepted and (
+        not exact_state_tt or not pins_ok or type(reported_floor) is not int
+        or cpp_out.get("search_algorithm") != "exact_bfs"
+        or type(completed) is not int or completed < -1
+        or proven_floor != completed + 1
+        or proven_floor > max_bound + 1
+        or (status == "VERIFIED" and cpp_out.get("exact_optimum_reached") is not True)
+        or (status == "EXHAUSTIVE_LOWER_BOUND" and (witness or cpp_out.get("exact_optimum_reached")))
+    ):
+        status = "REJECTED_CPP_CLAIM"
+    accepted = status in ("VERIFIED", "EXHAUSTIVE_LOWER_BOUND")
 
     return {
         "epistemic_status": status,
-        "proven_floor": proven_floor,
-        "exact_optimum_reached": bool(cpp_out.get("exact_optimum_reached")),
+        "proven_floor": proven_floor if accepted else None,
+        "reported_floor": reported_floor,
+        "exact_optimum_reached": accepted and status == "VERIFIED",
+        "evidence_level": "bounded_exhaustive_search" if accepted else "rejected_search_claim",
+        "formal_proof_checked": False,
+        "external_spec_pinned": False,
+        "source_lock_asserted": False,
+        **problem_identity(part, grid),
+        "search": cpp_out,
         "quotient_pdb_enabled": bool(cpp_out.get("quotient_pdb_enabled")),
         "exact_state_tt": exact_state_tt,
         "exact_tt_prunes": int(cpp_out.get("exact_tt_prunes", 0)),
@@ -483,8 +504,7 @@ def prove_floor_verified(
         "checker_pins": pins,
         "checker_pins_ok": pins_ok,
         "guarantee": (
-            f"Collision-free exact-DynState IDA* with runtime step-consistency assertions (h(s) <= 1 + h(s') checked across "
-            f"{int(cpp_out.get('edge_consistency_checks', 0))} transitions, quotient_pdb={bool(cpp_out.get('quotient_pdb_enabled'))}) "
-            f"refutes all winning routes of length < {proven_floor}."
-        ),
+            f"Exact-state BFS under the local C++ transition rules ruled out winning routes shorter than {proven_floor} keys. "
+            "The statement rests on that bounded search and any independently replayed witness."
+        ) if accepted else None,
     }

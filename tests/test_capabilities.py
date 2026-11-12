@@ -52,7 +52,7 @@ class CapabilityTests(unittest.TestCase):
             self.assertIsInstance(json.loads(result.stdout), dict)
 
     def test_existing_python_route_verification(self):
-        result = dispatch_tool_call("soko_verify_route", {"room_id": "I-1", "route": "RRRRRRRRR"})
+        result = dispatch_tool_call("soko_verify_route", {"room_id": "I-1", "route": "RRRRRRRR"})
         self.assertTrue(result["valid_winning_route"])
         self.assertGreaterEqual(result["engines_count"], 2)
 

@@ -247,11 +247,6 @@ class FlatBitmaskOracle:
                         elif self._is_hero_code(tc):
                             hero_died = True
 
-            if not any(self._is_monster_code(c) for c in self.cells):
-                for idx in range(self.n):
-                    if self.cells[idx] == _MGATE:
-                        self.cells[idx] = _EMPTY
-
         # Yellow switches & doors
         if self.ysw_mask:
             all_weighed = True
@@ -300,6 +295,13 @@ class FlatBitmaskOracle:
                             hero_died = True
                         self.cells[idx] = _PDOOR
 
+        # Monster doors are resolved after colored doors, which can crush the
+        # final monster during the same late phase.
+        if self.part >= 2 and not any(self._is_monster_code(c) for c in self.cells):
+            for idx in range(self.n):
+                if self.cells[idx] == _MGATE:
+                    self.cells[idx] = _EMPTY
+
         if self.part == 3 and self.notes_mask:
             clean_notes = 0
             for idx in range(self.n):
@@ -342,10 +344,105 @@ class FlatBitmaskOracle:
         p_eff = 1 if (self.pdoor_init_mask and self.p_open) else 0
         return _fnv64_fold_frame(acc, self.cells, self.notes_mask, y_eff, p_eff)
 
+    def _multi_input(self, key: str) -> Tuple[bool, bool]:
+        initial = list(self.cells)
+        note_before, yo_before, po_before = self.notes_mask, self.y_open, self.p_open
+        players = {i: c for i, c in enumerate(initial) if _ACT_F <= c <= _ACT_D}
+        def cancel():
+            self.cells = initial
+            self.notes_mask, self.y_open, self.p_open = note_before, yo_before, po_before
+            return True, self.is_winning()
+        if key == "A":
+            remaining = set(players)
+            for distance in range(1, self.max_slot):
+                for code in range(1, self.max_slot + 1):
+                    for src in list(remaining):
+                        if players[src] != code:
+                            continue
+                        dest_code = (code - 1 + distance) % self.max_slot + 1
+                        dest = next((i for i in self.col_major_indices if self.cells[i] == dest_code + 6), -1)
+                        if dest >= 0:
+                            self.cells[src] = code + 6
+                            self.cells[dest] = dest_code
+                            remaining.remove(src)
+            if self.part == 2 and any(_ACT_F <= self.cells[i] <= _ACT_D for i in players):
+                return cancel()
+            return not self._apply_late_phase(), self.is_winning()
+        dx, dy = _STEP_DELTAS[key]
+        adjacent = [((i // self.w + dy) * self.w + i % self.w + dx) if 0 <= i % self.w + dx < self.w and 0 <= i // self.w + dy < self.h else -1 for i in range(self.n)]
+        moving = set(players)
+        for src, code in players.items():
+            if code == _ACT_F:
+                at = adjacent[src]
+                while at >= 0 and self._is_moveable_code(self.cells[at]):
+                    moving.add(at)
+                    at = adjacent[at]
+            if code == _ACT_T:
+                bx, by = src % self.w - dx, src // self.w - dy
+                if 0 <= bx < self.w and 0 <= by < self.h:
+                    behind = by * self.w + bx
+                    if self._is_moveable_code(self.cells[behind]):
+                        moving.add(behind)
+        for src, code in players.items():
+            if code != _ACT_W:
+                continue
+            moving.discard(src)
+            at = adjacent[src]
+            while at >= 0:
+                obj = self.cells[at]
+                if self._is_static_code(obj):
+                    moving.add(src)
+                    break
+                if self._is_moveable_code(obj):
+                    self.cells[src], self.cells[at] = obj, _ACT_W
+                    break
+                at = adjacent[at]
+            if at < 0 and self.part == 3:
+                moving.add(src)
+        for src, code in players.items():
+            if code != _ACT_D or self.cells[src] != code:
+                continue
+            at = adjacent[src]
+            if at < 0 or self.cells[at] == _EMPTY:
+                continue
+            moving.discard(src)
+            obj = self.cells[at]
+            if obj in (_CRATE, _GOBLIN, _WALL):
+                self.cells[at] = _CRATE if obj == _WALL else _WALL
+            elif self._is_hero_code(obj) and obj not in (_ACT_P, _INA_4):
+                if not any(self.cells[i] in (_ACT_P, _INA_4) for i in self.orth_neighbors[at]):
+                    self.cells[at] = _WALL
+        bards = {i for i, c in players.items() if c == _ACT_B and self.cells[i] == _ACT_B}
+        if bards:
+            pending = {i for i in range(self.n) if (self.notes_mask >> i) & 1 and self._is_moveable_code(self.cells[i])} | bards
+            moving -= bards
+            while True:
+                eligible = [i for i in pending if adjacent[i] >= 0 and (_EMPTY <= self.cells[adjacent[i]] <= _ACT_D and self.cells[adjacent[i]] != _ACT_B)]
+                if not eligible:
+                    break
+                for i in eligible:
+                    self.cells[adjacent[i]], self.cells[i] = self.cells[i], _EMPTY
+                    pending.remove(i)
+            if pending & bards:
+                return cancel()
+        self.notes_mask = 0
+        while True:
+            eligible = [i for i in moving if adjacent[i] >= 0 and self.cells[adjacent[i]] == _EMPTY]
+            if not eligible:
+                break
+            for i in eligible:
+                self.cells[adjacent[i]], self.cells[i] = self.cells[i], _EMPTY
+                moving.remove(i)
+        if self.part == 2 and any(_ACT_F <= self.cells[i] <= _ACT_D for i in players):
+            return cancel()
+        return not self._apply_late_phase(), self.is_winning()
+
     def step(self, key: str) -> Tuple[bool, bool]:
         if key not in ("U", "D", "L", "R", "A"):
             raise ValueError(f"Unsupported move key {key!r}")
 
+        if sum(_ACT_F <= c <= _ACT_D for c in self.cells) > 1:
+            return self._multi_input(key)
         act_idx = -1
         act_code = _EMPTY
         for idx, c in enumerate(self.cells):

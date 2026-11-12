@@ -1,0 +1,224 @@
+{
+  "target": "III-20",
+  "baseline_keys": 84,
+  "target_keys_at_most": 83,
+  "candidate_found": false,
+  "verified_gain": 0,
+  "proof_claim": null,
+  "search_scope": "Heuristic searches and bounded exact-state local shortcut scans; negative outcomes do not prove optimality.",
+  "compiler": "g++ (Debian 14.2.0-19) 14.2.0",
+  "source_hashes": {
+    "search.cpp": "480d87447354f073c7ca2139c249eb6194e6acb3bf1cb65c11924d0482b1639b",
+    "search_distance.cpp": "1b9d0b210e2965175ef124ab7919246aeb6555308b90c35db204ab0d684e9b50",
+    "search_large.cpp": "5509d16b7f438853aadd702a036077b567cb2c1216abec1e5a0824650268c5ea",
+    "search_noise.cpp": "cb92d4f01c6f4c5cb89872688bda6a70d697a0836ef349a217319c76b64ae70b",
+    "search_roles.cpp": "962ddcc02fc25adcc96ba85e9f13b254be8e208f14a393fde6ca0cfe5fc215e8",
+    "search_suffix.cpp": "9368995eff8c1abc6ec8e39a84be435a41564b21eefd67368f6805caf1a663b8",
+    "window.cpp": "57254c698e526e2130c33d57061598b559384ea2b8c8987bd17c7c8aed143c8b"
+  },
+  "guided_runs": {
+    "run1.log": {
+      "completed_calls": 1,
+      "results": [
+        {
+          "length": 0,
+          "route": ""
+        }
+      ],
+      "cutoffs": [],
+      "log_sha256": "8e964b513ab27c580be838a757312b4ace140f7973c4da714fc9afe8ec5e61b2"
+    },
+    "variants.log": {
+      "completed_calls": 4,
+      "results": [
+        {
+          "length": 0,
+          "route": ""
+        },
+        {
+          "length": 0,
+          "route": ""
+        },
+        {
+          "length": 0,
+          "route": ""
+        },
+        {
+          "length": 0,
+          "route": ""
+        }
+      ],
+      "cutoffs": [
+        "CUTOFF depth 78 seen 13177575 time 51.4859",
+        "CUTOFF depth 78 seen 13159791 time 55.4589"
+      ],
+      "log_sha256": "2dcc9203a28bb383c8fce75212c32a18d3c9812d28a5cbaa9a2ccfd16ece447f"
+    },
+    "large1.log": {
+      "completed_calls": 1,
+      "results": [
+        {
+          "length": 0,
+          "route": ""
+        }
+      ],
+      "cutoffs": [],
+      "log_sha256": "dd59b7c5da835649c24c0bbf7d76d7b507463edb2f467ad88c486fc7f864e940"
+    },
+    "large2.log": {
+      "completed_calls": 1,
+      "results": [
+        {
+          "length": 0,
+          "route": ""
+        }
+      ],
+      "cutoffs": [],
+      "log_sha256": "458209a2fa369277936daf353368df7b897ddc8cef3e741884daeaea0edeed72"
+    },
+    "suffix.log": {
+      "completed_calls": 3,
+      "results": [
+        {
+          "length": 0,
+          "route": ""
+        },
+        {
+          "length": 0,
+          "route": ""
+        },
+        {
+          "length": 0,
+          "route": ""
+        }
+      ],
+      "cutoffs": [
+        "CUTOFF depth 66 seen 17620257 time 90.3598"
+      ],
+      "log_sha256": "fc4b9c5a741b037d374372ea02c8aad9cad0e19bcfaaf41d6d769684855b5ab3"
+    },
+    "distance.log": {
+      "completed_calls": 2,
+      "results": [
+        {
+          "length": 0,
+          "route": ""
+        },
+        {
+          "length": 0,
+          "route": ""
+        }
+      ],
+      "cutoffs": [],
+      "log_sha256": "dbe6913a30c1309e70748893b3603761d4f9fd9f120799a5a5afb31e19d3488c"
+    },
+    "noise.log": {
+      "completed_calls": 6,
+      "results": [
+        {
+          "length": 0,
+          "route": ""
+        },
+        {
+          "length": 0,
+          "route": ""
+        },
+        {
+          "length": 0,
+          "route": ""
+        },
+        {
+          "length": 0,
+          "route": ""
+        },
+        {
+          "length": 0,
+          "route": ""
+        },
+        {
+          "length": 0,
+          "route": ""
+        }
+      ],
+      "cutoffs": [],
+      "log_sha256": "2a77ae886ce501e43bc8b5d19041e4b064e993795e522214fb9247c7c02bc6ce"
+    },
+    "roles.log": {
+      "completed_calls": 4,
+      "results": [
+        {
+          "length": 0,
+          "route": ""
+        },
+        {
+          "length": 0,
+          "route": ""
+        },
+        {
+          "length": 0,
+          "route": ""
+        },
+        {
+          "length": 0,
+          "route": ""
+        }
+      ],
+      "cutoffs": [],
+      "log_sha256": "121760b1959e0173a3fed3cf60e1556f0b59f6407251d03873cc2f9f1362af4c"
+    }
+  },
+  "window_scan": {
+    "offsets_completed": 83,
+    "depth_limit": 28,
+    "state_limit_per_offset": 3000000,
+    "seconds_per_offset": 4,
+    "expansions": 42381256,
+    "limited_offsets": [
+      25,
+      26,
+      27,
+      28,
+      29,
+      30,
+      31,
+      32,
+      33,
+      34,
+      35,
+      36,
+      37,
+      38,
+      39,
+      40,
+      41,
+      42,
+      43,
+      44,
+      45,
+      46,
+      47,
+      48,
+      49,
+      50,
+      51,
+      52,
+      53,
+      54,
+      55,
+      56,
+      57,
+      58,
+      59,
+      60,
+      61,
+      62,
+      63,
+      64,
+      65,
+      66,
+      67
+    ],
+    "candidate_lines": []
+  },
+  "guided_call_count": 22
+}

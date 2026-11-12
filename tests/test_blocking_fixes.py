@@ -28,17 +28,12 @@ class BlockingFixTests(unittest.TestCase):
         self.assertIn("checker_pins", out)
 
     def test_confined_manifest_rejects_parent_path(self) -> None:
-        outside = REPO_ROOT.parent / "escape_probe_blocking_fixes.txt"
-        payload = b"probe"
-        outside.write_bytes(payload)
-        self.addCleanup(lambda: outside.unlink(missing_ok=True))
-        digest = hashlib.sha256(payload).hexdigest()
-        rel_escape = f"../{outside.name}"
-        tampered = f"{digest}  {rel_escape}\n"
-        original = SHA256SUMS_PATH.read_text(encoding="utf-8") if SHA256SUMS_PATH.is_file() else ""
-        SHA256SUMS_PATH.write_text(tampered, encoding="utf-8")
-        self.addCleanup(lambda: SHA256SUMS_PATH.write_text(original, encoding="utf-8") if original else SHA256SUMS_PATH.unlink(missing_ok=True))
-        out = verify_tcb_lock()
+        with tempfile.TemporaryDirectory() as tmp:
+            manifest = Path(tmp) / "SHA256SUMS"
+            digest = hashlib.sha256(b"probe").hexdigest()
+            manifest.write_text(f"{digest}  ../outside.py\n")
+            with mock.patch("soko_mcp.engine_bridge.SHA256SUMS_PATH", manifest):
+                out = verify_tcb_lock()
         self.assertFalse(out["tcb_locked"])
         self.assertEqual(out["epistemic_status"], "TAMPERED_OR_UNLOCKED")
         self.assertTrue(out["unconfined_paths"])
@@ -48,9 +43,10 @@ class BlockingFixTests(unittest.TestCase):
         self.assertTrue(SHA256SUMS_PATH.is_file())
         self.assertTrue(out["manifest_present"])
         self.assertGreater(out["files_verified"], 0)
-        if out["checker_pins_ok"]:
-            self.assertTrue(out["tcb_locked"])
-            self.assertEqual(out["epistemic_status"], "VERIFIED")
+        self.assertTrue(out["tcb_locked"], out)
+        self.assertEqual(out["epistemic_status"], "VERIFIED")
+        self.assertEqual(out["lock_scope"], "source_manifest")
+        self.assertFalse(out["compiled_binary"]["verified_by_manifest"])
 
     def test_i1_registry_nine_step_route(self) -> None:
         meta = FRONTIER_ROOMS["I-1"]
