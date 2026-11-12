@@ -474,3 +474,454 @@ PROMPTS: List[Dict[str, Any]] = [
         ],
     },
 ]
+
+
+def _read_resource_content(uri: str) -> Dict[str, Any]:
+    if uri == "soko://benchmarks/frontier":
+        return {
+            "uri": uri,
+            "mimeType": "application/json",
+            "text": json.dumps(FRONTIER_ROOMS, indent=2),
+        }
+    if uri == "soko://methodology/verified-bar":
+        text = (
+            "# Proven-Commons Verified Bar Applied to Sokoban Eval (v0.2.0)\n\n"
+            "1. **Triple-Oracle Separation:** `soko_mcp/oracle.py` (2D declarative spec), `soko_mcp/flat_oracle.py` "
+            "(zero-shared-code 1D bitmask engine), and `cpp/soko_engine.cpp` (zero-allocation C++20 solver).\n"
+            "2. **Fail-Closed Per-Frame Trajectory Digest:** Every winning route must agree across >= 2 independent engines "
+            "on every frame `t = 0..L` via 64-bit FNV-1a full-state digests (`traj_fnv64`) before receiving `VERIFIED`.\n"
+            "3. **Planted-Bug & Cross-Engine Audit:** `soko_run_planted_bug_audit` verifies 0 cross-oracle discrepancies "
+            "and 10/10 mutation kills.\n"
+            "4. **Chiral-Mirror & Iterative Tube Beam:** Reflects seed trajectories across exact dungeon symmetry axes "
+            "into role-agnostic tubes.\n"
+            "5. **Collision-Free Quotient-PDB Lower Bounds:** `soko_prove_floor` verifies exact `DynState` equality in its "
+            "transposition table (zero hash-collision pruning) and checks `h(s) <= 1 + h(s')` on every expanded edge.\n"
+        )
+        return {"uri": uri, "mimeType": "text/markdown", "text": text}
+    if uri == "soko://rules/puzzlescript-trilogy":
+        text = (
+            "# Heroes of Sokoban Trilogy Exact Mechanics\n\n"
+            "- **Keys:** `U`, `D`, `L`, `R`, `A` (`Action` switches active hero in LEGEND order `1->2->3->4->5->6->1`, scanning x=0..W-1, y=0..H-1).\n"
+            "- **Fighter (`F`/`1`):** Pushes arbitrarily long colinear chains of `Moveable` (`*`, inactive heroes `1..6`, monsters) if an empty cell follows.\n"
+            "- **Thief (`T`/`2`):** Steps into an empty cell and pulls 1 `Moveable` immediately behind.\n"
+            "- **Wizard (`W`/`3`):** Fires a warpball; swaps with first `Moveable` hit, or steps 1 empty tile if hitting `Static` (`#`, closed doors, `M`, or Part III edge).\n"
+            "- **Priest (`P`/`4`):** Walks into empty cells; active `P` and inactive `4` shield themselves and orthogonal heroes from Goblin/Dragon `Dying` and Druid petrification.\n"
+            "- **Bard (`B`/`5`, Part III):** 5x5 Chebyshev `Note` aura is computed at the END of the prior turn; charmed Moveables + Bard translate rigidly to fixed point (`Cancel` if Bard cannot step).\n"
+            "- **Druid (`D`/`6`, Part III):** Walks into empty cells or transmutes `*`/`O` -> `#`, `#` -> `*`, unshielded inactive hero -> `#`. In Part III, `#` counts as `Weighing` on switches.\n"
+        )
+        return {"uri": uri, "mimeType": "text/markdown", "text": text}
+    if uri == "formal://methodology/foundation0-verified-bar":
+        text = (
+            "# Domain-General Formal Verification Workflow (`formal_*`)\n\n"
+            "1. **Author Dual Independent Checkers (`formal_define_system`):** Write a readable `spec_code` (e.g. tuple records / "
+            "frozensets) and an algorithmically independent `impl_code` (e.g. bitmask integers or flat arrays, bridged via "
+            "`project_obs(s)`). Supply at least one `must_fail_controls` negative trace and `planted_mutations`.\n"
+            "2. **Solve or Hunt Counterexamples (`formal_solve_system`):** Use `mode='reach_goal'` (`exact_dijkstra` or "
+            "`diversified_beam`) for constructive synthesis, `mode='find_invariant_violation'` for model-checking safety bugs, "
+            "or `mode='optimize_trace'` for Sliding-Window LNS trajectory compression.\n"
+            "3. **Certify Lower Bounds (`formal_certify_lower_bound`):** Supply either a finite `project(state)` Quotient "
+            "Homomorphism or an Inductive Potential `potential(state)` (`V(s) <= cost(s,a,s') + V(s')`) to obtain a `PROVEN` "
+            "lower bound without trusting solver heuristics.\n"
+            "4. **Export Ledger (`formal_export_ledger`):** Emit SHA-256-pinned claims under `PROVEN`, `VERIFIED`, `KNOWN`, or `CONJECTURE`.\n"
+        )
+        return {"uri": uri, "mimeType": "text/markdown", "text": text}
+    if uri == "formal://examples/lease-fencing-spec":
+        return {"uri": uri, "mimeType": "text/markdown", "text": LEASE_EXAMPLE_MD}
+    ra
+
+
+def _get_prompt_messages(name: str, arguments: Dict[str, Any]) -> Dict[str, Any]:
+    if name == "break_room_record":
+        room_id = arguments.get("room_id", "III-20")
+        return {
+            "description": f"Verified-Bar record-breaking workflow for room {room_id}",
+            "messages": [
+                {
+                    "role": "user",
+                    "content": {
+                        "type": "text",
+                        "text": (
+                            f"Apply the Proven-Commons Verified Bar workflow to optimize room `{room_id}`:\n"
+                            f"1. Call `soko_verify_tcb_lock` and `soko_inspect_room` on `{room_id}`.\n"
+                            f"2. Call `soko_verify_route` on the current baseline route to confirm triple-oracle `VERIFIED` replay.\n"
+                            f"3. Call `soko_optimize_route` to run Windowed BFS + Chiral-Mirror Tube Beam + Iterative Tube Refinement.\n"
+                            f"4. Report the verified route, SHA-256 digest, per-frame `traj_fnv64`, keys saved, and exact epistemic status."
+                        ),
+                    },
+                }
+            ],
+        }
+    if name == "certify_room_floor":
+        room_id = arguments.get("room_id", "III-14")
+        return {
+            "description": f"Step-consistent lower-bound certification workflow for room {room_id}",
+            "messages": [
+                {
+                    "role": "user",
+                    "content": {
+                        "type": "text",
+                        "text": (
+                            f"Certify a machine-checked lower bound for room `{room_id}`:\n"
+                            f"1. Call `soko_run_planted_bug_audit` to confirm 10/10 engine mutation catches and cross-oracle parity.\n"
+                            f"2. Call `soko_prove_floor` on `{room_id}` and report `proven_floor`, `quotient_pdb_enabled`, `nodes_expanded`, and `edge_consistency_checks`."
+                        ),
+                    },
+                }
+            ],
+        }
+    if name == "model_problem_formally":
+        summary = arguments.get("problem_summary", "custom combinatorial system")
+        return {
+            "description": "Guided domain-general formal modeling and optimality proof workflow",
+            "messages": [
+                {
+                    "role": "user",
+                    "content": {
+                        "type": "text",
+                        "text": (
+                            f"Model and solve the following problem as a formally verified system: {summary}\n"
+                            "1. Formulate immutable exact state & action types and write two independent checkers (`spec_code` and `impl_code`) plus `must_fail_controls` and `planted_mutations` in `formal_define_system`.\n"
+                            "2. Call `formal_solve_system` (`mode='reach_goal'`) to obtain a dual-verified constructive witness.\n"
+                            "3. Call `formal_certify_lower_bound` (`quotient_homomorphism` or `inductive_potential`) to prove `OPT >= B`.\n"
+                            "4. Call `formal_export_ledger` to emit SHA-256-pinned `PROVEN` / `VERIFIED` certificates."
+                        ),
+                    },
+                }
+            ],
+        }
+    if name == "prove_protocol_safety":
+        proto = arguments.get("protocol_name", "stateful protocol")
+        return {
+            "description": f"Model-checking safety workflow for {proto}",
+            "messages": [
+                {
+                    "role": "user",
+                    "content": {
+                        "type": "text",
+                        "text": (
+                            f"Verify safety invariants for `{proto}`:\n"
+                            "1. Register the protocol via `formal_define_system(..., allow_invariant_violations_in_fuzz=True)` with an explicit `invariant(state) -> (bool, reason)`.\n"
+                            "2. Call `formal_solve_system(mode='find_invariant_violation', strategy='exact_dijkstra')` to either extract a minimal `VERIFIED` bug trace or obtain an `EXHAUSTIVE_GLOBAL_SAFETY_PROOF` (`PROVEN`)."
+                        ),
+                    },
+                }
+            ],
+      
+
+
+def dispatch_tool_call(name: str, args: Dict[str, Any]) -> Dict[str, Any]:
+    # --- Sokoban Suite ---
+    if name == "soko_list_rooms":
+        summary = {}
+        for rid, meta in FRONTIER_ROOMS.items():
+            summary[rid] = {
+                "part": meta["part"],
+                "title": meta["title"],
+                "dimensions": f"{len(meta['grid'][0])}x{len(meta['grid'])}",
+                "proven_floor": meta["proven_floor"],
+                "shortest_known": meta["shortest_known"],
+                "frontier_record": meta["frontier_record"],
+                "reference_route_len": len(meta["reference_route"]),
+            }
+        return {"cpp_engine_ready": ensure_cpp_engine() is not None, "rooms": summary}
+
+    if name == "soko_inspect_room":
+        rid, part, grid, meta = resolve_room_input(args.get("room_id"), args.get("part"), args.get("grid"))
+        out = inspect_room(part, grid)
+        if rid and meta:
+            out["room_id"] = rid
+            out["title"] = meta["title"]
+            out["benchmarks"] = {
+                "proven_floor": meta["proven_floor"],
+                "shortest_known": meta["shortest_known"],
+                "frontier_record": meta["frontier_record"],
+            }
+        return out
+
+    if name == "soko_verify_route":
+        rid, part, grid, _ = resolve_room_input(args.get("room_id"), args.get("part"), args.get("grid"))
+        if "route" not in args:
+            raise ValueError("Missing required parameter 'route'")
+        res = verify_route_dual(
+            part,
+            grid,
+            str(args["route"]),
+            require_cpp=bool(args.get("require_cpp", False)),
+        )
+        if rid:
+            res["room_id"] = rid
+        return res
+
+    if name == "soko_optimize_route":
+        rid, part, grid, meta = resolve_room_input(args.get("room_id"), args.get("part"), args.get("grid"))
+        seed = args.get("seed_route")
+        if not seed and meta:
+            seed = meta.get("prior_record_route_87") or meta.get("reference_route")
+        if not seed:
+            raise ValueError("Provide 'seed_route' (or specify a built-in 'room_id' with a reference route).")
+        res = optimize_route_verified(
+            part=part,
+            grid=grid,
+            seed_route=str(seed),
+            beam_width=int(args.get("beam_width", 40000)),
+            window_len=int(args.get("window_len", 14)),
+            budget_sec=int(args.get("budget_sec", 35)),
+        )
+        if rid:
+            res["room_id"] = rid
+        return res
+
+    if name == "soko_solve_room":
+        rid, part, grid, _ = resolve_room_input(args.get("room_id"), args.get("part"), args.get("grid"))
+        res = solve_room_verified(
+            part=part,
+            grid=grid,
+            max_depth=int(args.get("max_depth", 120)),
+            beam_width=int(args.get("beam_width", 40000)),
+            budget_sec=int(args.get("budget_sec", 20)),
+        )
+        if rid:
+            res["room_id"] = rid
+        return res
+
+    if name == "soko_prove_floor":
+        rid, part, grid, _ = resolve_room_input(args.get("room_id"), args.get("part"), args.get("grid"))
+        res = prove_floor_verified(
+            part=part,
+            grid=grid,
+            max_bound=int(args.get("max_bound", 32)),
+            budget_sec=int(args.get("budget_sec", 12)),
+        )
+        if rid:
+            res["room_id"] = rid
+        return res
+
+    if name == "soko_run_planted_bug_audit":
+        return run_planted_bug_audit(args.get("extra_vectors"))
+
+    if name == "soko_verify_tcb_lock":
+        return verify_tcb_lock()
+
+    # --- Domain-General Formal-Systems Suite ---
+    if name == "formal_define_system":
+        return define_formal_system(
+            system_id=str(args["system_id"]),
+            spec_code=str(args["spec_code"]),
+            impl_code=str(args["impl_code"]),
+            description=str(args.get("description", "")),
+            positive_witnesses=args.get("positive_witnesses"),
+            must_fail_controls=args.get("must_fail_controls"),
+            planted_mutations=args.get("planted_mutations"),
+            bounded_fuzz_nodes=int(args.get("bounded_fuzz_nodes", 400)),
+            exact_arithmetic_only=bool(args.get("exact_arithmetic_only", True)),
+            strict_bar=bool(args.get("strict_bar", True)),
+            allow_invariant_violations_in_fuzz=bool(args.get("allow_invariant_violations_in_fuzz", False)),
+        )
+
+    if name == "formal_verify_trace":
+        return verify_formal_trace(
+            system_id=str(args["system_id"]),
+            trace=list(args["trace"]),
+            verification_goal=str(args.get("verification_goal", "goal_witness")),
+            require_exact_terminal_goal=bool(args.get("require_exact_terminal_goal", True)),
+        )
+
+    if name == "formal_solve_system":
+        return solve_formal_system(
+            system_id=str(args["system_id"]),
+            mode=str(args.get("mode", "reach_goal")),
+            strategy=str(args.get("strategy", "exact_dijkstra")),
+            max_states=int(args.get("max_states", 50000)),
+            max_cost=int(args.get("max_cost", 1000)),
+            beam_width=int(args.get("beam_width", 2000)),
+            bucket_cap=int(args.get("bucket_cap", 50)),
+            seed_trace=args.get("seed_trace"),
+            window_len=int(args.get("window_len", 8)),
+        )
+
+    if name == "formal_certify_lower_bound":
+        return certify_formal_lower_bound(
+            system_id=str(args["system_id"]),
+            proof_mode=str(args["proof_mode"]),
+            certificate_code=str(args["certificate_code"]),
+            claimed_lower_bound=int(args["claimed_lower_bound"]),
+            max_concrete_states=int(args.get("max_concrete_states", 100000)),
+        )
+
+    if name == "formal_triage_portfolio":
+        return triage_formal_portfolio(list(args["items"]))
+
+    if name == "formal_export_ledger":
+        return export_formal_ledger(args.get("extra_claims"))
+
+    ra
+
+
+def handle_jsonrpc_message(msg: Dict[str, Any]) -> Optional[Dict[str, Any]]:
+    method = msg.get("method")
+    msg_id = msg.get("id")
+    params = msg.get("params") or {}
+
+    if msg_id is None:
+        return None
+
+    if method == "initialize":
+        req_ver = params.get("protocolVersion", "2025-03-26")
+        neg_ver = req_ver if req_ver in SUPPORTED_PROTOCOLS else "2025-03-26"
+        return {
+            "jsonrpc": "2.0",
+            "id": msg_id,
+            "result": {
+                "protocolVersion": neg_ver,
+                "capabilities": {
+                    "tools": {"listChanged": False},
+                    "resources": {"subscribe": False, "listChanged": False},
+                    "prompts": {"listChanged": False},
+                },
+                "serverInfo": SERVER_INFO,
+                "instructions": SERVER_INSTRUCTIONS,
+            },
+        }
+
+    if method == "server/discover":
+        return {
+            "jsonrpc": "2.0",
+            "id": msg_id,
+            "result": {
+                "protocolVersions": SUPPORTED_PROTOCOLS,
+                "capabilities": {
+                    "tools": {},
+                    "resources": {},
+                    "prompts": {},
+                },
+                "serverInfo": SERVER_INFO,
+                "instructions": SERVER_INSTRUCTIONS,
+            },
+        }
+
+    if method == "ping":
+        return {"jsonrpc": "2.0", "id": msg_id, "result": {}}
+
+    if method == "tools/list":
+        return {"jsonrpc": "2.0", "id": msg_id, "result": {"tools": TOOLS}}
+
+    if method == "tools/call":
+        tool_name = params.get("name")
+        tool_args = params.get("arguments") or {}
+        if not tool_name or not any(t["name"] == tool_name for t in TOOLS):
+            return {
+                "jsonrpc": "2.0",
+                "id": msg_id,
+                "error": {"code": -32602, "message": f"Unknown tool: {tool_name!r}"},
+            }
+        try:
+            payload = dispatch_tool_call(tool_name, tool_args)
+            return {
+                "jsonrpc": "2.0",
+                "id": msg_id,
+                "result": {
+                    "content": [{"type": "text", "text": json.dumps(payload, indent=2)}],
+                    "structuredContent": payload,
+                    "isError": False,
+                },
+            }
+        except Exception as exc:
+            err_payload = {"error": str(exc), "tool": tool_name}
+            return {
+                "jsonrpc": "2.0",
+                "id": msg_id,
+                "result": {
+                    "content": [{"type": "text", "text": json.dumps(err_payload, indent=2)}],
+                    "isError": True,
+                },
+            }
+
+    if method == "resources/list":
+        return {"jsonrpc": "2.0", "id": msg_id, "result": {"resources": RESOURCES}}
+
+    if method == "resources/read":
+        uri = params.get("uri", "")
+        try:
+            content = _read_resource_content(uri)
+            return {"jsonrpc": "2.0", "id": msg_id, "result": {"contents": [content]}}
+        except KeyError as exc:
+            return {"jsonrpc": "2.0", "id": msg_id, "error": {"code": -32602, "message": str(exc)}}
+
+    if method == "prompts/list":
+        return {"jsonrpc": "2.0", "id": msg_id, "result": {"prompts": PROMPTS}}
+
+    if method == "prompts/get":
+        pname = params.get("name", "")
+        pargs = params.get("arguments") or {}
+        try:
+            res = _get_prompt_messages(pname, pargs)
+            return {"jsonrpc": "2.0", "id": msg_id, "result": res}
+        except KeyError as exc:
+            return {"jsonrpc": "2.0", "id": msg_id, "error": {"code": -32602, "message": str(exc)}}
+
+    return {
+        "jsonrpc": "2.0",
+        "id": msg_id,
+      
+    } 
+
+
+def _read_next_message(stream: BinaryIO) -> Optional[Tuple[Any, bool]]:
+    """Read either a newline-delimited JSON-RPC message (MCP stdio standard) or Content-Length framed message."""
+    while True:
+        line = stream.readline()
+        if not line:
+            return None
+        stripped = line.strip()
+        if not stripped:
+            continue
+        if stripped.lower().startswith(b"content-length:"):
+            length = int(stripped.split(b":", 1)[1].strip())
+            while True:
+                hdr = stream.readline()
+                if not hdr or hdr in (b"\r\n", b"\n"):
+                    break
+            body = stream.read(length)
+            return json.loads(body.decode("utf-8")), True
+        return json.loads(stripped.decode("utf-8")), False
+
+
+def _write_message(stream: BinaryIO, payload: Any, use_content_length: bool = False) -> None:
+    encoded = json.dumps(payload, separators=(",", ":")).encode("utf-8")
+    if use_content_length:
+        header = f"Content-Length: {len(encoded)}\r\n\r\n".encode("ascii")
+        stream.write(header + encoded)
+    else:
+        stream.write(encoded + b"\n")
+    stream.flush()
+
+
+def serve_stdio() -> int:
+    try:
+        ensure_cpp_engine()
+    except Exception as exc:
+        sys.stderr.write(f"[soko-verified-mcp] C++20 engine prebuild note: {exc}\n")
+
+    stdin_bin = sys.stdin.buffer
+    stdout_bin = sys.stdout.buffer
+
+    while True:
+        try:
+            item = _read_next_message(stdin_bin)
+        except Exception as exc:
+            err = {"jsonrpc": "2.0", "id": None, "error": {"code": -32700, "message": f"Parse error: {exc}"}}
+            _write_message(stdout_bin, err, False)
+            continue
+        if item is None:
+            break
+        msg, use_cl = item
+        if isinstance(msg, list):
+            replies = [r for sub in msg if (r := handle_jsonrpc_message(sub)) is not None]
+            if replies:
+                _write_message(stdout_bin, replies, use_cl)
+        elif isinstance(msg, dict):
+            reply = handle_jsonrpc_message(msg)
+            if reply is not None:
+                  _write_message(stdout_bin, reply, use_cl)
+    return 0
+    raise KeyError(f"Unknown prompt name: {name}")ise KeyError(f"Unknown resource URI: {uri}")
