@@ -14,6 +14,7 @@ from .engine_bridge import (
     resolve_room_input,
     solve_room_verified,
     verify_route_dual,
+    verify_tcb_lock,
 )
 from .oracle import FRONTIER_ROOMS, run_planted_bug_audit
 
@@ -159,6 +160,13 @@ TOOLS: List[Dict[str, Any]] = [
             },
             "additionalProperties": False,
         },
+        "annotations": {"readOnlyHint": True, "idempotentHint": True, "openWorldHint": False},
+    },
+    {
+        "name": "soko_verify_tcb_lock",
+        "title": "Verify Runtime SHA256SUMS TCB Lock",
+        "description": "Verify confined SHA256SUMS manifest integrity for tracked checker sources/binaries and inspect SHA-256 TCB pins; fails closed on path escape or null pins.",
+        "inputSchema": {"type": "object", "additionalProperties": False},
         "annotations": {"readOnlyHint": True, "idempotentHint": True, "openWorldHint": False},
     },
     {
@@ -392,6 +400,9 @@ def dispatch_tool_call(name: str, args: Dict[str, Any]) -> Dict[str, Any]:
 
     if name == "soko_run_planted_bug_audit":
         return run_planted_bug_audit(args.get("extra_vectors"))
+
+    if name == "soko_verify_tcb_lock":
+        return verify_tcb_lock()
 
     raise KeyError(f"Unknown tool: {name}")
 

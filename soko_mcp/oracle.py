@@ -534,10 +534,10 @@ FRONTIER_ROOMS: Dict[str, Dict[str, Any]] = {
     "I-1": {
         "part": 1,
         "title": "Part I, Room 1 (Opening Hall)",
-        "proven_floor": 8,
-        "shortest_known": 8,
-        "frontier_record": 8,
-        "reference_route": "RRRRRRRR",
+        "proven_floor": 9,
+        "shortest_known": 9,
+        "frontier_record": 9,
+        "reference_route": "RRRRRRRRR",
         "grid": [
             "############",
             "#..........#",
