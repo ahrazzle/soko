@@ -67,7 +67,10 @@ def build_master(horizon, *, use_events=True, symmetry=False, event_encoding='in
             from .events import add_master_constraints
         add_master_constraints(result, symmetry=symmetry)
     elif symmetry:
-        raise ValueError('symmetry normalization requires the event module')
+        # The settled-state AA identity does not depend on resource bounds.
+        for t in range(horizon - 1):
+            solver.add(z3.Not(z3.And(z3.Not(global_master._goal(frames[t])),
+                                     actions[t][4], actions[t + 1][4])))
     return result
 
 

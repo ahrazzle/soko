@@ -51,6 +51,27 @@ class CausalMasterTests(unittest.TestCase):
     def test_zero_horizon_has_no_solution(self):
         self.assertEqual(master.build_master(0, use_events=False).solver.check(), z3.unsat)
 
+    def test_normalization_independent_of_optional_resource_bounds(self):
+        value = master.reference_assignment(48)
+        initial = dict(value['heroes'][0])
+        toggled = dict(initial, active=True)
+        prefixed = {'route': 'AA' + value['route'],
+                    'heroes': [initial, toggled] + value['heroes'],
+                    'landmark': value['landmark'] + 2}
+        for symmetry, expected in ((False, z3.sat), (True, z3.unsat)):
+            problem = master.build_master(50, use_events=False, symmetry=symmetry)
+            global_master.pin_assignment(problem, prefixed)
+            self.assertEqual(problem.solver.check(), expected)
+        # The shorter representative is padded at its real terminal state.
+        problem = master.build_master(50, use_events=False, symmetry=True)
+        global_master.pin_assignment(problem, master.reference_assignment(50))
+        self.assertEqual(problem.solver.check(), z3.sat)
+
+    def test_bitvector_events_accept_the_same_reference(self):
+        problem = master.build_master(49, event_encoding='bitvector')
+        global_master.pin_assignment(problem, master.reference_assignment(49))
+        self.assertEqual(problem.solver.check(), z3.sat)
+
 
 if __name__ == '__main__':
     unittest.main()

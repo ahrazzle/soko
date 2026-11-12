@@ -89,7 +89,7 @@ def _save(path, result):
 
 
 def run(horizon, budget_seconds, *, control=None, phase_order='exact-first',
-        use_events=True, symmetry=False, encoding='compact', html=None,
+        use_events=False, symmetry=False, encoding='compact', html=None,
         chromium=None, output=None, event_encoding='integer'):
     if type(horizon) is not int or horizon < 0:
         raise ValueError('invalid horizon')
@@ -338,7 +338,10 @@ def main():
     p.add_argument('--budget-seconds', type=float)
     p.add_argument('--control', choices=('reference', 'spurious'))
     p.add_argument('--phase-order', choices=('exact-first', 'flow-first'), default='exact-first')
-    p.add_argument('--no-events', action='store_true')
+    event_options = p.add_mutually_exclusive_group()
+    event_options.add_argument('--events', dest='use_events', action='store_true')
+    event_options.add_argument('--no-events', dest='use_events', action='store_false')
+    p.set_defaults(use_events=False)
     p.add_argument('--symmetry', action='store_true')
     p.add_argument('--encoding', choices=('compact', 'causal', 'legacy'), default='compact')
     p.add_argument('--event-encoding', choices=('integer', 'bitvector'), default='integer')
@@ -355,7 +358,7 @@ def main():
         p.error('--horizon and --budget-seconds are required')
     options = {'horizon': args.horizon, 'budget_seconds': args.budget_seconds,
                'control': args.control, 'phase_order': args.phase_order,
-               'use_events': not args.no_events, 'symmetry': args.symmetry,
+               'use_events': args.use_events, 'symmetry': args.symmetry,
                'encoding': args.encoding, 'event_encoding': args.event_encoding,
                'html': args.html, 'chromium': args.chromium}
     result = run_bounded(options, args.output)
