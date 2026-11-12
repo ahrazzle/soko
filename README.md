@@ -4,6 +4,8 @@
 
 This project has **not passed the Proven Commons Verified Bar**. `VERIFIED` in a route response means agreement between local interpreters, not a formal proof, externally accepted record, or matching source lock. The experimental `formal_kernel.py` is not exposed as `formal_*` MCP tools.
 
+Read [the original evaluation and Frontier assessment](docs/original-eval-and-frontier.md) before using these fixtures as benchmark inputs. In particular, the local `I-1` differs from Ostroff's original eight-key opening room. The MCP exercise is a regression demonstration, not progress on the live Frontier.
+
 ## Connect
 
 Run from the repository root:

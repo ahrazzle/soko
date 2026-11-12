@@ -5,6 +5,12 @@ Python functions directly. The aim is to check whether a tool that advertises
 route optimization actually searches, and to retain the limits of a harder run.
 It does not claim a public benchmark record or a kernel-checked proof.
 
+**Original-source correction:** a later check found that the repository's `I-1`
+fixture is not the original opening room. Original I-1 is 13-by-5 and takes eight
+rights; this recorded 12-by-5 fixture takes nine. The canary below remains a local
+regression test. See [the source assessment](../../docs/original-eval-and-frontier.md)
+for the original evaluation conditions, current Frontier gaps and provenance.
+
 ## Inputs and attribution
 
 The complete room registry, grids, request parameters and responses are in each
