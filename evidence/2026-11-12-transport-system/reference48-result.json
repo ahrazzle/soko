@@ -1,0 +1,36 @@
+{
+  "bundle_sha256": "ba91a335b993a1d8a225cfefb35f6bfff0edc3f456d1f08c2d3d8b0774c129c9",
+  "concrete_local_replay": {
+    "first_win": 48,
+    "original_replay_and_live_record_comparison_required": true,
+    "route": "LLULULULRURURURURUAUDRRDDAUARRDLRAULDLDRARURDUUR",
+    "winning": true
+  },
+  "horizon": 48,
+  "inputs": 48,
+  "kind": "reference_projection_control",
+  "original_game_equivalence_proved": false,
+  "original_replay": "passed",
+  "original_replay_sha256": "47f2b6bcf3408b164a7ddd7739f689824ee8661384a1a896157ebe72bd8428c4",
+  "record_claim": false,
+  "route": "LLULULULRURURURURUAUDRRDDAUARRDLRAULDLDRARURDUUR",
+  "solver": {
+    "assignment_path": "/tmp/soko-transport-control-final/sat/assignment.json",
+    "checker_sha256": "0535c9a92e0902c1432067de7741bd3e28054e1762d0bf58de90ab45005c5bdc",
+    "checker_status": "assignment_verified",
+    "cnf_sha256": "8a58259536ed2ce19189aa97a7470dbcd1efc1ce84fe341c682e22ce5e737d23",
+    "elapsed_seconds": 0.08214942500126199,
+    "phase": "complete",
+    "proof_path": null,
+    "proof_sha256": null,
+    "stats": {
+      "conflicts": 0,
+      "decisions": 0,
+      "propagations": 4552,
+      "restarts": 0
+    },
+    "status": "sat"
+  },
+  "status": "reference_control_passed",
+  "trace_reconstruction": "pinned_projection_checked"
+}

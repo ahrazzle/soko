@@ -1,0 +1,21 @@
+{
+  "bundle_sha256": "0be084b77fa23285267f7aea22cbd84fed08dcdfe75317c0e144cf73a426e7c4",
+  "horizon": 47,
+  "kind": "global_transport_relaxation",
+  "original_game_equivalence_proved": false,
+  "record_claim": false,
+  "solver": {
+    "assignment_path": null,
+    "checker_sha256": "0535c9a92e0902c1432067de7741bd3e28054e1762d0bf58de90ab45005c5bdc",
+    "checker_status": "not_run",
+    "cnf_sha256": "d613986fa0ffbbf482c767926e11baed44eab4257b6708785579b832634681ad",
+    "elapsed_seconds": 60.102018575998954,
+    "phase": "solve",
+    "proof_path": null,
+    "proof_sha256": null,
+    "reason": "wall-clock timeout",
+    "stats": {},
+    "status": "unknown"
+  },
+  "status": "unknown"
+}
