@@ -1,0 +1,443 @@
+{
+  "allocation": [
+    {
+      "decision": "inconclusive",
+      "workload": {
+        "horizon": 47,
+        "mode": "goal",
+        "pins": "LLULULULURURURURUAUDRRDDAUARRDLRAULDLDRARURDUUR"
+      }
+    }
+  ],
+  "command": [
+    "/tmp/soko-causal-venv/bin/python",
+    "-m",
+    "experiments.causal_solver.benchmark",
+    "--output",
+    "/tmp/causal-fixed47.json",
+    "--budget",
+    "20",
+    "--horizons",
+    "47",
+    "--pins",
+    "LLULULULURURURURUAUDRRDDAUARRDLRAULDLDRARURDUUR",
+    "--repetitions",
+    "1",
+    "--events"
+  ],
+  "git_head": "19cd9d73baa4ec5ce28ef8c4183094eb0eba6d4f",
+  "instance": "III-14",
+  "platform": "Linux-6.18.57-x86_64-with-glibc2.41",
+  "results": [
+    {
+      "assertions": 292,
+      "budget_seconds": 20.0,
+      "case": {
+        "backend": "z3",
+        "encoding": "compact",
+        "events": false,
+        "horizon": 47,
+        "mode": "goal",
+        "pins": "LLULULULURURURURUAUDRRDDAUARRDLRAULDLDRARURDUUR"
+      },
+      "command": [
+        "/tmp/soko-causal-venv/bin/python",
+        "-m",
+        "experiments.causal_solver.benchmark",
+        "--worker",
+        "<spec.json>",
+        "<result.json>"
+      ],
+      "peak_rss_kib": 475672,
+      "phase": "solving",
+      "reason": "wall_timeout",
+      "repetition": 0,
+      "status": "unknown",
+      "timings": {
+        "build_seconds": 2.4667228590005834,
+        "certificate_seconds": 0.0,
+        "compilation_seconds": 0.0,
+        "solve_seconds": 0.0,
+        "witness_seconds": 0.0
+      },
+      "wall_seconds": 20.028126206001616
+    },
+    {
+      "assertions": 4236,
+      "budget_seconds": 20.0,
+      "case": {
+        "backend": "z3",
+        "encoding": "compact",
+        "events": true,
+        "horizon": 47,
+        "mode": "goal",
+        "pins": "LLULULULURURURURUAUDRRDDAUARRDLRAULDLDRARURDUUR"
+      },
+      "command": [
+        "/tmp/soko-causal-venv/bin/python",
+        "-m",
+        "experiments.causal_solver.benchmark",
+        "--worker",
+        "<spec.json>",
+        "<result.json>"
+      ],
+      "peak_rss_kib": 306000,
+      "phase": "solving",
+      "reason": "wall_timeout",
+      "repetition": 0,
+      "status": "unknown",
+      "timings": {
+        "build_seconds": 12.56408229599765,
+        "certificate_seconds": 0.0,
+        "compilation_seconds": 0.0,
+        "solve_seconds": 0.0,
+        "witness_seconds": 0.0
+      },
+      "wall_seconds": 20.024010368000745
+    },
+    {
+      "assertions": 292,
+      "budget_seconds": 20.0,
+      "case": {
+        "backend": "pysat",
+        "encoding": "compact",
+        "events": false,
+        "horizon": 47,
+        "mode": "goal",
+        "pins": "LLULULULURURURURUAUDRRDDAUARRDLRAULDLDRARURDUUR"
+      },
+      "command": [
+        "/tmp/soko-causal-venv/bin/python",
+        "-m",
+        "experiments.causal_solver.benchmark",
+        "--worker",
+        "<spec.json>",
+        "<result.json>"
+      ],
+      "peak_rss_kib": 1254224,
+      "phase": "solving",
+      "reason": "wall_timeout",
+      "repetition": 0,
+      "status": "unknown",
+      "timings": {
+        "build_seconds": 2.7132421219976095,
+        "certificate_seconds": 0.0,
+        "compilation_seconds": 15.402284417999908,
+        "solve_seconds": 0.0,
+        "witness_seconds": 0.0
+      },
+      "wall_seconds": 20.10104439299903
+    },
+    {
+      "assertions": 4236,
+      "budget_seconds": 20.0,
+      "case": {
+        "backend": "pysat",
+        "encoding": "compact",
+        "events": true,
+        "horizon": 47,
+        "mode": "goal",
+        "pins": "LLULULULURURURURUAUDRRDDAUARRDLRAULDLDRARURDUUR"
+      },
+      "command": [
+        "/tmp/soko-causal-venv/bin/python",
+        "-m",
+        "experiments.causal_solver.benchmark",
+        "--worker",
+        "<spec.json>",
+        "<result.json>"
+      ],
+      "peak_rss_kib": 597364,
+      "phase": "compiling",
+      "reason": "wall_timeout",
+      "repetition": 0,
+      "status": "unknown",
+      "timings": {
+        "build_seconds": 8.82115236699974,
+        "certificate_seconds": 0.0,
+        "compilation_seconds": 0.0,
+        "solve_seconds": 0.0,
+        "witness_seconds": 0.0
+      },
+      "wall_seconds": 20.042801933999726
+    },
+    {
+      "assertions": 292,
+      "budget_seconds": 20.0,
+      "case": {
+        "backend": "cpsat",
+        "encoding": "compact",
+        "events": false,
+        "horizon": 47,
+        "mode": "goal",
+        "pins": "LLULULULURURURURUAUDRRDDAUARRDLRAULDLDRARURDUUR"
+      },
+      "command": [
+        "/tmp/soko-causal-venv/bin/python",
+        "-m",
+        "experiments.causal_solver.benchmark",
+        "--worker",
+        "<spec.json>",
+        "<result.json>"
+      ],
+      "peak_rss_kib": 1158852,
+      "phase": "solving",
+      "reason": "wall_timeout",
+      "repetition": 0,
+      "status": "unknown",
+      "timings": {
+        "build_seconds": 2.7254693479990237,
+        "certificate_seconds": 0.0,
+        "compilation_seconds": 17.054627753001114,
+        "solve_seconds": 0.0,
+        "witness_seconds": 0.0
+      },
+      "wall_seconds": 20.061520788000053
+    },
+    {
+      "assertions": 4236,
+      "budget_seconds": 20.0,
+      "case": {
+        "backend": "cpsat",
+        "encoding": "compact",
+        "events": true,
+        "horizon": 47,
+        "mode": "goal",
+        "pins": "LLULULULURURURURUAUDRRDDAUARRDLRAULDLDRARURDUUR"
+      },
+      "command": [
+        "/tmp/soko-causal-venv/bin/python",
+        "-m",
+        "experiments.causal_solver.benchmark",
+        "--worker",
+        "<spec.json>",
+        "<result.json>"
+      ],
+      "peak_rss_kib": 596056,
+      "phase": "compiling",
+      "reason": "wall_timeout",
+      "repetition": 0,
+      "status": "unknown",
+      "timings": {
+        "build_seconds": 8.118039957000292,
+        "certificate_seconds": 0.0,
+        "compilation_seconds": 0.0,
+        "solve_seconds": 0.0,
+        "witness_seconds": 0.0
+      },
+      "wall_seconds": 20.04481392100206
+    },
+    {
+      "budget_seconds": 20.0,
+      "case": {
+        "backend": "z3",
+        "encoding": "causal",
+        "events": false,
+        "horizon": 47,
+        "mode": "goal",
+        "pins": "LLULULULURURURURUAUDRRDDAUARRDLRAULDLDRARURDUUR"
+      },
+      "command": [
+        "/tmp/soko-causal-venv/bin/python",
+        "-m",
+        "experiments.causal_solver.benchmark",
+        "--worker",
+        "<spec.json>",
+        "<result.json>"
+      ],
+      "peak_rss_kib": 304204,
+      "phase": "building",
+      "reason": "wall_timeout",
+      "repetition": 0,
+      "status": "unknown",
+      "timings": {
+        "build_seconds": 0.0,
+        "certificate_seconds": 0.0,
+        "compilation_seconds": 0.0,
+        "solve_seconds": 0.0,
+        "witness_seconds": 0.0
+      },
+      "wall_seconds": 20.017403202000423
+    },
+    {
+      "budget_seconds": 20.0,
+      "case": {
+        "backend": "z3",
+        "encoding": "causal",
+        "events": true,
+        "horizon": 47,
+        "mode": "goal",
+        "pins": "LLULULULURURURURUAUDRRDDAUARRDLRAULDLDRARURDUUR"
+      },
+      "command": [
+        "/tmp/soko-causal-venv/bin/python",
+        "-m",
+        "experiments.causal_solver.benchmark",
+        "--worker",
+        "<spec.json>",
+        "<result.json>"
+      ],
+      "peak_rss_kib": 557556,
+      "phase": "building",
+      "reason": "wall_timeout",
+      "repetition": 0,
+      "status": "unknown",
+      "timings": {
+        "build_seconds": 0.0,
+        "certificate_seconds": 0.0,
+        "compilation_seconds": 0.0,
+        "solve_seconds": 0.0,
+        "witness_seconds": 0.0
+      },
+      "wall_seconds": 20.030276276000222
+    },
+    {
+      "budget_seconds": 20.0,
+      "case": {
+        "backend": "pysat",
+        "encoding": "causal",
+        "events": false,
+        "horizon": 47,
+        "mode": "goal",
+        "pins": "LLULULULURURURURUAUDRRDDAUARRDLRAULDLDRARURDUUR"
+      },
+      "command": [
+        "/tmp/soko-causal-venv/bin/python",
+        "-m",
+        "experiments.causal_solver.benchmark",
+        "--worker",
+        "<spec.json>",
+        "<result.json>"
+      ],
+      "peak_rss_kib": 304212,
+      "phase": "building",
+      "reason": "wall_timeout",
+      "repetition": 0,
+      "status": "unknown",
+      "timings": {
+        "build_seconds": 0.0,
+        "certificate_seconds": 0.0,
+        "compilation_seconds": 0.0,
+        "solve_seconds": 0.0,
+        "witness_seconds": 0.0
+      },
+      "wall_seconds": 20.01731564000147
+    },
+    {
+      "budget_seconds": 20.0,
+      "case": {
+        "backend": "pysat",
+        "encoding": "causal",
+        "events": true,
+        "horizon": 47,
+        "mode": "goal",
+        "pins": "LLULULULURURURURUAUDRRDDAUARRDLRAULDLDRARURDUUR"
+      },
+      "command": [
+        "/tmp/soko-causal-venv/bin/python",
+        "-m",
+        "experiments.causal_solver.benchmark",
+        "--worker",
+        "<spec.json>",
+        "<result.json>"
+      ],
+      "peak_rss_kib": 304348,
+      "phase": "building",
+      "reason": "wall_timeout",
+      "repetition": 0,
+      "status": "unknown",
+      "timings": {
+        "build_seconds": 0.0,
+        "certificate_seconds": 0.0,
+        "compilation_seconds": 0.0,
+        "solve_seconds": 0.0,
+        "witness_seconds": 0.0
+      },
+      "wall_seconds": 20.026675507997425
+    },
+    {
+      "budget_seconds": 20.0,
+      "case": {
+        "backend": "cpsat",
+        "encoding": "causal",
+        "events": false,
+        "horizon": 47,
+        "mode": "goal",
+        "pins": "LLULULULURURURURUAUDRRDDAUARRDLRAULDLDRARURDUUR"
+      },
+      "command": [
+        "/tmp/soko-causal-venv/bin/python",
+        "-m",
+        "experiments.causal_solver.benchmark",
+        "--worker",
+        "<spec.json>",
+        "<result.json>"
+      ],
+      "peak_rss_kib": 304348,
+      "phase": "building",
+      "reason": "wall_timeout",
+      "repetition": 0,
+      "status": "unknown",
+      "timings": {
+        "build_seconds": 0.0,
+        "certificate_seconds": 0.0,
+        "compilation_seconds": 0.0,
+        "solve_seconds": 0.0,
+        "witness_seconds": 0.0
+      },
+      "wall_seconds": 20.017727151000145
+    },
+    {
+      "budget_seconds": 20.0,
+      "case": {
+        "backend": "cpsat",
+        "encoding": "causal",
+        "events": true,
+        "horizon": 47,
+        "mode": "goal",
+        "pins": "LLULULULURURURURUAUDRRDDAUARRDLRAULDLDRARURDUUR"
+      },
+      "command": [
+        "/tmp/soko-causal-venv/bin/python",
+        "-m",
+        "experiments.causal_solver.benchmark",
+        "--worker",
+        "<spec.json>",
+        "<result.json>"
+      ],
+      "peak_rss_kib": 305268,
+      "phase": "building",
+      "reason": "wall_timeout",
+      "repetition": 0,
+      "status": "unknown",
+      "timings": {
+        "build_seconds": 0.0,
+        "certificate_seconds": 0.0,
+        "compilation_seconds": 0.0,
+        "solve_seconds": 0.0,
+        "witness_seconds": 0.0
+      },
+      "wall_seconds": 20.01519209899925
+    }
+  ],
+  "schema": "causal-benchmark-v1",
+  "sources_sha256": {
+    "experiments/causal_solver/backends.py": "dfa83cee8abeaab4c10360e7ce9ed454faba4ccf63d9dd1fe21daa05d641fd02",
+    "experiments/causal_solver/benchmark.py": "c6d38f2098b2898e379538eb61ccef9797a170bf5865d87bef09c430e8f142de",
+    "experiments/causal_solver/encoding.py": "fa5691e9e43157ce7fe324150606b331f2f8c04015f2d04ce17e2f603a35b76e",
+    "experiments/causal_solver/events.py": "6122c1575721e697e54f70d33e0a29897bebe7bb31d52a312db84c6da3612756",
+    "experiments/exact_frontier/cnf_search.py": "e6a443352f7750edf9f3daecac61e8b5602db903e27ce18d4e33d45336c90c60",
+    "experiments/exact_frontier/iii14_compact.py": "16a9250a9213d73da8a4ee6458af9d539518ab56afcc2ebe144a462ce103f290",
+    "experiments/exact_frontier/iii14_problem.py": "255c0c4bd049ee511b9087b03ba19bb253671711927965003fe0bd5d702ea29c",
+    "experiments/exact_frontier/iii14_smt.py": "4d40f35450837ec903f63322054f8ffc88486189c63db8d67bfc91c1708ba248",
+    "soko_mcp/catalog.py": "43d8b8aaf29c3e9fb857ea803a40edf5cc6e230e8e81e2c8eb002d41364f75ed",
+    "soko_mcp/data/catalog.json": "c79e2ddf755039ad09ee57d30e06efc594d0310d20cbdba26b40a4bd9ae5c8bc",
+    "soko_mcp/oracle.py": "8145f311051a3f6bfa94467da7a6d9a30535f9edf1bb00662982da70e9cc9853"
+  },
+  "versions": {
+    "ortools": "9.15.6755",
+    "python": "3.12.14",
+    "python-sat": "1.9.dev22",
+    "z3-solver": "5.4.1.0"
+  }
+}

@@ -5,7 +5,7 @@ GitHub repository, implement it, test it, then share the measured results. The
 global architecture is already documented in merged PR #16. This document
 specifies the implementation and acceptance checks for its completion.
 
-## Work to implement
+## Implemented scope
 
 1. A bounded master chooses every action, both hero trajectories, active hero,
    and one common material landmark. It fixes no reference route or schedule.
@@ -55,11 +55,39 @@ still relies on the documented game-to-flow projection and encoding/compilation.
 - Run a bounded unrestricted III-14 pilot with progress and durable results.
   Report actual outcomes, including no improvement or timeout.
 
-Relevant Foundation-0 research is being assessed in parallel. Any adopted
-technique will be linked to its pinned source and the implementation or test
-that exercises it. Insights will not be left as unimplemented recommendations
-within this work's declared scope.
+## Completion and measured results
 
-Status at publication: implementation pending; this plan is shared before
-implementation. The completion section will be updated with code, tests, and
-execution evidence in the same PR.
+The plan was published in commit `84d3d0e` and PR #17 before implementation.
+PR #17 was merged while implementation was underway; the implementation and
+results are therefore shared in a follow-up PR. The executable core is commit
+`d6fd09d`, with subsequent CLI path/deadline fixes covered by regression tests.
+
+All five scope items above are implemented in `global_master.py`,
+`universal_flow.py`, `cut_certificate.py`, and `global_search.py`. The master
+searches all permitted hero/action schedules; it pins a reference only in the
+explicitly labeled `control` command. The independent checker reconstructs the
+complete source-derived graph as well as each cut boundary and capacity.
+
+Acceptance checks now cover:
+
+- Exhaustive full cut-loop/direct-flow agreement on four small finite networks,
+  including an infeasible network and a changed landmark after a learned cut.
+- Known 48-input and constructed 47-input schedules at six landmarks, with
+  universal and conditional flow values agreeing at 0, 7, 8 and 9.
+- Missing disabled edges, altered predicates, invented movement, changed
+  sources, invalid partitions, duplicate IDs, and corrupted witness paths.
+- The reference and its abstract prefix padding, sampled numeric/symbolic
+  capacity agreement, iteration/deadline limits, and CLI paths from another cwd.
+
+The real reference control learns one cut and then recovers the 48-input route;
+its nine paths pass independent checking, and the route passes the pinned
+original PuzzleScript build. A one-input UNSAT control passes DRAT checking.
+The unrestricted 47-input pilot accepts eight independently checked cuts in
+120 seconds and ends `unknown` during the ninth master query. It establishes
+neither a better route nor a stronger lower bound. The global network has
+9,921 nodes and 29,413 potential edges at that horizon.
+
+The [portable evidence and replay command](../../evidence/2026-11-12-global-cuts/README.md)
+retain every accepted cut, assignment, source pin, reference witness, original
+replay and proof-control artifact. Foundation-0 methods and their implemented
+test mappings are documented in [FOUNDATION_RESEARCH.md](FOUNDATION_RESEARCH.md).

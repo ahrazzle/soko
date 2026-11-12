@@ -1,0 +1,73 @@
+import hashlib
+import json
+import os
+from pathlib import Path
+import resource
+import subprocess
+import sys
+import time
+
+ROOT = Path('/workspace/soko-tractability')
+sys.path.insert(0, str(ROOT))
+SOURCES = [ROOT / name for name in (
+    'experiments/causal_solver/master.py',
+    'experiments/causal_solver/events.py',
+    'experiments/causal_solver/bv_events.py',
+    'experiments/transport_relaxation/global_master.py',
+    'experiments/transport_relaxation/model.py',
+    'experiments/exact_frontier/iii14_problem.py',
+    'soko_mcp/data/catalog.json')]
+
+def identity():
+    return {str(p.relative_to(ROOT)): hashlib.sha256(p.read_bytes()).hexdigest() for p in SOURCES}
+
+if len(sys.argv) > 1:
+    import z3
+    from experiments.causal_solver import master, events, bv_events
+    started = time.monotonic()
+    mode = sys.argv[1]
+    print(json.dumps({'phase': 'build', 'encoding': mode}), flush=True)
+    problem = master.build_master(47, use_events=False)
+    if mode == 'integer':
+        events.add_master_constraints(problem)
+    elif mode == 'bitvector':
+        bv_events.add_master_constraints(problem)
+    build = time.monotonic() - started
+    print(json.dumps({'phase':'solve','encoding':mode,'build_seconds':build}),flush=True)
+    problem.solver.set(timeout=max(1, int((19.5 - (time.monotonic()-started))*1000)), random_seed=0)
+    began = time.monotonic()
+    outcome = problem.solver.check()
+    solve = time.monotonic() - began
+    result = {'phase':'complete','encoding':mode,'horizon':47,'status':str(outcome),
+              'build_seconds':build,'solve_seconds':solve,'worker_seconds':time.monotonic()-started,
+              'peak_rss_kib':resource.getrusage(resource.RUSAGE_SELF).ru_maxrss,
+              'z3_version':z3.get_version_string(),'random_seed':0,'restrictions':[],
+              'reason_unknown':problem.solver.reason_unknown() if outcome==z3.unknown else None}
+    if outcome==z3.sat:
+        from experiments.transport_relaxation.global_master import decode
+        result['assignment'] = decode(problem, problem.solver.model())
+        result['validated_first_terminal'] = master.validate_assignment(result['assignment'],47)
+    print(json.dumps(result),flush=True)
+else:
+    results = {'kind':'matched_unrestricted_hero_master_encoding_probe',
+               'full_process_budget_seconds':20,'record_claim':False,'rows':[]}
+    out = Path('/tmp/bv_events_probe.json')
+    for mode in ('off','integer','bitvector'):
+        before = identity()
+        began = time.monotonic()
+        try:
+            process = subprocess.run([sys.executable,__file__,mode],cwd=ROOT,capture_output=True,text=True,timeout=20)
+            row = {'encoding':mode,'full_wall_seconds':time.monotonic()-began,'returncode':process.returncode,
+                   'source_sha256':before,'source_unchanged':identity()==before,
+                   'output':[json.loads(line) for line in process.stdout.splitlines()],
+                   'stderr':process.stderr}
+            row['status'] = row['output'][-1].get('status','error') if row['output'] else 'error'
+        except subprocess.TimeoutExpired as error:
+            stdout = error.stdout.decode() if isinstance(error.stdout,bytes) else (error.stdout or '')
+            row = {'encoding':mode,'status':'unknown','reason':'full_process_timeout',
+                   'full_wall_seconds':time.monotonic()-began,'source_sha256':before,
+                   'source_unchanged':identity()==before,
+                   'output':[json.loads(line) for line in stdout.splitlines()]}
+        results['rows'].append(row)
+        out.write_text(json.dumps(results,indent=2)+'\n')
+        print(json.dumps({'encoding':mode,'status':row['status'],'full_wall_seconds':row['full_wall_seconds']}),flush=True)

@@ -1,0 +1,656 @@
+{
+  "comparison": "fixed complete assignment, compact exact model, single repetition per cell",
+  "solver_timeout_seconds": 10,
+  "outer_process_timeout_seconds": 35,
+  "runs": [
+    {
+      "case": "known48",
+      "method": "deterministic",
+      "timeout_seconds": 10,
+      "horizon": 48,
+      "wall_seconds": 0.5260356849976233,
+      "peak_rss_kib": 49316,
+      "metadata": {
+        "version": 1,
+        "room": "III-14",
+        "horizon": 48,
+        "encoding": "compact",
+        "goal_absorbing": true,
+        "landmarks": false,
+        "source_sha256": "f66ceb8f8a2c23a3cb270bad62cdf194e47479772cab94f154ed26f0ff7c20e0",
+        "board_sha256": "82d3fe1da938a770fa5c90d0bb8a441bfb5609baf10fac0f55257996d5e98406",
+        "mechanics_sha256": {
+          "experiments/exact_frontier/iii14_problem.py": "255c0c4bd049ee511b9087b03ba19bb253671711927965003fe0bd5d702ea29c",
+          "experiments/exact_frontier/iii14_smt.py": "4d40f35450837ec903f63322054f8ffc88486189c63db8d67bfc91c1708ba248",
+          "soko_mcp/oracle.py": "8145f311051a3f6bfa94467da7a6d9a30535f9edf1bb00662982da70e9cc9853",
+          "soko_mcp/data/catalog.json": "c79e2ddf755039ad09ee57d30e06efc594d0310d20cbdba26b40a4bd9ae5c8bc",
+          "soko_mcp/data/frontier_snapshot.json": "8d428a80a921c579d909c11526f5d43c330eb493c12e877760a860806340a308",
+          "experiments/causal_solver/refinement.py": "2483302bf0b0647c83bd670c73044940ab372e59386c870b26da8845e54fdc11",
+          "experiments/exact_frontier/iii14_compact.py": "16a9250a9213d73da8a4ee6458af9d539518ab56afcc2ebe144a462ce103f290"
+        }
+      },
+      "result": {
+        "status": "sat",
+        "route": "LLULULULRURURURURUAUDRRDDAUARRDLRAULDLDRARURDUUR",
+        "horizon": 48,
+        "encoding": "compact",
+        "build_seconds": 0.003848748001473723,
+        "solve_seconds": 0.5196927469987713,
+        "assumption_count": 195,
+        "verified": false,
+        "method": "deterministic_full_material_completion"
+      }
+    },
+    {
+      "status": "unknown",
+      "verified": false,
+      "outer_timeout_seconds": 35,
+      "wall_seconds": 35.46859768899958,
+      "reason_unknown": "process group wall budget exhausted",
+      "case": "known48",
+      "method": "guarded_smt",
+      "horizon": 48,
+      "result": {
+        "status": "unknown",
+        "verified": false,
+        "reason_unknown": "process group wall budget exhausted",
+        "build_seconds": null,
+        "solve_seconds": null,
+        "phase_timing_note": "Internal timings unavailable because process group exceeded outer wall budget."
+      },
+      "metadata": {
+        "version": 1,
+        "room": "III-14",
+        "horizon": 48,
+        "encoding": "compact",
+        "goal_absorbing": true,
+        "landmarks": false,
+        "source_sha256": "f66ceb8f8a2c23a3cb270bad62cdf194e47479772cab94f154ed26f0ff7c20e0",
+        "board_sha256": "82d3fe1da938a770fa5c90d0bb8a441bfb5609baf10fac0f55257996d5e98406",
+        "mechanics_sha256": {
+          "experiments/exact_frontier/iii14_problem.py": "255c0c4bd049ee511b9087b03ba19bb253671711927965003fe0bd5d702ea29c",
+          "experiments/exact_frontier/iii14_smt.py": "4d40f35450837ec903f63322054f8ffc88486189c63db8d67bfc91c1708ba248",
+          "soko_mcp/oracle.py": "8145f311051a3f6bfa94467da7a6d9a30535f9edf1bb00662982da70e9cc9853",
+          "soko_mcp/data/catalog.json": "c79e2ddf755039ad09ee57d30e06efc594d0310d20cbdba26b40a4bd9ae5c8bc",
+          "soko_mcp/data/frontier_snapshot.json": "8d428a80a921c579d909c11526f5d43c330eb493c12e877760a860806340a308",
+          "experiments/causal_solver/refinement.py": "2483302bf0b0647c83bd670c73044940ab372e59386c870b26da8845e54fdc11",
+          "experiments/exact_frontier/iii14_compact.py": "16a9250a9213d73da8a4ee6458af9d539518ab56afcc2ebe144a462ce103f290"
+        }
+      },
+      "peak_rss_kib": null,
+      "timeout_seconds": 10
+    },
+    {
+      "case": "spurious47",
+      "method": "deterministic",
+      "timeout_seconds": 10,
+      "horizon": 47,
+      "wall_seconds": 0.29344987500007846,
+      "peak_rss_kib": 46636,
+      "metadata": {
+        "version": 1,
+        "room": "III-14",
+        "horizon": 47,
+        "encoding": "compact",
+        "goal_absorbing": true,
+        "landmarks": false,
+        "source_sha256": "f66ceb8f8a2c23a3cb270bad62cdf194e47479772cab94f154ed26f0ff7c20e0",
+        "board_sha256": "82d3fe1da938a770fa5c90d0bb8a441bfb5609baf10fac0f55257996d5e98406",
+        "mechanics_sha256": {
+          "experiments/exact_frontier/iii14_problem.py": "255c0c4bd049ee511b9087b03ba19bb253671711927965003fe0bd5d702ea29c",
+          "experiments/exact_frontier/iii14_smt.py": "4d40f35450837ec903f63322054f8ffc88486189c63db8d67bfc91c1708ba248",
+          "soko_mcp/oracle.py": "8145f311051a3f6bfa94467da7a6d9a30535f9edf1bb00662982da70e9cc9853",
+          "soko_mcp/data/catalog.json": "c79e2ddf755039ad09ee57d30e06efc594d0310d20cbdba26b40a4bd9ae5c8bc",
+          "soko_mcp/data/frontier_snapshot.json": "8d428a80a921c579d909c11526f5d43c330eb493c12e877760a860806340a308",
+          "experiments/causal_solver/refinement.py": "2483302bf0b0647c83bd670c73044940ab372e59386c870b26da8845e54fdc11",
+          "experiments/exact_frontier/iii14_compact.py": "16a9250a9213d73da8a4ee6458af9d539518ab56afcc2ebe144a462ce103f290"
+        }
+      },
+      "result": {
+        "status": "unsat",
+        "core": [
+          [
+            "action",
+            0,
+            "L"
+          ],
+          [
+            "action",
+            1,
+            "L"
+          ],
+          [
+            "action",
+            2,
+            "U"
+          ],
+          [
+            "action",
+            3,
+            "L"
+          ],
+          [
+            "action",
+            4,
+            "U"
+          ],
+          [
+            "action",
+            5,
+            "L"
+          ],
+          [
+            "action",
+            6,
+            "U"
+          ],
+          [
+            "action",
+            7,
+            "L"
+          ],
+          [
+            "action",
+            8,
+            "U"
+          ],
+          [
+            "action",
+            9,
+            "R"
+          ],
+          [
+            "action",
+            10,
+            "U"
+          ],
+          [
+            "action",
+            11,
+            "R"
+          ],
+          [
+            "action",
+            12,
+            "U"
+          ],
+          [
+            "action",
+            13,
+            "R"
+          ],
+          [
+            "action",
+            14,
+            "U"
+          ],
+          [
+            "action",
+            15,
+            "R"
+          ],
+          [
+            "action",
+            16,
+            "U"
+          ],
+          [
+            "action",
+            17,
+            "A"
+          ],
+          [
+            "action",
+            18,
+            "U"
+          ],
+          [
+            "action",
+            19,
+            "D"
+          ],
+          [
+            "action",
+            20,
+            "R"
+          ],
+          [
+            "action",
+            21,
+            "R"
+          ],
+          [
+            "action",
+            22,
+            "D"
+          ],
+          [
+            "action",
+            23,
+            "D"
+          ],
+          [
+            "action",
+            24,
+            "A"
+          ],
+          [
+            "action",
+            25,
+            "U"
+          ],
+          [
+            "hero",
+            26,
+            "druid",
+            6,
+            3
+          ]
+        ],
+        "contradiction": "hero_or_active_mismatch",
+        "frame": 26,
+        "horizon": 47,
+        "encoding": "compact",
+        "build_seconds": 0.0037503970015677623,
+        "solve_seconds": 0.2865591600020707,
+        "assumption_count": 191,
+        "verified": false,
+        "method": "deterministic_full_material_completion",
+        "certificate": {
+          "kind": "deterministic_prefix",
+          "metadata": {
+            "version": 1,
+            "room": "III-14",
+            "horizon": 47,
+            "encoding": "compact",
+            "goal_absorbing": true,
+            "landmarks": false,
+            "source_sha256": "f66ceb8f8a2c23a3cb270bad62cdf194e47479772cab94f154ed26f0ff7c20e0",
+            "board_sha256": "82d3fe1da938a770fa5c90d0bb8a441bfb5609baf10fac0f55257996d5e98406",
+            "mechanics_sha256": {
+              "experiments/exact_frontier/iii14_problem.py": "255c0c4bd049ee511b9087b03ba19bb253671711927965003fe0bd5d702ea29c",
+              "experiments/exact_frontier/iii14_smt.py": "4d40f35450837ec903f63322054f8ffc88486189c63db8d67bfc91c1708ba248",
+              "soko_mcp/oracle.py": "8145f311051a3f6bfa94467da7a6d9a30535f9edf1bb00662982da70e9cc9853",
+              "soko_mcp/data/catalog.json": "c79e2ddf755039ad09ee57d30e06efc594d0310d20cbdba26b40a4bd9ae5c8bc",
+              "soko_mcp/data/frontier_snapshot.json": "8d428a80a921c579d909c11526f5d43c330eb493c12e877760a860806340a308",
+              "experiments/causal_solver/refinement.py": "2483302bf0b0647c83bd670c73044940ab372e59386c870b26da8845e54fdc11",
+              "experiments/exact_frontier/iii14_compact.py": "16a9250a9213d73da8a4ee6458af9d539518ab56afcc2ebe144a462ce103f290"
+            }
+          },
+          "core": [
+            [
+              "action",
+              0,
+              "L"
+            ],
+            [
+              "action",
+              1,
+              "L"
+            ],
+            [
+              "action",
+              2,
+              "U"
+            ],
+            [
+              "action",
+              3,
+              "L"
+            ],
+            [
+              "action",
+              4,
+              "U"
+            ],
+            [
+              "action",
+              5,
+              "L"
+            ],
+            [
+              "action",
+              6,
+              "U"
+            ],
+            [
+              "action",
+              7,
+              "L"
+            ],
+            [
+              "action",
+              8,
+              "U"
+            ],
+            [
+              "action",
+              9,
+              "R"
+            ],
+            [
+              "action",
+              10,
+              "U"
+            ],
+            [
+              "action",
+              11,
+              "R"
+            ],
+            [
+              "action",
+              12,
+              "U"
+            ],
+            [
+              "action",
+              13,
+              "R"
+            ],
+            [
+              "action",
+              14,
+              "U"
+            ],
+            [
+              "action",
+              15,
+              "R"
+            ],
+            [
+              "action",
+              16,
+              "U"
+            ],
+            [
+              "action",
+              17,
+              "A"
+            ],
+            [
+              "action",
+              18,
+              "U"
+            ],
+            [
+              "action",
+              19,
+              "D"
+            ],
+            [
+              "action",
+              20,
+              "R"
+            ],
+            [
+              "action",
+              21,
+              "R"
+            ],
+            [
+              "action",
+              22,
+              "D"
+            ],
+            [
+              "action",
+              23,
+              "D"
+            ],
+            [
+              "action",
+              24,
+              "A"
+            ],
+            [
+              "action",
+              25,
+              "U"
+            ],
+            [
+              "hero",
+              26,
+              "druid",
+              6,
+              3
+            ]
+          ],
+          "origin_assumptions_sha256": "c9faea8f12b9dff71082ebe4bddc343494172879b6df51054c16271c84a0d5ed",
+          "payload_sha256": "bbd32de93d40cd3f03ec1ad3af64f70a5323b77ea3a40e35b395c29978742cc5",
+          "validation": {
+            "status": "not_run",
+            "verified": false
+          }
+        }
+      },
+      "fresh_certificate_recheck": {
+        "status": "verified",
+        "contradiction": "hero_or_active_mismatch",
+        "frame": 26,
+        "verified": true,
+        "recheck_status": "unsat",
+        "seconds": 0.7004568470001686,
+        "checker": "retained_exact_transition_and_python_oracle",
+        "certificate": {
+          "kind": "deterministic_prefix",
+          "metadata": {
+            "version": 1,
+            "room": "III-14",
+            "horizon": 47,
+            "encoding": "compact",
+            "goal_absorbing": true,
+            "landmarks": false,
+            "source_sha256": "f66ceb8f8a2c23a3cb270bad62cdf194e47479772cab94f154ed26f0ff7c20e0",
+            "board_sha256": "82d3fe1da938a770fa5c90d0bb8a441bfb5609baf10fac0f55257996d5e98406",
+            "mechanics_sha256": {
+              "experiments/exact_frontier/iii14_problem.py": "255c0c4bd049ee511b9087b03ba19bb253671711927965003fe0bd5d702ea29c",
+              "experiments/exact_frontier/iii14_smt.py": "4d40f35450837ec903f63322054f8ffc88486189c63db8d67bfc91c1708ba248",
+              "soko_mcp/oracle.py": "8145f311051a3f6bfa94467da7a6d9a30535f9edf1bb00662982da70e9cc9853",
+              "soko_mcp/data/catalog.json": "c79e2ddf755039ad09ee57d30e06efc594d0310d20cbdba26b40a4bd9ae5c8bc",
+              "soko_mcp/data/frontier_snapshot.json": "8d428a80a921c579d909c11526f5d43c330eb493c12e877760a860806340a308",
+              "experiments/causal_solver/refinement.py": "2483302bf0b0647c83bd670c73044940ab372e59386c870b26da8845e54fdc11",
+              "experiments/exact_frontier/iii14_compact.py": "16a9250a9213d73da8a4ee6458af9d539518ab56afcc2ebe144a462ce103f290"
+            }
+          },
+          "core": [
+            [
+              "action",
+              0,
+              "L"
+            ],
+            [
+              "action",
+              1,
+              "L"
+            ],
+            [
+              "action",
+              2,
+              "U"
+            ],
+            [
+              "action",
+              3,
+              "L"
+            ],
+            [
+              "action",
+              4,
+              "U"
+            ],
+            [
+              "action",
+              5,
+              "L"
+            ],
+            [
+              "action",
+              6,
+              "U"
+            ],
+            [
+              "action",
+              7,
+              "L"
+            ],
+            [
+              "action",
+              8,
+              "U"
+            ],
+            [
+              "action",
+              9,
+              "R"
+            ],
+            [
+              "action",
+              10,
+              "U"
+            ],
+            [
+              "action",
+              11,
+              "R"
+            ],
+            [
+              "action",
+              12,
+              "U"
+            ],
+            [
+              "action",
+              13,
+              "R"
+            ],
+            [
+              "action",
+              14,
+              "U"
+            ],
+            [
+              "action",
+              15,
+              "R"
+            ],
+            [
+              "action",
+              16,
+              "U"
+            ],
+            [
+              "action",
+              17,
+              "A"
+            ],
+            [
+              "action",
+              18,
+              "U"
+            ],
+            [
+              "action",
+              19,
+              "D"
+            ],
+            [
+              "action",
+              20,
+              "R"
+            ],
+            [
+              "action",
+              21,
+              "R"
+            ],
+            [
+              "action",
+              22,
+              "D"
+            ],
+            [
+              "action",
+              23,
+              "D"
+            ],
+            [
+              "action",
+              24,
+              "A"
+            ],
+            [
+              "action",
+              25,
+              "U"
+            ],
+            [
+              "hero",
+              26,
+              "druid",
+              6,
+              3
+            ]
+          ],
+          "origin_assumptions_sha256": "c9faea8f12b9dff71082ebe4bddc343494172879b6df51054c16271c84a0d5ed",
+          "payload_sha256": "bbd32de93d40cd3f03ec1ad3af64f70a5323b77ea3a40e35b395c29978742cc5",
+          "validation": {
+            "status": "verified",
+            "contradiction": "hero_or_active_mismatch",
+            "frame": 26,
+            "verified": true,
+            "recheck_status": "unsat",
+            "seconds": 0.7004568470001686,
+            "checker": "retained_exact_transition_and_python_oracle"
+          }
+        },
+        "wall_seconds": 0.7005815430020448,
+        "peak_rss_kib": 46528
+      }
+    },
+    {
+      "status": "unknown",
+      "verified": false,
+      "outer_timeout_seconds": 35,
+      "wall_seconds": 35.167088928999874,
+      "reason_unknown": "process group wall budget exhausted",
+      "case": "spurious47",
+      "method": "guarded_smt",
+      "horizon": 47,
+      "result": {
+        "status": "unknown",
+        "verified": false,
+        "reason_unknown": "process group wall budget exhausted",
+        "build_seconds": null,
+        "solve_seconds": null,
+        "phase_timing_note": "Internal timings unavailable because process group exceeded outer wall budget."
+      },
+      "metadata": {
+        "version": 1,
+        "room": "III-14",
+        "horizon": 47,
+        "encoding": "compact",
+        "goal_absorbing": true,
+        "landmarks": false,
+        "source_sha256": "f66ceb8f8a2c23a3cb270bad62cdf194e47479772cab94f154ed26f0ff7c20e0",
+        "board_sha256": "82d3fe1da938a770fa5c90d0bb8a441bfb5609baf10fac0f55257996d5e98406",
+        "mechanics_sha256": {
+          "experiments/exact_frontier/iii14_problem.py": "255c0c4bd049ee511b9087b03ba19bb253671711927965003fe0bd5d702ea29c",
+          "experiments/exact_frontier/iii14_smt.py": "4d40f35450837ec903f63322054f8ffc88486189c63db8d67bfc91c1708ba248",
+          "soko_mcp/oracle.py": "8145f311051a3f6bfa94467da7a6d9a30535f9edf1bb00662982da70e9cc9853",
+          "soko_mcp/data/catalog.json": "c79e2ddf755039ad09ee57d30e06efc594d0310d20cbdba26b40a4bd9ae5c8bc",
+          "soko_mcp/data/frontier_snapshot.json": "8d428a80a921c579d909c11526f5d43c330eb493c12e877760a860806340a308",
+          "experiments/causal_solver/refinement.py": "2483302bf0b0647c83bd670c73044940ab372e59386c870b26da8845e54fdc11",
+          "experiments/exact_frontier/iii14_compact.py": "16a9250a9213d73da8a4ee6458af9d539518ab56afcc2ebe144a462ce103f290"
+        }
+      },
+      "peak_rss_kib": null,
+      "timeout_seconds": 10
+    }
+  ],
+  "python": "3.12.14",
+  "z3": "5.4.1",
+  "command": "/tmp/soko-exact-venv/bin/python /tmp/causal_refinement_comparison_driver.py",
+  "driver_sha256": "836e6d0d9a62859313278ed4f28bc2ee970fd23f51ce4b20d0123952ba43db84",
+  "note": "One repetition per cell. Specialized fixed-route exact propagation compared with general guarded-assumption SMT on the same compact exact mechanics. Unknown SMT cells give no bound and justify no cut; total wall time includes outer termination. No general encoding speedup is inferred."
+}

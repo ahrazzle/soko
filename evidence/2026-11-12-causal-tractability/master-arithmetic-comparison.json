@@ -1,0 +1,476 @@
+{
+  "kind": "matched_unrestricted_hero_master_encoding_probe",
+  "full_process_budget_seconds": 20,
+  "record_claim": false,
+  "rows": [
+    {
+      "encoding": "off",
+      "full_wall_seconds": 1.8743181609970634,
+      "returncode": 0,
+      "source_sha256": {
+        "experiments/causal_solver/master.py": "5e5b17e7c3472d019fd407a4ec2c26d2269601fab23d0451fc19a146ed1ccd33",
+        "experiments/causal_solver/events.py": "6122c1575721e697e54f70d33e0a29897bebe7bb31d52a312db84c6da3612756",
+        "experiments/causal_solver/bv_events.py": "d3dddb82e5e434b1c829b8f3cc845727091edb30cfef7fe40c9fffbd3ab1d19f",
+        "experiments/transport_relaxation/global_master.py": "b3c862716e9a69f9951e76516b4dc6db1151c0238ac65884593cd3bfd9514b3e",
+        "experiments/transport_relaxation/model.py": "e37a3c20fe6dde00ef3aa9278b9d4155b5d35977e10f065d9d6f57bbd36417bb",
+        "experiments/exact_frontier/iii14_problem.py": "255c0c4bd049ee511b9087b03ba19bb253671711927965003fe0bd5d702ea29c",
+        "soko_mcp/data/catalog.json": "c79e2ddf755039ad09ee57d30e06efc594d0310d20cbdba26b40a4bd9ae5c8bc"
+      },
+      "source_unchanged": true,
+      "output": [
+        {
+          "phase": "build",
+          "encoding": "off"
+        },
+        {
+          "phase": "solve",
+          "encoding": "off",
+          "build_seconds": 0.2049371280008927
+        },
+        {
+          "phase": "complete",
+          "encoding": "off",
+          "horizon": 47,
+          "status": "sat",
+          "build_seconds": 0.2049371280008927,
+          "solve_seconds": 1.392910919003043,
+          "worker_seconds": 1.598758779000491,
+          "peak_rss_kib": 65516,
+          "z3_version": "5.4.1",
+          "random_seed": 0,
+          "restrictions": [],
+          "reason_unknown": null,
+          "assignment": {
+            "route": "ARLLDLADLLRLRALALUALUDRLRRDDRUURRDRRRLURDURARAR",
+            "heroes": [
+              {
+                "bard_x": 2,
+                "bard_y": 2,
+                "druid_x": 2,
+                "druid_y": 4,
+                "active": false
+              },
+              {
+                "bard_x": 2,
+                "bard_y": 2,
+                "druid_x": 2,
+                "druid_y": 4,
+                "active": true
+              },
+              {
+                "bard_x": 3,
+                "bard_y": 2,
+                "druid_x": 3,
+                "druid_y": 4,
+                "active": true
+              },
+              {
+                "bard_x": 2,
+                "bard_y": 2,
+                "druid_x": 3,
+                "druid_y": 4,
+                "active": true
+              },
+              {
+                "bard_x": 2,
+                "bard_y": 2,
+                "druid_x": 3,
+                "druid_y": 4,
+                "active": true
+              },
+              {
+                "bard_x": 2,
+                "bard_y": 3,
+                "druid_x": 3,
+                "druid_y": 4,
+                "active": true
+              },
+              {
+                "bard_x": 1,
+                "bard_y": 3,
+                "druid_x": 3,
+                "druid_y": 4,
+                "active": true
+              },
+              {
+                "bard_x": 1,
+                "bard_y": 3,
+                "druid_x": 3,
+                "druid_y": 4,
+                "active": false
+              },
+              {
+                "bard_x": 1,
+                "bard_y": 3,
+                "druid_x": 3,
+                "druid_y": 5,
+                "active": false
+              },
+              {
+                "bard_x": 1,
+                "bard_y": 3,
+                "druid_x": 2,
+                "druid_y": 5,
+                "active": false
+              },
+              {
+                "bard_x": 1,
+                "bard_y": 3,
+                "druid_x": 1,
+                "druid_y": 5,
+                "active": false
+              },
+              {
+                "bard_x": 1,
+                "bard_y": 3,
+                "druid_x": 2,
+                "druid_y": 5,
+                "active": false
+              },
+              {
+                "bard_x": 1,
+                "bard_y": 3,
+                "druid_x": 1,
+                "druid_y": 5,
+                "active": false
+              },
+              {
+                "bard_x": 1,
+                "bard_y": 3,
+                "druid_x": 2,
+                "druid_y": 5,
+                "active": false
+              },
+              {
+                "bard_x": 1,
+                "bard_y": 3,
+                "druid_x": 2,
+                "druid_y": 5,
+                "active": true
+              },
+              {
+                "bard_x": 0,
+                "bard_y": 3,
+                "druid_x": 2,
+                "druid_y": 5,
+                "active": true
+              },
+              {
+                "bard_x": 0,
+                "bard_y": 3,
+                "druid_x": 2,
+                "druid_y": 5,
+                "active": false
+              },
+              {
+                "bard_x": 0,
+                "bard_y": 3,
+                "druid_x": 2,
+                "druid_y": 5,
+                "active": false
+              },
+              {
+                "bard_x": 0,
+                "bard_y": 3,
+                "druid_x": 2,
+                "druid_y": 5,
+                "active": false
+              },
+              {
+                "bard_x": 0,
+                "bard_y": 3,
+                "druid_x": 2,
+                "druid_y": 5,
+                "active": true
+              },
+              {
+                "bard_x": 0,
+                "bard_y": 3,
+                "druid_x": 2,
+                "druid_y": 5,
+                "active": true
+              },
+              {
+                "bard_x": 0,
+                "bard_y": 2,
+                "druid_x": 2,
+                "druid_y": 4,
+                "active": true
+              },
+              {
+                "bard_x": 0,
+                "bard_y": 3,
+                "druid_x": 2,
+                "druid_y": 5,
+                "active": true
+              },
+              {
+                "bard_x": 1,
+                "bard_y": 3,
+                "druid_x": 3,
+                "druid_y": 5,
+                "active": true
+              },
+              {
+                "bard_x": 0,
+                "bard_y": 3,
+                "druid_x": 2,
+                "druid_y": 5,
+                "active": true
+              },
+              {
+                "bard_x": 1,
+                "bard_y": 3,
+                "druid_x": 3,
+                "druid_y": 5,
+                "active": true
+              },
+              {
+                "bard_x": 2,
+                "bard_y": 3,
+                "druid_x": 4,
+                "druid_y": 5,
+                "active": true
+              },
+              {
+                "bard_x": 2,
+                "bard_y": 4,
+                "druid_x": 4,
+                "druid_y": 5,
+                "active": true
+              },
+              {
+                "bard_x": 2,
+                "bard_y": 5,
+                "druid_x": 4,
+                "druid_y": 6,
+                "active": true
+              },
+              {
+                "bard_x": 3,
+                "bard_y": 5,
+                "druid_x": 4,
+                "druid_y": 6,
+                "active": true
+              },
+              {
+                "bard_x": 3,
+                "bard_y": 4,
+                "druid_x": 4,
+                "druid_y": 5,
+                "active": true
+              },
+              {
+                "bard_x": 3,
+                "bard_y": 3,
+                "druid_x": 4,
+                "druid_y": 4,
+                "active": true
+              },
+              {
+                "bard_x": 3,
+                "bard_y": 3,
+                "druid_x": 4,
+                "druid_y": 4,
+                "active": true
+              },
+              {
+                "bard_x": 4,
+                "bard_y": 3,
+                "druid_x": 5,
+                "druid_y": 4,
+                "active": true
+              },
+              {
+                "bard_x": 4,
+                "bard_y": 4,
+                "druid_x": 5,
+                "druid_y": 5,
+                "active": true
+              },
+              {
+                "bard_x": 5,
+                "bard_y": 4,
+                "druid_x": 6,
+                "druid_y": 5,
+                "active": true
+              },
+              {
+                "bard_x": 6,
+                "bard_y": 4,
+                "druid_x": 7,
+                "druid_y": 5,
+                "active": true
+              },
+              {
+                "bard_x": 7,
+                "bard_y": 4,
+                "druid_x": 8,
+                "druid_y": 5,
+                "active": true
+              },
+              {
+                "bard_x": 6,
+                "bard_y": 4,
+                "druid_x": 8,
+                "druid_y": 5,
+                "active": true
+              },
+              {
+                "bard_x": 6,
+                "bard_y": 3,
+                "druid_x": 8,
+                "druid_y": 4,
+                "active": true
+              },
+              {
+                "bard_x": 7,
+                "bard_y": 3,
+                "druid_x": 9,
+                "druid_y": 4,
+                "active": true
+              },
+              {
+                "bard_x": 7,
+                "bard_y": 4,
+                "druid_x": 9,
+                "druid_y": 4,
+                "active": true
+              },
+              {
+                "bard_x": 7,
+                "bard_y": 3,
+                "druid_x": 9,
+                "druid_y": 3,
+                "active": true
+              },
+              {
+                "bard_x": 8,
+                "bard_y": 3,
+                "druid_x": 10,
+                "druid_y": 3,
+                "active": true
+              },
+              {
+                "bard_x": 8,
+                "bard_y": 3,
+                "druid_x": 10,
+                "druid_y": 3,
+                "active": false
+              },
+              {
+                "bard_x": 8,
+                "bard_y": 3,
+                "druid_x": 11,
+                "druid_y": 3,
+                "active": false
+              },
+              {
+                "bard_x": 8,
+                "bard_y": 3,
+                "druid_x": 11,
+                "druid_y": 3,
+                "active": true
+              },
+              {
+                "bard_x": 9,
+                "bard_y": 3,
+                "druid_x": 11,
+                "druid_y": 3,
+                "active": true
+              }
+            ],
+            "landmark": 28
+          },
+          "validated_first_terminal": 47
+        }
+      ],
+      "stderr": "",
+      "status": "sat"
+    },
+    {
+      "encoding": "integer",
+      "full_wall_seconds": 19.769017900001927,
+      "returncode": 0,
+      "source_sha256": {
+        "experiments/causal_solver/master.py": "5e5b17e7c3472d019fd407a4ec2c26d2269601fab23d0451fc19a146ed1ccd33",
+        "experiments/causal_solver/events.py": "6122c1575721e697e54f70d33e0a29897bebe7bb31d52a312db84c6da3612756",
+        "experiments/causal_solver/bv_events.py": "d3dddb82e5e434b1c829b8f3cc845727091edb30cfef7fe40c9fffbd3ab1d19f",
+        "experiments/transport_relaxation/global_master.py": "b3c862716e9a69f9951e76516b4dc6db1151c0238ac65884593cd3bfd9514b3e",
+        "experiments/transport_relaxation/model.py": "e37a3c20fe6dde00ef3aa9278b9d4155b5d35977e10f065d9d6f57bbd36417bb",
+        "experiments/exact_frontier/iii14_problem.py": "255c0c4bd049ee511b9087b03ba19bb253671711927965003fe0bd5d702ea29c",
+        "soko_mcp/data/catalog.json": "c79e2ddf755039ad09ee57d30e06efc594d0310d20cbdba26b40a4bd9ae5c8bc"
+      },
+      "source_unchanged": true,
+      "output": [
+        {
+          "phase": "build",
+          "encoding": "integer"
+        },
+        {
+          "phase": "solve",
+          "encoding": "integer",
+          "build_seconds": 2.011703648000548
+        },
+        {
+          "phase": "complete",
+          "encoding": "integer",
+          "horizon": 47,
+          "status": "unknown",
+          "build_seconds": 2.011703648000548,
+          "solve_seconds": 17.55175108899857,
+          "worker_seconds": 19.564148281002417,
+          "peak_rss_kib": 151688,
+          "z3_version": "5.4.1",
+          "random_seed": 0,
+          "restrictions": [],
+          "reason_unknown": "timeout"
+        }
+      ],
+      "stderr": "",
+      "status": "unknown"
+    },
+    {
+      "encoding": "bitvector",
+      "full_wall_seconds": 19.967284570997435,
+      "returncode": 0,
+      "source_sha256": {
+        "experiments/causal_solver/master.py": "5e5b17e7c3472d019fd407a4ec2c26d2269601fab23d0451fc19a146ed1ccd33",
+        "experiments/causal_solver/events.py": "6122c1575721e697e54f70d33e0a29897bebe7bb31d52a312db84c6da3612756",
+        "experiments/causal_solver/bv_events.py": "d3dddb82e5e434b1c829b8f3cc845727091edb30cfef7fe40c9fffbd3ab1d19f",
+        "experiments/transport_relaxation/global_master.py": "b3c862716e9a69f9951e76516b4dc6db1151c0238ac65884593cd3bfd9514b3e",
+        "experiments/transport_relaxation/model.py": "e37a3c20fe6dde00ef3aa9278b9d4155b5d35977e10f065d9d6f57bbd36417bb",
+        "experiments/exact_frontier/iii14_problem.py": "255c0c4bd049ee511b9087b03ba19bb253671711927965003fe0bd5d702ea29c",
+        "soko_mcp/data/catalog.json": "c79e2ddf755039ad09ee57d30e06efc594d0310d20cbdba26b40a4bd9ae5c8bc"
+      },
+      "source_unchanged": true,
+      "output": [
+        {
+          "phase": "build",
+          "encoding": "bitvector"
+        },
+        {
+          "phase": "solve",
+          "encoding": "bitvector",
+          "build_seconds": 1.538616424000793
+        },
+        {
+          "phase": "complete",
+          "encoding": "bitvector",
+          "horizon": 47,
+          "status": "unknown",
+          "build_seconds": 1.538616424000793,
+          "solve_seconds": 18.199091956998018,
+          "worker_seconds": 19.73870516399984,
+          "peak_rss_kib": 285828,
+          "z3_version": "5.4.1",
+          "random_seed": 0,
+          "restrictions": [],
+          "reason_unknown": "timeout"
+        }
+      ],
+      "stderr": "",
+      "status": "unknown"
+    }
+  ]
+}

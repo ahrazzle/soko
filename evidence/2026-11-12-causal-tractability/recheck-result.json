@@ -1,0 +1,38 @@
+[
+  {
+    "artifact": "global47-int-search.json.gz",
+    "archived_status": "unknown",
+    "candidates_validated": 0,
+    "exact_cuts_rechecked": 0,
+    "flow_cuts_rechecked": 0,
+    "original_replays_repeated": 0,
+    "new_record_claim": false
+  },
+  {
+    "artifact": "global47-selected-search.json.gz",
+    "archived_status": "unknown",
+    "candidates_validated": 151,
+    "exact_cuts_rechecked": 150,
+    "flow_cuts_rechecked": 0,
+    "original_replays_repeated": 0,
+    "new_record_claim": false
+  },
+  {
+    "artifact": "reference-search.json.gz",
+    "archived_status": "control_passed",
+    "candidates_validated": 1,
+    "exact_cuts_rechecked": 0,
+    "flow_cuts_rechecked": 0,
+    "original_replays_repeated": 1,
+    "new_record_claim": false
+  },
+  {
+    "artifact": "spurious-search.json.gz",
+    "archived_status": "control_passed",
+    "candidates_validated": 1,
+    "exact_cuts_rechecked": 1,
+    "flow_cuts_rechecked": 0,
+    "original_replays_repeated": 0,
+    "new_record_claim": false
+  }
+]
