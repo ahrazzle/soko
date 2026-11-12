@@ -1,0 +1,31 @@
+{
+  "captured_utc_date": "2026-11-12",
+  "surface": "Local Firefox UI on macOS",
+  "frontier_url": "https://soko.banteg.xyz/frontier/",
+  "trilogy": {"proven_minimum_displayed": 3000, "shortest_known_displayed": 3063, "current_records_displayed": 3063},
+  "unproven_rooms": [
+    {"room": "III-14", "proven_floor_displayed": 43, "record": 48},
+    {"room": "III-20", "proven_floor_displayed": 74, "record": 84, "record_holder": "a1kindus"},
+    {"room": "III-21", "proven_floor_displayed": 268, "record": 316, "record_holder": "futarchist"}
+  ],
+  "closed_room": {"room": "II-22", "record": 92, "record_holder": "futarchist", "optimal_label_displayed": true},
+  "existing_public_replays_observed": [
+    {"room": "III-20", "final_step_display": "84 / 84", "all_hero_goal_positions_match_local_replay": true},
+    {"room": "III-21", "final_step_display": "316 / 316", "all_hero_goal_positions_match_local_replay": true}
+  ],
+  "original_source": {
+    "url": "https://www.puzzlescript.net/editor.html?hack=7072276",
+    "title": "Heroes of Sokoban III: The Bard and The Druid",
+    "author": "Jonah Ostroff",
+    "iii21_grid_captured_from": "Visible editor text near the final level definitions",
+    "compatibility_warning": "Commands should only appear at the end of rules, not in or before the pattern-detection/-replacement sections.",
+    "compilation_message": "Successful Compilation, generated 210 instructions."
+  },
+  "new_record_found": false,
+  "new_route_submitted": false,
+  "limits": [
+    "Existing public replay inspection is not an exhaustive comparison of the transition systems.",
+    "Displayed lower bounds were not reproved in this run.",
+    "Live page observations are a dated snapshot, not immutable oracle version pins."
+  ]
+}

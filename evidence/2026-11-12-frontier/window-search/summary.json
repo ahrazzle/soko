@@ -1,0 +1,23 @@
+{
+  "outcome": "no shorter candidate found",
+  "search_elapsed_seconds": 177.11860000000001,
+  "single_search_process_at_a_time": true,
+  "node_cap_per_window": 300000,
+  "III-20": {
+    "baseline": 84,
+    "best": 84,
+    "coverage": "widths 12,16,20: all offsets 0..82; 249 windows",
+    "expanded": 13911423,
+    "node_cap_hits": 53,
+    "search_elapsed_seconds": 34.1051
+  },
+  "III-21": {
+    "baseline": 316,
+    "best": 316,
+    "coverage": "width12 all offsets 0..314 completed (offset295 retried); width16 offsets0..65 started, 65 timed out; width20 not reached",
+    "expanded": 25584498,
+    "node_cap_hits": 65,
+    "search_elapsed_seconds": 143.0135
+  },
+  "qualification": "Bounded heuristic search using research C++ port, not an optimality proof. Baseline winning routes verified by two current independent Python oracles; no shorter candidates emitted."
+}

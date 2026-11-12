@@ -1,0 +1,11 @@
+test_01_initialize_and_discover (test_mcp_server.SokoVerifiedMcpTests.test_01_initialize_and_discover) ... ok
+test_02_list_primitives_resources_and_prompts (test_mcp_server.SokoVerifiedMcpTests.test_02_list_primitives_resources_and_prompts) ... ok
+test_03_inspect_detects_chiral_mirror_symmetry_on_iii20 (test_mcp_server.SokoVerifiedMcpTests.test_03_inspect_detects_chiral_mirror_symmetry_on_iii20) ... ok
+test_04_dual_oracle_verify_and_planted_bug_audit (test_mcp_server.SokoVerifiedMcpTests.test_04_dual_oracle_verify_and_planted_bug_audit) ... ok
+test_05_solve_from_scratch_and_prove_floor (test_mcp_server.SokoVerifiedMcpTests.test_05_solve_from_scratch_and_prove_floor) ... ok
+test_06_generic_chiral_optimizer_reproduces_87_to_84_world_record (test_mcp_server.SokoVerifiedMcpTests.test_06_generic_chiral_optimizer_reproduces_87_to_84_world_record) ... ok
+
+----------------------------------------------------------------------
+Ran 6 tests in 18.927s
+
+OK

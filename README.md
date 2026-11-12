@@ -2,7 +2,7 @@
 
 ## Checkout status
 
-This checkout contains the Python room interpreters, route checks and a fallback route optimizer. It does not contain the C++ search engine, general `formal_*` tools, Lean proofs or a `SHA256SUMS` manifest. The feature and route tables below describe earlier work. They are not proof that those files or guarantees are present here.
+This checkout contains the Python room interpreters, route checks and a fallback route optimizer. It does not contain the C++ search engine, general `formal_*` tools, Lean proofs or a `SHA256SUMS` manifest. The feature and route tables below contain claims from the imported README. They are not a statement of shipped capabilities.
 
 Run `python3 -m soko_mcp capabilities` to check which backends are available. When the C++ source is absent, solving from scratch returns `UNAVAILABLE_BACKEND`, not a search budget result. `python3 -m soko_mcp tcb-lock` reports `TAMPERED_OR_UNLOCKED` when the manifest is missing. Route checks compare the two Python interpreters but do not establish agreement with a pinned external specification or formal proof.
 

@@ -1,0 +1,21 @@
+test_available_cpp_and_no_solution_is_budget_result (test_capabilities.CapabilityTests.test_available_cpp_and_no_solution_is_budget_result) ... ok
+test_backend_failure_is_not_budget_exhaustion (test_capabilities.CapabilityTests.test_backend_failure_is_not_budget_exhaustion) ... ok
+test_cli_tcb_lock_and_capabilities (test_capabilities.CapabilityTests.test_cli_tcb_lock_and_capabilities) ... ok
+test_existing_python_route_verification (test_capabilities.CapabilityTests.test_existing_python_route_verification) ... ok
+test_missing_cpp_source_reports_unavailable (test_capabilities.CapabilityTests.test_missing_cpp_source_reports_unavailable) ... ok
+test_tcb_tool_is_registered_and_missing_manifest_fails_closed (test_capabilities.CapabilityTests.test_tcb_tool_is_registered_and_missing_manifest_fails_closed) ... ok
+test_attribution_does_not_change_problem_identity (test_instance_evidence.InstanceEvidenceTests.test_attribution_does_not_change_problem_identity) ... ok
+test_binds_problem_and_route_and_labels_scope (test_instance_evidence.InstanceEvidenceTests.test_binds_problem_and_route_and_labels_scope) ... ok
+test_incomplete_route_is_not_a_win (test_instance_evidence.InstanceEvidenceTests.test_incomplete_route_is_not_a_win) ... ok
+test_instance_hash_changes_with_grid (test_instance_evidence.InstanceEvidenceTests.test_instance_hash_changes_with_grid) ... ok
+test_rejects_malformed_inputs (test_instance_evidence.InstanceEvidenceTests.test_rejects_malformed_inputs) ... ok
+test_route_at_record_is_not_a_new_record (test_instance_evidence.InstanceEvidenceTests.test_route_at_record_is_not_a_new_record) ... ok
+test_compiler_failure_writes_failed_evidence (test_instance_evidence.SearchFailureEvidenceTests.test_compiler_failure_writes_failed_evidence) ... ok
+
+----------------------------------------------------------------------
+Ran 13 tests in 0.133s
+
+OK
+{
+  "status": "BACKEND_FAILED"
+}
