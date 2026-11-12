@@ -84,7 +84,16 @@ class SearchFailureEvidenceTests(unittest.TestCase):
             output = Path(tmp) / "result.json"
             instance.write_text(json.dumps({"part": 1, "grid": ["#####", "#F.G#", "#####"], "route": "RR"}))
             args = ["run_search", str(instance), "--output", str(output)]
-            with patch.object(sys, "argv", args), patch.object(run_search.shutil, "which", return_value="clang++"), patch.object(run_search.subprocess, "check_output", return_value="test compiler\n"), patch.object(run_search.subprocess, "run", side_effect=subprocess.CalledProcessError(1, "compiler")):
+            real_run = subprocess.run
+
+            def _run_side_effect(*run_args, **run_kwargs):
+                cmd = run_args[0] if run_args else run_kwargs.get("args", [])
+                cmd_s = " ".join(str(c) for c in cmd)
+                if "recovered_engine.cpp" in cmd_s:
+                    raise subprocess.CalledProcessError(1, "compiler")
+                return real_run(*run_args, **run_kwargs)
+
+            with patch.object(sys, "argv", args), patch.object(run_search.shutil, "which", return_value="clang++"), patch.object(run_search.subprocess, "check_output", return_value="test compiler\n"), patch.object(run_search.subprocess, "run", side_effect=_run_side_effect):
                 self.assertEqual(run_search.main(), 1)
             result = json.loads(output.read_text())
             self.assertEqual(result["status"], "BACKEND_FAILED")

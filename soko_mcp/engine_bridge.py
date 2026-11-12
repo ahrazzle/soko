@@ -72,10 +72,17 @@ def _required_checker_pins_ok(pins: Dict[str, Optional[str]]) -> bool:
         "flat_oracle_py_sha256",
         "cpp_soko_engine_src_sha256",
         "cpp_soko_engine_bin_sha256",
+        "formal_kernel_py_sha256",
     ):
         if not pins.get(key):
             return False
     return True
+
+
+def _runtime_tcb_locked() -> Tuple[bool, Dict[str, Any]]:
+    """Manifest-verified TCB lock required before any route or floor VERIFIED certificate."""
+    lock = verify_tcb_lock()
+    return bool(lock.get("tcb_locked")), lock
 
 
 def verify_tcb_lock() -> Dict[str, Any]:
@@ -266,11 +273,18 @@ def verify_route_dual(
     dual_or_triple_checked = len(engines_executed) >= 2 and (not require_cpp or cpp_res is not None)
     pins = get_soko_checker_pins()
     pins_ok = _required_checker_pins_ok(pins)
-    is_verified = dual_or_triple_checked and differential_match and py_res["exact_win"] and pins_ok
+    tcb_locked, tcb_report = _runtime_tcb_locked()
+    is_verified = (
+        dual_or_triple_checked
+        and differential_match
+        and py_res["exact_win"]
+        and pins_ok
+        and tcb_locked
+    )
 
     if not dual_or_triple_checked:
         epistemic = "REJECTED_INSUFFICIENT_ORACLES"
-    elif dual_or_triple_checked and differential_match and py_res["exact_win"] and not pins_ok:
+    elif dual_or_triple_checked and differential_match and py_res["exact_win"] and (not pins_ok or not tcb_locked):
         epistemic = "REJECTED_TCB_UNLOCKED"
     else:
         epistemic = "VERIFIED" if is_verified else "REJECTED"
@@ -293,6 +307,12 @@ def verify_route_dual(
         "differential_match": differential_match,
         "checker_pins": pins,
         "checker_pins_ok": pins_ok,
+        "tcb_locked": tcb_locked,
+        "tcb_lock_report": {
+            "epistemic_status": tcb_report.get("epistemic_status"),
+            "manifest_present": tcb_report.get("manifest_present"),
+            "files_verified": tcb_report.get("files_verified"),
+        },
         "final_ascii": py_res["final_ascii"],
         "route": clean,
     }
@@ -447,27 +467,52 @@ def prove_floor_verified(
     if witness:
         w_check = verify_route_dual(part, grid, witness)
         if not w_check["valid_winning_route"]:
-            raise RuntimeError("prove_lb witness failed multi-oracle differential verification!")
-        witness_verified = {
-            "route": witness,
-            "route_len": w_check["route_len"],
-            "route_sha256_12": w_check["route_sha256_12"],
-            "traj_fnv64": w_check["traj_fnv64"],
-        }
+            if w_check["epistemic_status"] == "REJECTED_TCB_UNLOCKED":
+                status = "REJECTED_TCB_UNLOCKED"
+            else:
+                status = "REJECTED_WITNESS_INVALID"
+            witness_verified = {
+                "route": witness,
+                "route_len": w_check["route_len"],
+                "route_sha256_12": w_check.get("route_sha256_12"),
+                "traj_fnv64": w_check.get("traj_fnv64"),
+                "witness_check": w_check["epistemic_status"],
+            }
+        else:
+            witness_verified = {
+                "route": witness,
+                "route_len": w_check["route_len"],
+                "route_sha256_12": w_check["route_sha256_12"],
+                "traj_fnv64": w_check["traj_fnv64"],
+            }
 
     pins = get_soko_checker_pins()
     pins_ok = _required_checker_pins_ok(pins)
+    tcb_locked, tcb_report = _runtime_tcb_locked()
     proven_floor = int(cpp_out.get("proven_floor", 0))
 
     if status == "VERIFIED":
         if not exact_state_tt:
             status = "REJECTED_CPP_CLAIM"
-        elif not pins_ok:
+        elif not pins_ok or not tcb_locked:
             status = "REJECTED_TCB_UNLOCKED"
         elif not witness or witness_verified is None:
             status = "REJECTED_NO_WITNESS"
         elif witness_verified["route_len"] < proven_floor:
             status = "REJECTED_WITNESS_BELOW_FLOOR"
+        elif witness_verified["route_len"] != proven_floor:
+            status = "REJECTED_WITNESS_FLOOR_MISMATCH"
+
+    guarantee: Optional[str] = None
+    if status == "VERIFIED":
+        edge_checks = int(cpp_out.get("edge_consistency_checks", 0))
+        tt_prunes = int(cpp_out.get("exact_tt_prunes", 0))
+        guarantee = (
+            f"Depth-limited exact-state search with {edge_checks} step-consistency checks "
+            f"(h(s) <= 1 + h(s') on expanded edges), exact_tt_prunes={tt_prunes}, "
+            f"quotient_pdb={bool(cpp_out.get('quotient_pdb_enabled'))}; "
+            f"winning witness length {proven_floor} matches proven_floor and replays under dual-oracle TCB."
+        )
 
     return {
         "epistemic_status": status,
@@ -482,9 +527,10 @@ def prove_floor_verified(
         "winning_witness": witness_verified,
         "checker_pins": pins,
         "checker_pins_ok": pins_ok,
-        "guarantee": (
-            f"Collision-free exact-DynState IDA* with runtime step-consistency assertions (h(s) <= 1 + h(s') checked across "
-            f"{int(cpp_out.get('edge_consistency_checks', 0))} transitions, quotient_pdb={bool(cpp_out.get('quotient_pdb_enabled'))}) "
-            f"refutes all winning routes of length < {proven_floor}."
-        ),
+        "tcb_locked": tcb_locked,
+        "tcb_lock_report": {
+            "epistemic_status": tcb_report.get("epistemic_status"),
+            "manifest_present": tcb_report.get("manifest_present"),
+        },
+        "guarantee": guarantee,
     }

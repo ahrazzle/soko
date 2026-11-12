@@ -529,11 +529,58 @@ struct ProveResult {
     int nodes = 0;
     int edge_checks = 0;
     int hash_collisions_prevented = 0;
+    int exact_tt_prunes = 0;
     bool exact_state_tt = true;
 };
 
+static std::unordered_map<std::string, int> g_dist_to_win_cache;
+
+static int dist_to_win_bounded(Engine e, int max_depth) {
+    std::string sig = state_key(e);
+    auto cached = g_dist_to_win_cache.find(sig);
+    if (cached != g_dist_to_win_cache.end()) return cached->second;
+    if (e.is_winning()) {
+        g_dist_to_win_cache[sig] = 0;
+        return 0;
+    }
+    struct Node { Engine eng; int d; };
+    std::queue<Node> q;
+    std::unordered_set<std::string> seen;
+    q.push({e, 0});
+    seen.insert(sig);
+    const std::string moves = "RDLUA";
+    int best = max_depth + 1;
+    while (!q.empty()) {
+        auto [cur, d] = q.front();
+        q.pop();
+        if (d >= best) continue;
+        if (cur.is_winning()) {
+            best = d;
+            break;
+        }
+        if (d >= max_depth) continue;
+        for (char ch : moves) {
+            Engine nxt = cur;
+            auto [alive, won] = nxt.step(ch);
+            if (!alive) continue;
+            int nd = d + 1;
+            std::string ns = state_key(nxt);
+            if (won) {
+                best = std::min(best, nd);
+                break;
+            }
+            if (seen.count(ns)) continue;
+            seen.insert(ns);
+            q.push({std::move(nxt), nd});
+        }
+    }
+    g_dist_to_win_cache[sig] = best;
+    return best;
+}
+
 static ProveResult prove_ida(Engine eng, int max_bound, int budget_sec) {
     ProveResult out;
+    g_dist_to_win_cache.clear();
     auto deadline = std::chrono::steady_clock::now() + std::chrono::seconds(budget_sec);
     int best_len = max_bound + 1;
     std::string best_route;
@@ -561,7 +608,7 @@ static ProveResult prove_ida(Engine eng, int max_bound, int budget_sec) {
             std::string sig = state_key(fr.e);
             auto it = best_g.find(sig);
             if (it != best_g.end() && it->second <= fr.g) {
-                ++out.hash_collisions_prevented;
+                ++out.exact_tt_prunes;
                 continue;
             }
             best_g[sig] = fr.g;
@@ -571,7 +618,10 @@ static ProveResult prove_ida(Engine eng, int max_bound, int budget_sec) {
                 if (!alive) continue;
                 int ng = fr.g + 1;
                 if (ng > target) continue;
+                int h_s = dist_to_win_bounded(fr.e, max_bound);
+                int h_n = won ? 0 : dist_to_win_bounded(nxt, max_bound);
                 out.edge_checks++;
+                if (h_s > 1 + h_n) out.exact_state_tt = false;
                 if (won && ng <= target) {
                     if (ng < best_len) { best_len = ng; best_route = fr.path + ch; }
                     found = true;
@@ -652,7 +702,7 @@ int main() {
             return 0;
         }
         if (mode == "optimize") {
-            std::cout << "{\"best_route\":\"" << route << "\",\"stages\":[\"identity\"]}" << std::endl;
+            std::cout << "{\"best_route\":\"" << route << "\",\"stages\":[]}" << std::endl;
             return 0;
         }
         if (mode == "prove_lb") {
@@ -667,7 +717,7 @@ int main() {
                       << ",\"winning_witness\":\"" << pr.witness << "\""
                       << ",\"exact_state_tt\":" << (pr.exact_state_tt ? "true" : "false")
                       << ",\"quotient_pdb_enabled\":false"
-                      << ",\"exact_tt_prunes\":0"
+                      << ",\"exact_tt_prunes\":" << pr.exact_tt_prunes
                       << ",\"hash_collisions_prevented\":" << pr.hash_collisions_prevented
                       << ",\"nodes_expanded\":" << pr.nodes
                       << ",\"edge_consistency_checks\":" << pr.edge_checks

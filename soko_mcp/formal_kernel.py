@@ -534,7 +534,9 @@ def define_formal_system(
     s0 = spec.initial_state()
     u0 = impl.initial_state()
     q: deque[Tuple[Any, Any, Tuple[Any, ...]]] = deque([(s0, u0, ())])
-    seen_obs: Set[Any] = {spec.project_obs(s0)}
+    obs0 = spec.project_obs(s0)
+    inv0_s, _ = spec.invariant(s0)
+    seen_obs: Set[Any] = {(obs0, spec.is_goal(s0), inv0_s)}
     fuzz_states = 0
     fuzz_edges = 0
     fuzz_sample_traces: List[Tuple[Any, ...]] = []
@@ -606,8 +608,22 @@ def define_formal_system(
                     "spec_next_obs_cost": [_canonical_repr(obs_ns), cs],
                     "impl_next_obs_cost": [_canonical_repr(obs_nu), cu],
                 }
-            if obs_ns not in seen_obs and len(seen_obs) < max(1, int(bounded_fuzz_nodes)):
-                seen_obs.add(obs_ns)
+            goal_ns = spec.is_goal(ns)
+            goal_nu = impl.is_goal(nu)
+            if goal_ns != goal_nu:
+                return {
+                    "epistemic_status": "REJECTED_DIFFERENTIAL_MISMATCH",
+                    "tcb_locked": False,
+                    "system_id": sid,
+                    "diverging_trace": [_canonical_repr(a) for a in path + (act,)],
+                    "spec_goal": goal_ns,
+                    "impl_goal": goal_nu,
+                    "reason": "successor goal predicate mismatch (not masked by duplicate project_obs)",
+                }
+            inv_ns, _ = spec.invariant(ns)
+            obs_key = (obs_ns, goal_ns, inv_ns)
+            if obs_key not in seen_obs and len(seen_obs) < max(1, int(bounded_fuzz_nodes)):
+                seen_obs.add(obs_key)
                 q.append((ns, nu, path + (act,)))
 
     # 4. Planted-Mutation Adequacy Gate (every planted bug must be killed by witnesses, controls, or fuzz traces!)
