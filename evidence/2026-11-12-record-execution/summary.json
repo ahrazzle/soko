@@ -1,0 +1,114 @@
+{
+  "new_record": false,
+  "new_original_game_lower_bound": false,
+  "queries": [
+    {
+      "name": "iii14-base-47-cadical195",
+      "horizon": 47,
+      "budget_seconds": 3600,
+      "status": "unknown",
+      "candidate_found": false,
+      "checked_unsat_proof": false
+    },
+    {
+      "name": "iii14-base-47-cadical300",
+      "horizon": 47,
+      "budget_seconds": 1800,
+      "status": "unknown",
+      "candidate_found": false,
+      "checked_unsat_proof": false
+    },
+    {
+      "name": "iii14-strengthened-47",
+      "horizon": 47,
+      "budget_seconds": 1800,
+      "status": "unknown",
+      "candidate_found": false,
+      "checked_unsat_proof": false
+    },
+    {
+      "name": "iii14-soft-phases-47",
+      "horizon": 47,
+      "budget_seconds": 1800,
+      "status": "unknown",
+      "candidate_found": false,
+      "checked_unsat_proof": false
+    },
+    {
+      "name": "iii14-action-priority-47",
+      "horizon": 47,
+      "budget_seconds": 900,
+      "status": "unknown",
+      "candidate_found": false,
+      "checked_unsat_proof": false
+    },
+    {
+      "name": "iii14-strengthened-bound43",
+      "horizon": 43,
+      "budget_seconds": 300,
+      "status": "unknown",
+      "candidate_found": false,
+      "checked_unsat_proof": false
+    }
+  ],
+  "focused_tests_passed": 22,
+  "macro_controls_passed": true,
+  "main_base_commit": "2399514e39848d39f97481e022060df05802eb10",
+  "full_suite": {
+    "tests": 143,
+    "failures": 26,
+    "errors": 10,
+    "skipped": 4,
+    "identical_failure_multiset_to_main": true
+  },
+  "iii21_restricted_results": "../../experiments/macro_scheduler/evidence/summary.json",
+  "iii20": "Stopped at user direction during compilation; no SAT query began.",
+  "frontier_at_finish": {
+    "url": "https://soko.banteg.xyz/api/frontier",
+    "sha256": "07850c7e7221f29e6510fead7ca37282f99852c144075d31e3e28a483fcdbccc",
+    "observed_at": "2026-11-12T18:25:11.257776+00:00",
+    "mode": "live_fetch"
+  },
+  "records_at_finish": [
+    {
+      "part": 3,
+      "room": 14,
+      "lower": 43,
+      "known": 48,
+      "id": 137,
+      "length": 48,
+      "uid": 16,
+      "handle": "SJanuskas",
+      "seed": 0,
+      "model": null,
+      "avatar": 1
+    },
+    {
+      "part": 3,
+      "room": 20,
+      "lower": 74,
+      "known": 84,
+      "id": 140,
+      "length": 84,
+      "uid": 18,
+      "handle": "a1kindus",
+      "seed": 0,
+      "model": null,
+      "avatar": 1
+    },
+    {
+      "part": 3,
+      "room": 21,
+      "lower": 268,
+      "known": 316,
+      "id": 159,
+      "length": 316,
+      "uid": 17,
+      "handle": "futarchist",
+      "seed": 0,
+      "model": null,
+      "avatar": 1
+    }
+  ],
+  "all_record_workers_finished": true
+}

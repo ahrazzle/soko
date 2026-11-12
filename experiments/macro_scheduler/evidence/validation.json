@@ -1,0 +1,11 @@
+{
+  "status": "passed",
+  "optimization_queries_run": 0,
+  "compiled_native": true,
+  "native_python_exact_frames": 317,
+  "baseline_inputs": 316,
+  "baseline_normalization_identical": true,
+  "priority_unit": "passed",
+  "stored_pinned_original_certificate": "passed",
+  "fresh_original_replay": true
+}

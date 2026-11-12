@@ -1,0 +1,77 @@
+{
+  "room": 21,
+  "compiled_level_index": 30,
+  "grid": [
+    "#######################",
+    "#.F.*....#G.G#....*.4.#",
+    "#...#....#...#....#...#",
+    "#######.........#######",
+    "#####.#####O#####.#####",
+    "#..##O#..#...#..#O##..#",
+    "#.2.*....#G.G#....*.5.#",
+    "#..##O#..*...#..#O##..#",
+    "#####.####...####.#####",
+    "#######..#..*O.*#######",
+    "#...###.#######...#...#",
+    "#.3.###.##G.G##...#.6.#",
+    "#######################"
+  ],
+  "tutorial_messages": [
+    "Get ready."
+  ],
+  "id": "III-21",
+  "part": 3,
+  "title": "Heroes of Sokoban III: The Bard and The Druid \u2014 Room 21",
+  "source": {
+    "part": 3,
+    "title": "Heroes of Sokoban III: The Bard and The Druid",
+    "author": "Jonah Ostroff",
+    "url": "https://sites.math.washington.edu/~ostroff/puzzles/Heroes_of_Sokoban_III_The_Bard_and_The_Druid.html",
+    "html_sha256": "380d343ad35a8f8caf6863341172a7771d0d28ced2824a7a3085990614562105",
+    "source_sha256": "f66ceb8f8a2c23a3cb270bad62cdf194e47479772cab94f154ed26f0ff7c20e0",
+    "attribution": "Original puzzle design and PuzzleScript implementation: Jonah Ostroff."
+  },
+  "coordinates": {
+    "origin": "top-left",
+    "x_direction": "right",
+    "y_direction": "down",
+    "transform": "identity",
+    "grid_order": "rows",
+    "original_compiled_object_order": "column-major"
+  },
+  "width": 23,
+  "height": 13,
+  "reference_route": "RRRDRRDRRRURRDRRUURRRRRLLLLDDAUAADLLULLLLLDDAAALLLULDDDRDLULDDLLUUAAAULLULAAUADLLLLLAAADLAAALDADRAAAALLDAULAALARUAAARRRRRAUAARDRAAARRDRRUADDRRDDRLAAUAAAULLRRURURDDAURULDDRRRRLLLLAAUUAAARDDRRRDRRRRRAAAAAULLULULULLLDUURLDLLUALLLUUAAAALLLLLDLLLDULLULLLLLLLADDRDALDDAUAAALDURADDUUAAAUAARRRRRRRRUUURUUADRDDDAAAUUURDDDAUUL",
+  "shortest_known": 316,
+  "proven_floor": 268,
+  "frontier_record": 316,
+  "frontier_observation": {
+    "part": 3,
+    "room": 21,
+    "lower": 268,
+    "known": 316,
+    "id": 159,
+    "length": 316,
+    "uid": 17,
+    "handle": "futarchist",
+    "seed": 0,
+    "model": null,
+    "avatar": 1
+  },
+  "baseline": {
+    "route": "RRRDRRDRRRURRDRRUURRRRRLLLLDDAUAADLLULLLLLDDAAALLLULDDDRDLULDDLLUUAAAULLULAAUADLLLLLAAADLAAALDADRAAAALLDAULAALARUAAARRRRRAUAARDRAAARRDRRUADDRRDDRLAAUAAAULLRRURURDDAURULDDRRRRLLLLAAUUAAARDDRRRDRRRRRAAAAAULLULULULLLDUURLDLLUALLLUUAAAALLLLLDLLLDULLULLLLLLLADDRDALDDAUAAALDURADDUUAAAUAARRRRRRRRUUURUUADRDDDAAAUUURDDDAUUL",
+    "length": 316,
+    "holder": "futarchist",
+    "record_id": 159,
+    "url": "https://soko.banteg.xyz/api/replay/159",
+    "replay_url": "https://soko.banteg.xyz/frontier/?room=III-21&record=159",
+    "observed_at": "2026-11-12T16:02:41.926788+00:00",
+    "response_sha256": "32625ea5b0ac0c9106f2d3ac6254eddec6d863dd4d1fd2a9ae18f6d55baf9a57",
+    "uid": 17,
+    "model": null,
+    "seed": 0,
+    "attribution": "Public accepted route credited to the named Frontier holder.",
+    "status": "public_accepted_baseline",
+    "limits": "Dated public observation; lower bounds are reported by Frontier and not reproved by this import."
+  }
+}

@@ -1,0 +1,19 @@
+{
+  "status": "compiled_only_no_solve",
+  "horizon": 47,
+  "unrestricted": true,
+  "build_seconds": 5.837,
+  "compile_seconds": 25.767,
+  "assertions": 2547,
+  "variables": 715288,
+  "clauses": 5834178,
+  "action_aliases": 235,
+  "dimacs_bytes": 190895385,
+  "cnf_sha256": "5711ca1ece23168d19df51898c4072bb3a5f6b8c4e6c2c8817c0561047424f9d",
+  "max_rss_kib": 3961164,
+  "base_variables": 704399,
+  "base_clauses": 5737344,
+  "base_ref": "eabf1be",
+  "model_file_sha256": "f3f331bddbc79cf1f2fe641d8774baa5f311eb08e6f9fa3afdde79cc65d178d5",
+  "constraint_note": "distinct border-origin histories and per-frame Manhattan cones; no SAT solve"
+}

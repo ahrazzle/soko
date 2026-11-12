@@ -1,5 +1,5 @@
 {
-  "version": 1,
+  "version": 2,
   "room": "III-14",
   "board": "original 15x7",
   "objective": "first win at or before horizon inputs",
@@ -31,6 +31,9 @@
     "all_material_switches": "some full-history frame has all nine switches occupied by walls or crates",
     "wall_to_crate_events": "at least nine Druid wall-to-crate events occur before victory",
     "proof": "Before both heroes first enter the three-cell goal enclosure, a hero occupies a door while neither is on a switch; therefore nine material tokens weigh the switches. Each began as a boundary wall and must have been converted to a crate to reach a switch. A door closure can delete, but not create, material. See structure_system.md.",
+    "distinct_initial_border_conversions": "before any all-material-switch frame, at least nine distinct original border wall positions have been targeted by a Druid wall-to-crate conversion",
+    "border_proof": "The nine distinct material tokens on the switches originated as walls at nine distinct border cells. Each token had to be converted at its original cell before it could move. Identity is preserved by transformations and door crushing only deletes tokens. See iii14_strengthening.md.",
+    "hero_manhattan_cones": "each hero is within frame-index distance of its own start and, under one of the two goal assignments, within remaining-horizon distance of its assigned goal",
     "guard": "exact original grid and catalog source hash checked before enabling"
   },
   "external_lower_bound_assumed": false,

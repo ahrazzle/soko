@@ -1,0 +1,22 @@
+{
+  "bundle_sha256": "24912635da8c94eb7601e1c35e3a26ef38b78b5fdc586a35217c02cdc544704e",
+  "mode": "global_record_query",
+  "public_submission": false,
+  "room": "III-14",
+  "semantic_equivalence_proved": false,
+  "solver": {
+    "assignment_path": null,
+    "checker_sha256": "0535c9a92e0902c1432067de7741bd3e28054e1762d0bf58de90ab45005c5bdc",
+    "checker_status": "not_run",
+    "cnf_sha256": "2a75653630a4411910df83f4a64b272a7b61237fb290266dff3f5fc56057e7f2",
+    "elapsed_seconds": 3600.3351357110005,
+    "phase": "solve",
+    "proof_path": null,
+    "proof_sha256": null,
+    "reason": "wall-clock timeout",
+    "stats": {},
+    "status": "unknown"
+  },
+  "solver_source_sha256": "68a440b51c69dd1a338f8b088b5c3066a8494e97750215d4aa6863b80e39ff6e",
+  "status": "unknown"
+}

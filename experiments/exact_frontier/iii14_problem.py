@@ -25,7 +25,7 @@ from soko_mcp.oracle import PuzzleScriptOracle
 oracle_state = model.oracle_state
 
 MODEL_CONTRACT = {
-    "version": 1,
+    "version": 2,
     "room": "III-14",
     "board": "original 15x7",
     "objective": "first win at or before horizon inputs",
@@ -43,6 +43,9 @@ MODEL_CONTRACT = {
         "all_material_switches": "some full-history frame has all nine switches occupied by walls or crates",
         "wall_to_crate_events": "at least nine Druid wall-to-crate events occur before victory",
         "proof": "Before both heroes first enter the three-cell goal enclosure, a hero occupies a door while neither is on a switch; therefore nine material tokens weigh the switches. Each began as a boundary wall and must have been converted to a crate to reach a switch. A door closure can delete, but not create, material. See structure_system.md.",
+        "distinct_initial_border_conversions": "before any all-material-switch frame, at least nine distinct original border wall positions have been targeted by a Druid wall-to-crate conversion",
+        "border_proof": "The nine distinct material tokens on the switches originated as walls at nine distinct border cells. Each token had to be converted at its original cell before it could move. Identity is preserved by transformations and door crushing only deletes tokens. See iii14_strengthening.md.",
+        "hero_manhattan_cones": "each hero is within frame-index distance of its own start and, under one of the two goal assignments, within remaining-horizon distance of its assigned goal",
         "guard": "exact original grid and catalog source hash checked before enabling",
     },
     "external_lower_bound_assumed": False,
@@ -81,8 +84,8 @@ def _guard_current_source():
 def build_problem(horizon: int, *, use_landmarks: bool = True):
     """Return (solver, per-step action booleans, state variables) for <= horizon.
 
-    No prefix, guide, milestone, or public lower bound is used.  Two proven
-    full-history landmarks are enabled by default, guarded by the exact source
+    No prefix, guide, milestone, or public lower bound is used.  Proven
+    full-history landmarks and hero cones are enabled by default, guarded by the exact source
     and grid. The solver has no finite timeout; the caller sets its budget.
     """
     if isinstance(horizon, bool) or not isinstance(horizon, int) or horizon < 0:
@@ -104,7 +107,51 @@ def build_problem(horizon: int, *, use_landmarks: bool = True):
                 for j, direction in enumerate('UDLR')
             ])))
         solver.add(z3.PbGe([(event, 1) for event in events], 9) if len(events) >= 9 else z3.BoolVal(False))
+        add_strengthening(solver, actions, states)
     return solver, actions, states
+
+
+def add_strengthening(solver, actions, states):
+    """Add guarded full-history border-origin and Manhattan-cone constraints."""
+    _guard_current_source()
+    horizon = len(actions)
+    border = [(x, y) for y, row in enumerate(EXPECTED_ROWS) for x, ch in enumerate(row) if ch == '#']
+    seen = [[z3.Bool(f'origin_seen_{t}_{x}_{y}') for x, y in border] for t in range(horizon + 1)]
+    solver.add(*[z3.Not(x) for x in seen[0]])
+    directions = {'U': (0, -1), 'D': (0, 1), 'L': (-1, 0), 'R': (1, 0)}
+    for i, frame in enumerate(states[:-1]):
+        walls, _, bard, druid, bard_active, _, _ = frame
+        eligible = z3.And(z3.Not(bard_active), (bard | druid) != model.BV(model.GOAL))
+        for j, (x, y) in enumerate(border):
+            target = y * model.W + x
+            wall_at_target = z3.Extract(target, target, walls) == 1
+            approaches = []
+            for k, key in enumerate('UDLR'):
+                dx, dy = directions[key]
+                px, py = x - dx, y - dy
+                if 0 <= px < model.W and 0 <= py < model.H:
+                    pos = py * model.W + px
+                    approaches.append(z3.And(actions[i][k], z3.Extract(pos, pos, druid) == 1))
+            event = z3.And(eligible, wall_at_target, z3.Or(*approaches))
+            solver.add(seen[i+1][j] == z3.Or(seen[i][j], event))
+    for t, frame in enumerate(states):
+        walls, crates, bard, druid = frame[:4]
+        landmark = ((walls | crates) & model.BV(model.SW)) == model.BV(model.SW)
+        cardinality = z3.PbGe([(v, 1) for v in seen[t]], 9)
+        solver.add(z3.Implies(landmark, cardinality))
+        # The heroes each move at most one orthogonal cell per input.  A
+        # complete solution must match both to different fixed goal cells.
+        def within(point, steps):
+            px, py = point
+            mask = sum(1 << (y * model.W + x)
+                       for y in range(model.H) for x in range(model.W)
+                       if abs(x-px) + abs(y-py) <= steps)
+            return model.BV(mask)
+        solver.add((bard & within((2, 2), t)) != model.Z,
+                   (druid & within((2, 4), t)) != model.Z)
+        g0, g1 = within((9, 3), horizon-t), within((11, 3), horizon-t)
+        solver.add(z3.Or(z3.And((bard & g0) != model.Z, (druid & g1) != model.Z),
+                         z3.And((bard & g1) != model.Z, (druid & g0) != model.Z)))
 
 
 def calibrate(initial_samples: int = 500, near_samples: int = 100) -> dict:

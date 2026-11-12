@@ -1,0 +1,78 @@
+{
+  "room": "III-21",
+  "incumbent_inputs_at_observation": 316,
+  "target_inputs_at_most": 315,
+  "candidate_found": false,
+  "original_game_optimality_claim": false,
+  "public_submission": false,
+  "baseline": {
+    "inputs": 316,
+    "native_python_parity_frames": 317,
+    "original_build_accepted": true,
+    "normalization_identical": true
+  },
+  "inventory": {
+    "macros": 37,
+    "literal_direction_inputs": 241,
+    "per_role": {
+      "F": 11,
+      "T": 6,
+      "W": 3,
+      "P": 8,
+      "B": 3,
+      "D": 6
+    },
+    "progress_vectors": 84672
+  },
+  "fixed_inventory_case": {
+    "scope": "Complete FIFO macro schedules with minimal forward Action chains; 241 directional inputs and at most74 Action inputs. Early wins are bonus witnesses only. Native engine model.",
+    "result": {
+      "status": "exhausted_macro_space",
+      "expanded": 270592,
+      "generated": 912078,
+      "states": 270592,
+      "queue": 0,
+      "max_popped_cost": 315,
+      "dead_macros": 367406,
+      "bound_pruned": 3814,
+      "elapsed_seconds": 15.3654,
+      "peak_rss_kib": 388352,
+      "original_optimality_claim": false
+    }
+  },
+  "completed_noop_case": {
+    "scope": "FIFO macro schedules, minimal forward Action chains, omit only full-state unchanged keys, emitted inputs<=315, Action inputs<=75. Early wins allowed. Native engine model.",
+    "result": {
+      "status": "exhausted_macro_space",
+      "objective": "emitted inputs with full-state noops omitted",
+      "queue_priority": "g plus remaining literal keys (ordering only)",
+      "first_goal_optimality_claim": false,
+      "action_cap": 75,
+      "expanded": 2027772,
+      "generated": 6630040,
+      "states": 1784930,
+      "queue": 0,
+      "max_popped_cost": 315,
+      "dead_macros": 2945775,
+      "bound_pruned": 193183,
+      "omitted_inputs_seen": 12856170,
+      "elapsed_seconds": 208.731,
+      "peak_rss_kib": 3093988,
+      "original_optimality_claim": false
+    },
+    "memory_mib": 8192,
+    "resource_extension_only": true,
+    "identical_binary_sha256": "a0b1cbd863a4b5e8a56b4051fe6814c247862e61d8687606f37f5c1f9794899d",
+    "source_sha256": {
+      "macro_scheduler.cpp": "8738547f68664861f62b123625efa5499936483ca2959a190590ba675dd8f864",
+      "native_engine.hpp": "de9d386b32a379e77a4bb5ec5447fbc79e86d1fecfc2ae066fd06e810745d0c9",
+      "macro_scheduler": "a0b1cbd863a4b5e8a56b4051fe6814c247862e61d8687606f37f5c1f9794899d"
+    },
+    "first_goal_optimality_claim": false
+  },
+  "limits": [
+    "Exhaustion concerns only the declared macro inventories and Action caps.",
+    "Native baseline agreement is empirical; original-game model equivalence is not proved.",
+    "Neither result establishes a global original-game lower bound."
+  ]
+}

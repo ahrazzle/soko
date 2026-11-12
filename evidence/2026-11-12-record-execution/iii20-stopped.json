@@ -1,0 +1,14 @@
+{
+  "status": "user_stopped",
+  "reason": "User directed stopping III-20 work and concentrating on III-14 <=47.",
+  "last_phase": "compiling",
+  "elapsed_seconds_at_stop": 211,
+  "process_memory_at_stop": {
+    "VmSize": "12971200 kB",
+    "VmHWM": "15961584 kB",
+    "VmRSS": "12839048 kB"
+  },
+  "candidate_found": false,
+  "solver_started": false,
+  "public_submission": false
+}

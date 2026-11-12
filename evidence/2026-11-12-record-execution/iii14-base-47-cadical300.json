@@ -1,0 +1,7 @@
+{
+  "status": "unknown",
+  "elapsed_seconds": 1800,
+  "solver": "cadical300",
+  "cnf_sha256": "2a75653630a4411910df83f4a64b272a7b61237fb290266dff3f5fc56057e7f2",
+  "reason": "1800-second wall-clock timeout"
+}

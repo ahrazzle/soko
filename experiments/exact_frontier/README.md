@@ -78,8 +78,11 @@ optional external tool, not vendored code.
 
 ## Structural constraints and validation
 
-III-14 includes two necessary conditions shared by every winning plan: a frame
-with material on all nine switches, and at least nine wall-to-crate events.
+III-14 includes necessary conditions shared by every winning plan: a frame
+with material on all nine switches, at least nine wall-to-crate events, and
+conversion of at least nine distinct initial boundary-wall origins before any
+all-material-switch frame. Hero reachability cones provide additional masks.
+The [strengthening arguments](iii14_strengthening.md) explain these additions.
 The [landmark arguments](structure_system.md) cover simultaneous Bard carriage,
 mutable borders, and doors closing after entrance. Exact grid and source checks
 guard these clauses. They do not demand exactly nine crates or a particular
@@ -107,6 +110,13 @@ It can never report a record improvement. Tiny synthetic UNSAT tests exercise
 independent proof checking and corrupted-certificate rejection.
 
 ## Next system work
+
+The [completed execution evidence](../../evidence/2026-11-12-record-execution/README.md)
+records unrestricted queries that timed out without a candidate or checked
+proof. The optional [soft decision callback](action_priority_README.md) changes
+SAT branching without adding constraints. The separate
+[FIFO macro scheduler](../macro_scheduler/README.md) exhausts specified III-21
+scheduling families, not the whole puzzle. None has produced a new record.
 
 The next substantial improvement is a sound, smaller abstraction with a checked
 map from every concrete transition, or a stronger admissible lower bound. The

@@ -1,0 +1,13 @@
+{
+  "status": "unknown",
+  "cnf_sha256": "509c8b402b683cbd2ac7087b1074fdbff70d22603f9ee432816802fb8b2d055b",
+  "assignment_path": null,
+  "proof_path": null,
+  "proof_sha256": null,
+  "checker_status": "not_run",
+  "checker_sha256": "0535c9a92e0902c1432067de7741bd3e28054e1762d0bf58de90ab45005c5bdc",
+  "stats": {},
+  "phase": "solve",
+  "reason": "wall-clock timeout",
+  "elapsed_seconds": 300.2275671389998
+}
