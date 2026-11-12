@@ -85,7 +85,7 @@ TOOLS: List[Dict[str, Any]] = [
     },
     {
         "name": "soko_verify_route",
-        "title": "Dual-Oracle Differential Route Verifier",
+        "title": "Multi-Checker Differential Route Verifier",
         "description": "Replay a canonical starting room through the Python specification oracle, flat bitmask oracle, and C++ engine when compiled; return instance-bound differential evidence (evidence_level differential_replay).",
         "inputSchema": {
             "type": "object",
