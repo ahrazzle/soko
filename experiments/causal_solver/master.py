@@ -13,9 +13,11 @@ from experiments.transport_relaxation import allocation, cut_certificate
 from experiments.transport_relaxation import flow_allocation, global_master, model, universal_flow
 
 
-def build_master(horizon, *, use_events=True, symmetry=False):
+def build_master(horizon, *, use_events=True, symmetry=False, event_encoding='integer'):
     if type(horizon) is not int or horizon < 0:
         raise ValueError('horizon must be a nonnegative integer')
+    if event_encoding not in ('integer', 'bitvector'):
+        raise ValueError('unknown event arithmetic')
     model.exact._guard_current_source()
     solver = z3.Solver()
     frames = tuple(global_master.HeroFrame(
@@ -59,7 +61,10 @@ def build_master(horizon, *, use_events=True, symmetry=False):
     solver.add(z3.PbEq([(v, 1) for v in landmarks], 1) if landmarks else z3.BoolVal(False))
     result = global_master.Master(solver, actions, frames, landmarks, horizon)
     if use_events:
-        from .events import add_master_constraints
+        if event_encoding == 'bitvector':
+            from .bv_events import add_master_constraints
+        else:
+            from .events import add_master_constraints
         add_master_constraints(result, symmetry=symmetry)
     elif symmetry:
         raise ValueError('symmetry normalization requires the event module')

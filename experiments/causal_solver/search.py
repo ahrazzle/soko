@@ -90,7 +90,7 @@ def _save(path, result):
 
 def run(horizon, budget_seconds, *, control=None, phase_order='exact-first',
         use_events=True, symmetry=False, encoding='compact', html=None,
-        chromium=None, output=None):
+        chromium=None, output=None, event_encoding='integer'):
     if type(horizon) is not int or horizon < 0:
         raise ValueError('invalid horizon')
     if isinstance(budget_seconds, bool) or not isinstance(budget_seconds, (int, float)) or not math.isfinite(budget_seconds) or budget_seconds <= 0:
@@ -101,7 +101,8 @@ def run(horizon, budget_seconds, *, control=None, phase_order='exact-first',
     deadline = started + budget_seconds
     result = {'status': 'running', 'horizon': horizon, 'control': control,
               'phase_order': phase_order, 'events': use_events, 'symmetry': symmetry,
-              'encoding': encoding, 'candidates': [], 'cuts': [], 'phases': [],
+              'encoding': encoding, 'event_encoding': event_encoding,
+              'candidates': [], 'cuts': [], 'phases': [],
               'source_hashes_before': source_hashes(), 'record_comparison': {'status': 'not_available'}, 'record_claim': False}
 
     def remaining():
@@ -118,14 +119,18 @@ def run(horizon, budget_seconds, *, control=None, phase_order='exact-first',
 
     def phase(name, fn):
         begin = time.monotonic()
+        result.update(active_phase=name, phase_started_monotonic=begin)
+        checkpoint()
         try:
             return fn()
         finally:
             result['phases'].append({'name': name, 'seconds': time.monotonic() - begin})
+            result['active_phase'] = None
             checkpoint()
 
     checkpoint()
-    m = phase('master_build', lambda: causal.build_master(horizon, use_events=use_events, symmetry=symmetry))
+    m = phase('master_build', lambda: causal.build_master(horizon, use_events=use_events,
+                                                        symmetry=symmetry, event_encoding=event_encoding))
     assignment = control_assignment(control, horizon)
     if assignment is not None:
         causal.validate_assignment(assignment, horizon)
@@ -299,6 +304,8 @@ def run_bounded(options, output):
             'candidates': [], 'cuts': [], 'phases': [], 'source_hashes_before': before}
         result.update(status='unknown', reason='hard wall budget exhausted',
                       elapsed_seconds=time.monotonic() - started, record_claim=False)
+        if result.get('active_phase') and 'phase_started_monotonic' in result:
+            result['interrupted_phase_seconds'] = time.monotonic() - result['phase_started_monotonic']
         try:
             after = source_hashes()
             result['source_hashes_after'] = after
@@ -334,6 +341,7 @@ def main():
     p.add_argument('--no-events', action='store_true')
     p.add_argument('--symmetry', action='store_true')
     p.add_argument('--encoding', choices=('compact', 'causal', 'legacy'), default='compact')
+    p.add_argument('--event-encoding', choices=('integer', 'bitvector'), default='integer')
     p.add_argument('--html')
     p.add_argument('--chromium')
     p.add_argument('--output', type=Path, required=True)
@@ -348,7 +356,8 @@ def main():
     options = {'horizon': args.horizon, 'budget_seconds': args.budget_seconds,
                'control': args.control, 'phase_order': args.phase_order,
                'use_events': not args.no_events, 'symmetry': args.symmetry,
-               'encoding': args.encoding, 'html': args.html, 'chromium': args.chromium}
+               'encoding': args.encoding, 'event_encoding': args.event_encoding,
+               'html': args.html, 'chromium': args.chromium}
     result = run_bounded(options, args.output)
     print(json.dumps({'status': result['status'], 'output': str(args.output)}))
 
