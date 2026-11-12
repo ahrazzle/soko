@@ -782,3 +782,688 @@ def verify_formal_trace(
     if verified:
         reg.certificates.append(out)
     return out
+
+
+def _window_lns_shortcut_formal(
+    chk: CompiledChecker,
+    seed_trace: List[Any],
+    window_len: int = 8,
+    max_window_states: int = 12000,
+) -> List[Any]:
+    """Domain-general exact sliding-window Dijkstra trajectory optimizer."""
+    best = [_json_safe_action(a) for a in seed_trace]
+    improved = True
+    while improved:
+        improved = False
+        traj_states = [chk.initial_state()]
+        traj_costs = [0]
+        for act in best:
+            ns = chk.step(traj_states[-1], act)
+            if ns is None:
+                return best
+            c = chk.step_cost(traj_states[-1], act, ns)
+            traj_states.append(ns)
+            traj_costs.append(traj_costs[-1] + c)
+
+        n = len(best)
+        total_cost = traj_costs[-1]
+        stride = max(1, window_len // 2)
+        for left in range(0, n, stride):
+            if improved:
+                break
+            right = min(n, left + window_len)
+            if right - left < 2:
+                continue
+            targets: Dict[Any, int] = {}
+            for k in range(left + 1, right + 1):
+                targets[traj_states[k]] = k
+
+            start_s = traj_states[left]
+            max_sub_cost = (traj_costs[right] - traj_costs[left]) - 1
+            if max_sub_cost < 0:
+                continue
+
+            pq_counter = 0
+            pq: List[Tuple[int, int, Any, Tuple[Any, ...]]] = [(0, 0, start_s, ())]
+            best_g: Dict[Any, int] = {start_s: 0}
+
+            while pq and len(best_g) < max_window_states:
+                g, _, cur_s, sub_path = heapq.heappop(pq)
+                if g > best_g.get(cur_s, g):
+                    continue
+                for act in chk.actions(cur_s):
+                    ns = chk.step(cur_s, act)
+                    if ns is None:
+                        continue
+                    ok_inv, _ = chk.invariant(ns)
+                    if not ok_inv:
+                        continue
+                    ng = g + chk.step_cost(cur_s, act, ns)
+                    npath = sub_path + (act,)
+                    if chk.is_goal(ns) and (traj_costs[left] + ng < total_cost):
+                        best = best[:left] + list(npath)
+                        improved = True
+                        break
+                    if ns in targets:
+                        tk = targets[ns]
+                        orig_seg_cost = traj_costs[tk] - traj_costs[left]
+                        if ng < orig_seg_cost and not chk.is_goal(ns):
+                            best = best[:left] + list(npath) + best[tk:]
+                            improved = True
+                            break
+                    if ng <= max_sub_cost and (ns not in best_g or ng < best_g[ns]) and not chk.is_goal(ns):
+                        best_g[ns] = ng
+                        pq_counter += 1
+                        heapq.heappush(pq, (ng, pq_counter, ns, npath))
+                if improved:
+                    break
+    return best
+
+
+def solve_formal_system(
+    system_id: str,
+    mode: str = "reach_goal",
+    strategy: str = "exact_dijkstra",
+    max_states: int = 50000,
+    max_cost: int = 1000,
+    beam_width: int = 2000,
+    bucket_cap: int = 50,
+    seed_trace: Optional[Sequence[Any]] = None,
+    window_len: int = 8,
+) -> Dict[str, Any]:
+    """Solve, model-check, or trajectory-optimize any locked formal system with mandatory dual-checker verification."""
+    reg = _get_locked_system(system_id)
+    spec = reg.spec
+    impl = reg.impl
+
+    if mode == "optimize_trace":
+        if not seed_trace:
+            raise ValueError("seed_trace is required when mode='optimize_trace'")
+        base_ver = verify_formal_trace(system_id, seed_trace, verification_goal="goal_witness")
+        if not base_ver["verified"]:
+            raise ValueError("seed_trace failed dual-checker goal verification before optimization")
+        shortened = _window_lns_shortcut_formal(spec, list(seed_trace), window_len=window_len)
+        opt_ver = verify_formal_trace(system_id, shortened, verification_goal="goal_witness")
+        if not opt_ver["verified"]:
+            raise RuntimeError("Window LNS candidate failed dual-checker verification (fail-closed)!")
+        return {
+            "epistemic_status": "VERIFIED",
+            "system_id": reg.system_id,
+            "mode": mode,
+            "initial_steps": base_ver["steps_executed"],
+            "initial_cost": base_ver["total_cost"],
+            "best_steps": opt_ver["steps_executed"],
+            "best_cost": opt_ver["total_cost"],
+            "cost_saved": base_ver["total_cost"] - opt_ver["total_cost"],
+            "improved": opt_ver["total_cost"] < base_ver["total_cost"] or opt_ver["steps_executed"] < base_ver["steps_executed"],
+            "trace": shortened,
+            "verification": opt_ver,
+        }
+
+    if mode not in ("reach_goal", "find_invariant_violation"):
+        raise ValueError(f"Unsupported mode {mode!r}; expected 'reach_goal', 'find_invariant_violation', or 'optimize_trace'")
+
+    if strategy == "exact_dijkstra":
+        s0 = spec.initial_state()
+        u0 = impl.initial_state()
+        counter = 0
+        pq: List[Tuple[int, int, Any, Any, Tuple[Any, ...]]] = [(0, 0, s0, u0, ())]
+        best_g: Dict[Any, int] = {s0: 0}
+        truncated_by_budget = False
+        edges_checked = 0
+
+        while pq:
+            g, _, s_cur, u_cur, path = heapq.heappop(pq)
+            if g > best_g.get(s_cur, g):
+                continue
+
+            if spec.project_obs(s_cur) != impl.project_obs(u_cur):
+                raise RuntimeError(f"Dual-checker observation divergence during Dijkstra at trace {path!r}")
+
+            inv_ok, inv_reason = spec.invariant(s_cur)
+            if mode == "find_invariant_violation" and not inv_ok:
+                ver = verify_formal_trace(system_id, path, verification_goal="invariant_counterexample", require_exact_terminal_goal=False)
+                return {
+                    "epistemic_status": ver["epistemic_status"],
+                    "system_id": reg.system_id,
+                    "mode": mode,
+                    "counterexample_found": True,
+                    "invariant_reason": inv_reason,
+                    "steps": len(path),
+                    "total_cost": g,
+                    "states_explored": len(best_g),
+                    "trace": list(path),
+                    "verification": ver,
+                }
+
+            if mode == "reach_goal" and inv_ok and spec.is_goal(s_cur):
+                ver = verify_formal_trace(system_id, path, verification_goal="goal_witness", require_exact_terminal_goal=True)
+                # Since Dijkstra expands states in non-decreasing exact integer step_cost >= 0,
+                # the first valid goal popped is guaranteed minimum-cost!
+                cert_out = {
+                    "epistemic_status": "PROVEN" if ver["verified"] else "REJECTED",
+                    "certificate_kind": "EXACT_DIJKSTRA_OPTIMUM",
+                    "system_id": reg.system_id,
+                    "mode": mode,
+                    "solved": ver["verified"],
+                    "optimal_cost": g,
+                    "steps": len(path),
+                    "states_explored": len(best_g),
+                    "edges_checked": edges_checked,
+                    "trace": list(path),
+                    "verification": ver,
+                }
+                if ver["verified"]:
+                    reg.certificates.append(cert_out)
+                return cert_out
+
+            if mode == "reach_goal" and not inv_ok:
+                continue
+
+            for act in spec.actions(s_cur):
+                ns = spec.step(s_cur, act)
+                nu = impl.step(u_cur, act)
+                edges_checked += 1
+                if (ns is None) != (nu is None):
+                    raise RuntimeError(f"Dual-checker survival divergence on {path + (act,)!r}")
+                if ns is None:
+                    continue
+                step_c = spec.step_cost(s_cur, act, ns)
+                if step_c != impl.step_cost(u_cur, act, nu):
+                    raise RuntimeError(f"Dual-checker step_cost divergence on {path + (act,)!r}")
+                ng = g + step_c
+                if ng > max_cost:
+                    truncated_by_budget = True
+                    continue
+                if ns not in best_g or ng < best_g[ns]:
+                    if len(best_g) >= max_states:
+                        truncated_by_budget = True
+                        continue
+                    best_g[ns] = ng
+                    counter += 1
+                    heapq.heappush(pq, (ng, counter, ns, nu, path + (act,)))
+
+        if not truncated_by_budget:
+            # Complete reachable state space exhausted across BOTH SPEC and IMPL!
+            cert_unreach = {
+                "epistemic_status": "PROVEN",
+                "certificate_kind": (
+                    "EXHAUSTIVE_GLOBAL_SAFETY_PROOF"
+                    if mode == "find_invariant_violation"
+                    else "EXHAUSTIVE_GOAL_UNREACHABILITY_PROOF"
+                ),
+                "system_id": reg.system_id,
+                "mode": mode,
+                "solved": False,
+                "counterexample_found": False,
+                "complete_state_space_exhausted": True,
+                "reachable_states_verified": len(best_g),
+                "transitions_verified": edges_checked,
+                "checker_pins": {
+                    "spec_sha256": spec.code_sha256,
+                    "impl_sha256": impl.code_sha256,
+                    "formal_kernel_sha256": kernel_sha256(),
+                },
+            }
+            reg.certificates.append(cert_unreach)
+            return cert_unreach
+
+        return {
+            "epistemic_status": "UNSOLVED_WITHIN_BUDGET",
+            "system_id": reg.system_id,
+            "mode": mode,
+            "solved": False,
+            "counterexample_found": False,
+            "complete_state_space_exhausted": False,
+            "states_explored": len(best_g),
+            "edges_checked": edges_checked,
+        }
+
+    if strategy == "diversified_beam":
+        s0 = spec.initial_state()
+        frontier: List[Tuple[int, Any, Tuple[Any, ...]]] = [(0, s0, ())]
+        seen: Set[Any] = {s0}
+        for _depth in range(1, max_cost + 1):
+            candidates: List[Tuple[int, int, Any, Any, Tuple[Any, ...]]] = []
+            c_idx = 0
+            for g, s_cur, path in frontier:
+                for act in spec.actions(s_cur):
+                    ns = spec.step(s_cur, act)
+                    if ns is None:
+                        continue
+                    inv_ok, inv_reason = spec.invariant(ns)
+                    ng = g + spec.step_cost(s_cur, act, ns)
+                    npath = path + (act,)
+                    if mode == "find_invariant_violation" and not inv_ok:
+                        ver = verify_formal_trace(system_id, npath, verification_goal="invariant_counterexample", require_exact_terminal_goal=False)
+                        return {
+                            "epistemic_status": ver["epistemic_status"],
+                            "system_id": reg.system_id,
+                            "mode": mode,
+                            "counterexample_found": True,
+                            "invariant_reason": inv_reason,
+                            "steps": len(npath),
+                            "total_cost": ng,
+                            "trace": list(npath),
+                            "verification": ver,
+                        }
+                    if not inv_ok:
+                        continue
+                    if mode == "reach_goal" and spec.is_goal(ns):
+                        polished = _window_lns_shortcut_formal(spec, list(npath), window_len=window_len)
+                        ver = verify_formal_trace(system_id, polished, verification_goal="goal_witness", require_exact_terminal_goal=True)
+                        return {
+                            "epistemic_status": ver["epistemic_status"],
+                            "system_id": reg.system_id,
+                            "mode": mode,
+                            "solved": ver["verified"],
+                            "total_cost": ver["total_cost"],
+                            "steps": ver["steps_executed"],
+                            "states_explored": len(seen),
+                            "trace": polished,
+                            "verification": ver,
+                        }
+                    if ns in seen or len(seen) >= max_states:
+                        continue
+                    seen.add(ns)
+                    score = ng + spec.heuristic(ns)
+                    c_idx += 1
+                    candidates.append((score, c_idx, spec.bucket(ns), ns, npath, ng))  # type: ignore[arg-type]
+
+            if not candidates:
+                break
+            candidates.sort(key=lambda item: (item[0], item[1]))
+            b_counts: Dict[Any, int] = {}
+            nxt_frontier: List[Tuple[int, Any, Tuple[Any, ...]]] = []
+            used_flags = [False] * len(candidates)
+            for idx_c, item in enumerate(candidates):
+                if len(nxt_frontier) >= beam_width:
+                    break
+                bkt = item[2]
+                b_counts[bkt] = b_counts.get(bkt, 0) + 1
+                if b_counts[bkt] <= bucket_cap:
+                    used_flags[idx_c] = True
+                    nxt_frontier.append((item[5], item[3], item[4]))  # type: ignore[index]
+            for idx_c, item in enumerate(candidates):
+                if len(nxt_frontier) >= beam_width:
+                    break
+                if not used_flags[idx_c]:
+                    nxt_frontier.append((item[5], item[3], item[4]))  # type: ignore[index]
+            frontier = nxt_frontier
+
+        return {
+            "epistemic_status": "UNSOLVED_WITHIN_BUDGET",
+            "system_id": reg.system_id,
+            "mode": mode,
+            "solved": False,
+            "states_explored": len(seen),
+        }
+
+    raise ValueError(f"Unsupported strategy {strategy!r}; use 'exact_dijkstra' or 'diversified_beam'")
+
+
+def certify_formal_lower_bound(
+    system_id: str,
+    proof_mode: str,
+    certificate_code: str,
+    claimed_lower_bound: int,
+    max_concrete_states: int = 100000,
+) -> Dict[str, Any]:
+    """Machine-check a lower bound (`OPT >= B`) via Quotient Homomorphism or Inductive Potential Certificate."""
+    reg = _get_locked_system(system_id)
+    spec = reg.spec
+    impl = reg.impl
+
+    tree, cert_skel = validate_pure_ast(certificate_code, f"{system_id}.CERT", exact_arithmetic_only=reg.exact_only)
+    cert_ns: Dict[str, Any] = {"__builtins__": dict(SAFE_BUILTINS)}
+    exec(compile(tree, filename=f"<{system_id}.CERT>", mode="exec"), cert_ns, cert_ns)  # nosec
+    cert_sha256 = _sha256_hex(certificate_code)
+
+    # Enumerate concrete transitions: either via explicit `enumerate_states()` in certificate_code,
+    # or via exhaustive concrete reachability from `initial_state()` across BOTH SPEC and IMPL!
+    s0 = spec.initial_state()
+    u0 = impl.initial_state()
+    explicit_enum = cert_ns.get("enumerate_states")
+
+    concrete_states: List[Any] = []
+    concrete_edges: List[Tuple[Any, Any, Any, int]] = []
+    complete_space = False
+
+    if callable(explicit_enum):
+        raw_states = list(explicit_enum())
+        state_set = set(raw_states)
+        if s0 not in state_set:
+            return {
+                "epistemic_status": "REJECTED_INITIAL_STATE_NOT_IN_DOMAIN",
+                "system_id": reg.system_id,
+                "reason": "enumerate_states() failed to contain initial_state().",
+            }
+        closed_ok = True
+        escape_witness: Optional[Tuple[Any, Any, Any]] = None
+        for st in raw_states:
+            assert_exact_immutable(st, "enumerate_states", reg.exact_only)
+            inv_ok, _ = spec.invariant(st)
+            if not inv_ok:
+                continue
+            concrete_states.append(st)
+            for act in spec.actions(st):
+                ns = spec.step(st, act)
+                if ns is None:
+                    continue
+                inv_n, _ = spec.invariant(ns)
+                if not inv_n:
+                    continue
+                if ns not in state_set:
+                    closed_ok = False
+                    escape_witness = (st, act, ns)
+                    break
+                concrete_edges.append((st, act, ns, spec.step_cost(st, act, ns)))
+            if not closed_ok:
+                break
+        if not closed_ok and escape_witness is not None:
+            return {
+                "epistemic_status": "REJECTED_DOMAIN_NOT_INDUCTIVELY_CLOSED",
+                "system_id": reg.system_id,
+                "escaping_transition": [_canonical_repr(x) for x in escape_witness],
+            }
+        complete_space = True
+    else:
+        q: deque[Tuple[Any, Any]] = deque([(s0, u0)])
+        visited: Set[Any] = {s0}
+        truncated = False
+        while q:
+            sc, uc = q.popleft()
+            if spec.project_obs(sc) != impl.project_obs(uc):
+                raise RuntimeError("SPEC/IMPL divergence during lower-bound graph enumeration")
+            inv_ok, _ = spec.invariant(sc)
+            if not inv_ok:
+                continue
+            concrete_states.append(sc)
+            for act in spec.actions(sc):
+                ns = spec.step(sc, act)
+                nu = impl.step(uc, act)
+                if (ns is None) != (nu is None):
+                    raise RuntimeError("SPEC/IMPL step survival divergence during lower-bound check")
+                if ns is None:
+                    continue
+                inv_n, _ = spec.invariant(ns)
+                if not inv_n:
+                    continue
+                c = spec.step_cost(sc, act, ns)
+                if c != impl.step_cost(uc, act, nu):
+                    raise RuntimeError("SPEC/IMPL step_cost divergence during lower-bound check")
+                concrete_edges.append((sc, act, ns, c))
+                if ns not in visited:
+                    if len(visited) >= max_concrete_states:
+                        truncated = True
+                        continue
+                    visited.add(ns)
+                    q.append((ns, nu))
+        complete_space = not truncated
+
+    if proof_mode == "inductive_potential":
+        pot_fn = cert_ns.get("potential")
+        if not callable(pot_fn):
+            raise ValueError("certificate_code must define `potential(state) -> int | Fraction` for proof_mode='inductive_potential'")
+
+        # Check 1: Goal non-positivity: is_goal(s) => V(s) <= 0
+        for st in concrete_states:
+            if spec.is_goal(st):
+                vs = pot_fn(st)
+                if vs > 0:
+                    return {
+                        "epistemic_status": "REJECTED_GOAL_POTENTIAL_POSITIVE",
+                        "system_id": reg.system_id,
+                        "violating_goal_state": _canonical_repr(st),
+                        "potential_value": str(vs),
+                    }
+
+        # Check 2: Inductive step-consistency: V(s) <= cost(s, a, s') + V(s') on EVERY transition!
+        for st, act, ns, cost in concrete_edges:
+            vs = pot_fn(st)
+            vns = pot_fn(ns)
+            if vs > cost + vns:
+                return {
+                    "epistemic_status": "REJECTED_STEP_CONSISTENCY_VIOLATION",
+                    "system_id": reg.system_id,
+                    "violating_transition": {
+                        "state": _canonical_repr(st),
+                        "action": _canonical_repr(act),
+                        "next_state": _canonical_repr(ns),
+                        "step_cost": cost,
+                        "V_s": str(vs),
+                        "V_next": str(vns),
+                    },
+                }
+
+        v0 = pot_fn(s0)
+        holds = v0 >= claimed_lower_bound
+        if not holds:
+            return {
+                "epistemic_status": "REJECTED_INSUFFICIENT_INITIAL_POTENTIAL",
+                "system_id": reg.system_id,
+                "V_initial": str(v0),
+                "claimed_lower_bound": claimed_lower_bound,
+            }
+
+        status = "PROVEN" if complete_space else "VERIFIED_ON_BOUNDED_REACHABLE_SUBGRAPH"
+        cert_res = {
+            "epistemic_status": status,
+            "certificate_kind": "INDUCTIVE_POTENTIAL_LOWER_BOUND",
+            "system_id": reg.system_id,
+            "certified_lower_bound": claimed_lower_bound,
+            "initial_potential": str(v0),
+            "complete_domain_closed": complete_space,
+            "states_checked": len(concrete_states),
+            "edge_inequalities_checked": len(concrete_edges),
+            "checker_pins": {
+                "spec_sha256": spec.code_sha256,
+                "impl_sha256": impl.code_sha256,
+                "certificate_sha256": cert_sha256,
+                "certificate_skeleton_sha256": cert_skel,
+                "formal_kernel_sha256": kernel_sha256(),
+            },
+        }
+        if complete_space:
+            reg.certificates.append(cert_res)
+        return cert_res
+
+    if proof_mode == "quotient_homomorphism":
+        proj_fn = cert_ns.get("project")
+        if not callable(proj_fn):
+            raise ValueError("certificate_code must define `project(state) -> HashableAbstractState` for proof_mode='quotient_homomorphism'")
+        if not complete_space:
+            return {
+                "epistemic_status": "REJECTED_INCOMPLETE_CONCRETE_GRAPH_FOR_QUOTIENT",
+                "system_id": reg.system_id,
+                "reason": (
+                    f"Concrete reachable state space exceeded max_concrete_states={max_concrete_states}; "
+                    "either increase max_concrete_states or supply an inductively closed `enumerate_states()` / `inductive_potential`."
+                ),
+            }
+
+        abs_rev_adj: Dict[Any, List[Tuple[Any, int]]] = {}
+        abs_goals: Set[Any] = set()
+        abs_nodes: Set[Any] = set()
+
+        for st in concrete_states:
+            ast_node = proj_fn(st)
+            assert_exact_immutable(ast_node, "project(state)", reg.exact_only)
+            abs_nodes.add(ast_node)
+            if spec.is_goal(st):
+                abs_goals.add(ast_node)
+
+        for st, _act, ns, cost in concrete_edges:
+            u_abs = proj_fn(st)
+            v_abs = proj_fn(ns)
+            abs_rev_adj.setdefault(v_abs, []).append((u_abs, cost))
+
+        # Exact backward Dijkstra from abstract goals in Quotient Graph
+        INF = 10**15
+        h_abs: Dict[Any, int] = {g: 0 for g in abs_goals}
+        pq_abs: List[Tuple[int, int, Any]] = []
+        ctr = 0
+        for g in abs_goals:
+            ctr += 1
+            heapq.heappush(pq_abs, (0, ctr, g))
+
+        while pq_abs:
+            d, _, v_abs = heapq.heappop(pq_abs)
+            if d > h_abs.get(v_abs, INF):
+                continue
+            for u_abs, w_cost in abs_rev_adj.get(v_abs, ()):
+                nd = d + w_cost
+                if nd < h_abs.get(u_abs, INF):
+                    h_abs[u_abs] = nd
+                    ctr += 1
+                    heapq.heappush(pq_abs, (nd, ctr, u_abs))
+
+        # Exhaustively machine-check concrete homomorphism step-consistency: h(pi(s)) <= cost(s,a,s') + h(pi(s'))
+        for st, act, ns, cost in concrete_edges:
+            hs = h_abs.get(proj_fn(st), INF)
+            hns = h_abs.get(proj_fn(ns), INF)
+            if hs > cost + hns:
+                return {
+                    "epistemic_status": "REJECTED_HOMOMORPHISM_INCONSISTENT",
+                    "system_id": reg.system_id,
+                    "violating_transition": [_canonical_repr(st), _canonical_repr(act), _canonical_repr(ns)],
+                }
+
+        h0 = h_abs.get(proj_fn(s0), INF)
+        if h0 < claimed_lower_bound:
+            return {
+                "epistemic_status": "REJECTED_QUOTIENT_BOUND_TOO_WEAK",
+                "system_id": reg.system_id,
+                "quotient_initial_bound": None if h0 >= INF else h0,
+                "claimed_lower_bound": claimed_lower_bound,
+            }
+
+        cert_q = {
+            "epistemic_status": "PROVEN",
+            "certificate_kind": "QUOTIENT_HOMOMORPHISM_LOWER_BOUND",
+            "system_id": reg.system_id,
+            "certified_lower_bound": claimed_lower_bound,
+            "quotient_exact_bound": "UNREACHABLE_INF" if h0 >= INF else h0,
+            "concrete_states_verified": len(concrete_states),
+            "quotient_states": len(abs_nodes),
+            "compression_ratio": round(len(concrete_states) / max(1, len(abs_nodes)), 3),
+            "homomorphism_edges_verified": len(concrete_edges),
+            "checker_pins": {
+                "spec_sha256": spec.code_sha256,
+                "impl_sha256": impl.code_sha256,
+                "certificate_sha256": cert_sha256,
+                "formal_kernel_sha256": kernel_sha256(),
+            },
+        }
+        reg.certificates.append(cert_q)
+        return cert_q
+
+    raise ValueError(f"Unsupported proof_mode {proof_mode!r}; use 'quotient_homomorphism' or 'inductive_potential'")
+
+
+def triage_formal_portfolio(items: List[Dict[str, Any]]) -> Dict[str, Any]:
+    """Rank open problem instances by Proven-Commons expected verified gain per CPU-second."""
+    ranked: List[Dict[str, Any]] = []
+    closed_count = 0
+
+    for item in items:
+        iid = str(item["id"])
+        floor_v = int(item["proven_floor"])
+        known_v = int(item.get("shortest_known", item["live_record"]))
+        live_v = int(item["live_record"])
+        active_cells = max(2, int(item.get("active_cells", 64)))
+        eff_branching = max(1.5, float(item.get("eff_branching", 4.0)))
+        chiral_bonus = 0.75 if bool(item.get("has_chiral_symmetry", False)) else 0.0
+
+        live_slack = max(0, live_v - known_v)
+        holdout_gap = max(0, known_v - floor_v)
+
+        if live_slack == 0 and holdout_gap == 0:
+            closed_count += 1
+            priority = 0.0
+            status = "CLOSED_OPTIMAL"
+        else:
+            denom = max(1.0, math.log2(active_cells * eff_branching))
+            open_bonus = 3.0 if holdout_gap > 0 else 0.0
+            priority = round(open_bonus + (live_slack + 2.0 * holdout_gap) / denom + chiral_bonus, 4)
+            status = "OPEN_HOLDOUT_AND_SLACK" if (live_slack > 0 and holdout_gap > 0) else (
+                "OPEN_LIVE_SLACK" if live_slack > 0 else "OPEN_FLOOR_OR_HOLDOUT_GAP"
+            )
+
+        ranked.append({
+            "id": iid,
+            "status": status,
+            "priority_score": priority,
+            "proven_floor": floor_v,
+            "shortest_known": known_v,
+            "live_record": live_v,
+            "live_slack": live_slack,
+            "open_floor_gap": holdout_gap,
+            "has_chiral_symmetry": bool(item.get("has_chiral_symmetry", False)),
+        })
+
+    ranked.sort(key=lambda r: (-r["priority_score"], -r["live_slack"], r["id"]))
+    return {
+        "epistemic_status": "VERIFIED",
+        "total_items": len(items),
+        "closed_optimal_count": closed_count,
+        "open_items_count": len(items) - closed_count,
+        "ranked_portfolio": ranked,
+    }
+
+
+def export_formal_ledger(extra_claims: Optional[List[Dict[str, Any]]] = None) -> Dict[str, Any]:
+    """Export Foundation-0 / Proven-Commons epistemic ledger with fail-closed status enforcement."""
+    allowed = {"PROVEN", "VERIFIED", "KNOWN", "CONJECTURE"}
+    systems_out: Dict[str, Any] = {}
+    for sid, reg in sorted(FORMAL_REGISTRY.items()):
+        systems_out[sid] = {
+            "description": reg.description,
+            "spec_sha256": reg.spec.code_sha256,
+            "impl_sha256": reg.impl.code_sha256,
+            "differential_states_checked": reg.differential_states_checked,
+            "must_fail_rejected": reg.must_fail_rejected,
+            "mutations_killed": f"{reg.mutations_killed}/{reg.mutations_total}",
+            "certificates": reg.certificates,
+        }
+
+    validated_extra: List[Dict[str, Any]] = []
+    for cl in extra_claims or []:
+        st = str(cl.get("epistemic_status", "CONJECTURE")).upper()
+        if st not in allowed:
+            raise ValueError(f"Invalid epistemic_status {st!r}; must be one of {sorted(allowed)}")
+        if st in ("PROVEN", "VERIFIED") and not cl.get("witness_or_proof_sha256"):
+            raise ValueError(
+                f"Claim {cl.get('claim_id', '<unnamed>')!r} cannot be tagged {st} without `witness_or_proof_sha256`!"
+            )
+        validated_extra.append({**cl, "epistemic_status": st})
+
+    return {
+        "ledger_standard": "Foundation-0 + Proven-Commons Verified Bar v2",
+        "formal_kernel_sha256": kernel_sha256(),
+        "registered_systems_count": len(systems_out),
+        "systems": systems_out,
+        "external_claims": validated_extra,
+    }
+
+
+# ==================== BUILT-IN REFERENCE EXAMPLE: TEAM LEASE-PROTOCOL §5 FENCING ====================
+LEASE_EXAMPLE_MD = """# Formalizing `LEASE-PROTOCOL.txt` §5 (Advisory vs. Epoch-Fenced Leases)
+
+Using `formal_define_system` + `formal_solve_system` + `formal_certify_lower_bound`, any agent can model
+multi-seat collaboration protocols before deploying them:
+
+1. **Unfenced Advisory Lease (`lease_unfenced_v1`):**
+   - Two seats (`S1`, `S2`) contend for a shared resource with lease expiry/re-acquisition.
+   - If `S1` reads under epoch 1, stalls across a lease timeout while `S2` acquires epoch 2 and commits,
+     and `S1` then issues a late write without fencing-token validation, `S2`'s committed work is silently
+     clobbered (`lost_committed_update == True`).
+   - `formal_solve_system(mode="find_invariant_violation")` discovers the minimal 5-step split-brain bug trace
+     and dual-verifies it (`VERIFIED` counterexample).
+2. **Monotonic Epoch-Fenced Lease (`lease_epoch_fenced_v2`):**
+   - Storage checks `writer_epoch == store_epoch` atomically upon commit.
+   - `formal_solve_system(mode="find_invariant_violation", strategy="exact_dijkstra")` exhausts 100% of
+     reachable states across both `SPEC` (tuple records) and `IMPL` (bit-packed integers) with `0` violations,
+     emitting `"epistemic_status": "PROVEN"` (`EXHAUSTIVE_GLOBAL_SAFETY_PROOF`).
+"""
+
