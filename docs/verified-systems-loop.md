@@ -10,7 +10,7 @@ The live queue differs from the stored queue. II-22 is closed at 92. The remaini
 
 A 60-second configured search found no shorter route for either III-20 or III-21. The III-21 run took 83.96 seconds because the existing budget does not bound the whole optimizer. No improvement from a heuristic search is evidence only about that search. It does not prove that no shorter route exists.
 
-A later every-start window scan expanded 39,495,921 states in 177.119 seconds without an improvement. It completed all III-20 starting offsets for widths 12, 16 and 20. For III-21 it completed width 12 and part of width 16. There were 118 node-cap truncations. These limits are retained with the source and logs, so future work need not repeat the covered scan.
+A later every-start window scan performed 39,495,921 state expansions in 177.119 seconds without an improvement. It completed all III-20 starting offsets for widths 12, 16 and 20. For III-21 it completed width 12 and part of width 16. There were 118 node-cap truncations. These limits are retained with the source and logs, so future work need not repeat the covered scan.
 
 ## The reusable contract
 
