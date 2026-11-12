@@ -171,6 +171,7 @@ def _alpha_normalize_skeleton(tree: ast.AST) -> str:
         "project",
         "potential",
         "enumerate_states",
+        "predicates",
     }
 
     def map_name(name: str) -> str:
