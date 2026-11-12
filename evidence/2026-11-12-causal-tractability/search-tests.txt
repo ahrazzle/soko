@@ -1,0 +1,9 @@
+test_hard_budget_ends_build_and_writes_checkpoint (tests.test_causal_search.CausalSearchTests.test_hard_budget_ends_build_and_writes_checkpoint) ... ok
+test_local_replay_stops_at_first_win (tests.test_causal_search.CausalSearchTests.test_local_replay_stops_at_first_win) ... ok
+test_unknown_exact_never_adds_cut (tests.test_causal_search.CausalSearchTests.test_unknown_exact_never_adds_cut) ... ok
+test_worker_uses_absolute_html_and_executable_paths (tests.test_causal_search.CausalSearchTests.test_worker_uses_absolute_html_and_executable_paths) ... ok
+
+----------------------------------------------------------------------
+Ran 4 tests in 0.179s
+
+OK

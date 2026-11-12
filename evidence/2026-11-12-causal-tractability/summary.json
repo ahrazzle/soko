@@ -1,0 +1,32 @@
+{
+  "selected_global_run": {
+    "status": "unknown",
+    "horizon": 47,
+    "seconds": 120.09014145600304,
+    "candidates": 151,
+    "checked_cuts": 150,
+    "cut_types": {
+      "exact": 150
+    },
+    "interrupted_phase": "exact_certificate_recheck",
+    "interrupted_phase_seconds": 0.14436397099780152,
+    "completed_phase_seconds": {
+      "master_build": 0.21517441200194298,
+      "flow_build": 0.08932289400036098,
+      "flow_spec_check": 0.273553962000733,
+      "master_solve": 17.5423810459979,
+      "local_replay": 9.609053165015212,
+      "exact_build": 0.008722236001631245,
+      "exact_check": 21.709691380023287,
+      "exact_certificate_recheck": 16.29512330198486
+    },
+    "record_claim": false,
+    "outside_completed_phase_seconds": 54.347119058977114,
+    "outside_phase_note": "Includes source checks, checkpoint serialization, worker startup/termination and interrupted work; not individually attributed."
+  },
+  "source_commit": "14a37102d71a84311fb8c049c1a222a198d8e20e",
+  "focused_tests": {
+    "run": 53,
+    "passed": 53
+  }
+}

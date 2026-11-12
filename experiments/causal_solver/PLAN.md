@@ -46,8 +46,8 @@ on the shared machine. Agents own separate modules/tests; integration is serial.
 
 ## Trust and scope
 
-The initial integration targets original III-14. It must preserve all bounded
-legal strategies and use the incumbent only as the input budget. It must not
+The initial integration targets original III-14. It must preserve existence of
+every bounded legal win and use the incumbent only as the input budget. It must not
 fix a prefix, hero-switch schedule, material count, transport pattern, or goal
 assignment. The existing unlabeled wall/crate bitmasks already remove artificial
 material-label permutations; further pruning requires a preservation argument.
@@ -79,3 +79,28 @@ The integer implementation remains a reference. Require symbolic/exhaustive
 equivalence controls, independent overflow review, and a matched master query
 before selecting a default. This is representation work within items 1, 4,
 7 and 9, not a change to legal strategies or the objective.
+
+## Completion
+
+All nine deliverables are implemented and tested; the
+[package implementation map](README.md#implementation-map) links each to code
+and verification. Work used Terra for encoding/integration/measurement, Sol for
+refinement/events, and Astra for independent soundness review. All code and
+results were shared through this PR after the plan was published first.
+
+The measured default keeps the compact exact circuit and disables the optional
+numeric event bounds. It retains complete material mechanics and independently
+checked contradiction learning. The alternative causal circuit and widened
+event arithmetic are tested experiments with no demonstrated global solve
+advantage; they remain explicit options rather than unsupported default upgrades.
+
+The final selected H47 run produced 151 candidates and accepted 150 checked
+exact contradictions in 120 seconds, compared with no candidate from the
+integer-bound master in the preceding 120-second run. Both runs ended unknown;
+no new record or stronger game bound resulted. Known48 exact completion took
+0.526 seconds, spurious47 rejection 0.293 seconds; general guarded SMT controls
+remained unknown at 35 seconds. The reference passed full original-game replay.
+
+See [archived evidence](../../evidence/2026-11-12-causal-tractability/README.md)
+for the final focused tests, unchanged baseline failures, solver comparisons,
+all accepted certificates and a no-search rechecker.

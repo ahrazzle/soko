@@ -1,0 +1,750 @@
+{
+  "allocation": [
+    {
+      "decision": "inconclusive",
+      "workload": {
+        "horizon": 5,
+        "mode": "transition",
+        "pins": "LLULU"
+      }
+    }
+  ],
+  "command": [
+    "/tmp/soko-causal-venv/bin/python",
+    "-m",
+    "experiments.causal_solver.benchmark",
+    "--output",
+    "/tmp/causal-h5-repeated.json",
+    "--budget",
+    "8",
+    "--horizons",
+    "5",
+    "--pins",
+    "LLULU",
+    "--mode",
+    "transition",
+    "--repetitions",
+    "3"
+  ],
+  "git_head": "19cd9d73baa4ec5ce28ef8c4183094eb0eba6d4f",
+  "instance": "III-14",
+  "platform": "Linux-6.18.57-x86_64-with-glibc2.41",
+  "results": [
+    {
+      "assertions": 39,
+      "budget_seconds": 8.0,
+      "case": {
+        "backend": "z3",
+        "encoding": "compact",
+        "events": false,
+        "horizon": 5,
+        "mode": "transition",
+        "pins": "LLULU"
+      },
+      "certificate_status": "not_requested",
+      "command": [
+        "/tmp/soko-causal-venv/bin/python",
+        "-m",
+        "experiments.causal_solver.benchmark",
+        "--worker",
+        "<spec.json>",
+        "<result.json>"
+      ],
+      "model_actions": "LLULU",
+      "original_replay": "required_for_win_claim",
+      "peak_rss_kib": 83800,
+      "phase": "finished",
+      "repetition": 0,
+      "route": "LLULU",
+      "status": "sat",
+      "timings": {
+        "build_seconds": 0.41898821399809094,
+        "certificate_seconds": 0.0,
+        "compilation_seconds": 0.0,
+        "solve_seconds": 0.456183524998778,
+        "witness_seconds": 0.02893124099864508
+      },
+      "wall_seconds": 1.1348813740005426,
+      "witness_check": "assertions_and_local_replay"
+    },
+    {
+      "assertions": 39,
+      "budget_seconds": 8.0,
+      "case": {
+        "backend": "z3",
+        "encoding": "compact",
+        "events": false,
+        "horizon": 5,
+        "mode": "transition",
+        "pins": "LLULU"
+      },
+      "certificate_status": "not_requested",
+      "command": [
+        "/tmp/soko-causal-venv/bin/python",
+        "-m",
+        "experiments.causal_solver.benchmark",
+        "--worker",
+        "<spec.json>",
+        "<result.json>"
+      ],
+      "model_actions": "LLULU",
+      "original_replay": "required_for_win_claim",
+      "peak_rss_kib": 86160,
+      "phase": "finished",
+      "repetition": 1,
+      "route": "LLULU",
+      "status": "sat",
+      "timings": {
+        "build_seconds": 0.38972735200150055,
+        "certificate_seconds": 0.0,
+        "compilation_seconds": 0.0,
+        "solve_seconds": 0.46804175799843506,
+        "witness_seconds": 0.03185019499869668
+      },
+      "wall_seconds": 1.1177947530013626,
+      "witness_check": "assertions_and_local_replay"
+    },
+    {
+      "assertions": 39,
+      "budget_seconds": 8.0,
+      "case": {
+        "backend": "z3",
+        "encoding": "compact",
+        "events": false,
+        "horizon": 5,
+        "mode": "transition",
+        "pins": "LLULU"
+      },
+      "certificate_status": "not_requested",
+      "command": [
+        "/tmp/soko-causal-venv/bin/python",
+        "-m",
+        "experiments.causal_solver.benchmark",
+        "--worker",
+        "<spec.json>",
+        "<result.json>"
+      ],
+      "model_actions": "LLULU",
+      "original_replay": "required_for_win_claim",
+      "peak_rss_kib": 83876,
+      "phase": "finished",
+      "repetition": 2,
+      "route": "LLULU",
+      "status": "sat",
+      "timings": {
+        "build_seconds": 0.3546812829990813,
+        "certificate_seconds": 0.0,
+        "compilation_seconds": 0.0,
+        "solve_seconds": 0.4311769390005793,
+        "witness_seconds": 0.02659832100107451
+      },
+      "wall_seconds": 1.0106940350015066,
+      "witness_check": "assertions_and_local_replay"
+    },
+    {
+      "assertions": 39,
+      "budget_seconds": 8.0,
+      "case": {
+        "backend": "pysat",
+        "encoding": "compact",
+        "events": false,
+        "horizon": 5,
+        "mode": "transition",
+        "pins": "LLULU"
+      },
+      "certificate_status": "not_requested",
+      "clauses": 37224,
+      "command": [
+        "/tmp/soko-causal-venv/bin/python",
+        "-m",
+        "experiments.causal_solver.benchmark",
+        "--worker",
+        "<spec.json>",
+        "<result.json>"
+      ],
+      "model_actions": "LLULU",
+      "original_replay": "required_for_win_claim",
+      "peak_rss_kib": 121752,
+      "phase": "finished",
+      "repetition": 0,
+      "route": "LLULU",
+      "status": "sat",
+      "timings": {
+        "build_seconds": 0.33692951100238133,
+        "certificate_seconds": 0.0,
+        "compilation_seconds": 0.3236566089981352,
+        "solve_seconds": 0.022243818999413634,
+        "witness_seconds": 0.03962674799913657
+      },
+      "variables": 7298,
+      "wall_seconds": 0.9067282079995493,
+      "witness_check": "cnf_and_local_replay"
+    },
+    {
+      "assertions": 39,
+      "budget_seconds": 8.0,
+      "case": {
+        "backend": "pysat",
+        "encoding": "compact",
+        "events": false,
+        "horizon": 5,
+        "mode": "transition",
+        "pins": "LLULU"
+      },
+      "certificate_status": "not_requested",
+      "clauses": 37224,
+      "command": [
+        "/tmp/soko-causal-venv/bin/python",
+        "-m",
+        "experiments.causal_solver.benchmark",
+        "--worker",
+        "<spec.json>",
+        "<result.json>"
+      ],
+      "model_actions": "LLULU",
+      "original_replay": "required_for_win_claim",
+      "peak_rss_kib": 123828,
+      "phase": "finished",
+      "repetition": 1,
+      "route": "LLULU",
+      "status": "sat",
+      "timings": {
+        "build_seconds": 0.40095179499985534,
+        "certificate_seconds": 0.0,
+        "compilation_seconds": 0.6336913739978627,
+        "solve_seconds": 0.020836345000134315,
+        "witness_seconds": 0.043389070000557695
+      },
+      "variables": 7298,
+      "wall_seconds": 1.3069333200000983,
+      "witness_check": "cnf_and_local_replay"
+    },
+    {
+      "assertions": 39,
+      "budget_seconds": 8.0,
+      "case": {
+        "backend": "pysat",
+        "encoding": "compact",
+        "events": false,
+        "horizon": 5,
+        "mode": "transition",
+        "pins": "LLULU"
+      },
+      "certificate_status": "not_requested",
+      "clauses": 37224,
+      "command": [
+        "/tmp/soko-causal-venv/bin/python",
+        "-m",
+        "experiments.causal_solver.benchmark",
+        "--worker",
+        "<spec.json>",
+        "<result.json>"
+      ],
+      "model_actions": "LLULU",
+      "original_replay": "required_for_win_claim",
+      "peak_rss_kib": 121756,
+      "phase": "finished",
+      "repetition": 2,
+      "route": "LLULU",
+      "status": "sat",
+      "timings": {
+        "build_seconds": 0.36516722200030927,
+        "certificate_seconds": 0.0,
+        "compilation_seconds": 0.43016764799904195,
+        "solve_seconds": 0.02178443299999344,
+        "witness_seconds": 0.048933860001852736
+      },
+      "variables": 7298,
+      "wall_seconds": 1.058353126001748,
+      "witness_check": "cnf_and_local_replay"
+    },
+    {
+      "assertions": 39,
+      "budget_seconds": 8.0,
+      "case": {
+        "backend": "cpsat",
+        "encoding": "compact",
+        "events": false,
+        "horizon": 5,
+        "mode": "transition",
+        "pins": "LLULU"
+      },
+      "certificate_status": "not_requested",
+      "clauses": 37224,
+      "command": [
+        "/tmp/soko-causal-venv/bin/python",
+        "-m",
+        "experiments.causal_solver.benchmark",
+        "--worker",
+        "<spec.json>",
+        "<result.json>"
+      ],
+      "cp_status": "OPTIMAL",
+      "model_actions": "LLULU",
+      "original_replay": "required_for_win_claim",
+      "peak_rss_kib": 210152,
+      "phase": "finished",
+      "repetition": 0,
+      "route": "LLULU",
+      "status": "sat",
+      "timings": {
+        "build_seconds": 0.3491679300022952,
+        "certificate_seconds": 0.0,
+        "compilation_seconds": 1.0183948090016202,
+        "solve_seconds": 0.10571030800201697,
+        "witness_seconds": 0.043940317002125084
+      },
+      "variables": 7298,
+      "wall_seconds": 1.7679239749995759,
+      "witness_check": "cnf_and_local_replay"
+    },
+    {
+      "assertions": 39,
+      "budget_seconds": 8.0,
+      "case": {
+        "backend": "cpsat",
+        "encoding": "compact",
+        "events": false,
+        "horizon": 5,
+        "mode": "transition",
+        "pins": "LLULU"
+      },
+      "certificate_status": "not_requested",
+      "clauses": 37224,
+      "command": [
+        "/tmp/soko-causal-venv/bin/python",
+        "-m",
+        "experiments.causal_solver.benchmark",
+        "--worker",
+        "<spec.json>",
+        "<result.json>"
+      ],
+      "cp_status": "OPTIMAL",
+      "model_actions": "LLULU",
+      "original_replay": "required_for_win_claim",
+      "peak_rss_kib": 210068,
+      "phase": "finished",
+      "repetition": 1,
+      "route": "LLULU",
+      "status": "sat",
+      "timings": {
+        "build_seconds": 0.39858350100257667,
+        "certificate_seconds": 0.0,
+        "compilation_seconds": 1.0136148519959534,
+        "solve_seconds": 0.10207789500054787,
+        "witness_seconds": 0.05159017900223262
+      },
+      "variables": 7298,
+      "wall_seconds": 1.8818133819986542,
+      "witness_check": "cnf_and_local_replay"
+    },
+    {
+      "assertions": 39,
+      "budget_seconds": 8.0,
+      "case": {
+        "backend": "cpsat",
+        "encoding": "compact",
+        "events": false,
+        "horizon": 5,
+        "mode": "transition",
+        "pins": "LLULU"
+      },
+      "certificate_status": "not_requested",
+      "clauses": 37224,
+      "command": [
+        "/tmp/soko-causal-venv/bin/python",
+        "-m",
+        "experiments.causal_solver.benchmark",
+        "--worker",
+        "<spec.json>",
+        "<result.json>"
+      ],
+      "cp_status": "OPTIMAL",
+      "model_actions": "LLULU",
+      "original_replay": "required_for_win_claim",
+      "peak_rss_kib": 208576,
+      "phase": "finished",
+      "repetition": 2,
+      "route": "LLULU",
+      "status": "sat",
+      "timings": {
+        "build_seconds": 0.38437255600001663,
+        "certificate_seconds": 0.0,
+        "compilation_seconds": 1.0096481910004513,
+        "solve_seconds": 0.10581643499972415,
+        "witness_seconds": 0.05260348800220527
+      },
+      "variables": 7298,
+      "wall_seconds": 1.8637785709979653,
+      "witness_check": "cnf_and_local_replay"
+    },
+    {
+      "assertions": 39,
+      "budget_seconds": 8.0,
+      "case": {
+        "backend": "z3",
+        "encoding": "causal",
+        "events": false,
+        "horizon": 5,
+        "mode": "transition",
+        "pins": "LLULU"
+      },
+      "certificate_status": "not_requested",
+      "command": [
+        "/tmp/soko-causal-venv/bin/python",
+        "-m",
+        "experiments.causal_solver.benchmark",
+        "--worker",
+        "<spec.json>",
+        "<result.json>"
+      ],
+      "model_actions": "LLULU",
+      "original_replay": "required_for_win_claim",
+      "peak_rss_kib": 108428,
+      "phase": "finished",
+      "repetition": 0,
+      "route": "LLULU",
+      "status": "sat",
+      "timings": {
+        "build_seconds": 5.1048672610013455,
+        "certificate_seconds": 0.0,
+        "compilation_seconds": 0.0,
+        "solve_seconds": 1.0693820349988528,
+        "witness_seconds": 0.028327154999715276
+      },
+      "wall_seconds": 6.711759337998956,
+      "witness_check": "assertions_and_local_replay"
+    },
+    {
+      "assertions": 39,
+      "budget_seconds": 8.0,
+      "case": {
+        "backend": "z3",
+        "encoding": "causal",
+        "events": false,
+        "horizon": 5,
+        "mode": "transition",
+        "pins": "LLULU"
+      },
+      "certificate_status": "not_requested",
+      "command": [
+        "/tmp/soko-causal-venv/bin/python",
+        "-m",
+        "experiments.causal_solver.benchmark",
+        "--worker",
+        "<spec.json>",
+        "<result.json>"
+      ],
+      "model_actions": "LLULU",
+      "original_replay": "required_for_win_claim",
+      "peak_rss_kib": 109676,
+      "phase": "finished",
+      "repetition": 1,
+      "route": "LLULU",
+      "status": "sat",
+      "timings": {
+        "build_seconds": 2.2044238910020795,
+        "certificate_seconds": 0.0,
+        "compilation_seconds": 0.0,
+        "solve_seconds": 1.0976453289986239,
+        "witness_seconds": 0.12411125199650996
+      },
+      "wall_seconds": 3.8337811439996585,
+      "witness_check": "assertions_and_local_replay"
+    },
+    {
+      "assertions": 39,
+      "budget_seconds": 8.0,
+      "case": {
+        "backend": "z3",
+        "encoding": "causal",
+        "events": false,
+        "horizon": 5,
+        "mode": "transition",
+        "pins": "LLULU"
+      },
+      "certificate_status": "not_requested",
+      "command": [
+        "/tmp/soko-causal-venv/bin/python",
+        "-m",
+        "experiments.causal_solver.benchmark",
+        "--worker",
+        "<spec.json>",
+        "<result.json>"
+      ],
+      "model_actions": "LLULU",
+      "original_replay": "required_for_win_claim",
+      "peak_rss_kib": 109540,
+      "phase": "finished",
+      "repetition": 2,
+      "route": "LLULU",
+      "status": "sat",
+      "timings": {
+        "build_seconds": 3.593760182000551,
+        "certificate_seconds": 0.0,
+        "compilation_seconds": 0.0,
+        "solve_seconds": 1.640680494998378,
+        "witness_seconds": 0.028868567998870276
+      },
+      "wall_seconds": 5.582662632998108,
+      "witness_check": "assertions_and_local_replay"
+    },
+    {
+      "assertions": 39,
+      "budget_seconds": 8.0,
+      "case": {
+        "backend": "pysat",
+        "encoding": "causal",
+        "events": false,
+        "horizon": 5,
+        "mode": "transition",
+        "pins": "LLULU"
+      },
+      "certificate_status": "not_requested",
+      "clauses": 37741,
+      "command": [
+        "/tmp/soko-causal-venv/bin/python",
+        "-m",
+        "experiments.causal_solver.benchmark",
+        "--worker",
+        "<spec.json>",
+        "<result.json>"
+      ],
+      "model_actions": "LLULU",
+      "original_replay": "required_for_win_claim",
+      "peak_rss_kib": 187188,
+      "phase": "finished",
+      "repetition": 0,
+      "route": "LLULU",
+      "status": "sat",
+      "timings": {
+        "build_seconds": 4.117481705998216,
+        "certificate_seconds": 0.0,
+        "compilation_seconds": 0.9205241300005582,
+        "solve_seconds": 0.02770634400076233,
+        "witness_seconds": 0.04639661099645309
+      },
+      "variables": 7326,
+      "wall_seconds": 6.009017103999213,
+      "witness_check": "cnf_and_local_replay"
+    },
+    {
+      "assertions": 39,
+      "budget_seconds": 8.0,
+      "case": {
+        "backend": "pysat",
+        "encoding": "causal",
+        "events": false,
+        "horizon": 5,
+        "mode": "transition",
+        "pins": "LLULU"
+      },
+      "certificate_status": "not_requested",
+      "clauses": 37741,
+      "command": [
+        "/tmp/soko-causal-venv/bin/python",
+        "-m",
+        "experiments.causal_solver.benchmark",
+        "--worker",
+        "<spec.json>",
+        "<result.json>"
+      ],
+      "model_actions": "LLULU",
+      "original_replay": "required_for_win_claim",
+      "peak_rss_kib": 186068,
+      "phase": "finished",
+      "repetition": 1,
+      "route": "LLULU",
+      "status": "sat",
+      "timings": {
+        "build_seconds": 2.7308737819985254,
+        "certificate_seconds": 0.0,
+        "compilation_seconds": 0.907224036000116,
+        "solve_seconds": 0.024840567999490304,
+        "witness_seconds": 0.04368528000122751
+      },
+      "variables": 7326,
+      "wall_seconds": 4.184120737998455,
+      "witness_check": "cnf_and_local_replay"
+    },
+    {
+      "assertions": 39,
+      "budget_seconds": 8.0,
+      "case": {
+        "backend": "pysat",
+        "encoding": "causal",
+        "events": false,
+        "horizon": 5,
+        "mode": "transition",
+        "pins": "LLULU"
+      },
+      "certificate_status": "not_requested",
+      "clauses": 37741,
+      "command": [
+        "/tmp/soko-causal-venv/bin/python",
+        "-m",
+        "experiments.causal_solver.benchmark",
+        "--worker",
+        "<spec.json>",
+        "<result.json>"
+      ],
+      "model_actions": "LLULU",
+      "original_replay": "required_for_win_claim",
+      "peak_rss_kib": 185424,
+      "phase": "finished",
+      "repetition": 2,
+      "route": "LLULU",
+      "status": "sat",
+      "timings": {
+        "build_seconds": 2.5758732200010854,
+        "certificate_seconds": 0.0,
+        "compilation_seconds": 1.7427043690004211,
+        "solve_seconds": 0.06428191499799141,
+        "witness_seconds": 0.08653410600163625
+      },
+      "variables": 7326,
+      "wall_seconds": 4.762039771001582,
+      "witness_check": "cnf_and_local_replay"
+    },
+    {
+      "assertions": 39,
+      "budget_seconds": 8.0,
+      "case": {
+        "backend": "cpsat",
+        "encoding": "causal",
+        "events": false,
+        "horizon": 5,
+        "mode": "transition",
+        "pins": "LLULU"
+      },
+      "certificate_status": "not_requested",
+      "clauses": 37741,
+      "command": [
+        "/tmp/soko-causal-venv/bin/python",
+        "-m",
+        "experiments.causal_solver.benchmark",
+        "--worker",
+        "<spec.json>",
+        "<result.json>"
+      ],
+      "cp_status": "OPTIMAL",
+      "model_actions": "LLULU",
+      "original_replay": "required_for_win_claim",
+      "peak_rss_kib": 253512,
+      "phase": "finished",
+      "repetition": 0,
+      "route": "LLULU",
+      "status": "sat",
+      "timings": {
+        "build_seconds": 3.334839216000546,
+        "certificate_seconds": 0.0,
+        "compilation_seconds": 2.2583689210005105,
+        "solve_seconds": 0.19176193999737734,
+        "witness_seconds": 0.0887904850023915
+      },
+      "variables": 7326,
+      "wall_seconds": 6.32466761500109,
+      "witness_check": "cnf_and_local_replay"
+    },
+    {
+      "assertions": 39,
+      "budget_seconds": 8.0,
+      "case": {
+        "backend": "cpsat",
+        "encoding": "causal",
+        "events": false,
+        "horizon": 5,
+        "mode": "transition",
+        "pins": "LLULU"
+      },
+      "certificate_status": "not_requested",
+      "clauses": 37741,
+      "command": [
+        "/tmp/soko-causal-venv/bin/python",
+        "-m",
+        "experiments.causal_solver.benchmark",
+        "--worker",
+        "<spec.json>",
+        "<result.json>"
+      ],
+      "cp_status": "OPTIMAL",
+      "model_actions": "LLULU",
+      "original_replay": "required_for_win_claim",
+      "peak_rss_kib": 253984,
+      "phase": "finished",
+      "repetition": 1,
+      "route": "LLULU",
+      "status": "sat",
+      "timings": {
+        "build_seconds": 3.4228730270006054,
+        "certificate_seconds": 0.0,
+        "compilation_seconds": 2.3814358560011897,
+        "solve_seconds": 0.15163428100277088,
+        "witness_seconds": 0.08557383800143725
+      },
+      "variables": 7326,
+      "wall_seconds": 6.4510827509984665,
+      "witness_check": "cnf_and_local_replay"
+    },
+    {
+      "assertions": 39,
+      "budget_seconds": 8.0,
+      "case": {
+        "backend": "cpsat",
+        "encoding": "causal",
+        "events": false,
+        "horizon": 5,
+        "mode": "transition",
+        "pins": "LLULU"
+      },
+      "certificate_status": "not_requested",
+      "clauses": 37741,
+      "command": [
+        "/tmp/soko-causal-venv/bin/python",
+        "-m",
+        "experiments.causal_solver.benchmark",
+        "--worker",
+        "<spec.json>",
+        "<result.json>"
+      ],
+      "cp_status": "OPTIMAL",
+      "model_actions": "LLULU",
+      "original_replay": "required_for_win_claim",
+      "peak_rss_kib": 256728,
+      "phase": "finished",
+      "repetition": 2,
+      "route": "LLULU",
+      "status": "sat",
+      "timings": {
+        "build_seconds": 2.770923236003,
+        "certificate_seconds": 0.0,
+        "compilation_seconds": 1.8511255269986577,
+        "solve_seconds": 0.10161318700193078,
+        "witness_seconds": 0.051874509001208935
+      },
+      "variables": 7326,
+      "wall_seconds": 5.150835824999376,
+      "witness_check": "cnf_and_local_replay"
+    }
+  ],
+  "schema": "causal-benchmark-v1",
+  "sources_sha256": {
+    "experiments/causal_solver/backends.py": "dfa83cee8abeaab4c10360e7ce9ed454faba4ccf63d9dd1fe21daa05d641fd02",
+    "experiments/causal_solver/benchmark.py": "c6d38f2098b2898e379538eb61ccef9797a170bf5865d87bef09c430e8f142de",
+    "experiments/causal_solver/encoding.py": "fa5691e9e43157ce7fe324150606b331f2f8c04015f2d04ce17e2f603a35b76e",
+    "experiments/causal_solver/events.py": "6122c1575721e697e54f70d33e0a29897bebe7bb31d52a312db84c6da3612756",
+    "experiments/exact_frontier/cnf_search.py": "e6a443352f7750edf9f3daecac61e8b5602db903e27ce18d4e33d45336c90c60",
+    "experiments/exact_frontier/iii14_compact.py": "16a9250a9213d73da8a4ee6458af9d539518ab56afcc2ebe144a462ce103f290",
+    "experiments/exact_frontier/iii14_problem.py": "255c0c4bd049ee511b9087b03ba19bb253671711927965003fe0bd5d702ea29c",
+    "experiments/exact_frontier/iii14_smt.py": "4d40f35450837ec903f63322054f8ffc88486189c63db8d67bfc91c1708ba248",
+    "soko_mcp/catalog.py": "43d8b8aaf29c3e9fb857ea803a40edf5cc6e230e8e81e2c8eb002d41364f75ed",
+    "soko_mcp/data/catalog.json": "c79e2ddf755039ad09ee57d30e06efc594d0310d20cbdba26b40a4bd9ae5c8bc",
+    "soko_mcp/oracle.py": "8145f311051a3f6bfa94467da7a6d9a30535f9edf1bb00662982da70e9cc9853"
+  },
+  "versions": {
+    "ortools": "9.15.6755",
+    "python": "3.12.14",
+    "python-sat": "1.9.dev22",
+    "z3-solver": "5.4.1.0"
+  }
+}

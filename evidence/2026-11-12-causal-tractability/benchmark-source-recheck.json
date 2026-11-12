@@ -1,0 +1,14 @@
+[
+  {
+    "artifact": "h5-backend-comparison.json",
+    "verified_source_snapshot": "14a37102d71a84311fb8c049c1a222a198d8e20e"
+  },
+  {
+    "artifact": "fixed47-backend-comparison.json",
+    "verified_source_snapshot": "14a37102d71a84311fb8c049c1a222a198d8e20e"
+  },
+  {
+    "artifact": "master-arithmetic-comparison.json",
+    "verified_source_snapshot": "cfb9bfc16c6af0c87ea69dcf14def97ee2b1b8de"
+  }
+]
