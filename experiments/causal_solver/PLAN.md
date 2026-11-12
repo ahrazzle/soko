@@ -62,3 +62,20 @@ record claim also requires a fresh benchmark observation.
 This file will be updated with implemented module names, commands, measured
 results, and any failed optimization experiments. Tested negative results are
 reported as such; no declared work item is completed merely by documenting it.
+
+## Measured follow-up within wave four
+
+The first integrated unrestricted run spent its 120-second budget in the hero
+master before producing an assignment. Exact completion already accepts the
+known 48-key projection in 0.53 seconds and rejects the spurious 47-key projection
+in 0.29 seconds, so more compute for exact completion would miss the bottleneck.
+
+The next implementation preserves every event inequality while replacing the
+master's mixed bitvector/integer arithmetic with widened finite bitvectors.
+Coordinates are zero-extended before signed subtraction. All prefix sums are
+at most H+80, and suffix bounds at most 50; choose signed width w such that
+2^(w-1)>max(H+80,50). No sum or difference may use the original narrow width.
+The integer implementation remains a reference. Require symbolic/exhaustive
+equivalence controls, independent overflow review, and a matched master query
+before selecting a default. This is representation work within items 1, 4,
+7 and 9, not a change to legal strategies or the objective.
