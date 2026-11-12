@@ -1,0 +1,69 @@
+{
+  "baseline": {
+    "attribution": "Public accepted route credited to the named Frontier holder.",
+    "holder": "SJanuskas",
+    "length": 48,
+    "limits": "Dated public observation; lower bounds are reported by Frontier and not reproved by this import.",
+    "model": null,
+    "observed_at": "2026-11-12T16:02:41.374944+00:00",
+    "record_id": 137,
+    "replay_url": "https://soko.banteg.xyz/frontier/?room=III-14&record=137",
+    "response_sha256": "71762dcfd4e8341351c80487d0254f933a6cd2a8927337b9e093d5cec3ff686a",
+    "route": "LLULULULRURURURURUAUDRRDDAUARRDLRAULDLDRARURDUUR",
+    "seed": 0,
+    "status": "public_accepted_baseline",
+    "uid": 16,
+    "url": "https://soko.banteg.xyz/api/replay/137"
+  },
+  "compiled_level_index": 22,
+  "coordinates": {
+    "grid_order": "rows",
+    "origin": "top-left",
+    "original_compiled_object_order": "column-major",
+    "transform": "identity",
+    "x_direction": "right",
+    "y_direction": "down"
+  },
+  "frontier_observation": {
+    "avatar": 1,
+    "handle": "SJanuskas",
+    "id": 137,
+    "known": 48,
+    "length": 48,
+    "lower": 43,
+    "model": null,
+    "part": 3,
+    "room": 14,
+    "seed": 0,
+    "uid": 16
+  },
+  "frontier_record": 48,
+  "grid": [
+    "###############",
+    "#.............#",
+    "#.5.}}}.]]]]].#",
+    "#...}}}.]G.G].#",
+    "#.D.}}}.]]]]].#",
+    "#.............#",
+    "###############"
+  ],
+  "height": 7,
+  "id": "III-14",
+  "part": 3,
+  "proven_floor": 43,
+  "reference_route": "LLULULULRURURURURUAUDRRDDAUARRDLRAULDLDRARURDUUR",
+  "room": 14,
+  "shortest_known": 48,
+  "source": {
+    "attribution": "Original puzzle design and PuzzleScript implementation: Jonah Ostroff.",
+    "author": "Jonah Ostroff",
+    "html_sha256": "380d343ad35a8f8caf6863341172a7771d0d28ced2824a7a3085990614562105",
+    "part": 3,
+    "source_sha256": "f66ceb8f8a2c23a3cb270bad62cdf194e47479772cab94f154ed26f0ff7c20e0",
+    "title": "Heroes of Sokoban III: The Bard and The Druid",
+    "url": "https://sites.math.washington.edu/~ostroff/puzzles/Heroes_of_Sokoban_III_The_Bard_and_The_Druid.html"
+  },
+  "title": "Heroes of Sokoban III: The Bard and The Druid \u2014 Room 14",
+  "tutorial_messages": [],
+  "width": 15
+}

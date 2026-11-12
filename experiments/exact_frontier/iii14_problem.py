@@ -25,7 +25,7 @@ from soko_mcp.oracle import PuzzleScriptOracle
 oracle_state = model.oracle_state
 
 MODEL_CONTRACT = {
-    "version": 2,
+    "version": 3,
     "room": "III-14",
     "board": "original 15x7",
     "objective": "first win at or before horizon inputs",
@@ -33,6 +33,7 @@ MODEL_CONTRACT = {
     "state_encoding": "105-bit masks for walls, crates, each hero and notes; booleans for active hero and door",
     "actions": ["U", "D", "L", "R", "A"],
     "action_encoding": "one-hot Boolean variables named action_{zero_based_step}_{action}",
+    "transition_encoding": "selected action with shared movement and late phases; legacy transition retained for equivalence checks",
     "goal_absorbing": True,
     "all_board_cells_modeled": True,
     "hero_loss_pruned": "Druid petrifying Bard and closing door on either hero are losing because both heroes are necessary for the two goals",
@@ -81,7 +82,7 @@ def _guard_current_source():
     _verify_landmark_source(model.ROWS, room['grid'], room['source']['source_sha256'])
 
 
-def build_problem(horizon: int, *, use_landmarks: bool = True):
+def build_problem(horizon: int, *, use_landmarks: bool = True, encoding: str = 'compact'):
     """Return (solver, per-step action booleans, state variables) for <= horizon.
 
     No prefix, guide, milestone, or public lower bound is used.  Proven
@@ -90,11 +91,17 @@ def build_problem(horizon: int, *, use_landmarks: bool = True):
     """
     if isinstance(horizon, bool) or not isinstance(horizon, int) or horizon < 0:
         raise ValueError("horizon must be a nonnegative integer")
+    if encoding not in ('compact', 'legacy'):
+        raise ValueError("encoding must be compact or legacy")
     # The experimental builder prints status; the reusable API is silent.
     if use_landmarks:
         _guard_current_source()
     with redirect_stdout(io.StringIO()):
-        solver, actions, states = model.build(horizon, timeout=0, construct_only=True, onehot=True)
+        if encoding == 'compact':
+            from experiments.exact_frontier.iii14_compact import build
+            solver, actions, states = build(horizon)
+        else:
+            solver, actions, states = model.build(horizon, timeout=0, construct_only=True, onehot=True)
     if use_landmarks:
         solver.add(z3.Or(*[((frame[0] | frame[1]) & model.BV(model.SW)) == model.BV(model.SW)
                            for frame in states]))

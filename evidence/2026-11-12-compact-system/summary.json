@@ -1,0 +1,51 @@
+{
+  "record_search_performed": false,
+  "new_record": false,
+  "original_game_equivalence_proved": false,
+  "encoding_equivalence": "encoding_equivalence_checked",
+  "equivalence_cases": 5,
+  "trusted_transformations": "Z3 symbolic expression construction, simplification and bit-blasting; DRAT checks only the resulting CNF",
+  "horizon47": {
+    "compact": {
+      "cnf_variables": 343781,
+      "cnf_clauses": 2865101,
+      "cnf_bytes": 95217606,
+      "peak_rss_bytes": 2095837184,
+      "compile_seconds": 32.17265996400238,
+      "cnf_sha256": "721ab48a8dd96b10b8bbe7521ffecfae42a6f97db0f0e30d20698a7dcba93183"
+    },
+    "legacy": {
+      "cnf_variables": 715288,
+      "cnf_clauses": 5834178,
+      "cnf_bytes": 190895385,
+      "peak_rss_bytes": 4059082752,
+      "compile_seconds": 50.885772023000754,
+      "cnf_sha256": "5711ca1ece23168d19df51898c4072bb3a5f6b8c4e6c2c8817c0561047424f9d"
+    }
+  },
+  "clause_reduction_fraction": 0.5089109382675674,
+  "compilation_memory_reduction_fraction": 0.48366729331464486,
+  "solve_speedup_measured": false,
+  "known48_control": {
+    "status": "reference_control_passed",
+    "original_replay": "passed"
+  },
+  "focused_tests_passed": 30,
+  "full_suite": {
+    "tests": 151,
+    "failures": 26,
+    "errors": 10,
+    "skipped": 4,
+    "same_failing_test_multiset_as_prior_143_test_run": true,
+    "initial_run_extra_checksum_failures_after_native_rebuild": 7
+  },
+  "integrity_manifest": "passed",
+  "invariant_fix": {
+    "state_cap_open_transitions_reported": true,
+    "proof_scopes": [
+      "explored_reachable_subgraph",
+      "complete_reachable_states",
+      "enumerated_closed_domain"
+    ]
+  }
+}

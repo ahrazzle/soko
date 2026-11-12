@@ -5,6 +5,12 @@ win in fewer inputs than the observed record?** It supports III-14 and III-20.
 It has not yet produced a new record. III-21 and the remaining rooms do not yet
 have symbolic models here; the main MCP catalog and replay tools cover all 66.
 
+III-14 now uses a [compact transition encoding](compact_encoding.md), checked
+symbolically against the retained legacy model. Its unrestricted 47-input
+formula has 50.9% fewer clauses and uses 48.4% less compilation memory. This
+reduces representation cost without restricting the allowed routes; it does
+not establish faster SAT solving or original-game model equivalence.
+
 The entry point is `record_system.py`. A record query never fixes a prefix,
 hero-switch schedule, excavation pattern, packing plan, or goal assignment.
 The incumbent supplies the input budget only. The final state is absorbing,
