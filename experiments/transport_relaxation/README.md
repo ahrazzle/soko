@@ -211,7 +211,7 @@ landmark says nothing about other landmark times; rejecting the entire fixed
 schedule requires considering every eligible landmark. The current allocator
 checks the one supplied landmark and does not make that broader rejection.
 
-This suggests a future decomposition with hero schedules as the master problem
+The global loop below uses hero schedules as the master problem
 and token allocation as the subproblem. A failed conditional allocation can
 safely exclude the exact failed master assignment. A Hall-deficient switch set
 is not automatically a globally valid cut on different hero schedules: those
@@ -319,10 +319,9 @@ and landmark only. It does not establish a global game lower bound, exclude
 other landmark times, or justify a cut on different hero schedules without
 further reasoning.
 
-### A globally valid cut architecture, not yet implemented
+### Implemented global master and material-flow cuts
 
-The flow factorization suggests a stronger future master/subproblem design than
-excluding one failed hero schedule at a time. Construct one **fixed universal
+The implemented master/subproblem loop constructs one **fixed universal
 network** containing every potentially usable time-cell node, release edge,
 movement edge, and switch exit for the entire horizon. Give each edge a capacity
 `c_e(m)` depending on the master assignment `m` of actions, hero trajectories,
@@ -353,16 +352,35 @@ new edges, because their capacities were retained in the symbolic sum. This is
 a global Benders feasibility cut derived from the network, rather than a Hall
 deficiency informally generalized beyond its fixed schedule.
 
-This architecture is **not implemented by the conditional oracle**. Its graph
-currently omits unavailable cells and edges for efficiency. A sound global
-implementation would need the universal node/edge inventory, exact encodings
-of all capacity predicates, the common landmark selection rule, and a checker
-that recomputes each cut's full outgoing-capacity expression. Dropping edges
-merely because they are disabled in the current schedule would invalidate the
-proposed generalization. The master must also retain all valid hero/action
-schedules and appropriate terminal semantics. A global relaxation UNSAT result
-would still need a checked computational proof and the game-to-flow simulation
-argument before it could support a concrete lower bound.
+The global implementation is separate from the conditional oracle:
+[`universal_flow.py`](universal_flow.py) retains the complete potential graph;
+[`global_master.py`](global_master.py) chooses all actions, hero positions,
+active identities and one common landmark; [`cut_certificate.py`](cut_certificate.py)
+independently reconstructs the source-derived topology, every cut boundary and
+its integer capacities. The master adds only these checked inequalities.
+[`global_search.py`](global_search.py) repeats until a nine-unit witness, checked
+encoded UNSAT, or an explicit inconclusive resource limit.
+
+The master requires the first distinct hero-goal pair at the horizon. This
+still covers every concrete win of length h <= H: prepend H-h abstract U
+inputs holding the initial heroes and unharvested materials fixed, then shift
+the original history and landmark. Initially Druid is active at (2,4), and its
+U target (2,3) is not a boundary origin, so this padding needs no release. The
+actual history has no earlier goal pair, because that would already be a win.
+These prefix holds are legal in the abstraction; they are not asserted to be
+legal original-game moves. Positive controls check the 48-key reference and
+its padded 49-frame representation.
+
+Each violated cut excludes its generating master assignment and preserves all
+feasible flow assignments. With finite domains, unlimited iteration therefore
+terminates at a relaxed witness or master UNSAT. This is a completeness
+argument, not a practical polynomial-time bound for the global search.
+
+An UNSAT master is recompiled to CNF and rerun through proof-producing SAT.
+Only an independently checked certificate receives the status
+`certified_relaxation_cnf_unsat`. That certificate proves the generated CNF;
+the written game projection, symbolic encoding and CNF transformations remain
+explicit assumptions. The result is not end-to-end proof-assistant verification.
 
 ## Running and interpreting the experiment
 
@@ -372,9 +390,14 @@ From the repository root, the command interface is:
 python -m experiments.transport_relaxation.run prepare --output /tmp/transport-47 --horizon 47
 python -m experiments.transport_relaxation.run solve --output /tmp/transport-47 --horizon 47 --timeout-seconds 60
 python -m experiments.transport_relaxation.run control --output /tmp/transport-control
+python -m experiments.transport_relaxation.global_search control --output /tmp/global-control
+python -m experiments.transport_relaxation.global_search run --output /tmp/global-47 --horizon 47 --timeout-seconds 120 --proof-checker /path/to/drat-trim
 ```
 
-The driver also accepts `--proof-checker PATH` and `--html PATH` where applicable.
+The original driver accepts `--proof-checker PATH` and `--html PATH` where applicable.
+The global driver stores every accepted cut with its generating assignment,
+source hashes and progress, and bounds the worker process group by wall time.
+Its local replay is diagnostic; original-engine replay is a separate check.
 Use a separate output directory for each experiment and retain the generated
 formula, manifest, model or proof artifacts, and results together.
 
@@ -438,9 +461,11 @@ possibility while charging its actual acquisition and manipulation costs.
 The [portable evidence](../../evidence/2026-11-12-transport-system/README.md)
 contains these controls, the abstract witnesses, original-engine replay, and
 the completed global timeout. No stronger original-game lower bound or new
-record resulted. The universal-network master/cut loop described above is a
-proposed next stage; the implemented components are the relaxation, projection,
-conditional reachability/matching, capacity flow, and checks.
+record resulted. The universal-network master/cut loop is now implemented and tested; its
+[implementation plan](GLOBAL_CUT_IMPLEMENTATION.md) tracks the acceptance
+checks and measured execution results. Additional Foundation-0 research and
+its concrete implementation transfers are recorded in
+[FOUNDATION_RESEARCH.md](FOUNDATION_RESEARCH.md).
 
 ## Research inspiration and attribution
 

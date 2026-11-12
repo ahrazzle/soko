@@ -1,0 +1,27 @@
+{
+  "manifest_present": true,
+  "manifest_sha256": "aae66ffc2de7da50677ad63b0b72983457f6a5e08114f92447a80bf1cc8b4ae3",
+  "files_verified": 15,
+  "mismatched_files": [],
+  "missing_files": [],
+  "unconfined_paths": [],
+  "malformed_lines": [],
+  "duplicate_entries": [],
+  "missing_entries": [],
+  "unexpected_entries": [
+    ".gitignore",
+    ".mcp.json",
+    "README.md",
+    "cpp/frontier_iii14_iii20_prover.cpp",
+    "cpp/build/soko_engine",
+    "docs/frontier-dossier.md",
+    "pyproject.toml",
+    "soko_mcp/invariant_synth.py",
+    "tests/test_blocking_fixes.py",
+    "tests/test_capabilities.py",
+    "tests/test_mcp_server.py",
+    "tests/test_invariant_scope.py"
+  ],
+  "read_errors": [],
+  "source_integrity_verified": false
+}
