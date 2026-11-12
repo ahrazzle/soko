@@ -1,0 +1,22 @@
+{
+  "returncode": 0,
+  "stdout": "Built 1.15M-state Quotient PDB (h0=25). Running edge-checked IDA* up to bound 35...\n  bound=25 -> UNSAT (floor >= 26) | nodes=      11 | 0.000s\n  bound=26 -> UNSAT (floor >= 27) | nodes=      48 | 0.000s\n  bound=27 -> UNSAT (floor >= 28) | nodes=     265 | 0.001s\n  bound=28 -> UNSAT (floor >= 29) | nodes=    1526 | 0.003s\n  bound=29 -> UNSAT (floor >= 30) | nodes=    6296 | 0.009s\n  bound=30 -> UNSAT (floor >= 31) | nodes=   32712 | 0.028s\n  bound=31 -> UNSAT (floor >= 32) | nodes=  122716 | 0.091s\n  bound=32 -> UNSAT (floor >= 33) | nodes=  509031 | 0.411s\n  bound=33 -> UNSAT (floor >= 34) | nodes= 1807124 | 1.596s\n  bound=34 -> UNSAT (floor >= 35) | nodes= 6457672 | 6.064s\n  bound=35 -> UNSAT (floor >= 36) | nodes=21126719 | 23.308s\nTotal runtime step-consistency assertions passed: 127632718\n",
+  "stderr": "",
+  "elapsed_sec": 32.33288383483887,
+  "compiler": "Homebrew GCC 16.2.0",
+  "platform": "macOS",
+  "flags": [
+    "-O2",
+    "-pthread",
+    "-std=c++20",
+    "-include",
+    "cassert"
+  ],
+  "source_sha256": "1cb9bac7e1ac32651f9a8cd261d7a13c4abb915fcf468750b7ba353f7a761b1f",
+  "assertions_enabled": true,
+  "formal_proof_checked": false,
+  "external_spec_pinned": false,
+  "exact_state_deduplication": false,
+  "raw_source_compile": "failed: assert undeclared; rerun uses -include cassert without editing archived source",
+  "verify_mode": "III-20 84-key and III-14 48-key routes passed"
+}
