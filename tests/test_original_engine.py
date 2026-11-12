@@ -15,6 +15,7 @@ import urllib.error
 import urllib.request
 
 from experiments.original_engine import check as original
+from soko_mcp import original as runtime
 
 
 class OriginalEngineBoundaryTests(unittest.TestCase):
@@ -56,7 +57,7 @@ class OriginalEngineBoundaryTests(unittest.TestCase):
     def test_valid_download_is_pinned_and_cached(self):
         content = b"known test fixture"
         pin = hashlib.sha256(content).hexdigest()
-        with tempfile.TemporaryDirectory() as tmp, patch.object(original, "HTML_SHA256", pin):
+        with tempfile.TemporaryDirectory() as tmp, patch.dict(runtime.SOURCES, {3: (runtime.SOURCE_URL, pin, runtime.SCRIPT_SHA256)}):
             root = Path(tmp)
 
             def fetch(command, **kwargs):
@@ -137,3 +138,70 @@ class OriginalEngineBrowserTests(unittest.TestCase):
                 if candidate == "AAU":
                     self.assertEqual(result["first_death"], 3)
                     self.assertIsNone(result["first_win"])
+
+class TrilogyReplayTests(unittest.TestCase):
+    def test_input_and_timeout_validation_before_worker(self):
+        from soko_mcp import original as runtime
+        with patch.object(runtime.subprocess, "Popen") as worker:
+            for args in ((0, 1, ""), (True, 1, ""), (1, 23, ""), (2, 1, "x")):
+                with self.subTest(args=args), self.assertRaises(ValueError):
+                    runtime.replay(*args)
+            for timeout in (0, -1, float("inf"), True):
+                with self.assertRaises(ValueError):
+                    runtime.replay(1, 1, "", timeout_sec=timeout)
+            worker.assert_not_called()
+
+    def test_catalog_source_pins_match_runtime(self):
+        from soko_mcp.original import SOURCES
+        catalog = json.loads((Path(__file__).resolve().parents[1] / "soko_mcp/data/catalog.json").read_text())
+        for source in catalog["sources"]:
+            self.assertEqual(SOURCES[source["part"]],
+                             (source["url"], source["html_sha256"], source["source_sha256"]))
+
+    def test_whole_worker_timeout(self):
+        from soko_mcp.original import replay
+        with self.assertRaises(TimeoutError):
+            replay(1, 1, "", timeout_sec=0.001)
+
+    def test_cancel_kills_worker_process_group_and_reaps(self):
+        from soko_mcp import original as runtime
+        with patch.object(runtime.subprocess, "Popen") as start, \
+             patch.object(runtime.os, "killpg", side_effect=ProcessLookupError) as kill:
+            process = start.return_value
+            process.pid = 12345
+            process.communicate.side_effect = [KeyboardInterrupt(), ("", "")]
+            with self.assertRaises(KeyboardInterrupt):
+                runtime.replay(1, 1, "")
+            kill.assert_called_once_with(12345, runtime.signal.SIGKILL)
+            self.assertEqual(process.communicate.call_count, 2)
+
+    def test_all_three_html_pins_reject_altered_source(self):
+        from soko_mcp import original as runtime
+        with tempfile.TemporaryDirectory() as tmp:
+            path = Path(tmp) / "altered.html"
+            path.write_bytes(b"altered")
+            for part in (1, 2, 3):
+                with self.assertRaisesRegex(ValueError, "checksum mismatch"):
+                    runtime.checked_html(path, part)
+
+
+@unittest.skipUnless(all(os.environ.get(f"SOKO_ORIGINAL_HTML_{n}") for n in (1, 2, 3)),
+                     "set SOKO_ORIGINAL_HTML_1, _2, _3 for trilogy browser checks")
+class TrilogyBrowserTests(unittest.TestCase):
+    def test_prefix_state_and_three_active_heroes(self):
+        from soko_mcp.original import replay, digest
+        for part in (1, 2, 3):
+            html = os.environ[f"SOKO_ORIGINAL_HTML_{part}"]
+            route = "R" * 10 if part == 1 else ""
+            result = replay(part, 22, route, html=html, include_frames=True)
+            self.assertEqual(result["part"], part)
+            self.assertEqual(result["valid_winning_route"], part == 1)
+            self.assertEqual(result["steps_executed"], len(route))
+            self.assertEqual(result["trajectory_sha256"], digest(result["frames"]))
+            self.assertEqual(len(result["final_layers"]), result["height"])
+            self.assertEqual([len(line) for line in result["final_ascii"].splitlines()],
+                             [result["width"]] * result["height"])
+            self.assertTrue(any("goal" in cell for row in result["final_layers"] for cell in row))
+            self.assertEqual(result["final_objects"], result["frames"][-1]["objects"] if route else result["initial_objects"])
+            certificate = result.pop("certificate_sha256")
+            self.assertEqual(certificate, digest(result))

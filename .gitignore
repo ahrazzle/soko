@@ -4,3 +4,5 @@ __pycache__/
 cpp/build/
 *.o
 *.exe
+build/
+*.egg-info/

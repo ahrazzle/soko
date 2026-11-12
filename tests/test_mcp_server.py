@@ -57,10 +57,10 @@ class SokoVerifiedMcpTests(unittest.TestCase):
         self.assertIn("III-20", json.loads(res["result"]["contents"][0]["text"]))
 
     def test_02_inspect_verify_and_planted_bug_audit(self) -> None:
-        ins = self.client.request("tools/call", {"name": "soko_inspect_room", "arguments": {"room_id": "III-20"}})
+        ins = self.client.request("tools/call", {"name": "soko_inspect_room", "arguments": {"room_id": "fixture:III-20"}})
         self.assertTrue(ins["result"]["structuredContent"]["symmetries"]["exact_mirror_y"])
         ver = self.client.request("tools/call", {"name": "soko_verify_route", "arguments": {
-            "room_id": "III-20",
+            "room_id": "fixture:III-20",
             "route": "ADDDRRADAAADRULARADAAADDLLALAAAARRRRUULAAUALLRADRRRRADRULRURRRRRARRUURURAURRRDDRAUUR",
         }})["result"]["structuredContent"]
         self.assertEqual(ver["epistemic_status"], "VERIFIED")

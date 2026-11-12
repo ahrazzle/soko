@@ -1,3 +1,3 @@
-"""soko-verified-mcp: Sokoban differential replay, bounded exact-state search, and source-manifest checks."""
+"""Heroes of Sokoban catalog, original-engine replay and bounded local search."""
 
 __version__ = "0.2.0"

@@ -1,0 +1,4 @@
+# Keep review focused on the importer/checkers; captured JSON stays inspectable.
+soko_mcp/data/*.json linguist-generated=true
+evidence/2026-11-12-trilogy-corpus-parity/*.json linguist-generated=true
+evidence/2026-11-12-agent-workflow/*.json linguist-generated=true

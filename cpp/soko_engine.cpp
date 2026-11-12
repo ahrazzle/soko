@@ -195,11 +195,6 @@ struct Engine {
                     }
                 }
             }
-            bool any_mon = false;
-            for (int c : cells) if (is_monster(c)) { any_mon = true; break; }
-            if (!any_mon)
-                for (int idx = 0; idx < n; ++idx)
-                    if (cells[idx] == MGATE) cells[idx] = EMPTY;
         }
         if (ysw_mask.any()) {
             bool all_w = true, any_w = false;
@@ -245,6 +240,9 @@ struct Engine {
                     }
             }
         }
+        // Colored doors may crush the final monster on this same turn.
+        if (part >= 2 && std::none_of(cells.begin(), cells.end(), [&](int c) { return is_monster(c); }))
+            for (int& c : cells) if (c == MGATE) c = EMPTY;
         if (part == 3 && notes_mask.any()) {
             Mask clean;
             for (int idx = 0; idx < n; ++idx)
@@ -294,6 +292,112 @@ struct Engine {
         return h;
     }
 
+    std::pair<bool, bool> multi_step(char key) {
+        auto before = cells;
+        auto old_notes = notes_mask;
+        int old_y = y_open, old_p = p_open;
+        std::vector<int> players;
+        for (int i = 0; i < n; ++i) if (cells[i] >= ACT_F && cells[i] <= ACT_D) players.push_back(i);
+        auto cancel = [&]() {
+            cells = before; notes_mask = old_notes; y_open = old_y; p_open = old_p;
+            return std::make_pair(true, is_winning());
+        };
+        if (key == 'A') {
+            Mask pending;
+            for (int i : players) pending.set(i);
+            for (int distance = 1; distance < max_slot; ++distance) {
+                for (int code = 1; code <= max_slot; ++code) {
+                    for (int src : players) {
+                        if (!pending.test(src) || before[src] != code) continue;
+                        int target = (code - 1 + distance) % max_slot + 1;
+                        int dst = -1;
+                        for (int at : col_major_indices) if (cells[at] == target + 6) { dst = at; break; }
+                        if (dst >= 0) { cells[src] = code + 6; cells[dst] = target; pending.reset(src); }
+                    }
+                }
+            }
+            if (part == 2) for (int src : players) if (cells[src] >= ACT_F && cells[src] <= ACT_D) return cancel();
+            bool died = apply_late_phase();
+            return {!died, is_winning()};
+        }
+        int dx = key == 'R' ? 1 : key == 'L' ? -1 : 0;
+        int dy = key == 'D' ? 1 : key == 'U' ? -1 : 0;
+        std::vector<int> adjacent(n, -1);
+        for (int i = 0; i < n; ++i) {
+            int x = i % w + dx, y = i / w + dy;
+            if (x >= 0 && x < w && y >= 0 && y < h) adjacent[i] = y * w + x;
+        }
+        Mask moving;
+        for (int i : players) moving.set(i);
+        for (int src : players) {
+            if (before[src] == ACT_F) {
+                int at = adjacent[src];
+                while (at >= 0 && is_moveable(cells[at])) { moving.set(at); at = adjacent[at]; }
+            }
+            if (before[src] == ACT_T) {
+                int x = src % w - dx, y = src / w - dy;
+                if (x >= 0 && x < w && y >= 0 && y < h && is_moveable(cells[y * w + x])) moving.set(y * w + x);
+            }
+        }
+        for (int src : players) {
+            if (before[src] != ACT_W) continue;
+            moving.reset(src);
+            int at = adjacent[src];
+            while (at >= 0) {
+                if (is_static(cells[at])) { moving.set(src); break; }
+                if (is_moveable(cells[at])) { cells[src] = cells[at]; cells[at] = ACT_W; break; }
+                at = adjacent[at];
+            }
+            if (at < 0 && part == 3) moving.set(src);
+        }
+        for (int src : players) {
+            if (before[src] != ACT_D || cells[src] != ACT_D) continue;
+            int at = adjacent[src];
+            if (at < 0 || cells[at] == EMPTY) continue;
+            moving.reset(src);
+            int obj = cells[at];
+            if (obj == CRATE || obj == GOBLIN || obj == WALL) {
+                cells[at] = obj == WALL ? CRATE : WALL;
+            } else if (is_hero(obj) && obj != ACT_P && obj != INA_1 + 3) {
+                bool shielded = false;
+                for (int nb : orth_neighbors[at]) if (cells[nb] == ACT_P || cells[nb] == INA_1 + 3) shielded = true;
+                if (!shielded) cells[at] = WALL;
+            }
+        }
+        Mask bards;
+        for (int src : players) if (before[src] == ACT_B && cells[src] == ACT_B) bards.set(src);
+        if (bards.any()) {
+            Mask pending = bards;
+            for (int i = 0; i < n; ++i) if (notes_mask.test(i) && is_moveable(cells[i])) pending.set(i);
+            moving &= ~bards;
+            bool progress = true;
+            while (progress) {
+                progress = false;
+                for (int at = 0; at < n; ++at) {
+                    if (pending.test(at) && adjacent[at] >= 0 && cells[adjacent[at]] <= ACT_D && cells[adjacent[at]] != ACT_B) {
+                        cells[adjacent[at]] = cells[at]; cells[at] = EMPTY;
+                        pending.reset(at); progress = true;
+                    }
+                }
+            }
+            if ((pending & bards).any()) return cancel();
+        }
+        notes_mask.reset();
+        bool progress = true;
+        while (progress) {
+            progress = false;
+            for (int at = 0; at < n; ++at) {
+                if (moving.test(at) && adjacent[at] >= 0 && cells[adjacent[at]] == EMPTY) {
+                    cells[adjacent[at]] = cells[at]; cells[at] = EMPTY;
+                    moving.reset(at); progress = true;
+                }
+            }
+        }
+        if (part == 2) for (int src : players) if (cells[src] >= ACT_F && cells[src] <= ACT_D) return cancel();
+        bool died = apply_late_phase();
+        return {!died, is_winning()};
+    }
+
     std::pair<bool, bool> step(char key) {
         static const int DX[4] = {0, 0, -1, 1};
         static const int DY[4] = {-1, 1, 0, 0};
@@ -305,6 +409,9 @@ struct Engine {
         else if (key == 'A') dix = 4;
         else return {false, false};
 
+        int active_count = 0;
+        for (int c : cells) if (c >= ACT_F && c <= ACT_D) ++active_count;
+        if (active_count > 1) return multi_step(key);
         int act_idx = -1, act_code = EMPTY;
         for (int i = 0; i < n; ++i)
             if (cells[i] >= ACT_F && cells[i] <= ACT_D) { act_idx = i; act_code = cells[i]; break; }

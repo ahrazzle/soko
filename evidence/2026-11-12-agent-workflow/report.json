@@ -1,0 +1,4572 @@
+{
+  "schema_version": 1,
+  "started_at": "2026-11-12T16:24:43.611656+00:00",
+  "python": "/tmp/soko-corpus-agent-venv/bin/python",
+  "cwd": "/tmp",
+  "source_hashes_before": {
+    "SHA256SUMS": "3f00f7d6a2a878f2ee8f21bf97ceb94b390d807287abb304aee75903cb5a338e",
+    "cpp/soko_engine.cpp": "c61cc90e90c76c89212bc66a3a0a785a981d0064cbc0a24a7d272fc9d4051849",
+    "soko_mcp/__init__.py": "bbfc2f2b77be2e96715e0a9f98eb3691fd4b845b3a14c9e1a10bf23cf5fd7f54",
+    "soko_mcp/__main__.py": "1e27da781dc8bd819a0653df324608a15c919e4b21f5042a7814a3f33eae8848",
+    "soko_mcp/analyzer.py": "1d9f71986cd899e6646fc3da9993f5bee7bc3323584601bf7df2fe0efd316b84",
+    "soko_mcp/catalog.py": "43d8b8aaf29c3e9fb857ea803a40edf5cc6e230e8e81e2c8eb002d41364f75ed",
+    "soko_mcp/engine_bridge.py": "0a1f8c9e335788e51171b3a458cbfb492991e4ce735aad947469d086c1bdd2ea",
+    "soko_mcp/evidence.py": "2bad704a7d39ee3a63505918e5917a097a0ba6da27a3e6b0bf246edc9dc76d7c",
+    "soko_mcp/flat_oracle.py": "447b6c006dfe36347a96bd519b5ff23b76ed40352c0e5ccb32d42f496f402951",
+    "soko_mcp/formal_kernel.py": "89f3ef2b172cb89dc21ddfa582aef416e8d4b3c7d426df24ca1c2c270aa9997f",
+    "soko_mcp/integrity.py": "138a6dd0d49d6af497e4e311e38165947f0e27deb706059f708b2e21bdf90437",
+    "soko_mcp/oracle.py": "0dfcb3d77387ad4b81dea1c850e4c594daee38cd42fee407c8094e649af52b71",
+    "soko_mcp/original.py": "e9b288556c51363e1edbb161c2c119c540ad8aa6e5ae31e23739a6284f2800a6",
+    "soko_mcp/play.py": "fe92ee760e3282c941641bebb47f7b19adfc2011279f1c0fde10f926ed14e99a",
+    "soko_mcp/server.py": "1c96a7b8caf2572c76309c1604deda8ad5f2884f59d59758a399c3e6538d3304"
+  },
+  "commands": [
+    {
+      "command": [
+        "/tmp/soko-corpus-agent-venv/bin/python",
+        "-m",
+        "soko_mcp",
+        "catalog"
+      ],
+      "returncode": 0,
+      "stderr": "",
+      "stdout": {
+        "rooms": [
+          {
+            "room_id": "I-1",
+            "part": 1,
+            "room": 1,
+            "dimensions": "13x5",
+            "reference_route_len": 8,
+            "reported_lower_bound": 8
+          },
+          {
+            "room_id": "I-2",
+            "part": 1,
+            "room": 2,
+            "dimensions": "13x5",
+            "reference_route_len": 20,
+            "reported_lower_bound": 20
+          },
+          {
+            "room_id": "I-3",
+            "part": 1,
+            "room": 3,
+            "dimensions": "13x5",
+            "reference_route_len": 10,
+            "reported_lower_bound": 10
+          },
+          {
+            "room_id": "I-4",
+            "part": 1,
+            "room": 4,
+            "dimensions": "9x8",
+            "reference_route_len": 32,
+            "reported_lower_bound": 32
+          },
+          {
+            "room_id": "I-5",
+            "part": 1,
+            "room": 5,
+            "dimensions": "13x5",
+            "reference_route_len": 20,
+            "reported_lower_bound": 20
+          },
+          {
+            "room_id": "I-6",
+            "part": 1,
+            "room": 6,
+            "dimensions": "9x8",
+            "reference_route_len": 30,
+            "reported_lower_bound": 30
+          },
+          {
+            "room_id": "I-7",
+            "part": 1,
+            "room": 7,
+            "dimensions": "9x7",
+            "reference_route_len": 33,
+            "reported_lower_bound": 33
+          },
+          {
+            "room_id": "I-8",
+            "part": 1,
+            "room": 8,
+            "dimensions": "13x5",
+            "reference_route_len": 22,
+            "reported_lower_bound": 22
+          },
+          {
+            "room_id": "I-9",
+            "part": 1,
+            "room": 9,
+            "dimensions": "9x8",
+            "reference_route_len": 23,
+            "reported_lower_bound": 23
+          },
+          {
+            "room_id": "I-10",
+            "part": 1,
+            "room": 10,
+            "dimensions": "7x7",
+            "reference_route_len": 11,
+            "reported_lower_bound": 11
+          },
+          {
+            "room_id": "I-11",
+            "part": 1,
+            "room": 11,
+            "dimensions": "13x9",
+            "reference_route_len": 19,
+            "reported_lower_bound": 19
+          },
+          {
+            "room_id": "I-12",
+            "part": 1,
+            "room": 12,
+            "dimensions": "11x6",
+            "reference_route_len": 41,
+            "reported_lower_bound": 41
+          },
+          {
+            "room_id": "I-13",
+            "part": 1,
+            "room": 13,
+            "dimensions": "11x7",
+            "reference_route_len": 47,
+            "reported_lower_bound": 47
+          },
+          {
+            "room_id": "I-14",
+            "part": 1,
+            "room": 14,
+            "dimensions": "13x10",
+            "reference_route_len": 49,
+            "reported_lower_bound": 49
+          },
+          {
+            "room_id": "I-15",
+            "part": 1,
+            "room": 15,
+            "dimensions": "13x5",
+            "reference_route_len": 20,
+            "reported_lower_bound": 20
+          },
+          {
+            "room_id": "I-16",
+            "part": 1,
+            "room": 16,
+            "dimensions": "11x6",
+            "reference_route_len": 42,
+            "reported_lower_bound": 42
+          },
+          {
+            "room_id": "I-17",
+            "part": 1,
+            "room": 17,
+            "dimensions": "9x10",
+            "reference_route_len": 97,
+            "reported_lower_bound": 97
+          },
+          {
+            "room_id": "I-18",
+            "part": 1,
+            "room": 18,
+            "dimensions": "13x9",
+            "reference_route_len": 76,
+            "reported_lower_bound": 76
+          },
+          {
+            "room_id": "I-19",
+            "part": 1,
+            "room": 19,
+            "dimensions": "7x7",
+            "reference_route_len": 32,
+            "reported_lower_bound": 32
+          },
+          {
+            "room_id": "I-20",
+            "part": 1,
+            "room": 20,
+            "dimensions": "8x7",
+            "reference_route_len": 13,
+            "reported_lower_bound": 13
+          },
+          {
+            "room_id": "I-21",
+            "part": 1,
+            "room": 21,
+            "dimensions": "13x13",
+            "reference_route_len": 93,
+            "reported_lower_bound": 93
+          },
+          {
+            "room_id": "I-22",
+            "part": 1,
+            "room": 22,
+            "dimensions": "13x7",
+            "reference_route_len": 10,
+            "reported_lower_bound": 10
+          },
+          {
+            "room_id": "II-1",
+            "part": 2,
+            "room": 1,
+            "dimensions": "13x10",
+            "reference_route_len": 43,
+            "reported_lower_bound": 43
+          },
+          {
+            "room_id": "II-2",
+            "part": 2,
+            "room": 2,
+            "dimensions": "13x9",
+            "reference_route_len": 31,
+            "reported_lower_bound": 31
+          },
+          {
+            "room_id": "II-3",
+            "part": 2,
+            "room": 3,
+            "dimensions": "13x9",
+            "reference_route_len": 22,
+            "reported_lower_bound": 22
+          },
+          {
+            "room_id": "II-4",
+            "part": 2,
+            "room": 4,
+            "dimensions": "13x7",
+            "reference_route_len": 23,
+            "reported_lower_bound": 23
+          },
+          {
+            "room_id": "II-5",
+            "part": 2,
+            "room": 5,
+            "dimensions": "15x11",
+            "reference_route_len": 21,
+            "reported_lower_bound": 21
+          },
+          {
+            "room_id": "II-6",
+            "part": 2,
+            "room": 6,
+            "dimensions": "14x9",
+            "reference_route_len": 63,
+            "reported_lower_bound": 63
+          },
+          {
+            "room_id": "II-7",
+            "part": 2,
+            "room": 7,
+            "dimensions": "11x7",
+            "reference_route_len": 35,
+            "reported_lower_bound": 35
+          },
+          {
+            "room_id": "II-8",
+            "part": 2,
+            "room": 8,
+            "dimensions": "13x9",
+            "reference_route_len": 19,
+            "reported_lower_bound": 19
+          },
+          {
+            "room_id": "II-9",
+            "part": 2,
+            "room": 9,
+            "dimensions": "7x11",
+            "reference_route_len": 33,
+            "reported_lower_bound": 33
+          },
+          {
+            "room_id": "II-10",
+            "part": 2,
+            "room": 10,
+            "dimensions": "11x7",
+            "reference_route_len": 33,
+            "reported_lower_bound": 33
+          },
+          {
+            "room_id": "II-11",
+            "part": 2,
+            "room": 11,
+            "dimensions": "13x7",
+            "reference_route_len": 35,
+            "reported_lower_bound": 35
+          },
+          {
+            "room_id": "II-12",
+            "part": 2,
+            "room": 12,
+            "dimensions": "13x7",
+            "reference_route_len": 26,
+            "reported_lower_bound": 26
+          },
+          {
+            "room_id": "II-13",
+            "part": 2,
+            "room": 13,
+            "dimensions": "11x7",
+            "reference_route_len": 15,
+            "reported_lower_bound": 15
+          },
+          {
+            "room_id": "II-14",
+            "part": 2,
+            "room": 14,
+            "dimensions": "11x7",
+            "reference_route_len": 28,
+            "reported_lower_bound": 28
+          },
+          {
+            "room_id": "II-15",
+            "part": 2,
+            "room": 15,
+            "dimensions": "12x7",
+            "reference_route_len": 28,
+            "reported_lower_bound": 28
+          },
+          {
+            "room_id": "II-16",
+            "part": 2,
+            "room": 16,
+            "dimensions": "12x9",
+            "reference_route_len": 28,
+            "reported_lower_bound": 28
+          },
+          {
+            "room_id": "II-17",
+            "part": 2,
+            "room": 17,
+            "dimensions": "11x7",
+            "reference_route_len": 45,
+            "reported_lower_bound": 45
+          },
+          {
+            "room_id": "II-18",
+            "part": 2,
+            "room": 18,
+            "dimensions": "11x11",
+            "reference_route_len": 55,
+            "reported_lower_bound": 55
+          },
+          {
+            "room_id": "II-19",
+            "part": 2,
+            "room": 19,
+            "dimensions": "11x9",
+            "reference_route_len": 63,
+            "reported_lower_bound": 63
+          },
+          {
+            "room_id": "II-20",
+            "part": 2,
+            "room": 20,
+            "dimensions": "11x8",
+            "reference_route_len": 93,
+            "reported_lower_bound": 93
+          },
+          {
+            "room_id": "II-21",
+            "part": 2,
+            "room": 21,
+            "dimensions": "11x8",
+            "reference_route_len": 119,
+            "reported_lower_bound": 119
+          },
+          {
+            "room_id": "II-22",
+            "part": 2,
+            "room": 22,
+            "dimensions": "13x13",
+            "reference_route_len": 92,
+            "reported_lower_bound": 92
+          },
+          {
+            "room_id": "III-1",
+            "part": 3,
+            "room": 1,
+            "dimensions": "19x12",
+            "reference_route_len": 27,
+            "reported_lower_bound": 27
+          },
+          {
+            "room_id": "III-2",
+            "part": 3,
+            "room": 2,
+            "dimensions": "13x5",
+            "reference_route_len": 28,
+            "reported_lower_bound": 28
+          },
+          {
+            "room_id": "III-3",
+            "part": 3,
+            "room": 3,
+            "dimensions": "15x6",
+            "reference_route_len": 27,
+            "reported_lower_bound": 27
+          },
+          {
+            "room_id": "III-4",
+            "part": 3,
+            "room": 4,
+            "dimensions": "13x7",
+            "reference_route_len": 18,
+            "reported_lower_bound": 18
+          },
+          {
+            "room_id": "III-5",
+            "part": 3,
+            "room": 5,
+            "dimensions": "12x5",
+            "reference_route_len": 20,
+            "reported_lower_bound": 20
+          },
+          {
+            "room_id": "III-6",
+            "part": 3,
+            "room": 6,
+            "dimensions": "12x8",
+            "reference_route_len": 36,
+            "reported_lower_bound": 36
+          },
+          {
+            "room_id": "III-7",
+            "part": 3,
+            "room": 7,
+            "dimensions": "8x7",
+            "reference_route_len": 55,
+            "reported_lower_bound": 55
+          },
+          {
+            "room_id": "III-8",
+            "part": 3,
+            "room": 8,
+            "dimensions": "9x8",
+            "reference_route_len": 29,
+            "reported_lower_bound": 29
+          },
+          {
+            "room_id": "III-9",
+            "part": 3,
+            "room": 9,
+            "dimensions": "12x7",
+            "reference_route_len": 46,
+            "reported_lower_bound": 46
+          },
+          {
+            "room_id": "III-10",
+            "part": 3,
+            "room": 10,
+            "dimensions": "13x5",
+            "reference_route_len": 45,
+            "reported_lower_bound": 45
+          },
+          {
+            "room_id": "III-11",
+            "part": 3,
+            "room": 11,
+            "dimensions": "13x9",
+            "reference_route_len": 119,
+            "reported_lower_bound": 119
+          },
+          {
+            "room_id": "III-12",
+            "part": 3,
+            "room": 12,
+            "dimensions": "13x7",
+            "reference_route_len": 44,
+            "reported_lower_bound": 44
+          },
+          {
+            "room_id": "III-13",
+            "part": 3,
+            "room": 13,
+            "dimensions": "13x5",
+            "reference_route_len": 57,
+            "reported_lower_bound": 57
+          },
+          {
+            "room_id": "III-14",
+            "part": 3,
+            "room": 14,
+            "dimensions": "15x7",
+            "reference_route_len": 48,
+            "reported_lower_bound": 43
+          },
+          {
+            "room_id": "III-15",
+            "part": 3,
+            "room": 15,
+            "dimensions": "9x5",
+            "reference_route_len": 69,
+            "reported_lower_bound": 69
+          },
+          {
+            "room_id": "III-16",
+            "part": 3,
+            "room": 16,
+            "dimensions": "13x7",
+            "reference_route_len": 47,
+            "reported_lower_bound": 47
+          },
+          {
+            "room_id": "III-17",
+            "part": 3,
+            "room": 17,
+            "dimensions": "16x11",
+            "reference_route_len": 108,
+            "reported_lower_bound": 108
+          },
+          {
+            "room_id": "III-18",
+            "part": 3,
+            "room": 18,
+            "dimensions": "14x5",
+            "reference_route_len": 63,
+            "reported_lower_bound": 63
+          },
+          {
+            "room_id": "III-19",
+            "part": 3,
+            "room": 19,
+            "dimensions": "12x8",
+            "reference_route_len": 70,
+            "reported_lower_bound": 70
+          },
+          {
+            "room_id": "III-20",
+            "part": 3,
+            "room": 20,
+            "dimensions": "15x9",
+            "reference_route_len": 84,
+            "reported_lower_bound": 74
+          },
+          {
+            "room_id": "III-21",
+            "part": 3,
+            "room": 21,
+            "dimensions": "23x13",
+            "reference_route_len": 316,
+            "reported_lower_bound": 268
+          },
+          {
+            "room_id": "III-22",
+            "part": 3,
+            "room": 22,
+            "dimensions": "16x9",
+            "reference_route_len": 9,
+            "reported_lower_bound": 9
+          }
+        ],
+        "room_count": 66,
+        "scope": "source-pinned original trilogy; baseline cost is not a current record",
+        "details_tool": "soko_get_room"
+      }
+    },
+    {
+      "command": [
+        "/tmp/soko-corpus-agent-venv/bin/python",
+        "-m",
+        "soko_mcp",
+        "get-room",
+        "--room",
+        "III-21"
+      ],
+      "returncode": 0,
+      "stderr": "",
+      "stdout": {
+        "room": 21,
+        "compiled_level_index": 30,
+        "grid": [
+          "#######################",
+          "#.F.*....#G.G#....*.4.#",
+          "#...#....#...#....#...#",
+          "#######.........#######",
+          "#####.#####O#####.#####",
+          "#..##O#..#...#..#O##..#",
+          "#.2.*....#G.G#....*.5.#",
+          "#..##O#..*...#..#O##..#",
+          "#####.####...####.#####",
+          "#######..#..*O.*#######",
+          "#...###.#######...#...#",
+          "#.3.###.##G.G##...#.6.#",
+          "#######################"
+        ],
+        "tutorial_messages": [
+          "Get ready."
+        ],
+        "id": "III-21",
+        "part": 3,
+        "title": "Heroes of Sokoban III: The Bard and The Druid \u2014 Room 21",
+        "source": {
+          "part": 3,
+          "title": "Heroes of Sokoban III: The Bard and The Druid",
+          "author": "Jonah Ostroff",
+          "url": "https://sites.math.washington.edu/~ostroff/puzzles/Heroes_of_Sokoban_III_The_Bard_and_The_Druid.html",
+          "html_sha256": "380d343ad35a8f8caf6863341172a7771d0d28ced2824a7a3085990614562105",
+          "source_sha256": "f66ceb8f8a2c23a3cb270bad62cdf194e47479772cab94f154ed26f0ff7c20e0",
+          "attribution": "Original puzzle design and PuzzleScript implementation: Jonah Ostroff."
+        },
+        "coordinates": {
+          "origin": "top-left",
+          "x_direction": "right",
+          "y_direction": "down",
+          "transform": "identity",
+          "grid_order": "rows",
+          "original_compiled_object_order": "column-major"
+        },
+        "width": 23,
+        "height": 13,
+        "reference_route": "RRRDRRDRRRURRDRRUURRRRRLLLLDDAUAADLLULLLLLDDAAALLLULDDDRDLULDDLLUUAAAULLULAAUADLLLLLAAADLAAALDADRAAAALLDAULAALARUAAARRRRRAUAARDRAAARRDRRUADDRRDDRLAAUAAAULLRRURURDDAURULDDRRRRLLLLAAUUAAARDDRRRDRRRRRAAAAAULLULULULLLDUURLDLLUALLLUUAAAALLLLLDLLLDULLULLLLLLLADDRDALDDAUAAALDURADDUUAAAUAARRRRRRRRUUURUUADRDDDAAAUUURDDDAUUL",
+        "shortest_known": 316,
+        "proven_floor": 268,
+        "frontier_record": 316,
+        "frontier_observation": {
+          "part": 3,
+          "room": 21,
+          "lower": 268,
+          "known": 316,
+          "id": 159,
+          "length": 316,
+          "uid": 17,
+          "handle": "futarchist",
+          "seed": 0,
+          "model": null,
+          "avatar": 1
+        },
+        "baseline": {
+          "route": "RRRDRRDRRRURRDRRUURRRRRLLLLDDAUAADLLULLLLLDDAAALLLULDDDRDLULDDLLUUAAAULLULAAUADLLLLLAAADLAAALDADRAAAALLDAULAALARUAAARRRRRAUAARDRAAARRDRRUADDRRDDRLAAUAAAULLRRURURDDAURULDDRRRRLLLLAAUUAAARDDRRRDRRRRRAAAAAULLULULULLLDUURLDLLUALLLUUAAAALLLLLDLLLDULLULLLLLLLADDRDALDDAUAAALDURADDUUAAAUAARRRRRRRRUUURUUADRDDDAAAUUURDDDAUUL",
+          "length": 316,
+          "holder": "futarchist",
+          "record_id": 159,
+          "url": "https://soko.banteg.xyz/api/replay/159",
+          "replay_url": "https://soko.banteg.xyz/frontier/?room=III-21&record=159",
+          "observed_at": "2026-11-12T16:02:41.926788+00:00",
+          "response_sha256": "32625ea5b0ac0c9106f2d3ac6254eddec6d863dd4d1fd2a9ae18f6d55baf9a57",
+          "uid": 17,
+          "model": null,
+          "seed": 0,
+          "attribution": "Public accepted route credited to the named Frontier holder.",
+          "status": "public_accepted_baseline",
+          "limits": "Dated public observation; lower bounds are reported by Frontier and not reproved by this import."
+        }
+      }
+    },
+    {
+      "command": [
+        "/tmp/soko-corpus-agent-venv/bin/python",
+        "-m",
+        "soko_mcp",
+        "verify",
+        "--room",
+        "I-1",
+        "--route",
+        "RRRRRRRR"
+      ],
+      "returncode": 0,
+      "stderr": "",
+      "stdout": {
+        "epistemic_status": "VERIFIED",
+        "evidence_level": "differential_replay",
+        "formal_proof_checked": false,
+        "external_spec_pinned": false,
+        "source_lock_asserted": false,
+        "problem": {
+          "adapter": "heroes-of-sokoban-ascii-v1",
+          "part": 1,
+          "grid": [
+            "#############",
+            "#...........#",
+            "#.F.......G.#",
+            "#...........#",
+            "#############"
+          ],
+          "goal": "heroes occupy exactly the goal cells",
+          "termination": "alive and first win on final key",
+          "cost": "number of UDLRA keys"
+        },
+        "instance_sha256": "6bccfd3472b97e70d25a5a8cdc64b550cc418c904bffa94e528caff61516d0a7",
+        "route_sha256": "eef526b7ebbf16caa0f5e7903019a38556aeda65f04dff3dd1857ea45dcb1552",
+        "valid_winning_route": true,
+        "route_len": 8,
+        "route_sha256_12": "eef526b7ebbf",
+        "traj_fnv64": "ab1bac69e76f3549",
+        "trajectory_digest_match": true,
+        "alive": true,
+        "exact_win": true,
+        "premature_win": false,
+        "steps_executed": 8,
+        "engines_executed": [
+          "python_spec_oracle",
+          "python_flat_bitmask_oracle",
+          "cpp20_soko_engine"
+        ],
+        "engines_count": 3,
+        "dual_engine_checked": true,
+        "triple_oracle_checked": true,
+        "differential_match": true,
+        "checker_pins": {
+          "oracle_py_sha256": "0dfcb3d77387ad4b81dea1c850e4c594daee38cd42fee407c8094e649af52b71",
+          "flat_oracle_py_sha256": "447b6c006dfe36347a96bd519b5ff23b76ed40352c0e5ccb32d42f496f402951",
+          "engine_bridge_py_sha256": "0a1f8c9e335788e51171b3a458cbfb492991e4ce735aad947469d086c1bdd2ea",
+          "evidence_py_sha256": "2bad704a7d39ee3a63505918e5917a097a0ba6da27a3e6b0bf246edc9dc76d7c",
+          "integrity_py_sha256": "138a6dd0d49d6af497e4e311e38165947f0e27deb706059f708b2e21bdf90437",
+          "catalog_py_sha256": "43d8b8aaf29c3e9fb857ea803a40edf5cc6e230e8e81e2c8eb002d41364f75ed",
+          "cpp_soko_engine_src_sha256": "c61cc90e90c76c89212bc66a3a0a785a981d0064cbc0a24a7d272fc9d4051849",
+          "cpp_soko_engine_bin_sha256": "4f72c3ad08c35ef67035f733e8ef722976add4741065817ea6340b562372a863",
+          "formal_kernel_py_sha256": "89f3ef2b172cb89dc21ddfa582aef416e8d4b3c7d426df24ca1c2c270aa9997f"
+        },
+        "checker_pins_ok": true,
+        "final_ascii": "#############\n#...........#\n#.........F.#\n#...........#\n#############",
+        "route": "RRRRRRRR",
+        "room_id": "I-1",
+        "certificate_sha256": "5fa97c2586ce2f6eee8385b3122cbb04415795c43f2d85ecbcabfca7c7f23c64"
+      }
+    },
+    {
+      "command": [
+        "/tmp/soko-corpus-agent-venv/bin/python",
+        "-m",
+        "soko_mcp",
+        "solve",
+        "--room",
+        "I-2",
+        "--max-depth",
+        "30",
+        "--budget-sec",
+        "2",
+        "--beam-width",
+        "40000"
+      ],
+      "returncode": 0,
+      "stderr": "",
+      "stdout": {
+        "epistemic_status": "VERIFIED",
+        "solved": true,
+        "route_len": 20,
+        "route": "RRRURLDDRURRRURLDDRU",
+        "route_sha256_12": "fd343c6f5a17",
+        "traj_fnv64": "f3b371a27f4b827f",
+        "states_explored": 504,
+        "dual_oracle_verified": true,
+        "triple_oracle_checked": true,
+        "checker_pins": {
+          "oracle_py_sha256": "0dfcb3d77387ad4b81dea1c850e4c594daee38cd42fee407c8094e649af52b71",
+          "flat_oracle_py_sha256": "447b6c006dfe36347a96bd519b5ff23b76ed40352c0e5ccb32d42f496f402951",
+          "engine_bridge_py_sha256": "0a1f8c9e335788e51171b3a458cbfb492991e4ce735aad947469d086c1bdd2ea",
+          "evidence_py_sha256": "2bad704a7d39ee3a63505918e5917a097a0ba6da27a3e6b0bf246edc9dc76d7c",
+          "integrity_py_sha256": "138a6dd0d49d6af497e4e311e38165947f0e27deb706059f708b2e21bdf90437",
+          "catalog_py_sha256": "43d8b8aaf29c3e9fb857ea803a40edf5cc6e230e8e81e2c8eb002d41364f75ed",
+          "cpp_soko_engine_src_sha256": "c61cc90e90c76c89212bc66a3a0a785a981d0064cbc0a24a7d272fc9d4051849",
+          "cpp_soko_engine_bin_sha256": "4f72c3ad08c35ef67035f733e8ef722976add4741065817ea6340b562372a863",
+          "formal_kernel_py_sha256": "89f3ef2b172cb89dc21ddfa582aef416e8d4b3c7d426df24ca1c2c270aa9997f"
+        },
+        "verification": {
+          "epistemic_status": "VERIFIED",
+          "evidence_level": "differential_replay",
+          "formal_proof_checked": false,
+          "external_spec_pinned": false,
+          "source_lock_asserted": false,
+          "problem": {
+            "adapter": "heroes-of-sokoban-ascii-v1",
+            "part": 1,
+            "grid": [
+              "#############",
+              "#...#.*.#.*.#",
+              "#.F...*.**G.#",
+              "#...#.*.#.*.#",
+              "#############"
+            ],
+            "goal": "heroes occupy exactly the goal cells",
+            "termination": "alive and first win on final key",
+            "cost": "number of UDLRA keys"
+          },
+          "instance_sha256": "c25b9d61db91deb6fc02f42e2634a5568aacff520e914191dc412d35de48e62f",
+          "route_sha256": "fd343c6f5a17f054b68e2aaeacb4583fabaaff13f410c83c851fca254964af57",
+          "valid_winning_route": true,
+          "route_len": 20,
+          "route_sha256_12": "fd343c6f5a17",
+          "traj_fnv64": "f3b371a27f4b827f",
+          "trajectory_digest_match": true,
+          "alive": true,
+          "exact_win": true,
+          "premature_win": false,
+          "steps_executed": 20,
+          "engines_executed": [
+            "python_spec_oracle",
+            "python_flat_bitmask_oracle",
+            "cpp20_soko_engine"
+          ],
+          "engines_count": 3,
+          "dual_engine_checked": true,
+          "triple_oracle_checked": true,
+          "differential_match": true,
+          "checker_pins": {
+            "oracle_py_sha256": "0dfcb3d77387ad4b81dea1c850e4c594daee38cd42fee407c8094e649af52b71",
+            "flat_oracle_py_sha256": "447b6c006dfe36347a96bd519b5ff23b76ed40352c0e5ccb32d42f496f402951",
+            "engine_bridge_py_sha256": "0a1f8c9e335788e51171b3a458cbfb492991e4ce735aad947469d086c1bdd2ea",
+            "evidence_py_sha256": "2bad704a7d39ee3a63505918e5917a097a0ba6da27a3e6b0bf246edc9dc76d7c",
+            "integrity_py_sha256": "138a6dd0d49d6af497e4e311e38165947f0e27deb706059f708b2e21bdf90437",
+            "catalog_py_sha256": "43d8b8aaf29c3e9fb857ea803a40edf5cc6e230e8e81e2c8eb002d41364f75ed",
+            "cpp_soko_engine_src_sha256": "c61cc90e90c76c89212bc66a3a0a785a981d0064cbc0a24a7d272fc9d4051849",
+            "cpp_soko_engine_bin_sha256": "4f72c3ad08c35ef67035f733e8ef722976add4741065817ea6340b562372a863",
+            "formal_kernel_py_sha256": "89f3ef2b172cb89dc21ddfa582aef416e8d4b3c7d426df24ca1c2c270aa9997f"
+          },
+          "checker_pins_ok": true,
+          "final_ascii": "#############\n#...#.**#.**#\n#.........F*#\n#...#..*#..*#\n#############",
+          "route": "RRRURLDDRURRRURLDDRU",
+          "certificate_sha256": "e92a712d4a97729329764fe0e900944dcd656a20e31bac3fbe59d1c217ad008c"
+        },
+        "search": {
+          "solved": true,
+          "route": "RRRURLDDRURRRURLDDRU",
+          "explored": 504,
+          "search_algorithm": "exact_bfs",
+          "termination_reason": "solution",
+          "completed_depth": 19,
+          "timed_out": false,
+          "state_limit_reached": false,
+          "states_seen": 531,
+          "nodes_expanded": 504,
+          "transitions_checked": 2516,
+          "duplicates_pruned": 1985
+        },
+        "room_id": "I-2"
+      }
+    },
+    {
+      "command": [
+        "/tmp/soko-corpus-agent-venv/bin/python",
+        "-m",
+        "soko_mcp",
+        "play",
+        "--room",
+        "I-2",
+        "--keys",
+        "R",
+        "--checkpoint-out",
+        "/workspace/soko-corpus/evidence/2026-11-12-agent-workflow/checkpoint.json"
+      ],
+      "returncode": 0,
+      "stderr": "",
+      "stdout": {
+        "room_id": "I-2",
+        "action": "step",
+        "route": "R",
+        "current_key_count": 1,
+        "cost_scope": "current route; no record or benchmark budget claim",
+        "terminal": false,
+        "checkpoint": {
+          "format": "soko-original-play-v1",
+          "room_id": "I-2",
+          "source_pins": {
+            "html_sha256": "9811b0538cc7dd73cb7ef271d8f5ff5d4395329a7b87c6cf18c94d7a126bf311",
+            "puzzlescript_source_sha256": "81a1d27115fc40c04f27bb39d0ef12ebffbea513e3fe9f550b5173bb683728a3",
+            "checker_sha256": "e9b288556c51363e1edbb161c2c119c540ad8aa6e5ae31e23739a6284f2800a6",
+            "source_url": "https://sites.math.washington.edu/~ostroff/puzzles/Heroes_of_Sokoban.html"
+          },
+          "route": "R",
+          "sha256": "8a6e5223bdf67a1ea33c70bd5d5b4d72063431874d134b4a24eec22521ff6819"
+        },
+        "replay": {
+          "room": 2,
+          "compiled_level_index": 3,
+          "width": 13,
+          "height": 5,
+          "object_count": 18,
+          "stride": 1,
+          "object_ids": {
+            "background": 0,
+            "goal": 2,
+            "wall": 17,
+            "fighter": 10,
+            "wizard": 11,
+            "thief": 12,
+            "sfighter": 15,
+            "swizard": 13,
+            "sthief": 14,
+            "crate": 16,
+            "yellowswitch": 4,
+            "yellowopen": 5,
+            "yellowdoor": 9,
+            "purpleswitch": 3,
+            "purpledoor": 8,
+            "purpleopen": 6,
+            "temp": 1,
+            "shadowdoor": 7
+          },
+          "final_objects": [
+            131073,
+            131073,
+            131073,
+            131073,
+            131073,
+            131073,
+            1,
+            1,
+            1,
+            131073,
+            131073,
+            1,
+            1,
+            1,
+            131073,
+            131073,
+            1,
+            1025,
+            1,
+            131073,
+            131073,
+            131073,
+            1,
+            131073,
+            131073,
+            131073,
+            1,
+            1,
+            1,
+            131073,
+            131073,
+            65537,
+            65537,
+            65537,
+            131073,
+            131073,
+            1,
+            1,
+            1,
+            131073,
+            131073,
+            131073,
+            65537,
+            131073,
+            131073,
+            131073,
+            1,
+            65537,
+            1,
+            131073,
+            131073,
+            65537,
+            5,
+            65537,
+            131073,
+            131073,
+            1,
+            1,
+            1,
+            131073,
+            131073,
+            131073,
+            131073,
+            131073,
+            131073
+          ],
+          "initial_objects": [
+            131073,
+            131073,
+            131073,
+            131073,
+            131073,
+            131073,
+            1,
+            1,
+            1,
+            131073,
+            131073,
+            1,
+            1025,
+            1,
+            131073,
+            131073,
+            1,
+            1,
+            1,
+            131073,
+            131073,
+            131073,
+            1,
+            131073,
+            131073,
+            131073,
+            1,
+            1,
+            1,
+            131073,
+            131073,
+            65537,
+            65537,
+            65537,
+            131073,
+            131073,
+            1,
+            1,
+            1,
+            131073,
+            131073,
+            131073,
+            65537,
+            131073,
+            131073,
+            131073,
+            1,
+            65537,
+            1,
+            131073,
+            131073,
+            65537,
+            5,
+            65537,
+            131073,
+            131073,
+            1,
+            1,
+            1,
+            131073,
+            131073,
+            131073,
+            131073,
+            131073,
+            131073
+          ],
+          "first_win": null,
+          "first_death": null,
+          "restarts": 0,
+          "again_limit_hit": false,
+          "schema_version": 1,
+          "evidence_level": "original_build_replay",
+          "part": 1,
+          "source_url": "https://sites.math.washington.edu/~ostroff/puzzles/Heroes_of_Sokoban.html",
+          "html_sha256": "9811b0538cc7dd73cb7ef271d8f5ff5d4395329a7b87c6cf18c94d7a126bf311",
+          "puzzlescript_source_sha256": "81a1d27115fc40c04f27bb39d0ef12ebffbea513e3fe9f550b5173bb683728a3",
+          "checker_sha256": "e9b288556c51363e1edbb161c2c119c540ad8aa6e5ae31e23739a6284f2800a6",
+          "browser_version": "156.0.8078.79",
+          "checked_at": "2026-11-12T16:24:47.016516+00:00",
+          "route": "R",
+          "route_len": 1,
+          "route_sha256": "8c2574892063f995fdf756bce07f46c1a5193e54cd52837ed91e32008ccf41ac",
+          "instance_sha256": "c56aa66b90176f1936cf50d984c75f1745ecbcb335400376f76cde0ae49a2770",
+          "trajectory_sha256": "4e6ac8767bcea3eb4fadbec8c25686ef32329cc980dcd986fe537b331a892e9c",
+          "steps_executed": 1,
+          "valid_winning_route": false,
+          "blocked_resource_requests": 0,
+          "public_submission": false,
+          "formal_proof_checked": false,
+          "source_pins": {
+            "html_sha256": "9811b0538cc7dd73cb7ef271d8f5ff5d4395329a7b87c6cf18c94d7a126bf311",
+            "puzzlescript_source_sha256": "81a1d27115fc40c04f27bb39d0ef12ebffbea513e3fe9f550b5173bb683728a3",
+            "checker_sha256": "e9b288556c51363e1edbb161c2c119c540ad8aa6e5ae31e23739a6284f2800a6",
+            "source_url": "https://sites.math.washington.edu/~ostroff/puzzles/Heroes_of_Sokoban.html"
+          },
+          "final_layers": [
+            [
+              [
+                "background",
+                "wall"
+              ],
+              [
+                "background",
+                "wall"
+              ],
+              [
+                "background",
+                "wall"
+              ],
+              [
+                "background",
+                "wall"
+              ],
+              [
+                "background",
+                "wall"
+              ],
+              [
+                "background",
+                "wall"
+              ],
+              [
+                "background",
+                "wall"
+              ],
+              [
+                "background",
+                "wall"
+              ],
+              [
+                "background",
+                "wall"
+              ],
+              [
+                "background",
+                "wall"
+              ],
+              [
+                "background",
+                "wall"
+              ],
+              [
+                "background",
+                "wall"
+              ],
+              [
+                "background",
+                "wall"
+              ]
+            ],
+            [
+              [
+                "background",
+                "wall"
+              ],
+              [
+                "background"
+              ],
+              [
+                "background"
+              ],
+              [
+                "background"
+              ],
+              [
+                "background",
+                "wall"
+              ],
+              [
+                "background"
+              ],
+              [
+                "background",
+                "crate"
+              ],
+              [
+                "background"
+              ],
+              [
+                "background",
+                "wall"
+              ],
+              [
+                "background"
+              ],
+              [
+                "background",
+                "crate"
+              ],
+              [
+                "background"
+              ],
+              [
+                "background",
+                "wall"
+              ]
+            ],
+            [
+              [
+                "background",
+                "wall"
+              ],
+              [
+                "background"
+              ],
+              [
+                "background"
+              ],
+              [
+                "background",
+                "fighter"
+              ],
+              [
+                "background"
+              ],
+              [
+                "background"
+              ],
+              [
+                "background",
+                "crate"
+              ],
+              [
+                "background"
+              ],
+              [
+                "background",
+                "crate"
+              ],
+              [
+                "background",
+                "crate"
+              ],
+              [
+                "background",
+                "goal"
+              ],
+              [
+                "background"
+              ],
+              [
+                "background",
+                "wall"
+              ]
+            ],
+            [
+              [
+                "background",
+                "wall"
+              ],
+              [
+                "background"
+              ],
+              [
+                "background"
+              ],
+              [
+                "background"
+              ],
+              [
+                "background",
+                "wall"
+              ],
+              [
+                "background"
+              ],
+              [
+                "background",
+                "crate"
+              ],
+              [
+                "background"
+              ],
+              [
+                "background",
+                "wall"
+              ],
+              [
+                "background"
+              ],
+              [
+                "background",
+                "crate"
+              ],
+              [
+                "background"
+              ],
+              [
+                "background",
+                "wall"
+              ]
+            ],
+            [
+              [
+                "background",
+                "wall"
+              ],
+              [
+                "background",
+                "wall"
+              ],
+              [
+                "background",
+                "wall"
+              ],
+              [
+                "background",
+                "wall"
+              ],
+              [
+                "background",
+                "wall"
+              ],
+              [
+                "background",
+                "wall"
+              ],
+              [
+                "background",
+                "wall"
+              ],
+              [
+                "background",
+                "wall"
+              ],
+              [
+                "background",
+                "wall"
+              ],
+              [
+                "background",
+                "wall"
+              ],
+              [
+                "background",
+                "wall"
+              ],
+              [
+                "background",
+                "wall"
+              ],
+              [
+                "background",
+                "wall"
+              ]
+            ]
+          ],
+          "final_ascii": "#############\n#...#.*.#.*.#\n#..F..*.**G.#\n#...#.*.#.*.#\n#############",
+          "certificate_sha256": "84759f68412a25ae1bc2c7a3af1a9e8763a47cc9807992015927001b51bb6f65"
+        }
+      }
+    },
+    {
+      "command": [
+        "/tmp/soko-corpus-agent-venv/bin/python",
+        "-m",
+        "soko_mcp",
+        "play",
+        "--checkpoint-in",
+        "/workspace/soko-corpus/evidence/2026-11-12-agent-workflow/checkpoint.json",
+        "--keys",
+        "R",
+        "--checkpoint-out",
+        "/workspace/soko-corpus/evidence/2026-11-12-agent-workflow/checkpoint.json"
+      ],
+      "returncode": 0,
+      "stderr": "",
+      "stdout": {
+        "room_id": "I-2",
+        "action": "step",
+        "route": "RR",
+        "current_key_count": 2,
+        "cost_scope": "current route; no record or benchmark budget claim",
+        "terminal": false,
+        "checkpoint": {
+          "format": "soko-original-play-v1",
+          "room_id": "I-2",
+          "source_pins": {
+            "html_sha256": "9811b0538cc7dd73cb7ef271d8f5ff5d4395329a7b87c6cf18c94d7a126bf311",
+            "puzzlescript_source_sha256": "81a1d27115fc40c04f27bb39d0ef12ebffbea513e3fe9f550b5173bb683728a3",
+            "checker_sha256": "e9b288556c51363e1edbb161c2c119c540ad8aa6e5ae31e23739a6284f2800a6",
+            "source_url": "https://sites.math.washington.edu/~ostroff/puzzles/Heroes_of_Sokoban.html"
+          },
+          "route": "RR",
+          "sha256": "0e2b1809307d9ab8444d387004905f68c60b657dba9c1c3679465d06c47bbe64"
+        },
+        "replay": {
+          "room": 2,
+          "compiled_level_index": 3,
+          "width": 13,
+          "height": 5,
+          "object_count": 18,
+          "stride": 1,
+          "object_ids": {
+            "background": 0,
+            "goal": 2,
+            "wall": 17,
+            "fighter": 10,
+            "wizard": 11,
+            "thief": 12,
+            "sfighter": 15,
+            "swizard": 13,
+            "sthief": 14,
+            "crate": 16,
+            "yellowswitch": 4,
+            "yellowopen": 5,
+            "yellowdoor": 9,
+            "purpleswitch": 3,
+            "purpledoor": 8,
+            "purpleopen": 6,
+            "temp": 1,
+            "shadowdoor": 7
+          },
+          "final_objects": [
+            131073,
+            131073,
+            131073,
+            131073,
+            131073,
+            131073,
+            1,
+            1,
+            1,
+            131073,
+            131073,
+            1,
+            1,
+            1,
+            131073,
+            131073,
+            1,
+            1,
+            1,
+            131073,
+            131073,
+            131073,
+            1025,
+            131073,
+            131073,
+            131073,
+            1,
+            1,
+            1,
+            131073,
+            131073,
+            65537,
+            65537,
+            65537,
+            131073,
+            131073,
+            1,
+            1,
+            1,
+            131073,
+            131073,
+            131073,
+            65537,
+            131073,
+            131073,
+            131073,
+            1,
+            65537,
+            1,
+            131073,
+            131073,
+            65537,
+            5,
+            65537,
+            131073,
+            131073,
+            1,
+            1,
+            1,
+            131073,
+            131073,
+            131073,
+            131073,
+            131073,
+            131073
+          ],
+          "initial_objects": [
+            131073,
+            131073,
+            131073,
+            131073,
+            131073,
+            131073,
+            1,
+            1,
+            1,
+            131073,
+            131073,
+            1,
+            1025,
+            1,
+            131073,
+            131073,
+            1,
+            1,
+            1,
+            131073,
+            131073,
+            131073,
+            1,
+            131073,
+            131073,
+            131073,
+            1,
+            1,
+            1,
+            131073,
+            131073,
+            65537,
+            65537,
+            65537,
+            131073,
+            131073,
+            1,
+            1,
+            1,
+            131073,
+            131073,
+            131073,
+            65537,
+            131073,
+            131073,
+            131073,
+            1,
+            65537,
+            1,
+            131073,
+            131073,
+            65537,
+            5,
+            65537,
+            131073,
+            131073,
+            1,
+            1,
+            1,
+            131073,
+            131073,
+            131073,
+            131073,
+            131073,
+            131073
+          ],
+          "first_win": null,
+          "first_death": null,
+          "restarts": 0,
+          "again_limit_hit": false,
+          "schema_version": 1,
+          "evidence_level": "original_build_replay",
+          "part": 1,
+          "source_url": "https://sites.math.washington.edu/~ostroff/puzzles/Heroes_of_Sokoban.html",
+          "html_sha256": "9811b0538cc7dd73cb7ef271d8f5ff5d4395329a7b87c6cf18c94d7a126bf311",
+          "puzzlescript_source_sha256": "81a1d27115fc40c04f27bb39d0ef12ebffbea513e3fe9f550b5173bb683728a3",
+          "checker_sha256": "e9b288556c51363e1edbb161c2c119c540ad8aa6e5ae31e23739a6284f2800a6",
+          "browser_version": "156.0.8078.79",
+          "checked_at": "2026-11-12T16:24:49.265516+00:00",
+          "route": "RR",
+          "route_len": 2,
+          "route_sha256": "e6c5af58dda1be3d2123e9274eac9111265d7619cb9f70f5d545704d56eb1996",
+          "instance_sha256": "c56aa66b90176f1936cf50d984c75f1745ecbcb335400376f76cde0ae49a2770",
+          "trajectory_sha256": "63c9a528cf0d2351e6262c75a52fc0c5cf1dda925627a0c634f9d94b01138c15",
+          "steps_executed": 2,
+          "valid_winning_route": false,
+          "blocked_resource_requests": 0,
+          "public_submission": false,
+          "formal_proof_checked": false,
+          "source_pins": {
+            "html_sha256": "9811b0538cc7dd73cb7ef271d8f5ff5d4395329a7b87c6cf18c94d7a126bf311",
+            "puzzlescript_source_sha256": "81a1d27115fc40c04f27bb39d0ef12ebffbea513e3fe9f550b5173bb683728a3",
+            "checker_sha256": "e9b288556c51363e1edbb161c2c119c540ad8aa6e5ae31e23739a6284f2800a6",
+            "source_url": "https://sites.math.washington.edu/~ostroff/puzzles/Heroes_of_Sokoban.html"
+          },
+          "final_layers": [
+            [
+              [
+                "background",
+                "wall"
+              ],
+              [
+                "background",
+                "wall"
+              ],
+              [
+                "background",
+                "wall"
+              ],
+              [
+                "background",
+                "wall"
+              ],
+              [
+                "background",
+                "wall"
+              ],
+              [
+                "background",
+                "wall"
+              ],
+              [
+                "background",
+                "wall"
+              ],
+              [
+                "background",
+                "wall"
+              ],
+              [
+                "background",
+                "wall"
+              ],
+              [
+                "background",
+                "wall"
+              ],
+              [
+                "background",
+                "wall"
+              ],
+              [
+                "background",
+                "wall"
+              ],
+              [
+                "background",
+                "wall"
+              ]
+            ],
+            [
+              [
+                "background",
+                "wall"
+              ],
+              [
+                "background"
+              ],
+              [
+                "background"
+              ],
+              [
+                "background"
+              ],
+              [
+                "background",
+                "wall"
+              ],
+              [
+                "background"
+              ],
+              [
+                "background",
+                "crate"
+              ],
+              [
+                "background"
+              ],
+              [
+                "background",
+                "wall"
+              ],
+              [
+                "background"
+              ],
+              [
+                "background",
+                "crate"
+              ],
+              [
+                "background"
+              ],
+              [
+                "background",
+                "wall"
+              ]
+            ],
+            [
+              [
+                "background",
+                "wall"
+              ],
+              [
+                "background"
+              ],
+              [
+                "background"
+              ],
+              [
+                "background"
+              ],
+              [
+                "background",
+                "fighter"
+              ],
+              [
+                "background"
+              ],
+              [
+                "background",
+                "crate"
+              ],
+              [
+                "background"
+              ],
+              [
+                "background",
+                "crate"
+              ],
+              [
+                "background",
+                "crate"
+              ],
+              [
+                "background",
+                "goal"
+              ],
+              [
+                "background"
+              ],
+              [
+                "background",
+                "wall"
+              ]
+            ],
+            [
+              [
+                "background",
+                "wall"
+              ],
+              [
+                "background"
+              ],
+              [
+                "background"
+              ],
+              [
+                "background"
+              ],
+              [
+                "background",
+                "wall"
+              ],
+              [
+                "background"
+              ],
+              [
+                "background",
+                "crate"
+              ],
+              [
+                "background"
+              ],
+              [
+                "background",
+                "wall"
+              ],
+              [
+                "background"
+              ],
+              [
+                "background",
+                "crate"
+              ],
+              [
+                "background"
+              ],
+              [
+                "background",
+                "wall"
+              ]
+            ],
+            [
+              [
+                "background",
+                "wall"
+              ],
+              [
+                "background",
+                "wall"
+              ],
+              [
+                "background",
+                "wall"
+              ],
+              [
+                "background",
+                "wall"
+              ],
+              [
+                "background",
+                "wall"
+              ],
+              [
+                "background",
+                "wall"
+              ],
+              [
+                "background",
+                "wall"
+              ],
+              [
+                "background",
+                "wall"
+              ],
+              [
+                "background",
+                "wall"
+              ],
+              [
+                "background",
+                "wall"
+              ],
+              [
+                "background",
+                "wall"
+              ],
+              [
+                "background",
+                "wall"
+              ],
+              [
+                "background",
+                "wall"
+              ]
+            ]
+          ],
+          "final_ascii": "#############\n#...#.*.#.*.#\n#...F.*.**G.#\n#...#.*.#.*.#\n#############",
+          "certificate_sha256": "ab9feb741dcf3c595a9b230706445bae135f9df3cb7d5a2b9d42389f5a759ae1"
+        }
+      }
+    }
+  ],
+  "mcp": [
+    {
+      "request": {
+        "jsonrpc": "2.0",
+        "id": 1,
+        "method": "initialize",
+        "params": {
+          "protocolVersion": "2025-03-26",
+          "capabilities": {}
+        }
+      },
+      "response": {
+        "jsonrpc": "2.0",
+        "id": 1,
+        "result": {
+          "protocolVersion": "2025-03-26",
+          "capabilities": {
+            "tools": {
+              "listChanged": false
+            },
+            "resources": {
+              "subscribe": false,
+              "listChanged": false
+            },
+            "prompts": {
+              "listChanged": false
+            }
+          },
+          "serverInfo": {
+            "name": "soko-verified-mcp",
+            "version": "0.2.0"
+          },
+          "instructions": "Sokoban differential replay and bounded exact-state search. VERIFIED on a local route means at least two checkers agreed on survival, exact win, steps, final grid and trajectory digest, with checker hashes present. Use soko_get_room for all 66 canonical rooms; soko_replay_original and soko_play execute the pinned original browser engine separately from local VERIFIED checks. Portable play checkpoints replay route history. Use canonical starting rooms, inspect search completion/budgets, and distinguish historical registry records from current public records. formal_* tools are not available."
+        }
+      },
+      "elapsed_seconds": 0.072015
+    },
+    {
+      "request": {
+        "jsonrpc": "2.0",
+        "id": 2,
+        "method": "tools/call",
+        "params": {
+          "name": "soko_replay_original",
+          "arguments": {
+            "room_id": "II-12",
+            "baseline": true
+          }
+        }
+      },
+      "response": {
+        "jsonrpc": "2.0",
+        "id": 2,
+        "result": {
+          "content": [
+            {
+              "type": "text",
+              "text": "{\n  \"room\": 12,\n  \"compiled_level_index\": 21,\n  \"width\": 13,\n  \"height\": 7,\n  \"object_count\": 31,\n  \"stride\": 1,\n  \"object_ids\": {\n    \"background\": 0,\n    \"goal\": 3,\n    \"wall\": 21,\n    \"fighter\": 12,\n    \"wizard\": 13,\n    \"thief\": 14,\n    \"priest\": 15,\n    \"sfighter\": 18,\n    \"swizard\": 16,\n    \"sthief\": 17,\n    \"spriest\": 19,\n    \"crate\": 20,\n    \"yellowswitch\": 5,\n    \"yellowopen\": 6,\n    \"yellowdoor\": 10,\n    \"purpleswitch\": 4,\n    \"purpledoor\": 9,\n    \"purpleopen\": 7,\n    \"monsterdoor\": 11,\n    \"warpball\": 1,\n    \"shadowdoor\": 8,\n    \"dragonleft\": 22,\n    \"dragonright\": 23,\n    \"goblin\": 24,\n    \"dying\": 2,\n    \"saved\": 27,\n    \"hassaved\": 30,\n    \"corpse\": 25,\n    \"lfireball\": 29,\n    \"rfireball\": 26,\n    \"didnotmove\": 28\n  },\n  \"final_objects\": [\n    2097153,\n    2097153,\n    2097153,\n    2097153,\n    2097153,\n    2097153,\n    2097153,\n    2097153,\n    1,\n    1,\n    1,\n    1,\n    1,\n    2097153,\n    2097153,\n    1,\n    1048609,\n    1,\n    1048609,\n    1,\n    2097153,\n    2097153,\n    1,\n    1,\n    1,\n    1,\n    1,\n    2097153,\n    2097153,\n    1,\n    1,\n    1,\n    1,\n    1,\n    2097153,\n    2097153,\n    1,\n    1,\n    1,\n    1,\n    1,\n    2097153,\n    2097153,\n    1,\n    33,\n    1,\n    1025,\n    1,\n    2097153,\n    2097153,\n    1,\n    1,\n    1,\n    1,\n    1,\n    2097153,\n    2097153,\n    2097153,\n    2097153,\n    1,\n    2097153,\n    2097153,\n    2097153,\n    2097153,\n    1,\n    1,\n    1,\n    1,\n    1,\n    2097153,\n    2097153,\n    1,\n    1,\n    8201,\n    1,\n    1,\n    2097153,\n    2097153,\n    1,\n    1,\n    1,\n    1,\n    1,\n    2097153,\n    2097153,\n    2097153,\n    2097153,\n    2097153,\n    2097153,\n    2097153,\n    2097153\n  ],\n  \"initial_objects\": [\n    2097153,\n    2097153,\n    2097153,\n    2097153,\n    2097153,\n    2097153,\n    2097153,\n    2097153,\n    1,\n    1,\n    1,\n    1,\n    1,\n    2097153,\n    2097153,\n    1,\n    33,\n    1,\n    33,\n    1,\n    2097153,\n    2097153,\n    1,\n    1,\n    8193,\n    1,\n    1,\n    2097153,\n    2097153,\n    1,\n    1048577,\n    1,\n    1048577,\n    1,\n    2097153,\n    2097153,\n    1,\n    1,\n    16777217,\n    1,\n    1,\n    2097153,\n    2097153,\n    1,\n    33,\n    1,\n    1025,\n    1,\n    2097153,\n    2097153,\n    1,\n    1,\n    1,\n    1,\n    1,\n    2097153,\n    2097153,\n    2097153,\n    2097153,\n    2049,\n    2097153,\n    2097153,\n    2097153,\n    2097153,\n    1,\n    1,\n    1,\n    1,\n    1,\n    2097153,\n    2097153,\n    1,\n    1,\n    9,\n    1,\n    1,\n    2097153,\n    2097153,\n    1,\n    1,\n    1,\n    1,\n    1,\n    2097153,\n    2097153,\n    2097153,\n    2097153,\n    2097153,\n    2097153,\n    2097153,\n    2097153\n  ],\n  \"first_win\": 26,\n  \"first_death\": null,\n  \"restarts\": 0,\n  \"again_limit_hit\": false,\n  \"schema_version\": 1,\n  \"evidence_level\": \"original_build_replay\",\n  \"part\": 2,\n  \"source_url\": \"https://sites.math.washington.edu/~ostroff/puzzles/Heroes_of_Sokoban_II_Monsters.html\",\n  \"html_sha256\": \"a91a1e38706a1bf70a3d1d612a89370b1f5f7c86eefbe86e13a0e2288415f14e\",\n  \"puzzlescript_source_sha256\": \"1f8b35dbd51d33552c0d394ec0dbc76cd6e8be6db253eedb267d3912ed1a9738\",\n  \"checker_sha256\": \"e9b288556c51363e1edbb161c2c119c540ad8aa6e5ae31e23739a6284f2800a6\",\n  \"browser_version\": \"156.0.8078.79\",\n  \"checked_at\": \"2026-11-12T16:24:51.527784+00:00\",\n  \"route\": \"ULRURDDLLLRURDLDRRLURRDRRR\",\n  \"route_len\": 26,\n  \"route_sha256\": \"ec25d6c4564e2432212b50117a32d236a9fcd3acce2eb34d83bd6ceed4022b7c\",\n  \"instance_sha256\": \"2cf369a6ba4b55e3ab85eb7314c25c3ec9e47ae041649b3cc1eb3e23f7c29ff4\",\n  \"trajectory_sha256\": \"15c0adac14e569a97748277f3e6ecaceb4a0af984989f25dc65522e7c280563e\",\n  \"steps_executed\": 26,\n  \"valid_winning_route\": true,\n  \"blocked_resource_requests\": 0,\n  \"public_submission\": false,\n  \"formal_proof_checked\": false,\n  \"source_pins\": {\n    \"html_sha256\": \"a91a1e38706a1bf70a3d1d612a89370b1f5f7c86eefbe86e13a0e2288415f14e\",\n    \"puzzlescript_source_sha256\": \"1f8b35dbd51d33552c0d394ec0dbc76cd6e8be6db253eedb267d3912ed1a9738\",\n    \"checker_sha256\": \"e9b288556c51363e1edbb161c2c119c540ad8aa6e5ae31e23739a6284f2800a6\",\n    \"source_url\": \"https://sites.math.washington.edu/~ostroff/puzzles/Heroes_of_Sokoban_II_Monsters.html\"\n  },\n  \"final_layers\": [\n    [\n      [\n        \"background\",\n        \"wall\"\n      ],\n      [\n        \"background\",\n        \"wall\"\n      ],\n      [\n        \"background\",\n        \"wall\"\n      ],\n      [\n        \"background\",\n        \"wall\"\n      ],\n      [\n        \"background\",\n        \"wall\"\n      ],\n      [\n        \"background\",\n        \"wall\"\n      ],\n      [\n        \"background\",\n        \"wall\"\n      ],\n      [\n        \"background\",\n        \"wall\"\n      ],\n      [\n        \"background\",\n        \"wall\"\n      ],\n      [\n        \"background\",\n        \"wall\"\n      ],\n      [\n        \"background\",\n        \"wall\"\n      ],\n      [\n        \"background\",\n        \"wall\"\n      ],\n      [\n        \"background\",\n        \"wall\"\n      ]\n    ],\n    [\n      [\n        \"background\",\n        \"wall\"\n      ],\n      [\n        \"background\"\n      ],\n      [\n        \"background\"\n      ],\n      [\n        \"background\"\n      ],\n      [\n        \"background\"\n      ],\n      [\n        \"background\"\n      ],\n      [\n        \"background\"\n      ],\n      [\n        \"background\"\n      ],\n      [\n        \"background\",\n        \"wall\"\n      ],\n      [\n        \"background\"\n      ],\n      [\n        \"background\"\n      ],\n      [\n        \"background\"\n      ],\n      [\n        \"background\",\n        \"wall\"\n      ]\n    ],\n    [\n      [\n        \"background\",\n        \"wall\"\n      ],\n      [\n        \"background\"\n      ],\n      [\n        \"background\",\n        \"crate\",\n        \"yellowswitch\"\n      ],\n      [\n        \"background\"\n      ],\n      [\n        \"background\"\n      ],\n      [\n        \"background\"\n      ],\n      [\n        \"background\",\n        \"yellowswitch\"\n      ],\n      [\n        \"background\"\n      ],\n      [\n        \"background\",\n        \"wall\"\n      ],\n      [\n        \"background\"\n      ],\n      [\n        \"background\"\n      ],\n      [\n        \"background\"\n      ],\n      [\n        \"background\",\n        \"wall\"\n      ]\n    ],\n    [\n      [\n        \"background\",\n        \"wall\"\n      ],\n      [\n        \"background\"\n      ],\n      [\n        \"background\"\n      ],\n      [\n        \"background\"\n      ],\n      [\n        \"background\"\n      ],\n      [\n        \"background\"\n      ],\n      [\n        \"background\"\n      ],\n      [\n        \"background\"\n      ],\n      [\n        \"background\"\n      ],\n      [\n        \"background\"\n      ],\n      [\n        \"background\",\n        \"goal\",\n        \"wizard\"\n      ],\n      [\n        \"background\"\n      ],\n      [\n        \"background\",\n        \"wall\"\n      ]\n    ],\n    [\n      [\n        \"background\",\n        \"wall\"\n      ],\n      [\n        \"background\"\n      ],\n      [\n        \"background\",\n        \"crate\",\n        \"yellowswitch\"\n      ],\n      [\n        \"background\"\n      ],\n      [\n        \"background\"\n      ],\n      [\n        \"background\"\n      ],\n      [\n        \"background\",\n        \"yellowdoor\"\n      ],\n      [\n        \"background\"\n      ],\n      [\n        \"background\",\n        \"wall\"\n      ],\n      [\n        \"background\"\n      ],\n      [\n        \"background\"\n      ],\n      [\n        \"background\"\n      ],\n      [\n        \"background\",\n        \"wall\"\n      ]\n    ],\n    [\n      [\n        \"background\",\n        \"wall\"\n      ],\n      [\n        \"background\"\n      ],\n      [\n        \"background\"\n      ],\n      [\n        \"background\"\n      ],\n      [\n        \"background\"\n      ],\n      [\n        \"background\"\n      ],\n      [\n        \"background\"\n      ],\n      [\n        \"background\"\n      ],\n      [\n        \"background\",\n        \"wall\"\n      ],\n      [\n        \"background\"\n      ],\n      [\n        \"background\"\n      ],\n      [\n        \"background\"\n      ],\n      [\n        \"background\",\n        \"wall\"\n      ]\n    ],\n    [\n      [\n        \"background\",\n        \"wall\"\n      ],\n      [\n        \"background\",\n        \"wall\"\n      ],\n      [\n        \"background\",\n        \"wall\"\n      ],\n      [\n        \"background\",\n        \"wall\"\n      ],\n      [\n        \"background\",\n        \"wall\"\n      ],\n      [\n        \"background\",\n        \"wall\"\n      ],\n      [\n        \"background\",\n        \"wall\"\n      ],\n      [\n        \"background\",\n        \"wall\"\n      ],\n      [\n        \"background\",\n        \"wall\"\n      ],\n      [\n        \"background\",\n        \"wall\"\n      ],\n      [\n        \"background\",\n        \"wall\"\n      ],\n      [\n        \"background\",\n        \"wall\"\n      ],\n      [\n        \"background\",\n        \"wall\"\n      ]\n    ]\n  ],\n  \"final_ascii\": \"#############\\n#.......#...#\\n#.*...{.#...#\\n#.........W.#\\n#.*...[.#...#\\n#.......#...#\\n#############\",\n  \"room_id\": \"II-12\",\n  \"certificate_sha256\": \"0d5497ab4fac53a354355b65c2ad5f92c54f5a819cfaa6a29f6bd3c72cfd4655\"\n}"
+            }
+          ],
+          "structuredContent": {
+            "room": 12,
+            "compiled_level_index": 21,
+            "width": 13,
+            "height": 7,
+            "object_count": 31,
+            "stride": 1,
+            "object_ids": {
+              "background": 0,
+              "goal": 3,
+              "wall": 21,
+              "fighter": 12,
+              "wizard": 13,
+              "thief": 14,
+              "priest": 15,
+              "sfighter": 18,
+              "swizard": 16,
+              "sthief": 17,
+              "spriest": 19,
+              "crate": 20,
+              "yellowswitch": 5,
+              "yellowopen": 6,
+              "yellowdoor": 10,
+              "purpleswitch": 4,
+              "purpledoor": 9,
+              "purpleopen": 7,
+              "monsterdoor": 11,
+              "warpball": 1,
+              "shadowdoor": 8,
+              "dragonleft": 22,
+              "dragonright": 23,
+              "goblin": 24,
+              "dying": 2,
+              "saved": 27,
+              "hassaved": 30,
+              "corpse": 25,
+              "lfireball": 29,
+              "rfireball": 26,
+              "didnotmove": 28
+            },
+            "final_objects": [
+              2097153,
+              2097153,
+              2097153,
+              2097153,
+              2097153,
+              2097153,
+              2097153,
+              2097153,
+              1,
+              1,
+              1,
+              1,
+              1,
+              2097153,
+              2097153,
+              1,
+              1048609,
+              1,
+              1048609,
+              1,
+              2097153,
+              2097153,
+              1,
+              1,
+              1,
+              1,
+              1,
+              2097153,
+              2097153,
+              1,
+              1,
+              1,
+              1,
+              1,
+              2097153,
+              2097153,
+              1,
+              1,
+              1,
+              1,
+              1,
+              2097153,
+              2097153,
+              1,
+              33,
+              1,
+              1025,
+              1,
+              2097153,
+              2097153,
+              1,
+              1,
+              1,
+              1,
+              1,
+              2097153,
+              2097153,
+              2097153,
+              2097153,
+              1,
+              2097153,
+              2097153,
+              2097153,
+              2097153,
+              1,
+              1,
+              1,
+              1,
+              1,
+              2097153,
+              2097153,
+              1,
+              1,
+              8201,
+              1,
+              1,
+              2097153,
+              2097153,
+              1,
+              1,
+              1,
+              1,
+              1,
+              2097153,
+              2097153,
+              2097153,
+              2097153,
+              2097153,
+              2097153,
+              2097153,
+              2097153
+            ],
+            "initial_objects": [
+              2097153,
+              2097153,
+              2097153,
+              2097153,
+              2097153,
+              2097153,
+              2097153,
+              2097153,
+              1,
+              1,
+              1,
+              1,
+              1,
+              2097153,
+              2097153,
+              1,
+              33,
+              1,
+              33,
+              1,
+              2097153,
+              2097153,
+              1,
+              1,
+              8193,
+              1,
+              1,
+              2097153,
+              2097153,
+              1,
+              1048577,
+              1,
+              1048577,
+              1,
+              2097153,
+              2097153,
+              1,
+              1,
+              16777217,
+              1,
+              1,
+              2097153,
+              2097153,
+              1,
+              33,
+              1,
+              1025,
+              1,
+              2097153,
+              2097153,
+              1,
+              1,
+              1,
+              1,
+              1,
+              2097153,
+              2097153,
+              2097153,
+              2097153,
+              2049,
+              2097153,
+              2097153,
+              2097153,
+              2097153,
+              1,
+              1,
+              1,
+              1,
+              1,
+              2097153,
+              2097153,
+              1,
+              1,
+              9,
+              1,
+              1,
+              2097153,
+              2097153,
+              1,
+              1,
+              1,
+              1,
+              1,
+              2097153,
+              2097153,
+              2097153,
+              2097153,
+              2097153,
+              2097153,
+              2097153,
+              2097153
+            ],
+            "first_win": 26,
+            "first_death": null,
+            "restarts": 0,
+            "again_limit_hit": false,
+            "schema_version": 1,
+            "evidence_level": "original_build_replay",
+            "part": 2,
+            "source_url": "https://sites.math.washington.edu/~ostroff/puzzles/Heroes_of_Sokoban_II_Monsters.html",
+            "html_sha256": "a91a1e38706a1bf70a3d1d612a89370b1f5f7c86eefbe86e13a0e2288415f14e",
+            "puzzlescript_source_sha256": "1f8b35dbd51d33552c0d394ec0dbc76cd6e8be6db253eedb267d3912ed1a9738",
+            "checker_sha256": "e9b288556c51363e1edbb161c2c119c540ad8aa6e5ae31e23739a6284f2800a6",
+            "browser_version": "156.0.8078.79",
+            "checked_at": "2026-11-12T16:24:51.527784+00:00",
+            "route": "ULRURDDLLLRURDLDRRLURRDRRR",
+            "route_len": 26,
+            "route_sha256": "ec25d6c4564e2432212b50117a32d236a9fcd3acce2eb34d83bd6ceed4022b7c",
+            "instance_sha256": "2cf369a6ba4b55e3ab85eb7314c25c3ec9e47ae041649b3cc1eb3e23f7c29ff4",
+            "trajectory_sha256": "15c0adac14e569a97748277f3e6ecaceb4a0af984989f25dc65522e7c280563e",
+            "steps_executed": 26,
+            "valid_winning_route": true,
+            "blocked_resource_requests": 0,
+            "public_submission": false,
+            "formal_proof_checked": false,
+            "source_pins": {
+              "html_sha256": "a91a1e38706a1bf70a3d1d612a89370b1f5f7c86eefbe86e13a0e2288415f14e",
+              "puzzlescript_source_sha256": "1f8b35dbd51d33552c0d394ec0dbc76cd6e8be6db253eedb267d3912ed1a9738",
+              "checker_sha256": "e9b288556c51363e1edbb161c2c119c540ad8aa6e5ae31e23739a6284f2800a6",
+              "source_url": "https://sites.math.washington.edu/~ostroff/puzzles/Heroes_of_Sokoban_II_Monsters.html"
+            },
+            "final_layers": [
+              [
+                [
+                  "background",
+                  "wall"
+                ],
+                [
+                  "background",
+                  "wall"
+                ],
+                [
+                  "background",
+                  "wall"
+                ],
+                [
+                  "background",
+                  "wall"
+                ],
+                [
+                  "background",
+                  "wall"
+                ],
+                [
+                  "background",
+                  "wall"
+                ],
+                [
+                  "background",
+                  "wall"
+                ],
+                [
+                  "background",
+                  "wall"
+                ],
+                [
+                  "background",
+                  "wall"
+                ],
+                [
+                  "background",
+                  "wall"
+                ],
+                [
+                  "background",
+                  "wall"
+                ],
+                [
+                  "background",
+                  "wall"
+                ],
+                [
+                  "background",
+                  "wall"
+                ]
+              ],
+              [
+                [
+                  "background",
+                  "wall"
+                ],
+                [
+                  "background"
+                ],
+                [
+                  "background"
+                ],
+                [
+                  "background"
+                ],
+                [
+                  "background"
+                ],
+                [
+                  "background"
+                ],
+                [
+                  "background"
+                ],
+                [
+                  "background"
+                ],
+                [
+                  "background",
+                  "wall"
+                ],
+                [
+                  "background"
+                ],
+                [
+                  "background"
+                ],
+                [
+                  "background"
+                ],
+                [
+                  "background",
+                  "wall"
+                ]
+              ],
+              [
+                [
+                  "background",
+                  "wall"
+                ],
+                [
+                  "background"
+                ],
+                [
+                  "background",
+                  "crate",
+                  "yellowswitch"
+                ],
+                [
+                  "background"
+                ],
+                [
+                  "background"
+                ],
+                [
+                  "background"
+                ],
+                [
+                  "background",
+                  "yellowswitch"
+                ],
+                [
+                  "background"
+                ],
+                [
+                  "background",
+                  "wall"
+                ],
+                [
+                  "background"
+                ],
+                [
+                  "background"
+                ],
+                [
+                  "background"
+                ],
+                [
+                  "background",
+                  "wall"
+                ]
+              ],
+              [
+                [
+                  "background",
+                  "wall"
+                ],
+                [
+                  "background"
+                ],
+                [
+                  "background"
+                ],
+                [
+                  "background"
+                ],
+                [
+                  "background"
+                ],
+                [
+                  "background"
+                ],
+                [
+                  "background"
+                ],
+                [
+                  "background"
+                ],
+                [
+                  "background"
+                ],
+                [
+                  "background"
+                ],
+                [
+                  "background",
+                  "goal",
+                  "wizard"
+                ],
+                [
+                  "background"
+                ],
+                [
+                  "background",
+                  "wall"
+                ]
+              ],
+              [
+                [
+                  "background",
+                  "wall"
+                ],
+                [
+                  "background"
+                ],
+                [
+                  "background",
+                  "crate",
+                  "yellowswitch"
+                ],
+                [
+                  "background"
+                ],
+                [
+                  "background"
+                ],
+                [
+                  "background"
+                ],
+                [
+                  "background",
+                  "yellowdoor"
+                ],
+                [
+                  "background"
+                ],
+                [
+                  "background",
+                  "wall"
+                ],
+                [
+                  "background"
+                ],
+                [
+                  "background"
+                ],
+                [
+                  "background"
+                ],
+                [
+                  "background",
+                  "wall"
+                ]
+              ],
+              [
+                [
+                  "background",
+                  "wall"
+                ],
+                [
+                  "background"
+                ],
+                [
+                  "background"
+                ],
+                [
+                  "background"
+                ],
+                [
+                  "background"
+                ],
+                [
+                  "background"
+                ],
+                [
+                  "background"
+                ],
+                [
+                  "background"
+                ],
+                [
+                  "background",
+                  "wall"
+                ],
+                [
+                  "background"
+                ],
+                [
+                  "background"
+                ],
+                [
+                  "background"
+                ],
+                [
+                  "background",
+                  "wall"
+                ]
+              ],
+              [
+                [
+                  "background",
+                  "wall"
+                ],
+                [
+                  "background",
+                  "wall"
+                ],
+                [
+                  "background",
+                  "wall"
+                ],
+                [
+                  "background",
+                  "wall"
+                ],
+                [
+                  "background",
+                  "wall"
+                ],
+                [
+                  "background",
+                  "wall"
+                ],
+                [
+                  "background",
+                  "wall"
+                ],
+                [
+                  "background",
+                  "wall"
+                ],
+                [
+                  "background",
+                  "wall"
+                ],
+                [
+                  "background",
+                  "wall"
+                ],
+                [
+                  "background",
+                  "wall"
+                ],
+                [
+                  "background",
+                  "wall"
+                ],
+                [
+                  "background",
+                  "wall"
+                ]
+              ]
+            ],
+            "final_ascii": "#############\n#.......#...#\n#.*...{.#...#\n#.........W.#\n#.*...[.#...#\n#.......#...#\n#############",
+            "room_id": "II-12",
+            "certificate_sha256": "0d5497ab4fac53a354355b65c2ad5f92c54f5a819cfaa6a29f6bd3c72cfd4655"
+          },
+          "isError": false
+        }
+      },
+      "elapsed_seconds": 2.133987
+    },
+    {
+      "request": {
+        "jsonrpc": "2.0",
+        "id": 3,
+        "method": "tools/call",
+        "params": {
+          "name": "soko_play",
+          "arguments": {
+            "room_id": "I-22",
+            "keys": "RRRRRRRRRR"
+          }
+        }
+      },
+      "response": {
+        "jsonrpc": "2.0",
+        "id": 3,
+        "result": {
+          "content": [
+            {
+              "type": "text",
+              "text": "{\n  \"room_id\": \"I-22\",\n  \"action\": \"step\",\n  \"route\": \"RRRRRRRRRR\",\n  \"current_key_count\": 10,\n  \"cost_scope\": \"current route; no record or benchmark budget claim\",\n  \"terminal\": true,\n  \"checkpoint\": {\n    \"format\": \"soko-original-play-v1\",\n    \"room_id\": \"I-22\",\n    \"source_pins\": {\n      \"html_sha256\": \"9811b0538cc7dd73cb7ef271d8f5ff5d4395329a7b87c6cf18c94d7a126bf311\",\n      \"puzzlescript_source_sha256\": \"81a1d27115fc40c04f27bb39d0ef12ebffbea513e3fe9f550b5173bb683728a3\",\n      \"checker_sha256\": \"e9b288556c51363e1edbb161c2c119c540ad8aa6e5ae31e23739a6284f2800a6\",\n      \"source_url\": \"https://sites.math.washington.edu/~ostroff/puzzles/Heroes_of_Sokoban.html\"\n    },\n    \"route\": \"RRRRRRRRRR\",\n    \"sha256\": \"d338c6dcc9495d986922ac21fe0d15b047e7a89fc0b877b52142a44e97f462fd\"\n  },\n  \"replay\": {\n    \"room\": 22,\n    \"compiled_level_index\": 29,\n    \"width\": 13,\n    \"height\": 7,\n    \"object_count\": 18,\n    \"stride\": 1,\n    \"object_ids\": {\n      \"background\": 0,\n      \"goal\": 2,\n      \"wall\": 17,\n      \"fighter\": 10,\n      \"wizard\": 11,\n      \"thief\": 12,\n      \"sfighter\": 15,\n      \"swizard\": 13,\n      \"sthief\": 14,\n      \"crate\": 16,\n      \"yellowswitch\": 4,\n      \"yellowopen\": 5,\n      \"yellowdoor\": 9,\n      \"purpleswitch\": 3,\n      \"purpledoor\": 8,\n      \"purpleopen\": 6,\n      \"temp\": 1,\n      \"shadowdoor\": 7\n    },\n    \"final_objects\": [\n      131073,\n      131073,\n      131073,\n      131073,\n      131073,\n      131073,\n      131073,\n      131073,\n      1,\n      131073,\n      1,\n      131073,\n      1,\n      131073,\n      131073,\n      1,\n      131073,\n      1,\n      131073,\n      1,\n      131073,\n      131073,\n      1,\n      131073,\n      1,\n      131073,\n      1,\n      131073,\n      131073,\n      1,\n      131073,\n      1,\n      131073,\n      1,\n      131073,\n      131073,\n      1,\n      131073,\n      1,\n      131073,\n      1,\n      131073,\n      131073,\n      1,\n      131073,\n      1,\n      131073,\n      1,\n      131073,\n      131073,\n      1,\n      131073,\n      1,\n      131073,\n      1,\n      131073,\n      131073,\n      1,\n      131073,\n      1,\n      131073,\n      1,\n      131073,\n      131073,\n      1,\n      131073,\n      1,\n      131073,\n      1,\n      131073,\n      131073,\n      1,\n      131073,\n      1,\n      131073,\n      1,\n      131073,\n      131073,\n      1029,\n      131073,\n      4101,\n      131073,\n      2053,\n      131073,\n      131073,\n      131073,\n      131073,\n      131073,\n      131073,\n      131073,\n      131073\n    ],\n    \"initial_objects\": [\n      131073,\n      131073,\n      131073,\n      131073,\n      131073,\n      131073,\n      131073,\n      131073,\n      1025,\n      131073,\n      4097,\n      131073,\n      2049,\n      131073,\n      131073,\n      1,\n      131073,\n      1,\n      131073,\n      1,\n      131073,\n      131073,\n      1,\n      131073,\n      1,\n      131073,\n      1,\n      131073,\n      131073,\n      1,\n      131073,\n      1,\n      131073,\n      1,\n      131073,\n      131073,\n      1,\n      131073,\n      1,\n      131073,\n      1,\n      131073,\n      131073,\n      1,\n      131073,\n      1,\n      131073,\n      1,\n      131073,\n      131073,\n      1,\n      131073,\n      1,\n      131073,\n      1,\n      131073,\n      131073,\n      1,\n      131073,\n      1,\n      131073,\n      1,\n      131073,\n      131073,\n      1,\n      131073,\n      1,\n      131073,\n      1,\n      131073,\n      131073,\n      1,\n      131073,\n      1,\n      131073,\n      1,\n      131073,\n      131073,\n      5,\n      131073,\n      5,\n      131073,\n      5,\n      131073,\n      131073,\n      131073,\n      131073,\n      131073,\n      131073,\n      131073,\n      131073\n    ],\n    \"first_win\": 10,\n    \"first_death\": null,\n    \"restarts\": 0,\n    \"again_limit_hit\": false,\n    \"schema_version\": 1,\n    \"evidence_level\": \"original_build_replay\",\n    \"part\": 1,\n    \"source_url\": \"https://sites.math.washington.edu/~ostroff/puzzles/Heroes_of_Sokoban.html\",\n    \"html_sha256\": \"9811b0538cc7dd73cb7ef271d8f5ff5d4395329a7b87c6cf18c94d7a126bf311\",\n    \"puzzlescript_source_sha256\": \"81a1d27115fc40c04f27bb39d0ef12ebffbea513e3fe9f550b5173bb683728a3\",\n    \"checker_sha256\": \"e9b288556c51363e1edbb161c2c119c540ad8aa6e5ae31e23739a6284f2800a6\",\n    \"browser_version\": \"156.0.8078.79\",\n    \"checked_at\": \"2026-11-12T16:24:53.799983+00:00\",\n    \"route\": \"RRRRRRRRRR\",\n    \"route_len\": 10,\n    \"route_sha256\": \"6fa140d719eb7058f93aba4357b94df44caf954e539b3ac6f6f8b007724f34fa\",\n    \"instance_sha256\": \"efcb8a7ca00ee7e6b20b575940287bfc9db710d7e7ede8489b83b2884c88ad7e\",\n    \"trajectory_sha256\": \"785099b4172eaea9e201a745f2f0ee79a78a0719641f61ec3c49fb16d5158801\",\n    \"steps_executed\": 10,\n    \"valid_winning_route\": true,\n    \"blocked_resource_requests\": 0,\n    \"public_submission\": false,\n    \"formal_proof_checked\": false,\n    \"source_pins\": {\n      \"html_sha256\": \"9811b0538cc7dd73cb7ef271d8f5ff5d4395329a7b87c6cf18c94d7a126bf311\",\n      \"puzzlescript_source_sha256\": \"81a1d27115fc40c04f27bb39d0ef12ebffbea513e3fe9f550b5173bb683728a3\",\n      \"checker_sha256\": \"e9b288556c51363e1edbb161c2c119c540ad8aa6e5ae31e23739a6284f2800a6\",\n      \"source_url\": \"https://sites.math.washington.edu/~ostroff/puzzles/Heroes_of_Sokoban.html\"\n    },\n    \"final_layers\": [\n      [\n        [\n          \"background\",\n          \"wall\"\n        ],\n        [\n          \"background\",\n          \"wall\"\n        ],\n        [\n          \"background\",\n          \"wall\"\n        ],\n        [\n          \"background\",\n          \"wall\"\n        ],\n        [\n          \"background\",\n          \"wall\"\n        ],\n        [\n          \"background\",\n          \"wall\"\n        ],\n        [\n          \"background\",\n          \"wall\"\n        ],\n        [\n          \"background\",\n          \"wall\"\n        ],\n        [\n          \"background\",\n          \"wall\"\n        ],\n        [\n          \"background\",\n          \"wall\"\n        ],\n        [\n          \"background\",\n          \"wall\"\n        ],\n        [\n          \"background\",\n          \"wall\"\n        ],\n        [\n          \"background\",\n          \"wall\"\n        ]\n      ],\n      [\n        [\n          \"background\",\n          \"wall\"\n        ],\n        [\n          \"background\"\n        ],\n        [\n          \"background\"\n        ],\n        [\n          \"background\"\n        ],\n        [\n          \"background\"\n        ],\n        [\n          \"background\"\n        ],\n        [\n          \"background\"\n        ],\n        [\n          \"background\"\n        ],\n        [\n          \"background\"\n        ],\n        [\n          \"background\"\n        ],\n        [\n          \"background\"\n        ],\n        [\n          \"background\",\n          \"fighter\",\n          \"goal\"\n        ],\n        [\n          \"background\",\n          \"wall\"\n        ]\n      ],\n      [\n        [\n          \"background\",\n          \"wall\"\n        ],\n        [\n          \"background\",\n          \"wall\"\n        ],\n        [\n          \"background\",\n          \"wall\"\n        ],\n        [\n          \"background\",\n          \"wall\"\n        ],\n        [\n          \"background\",\n          \"wall\"\n        ],\n        [\n          \"background\",\n          \"wall\"\n        ],\n        [\n          \"background\",\n          \"wall\"\n        ],\n        [\n          \"background\",\n          \"wall\"\n        ],\n        [\n          \"background\",\n          \"wall\"\n        ],\n        [\n          \"background\",\n          \"wall\"\n        ],\n        [\n          \"background\",\n          \"wall\"\n        ],\n        [\n          \"background\",\n          \"wall\"\n        ],\n        [\n          \"background\",\n          \"wall\"\n        ]\n      ],\n      [\n        [\n          \"background\",\n          \"wall\"\n        ],\n        [\n          \"background\"\n        ],\n        [\n          \"background\"\n        ],\n        [\n          \"background\"\n        ],\n        [\n          \"background\"\n        ],\n        [\n          \"background\"\n        ],\n        [\n          \"background\"\n        ],\n        [\n          \"background\"\n        ],\n        [\n          \"background\"\n        ],\n        [\n          \"background\"\n        ],\n        [\n          \"background\"\n        ],\n        [\n          \"background\",\n          \"goal\",\n          \"thief\"\n        ],\n        [\n          \"background\",\n          \"wall\"\n        ]\n      ],\n      [\n        [\n          \"background\",\n          \"wall\"\n        ],\n        [\n          \"background\",\n          \"wall\"\n        ],\n        [\n          \"background\",\n          \"wall\"\n        ],\n        [\n          \"background\",\n          \"wall\"\n        ],\n        [\n          \"background\",\n          \"wall\"\n        ],\n        [\n          \"background\",\n          \"wall\"\n        ],\n        [\n          \"background\",\n          \"wall\"\n        ],\n        [\n          \"background\",\n          \"wall\"\n        ],\n        [\n          \"background\",\n          \"wall\"\n        ],\n        [\n          \"background\",\n          \"wall\"\n        ],\n        [\n          \"background\",\n          \"wall\"\n        ],\n        [\n          \"background\",\n          \"wall\"\n        ],\n        [\n          \"background\",\n          \"wall\"\n        ]\n      ],\n      [\n        [\n          \"background\",\n          \"wall\"\n        ],\n        [\n          \"background\"\n        ],\n        [\n          \"background\"\n        ],\n        [\n          \"background\"\n        ],\n        [\n          \"background\"\n        ],\n        [\n          \"background\"\n        ],\n        [\n          \"background\"\n        ],\n        [\n          \"background\"\n        ],\n        [\n          \"background\"\n        ],\n        [\n          \"background\"\n        ],\n        [\n          \"background\"\n        ],\n        [\n          \"background\",\n          \"goal\",\n          \"wizard\"\n        ],\n        [\n          \"background\",\n          \"wall\"\n        ]\n      ],\n      [\n        [\n          \"background\",\n          \"wall\"\n        ],\n        [\n          \"background\",\n          \"wall\"\n        ],\n        [\n          \"background\",\n          \"wall\"\n        ],\n        [\n          \"background\",\n          \"wall\"\n        ],\n        [\n          \"background\",\n          \"wall\"\n        ],\n        [\n          \"background\",\n          \"wall\"\n        ],\n        [\n          \"background\",\n          \"wall\"\n        ],\n        [\n          \"background\",\n          \"wall\"\n        ],\n        [\n          \"background\",\n          \"wall\"\n        ],\n        [\n          \"background\",\n          \"wall\"\n        ],\n        [\n          \"background\",\n          \"wall\"\n        ],\n        [\n          \"background\",\n          \"wall\"\n        ],\n        [\n          \"background\",\n          \"wall\"\n        ]\n      ]\n    ],\n    \"final_ascii\": \"#############\\n#..........F#\\n#############\\n#..........T#\\n#############\\n#..........W#\\n#############\",\n    \"certificate_sha256\": \"05ba2b74e4a2bafcefe05e34a8a3d48c9c448d35add1c0bb83f34a006e006317\"\n  }\n}"
+            }
+          ],
+          "structuredContent": {
+            "room_id": "I-22",
+            "action": "step",
+            "route": "RRRRRRRRRR",
+            "current_key_count": 10,
+            "cost_scope": "current route; no record or benchmark budget claim",
+            "terminal": true,
+            "checkpoint": {
+              "format": "soko-original-play-v1",
+              "room_id": "I-22",
+              "source_pins": {
+                "html_sha256": "9811b0538cc7dd73cb7ef271d8f5ff5d4395329a7b87c6cf18c94d7a126bf311",
+                "puzzlescript_source_sha256": "81a1d27115fc40c04f27bb39d0ef12ebffbea513e3fe9f550b5173bb683728a3",
+                "checker_sha256": "e9b288556c51363e1edbb161c2c119c540ad8aa6e5ae31e23739a6284f2800a6",
+                "source_url": "https://sites.math.washington.edu/~ostroff/puzzles/Heroes_of_Sokoban.html"
+              },
+              "route": "RRRRRRRRRR",
+              "sha256": "d338c6dcc9495d986922ac21fe0d15b047e7a89fc0b877b52142a44e97f462fd"
+            },
+            "replay": {
+              "room": 22,
+              "compiled_level_index": 29,
+              "width": 13,
+              "height": 7,
+              "object_count": 18,
+              "stride": 1,
+              "object_ids": {
+                "background": 0,
+                "goal": 2,
+                "wall": 17,
+                "fighter": 10,
+                "wizard": 11,
+                "thief": 12,
+                "sfighter": 15,
+                "swizard": 13,
+                "sthief": 14,
+                "crate": 16,
+                "yellowswitch": 4,
+                "yellowopen": 5,
+                "yellowdoor": 9,
+                "purpleswitch": 3,
+                "purpledoor": 8,
+                "purpleopen": 6,
+                "temp": 1,
+                "shadowdoor": 7
+              },
+              "final_objects": [
+                131073,
+                131073,
+                131073,
+                131073,
+                131073,
+                131073,
+                131073,
+                131073,
+                1,
+                131073,
+                1,
+                131073,
+                1,
+                131073,
+                131073,
+                1,
+                131073,
+                1,
+                131073,
+                1,
+                131073,
+                131073,
+                1,
+                131073,
+                1,
+                131073,
+                1,
+                131073,
+                131073,
+                1,
+                131073,
+                1,
+                131073,
+                1,
+                131073,
+                131073,
+                1,
+                131073,
+                1,
+                131073,
+                1,
+                131073,
+                131073,
+                1,
+                131073,
+                1,
+                131073,
+                1,
+                131073,
+                131073,
+                1,
+                131073,
+                1,
+                131073,
+                1,
+                131073,
+                131073,
+                1,
+                131073,
+                1,
+                131073,
+                1,
+                131073,
+                131073,
+                1,
+                131073,
+                1,
+                131073,
+                1,
+                131073,
+                131073,
+                1,
+                131073,
+                1,
+                131073,
+                1,
+                131073,
+                131073,
+                1029,
+                131073,
+                4101,
+                131073,
+                2053,
+                131073,
+                131073,
+                131073,
+                131073,
+                131073,
+                131073,
+                131073,
+                131073
+              ],
+              "initial_objects": [
+                131073,
+                131073,
+                131073,
+                131073,
+                131073,
+                131073,
+                131073,
+                131073,
+                1025,
+                131073,
+                4097,
+                131073,
+                2049,
+                131073,
+                131073,
+                1,
+                131073,
+                1,
+                131073,
+                1,
+                131073,
+                131073,
+                1,
+                131073,
+                1,
+                131073,
+                1,
+                131073,
+                131073,
+                1,
+                131073,
+                1,
+                131073,
+                1,
+                131073,
+                131073,
+                1,
+                131073,
+                1,
+                131073,
+                1,
+                131073,
+                131073,
+                1,
+                131073,
+                1,
+                131073,
+                1,
+                131073,
+                131073,
+                1,
+                131073,
+                1,
+                131073,
+                1,
+                131073,
+                131073,
+                1,
+                131073,
+                1,
+                131073,
+                1,
+                131073,
+                131073,
+                1,
+                131073,
+                1,
+                131073,
+                1,
+                131073,
+                131073,
+                1,
+                131073,
+                1,
+                131073,
+                1,
+                131073,
+                131073,
+                5,
+                131073,
+                5,
+                131073,
+                5,
+                131073,
+                131073,
+                131073,
+                131073,
+                131073,
+                131073,
+                131073,
+                131073
+              ],
+              "first_win": 10,
+              "first_death": null,
+              "restarts": 0,
+              "again_limit_hit": false,
+              "schema_version": 1,
+              "evidence_level": "original_build_replay",
+              "part": 1,
+              "source_url": "https://sites.math.washington.edu/~ostroff/puzzles/Heroes_of_Sokoban.html",
+              "html_sha256": "9811b0538cc7dd73cb7ef271d8f5ff5d4395329a7b87c6cf18c94d7a126bf311",
+              "puzzlescript_source_sha256": "81a1d27115fc40c04f27bb39d0ef12ebffbea513e3fe9f550b5173bb683728a3",
+              "checker_sha256": "e9b288556c51363e1edbb161c2c119c540ad8aa6e5ae31e23739a6284f2800a6",
+              "browser_version": "156.0.8078.79",
+              "checked_at": "2026-11-12T16:24:53.799983+00:00",
+              "route": "RRRRRRRRRR",
+              "route_len": 10,
+              "route_sha256": "6fa140d719eb7058f93aba4357b94df44caf954e539b3ac6f6f8b007724f34fa",
+              "instance_sha256": "efcb8a7ca00ee7e6b20b575940287bfc9db710d7e7ede8489b83b2884c88ad7e",
+              "trajectory_sha256": "785099b4172eaea9e201a745f2f0ee79a78a0719641f61ec3c49fb16d5158801",
+              "steps_executed": 10,
+              "valid_winning_route": true,
+              "blocked_resource_requests": 0,
+              "public_submission": false,
+              "formal_proof_checked": false,
+              "source_pins": {
+                "html_sha256": "9811b0538cc7dd73cb7ef271d8f5ff5d4395329a7b87c6cf18c94d7a126bf311",
+                "puzzlescript_source_sha256": "81a1d27115fc40c04f27bb39d0ef12ebffbea513e3fe9f550b5173bb683728a3",
+                "checker_sha256": "e9b288556c51363e1edbb161c2c119c540ad8aa6e5ae31e23739a6284f2800a6",
+                "source_url": "https://sites.math.washington.edu/~ostroff/puzzles/Heroes_of_Sokoban.html"
+              },
+              "final_layers": [
+                [
+                  [
+                    "background",
+                    "wall"
+                  ],
+                  [
+                    "background",
+                    "wall"
+                  ],
+                  [
+                    "background",
+                    "wall"
+                  ],
+                  [
+                    "background",
+                    "wall"
+                  ],
+                  [
+                    "background",
+                    "wall"
+                  ],
+                  [
+                    "background",
+                    "wall"
+                  ],
+                  [
+                    "background",
+                    "wall"
+                  ],
+                  [
+                    "background",
+                    "wall"
+                  ],
+                  [
+                    "background",
+                    "wall"
+                  ],
+                  [
+                    "background",
+                    "wall"
+                  ],
+                  [
+                    "background",
+                    "wall"
+                  ],
+                  [
+                    "background",
+                    "wall"
+                  ],
+                  [
+                    "background",
+                    "wall"
+                  ]
+                ],
+                [
+                  [
+                    "background",
+                    "wall"
+                  ],
+                  [
+                    "background"
+                  ],
+                  [
+                    "background"
+                  ],
+                  [
+                    "background"
+                  ],
+                  [
+                    "background"
+                  ],
+                  [
+                    "background"
+                  ],
+                  [
+                    "background"
+                  ],
+                  [
+                    "background"
+                  ],
+                  [
+                    "background"
+                  ],
+                  [
+                    "background"
+                  ],
+                  [
+                    "background"
+                  ],
+                  [
+                    "background",
+                    "fighter",
+                    "goal"
+                  ],
+                  [
+                    "background",
+                    "wall"
+                  ]
+                ],
+                [
+                  [
+                    "background",
+                    "wall"
+                  ],
+                  [
+                    "background",
+                    "wall"
+                  ],
+                  [
+                    "background",
+                    "wall"
+                  ],
+                  [
+                    "background",
+                    "wall"
+                  ],
+                  [
+                    "background",
+                    "wall"
+                  ],
+                  [
+                    "background",
+                    "wall"
+                  ],
+                  [
+                    "background",
+                    "wall"
+                  ],
+                  [
+                    "background",
+                    "wall"
+                  ],
+                  [
+                    "background",
+                    "wall"
+                  ],
+                  [
+                    "background",
+                    "wall"
+                  ],
+                  [
+                    "background",
+                    "wall"
+                  ],
+                  [
+                    "background",
+                    "wall"
+                  ],
+                  [
+                    "background",
+                    "wall"
+                  ]
+                ],
+                [
+                  [
+                    "background",
+                    "wall"
+                  ],
+                  [
+                    "background"
+                  ],
+                  [
+                    "background"
+                  ],
+                  [
+                    "background"
+                  ],
+                  [
+                    "background"
+                  ],
+                  [
+                    "background"
+                  ],
+                  [
+                    "background"
+                  ],
+                  [
+                    "background"
+                  ],
+                  [
+                    "background"
+                  ],
+                  [
+                    "background"
+                  ],
+                  [
+                    "background"
+                  ],
+                  [
+                    "background",
+                    "goal",
+                    "thief"
+                  ],
+                  [
+                    "background",
+                    "wall"
+                  ]
+                ],
+                [
+                  [
+                    "background",
+                    "wall"
+                  ],
+                  [
+                    "background",
+                    "wall"
+                  ],
+                  [
+                    "background",
+                    "wall"
+                  ],
+                  [
+                    "background",
+                    "wall"
+                  ],
+                  [
+                    "background",
+                    "wall"
+                  ],
+                  [
+                    "background",
+                    "wall"
+                  ],
+                  [
+                    "background",
+                    "wall"
+                  ],
+                  [
+                    "background",
+                    "wall"
+                  ],
+                  [
+                    "background",
+                    "wall"
+                  ],
+                  [
+                    "background",
+                    "wall"
+                  ],
+                  [
+                    "background",
+                    "wall"
+                  ],
+                  [
+                    "background",
+                    "wall"
+                  ],
+                  [
+                    "background",
+                    "wall"
+                  ]
+                ],
+                [
+                  [
+                    "background",
+                    "wall"
+                  ],
+                  [
+                    "background"
+                  ],
+                  [
+                    "background"
+                  ],
+                  [
+                    "background"
+                  ],
+                  [
+                    "background"
+                  ],
+                  [
+                    "background"
+                  ],
+                  [
+                    "background"
+                  ],
+                  [
+                    "background"
+                  ],
+                  [
+                    "background"
+                  ],
+                  [
+                    "background"
+                  ],
+                  [
+                    "background"
+                  ],
+                  [
+                    "background",
+                    "goal",
+                    "wizard"
+                  ],
+                  [
+                    "background",
+                    "wall"
+                  ]
+                ],
+                [
+                  [
+                    "background",
+                    "wall"
+                  ],
+                  [
+                    "background",
+                    "wall"
+                  ],
+                  [
+                    "background",
+                    "wall"
+                  ],
+                  [
+                    "background",
+                    "wall"
+                  ],
+                  [
+                    "background",
+                    "wall"
+                  ],
+                  [
+                    "background",
+                    "wall"
+                  ],
+                  [
+                    "background",
+                    "wall"
+                  ],
+                  [
+                    "background",
+                    "wall"
+                  ],
+                  [
+                    "background",
+                    "wall"
+                  ],
+                  [
+                    "background",
+                    "wall"
+                  ],
+                  [
+                    "background",
+                    "wall"
+                  ],
+                  [
+                    "background",
+                    "wall"
+                  ],
+                  [
+                    "background",
+                    "wall"
+                  ]
+                ]
+              ],
+              "final_ascii": "#############\n#..........F#\n#############\n#..........T#\n#############\n#..........W#\n#############",
+              "certificate_sha256": "05ba2b74e4a2bafcefe05e34a8a3d48c9c448d35add1c0bb83f34a006e006317"
+            }
+          },
+          "isError": false
+        }
+      },
+      "elapsed_seconds": 2.266804
+    },
+    {
+      "request": {
+        "jsonrpc": "2.0",
+        "id": 4,
+        "method": "tools/call",
+        "params": {
+          "name": "soko_play",
+          "arguments": {
+            "checkpoint": {
+              "format": "soko-original-play-v1",
+              "room_id": "I-22",
+              "source_pins": {
+                "html_sha256": "9811b0538cc7dd73cb7ef271d8f5ff5d4395329a7b87c6cf18c94d7a126bf311",
+                "puzzlescript_source_sha256": "81a1d27115fc40c04f27bb39d0ef12ebffbea513e3fe9f550b5173bb683728a3",
+                "checker_sha256": "e9b288556c51363e1edbb161c2c119c540ad8aa6e5ae31e23739a6284f2800a6",
+                "source_url": "https://sites.math.washington.edu/~ostroff/puzzles/Heroes_of_Sokoban.html"
+              },
+              "route": "RRRRRRRRRR",
+              "sha256": "d338c6dcc9495d986922ac21fe0d15b047e7a89fc0b877b52142a44e97f462fd"
+            },
+            "keys": "R"
+          }
+        }
+      },
+      "response": {
+        "jsonrpc": "2.0",
+        "id": 4,
+        "result": {
+          "content": [
+            {
+              "type": "text",
+              "text": "{\n  \"error\": \"original engine did not execute the complete route; shorten keys or recover from the prior checkpoint\",\n  \"tool\": \"soko_play\"\n}"
+            }
+          ],
+          "isError": true
+        }
+      },
+      "elapsed_seconds": 1.695146
+    },
+    {
+      "request": {
+        "jsonrpc": "2.0",
+        "id": 5,
+        "method": "tools/call",
+        "params": {
+          "name": "soko_play",
+          "arguments": {
+            "checkpoint": {
+              "format": "soko-original-play-v1",
+              "room_id": "I-22",
+              "source_pins": {
+                "html_sha256": "9811b0538cc7dd73cb7ef271d8f5ff5d4395329a7b87c6cf18c94d7a126bf311",
+                "puzzlescript_source_sha256": "81a1d27115fc40c04f27bb39d0ef12ebffbea513e3fe9f550b5173bb683728a3",
+                "checker_sha256": "e9b288556c51363e1edbb161c2c119c540ad8aa6e5ae31e23739a6284f2800a6",
+                "source_url": "https://sites.math.washington.edu/~ostroff/puzzles/Heroes_of_Sokoban.html"
+              },
+              "route": "RRRRRRRRRR",
+              "sha256": "d338c6dcc9495d986922ac21fe0d15b047e7a89fc0b877b52142a44e97f462fd"
+            },
+            "action": "undo"
+          }
+        }
+      },
+      "response": {
+        "jsonrpc": "2.0",
+        "id": 5,
+        "result": {
+          "content": [
+            {
+              "type": "text",
+              "text": "{\n  \"room_id\": \"I-22\",\n  \"action\": \"undo\",\n  \"route\": \"RRRRRRRRR\",\n  \"current_key_count\": 9,\n  \"cost_scope\": \"current route; no record or benchmark budget claim\",\n  \"terminal\": false,\n  \"checkpoint\": {\n    \"format\": \"soko-original-play-v1\",\n    \"room_id\": \"I-22\",\n    \"source_pins\": {\n      \"html_sha256\": \"9811b0538cc7dd73cb7ef271d8f5ff5d4395329a7b87c6cf18c94d7a126bf311\",\n      \"puzzlescript_source_sha256\": \"81a1d27115fc40c04f27bb39d0ef12ebffbea513e3fe9f550b5173bb683728a3\",\n      \"checker_sha256\": \"e9b288556c51363e1edbb161c2c119c540ad8aa6e5ae31e23739a6284f2800a6\",\n      \"source_url\": \"https://sites.math.washington.edu/~ostroff/puzzles/Heroes_of_Sokoban.html\"\n    },\n    \"route\": \"RRRRRRRRR\",\n    \"sha256\": \"52c21dc86a2efa304e097f48cb838f1af2f940a75b947e64b950fd433b02fd16\"\n  },\n  \"replay\": {\n    \"room\": 22,\n    \"compiled_level_index\": 29,\n    \"width\": 13,\n    \"height\": 7,\n    \"object_count\": 18,\n    \"stride\": 1,\n    \"object_ids\": {\n      \"background\": 0,\n      \"goal\": 2,\n      \"wall\": 17,\n      \"fighter\": 10,\n      \"wizard\": 11,\n      \"thief\": 12,\n      \"sfighter\": 15,\n      \"swizard\": 13,\n      \"sthief\": 14,\n      \"crate\": 16,\n      \"yellowswitch\": 4,\n      \"yellowopen\": 5,\n      \"yellowdoor\": 9,\n      \"purpleswitch\": 3,\n      \"purpledoor\": 8,\n      \"purpleopen\": 6,\n      \"temp\": 1,\n      \"shadowdoor\": 7\n    },\n    \"final_objects\": [\n      131073,\n      131073,\n      131073,\n      131073,\n      131073,\n      131073,\n      131073,\n      131073,\n      1,\n      131073,\n      1,\n      131073,\n      1,\n      131073,\n      131073,\n      1,\n      131073,\n      1,\n      131073,\n      1,\n      131073,\n      131073,\n      1,\n      131073,\n      1,\n      131073,\n      1,\n      131073,\n      131073,\n      1,\n      131073,\n      1,\n      131073,\n      1,\n      131073,\n      131073,\n      1,\n      131073,\n      1,\n      131073,\n      1,\n      131073,\n      131073,\n      1,\n      131073,\n      1,\n      131073,\n      1,\n      131073,\n      131073,\n      1,\n      131073,\n      1,\n      131073,\n      1,\n      131073,\n      131073,\n      1,\n      131073,\n      1,\n      131073,\n      1,\n      131073,\n      131073,\n      1,\n      131073,\n      1,\n      131073,\n      1,\n      131073,\n      131073,\n      1025,\n      131073,\n      4097,\n      131073,\n      2049,\n      131073,\n      131073,\n      5,\n      131073,\n      5,\n      131073,\n      5,\n      131073,\n      131073,\n      131073,\n      131073,\n      131073,\n      131073,\n      131073,\n      131073\n    ],\n    \"initial_objects\": [\n      131073,\n      131073,\n      131073,\n      131073,\n      131073,\n      131073,\n      131073,\n      131073,\n      1025,\n      131073,\n      4097,\n      131073,\n      2049,\n      131073,\n      131073,\n      1,\n      131073,\n      1,\n      131073,\n      1,\n      131073,\n      131073,\n      1,\n      131073,\n      1,\n      131073,\n      1,\n      131073,\n      131073,\n      1,\n      131073,\n      1,\n      131073,\n      1,\n      131073,\n      131073,\n      1,\n      131073,\n      1,\n      131073,\n      1,\n      131073,\n      131073,\n      1,\n      131073,\n      1,\n      131073,\n      1,\n      131073,\n      131073,\n      1,\n      131073,\n      1,\n      131073,\n      1,\n      131073,\n      131073,\n      1,\n      131073,\n      1,\n      131073,\n      1,\n      131073,\n      131073,\n      1,\n      131073,\n      1,\n      131073,\n      1,\n      131073,\n      131073,\n      1,\n      131073,\n      1,\n      131073,\n      1,\n      131073,\n      131073,\n      5,\n      131073,\n      5,\n      131073,\n      5,\n      131073,\n      131073,\n      131073,\n      131073,\n      131073,\n      131073,\n      131073,\n      131073\n    ],\n    \"first_win\": null,\n    \"first_death\": null,\n    \"restarts\": 0,\n    \"again_limit_hit\": false,\n    \"schema_version\": 1,\n    \"evidence_level\": \"original_build_replay\",\n    \"part\": 1,\n    \"source_url\": \"https://sites.math.washington.edu/~ostroff/puzzles/Heroes_of_Sokoban.html\",\n    \"html_sha256\": \"9811b0538cc7dd73cb7ef271d8f5ff5d4395329a7b87c6cf18c94d7a126bf311\",\n    \"puzzlescript_source_sha256\": \"81a1d27115fc40c04f27bb39d0ef12ebffbea513e3fe9f550b5173bb683728a3\",\n    \"checker_sha256\": \"e9b288556c51363e1edbb161c2c119c540ad8aa6e5ae31e23739a6284f2800a6\",\n    \"browser_version\": \"156.0.8078.79\",\n    \"checked_at\": \"2026-11-12T16:24:57.669267+00:00\",\n    \"route\": \"RRRRRRRRR\",\n    \"route_len\": 9,\n    \"route_sha256\": \"179f01ec4093c32d4bb60aeab1a9c37c689eb43520b50e66a9cdd32115c9b2ae\",\n    \"instance_sha256\": \"efcb8a7ca00ee7e6b20b575940287bfc9db710d7e7ede8489b83b2884c88ad7e\",\n    \"trajectory_sha256\": \"4f53765123bd3eb166423c09622f6a4569d577941b3aca08eee7bac881a1d061\",\n    \"steps_executed\": 9,\n    \"valid_winning_route\": false,\n    \"blocked_resource_requests\": 0,\n    \"public_submission\": false,\n    \"formal_proof_checked\": false,\n    \"source_pins\": {\n      \"html_sha256\": \"9811b0538cc7dd73cb7ef271d8f5ff5d4395329a7b87c6cf18c94d7a126bf311\",\n      \"puzzlescript_source_sha256\": \"81a1d27115fc40c04f27bb39d0ef12ebffbea513e3fe9f550b5173bb683728a3\",\n      \"checker_sha256\": \"e9b288556c51363e1edbb161c2c119c540ad8aa6e5ae31e23739a6284f2800a6\",\n      \"source_url\": \"https://sites.math.washington.edu/~ostroff/puzzles/Heroes_of_Sokoban.html\"\n    },\n    \"final_layers\": [\n      [\n        [\n          \"background\",\n          \"wall\"\n        ],\n        [\n          \"background\",\n          \"wall\"\n        ],\n        [\n          \"background\",\n          \"wall\"\n        ],\n        [\n          \"background\",\n          \"wall\"\n        ],\n        [\n          \"background\",\n          \"wall\"\n        ],\n        [\n          \"background\",\n          \"wall\"\n        ],\n        [\n          \"background\",\n          \"wall\"\n        ],\n        [\n          \"background\",\n          \"wall\"\n        ],\n        [\n          \"background\",\n          \"wall\"\n        ],\n        [\n          \"background\",\n          \"wall\"\n        ],\n        [\n          \"background\",\n          \"wall\"\n        ],\n        [\n          \"background\",\n          \"wall\"\n        ],\n        [\n          \"background\",\n          \"wall\"\n        ]\n      ],\n      [\n        [\n          \"background\",\n          \"wall\"\n        ],\n        [\n          \"background\"\n        ],\n        [\n          \"background\"\n        ],\n        [\n          \"background\"\n        ],\n        [\n          \"background\"\n        ],\n        [\n          \"background\"\n        ],\n        [\n          \"background\"\n        ],\n        [\n          \"background\"\n        ],\n        [\n          \"background\"\n        ],\n        [\n          \"background\"\n        ],\n        [\n          \"background\",\n          \"fighter\"\n        ],\n        [\n          \"background\",\n          \"goal\"\n        ],\n        [\n          \"background\",\n          \"wall\"\n        ]\n      ],\n      [\n        [\n          \"background\",\n          \"wall\"\n        ],\n        [\n          \"background\",\n          \"wall\"\n        ],\n        [\n          \"background\",\n          \"wall\"\n        ],\n        [\n          \"background\",\n          \"wall\"\n        ],\n        [\n          \"background\",\n          \"wall\"\n        ],\n        [\n          \"background\",\n          \"wall\"\n        ],\n        [\n          \"background\",\n          \"wall\"\n        ],\n        [\n          \"background\",\n          \"wall\"\n        ],\n        [\n          \"background\",\n          \"wall\"\n        ],\n        [\n          \"background\",\n          \"wall\"\n        ],\n        [\n          \"background\",\n          \"wall\"\n        ],\n        [\n          \"background\",\n          \"wall\"\n        ],\n        [\n          \"background\",\n          \"wall\"\n        ]\n      ],\n      [\n        [\n          \"background\",\n          \"wall\"\n        ],\n        [\n          \"background\"\n        ],\n        [\n          \"background\"\n        ],\n        [\n          \"background\"\n        ],\n        [\n          \"background\"\n        ],\n        [\n          \"background\"\n        ],\n        [\n          \"background\"\n        ],\n        [\n          \"background\"\n        ],\n        [\n          \"background\"\n        ],\n        [\n          \"background\"\n        ],\n        [\n          \"background\",\n          \"thief\"\n        ],\n        [\n          \"background\",\n          \"goal\"\n        ],\n        [\n          \"background\",\n          \"wall\"\n        ]\n      ],\n      [\n        [\n          \"background\",\n          \"wall\"\n        ],\n        [\n          \"background\",\n          \"wall\"\n        ],\n        [\n          \"background\",\n          \"wall\"\n        ],\n        [\n          \"background\",\n          \"wall\"\n        ],\n        [\n          \"background\",\n          \"wall\"\n        ],\n        [\n          \"background\",\n          \"wall\"\n        ],\n        [\n          \"background\",\n          \"wall\"\n        ],\n        [\n          \"background\",\n          \"wall\"\n        ],\n        [\n          \"background\",\n          \"wall\"\n        ],\n        [\n          \"background\",\n          \"wall\"\n        ],\n        [\n          \"background\",\n          \"wall\"\n        ],\n        [\n          \"background\",\n          \"wall\"\n        ],\n        [\n          \"background\",\n          \"wall\"\n        ]\n      ],\n      [\n        [\n          \"background\",\n          \"wall\"\n        ],\n        [\n          \"background\"\n        ],\n        [\n          \"background\"\n        ],\n        [\n          \"background\"\n        ],\n        [\n          \"background\"\n        ],\n        [\n          \"background\"\n        ],\n        [\n          \"background\"\n        ],\n        [\n          \"background\"\n        ],\n        [\n          \"background\"\n        ],\n        [\n          \"background\"\n        ],\n        [\n          \"background\",\n          \"wizard\"\n        ],\n        [\n          \"background\",\n          \"goal\"\n        ],\n        [\n          \"background\",\n          \"wall\"\n        ]\n      ],\n      [\n        [\n          \"background\",\n          \"wall\"\n        ],\n        [\n          \"background\",\n          \"wall\"\n        ],\n        [\n          \"background\",\n          \"wall\"\n        ],\n        [\n          \"background\",\n          \"wall\"\n        ],\n        [\n          \"background\",\n          \"wall\"\n        ],\n        [\n          \"background\",\n          \"wall\"\n        ],\n        [\n          \"background\",\n          \"wall\"\n        ],\n        [\n          \"background\",\n          \"wall\"\n        ],\n        [\n          \"background\",\n          \"wall\"\n        ],\n        [\n          \"background\",\n          \"wall\"\n        ],\n        [\n          \"background\",\n          \"wall\"\n        ],\n        [\n          \"background\",\n          \"wall\"\n        ],\n        [\n          \"background\",\n          \"wall\"\n        ]\n      ]\n    ],\n    \"final_ascii\": \"#############\\n#.........FG#\\n#############\\n#.........TG#\\n#############\\n#.........WG#\\n#############\",\n    \"certificate_sha256\": \"f36c9a1bb41417e7cae52f067fe43a8bb14a0f646b6b8539e11a109680a1f9c7\"\n  }\n}"
+            }
+          ],
+          "structuredContent": {
+            "room_id": "I-22",
+            "action": "undo",
+            "route": "RRRRRRRRR",
+            "current_key_count": 9,
+            "cost_scope": "current route; no record or benchmark budget claim",
+            "terminal": false,
+            "checkpoint": {
+              "format": "soko-original-play-v1",
+              "room_id": "I-22",
+              "source_pins": {
+                "html_sha256": "9811b0538cc7dd73cb7ef271d8f5ff5d4395329a7b87c6cf18c94d7a126bf311",
+                "puzzlescript_source_sha256": "81a1d27115fc40c04f27bb39d0ef12ebffbea513e3fe9f550b5173bb683728a3",
+                "checker_sha256": "e9b288556c51363e1edbb161c2c119c540ad8aa6e5ae31e23739a6284f2800a6",
+                "source_url": "https://sites.math.washington.edu/~ostroff/puzzles/Heroes_of_Sokoban.html"
+              },
+              "route": "RRRRRRRRR",
+              "sha256": "52c21dc86a2efa304e097f48cb838f1af2f940a75b947e64b950fd433b02fd16"
+            },
+            "replay": {
+              "room": 22,
+              "compiled_level_index": 29,
+              "width": 13,
+              "height": 7,
+              "object_count": 18,
+              "stride": 1,
+              "object_ids": {
+                "background": 0,
+                "goal": 2,
+                "wall": 17,
+                "fighter": 10,
+                "wizard": 11,
+                "thief": 12,
+                "sfighter": 15,
+                "swizard": 13,
+                "sthief": 14,
+                "crate": 16,
+                "yellowswitch": 4,
+                "yellowopen": 5,
+                "yellowdoor": 9,
+                "purpleswitch": 3,
+                "purpledoor": 8,
+                "purpleopen": 6,
+                "temp": 1,
+                "shadowdoor": 7
+              },
+              "final_objects": [
+                131073,
+                131073,
+                131073,
+                131073,
+                131073,
+                131073,
+                131073,
+                131073,
+                1,
+                131073,
+                1,
+                131073,
+                1,
+                131073,
+                131073,
+                1,
+                131073,
+                1,
+                131073,
+                1,
+                131073,
+                131073,
+                1,
+                131073,
+                1,
+                131073,
+                1,
+                131073,
+                131073,
+                1,
+                131073,
+                1,
+                131073,
+                1,
+                131073,
+                131073,
+                1,
+                131073,
+                1,
+                131073,
+                1,
+                131073,
+                131073,
+                1,
+                131073,
+                1,
+                131073,
+                1,
+                131073,
+                131073,
+                1,
+                131073,
+                1,
+                131073,
+                1,
+                131073,
+                131073,
+                1,
+                131073,
+                1,
+                131073,
+                1,
+                131073,
+                131073,
+                1,
+                131073,
+                1,
+                131073,
+                1,
+                131073,
+                131073,
+                1025,
+                131073,
+                4097,
+                131073,
+                2049,
+                131073,
+                131073,
+                5,
+                131073,
+                5,
+                131073,
+                5,
+                131073,
+                131073,
+                131073,
+                131073,
+                131073,
+                131073,
+                131073,
+                131073
+              ],
+              "initial_objects": [
+                131073,
+                131073,
+                131073,
+                131073,
+                131073,
+                131073,
+                131073,
+                131073,
+                1025,
+                131073,
+                4097,
+                131073,
+                2049,
+                131073,
+                131073,
+                1,
+                131073,
+                1,
+                131073,
+                1,
+                131073,
+                131073,
+                1,
+                131073,
+                1,
+                131073,
+                1,
+                131073,
+                131073,
+                1,
+                131073,
+                1,
+                131073,
+                1,
+                131073,
+                131073,
+                1,
+                131073,
+                1,
+                131073,
+                1,
+                131073,
+                131073,
+                1,
+                131073,
+                1,
+                131073,
+                1,
+                131073,
+                131073,
+                1,
+                131073,
+                1,
+                131073,
+                1,
+                131073,
+                131073,
+                1,
+                131073,
+                1,
+                131073,
+                1,
+                131073,
+                131073,
+                1,
+                131073,
+                1,
+                131073,
+                1,
+                131073,
+                131073,
+                1,
+                131073,
+                1,
+                131073,
+                1,
+                131073,
+                131073,
+                5,
+                131073,
+                5,
+                131073,
+                5,
+                131073,
+                131073,
+                131073,
+                131073,
+                131073,
+                131073,
+                131073,
+                131073
+              ],
+              "first_win": null,
+              "first_death": null,
+              "restarts": 0,
+              "again_limit_hit": false,
+              "schema_version": 1,
+              "evidence_level": "original_build_replay",
+              "part": 1,
+              "source_url": "https://sites.math.washington.edu/~ostroff/puzzles/Heroes_of_Sokoban.html",
+              "html_sha256": "9811b0538cc7dd73cb7ef271d8f5ff5d4395329a7b87c6cf18c94d7a126bf311",
+              "puzzlescript_source_sha256": "81a1d27115fc40c04f27bb39d0ef12ebffbea513e3fe9f550b5173bb683728a3",
+              "checker_sha256": "e9b288556c51363e1edbb161c2c119c540ad8aa6e5ae31e23739a6284f2800a6",
+              "browser_version": "156.0.8078.79",
+              "checked_at": "2026-11-12T16:24:57.669267+00:00",
+              "route": "RRRRRRRRR",
+              "route_len": 9,
+              "route_sha256": "179f01ec4093c32d4bb60aeab1a9c37c689eb43520b50e66a9cdd32115c9b2ae",
+              "instance_sha256": "efcb8a7ca00ee7e6b20b575940287bfc9db710d7e7ede8489b83b2884c88ad7e",
+              "trajectory_sha256": "4f53765123bd3eb166423c09622f6a4569d577941b3aca08eee7bac881a1d061",
+              "steps_executed": 9,
+              "valid_winning_route": false,
+              "blocked_resource_requests": 0,
+              "public_submission": false,
+              "formal_proof_checked": false,
+              "source_pins": {
+                "html_sha256": "9811b0538cc7dd73cb7ef271d8f5ff5d4395329a7b87c6cf18c94d7a126bf311",
+                "puzzlescript_source_sha256": "81a1d27115fc40c04f27bb39d0ef12ebffbea513e3fe9f550b5173bb683728a3",
+                "checker_sha256": "e9b288556c51363e1edbb161c2c119c540ad8aa6e5ae31e23739a6284f2800a6",
+                "source_url": "https://sites.math.washington.edu/~ostroff/puzzles/Heroes_of_Sokoban.html"
+              },
+              "final_layers": [
+                [
+                  [
+                    "background",
+                    "wall"
+                  ],
+                  [
+                    "background",
+                    "wall"
+                  ],
+                  [
+                    "background",
+                    "wall"
+                  ],
+                  [
+                    "background",
+                    "wall"
+                  ],
+                  [
+                    "background",
+                    "wall"
+                  ],
+                  [
+                    "background",
+                    "wall"
+                  ],
+                  [
+                    "background",
+                    "wall"
+                  ],
+                  [
+                    "background",
+                    "wall"
+                  ],
+                  [
+                    "background",
+                    "wall"
+                  ],
+                  [
+                    "background",
+                    "wall"
+                  ],
+                  [
+                    "background",
+                    "wall"
+                  ],
+                  [
+                    "background",
+                    "wall"
+                  ],
+                  [
+                    "background",
+                    "wall"
+                  ]
+                ],
+                [
+                  [
+                    "background",
+                    "wall"
+                  ],
+                  [
+                    "background"
+                  ],
+                  [
+                    "background"
+                  ],
+                  [
+                    "background"
+                  ],
+                  [
+                    "background"
+                  ],
+                  [
+                    "background"
+                  ],
+                  [
+                    "background"
+                  ],
+                  [
+                    "background"
+                  ],
+                  [
+                    "background"
+                  ],
+                  [
+                    "background"
+                  ],
+                  [
+                    "background",
+                    "fighter"
+                  ],
+                  [
+                    "background",
+                    "goal"
+                  ],
+                  [
+                    "background",
+                    "wall"
+                  ]
+                ],
+                [
+                  [
+                    "background",
+                    "wall"
+                  ],
+                  [
+                    "background",
+                    "wall"
+                  ],
+                  [
+                    "background",
+                    "wall"
+                  ],
+                  [
+                    "background",
+                    "wall"
+                  ],
+                  [
+                    "background",
+                    "wall"
+                  ],
+                  [
+                    "background",
+                    "wall"
+                  ],
+                  [
+                    "background",
+                    "wall"
+                  ],
+                  [
+                    "background",
+                    "wall"
+                  ],
+                  [
+                    "background",
+                    "wall"
+                  ],
+                  [
+                    "background",
+                    "wall"
+                  ],
+                  [
+                    "background",
+                    "wall"
+                  ],
+                  [
+                    "background",
+                    "wall"
+                  ],
+                  [
+                    "background",
+                    "wall"
+                  ]
+                ],
+                [
+                  [
+                    "background",
+                    "wall"
+                  ],
+                  [
+                    "background"
+                  ],
+                  [
+                    "background"
+                  ],
+                  [
+                    "background"
+                  ],
+                  [
+                    "background"
+                  ],
+                  [
+                    "background"
+                  ],
+                  [
+                    "background"
+                  ],
+                  [
+                    "background"
+                  ],
+                  [
+                    "background"
+                  ],
+                  [
+                    "background"
+                  ],
+                  [
+                    "background",
+                    "thief"
+                  ],
+                  [
+                    "background",
+                    "goal"
+                  ],
+                  [
+                    "background",
+                    "wall"
+                  ]
+                ],
+                [
+                  [
+                    "background",
+                    "wall"
+                  ],
+                  [
+                    "background",
+                    "wall"
+                  ],
+                  [
+                    "background",
+                    "wall"
+                  ],
+                  [
+                    "background",
+                    "wall"
+                  ],
+                  [
+                    "background",
+                    "wall"
+                  ],
+                  [
+                    "background",
+                    "wall"
+                  ],
+                  [
+                    "background",
+                    "wall"
+                  ],
+                  [
+                    "background",
+                    "wall"
+                  ],
+                  [
+                    "background",
+                    "wall"
+                  ],
+                  [
+                    "background",
+                    "wall"
+                  ],
+                  [
+                    "background",
+                    "wall"
+                  ],
+                  [
+                    "background",
+                    "wall"
+                  ],
+                  [
+                    "background",
+                    "wall"
+                  ]
+                ],
+                [
+                  [
+                    "background",
+                    "wall"
+                  ],
+                  [
+                    "background"
+                  ],
+                  [
+                    "background"
+                  ],
+                  [
+                    "background"
+                  ],
+                  [
+                    "background"
+                  ],
+                  [
+                    "background"
+                  ],
+                  [
+                    "background"
+                  ],
+                  [
+                    "background"
+                  ],
+                  [
+                    "background"
+                  ],
+                  [
+                    "background"
+                  ],
+                  [
+                    "background",
+                    "wizard"
+                  ],
+                  [
+                    "background",
+                    "goal"
+                  ],
+                  [
+                    "background",
+                    "wall"
+                  ]
+                ],
+                [
+                  [
+                    "background",
+                    "wall"
+                  ],
+                  [
+                    "background",
+                    "wall"
+                  ],
+                  [
+                    "background",
+                    "wall"
+                  ],
+                  [
+                    "background",
+                    "wall"
+                  ],
+                  [
+                    "background",
+                    "wall"
+                  ],
+                  [
+                    "background",
+                    "wall"
+                  ],
+                  [
+                    "background",
+                    "wall"
+                  ],
+                  [
+                    "background",
+                    "wall"
+                  ],
+                  [
+                    "background",
+                    "wall"
+                  ],
+                  [
+                    "background",
+                    "wall"
+                  ],
+                  [
+                    "background",
+                    "wall"
+                  ],
+                  [
+                    "background",
+                    "wall"
+                  ],
+                  [
+                    "background",
+                    "wall"
+                  ]
+                ]
+              ],
+              "final_ascii": "#############\n#.........FG#\n#############\n#.........TG#\n#############\n#.........WG#\n#############",
+              "certificate_sha256": "f36c9a1bb41417e7cae52f067fe43a8bb14a0f646b6b8539e11a109680a1f9c7"
+            }
+          },
+          "isError": false
+        }
+      },
+      "elapsed_seconds": 2.172742
+    },
+    {
+      "request": {
+        "jsonrpc": "2.0",
+        "id": 6,
+        "method": "tools/call",
+        "params": {
+          "name": "soko_play",
+          "arguments": {
+            "checkpoint": {
+              "format": "soko-original-play-v1",
+              "room_id": "I-22",
+              "source_pins": {
+                "html_sha256": "9811b0538cc7dd73cb7ef271d8f5ff5d4395329a7b87c6cf18c94d7a126bf311",
+                "puzzlescript_source_sha256": "81a1d27115fc40c04f27bb39d0ef12ebffbea513e3fe9f550b5173bb683728a3",
+                "checker_sha256": "e9b288556c51363e1edbb161c2c119c540ad8aa6e5ae31e23739a6284f2800a6",
+                "source_url": "https://sites.math.washington.edu/~ostroff/puzzles/Heroes_of_Sokoban.html"
+              },
+              "route": "RRRRRRRRR",
+              "sha256": "52c21dc86a2efa304e097f48cb838f1af2f940a75b947e64b950fd433b02fd16"
+            },
+            "action": "reset"
+          }
+        }
+      },
+      "response": {
+        "jsonrpc": "2.0",
+        "id": 6,
+        "result": {
+          "content": [
+            {
+              "type": "text",
+              "text": "{\n  \"room_id\": \"I-22\",\n  \"action\": \"reset\",\n  \"route\": \"\",\n  \"current_key_count\": 0,\n  \"cost_scope\": \"current route; no record or benchmark budget claim\",\n  \"terminal\": false,\n  \"checkpoint\": {\n    \"format\": \"soko-original-play-v1\",\n    \"room_id\": \"I-22\",\n    \"source_pins\": {\n      \"html_sha256\": \"9811b0538cc7dd73cb7ef271d8f5ff5d4395329a7b87c6cf18c94d7a126bf311\",\n      \"puzzlescript_source_sha256\": \"81a1d27115fc40c04f27bb39d0ef12ebffbea513e3fe9f550b5173bb683728a3\",\n      \"checker_sha256\": \"e9b288556c51363e1edbb161c2c119c540ad8aa6e5ae31e23739a6284f2800a6\",\n      \"source_url\": \"https://sites.math.washington.edu/~ostroff/puzzles/Heroes_of_Sokoban.html\"\n    },\n    \"route\": \"\",\n    \"sha256\": \"2e229dc4df5e4f07df487fd9df25054fe47003dd8b0de56819a59c04d123bead\"\n  },\n  \"replay\": {\n    \"room\": 22,\n    \"compiled_level_index\": 29,\n    \"width\": 13,\n    \"height\": 7,\n    \"object_count\": 18,\n    \"stride\": 1,\n    \"object_ids\": {\n      \"background\": 0,\n      \"goal\": 2,\n      \"wall\": 17,\n      \"fighter\": 10,\n      \"wizard\": 11,\n      \"thief\": 12,\n      \"sfighter\": 15,\n      \"swizard\": 13,\n      \"sthief\": 14,\n      \"crate\": 16,\n      \"yellowswitch\": 4,\n      \"yellowopen\": 5,\n      \"yellowdoor\": 9,\n      \"purpleswitch\": 3,\n      \"purpledoor\": 8,\n      \"purpleopen\": 6,\n      \"temp\": 1,\n      \"shadowdoor\": 7\n    },\n    \"final_objects\": [\n      131073,\n      131073,\n      131073,\n      131073,\n      131073,\n      131073,\n      131073,\n      131073,\n      1025,\n      131073,\n      4097,\n      131073,\n      2049,\n      131073,\n      131073,\n      1,\n      131073,\n      1,\n      131073,\n      1,\n      131073,\n      131073,\n      1,\n      131073,\n      1,\n      131073,\n      1,\n      131073,\n      131073,\n      1,\n      131073,\n      1,\n      131073,\n      1,\n      131073,\n      131073,\n      1,\n      131073,\n      1,\n      131073,\n      1,\n      131073,\n      131073,\n      1,\n      131073,\n      1,\n      131073,\n      1,\n      131073,\n      131073,\n      1,\n      131073,\n      1,\n      131073,\n      1,\n      131073,\n      131073,\n      1,\n      131073,\n      1,\n      131073,\n      1,\n      131073,\n      131073,\n      1,\n      131073,\n      1,\n      131073,\n      1,\n      131073,\n      131073,\n      1,\n      131073,\n      1,\n      131073,\n      1,\n      131073,\n      131073,\n      5,\n      131073,\n      5,\n      131073,\n      5,\n      131073,\n      131073,\n      131073,\n      131073,\n      131073,\n      131073,\n      131073,\n      131073\n    ],\n    \"initial_objects\": [\n      131073,\n      131073,\n      131073,\n      131073,\n      131073,\n      131073,\n      131073,\n      131073,\n      1025,\n      131073,\n      4097,\n      131073,\n      2049,\n      131073,\n      131073,\n      1,\n      131073,\n      1,\n      131073,\n      1,\n      131073,\n      131073,\n      1,\n      131073,\n      1,\n      131073,\n      1,\n      131073,\n      131073,\n      1,\n      131073,\n      1,\n      131073,\n      1,\n      131073,\n      131073,\n      1,\n      131073,\n      1,\n      131073,\n      1,\n      131073,\n      131073,\n      1,\n      131073,\n      1,\n      131073,\n      1,\n      131073,\n      131073,\n      1,\n      131073,\n      1,\n      131073,\n      1,\n      131073,\n      131073,\n      1,\n      131073,\n      1,\n      131073,\n      1,\n      131073,\n      131073,\n      1,\n      131073,\n      1,\n      131073,\n      1,\n      131073,\n      131073,\n      1,\n      131073,\n      1,\n      131073,\n      1,\n      131073,\n      131073,\n      5,\n      131073,\n      5,\n      131073,\n      5,\n      131073,\n      131073,\n      131073,\n      131073,\n      131073,\n      131073,\n      131073,\n      131073\n    ],\n    \"first_win\": null,\n    \"first_death\": null,\n    \"restarts\": 0,\n    \"again_limit_hit\": false,\n    \"schema_version\": 1,\n    \"evidence_level\": \"original_build_replay\",\n    \"part\": 1,\n    \"source_url\": \"https://sites.math.washington.edu/~ostroff/puzzles/Heroes_of_Sokoban.html\",\n    \"html_sha256\": \"9811b0538cc7dd73cb7ef271d8f5ff5d4395329a7b87c6cf18c94d7a126bf311\",\n    \"puzzlescript_source_sha256\": \"81a1d27115fc40c04f27bb39d0ef12ebffbea513e3fe9f550b5173bb683728a3\",\n    \"checker_sha256\": \"e9b288556c51363e1edbb161c2c119c540ad8aa6e5ae31e23739a6284f2800a6\",\n    \"browser_version\": \"156.0.8078.79\",\n    \"checked_at\": \"2026-11-12T16:24:59.850349+00:00\",\n    \"route\": \"\",\n    \"route_len\": 0,\n    \"route_sha256\": \"e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855\",\n    \"instance_sha256\": \"efcb8a7ca00ee7e6b20b575940287bfc9db710d7e7ede8489b83b2884c88ad7e\",\n    \"trajectory_sha256\": \"4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945\",\n    \"steps_executed\": 0,\n    \"valid_winning_route\": false,\n    \"blocked_resource_requests\": 0,\n    \"public_submission\": false,\n    \"formal_proof_checked\": false,\n    \"source_pins\": {\n      \"html_sha256\": \"9811b0538cc7dd73cb7ef271d8f5ff5d4395329a7b87c6cf18c94d7a126bf311\",\n      \"puzzlescript_source_sha256\": \"81a1d27115fc40c04f27bb39d0ef12ebffbea513e3fe9f550b5173bb683728a3\",\n      \"checker_sha256\": \"e9b288556c51363e1edbb161c2c119c540ad8aa6e5ae31e23739a6284f2800a6\",\n      \"source_url\": \"https://sites.math.washington.edu/~ostroff/puzzles/Heroes_of_Sokoban.html\"\n    },\n    \"final_layers\": [\n      [\n        [\n          \"background\",\n          \"wall\"\n        ],\n        [\n          \"background\",\n          \"wall\"\n        ],\n        [\n          \"background\",\n          \"wall\"\n        ],\n        [\n          \"background\",\n          \"wall\"\n        ],\n        [\n          \"background\",\n          \"wall\"\n        ],\n        [\n          \"background\",\n          \"wall\"\n        ],\n        [\n          \"background\",\n          \"wall\"\n        ],\n        [\n          \"background\",\n          \"wall\"\n        ],\n        [\n          \"background\",\n          \"wall\"\n        ],\n        [\n          \"background\",\n          \"wall\"\n        ],\n        [\n          \"background\",\n          \"wall\"\n        ],\n        [\n          \"background\",\n          \"wall\"\n        ],\n        [\n          \"background\",\n          \"wall\"\n        ]\n      ],\n      [\n        [\n          \"background\",\n          \"wall\"\n        ],\n        [\n          \"background\",\n          \"fighter\"\n        ],\n        [\n          \"background\"\n        ],\n        [\n          \"background\"\n        ],\n        [\n          \"background\"\n        ],\n        [\n          \"background\"\n        ],\n        [\n          \"background\"\n        ],\n        [\n          \"background\"\n        ],\n        [\n          \"background\"\n        ],\n        [\n          \"background\"\n        ],\n        [\n          \"background\"\n        ],\n        [\n          \"background\",\n          \"goal\"\n        ],\n        [\n          \"background\",\n          \"wall\"\n        ]\n      ],\n      [\n        [\n          \"background\",\n          \"wall\"\n        ],\n        [\n          \"background\",\n          \"wall\"\n        ],\n        [\n          \"background\",\n          \"wall\"\n        ],\n        [\n          \"background\",\n          \"wall\"\n        ],\n        [\n          \"background\",\n          \"wall\"\n        ],\n        [\n          \"background\",\n          \"wall\"\n        ],\n        [\n          \"background\",\n          \"wall\"\n        ],\n        [\n          \"background\",\n          \"wall\"\n        ],\n        [\n          \"background\",\n          \"wall\"\n        ],\n        [\n          \"background\",\n          \"wall\"\n        ],\n        [\n          \"background\",\n          \"wall\"\n        ],\n        [\n          \"background\",\n          \"wall\"\n        ],\n        [\n          \"background\",\n          \"wall\"\n        ]\n      ],\n      [\n        [\n          \"background\",\n          \"wall\"\n        ],\n        [\n          \"background\",\n          \"thief\"\n        ],\n        [\n          \"background\"\n        ],\n        [\n          \"background\"\n        ],\n        [\n          \"background\"\n        ],\n        [\n          \"background\"\n        ],\n        [\n          \"background\"\n        ],\n        [\n          \"background\"\n        ],\n        [\n          \"background\"\n        ],\n        [\n          \"background\"\n        ],\n        [\n          \"background\"\n        ],\n        [\n          \"background\",\n          \"goal\"\n        ],\n        [\n          \"background\",\n          \"wall\"\n        ]\n      ],\n      [\n        [\n          \"background\",\n          \"wall\"\n        ],\n        [\n          \"background\",\n          \"wall\"\n        ],\n        [\n          \"background\",\n          \"wall\"\n        ],\n        [\n          \"background\",\n          \"wall\"\n        ],\n        [\n          \"background\",\n          \"wall\"\n        ],\n        [\n          \"background\",\n          \"wall\"\n        ],\n        [\n          \"background\",\n          \"wall\"\n        ],\n        [\n          \"background\",\n          \"wall\"\n        ],\n        [\n          \"background\",\n          \"wall\"\n        ],\n        [\n          \"background\",\n          \"wall\"\n        ],\n        [\n          \"background\",\n          \"wall\"\n        ],\n        [\n          \"background\",\n          \"wall\"\n        ],\n        [\n          \"background\",\n          \"wall\"\n        ]\n      ],\n      [\n        [\n          \"background\",\n          \"wall\"\n        ],\n        [\n          \"background\",\n          \"wizard\"\n        ],\n        [\n          \"background\"\n        ],\n        [\n          \"background\"\n        ],\n        [\n          \"background\"\n        ],\n        [\n          \"background\"\n        ],\n        [\n          \"background\"\n        ],\n        [\n          \"background\"\n        ],\n        [\n          \"background\"\n        ],\n        [\n          \"background\"\n        ],\n        [\n          \"background\"\n        ],\n        [\n          \"background\",\n          \"goal\"\n        ],\n        [\n          \"background\",\n          \"wall\"\n        ]\n      ],\n      [\n        [\n          \"background\",\n          \"wall\"\n        ],\n        [\n          \"background\",\n          \"wall\"\n        ],\n        [\n          \"background\",\n          \"wall\"\n        ],\n        [\n          \"background\",\n          \"wall\"\n        ],\n        [\n          \"background\",\n          \"wall\"\n        ],\n        [\n          \"background\",\n          \"wall\"\n        ],\n        [\n          \"background\",\n          \"wall\"\n        ],\n        [\n          \"background\",\n          \"wall\"\n        ],\n        [\n          \"background\",\n          \"wall\"\n        ],\n        [\n          \"background\",\n          \"wall\"\n        ],\n        [\n          \"background\",\n          \"wall\"\n        ],\n        [\n          \"background\",\n          \"wall\"\n        ],\n        [\n          \"background\",\n          \"wall\"\n        ]\n      ]\n    ],\n    \"final_ascii\": \"#############\\n#F.........G#\\n#############\\n#T.........G#\\n#############\\n#W.........G#\\n#############\",\n    \"certificate_sha256\": \"d9744c35df342660012500b562e47c1af8122b046e2171584c7c4e9cc3ab6b1d\"\n  }\n}"
+            }
+          ],
+          "structuredContent": {
+            "room_id": "I-22",
+            "action": "reset",
+            "route": "",
+            "current_key_count": 0,
+            "cost_scope": "current route; no record or benchmark budget claim",
+            "terminal": false,
+            "checkpoint": {
+              "format": "soko-original-play-v1",
+              "room_id": "I-22",
+              "source_pins": {
+                "html_sha256": "9811b0538cc7dd73cb7ef271d8f5ff5d4395329a7b87c6cf18c94d7a126bf311",
+                "puzzlescript_source_sha256": "81a1d27115fc40c04f27bb39d0ef12ebffbea513e3fe9f550b5173bb683728a3",
+                "checker_sha256": "e9b288556c51363e1edbb161c2c119c540ad8aa6e5ae31e23739a6284f2800a6",
+                "source_url": "https://sites.math.washington.edu/~ostroff/puzzles/Heroes_of_Sokoban.html"
+              },
+              "route": "",
+              "sha256": "2e229dc4df5e4f07df487fd9df25054fe47003dd8b0de56819a59c04d123bead"
+            },
+            "replay": {
+              "room": 22,
+              "compiled_level_index": 29,
+              "width": 13,
+              "height": 7,
+              "object_count": 18,
+              "stride": 1,
+              "object_ids": {
+                "background": 0,
+                "goal": 2,
+                "wall": 17,
+                "fighter": 10,
+                "wizard": 11,
+                "thief": 12,
+                "sfighter": 15,
+                "swizard": 13,
+                "sthief": 14,
+                "crate": 16,
+                "yellowswitch": 4,
+                "yellowopen": 5,
+                "yellowdoor": 9,
+                "purpleswitch": 3,
+                "purpledoor": 8,
+                "purpleopen": 6,
+                "temp": 1,
+                "shadowdoor": 7
+              },
+              "final_objects": [
+                131073,
+                131073,
+                131073,
+                131073,
+                131073,
+                131073,
+                131073,
+                131073,
+                1025,
+                131073,
+                4097,
+                131073,
+                2049,
+                131073,
+                131073,
+                1,
+                131073,
+                1,
+                131073,
+                1,
+                131073,
+                131073,
+                1,
+                131073,
+                1,
+                131073,
+                1,
+                131073,
+                131073,
+                1,
+                131073,
+                1,
+                131073,
+                1,
+                131073,
+                131073,
+                1,
+                131073,
+                1,
+                131073,
+                1,
+                131073,
+                131073,
+                1,
+                131073,
+                1,
+                131073,
+                1,
+                131073,
+                131073,
+                1,
+                131073,
+                1,
+                131073,
+                1,
+                131073,
+                131073,
+                1,
+                131073,
+                1,
+                131073,
+                1,
+                131073,
+                131073,
+                1,
+                131073,
+                1,
+                131073,
+                1,
+                131073,
+                131073,
+                1,
+                131073,
+                1,
+                131073,
+                1,
+                131073,
+                131073,
+                5,
+                131073,
+                5,
+                131073,
+                5,
+                131073,
+                131073,
+                131073,
+                131073,
+                131073,
+                131073,
+                131073,
+                131073
+              ],
+              "initial_objects": [
+                131073,
+                131073,
+                131073,
+                131073,
+                131073,
+                131073,
+                131073,
+                131073,
+                1025,
+                131073,
+                4097,
+                131073,
+                2049,
+                131073,
+                131073,
+                1,
+                131073,
+                1,
+                131073,
+                1,
+                131073,
+                131073,
+                1,
+                131073,
+                1,
+                131073,
+                1,
+                131073,
+                131073,
+                1,
+                131073,
+                1,
+                131073,
+                1,
+                131073,
+                131073,
+                1,
+                131073,
+                1,
+                131073,
+                1,
+                131073,
+                131073,
+                1,
+                131073,
+                1,
+                131073,
+                1,
+                131073,
+                131073,
+                1,
+                131073,
+                1,
+                131073,
+                1,
+                131073,
+                131073,
+                1,
+                131073,
+                1,
+                131073,
+                1,
+                131073,
+                131073,
+                1,
+                131073,
+                1,
+                131073,
+                1,
+                131073,
+                131073,
+                1,
+                131073,
+                1,
+                131073,
+                1,
+                131073,
+                131073,
+                5,
+                131073,
+                5,
+                131073,
+                5,
+                131073,
+                131073,
+                131073,
+                131073,
+                131073,
+                131073,
+                131073,
+                131073
+              ],
+              "first_win": null,
+              "first_death": null,
+              "restarts": 0,
+              "again_limit_hit": false,
+              "schema_version": 1,
+              "evidence_level": "original_build_replay",
+              "part": 1,
+              "source_url": "https://sites.math.washington.edu/~ostroff/puzzles/Heroes_of_Sokoban.html",
+              "html_sha256": "9811b0538cc7dd73cb7ef271d8f5ff5d4395329a7b87c6cf18c94d7a126bf311",
+              "puzzlescript_source_sha256": "81a1d27115fc40c04f27bb39d0ef12ebffbea513e3fe9f550b5173bb683728a3",
+              "checker_sha256": "e9b288556c51363e1edbb161c2c119c540ad8aa6e5ae31e23739a6284f2800a6",
+              "browser_version": "156.0.8078.79",
+              "checked_at": "2026-11-12T16:24:59.850349+00:00",
+              "route": "",
+              "route_len": 0,
+              "route_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+              "instance_sha256": "efcb8a7ca00ee7e6b20b575940287bfc9db710d7e7ede8489b83b2884c88ad7e",
+              "trajectory_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+              "steps_executed": 0,
+              "valid_winning_route": false,
+              "blocked_resource_requests": 0,
+              "public_submission": false,
+              "formal_proof_checked": false,
+              "source_pins": {
+                "html_sha256": "9811b0538cc7dd73cb7ef271d8f5ff5d4395329a7b87c6cf18c94d7a126bf311",
+                "puzzlescript_source_sha256": "81a1d27115fc40c04f27bb39d0ef12ebffbea513e3fe9f550b5173bb683728a3",
+                "checker_sha256": "e9b288556c51363e1edbb161c2c119c540ad8aa6e5ae31e23739a6284f2800a6",
+                "source_url": "https://sites.math.washington.edu/~ostroff/puzzles/Heroes_of_Sokoban.html"
+              },
+              "final_layers": [
+                [
+                  [
+                    "background",
+                    "wall"
+                  ],
+                  [
+                    "background",
+                    "wall"
+                  ],
+                  [
+                    "background",
+                    "wall"
+                  ],
+                  [
+                    "background",
+                    "wall"
+                  ],
+                  [
+                    "background",
+                    "wall"
+                  ],
+                  [
+                    "background",
+                    "wall"
+                  ],
+                  [
+                    "background",
+                    "wall"
+                  ],
+                  [
+                    "background",
+                    "wall"
+                  ],
+                  [
+                    "background",
+                    "wall"
+                  ],
+                  [
+                    "background",
+                    "wall"
+                  ],
+                  [
+                    "background",
+                    "wall"
+                  ],
+                  [
+                    "background",
+                    "wall"
+                  ],
+                  [
+                    "background",
+                    "wall"
+                  ]
+                ],
+                [
+                  [
+                    "background",
+                    "wall"
+                  ],
+                  [
+                    "background",
+                    "fighter"
+                  ],
+                  [
+                    "background"
+                  ],
+                  [
+                    "background"
+                  ],
+                  [
+                    "background"
+                  ],
+                  [
+                    "background"
+                  ],
+                  [
+                    "background"
+                  ],
+                  [
+                    "background"
+                  ],
+                  [
+                    "background"
+                  ],
+                  [
+                    "background"
+                  ],
+                  [
+                    "background"
+                  ],
+                  [
+                    "background",
+                    "goal"
+                  ],
+                  [
+                    "background",
+                    "wall"
+                  ]
+                ],
+                [
+                  [
+                    "background",
+                    "wall"
+                  ],
+                  [
+                    "background",
+                    "wall"
+                  ],
+                  [
+                    "background",
+                    "wall"
+                  ],
+                  [
+                    "background",
+                    "wall"
+                  ],
+                  [
+                    "background",
+                    "wall"
+                  ],
+                  [
+                    "background",
+                    "wall"
+                  ],
+                  [
+                    "background",
+                    "wall"
+                  ],
+                  [
+                    "background",
+                    "wall"
+                  ],
+                  [
+                    "background",
+                    "wall"
+                  ],
+                  [
+                    "background",
+                    "wall"
+                  ],
+                  [
+                    "background",
+                    "wall"
+                  ],
+                  [
+                    "background",
+                    "wall"
+                  ],
+                  [
+                    "background",
+                    "wall"
+                  ]
+                ],
+                [
+                  [
+                    "background",
+                    "wall"
+                  ],
+                  [
+                    "background",
+                    "thief"
+                  ],
+                  [
+                    "background"
+                  ],
+                  [
+                    "background"
+                  ],
+                  [
+                    "background"
+                  ],
+                  [
+                    "background"
+                  ],
+                  [
+                    "background"
+                  ],
+                  [
+                    "background"
+                  ],
+                  [
+                    "background"
+                  ],
+                  [
+                    "background"
+                  ],
+                  [
+                    "background"
+                  ],
+                  [
+                    "background",
+                    "goal"
+                  ],
+                  [
+                    "background",
+                    "wall"
+                  ]
+                ],
+                [
+                  [
+                    "background",
+                    "wall"
+                  ],
+                  [
+                    "background",
+                    "wall"
+                  ],
+                  [
+                    "background",
+                    "wall"
+                  ],
+                  [
+                    "background",
+                    "wall"
+                  ],
+                  [
+                    "background",
+                    "wall"
+                  ],
+                  [
+                    "background",
+                    "wall"
+                  ],
+                  [
+                    "background",
+                    "wall"
+                  ],
+                  [
+                    "background",
+                    "wall"
+                  ],
+                  [
+                    "background",
+                    "wall"
+                  ],
+                  [
+                    "background",
+                    "wall"
+                  ],
+                  [
+                    "background",
+                    "wall"
+                  ],
+                  [
+                    "background",
+                    "wall"
+                  ],
+                  [
+                    "background",
+                    "wall"
+                  ]
+                ],
+                [
+                  [
+                    "background",
+                    "wall"
+                  ],
+                  [
+                    "background",
+                    "wizard"
+                  ],
+                  [
+                    "background"
+                  ],
+                  [
+                    "background"
+                  ],
+                  [
+                    "background"
+                  ],
+                  [
+                    "background"
+                  ],
+                  [
+                    "background"
+                  ],
+                  [
+                    "background"
+                  ],
+                  [
+                    "background"
+                  ],
+                  [
+                    "background"
+                  ],
+                  [
+                    "background"
+                  ],
+                  [
+                    "background",
+                    "goal"
+                  ],
+                  [
+                    "background",
+                    "wall"
+                  ]
+                ],
+                [
+                  [
+                    "background",
+                    "wall"
+                  ],
+                  [
+                    "background",
+                    "wall"
+                  ],
+                  [
+                    "background",
+                    "wall"
+                  ],
+                  [
+                    "background",
+                    "wall"
+                  ],
+                  [
+                    "background",
+                    "wall"
+                  ],
+                  [
+                    "background",
+                    "wall"
+                  ],
+                  [
+                    "background",
+                    "wall"
+                  ],
+                  [
+                    "background",
+                    "wall"
+                  ],
+                  [
+                    "background",
+                    "wall"
+                  ],
+                  [
+                    "background",
+                    "wall"
+                  ],
+                  [
+                    "background",
+                    "wall"
+                  ],
+                  [
+                    "background",
+                    "wall"
+                  ],
+                  [
+                    "background",
+                    "wall"
+                  ]
+                ]
+              ],
+              "final_ascii": "#############\n#F.........G#\n#############\n#T.........G#\n#############\n#W.........G#\n#############",
+              "certificate_sha256": "d9744c35df342660012500b562e47c1af8122b046e2171584c7c4e9cc3ab6b1d"
+            }
+          },
+          "isError": false
+        }
+      },
+      "elapsed_seconds": 2.185837
+    },
+    {
+      "request": {
+        "jsonrpc": "2.0",
+        "id": 7,
+        "method": "tools/call",
+        "params": {
+          "name": "soko_verify_route",
+          "arguments": {
+            "room_id": "I-22",
+            "route": "RRRRRRRRRR"
+          }
+        }
+      },
+      "response": {
+        "jsonrpc": "2.0",
+        "id": 7,
+        "result": {
+          "content": [
+            {
+              "type": "text",
+              "text": "{\n  \"epistemic_status\": \"VERIFIED\",\n  \"evidence_level\": \"differential_replay\",\n  \"formal_proof_checked\": false,\n  \"external_spec_pinned\": false,\n  \"source_lock_asserted\": false,\n  \"problem\": {\n    \"adapter\": \"heroes-of-sokoban-ascii-v1\",\n    \"part\": 1,\n    \"grid\": [\n      \"#############\",\n      \"#F.........G#\",\n      \"#############\",\n      \"#T.........G#\",\n      \"#############\",\n      \"#W.........G#\",\n      \"#############\"\n    ],\n    \"goal\": \"heroes occupy exactly the goal cells\",\n    \"termination\": \"alive and first win on final key\",\n    \"cost\": \"number of UDLRA keys\"\n  },\n  \"instance_sha256\": \"500c2c228e6189e9403177d7dff923debf59bc38738bd94fb90b71903f1f976e\",\n  \"route_sha256\": \"6fa140d719eb7058f93aba4357b94df44caf954e539b3ac6f6f8b007724f34fa\",\n  \"valid_winning_route\": true,\n  \"route_len\": 10,\n  \"route_sha256_12\": \"6fa140d719eb\",\n  \"traj_fnv64\": \"aee19e42490172c8\",\n  \"trajectory_digest_match\": true,\n  \"alive\": true,\n  \"exact_win\": true,\n  \"premature_win\": false,\n  \"steps_executed\": 10,\n  \"engines_executed\": [\n    \"python_spec_oracle\",\n    \"python_flat_bitmask_oracle\",\n    \"cpp20_soko_engine\"\n  ],\n  \"engines_count\": 3,\n  \"dual_engine_checked\": true,\n  \"triple_oracle_checked\": true,\n  \"differential_match\": true,\n  \"checker_pins\": {\n    \"oracle_py_sha256\": \"0dfcb3d77387ad4b81dea1c850e4c594daee38cd42fee407c8094e649af52b71\",\n    \"flat_oracle_py_sha256\": \"447b6c006dfe36347a96bd519b5ff23b76ed40352c0e5ccb32d42f496f402951\",\n    \"engine_bridge_py_sha256\": \"0a1f8c9e335788e51171b3a458cbfb492991e4ce735aad947469d086c1bdd2ea\",\n    \"evidence_py_sha256\": \"2bad704a7d39ee3a63505918e5917a097a0ba6da27a3e6b0bf246edc9dc76d7c\",\n    \"integrity_py_sha256\": \"138a6dd0d49d6af497e4e311e38165947f0e27deb706059f708b2e21bdf90437\",\n    \"catalog_py_sha256\": \"43d8b8aaf29c3e9fb857ea803a40edf5cc6e230e8e81e2c8eb002d41364f75ed\",\n    \"cpp_soko_engine_src_sha256\": \"c61cc90e90c76c89212bc66a3a0a785a981d0064cbc0a24a7d272fc9d4051849\",\n    \"cpp_soko_engine_bin_sha256\": \"4f72c3ad08c35ef67035f733e8ef722976add4741065817ea6340b562372a863\",\n    \"formal_kernel_py_sha256\": \"89f3ef2b172cb89dc21ddfa582aef416e8d4b3c7d426df24ca1c2c270aa9997f\"\n  },\n  \"checker_pins_ok\": true,\n  \"final_ascii\": \"#############\\n#..........F#\\n#############\\n#..........T#\\n#############\\n#..........W#\\n#############\",\n  \"route\": \"RRRRRRRRRR\",\n  \"room_id\": \"I-22\",\n  \"certificate_sha256\": \"429b5dcc3218fc6127458a1fdd305c3e73b55cbddd0ba6e6ad0f531007cf1405\"\n}"
+            }
+          ],
+          "structuredContent": {
+            "epistemic_status": "VERIFIED",
+            "evidence_level": "differential_replay",
+            "formal_proof_checked": false,
+            "external_spec_pinned": false,
+            "source_lock_asserted": false,
+            "problem": {
+              "adapter": "heroes-of-sokoban-ascii-v1",
+              "part": 1,
+              "grid": [
+                "#############",
+                "#F.........G#",
+                "#############",
+                "#T.........G#",
+                "#############",
+                "#W.........G#",
+                "#############"
+              ],
+              "goal": "heroes occupy exactly the goal cells",
+              "termination": "alive and first win on final key",
+              "cost": "number of UDLRA keys"
+            },
+            "instance_sha256": "500c2c228e6189e9403177d7dff923debf59bc38738bd94fb90b71903f1f976e",
+            "route_sha256": "6fa140d719eb7058f93aba4357b94df44caf954e539b3ac6f6f8b007724f34fa",
+            "valid_winning_route": true,
+            "route_len": 10,
+            "route_sha256_12": "6fa140d719eb",
+            "traj_fnv64": "aee19e42490172c8",
+            "trajectory_digest_match": true,
+            "alive": true,
+            "exact_win": true,
+            "premature_win": false,
+            "steps_executed": 10,
+            "engines_executed": [
+              "python_spec_oracle",
+              "python_flat_bitmask_oracle",
+              "cpp20_soko_engine"
+            ],
+            "engines_count": 3,
+            "dual_engine_checked": true,
+            "triple_oracle_checked": true,
+            "differential_match": true,
+            "checker_pins": {
+              "oracle_py_sha256": "0dfcb3d77387ad4b81dea1c850e4c594daee38cd42fee407c8094e649af52b71",
+              "flat_oracle_py_sha256": "447b6c006dfe36347a96bd519b5ff23b76ed40352c0e5ccb32d42f496f402951",
+              "engine_bridge_py_sha256": "0a1f8c9e335788e51171b3a458cbfb492991e4ce735aad947469d086c1bdd2ea",
+              "evidence_py_sha256": "2bad704a7d39ee3a63505918e5917a097a0ba6da27a3e6b0bf246edc9dc76d7c",
+              "integrity_py_sha256": "138a6dd0d49d6af497e4e311e38165947f0e27deb706059f708b2e21bdf90437",
+              "catalog_py_sha256": "43d8b8aaf29c3e9fb857ea803a40edf5cc6e230e8e81e2c8eb002d41364f75ed",
+              "cpp_soko_engine_src_sha256": "c61cc90e90c76c89212bc66a3a0a785a981d0064cbc0a24a7d272fc9d4051849",
+              "cpp_soko_engine_bin_sha256": "4f72c3ad08c35ef67035f733e8ef722976add4741065817ea6340b562372a863",
+              "formal_kernel_py_sha256": "89f3ef2b172cb89dc21ddfa582aef416e8d4b3c7d426df24ca1c2c270aa9997f"
+            },
+            "checker_pins_ok": true,
+            "final_ascii": "#############\n#..........F#\n#############\n#..........T#\n#############\n#..........W#\n#############",
+            "route": "RRRRRRRRRR",
+            "room_id": "I-22",
+            "certificate_sha256": "429b5dcc3218fc6127458a1fdd305c3e73b55cbddd0ba6e6ad0f531007cf1405"
+          },
+          "isError": false
+        }
+      },
+      "elapsed_seconds": 0.005191
+    }
+  ],
+  "new_record_claimed": false,
+  "passed": true,
+  "script_sha256": "fbf59b811618676997becaf177e2030975c96aebe941b094d483d6b24ad2dafd",
+  "source_hashes_after": {
+    "SHA256SUMS": "3f00f7d6a2a878f2ee8f21bf97ceb94b390d807287abb304aee75903cb5a338e",
+    "cpp/soko_engine.cpp": "c61cc90e90c76c89212bc66a3a0a785a981d0064cbc0a24a7d272fc9d4051849",
+    "soko_mcp/__init__.py": "bbfc2f2b77be2e96715e0a9f98eb3691fd4b845b3a14c9e1a10bf23cf5fd7f54",
+    "soko_mcp/__main__.py": "1e27da781dc8bd819a0653df324608a15c919e4b21f5042a7814a3f33eae8848",
+    "soko_mcp/analyzer.py": "1d9f71986cd899e6646fc3da9993f5bee7bc3323584601bf7df2fe0efd316b84",
+    "soko_mcp/catalog.py": "43d8b8aaf29c3e9fb857ea803a40edf5cc6e230e8e81e2c8eb002d41364f75ed",
+    "soko_mcp/engine_bridge.py": "0a1f8c9e335788e51171b3a458cbfb492991e4ce735aad947469d086c1bdd2ea",
+    "soko_mcp/evidence.py": "2bad704a7d39ee3a63505918e5917a097a0ba6da27a3e6b0bf246edc9dc76d7c",
+    "soko_mcp/flat_oracle.py": "447b6c006dfe36347a96bd519b5ff23b76ed40352c0e5ccb32d42f496f402951",
+    "soko_mcp/formal_kernel.py": "89f3ef2b172cb89dc21ddfa582aef416e8d4b3c7d426df24ca1c2c270aa9997f",
+    "soko_mcp/integrity.py": "138a6dd0d49d6af497e4e311e38165947f0e27deb706059f708b2e21bdf90437",
+    "soko_mcp/oracle.py": "0dfcb3d77387ad4b81dea1c850e4c594daee38cd42fee407c8094e649af52b71",
+    "soko_mcp/original.py": "e9b288556c51363e1edbb161c2c119c540ad8aa6e5ae31e23739a6284f2800a6",
+    "soko_mcp/play.py": "fe92ee760e3282c941641bebb47f7b19adfc2011279f1c0fde10f926ed14e99a",
+    "soko_mcp/server.py": "1c96a7b8caf2572c76309c1604deda8ad5f2884f59d59758a399c3e6538d3304"
+  },
+  "sources_unchanged": true
+}

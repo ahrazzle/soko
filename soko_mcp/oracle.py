@@ -210,10 +210,10 @@ class PuzzleScriptOracle:
         self.notes.clear()
         if self.part != 3:
             return
-        act = self.find_active()
-        if act is None or act[2] != "B":
+        bard = next(((x, y) for y in range(self.h) for x in range(self.w) if self.obj[y][x] == "B"), None)
+        if bard is None:
             return
-        bx, by, _ = act
+        bx, by = bard
         for ny in range(max(0, by - 2), min(self.h, by + 3)):
             for nx in range(max(0, bx - 2), min(self.w, bx + 3)):
                 if (nx, ny) == (bx, by):
@@ -336,9 +336,129 @@ class PuzzleScriptOracle:
                     return False
         return True
 
+    def _step_multiple(self, key: str) -> Tuple[bool, bool]:
+        """Apply input to every Player; resolve movement only after ability rules.
+
+        PuzzleScript assigns directions simultaneously, so following an active
+        hero into its vacated square works in either spatial scan order.
+        """
+        players = {(x, y): o for y, row in enumerate(self.obj) for x, o in enumerate(row) if o in ACTIVE_HEROES}
+        snap = self.clone()
+        if key == "A":
+            pending = set(players)
+            order = CYCLE_ORDER_BUG09 if self.flags.bug_id == "BUG_09_HERO_CYCLE_SWIZARD_STHIEF_ORDER" else CYCLE_ORDER_STD
+            order = order[:3 if self.part == 1 else 4 if self.part == 2 else 6]
+            for offset in range(1, len(order)):
+                for slot, identity in enumerate(order):
+                    for x, y in list(pending):
+                        if TO_INACTIVE[players[x, y]] != identity:
+                            continue
+                        target = order[(slot + offset) % len(order)]
+                        found = next(((tx, ty) for tx in range(self.w) for ty in range(self.h) if self.obj[ty][tx] == target), None)
+                        if found is not None:
+                            tx, ty = found
+                            self.obj[y][x] = identity
+                            self.obj[ty][tx] = TO_ACTIVE[target]
+                            pending.remove((x, y))
+            if self.part == 2 and any(self.obj[y][x] in ACTIVE_HEROES for x, y in players) and self.flags.bug_id != "BUG_10_PART_II_NO_CANCEL_ON_BLOCKED_MOVE":
+                self.floor, self.obj, self.notes = snap.floor, snap.obj, snap.notes
+                return True, self.check_win()
+            return not self._run_late(), self.check_win()
+
+        dx, dy = DIRS[key]
+        def neighbor(pos):
+            x, y = pos[0] + dx, pos[1] + dy
+            return (x, y) if 0 <= x < self.w and 0 <= y < self.h else None
+        motions = set(players)
+        # Fighter and thief rules set directions on moveables before movement.
+        for (x, y), hero in players.items():
+            if hero == "F":
+                target = neighbor((x, y))
+                while target is not None and self.is_moveable(self.obj[target[1]][target[0]]):
+                    motions.add(target)
+                    if self.flags.bug_id in ("BUG_01_IMABAYASHI_SINGLE_PUSH", "BUG_02_FIGHTER_RULE_ORDER_SWAP"):
+                        break
+                    target = neighbor(target)
+            elif hero == "T":
+                bx, by = x - dx, y - dy
+                if 0 <= bx < self.w and 0 <= by < self.h and self.is_moveable(self.obj[by][bx]):
+                    motions.add((bx, by))
+        # Wizard warpballs travel through active heroes (they are neither
+        # Moveable nor Static), and swaps happen before ordinary movement.
+        for (x, y), hero in players.items():
+            if hero != "W":
+                continue
+            motions.discard((x, y))
+            target = neighbor((x, y))
+            while target is not None:
+                tx, ty = target
+                obj = self.obj[ty][tx]
+                if self.is_static(obj):
+                    motions.add((x, y))
+                    break
+                if self.is_moveable(obj):
+                    self.obj[y][x], self.obj[ty][tx] = obj, "W"
+                    break
+                target = neighbor(target)
+            if target is None and self.part == 3:
+                motions.add((x, y))
+        # Druid transformations also precede movement resolution.
+        for (x, y), hero in players.items():
+            if hero != "D" or self.obj[y][x] != hero:
+                continue
+            target = neighbor((x, y))
+            if target is None:
+                continue
+            tx, ty = target
+            obj = self.obj[ty][tx]
+            if obj is not None:
+                motions.discard((x, y))
+                if obj in ("*", "O", "#"):
+                    self.obj[ty][tx] = "*" if obj == "#" else "#"
+                elif self.is_hero(obj) and not self.is_healer(obj):
+                    if not any(0 <= tx + hx < self.w and 0 <= ty + hy < self.h and self.is_healer(self.obj[ty + hy][tx + hx]) for hx, hy in DIRS.values()):
+                        self.obj[ty][tx] = "#"
+        # Bard pseudo-movement happens before the engine moves other Players.
+        bards = {pos for pos, hero in players.items() if hero == "B" and self.obj[pos[1]][pos[0]] == "B"}
+        if bards:
+            pending = {pos for pos in self.notes if self.is_moveable(self.obj[pos[1]][pos[0]])} | bards
+            motions -= bards
+            while True:
+                progress = False
+                for pos in list(pending):
+                    target = neighbor(pos)
+                    if target is not None and (self.obj[target[1]][target[0]] is None or self.obj[target[1]][target[0]] in ACTIVE_HEROES - {"B"}):
+                        self.obj[target[1]][target[0]] = self.obj[pos[1]][pos[0]]
+                        self.obj[pos[1]][pos[0]] = None
+                        pending.remove(pos)
+                        progress = True
+                if not progress:
+                    break
+            if pending & bards:
+                self.floor, self.obj, self.notes = snap.floor, snap.obj, snap.notes
+                return True, self.check_win()
+        self.notes.clear()
+        while True:
+            progress = False
+            for pos in list(motions):
+                target = neighbor(pos)
+                if target is not None and self.obj[target[1]][target[0]] is None:
+                    self.obj[target[1]][target[0]] = self.obj[pos[1]][pos[0]]
+                    self.obj[pos[1]][pos[0]] = None
+                    motions.remove(pos)
+                    progress = True
+            if not progress:
+                break
+        if self.part == 2 and any(self.obj[y][x] in ACTIVE_HEROES for x, y in players) and self.flags.bug_id != "BUG_10_PART_II_NO_CANCEL_ON_BLOCKED_MOVE":
+            self.floor, self.obj, self.notes = snap.floor, snap.obj, snap.notes
+            return True, self.check_win()
+        return not self._run_late(), self.check_win()
+
     def step(self, key: str) -> Tuple[bool, bool]:
         if key not in ("U", "D", "L", "R", "A"):
             raise ValueError(f"Invalid key {key!r}; expected U, D, L, R, or A")
+        if sum(o in ACTIVE_HEROES for row in self.obj for o in row) > 1:
+            return self._step_multiple(key)
         act = self.find_active()
         if act is None:
             return False, False

@@ -21,12 +21,16 @@ REQUIRED_SOURCES = (
     "soko_mcp/__init__.py",
     "soko_mcp/__main__.py",
     "soko_mcp/analyzer.py",
+    "soko_mcp/catalog.py",
+    "soko_mcp/data/catalog.json",
     "soko_mcp/engine_bridge.py",
     "soko_mcp/evidence.py",
     "soko_mcp/flat_oracle.py",
     "soko_mcp/formal_kernel.py",
     "soko_mcp/integrity.py",
     "soko_mcp/oracle.py",
+    "soko_mcp/original.py",
+    "soko_mcp/play.py",
     "soko_mcp/server.py",
 )
 

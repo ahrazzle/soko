@@ -12,12 +12,14 @@ import os
 from pathlib import Path
 import shutil
 import subprocess
+import tempfile
 import time
 from typing import Any, Dict, List, Optional, Tuple
 
 from .flat_oracle import replay_flat_oracle
 from .evidence import digest, normalize_route, problem_identity, validate_room
 from .oracle import FRONTIER_ROOMS, PuzzleScriptOracle, replay_oracle
+from .catalog import get_room, load_catalog
 
 REPO_ROOT = Path(__file__).resolve().parent.parent
 CPP_SRC = REPO_ROOT / "cpp" / "soko_engine.cpp"
@@ -40,6 +42,7 @@ def get_soko_checker_pins() -> Dict[str, Optional[str]]:
         "engine_bridge_py_sha256": _file_sha256(pkg_dir / "engine_bridge.py"),
         "evidence_py_sha256": _file_sha256(pkg_dir / "evidence.py"),
         "integrity_py_sha256": _file_sha256(pkg_dir / "integrity.py"),
+        "catalog_py_sha256": _file_sha256(pkg_dir / "catalog.py"),
         "cpp_soko_engine_src_sha256": _file_sha256(CPP_SRC),
         "cpp_soko_engine_bin_sha256": _file_sha256(CPP_BIN),
         "formal_kernel_py_sha256": _file_sha256(pkg_dir / "formal_kernel.py"),
@@ -93,12 +96,26 @@ def resolve_room_input(
 ) -> Tuple[Optional[str], int, List[str], Optional[Dict[str, Any]]]:
     if room_id:
         key = room_id.strip()
-        if key not in FRONTIER_ROOMS:
-            raise ValueError(f"Unknown room_id {key!r}. Available built-in rooms: {sorted(FRONTIER_ROOMS)}")
-        meta = FRONTIER_ROOMS[key]
+        if key.startswith("fixture:"):
+            fixture = key.removeprefix("fixture:")
+            if fixture not in FRONTIER_ROOMS:
+                raise ValueError(f"Unknown fixture {fixture!r}")
+            import copy
+            meta = copy.deepcopy(FRONTIER_ROOMS[fixture])
+            meta.update(id=key, room_id=key, is_fixture=True,
+                        source={"kind": "legacy_repository_fixture", "original_instance_asserted": False})
+        else:
+            # Preserve the explicit original-size alias without keeping a
+            # different board behind the canonical III-14 name.
+            if key == "III-14-15x7":
+                key = "III-14"
+            try:
+                meta = get_room(key)
+            except KeyError:
+                raise ValueError(f"Unknown room_id {key!r}; use soko_list_rooms for the original catalog.") from None
         return key, int(meta["part"]), list(meta["grid"]), meta
     if part is None or not grid:
-        raise ValueError("Provide either a built-in room_id (e.g. 'III-20') or both 'part' (1..3) and 'grid' (list of ASCII rows).")
+        raise ValueError("Provide an original room_id (I-1..III-22), an explicit fixture: ID, or both part and grid.")
     validate_room(part, grid)
     return None, part, list(grid), None
 
@@ -113,10 +130,15 @@ def ensure_cpp_engine() -> Optional[Path]:
     if not compiler:
         return None
     CPP_BIN_DIR.mkdir(parents=True, exist_ok=True)
-    cmd = [compiler, "-O3", "-pthread", "-std=c++20", str(CPP_SRC), "-o", str(CPP_BIN)]
-    res = subprocess.run(cmd, capture_output=True, text=True, timeout=60)
-    if res.returncode != 0:
-        return None
+    # Concurrent agents may compile on first use. Never let a linker truncate
+    # the shared executable while another process is running or opening it.
+    with tempfile.TemporaryDirectory(prefix="compile-", dir=CPP_BIN_DIR) as temporary:
+        candidate = Path(temporary) / CPP_BIN.name
+        cmd = [compiler, "-O3", "-pthread", "-std=c++20", str(CPP_SRC), "-o", str(candidate)]
+        res = subprocess.run(cmd, capture_output=True, text=True, timeout=60)
+        if res.returncode != 0:
+            return None
+        candidate.replace(CPP_BIN)
     return CPP_BIN
 
 
@@ -126,6 +148,8 @@ def get_capabilities() -> Dict[str, Any]:
     reason = None if cpp_ready else (
         "missing_cpp_source" if not CPP_SRC.is_file() else "cpp_compile_unavailable_or_failed"
     )
+    from .original import capability as original_capability
+
     return {
         "cpp_engine_ready": cpp_ready,
         "cpp_unavailable_reason": reason,
@@ -137,6 +161,9 @@ def get_capabilities() -> Dict[str, Any]:
         "solve_from_scratch": {"available": cpp_ready, "unavailable_reason": reason},
         "lower_bound_proving": {"available": cpp_ready, "unavailable_reason": reason},
         "formal_systems": {"available": False, "unavailable_reason": "not_implemented"},
+        "catalog": {"original_rooms": len(load_catalog()), "parts": [1, 2, 3],
+                    "offline": True, "legacy_fixture_prefix": "fixture:"},
+        "original_engine": original_capability(),
         "tcb_manifest_present": SHA256SUMS_PATH.is_file(),
     }
 

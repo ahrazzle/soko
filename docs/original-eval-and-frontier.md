@@ -2,6 +2,12 @@
 
 Assessment on 2026-11-12, after reading banteg's [Eight moves to the exit](https://banteg.xyz/posts/sokoban/) (published 2026-11-10), the [live Frontier](https://soko.banteg.xyz/frontier/), its public read-only room endpoints, and Ostroff's original Part I source.
 
+The later full-trilogy import now makes bare room IDs select original boards.
+The altered I-1 described below remains as `fixture:I-1`; default III-14 and
+III-22 also select their original dimensions. See the [agent quickstart](agent-quickstart.md)
+and [catalog provenance](../soko_mcp/data/README.md). The mismatch findings below
+describe the earlier registry and explain why its historical evidence is retained.
+
 ## Two different tasks
 
 The [original race](https://banteg.xyz/posts/sokoban/#the-race) measures an agent playing 66 rooms across three sequential games. It receives the visible board, an image and tutorial text. Each game allows five active hours, 1,000 replies and 10,000 keys. Responses must be one bare JSON object; formatting mistakes consume resources. Moves, switches, undo and restart all affect how a run uses its budget.
@@ -36,7 +42,7 @@ The article begins with eight right moves. The [original Part I game](https://si
 
 The embedded PuzzleScript source captured on 2026-11-12 has SHA-256 `81a1d27115fc40c04f27bb39d0ef12ebffbea513e3fe9f550b5173bb683728a3`. The public `/api/play/1/1` response independently reports a 13-by-5 board, and `/api/frontier` reports an eight-key optimum/record.
 
-The repository's `I-1` is a different 12-by-5 fixture whose hero and goal are nine steps apart. All three local replay engines accept eight rights on the original board and reject nine as a premature win. Agreement among local engines did not reveal the wrong fixture identity.
+The earlier registry's `I-1` was a different 12-by-5 fixture whose hero and goal are nine steps apart. All three local replay engines accept eight rights on the original board and reject nine as a premature win. Agreement among local engines did not reveal the wrong fixture identity.
 
 The earlier exercise remains a valid regression on its explicitly recorded repository fixture, but must not be presented as a solve or improvement of original I-1. Historical evidence is preserved rather than silently relabeled. Replacing the registry requires an authoritative instance import and corresponding provenance/tests; this assessment does not silently change those inputs.
 

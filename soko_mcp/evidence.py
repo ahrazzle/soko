@@ -24,8 +24,8 @@ def validate_room(part: int, grid: list[str]) -> None:
     active = "FTWPBD"
     identities = {hero: str(i + 1) for i, hero in enumerate(active)}
     heroes = [identities.get(ch, ch) for row in grid for ch in row if ch in active + "123456"]
-    if sum(ch in active for row in grid for ch in row) != 1 or len(set(heroes)) != len(heroes):
-        raise ValueError("canonical starting rooms require one active hero and distinct hero identities")
+    if sum(ch in active for row in grid for ch in row) < 1 or len(set(heroes)) != len(heroes):
+        raise ValueError("canonical starting rooms require at least one active hero and distinct hero identities")
     if sum(row.count("G") for row in grid) != len(heroes):
         raise ValueError("canonical starting rooms require one goal per hero")
 

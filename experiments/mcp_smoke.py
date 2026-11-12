@@ -106,10 +106,10 @@ def main() -> int:
         for name, arguments in [
             ("soko_capabilities", {}),
             ("soko_verify_tcb_lock", {}),
-            ("soko_verify_route", {"room_id": "I-1", "route": "URRRRRRRRRD"}),
-            ("soko_optimize_route", {"room_id": "I-1", "seed_route": "URRRRRRRRRD",
+            ("soko_verify_route", {"room_id": "fixture:I-1", "route": "URRRRRRRRRD"}),
+            ("soko_optimize_route", {"room_id": "fixture:I-1", "seed_route": "URRRRRRRRRD",
                                      "window_len": 14, "beam_width": 2000, "budget_sec": 4}),
-            ("soko_solve_room", {"room_id": "I-1", "max_depth": 12,
+            ("soko_solve_room", {"room_id": "fixture:I-1", "max_depth": 12,
                                  "beam_width": 2000, "budget_sec": 2}),
             ("soko_optimize_route", {"room_id": "III-14", "window_len": 14,
                                      "beam_width": 2000, "budget_sec": 4}),

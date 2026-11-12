@@ -34,17 +34,18 @@ SERVER_INFO = {
 }
 
 SERVER_INSTRUCTIONS = (
-    "Sokoban differential replay and bounded exact-state search through nine soko_* MCP tools. "
-    "VERIFIED on a route means at least two local checkers executed and agreed on survival, exact win, "
-    "steps, final grid, and trajectory digest, with required checker source hashes present. "
-    "Use canonical starting rooms, read search termination and budget fields, and treat built-in registry "
-    "floors and reference routes as historical metadata."
+    "Sokoban differential replay and bounded exact-state search. VERIFIED on a local route means at least "
+    "two checkers agreed on survival, exact win, steps, final grid and trajectory digest, with checker hashes present. "
+    "Use soko_get_room for all 66 canonical rooms; soko_replay_original and soko_play execute the pinned "
+    "original browser engine separately from local VERIFIED checks. Portable play checkpoints replay route history. "
+    "Use canonical starting rooms, inspect search completion/budgets, and distinguish historical registry "
+    "records from current public records. formal_* tools are not available."
 )
 
 ROOM_INPUT_PROPERTIES: Dict[str, Any] = {
     "room_id": {
         "type": "string",
-        "description": "Optional built-in Sokoban Eval Frontier room ID (e.g. 'I-1', 'II-22', 'III-14', 'III-15', 'III-20', 'III-22'). Omit when passing custom 'part' and 'grid'.",
+        "description": "Canonical original room ID I-1 through III-22, or explicit fixture:<legacy-id>. Omit for custom part/grid.",
     },
     "part": {
         "type": "integer",
@@ -67,15 +68,15 @@ TOOLS: List[Dict[str, Any]] = [
     },
     {
         "name": "soko_list_rooms",
-        "title": "List Built-In Frontier Benchmark Rooms",
-        "description": "List built-in Frontier room metadata and reference routes from the repository registry, including historical floor and record fields.",
-        "inputSchema": {"type": "object", "additionalProperties": False},
+        "title": "List Original Trilogy Rooms",
+        "description": "List all 66 source-pinned original rooms. Optional legacy fixtures are explicitly separated; baseline lengths are reference costs, not current records.",
+        "inputSchema": {"type": "object", "properties": {"include_fixtures": {"type": "boolean", "default": False}}, "additionalProperties": False},
         "annotations": {"readOnlyHint": True, "idempotentHint": True, "openWorldHint": False},
     },
     {
         "name": "soko_inspect_room",
         "title": "Inspect Room Symmetries, Chirality & Bottlenecks",
-        "description": "Analyze a built-in room_id or custom (part, grid) for X/Y/180-degree dungeon symmetries, hero-switch chirality opportunities, switch-weighing deficits, and Bard rigid-translation constraints.",
+        "description": "Analyze an original room or custom board for dungeon symmetry, hero placement, switch deficits and Bard blocking considerations. Suggestions are hypotheses, not proofs.",
         "inputSchema": {
             "type": "object",
             "properties": ROOM_INPUT_PROPERTIES,
@@ -207,6 +208,22 @@ TOOLS: List[Dict[str, Any]] = [
     },
 ]
 
+# Original-engine tools are deliberately distinct from local differential checks.
+for _name, _description, _properties, _required in [
+    ('soko_get_room', 'Get full source-pinned original room metadata, grid, tutorials and reference baseline provenance.',
+     {'room_id': {'type': 'string'}}, ['room_id']),
+    ('soko_replay_original', 'Replay UDLRA keys in the pinned original PuzzleScript browser engine. Incomplete prefixes are observable; valid_winning_route reports exact final-key wins.',
+     {'room_id': {'type': 'string'}, 'route': {'type': 'string'}, 'baseline': {'type': 'boolean', 'default': False}, 'include_frames': {'type': 'boolean', 'default': False}}, ['room_id']),
+    ('soko_play', 'Stateless original-engine play. Portable JSON checkpoints bind room, source pins and route; every call reconstructs hidden state. Undo removes one key; reset returns to the initial room. Keys after win/death are rejected.',
+     {'room_id': {'type': 'string'}, 'prefix': {'type': 'string', 'default': ''},
+      'checkpoint': {'type': 'object'}, 'action': {'type': 'string', 'enum': ['step', 'undo', 'reset', 'observe'], 'default': 'step'},
+      'keys': {'type': 'string', 'default': ''}}, []),
+]:
+    TOOLS.append({'name': _name, 'description': _description,
+                  'inputSchema': {'type': 'object', 'properties': _properties, 'required': _required, 'additionalProperties': False},
+                  'annotations': {'readOnlyHint': True, 'idempotentHint': True,
+                                  'openWorldHint': _name in ('soko_replay_original', 'soko_play')}})
+
 RESOURCES: List[Dict[str, Any]] = [
     {
         "uri": "soko://methodology/verified-bar",
@@ -215,9 +232,15 @@ RESOURCES: List[Dict[str, Any]] = [
         "mimeType": "text/markdown",
     },
     {
+        "uri": "soko://catalog/trilogy",
+        "name": "Original Heroes of Sokoban Trilogy Catalog",
+        "description": "All 66 canonical rooms, source pins, reference baselines and tutorial messages.",
+        "mimeType": "application/json",
+    },
+    {
         "uri": "soko://benchmarks/frontier",
         "name": "Sokoban Eval Frontier Benchmark Registry",
-        "description": "Historical built-in Frontier metadata and reference routes; current public records may differ.",
+        "description": "Canonical original trilogy catalog with source pins, baselines and tutorial messages.",
         "mimeType": "application/json",
     },
     {
@@ -247,11 +270,11 @@ PROMPTS: List[Dict[str, Any]] = [
 
 
 def _read_resource_content(uri: str) -> Dict[str, Any]:
-    if uri == "soko://benchmarks/frontier":
+    if uri in ("soko://benchmarks/frontier", "soko://catalog/trilogy"):
         return {
             "uri": uri,
             "mimeType": "application/json",
-            "text": json.dumps(FRONTIER_ROOMS, indent=2),
+            "text": json.dumps(__import__("soko_mcp.catalog", fromlist=["load_catalog"]).load_catalog(), indent=2),
         }
     if uri == "soko://methodology/verified-bar":
         text = (
@@ -275,7 +298,7 @@ def _read_resource_content(uri: str) -> Dict[str, Any]:
             "- **Thief (`T`/`2`):** Steps into an empty cell and pulls 1 `Moveable` immediately behind.\n"
             "- **Wizard (`W`/`3`):** Fires a warpball; swaps with first `Moveable` hit, or steps 1 empty tile if hitting `Static` (`#`, closed doors, `M`, or Part III edge).\n"
             "- **Priest (`P`/`4`):** Walks into empty cells; active `P` and inactive `4` shield themselves and orthogonal heroes from Goblin/Dragon `Dying` and Druid petrification.\n"
-            "- **Bard (`B`/`5`, Part III):** 5x5 Chebyshev `Note` aura is computed at the END of the prior turn; charmed Moveables + Bard translate rigidly to fixed point (`Cancel` if Bard cannot step).\n"
+            "- **Bard (`B`/`5`, Part III):** Uses the prior-turn 5x5 Chebyshev `Note` aura. Blocking can make charmed objects move differently; do not assume rigid group translation. A blocked Bard cancels the move.\n"
             "- **Druid (`D`/`6`, Part III):** Walks into empty cells or transmutes `*`/`O` -> `#`, `#` -> `*`, unshielded inactive hero -> `#`. In Part III, `#` counts as `Weighing` on switches.\n"
         )
         return {"uri": uri, "mimeType": "text/markdown", "text": text}
@@ -294,10 +317,10 @@ def _get_prompt_messages(name: str, arguments: Dict[str, Any]) -> Dict[str, Any]
                         "type": "text",
                         "text": (
                             f"Apply the repository evidence workflow to shorten a route on room `{room_id}`:\n"
-                            f"1. Call `soko_inspect_room` on `{room_id}` to identify exact dungeon symmetries, hero-switch chirality, and bottlenecks.\n"
-                            f"2. Call `soko_verify_route` on the current baseline route to confirm `VERIFIED` differential replay.\n"
+                            f"1. Call `soko_get_room` on `{room_id}` to obtain the canonical grid, source pins and reference baseline.\n"
+                            f"2. Call `soko_replay_original` with baseline=true; retain its source-bound evidence. `soko_verify_route` provides a separate local differential check.\n"
                             f"3. Call `soko_optimize_route` with bounded exact BFS; report `search.termination_reason` and `search.completed_depth` when the C++ backend ran, otherwise `backend` and `stages`.\n"
-                            f"4. Report the verified route, certificate digest, keys saved, and epistemic_status from verification."
+                            f"4. Replay every candidate with `soko_replay_original`; report source pins, certificate, baseline keys saved and local search limits. No current record or benchmark-budget claim follows from baseline length."
                         ),
                     },
                 }
@@ -312,9 +335,9 @@ def _get_prompt_messages(name: str, arguments: Dict[str, Any]) -> Dict[str, Any]
                     "content": {
                         "type": "text",
                         "text": (
-                            f"Establish a bounded exhaustive-search lower bound for room `{room_id}`:\n"
-                            f"1. Call `soko_run_planted_bug_audit` to confirm 10/10 planted mutation catches.\n"
-                            f"2. Call `soko_prove_floor` on `{room_id}` and report epistemic_status, proven_floor, nodes_expanded, edge_consistency_checks, termination_reason, and completed_depth from search."
+                            f"Compute a local exhaustive-search lower bound for room `{room_id}`:\n"
+                            f"1. Call `soko_run_planted_bug_audit` to confirm 10/10 engine mutation catches.\n"
+                            f"2. Call `soko_prove_floor` on `{room_id}` and report the completed depth, termination reason, time and state caps. This is local search evidence, not a formal proof or original-engine lower bound."
                         ),
                     },
                 }
@@ -327,31 +350,54 @@ def dispatch_tool_call(name: str, args: Dict[str, Any]) -> Dict[str, Any]:
     if name == "soko_capabilities":
         return get_capabilities()
     if name == "soko_list_rooms":
-        summary = {}
-        for rid, meta in FRONTIER_ROOMS.items():
-            summary[rid] = {
-                "part": meta["part"],
-                "title": meta["title"],
-                "dimensions": f"{len(meta['grid'][0])}x{len(meta['grid'])}",
-                "proven_floor": meta["proven_floor"],
-                "shortest_known": meta["shortest_known"],
-                "frontier_record": meta["frontier_record"],
-                "reference_route_len": len(meta["reference_route"]),
-            }
-        capabilities = get_capabilities()
-        return {"cpp_engine_ready": capabilities["cpp_engine_ready"], "capabilities": capabilities, "rooms": summary}
+        from .catalog import list_rooms
+        rooms = list_rooms()
+        summaries = [{"room_id": room["id"], "part": room["part"], "room": room["room"],
+                      "dimensions": f"{room['width']}x{room['height']}",
+                      "reference_route_len": len(room["reference_route"]),
+                      "reported_lower_bound": room["proven_floor"]} for room in rooms]
+        result = {"rooms": summaries, "room_count": len(rooms),
+                  "scope": "source-pinned original trilogy; baseline cost is not a current record",
+                  "details_tool": "soko_get_room"}
+        if args.get("include_fixtures", False):
+            result["fixtures"] = {"fixture:" + rid: meta for rid, meta in FRONTIER_ROOMS.items()}
+        return result
+
+    if name == "soko_get_room":
+        from .catalog import get_room
+        return get_room(args.get("room_id"))
+
+    if name == "soko_replay_original":
+        from .catalog import get_room
+        from .original import replay
+        meta = get_room(args.get("room_id"))
+        if args.get("baseline") and "route" in args:
+            raise ValueError("Provide route or baseline, not both")
+        route = meta["reference_route"] if args.get("baseline") else args.get("route")
+        if route is None:
+            raise ValueError("Provide route (empty prefix allowed) or baseline=true")
+        result = replay(meta["part"], meta["room"], route,
+                        include_frames=args.get("include_frames", False))
+        result["room_id"] = args["room_id"]
+        result.pop("certificate_sha256", None)
+        result["certificate_sha256"] = digest(result)
+        return result
+
+    if name == "soko_play":
+        from .play import play
+        return play(**args)
 
     if name == "soko_inspect_room":
         rid, part, grid, meta = resolve_room_input(args.get("room_id"), args.get("part"), args.get("grid"))
         out = inspect_room(part, grid)
         if rid and meta:
             out["room_id"] = rid
-            out["title"] = meta["title"]
-            out["benchmarks"] = {
-                "proven_floor": meta["proven_floor"],
-                "shortest_known": meta["shortest_known"],
-                "frontier_record": meta["frontier_record"],
-            }
+            out["title"] = meta.get("title", rid)
+            out["reference_route_length"] = len(meta.get("reference_route", ""))
+            out["source"] = meta.get("source")
+            if rid.startswith("fixture:"):
+                out["historical_fixture_benchmarks"] = {key: meta.get(key) for key in
+                                                       ("proven_floor", "shortest_known", "frontier_record")}
         return out
 
     if name == "soko_verify_route":

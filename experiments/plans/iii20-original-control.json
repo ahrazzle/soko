@@ -26,6 +26,7 @@
   "seed_reason": "Deterministic baseline replay.",
   "tracked_files": [
     "experiments/original_engine/check.py",
+    "soko_mcp/original.py",
     "evidence/2026-11-12-frontier/iii20-live-instance.json"
   ],
   "artifacts": ["replay.json"]

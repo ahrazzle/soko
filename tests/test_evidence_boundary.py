@@ -51,7 +51,7 @@ class EvidenceBoundaryTests(unittest.TestCase):
     def test_mcp_certificate_includes_room_metadata(self):
         response = handle_jsonrpc_message({"jsonrpc": "2.0", "id": 2, "method": "tools/call",
                                            "params": {"name": "soko_verify_route", "arguments": {
-                                               "room_id": "I-1", "route": "RRRRRRRRR"}}})
+                                               "room_id": "I-1", "route": "RRRRRRRR"}}})
         result = response["result"]["structuredContent"]
         certificate_hash = result.pop("certificate_sha256")
         self.assertEqual(result["room_id"], "I-1")

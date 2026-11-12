@@ -1,0 +1,12 @@
+{
+  "format": "soko-original-play-v1",
+  "room_id": "I-2",
+  "source_pins": {
+    "html_sha256": "9811b0538cc7dd73cb7ef271d8f5ff5d4395329a7b87c6cf18c94d7a126bf311",
+    "puzzlescript_source_sha256": "81a1d27115fc40c04f27bb39d0ef12ebffbea513e3fe9f550b5173bb683728a3",
+    "checker_sha256": "e9b288556c51363e1edbb161c2c119c540ad8aa6e5ae31e23739a6284f2800a6",
+    "source_url": "https://sites.math.washington.edu/~ostroff/puzzles/Heroes_of_Sokoban.html"
+  },
+  "route": "RR",
+  "sha256": "0e2b1809307d9ab8444d387004905f68c60b657dba9c1c3679465d06c47bbe64"
+}

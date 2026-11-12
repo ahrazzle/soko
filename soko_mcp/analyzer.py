@@ -77,16 +77,16 @@ def inspect_room(part: int, rows: List[str]) -> Dict[str, Any]:
     if mirror_y_diff == 0 and hero_mirror_y_asymmetric:
         chiral_opportunities.append(
             "Exact vertical dungeon reflection symmetry (y <-> H-1-y) with chirally asymmetric hero placement: "
-            "high-priority candidate for Chiral-Mirror Y Tube Beam (same structural mechanism that broke III-20 87 -> 84)."
+            "a mirrored trajectory may be a useful soft guide for an experimental search."
         )
     if mirror_x_diff == 0 and hero_mirror_x_asymmetric:
         chiral_opportunities.append(
             "Exact horizontal dungeon reflection symmetry (x <-> W-1-x, swapping L<->R dragons) with chirally "
-            "asymmetric hero placement: candidate for Chiral-Mirror X Tube Beam."
+            "asymmetric hero placement: consider a mirrored trajectory as an experimental guide."
         )
     if rot_180_diff == 0 and len(heroes) > 1:
         chiral_opportunities.append(
-            "Exact 180-degree rotational dungeon symmetry: candidate for Rotational Tube Beam."
+            "Exact 180-degree rotational dungeon symmetry: a transformed trajectory may provide a search guide."
         )
 
     total_switches = switches["{"] + switches["}"]
@@ -101,8 +101,8 @@ def inspect_room(part: int, rows: List[str]) -> Dict[str, Any]:
         )
     if has_bard and (crates + len(heroes) >= 3):
         bottlenecks.append(
-            "Bard 5x5 Chebyshev Note aura enforces rigid translation (all charmed Moveables shift by identical (dx, dy)); "
-            "selective boundary uncharming or obstacle pinning is required to alter pairwise relative offsets."
+            "Bard's prior-turn 5x5 Chebyshev Note aura guides charmed objects in the movement direction. "
+            "Blocking and uncharming can change their relative offsets; do not assume a rigid group in a proof."
         )
 
     return {
@@ -130,8 +130,8 @@ def inspect_room(part: int, rows: List[str]) -> Dict[str, Any]:
         "chiral_opportunities": chiral_opportunities,
         "structural_bottlenecks": bottlenecks,
         "recommended_workflow": [
-            "1. Call soko_verify_route if you have an existing seed route to establish a dual-oracle VERIFIED baseline.",
-            "2. Call soko_optimize_route (beam_width=40000, window_len=14, budget_sec=35) to run Windowed BFS + Chiral-Mirror Tube Beam + Iterative Refinement.",
-            "3. Or call soko_solve_room if no seed route exists yet, followed by soko_prove_floor to certify a step-consistent lower bound.",
+            "1. Load the canonical room and its dated baseline with soko_get_room; replay original-room candidates with soko_replay_original.",
+            "2. State a hypothesis and control before using soko_optimize_route: native bounded exact BFS, or Python window BFS when native search is unavailable.",
+            "3. Use soko_solve_room to try from scratch. Report resource cutoffs; local replay and exhaustive local bounds do not establish original-engine optimality.",
         ],
     }
