@@ -46,6 +46,7 @@ def inspect_room(part: int, rows: List[str]) -> Dict[str, Any]:
 
     heroes.sort(key=lambda item: item["slot"])
 
+    # Compute dungeon symmetry mismatches (excluding heroes)
     mirror_y_diff = 0
     mirror_x_diff = 0
     rot_180_diff = 0

@@ -697,6 +697,7 @@ def run_planted_bug_audit(extra_vectors: Optional[List[Dict[str, Any]]] = None) 
     from .flat_oracle import replay_flat_oracle
 
     vectors: List[Tuple[str, int, List[str], str, bool, bool]] = [
+        ("I-1_9", 1, FRONTIER_ROOMS["I-1"]["grid"], FRONTIER_ROOMS["I-1"]["reference_route"], True, True),
         ("II-22_94", 2, FRONTIER_ROOMS["II-22"]["grid"], FRONTIER_ROOMS["II-22"]["reference_route"], True, True),
         ("III-14_48", 3, FRONTIER_ROOMS["III-14"]["grid"], FRONTIER_ROOMS["III-14"]["reference_route"], True, True),
         ("III-14_15x7_48", 3, FRONTIER_ROOMS["III-14-15x7"]["grid"], FRONTIER_ROOMS["III-14-15x7"]["reference_route"], True, True),

@@ -11,15 +11,15 @@ from .server import dispatch_tool_call, serve_stdio
 def main(argv: list[str] | None = None) -> int:
     parser = argparse.ArgumentParser(
         prog="soko-verified-mcp",
-        description="Domain-General Formal-Systems & Proven-Commons Verified Bar MCP Server v0.2.0.",
+        description="Domain-General Formal-Systems & Proven-Commons Verified Bar MCP Server v0.3.0.",
     )
     sub = parser.add_subparsers(dest="cmd")
 
     sub.add_parser("serve", help="Run the MCP JSON-RPC 2.0 server over stdio (default when no args given).")
-    sub.add_parser("capabilities", help="Report available backends and missing implementations.")
     sub.add_parser("list-rooms", help="List built-in Sokoban Eval Frontier rooms.")
     sub.add_parser("audit", help="Run the 10-mutation & cross-oracle Proven-Commons Audit.")
     sub.add_parser("tcb-lock", help="Verify runtime SHA256SUMS manifest and TCB checker hashes.")
+    sub.add_parser("capabilities", help="Report executable backend readiness and formal tool capabilities.")
 
     p_ins = sub.add_parser("inspect", help="Inspect symmetries and bottlenecks of a room.")
     p_ins.add_argument("--room", required=True, help="Built-in room ID (e.g. III-20)")
@@ -42,14 +42,14 @@ def main(argv: list[str] | None = None) -> int:
     args = parser.parse_args(argv)
     if args.cmd in (None, "serve"):
         return serve_stdio()
-    if args.cmd == "capabilities":
-        out = dispatch_tool_call("soko_capabilities", {})
-    elif args.cmd == "list-rooms":
+    if args.cmd == "list-rooms":
         out = dispatch_tool_call("soko_list_rooms", {})
     elif args.cmd == "audit":
         out = dispatch_tool_call("soko_run_planted_bug_audit", {})
     elif args.cmd == "tcb-lock":
         out = dispatch_tool_call("soko_verify_tcb_lock", {})
+    elif args.cmd == "capabilities":
+        out = dispatch_tool_call("soko_capabilities", {})
     elif args.cmd == "inspect":
         out = dispatch_tool_call("soko_inspect_room", {"room_id": args.room})
     elif args.cmd == "verify":
