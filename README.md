@@ -1,85 +1,81 @@
-# soko (`soko-verified-mcp` v0.2.0 — Domain-General Formal-Systems & Verified-Bar MCP Server)
+# soko: Sokoban MCP replay and bounded search
 
-## Checkout status
+`soko-verified-mcp` provides nine MCP tools for Jonah Ostroff's [Heroes of Sokoban trilogy](https://www.puzzlescript.net/editor.html?hack=7072276) and locally captured [Sokoban Eval Frontier](https://soko.banteg.xyz/frontier/) instances. Python >=3.10 and its standard library are sufficient for replay and fallback optimization. A C++20 compiler enables native search and a third replay engine; the engine builds on first use into ignored `cpp/build/`.
 
-This checkout contains the Python room interpreters, route checks and a fallback route optimizer. It does not contain the C++ search engine, general `formal_*` tools, Lean proofs or a `SHA256SUMS` manifest. The feature and route tables below contain claims from the imported README. They are not a statement of shipped capabilities.
+This project has **not passed the Proven Commons Verified Bar**. `VERIFIED` in a route response means agreement between local interpreters, not a formal proof, externally accepted record, or matching source lock. The experimental `formal_kernel.py` is not exposed as `formal_*` MCP tools.
 
-Run `python3 -m soko_mcp capabilities` to check which backends are available. When the C++ source is absent, solving from scratch returns `UNAVAILABLE_BACKEND`, not a search budget result. `python3 -m soko_mcp tcb-lock` reports `TAMPERED_OR_UNLOCKED` when the manifest is missing. Route checks compare the two Python interpreters but do not establish agreement with a pinned external specification or formal proof.
+## Connect
 
+Run from the repository root:
 
-Model Context Protocol (MCP) server and C++20 verification/search toolkit implementing the [Foundation-0 Repository Standard](https://github.com/Foundation-0) and [Proven-Commons Verified Bar](https://github.com/Proven-Commons/mission/blob/main/playbook/verified-bar.md) across **arbitrary discrete state systems** (`formal_*` suite) as well as Jonah Ostroff's PuzzleScript trilogy ([Part I](https://www.puzzlescript.net/editor.html?hack=6860122), [Part II: Monsters](https://www.puzzlescript.net/editor.html?hack=6910207), [Part III: The Bard and The Druid](https://www.puzzlescript.net/editor.html?hack=7072276)) on the [Sokoban Eval Frontier](https://soko.banteg.xyz/frontier/) benchmark ([write-up](https://banteg.xyz/posts/sokoban/)).
-
-Zero third-party Python packages are required (`python >= 3.10` standard library only). On first Sokoban tool call, `soko_mcp` automatically compiles the hardened C++20 engine (`cpp/soko_engine.cpp`) via `g++` or `clang++` (`-O3 -pthread -std=c++20`), while maintaining fail-closed dual-Python verification (`PuzzleScriptOracle` + zero-shared-code `FlatBitmaskOracle`) even when no C++20 compiler is present.
-
-## What's New in v0.2.0 (`fdn0-eval` Audit & Generalization Release)
-
-1. **6 Universal `formal_*` MCP Tools for Arbitrary Problems:** Agents can now approach *any* planning, scheduling, protocol verification, or combinatorial optimization task by registering two independent AST-sandboxed Python checkers (`spec_code` + `impl_code` with distinct alpha-normalized AST skeletons, bridged via `project_obs`), mandatory `must_fail_controls`, and `planted_mutations` (`formal_define_system`), then solving or model-checking (`formal_solve_system`), certifying zero-trust **Quotient Homomorphism** or **Inductive Potential** lower bounds (`formal_certify_lower_bound`), triaging open portfolios (`formal_triage_portfolio`), and exporting SHA-256-pinned epistemic ledgers (`formal_export_ledger`).
-2. **Hardened Triple-Oracle Fail-Closed Sokoban Verification (`F-01` & `F-02` Fixes):**
-   - Added zero-shared-code `soko_mcp/flat_oracle.py` (`FlatBitmaskOracle`) alongside `soko_mcp/oracle.py` and `cpp/soko_engine.cpp`.
-   - `verify_route_dual` starts fail-closed (`differential_match = False`), requires `>= 2` independent engines, and checks **64-bit FNV-1a per-frame trajectory digests (`traj_fnv64`)** across every step `t = 0..L` (including Bard `Note` bitmasks and open-door layers).
-3. **Runtime `SHA256SUMS` & Cross-Oracle Mutation Gate (`F-03` Fix):** Added `soko_verify_tcb_lock` and cross-engine baseline parity checks inside `soko_run_planted_bug_audit`.
-4. **Collision-Free Exact-State TT & Built-In Quotient-PDB in `soko_prove_floor` (`F-04` Fix):** Replaced 48-bit tag-only TT pruning with full `DynState` equality verification and integrated automatic backward-BFS Quotient-PDB construction for Bard+Druid+PurpleSwitch rooms (including both `14x7` and `15x7` `III-14` variants).
-
-## Connect as an MCP Server
-
-### Claude Code
-```bash
-claude mcp add soko-verified -- python3 -m soko_mcp
+```sh
+python3 -m soko_mcp
 ```
 
-### Gemini CLI / Cursor / Claude Desktop (`mcpServers` JSON)
+For a client with `mcpServers` configuration:
+
 ```json
 {
   "mcpServers": {
     "soko-verified": {
       "command": "python3",
       "args": ["-m", "soko_mcp"],
-      "cwd": "/path/to/soko"
+      "cwd": "/absolute/path/to/soko"
     }
   }
 }
 ```
 
-## Exposed MCP Primitives (14 Tools, 5 Resources, 4 Prompts)
+The client owns the stdio process. Clients without a `cwd` option can use a shell launcher that changes to the checkout first. A local client registration does not automatically attach the server to a hosted chat.
 
-| Suite | Primitive | Name | Purpose |
-| :--- | :--- | :--- | :--- |
-| **Formal** | **Tool** | `formal_define_system` | AST-sandboxed dual-checker registration (`spec_code` != `impl_code` skeleton), negative controls, mutation kills & BFS fuzzing |
-| **Formal** | **Tool** | `formal_verify_trace` | Dual-checker step-by-step trace replay with rolling SHA-256 transcript digest and premise assertions |
-| **Formal** | **Tool** | `formal_solve_system` | Exact Dijkstra/BFS (goal synthesis or `find_invariant_violation` bug hunting), Diversified Beam, & Sliding-Window LNS |
-| **Formal** | **Tool** | `formal_certify_lower_bound` | Zero-trust `PROVEN` lower bounds via finite Quotient Homomorphisms (`project`) or Inductive Potentials (`potential`) |
-| **Formal** | **Tool** | `formal_triage_portfolio` | Expected-verified-gain priority ranking across open instances |
-| **Formal** | **Tool** | `formal_export_ledger` | Export SHA-256-pinned `PROVEN` / `VERIFIED` / `KNOWN` / `CONJECTURE` claim ledger |
-| **Sokoban** | **Tool** | `soko_list_rooms` | List built-in Frontier rooms (`I-1`, `II-22`, `III-14`, `III-14-15x7`, `III-15`, `III-20`, `III-22`) |
-| **Sokoban** | **Tool** | `soko_inspect_room` | Detect `X`/`Y`/`180`-degree symmetries, hero-switch chirality, switch deficits, and Bard constraints |
-| **Sokoban** | **Tool** | `soko_verify_route` | Triple-oracle (`PuzzleScriptOracle` + `FlatBitmaskOracle` + `C++20`) per-frame trajectory digest verifier |
-| **Sokoban** | **Tool** | `soko_optimize_route` | Shorten seed routes via Sliding-Window Exact BFS + Chiral-Mirror Tube Beam + Iterative Refinement |
-| **Sokoban** | **Tool** | `soko_solve_room` | Solve `(part, grid)` rooms from scratch via bucket-diversified C++20 beam search |
-| **Sokoban** | **Tool** | `soko_prove_floor` | Collision-free exact-`DynState` TT + Quotient-PDB IDA* lower-bound prover with runtime `h(s) <= 1 + h(s')` checks |
-| **Sokoban** | **Tool** | `soko_run_planted_bug_audit` | Cross-oracle baseline parity + 10-mutation Proven-Commons Planted-Bug Suite (`10/10` caught) |
-| **Sokoban** | **Tool** | `soko_verify_tcb_lock` | Runtime `SHA256SUMS` manifest verification and SHA-256 checker pin inspection |
+## Shipped tools
 
-## Verified Frontier Route Ledger (`a1kindus`)
+| Tool | Behavior |
+| --- | --- |
+| `soko_capabilities` | Report available backends |
+| `soko_list_rooms` | List historical room metadata and reference routes |
+| `soko_inspect_room` | Analyze board symmetry and constraints |
+| `soko_verify_route` | Compare two independent Python interpreters, plus C++ when available |
+| `soko_optimize_route` | Try a shorter route with bounded exact BFS, then independently replay it |
+| `soko_solve_room` | Bounded exact-state BFS from the starting room |
+| `soko_prove_floor` | Report fully exhausted goal depths under local C++ transition rules |
+| `soko_run_planted_bug_audit` | Run the ten-mutation replay audit |
+| `soko_verify_tcb_lock` | Check complete source-manifest consistency; report binary provenance separately |
 
-| Room | Keys | Status | SHA-256 (12) | Notes & Submission String |
-| :--- | :---: | :---: | :---: | :--- |
-| **`III-20` (Primary)** | **`84`** | **`VERIFIED`** | `eecbea96b091` | Beats prior 87 record & 85 holdout target: `ADDDRRADAAADRULARADAAADDLLALAAAARRRRUULAAUALLRADRRRRADRULRURRRRRARRUURURAURRRDDRAUUR` |
-| **`III-20` (Alt)** | **`84`** | **`VERIFIED`** | `4edff1ad8c90` | Alternate 84-key ending (`URU`): `ADDDRRADAAADRULARADAAADDLLALAAAARRRRUULAAUALLRADRRRRADRULRURRRRRARRUURURAURRRDDRAURU` |
-| **`III-14` (`14x7` & `15x7`)** | **`48`** | **`VERIFIED`** | `cd934d25a629` | Matches 48 shortest known (`>= 36` Quotient-PDB floor): `LLULULULRURURURURUAUDRRDDAUARRDLRAULDLDRARURDUUR` |
-| **`II-22`** | **`94`** | **`VERIFIED`** | `d5e82e8e3c65` | Verified baseline (open 92 target): `ADDUUULDDRDDLDULDDRLLLLULURDLDRURUAAUUULLLLLLLAAAULURUARRRARRRDRUUDRRRDLLLDDDLDRLALUADDDRDRRUR` |
-| **`III-15`** | **`69`** | **`VERIFIED`** | `76e195c497c1` | Proven optimal: `AULADDALAULDRALAULDALALURALADLUALALDRALAULDALALURALADLUALALDLRAUAULLU` |
-| **`III-22`** | **`9`** | **`VERIFIED`** | `179f01ec4093` | Proven optimal finale: `RRRRRRRRR` |
+The server also lists three resources and two prompts. It does not implement the previously advertised PDB heuristic, tube-beam optimizer or general formal-systems MCP suite.
 
-## CLI & Test Quickstart
+## Search and evidence contracts
 
-```bash
-# Verify SHA256SUMS lock and run all 10 multi-domain MCP verification tests
-sha256sum -c SHA256SUMS
+Inputs are canonical rectangular ASCII starting rooms of at most 512 cells: exactly one active hero, distinct hero identities and one goal per hero. The format cannot represent a hero initially standing on a goal. Empty/vacuously winning rooms, unsupported symbols and malformed routes are rejected before native execution. Routes accept U/D/L/R/A (normalized to uppercase).
+
+Replay certificates bind the complete normalized problem (part, grid, goal, termination and key-count objective), route and checker hashes. They report `evidence_level: differential_replay`, `formal_proof_checked: false`, and `source_lock_asserted: false`. The 64-bit trajectory digest detects disagreement; it is not a collision-free proof. Agreeing implementations may share a mistaken interpretation.
+
+Native optimization and solving use exact-state BFS, bounded by search time and total stored states. For compatibility, `beam_width` now names the state cap (hard ceiling 200,000), not a beam width. `window_len` applies only to the Python window-BFS fallback. No improvement returns the original independently checked seed. Compilation and replay are additional to the search-phase budget.
+
+Search responses retain `termination_reason`, `completed_depth`, state counts and transition counts. `completed_depth` is the deepest goal depth fully ruled out; a partial next layer does not advance it. The lower bound is `completed_depth + 1`. A shortest witness is independently replayed and has status `VERIFIED`; a witnessless bounded result has status `EXHAUSTIVE_LOWER_BOUND`. Zero budget supports only the trivial floor 0. Rejected backend claims expose no accepted `proven_floor` or guarantee. These are local executable search results, not kernel-checked theorems or external-engine proofs.
+
+## Reproduce the exercise
+
+```sh
 python3 -m unittest discover -s tests -v
-
-# Run CLI commands directly
-python3 -m soko_mcp tcb-lock
-python3 -m soko_mcp audit
-python3 -m soko_mcp prove-floor --room III-14 --max-bound 30 --budget-sec 8
-python3 -m soko_mcp verify --room III-20 --route ADDDRRADAAADRULARADAAADDLLALAAAARRRRUULAAUALLRADRRRRADRULRURRRRRARRUURURAURRRDDRAUUR
+python3 -m soko_mcp optimize --room I-1 --route URRRRRRRRRD --budget-sec 2
+python3 -m soko_mcp prove-floor --room I-1 --max-bound 9 --budget-sec 2
+python3 experiments/mcp_smoke.py --help
 ```
+
+The [recorded MCP exercise](evidence/2026-11-12-mcp-exercise/README.md) includes full stdio requests/responses before and after the change. The old optimizer returned the 11-key I-1 detour unchanged; the bounded BFS returns the known 9-key solution, replayed by three engines. A small-budget III-14 run retained its 48-key seed. Neither result is a new public record.
+
+Built-in floors/records are historical metadata, not fresh claims. For example, the prior [Frontier capture](docs/verified-systems-loop.md) already recorded II-22 closed at 92, while the registry still retains its 94-key reference route. Preserve attribution: puzzles by Jonah Ostroff, captured III-20 route by a1kindus, captured III-21 route by futarchist. See [experiment provenance](experiments/frontier_mac/README.md) and the evidence folders for sources and limitations.
+
+## Portable source integrity
+
+`SHA256SUMS` covers the fixed list of runtime sources in `soko_mcp/integrity.py`, including native source and certificate acceptance code. It excludes compiler-dependent generated binaries. Missing, duplicated, malformed, unexpected or escaping entries fail closed. Check it with:
+
+```sh
+python3 -m soko_mcp.integrity
+sha256sum -c SHA256SUMS
+```
+
+After reviewing an intentional source change, regenerate explicitly with `python3 -m soko_mcp.integrity --write` and review the manifest diff together with the source diff. Normal checks never refresh it automatically.
+
+The compatibility fields `tcb_locked` and `epistemic_status: VERIFIED` on the lock tool mean **source-manifest consistency only** (`lock_scope: source_manifest`). A repository-owned manifest is not a signature or independent approval. The actual compiled binary hash is recorded as provenance with `verified_by_manifest: false`; this is not a reproducible-build guarantee. Route replay and source integrity are separate checks.

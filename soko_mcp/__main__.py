@@ -11,7 +11,7 @@ from .server import dispatch_tool_call, serve_stdio
 def main(argv: list[str] | None = None) -> int:
     parser = argparse.ArgumentParser(
         prog="soko-verified-mcp",
-        description="Domain-General Formal-Systems & Proven-Commons Verified Bar MCP Server v0.2.0.",
+        description="Sokoban differential replay and bounded exact-state search MCP server.",
     )
     sub = parser.add_subparsers(dest="cmd")
 
@@ -28,13 +28,13 @@ def main(argv: list[str] | None = None) -> int:
     p_ver.add_argument("--room", required=True, help="Built-in room ID (e.g. III-20)")
     p_ver.add_argument("--route", required=True, help="Move sequence (U/D/L/R/A)")
 
-    p_opt = sub.add_parser("optimize", help="Optimize a seed route via Windowed BFS & Chiral-Mirror Tube Beam.")
+    p_opt = sub.add_parser("optimize", help="Shorten a seed with bounded exact BFS (Python window fallback).")
     p_opt.add_argument("--room", required=True, help="Built-in room ID (e.g. III-20)")
     p_opt.add_argument("--route", default="", help="Optional seed route (defaults to room's baseline route)")
     p_opt.add_argument("--beam-width", type=int, default=40000)
     p_opt.add_argument("--budget-sec", type=int, default=35)
 
-    p_flr = sub.add_parser("prove-floor", help="Certify an exact-TT & Quotient-PDB IDA* lower bound.")
+    p_flr = sub.add_parser("prove-floor", help="Compute a local exhaustive-search lower bound; not a formal proof.")
     p_flr.add_argument("--room", required=True, help="Built-in room ID (e.g. I-1, III-14, III-22)")
     p_flr.add_argument("--max-bound", type=int, default=32)
     p_flr.add_argument("--budget-sec", type=int, default=10)

@@ -1,0 +1,1381 @@
+{
+  "schema_version": 1,
+  "started_at": "2026-11-12T13:35:57.483129+00:00",
+  "python_version": "3.12.14",
+  "source_revision": null,
+  "source_hashes_before": {
+    "SHA256SUMS": "52e61187fa3eb45b4c98e3164a8eaa970d43364d3e7cfa5c3bffbdab778fce51",
+    "cpp/soko_engine.cpp": "2fe1ec1723340ea6f34f7c3e4e44dfb916a16f94e6e854421f90ce28a5ec9e14",
+    "soko_mcp/__init__.py": "851c5c02ba22ac94bcc7a6463d0667c2242e6489e46af804887fdaf48eb5611f",
+    "soko_mcp/__main__.py": "c39143fd94c13b6a1eee792aab18daec0be5f72cb428e776cc045622bb22555b",
+    "soko_mcp/analyzer.py": "95799867c2b717b97967d35a273c7375c0edd4ed49b1e0d22eaff8549d6fc45b",
+    "soko_mcp/engine_bridge.py": "cbf1fa55aef999ca017d643adf19adecee9d1569837954c6fc6d9eabac6ed80a",
+    "soko_mcp/evidence.py": "fa396dca155b29906121658737cb8c944583c8603f152a0eba6ba0c9ca0885dd",
+    "soko_mcp/flat_oracle.py": "d47e37cf2aaf86a2a171f6ea296ddbd22db55a65bd7c93cdfb86777eb8001ecd",
+    "soko_mcp/formal_kernel.py": "89f3ef2b172cb89dc21ddfa582aef416e8d4b3c7d426df24ca1c2c270aa9997f",
+    "soko_mcp/integrity.py": "d79a7f664a077dcc554d4840f6ff60f57579687125f86387ca1d18c874e35a19",
+    "soko_mcp/oracle.py": "e52a7056fd70335a2000964db670d48814306b9893f28335d6d73e66be309456",
+    "soko_mcp/server.py": "3089ad21845ba98e3e5ad74c44cfd9fa1a7242da0c5dbbd56c81f2a2019dc91c"
+  },
+  "runner_sha256": "454992f1e9de876bf382fe65f5a6b95634f91256834c45f0e4de6b6eef6703e2",
+  "per_request_wall_timeout_seconds": 45,
+  "scope": "Local differential replay and bounded search; no live submission or formal proof.",
+  "experiments": [
+    {
+      "request": {
+        "jsonrpc": "2.0",
+        "id": 4,
+        "method": "tools/call",
+        "params": {
+          "name": "soko_capabilities",
+          "arguments": {}
+        }
+      },
+      "response": {
+        "jsonrpc": "2.0",
+        "id": 4,
+        "result": {
+          "content": [
+            {
+              "type": "text",
+              "text": "{\n  \"cpp_engine_ready\": true,\n  \"cpp_unavailable_reason\": null,\n  \"route_verification\": {\n    \"available\": true,\n    \"python_oracles\": 2\n  },\n  \"route_optimization\": {\n    \"available\": true,\n    \"backend\": \"cpp20_bounded_exact_bfs\"\n  },\n  \"solve_from_scratch\": {\n    \"available\": true,\n    \"unavailable_reason\": null\n  },\n  \"lower_bound_proving\": {\n    \"available\": true,\n    \"unavailable_reason\": null\n  },\n  \"formal_systems\": {\n    \"available\": false,\n    \"unavailable_reason\": \"not_implemented\"\n  },\n  \"tcb_manifest_present\": true\n}"
+            }
+          ],
+          "structuredContent": {
+            "cpp_engine_ready": true,
+            "cpp_unavailable_reason": null,
+            "route_verification": {
+              "available": true,
+              "python_oracles": 2
+            },
+            "route_optimization": {
+              "available": true,
+              "backend": "cpp20_bounded_exact_bfs"
+            },
+            "solve_from_scratch": {
+              "available": true,
+              "unavailable_reason": null
+            },
+            "lower_bound_proving": {
+              "available": true,
+              "unavailable_reason": null
+            },
+            "formal_systems": {
+              "available": false,
+              "unavailable_reason": "not_implemented"
+            },
+            "tcb_manifest_present": true
+          },
+          "isError": false
+        }
+      },
+      "elapsed_seconds": 0.000188
+    },
+    {
+      "request": {
+        "jsonrpc": "2.0",
+        "id": 5,
+        "method": "tools/call",
+        "params": {
+          "name": "soko_verify_tcb_lock",
+          "arguments": {}
+        }
+      },
+      "response": {
+        "jsonrpc": "2.0",
+        "id": 5,
+        "result": {
+          "content": [
+            {
+              "type": "text",
+              "text": "{\n  \"manifest_present\": true,\n  \"manifest_sha256\": \"52e61187fa3eb45b4c98e3164a8eaa970d43364d3e7cfa5c3bffbdab778fce51\",\n  \"files_verified\": 11,\n  \"mismatched_files\": [],\n  \"missing_files\": [],\n  \"unconfined_paths\": [],\n  \"malformed_lines\": [],\n  \"duplicate_entries\": [],\n  \"missing_entries\": [],\n  \"unexpected_entries\": [],\n  \"read_errors\": [],\n  \"source_integrity_verified\": true,\n  \"epistemic_status\": \"VERIFIED\",\n  \"tcb_locked\": true,\n  \"lock_scope\": \"source_manifest\",\n  \"checker_pins_ok\": true,\n  \"cpp_engine_compiled\": true,\n  \"checker_pins\": {\n    \"oracle_py_sha256\": \"e52a7056fd70335a2000964db670d48814306b9893f28335d6d73e66be309456\",\n    \"flat_oracle_py_sha256\": \"d47e37cf2aaf86a2a171f6ea296ddbd22db55a65bd7c93cdfb86777eb8001ecd\",\n    \"engine_bridge_py_sha256\": \"cbf1fa55aef999ca017d643adf19adecee9d1569837954c6fc6d9eabac6ed80a\",\n    \"evidence_py_sha256\": \"fa396dca155b29906121658737cb8c944583c8603f152a0eba6ba0c9ca0885dd\",\n    \"integrity_py_sha256\": \"d79a7f664a077dcc554d4840f6ff60f57579687125f86387ca1d18c874e35a19\",\n    \"cpp_soko_engine_src_sha256\": \"2fe1ec1723340ea6f34f7c3e4e44dfb916a16f94e6e854421f90ce28a5ec9e14\",\n    \"cpp_soko_engine_bin_sha256\": \"81fb82e5ca8306eb2da165fda011d59cee12548ac27848d10b9bfab54649a6eb\",\n    \"formal_kernel_py_sha256\": \"89f3ef2b172cb89dc21ddfa582aef416e8d4b3c7d426df24ca1c2c270aa9997f\"\n  },\n  \"compiled_binary\": {\n    \"sha256\": \"81fb82e5ca8306eb2da165fda011d59cee12548ac27848d10b9bfab54649a6eb\",\n    \"verified_by_manifest\": false\n  }\n}"
+            }
+          ],
+          "structuredContent": {
+            "manifest_present": true,
+            "manifest_sha256": "52e61187fa3eb45b4c98e3164a8eaa970d43364d3e7cfa5c3bffbdab778fce51",
+            "files_verified": 11,
+            "mismatched_files": [],
+            "missing_files": [],
+            "unconfined_paths": [],
+            "malformed_lines": [],
+            "duplicate_entries": [],
+            "missing_entries": [],
+            "unexpected_entries": [],
+            "read_errors": [],
+            "source_integrity_verified": true,
+            "epistemic_status": "VERIFIED",
+            "tcb_locked": true,
+            "lock_scope": "source_manifest",
+            "checker_pins_ok": true,
+            "cpp_engine_compiled": true,
+            "checker_pins": {
+              "oracle_py_sha256": "e52a7056fd70335a2000964db670d48814306b9893f28335d6d73e66be309456",
+              "flat_oracle_py_sha256": "d47e37cf2aaf86a2a171f6ea296ddbd22db55a65bd7c93cdfb86777eb8001ecd",
+              "engine_bridge_py_sha256": "cbf1fa55aef999ca017d643adf19adecee9d1569837954c6fc6d9eabac6ed80a",
+              "evidence_py_sha256": "fa396dca155b29906121658737cb8c944583c8603f152a0eba6ba0c9ca0885dd",
+              "integrity_py_sha256": "d79a7f664a077dcc554d4840f6ff60f57579687125f86387ca1d18c874e35a19",
+              "cpp_soko_engine_src_sha256": "2fe1ec1723340ea6f34f7c3e4e44dfb916a16f94e6e854421f90ce28a5ec9e14",
+              "cpp_soko_engine_bin_sha256": "81fb82e5ca8306eb2da165fda011d59cee12548ac27848d10b9bfab54649a6eb",
+              "formal_kernel_py_sha256": "89f3ef2b172cb89dc21ddfa582aef416e8d4b3c7d426df24ca1c2c270aa9997f"
+            },
+            "compiled_binary": {
+              "sha256": "81fb82e5ca8306eb2da165fda011d59cee12548ac27848d10b9bfab54649a6eb",
+              "verified_by_manifest": false
+            }
+          },
+          "isError": false
+        }
+      },
+      "elapsed_seconds": 0.001868
+    },
+    {
+      "request": {
+        "jsonrpc": "2.0",
+        "id": 6,
+        "method": "tools/call",
+        "params": {
+          "name": "soko_verify_route",
+          "arguments": {
+            "room_id": "I-1",
+            "route": "URRRRRRRRRD"
+          }
+        }
+      },
+      "response": {
+        "jsonrpc": "2.0",
+        "id": 6,
+        "result": {
+          "content": [
+            {
+              "type": "text",
+              "text": "{\n  \"epistemic_status\": \"VERIFIED\",\n  \"evidence_level\": \"differential_replay\",\n  \"formal_proof_checked\": false,\n  \"external_spec_pinned\": false,\n  \"source_lock_asserted\": false,\n  \"problem\": {\n    \"adapter\": \"heroes-of-sokoban-ascii-v1\",\n    \"part\": 1,\n    \"grid\": [\n      \"############\",\n      \"#..........#\",\n      \"#F........G#\",\n      \"#..........#\",\n      \"############\"\n    ],\n    \"goal\": \"heroes occupy exactly the goal cells\",\n    \"termination\": \"alive and first win on final key\",\n    \"cost\": \"number of UDLRA keys\"\n  },\n  \"instance_sha256\": \"07209976634ec922a19491b9d36d0be011e336f5d45ac52a0a2ef91da9534ecb\",\n  \"route_sha256\": \"083455c73cb02be5bc8afe1909eb39646adf908ca7d721bcf9eb8c0a2a792068\",\n  \"valid_winning_route\": true,\n  \"route_len\": 11,\n  \"route_sha256_12\": \"083455c73cb0\",\n  \"traj_fnv64\": \"9c14e7933dfe813d\",\n  \"trajectory_digest_match\": true,\n  \"alive\": true,\n  \"exact_win\": true,\n  \"premature_win\": false,\n  \"steps_executed\": 11,\n  \"engines_executed\": [\n    \"python_spec_oracle\",\n    \"python_flat_bitmask_oracle\",\n    \"cpp20_soko_engine\"\n  ],\n  \"engines_count\": 3,\n  \"dual_engine_checked\": true,\n  \"triple_oracle_checked\": true,\n  \"differential_match\": true,\n  \"checker_pins\": {\n    \"oracle_py_sha256\": \"e52a7056fd70335a2000964db670d48814306b9893f28335d6d73e66be309456\",\n    \"flat_oracle_py_sha256\": \"d47e37cf2aaf86a2a171f6ea296ddbd22db55a65bd7c93cdfb86777eb8001ecd\",\n    \"engine_bridge_py_sha256\": \"cbf1fa55aef999ca017d643adf19adecee9d1569837954c6fc6d9eabac6ed80a\",\n    \"evidence_py_sha256\": \"fa396dca155b29906121658737cb8c944583c8603f152a0eba6ba0c9ca0885dd\",\n    \"integrity_py_sha256\": \"d79a7f664a077dcc554d4840f6ff60f57579687125f86387ca1d18c874e35a19\",\n    \"cpp_soko_engine_src_sha256\": \"2fe1ec1723340ea6f34f7c3e4e44dfb916a16f94e6e854421f90ce28a5ec9e14\",\n    \"cpp_soko_engine_bin_sha256\": \"81fb82e5ca8306eb2da165fda011d59cee12548ac27848d10b9bfab54649a6eb\",\n    \"formal_kernel_py_sha256\": \"89f3ef2b172cb89dc21ddfa582aef416e8d4b3c7d426df24ca1c2c270aa9997f\"\n  },\n  \"checker_pins_ok\": true,\n  \"final_ascii\": \"############\\n#..........#\\n#.........F#\\n#..........#\\n############\",\n  \"route\": \"URRRRRRRRRD\",\n  \"room_id\": \"I-1\",\n  \"certificate_sha256\": \"4709dccca1fc85768ef8ac9cd26dc7b2355eb527d0aa1e91cd02025c8f183c55\"\n}"
+            }
+          ],
+          "structuredContent": {
+            "epistemic_status": "VERIFIED",
+            "evidence_level": "differential_replay",
+            "formal_proof_checked": false,
+            "external_spec_pinned": false,
+            "source_lock_asserted": false,
+            "problem": {
+              "adapter": "heroes-of-sokoban-ascii-v1",
+              "part": 1,
+              "grid": [
+                "############",
+                "#..........#",
+                "#F........G#",
+                "#..........#",
+                "############"
+              ],
+              "goal": "heroes occupy exactly the goal cells",
+              "termination": "alive and first win on final key",
+              "cost": "number of UDLRA keys"
+            },
+            "instance_sha256": "07209976634ec922a19491b9d36d0be011e336f5d45ac52a0a2ef91da9534ecb",
+            "route_sha256": "083455c73cb02be5bc8afe1909eb39646adf908ca7d721bcf9eb8c0a2a792068",
+            "valid_winning_route": true,
+            "route_len": 11,
+            "route_sha256_12": "083455c73cb0",
+            "traj_fnv64": "9c14e7933dfe813d",
+            "trajectory_digest_match": true,
+            "alive": true,
+            "exact_win": true,
+            "premature_win": false,
+            "steps_executed": 11,
+            "engines_executed": [
+              "python_spec_oracle",
+              "python_flat_bitmask_oracle",
+              "cpp20_soko_engine"
+            ],
+            "engines_count": 3,
+            "dual_engine_checked": true,
+            "triple_oracle_checked": true,
+            "differential_match": true,
+            "checker_pins": {
+              "oracle_py_sha256": "e52a7056fd70335a2000964db670d48814306b9893f28335d6d73e66be309456",
+              "flat_oracle_py_sha256": "d47e37cf2aaf86a2a171f6ea296ddbd22db55a65bd7c93cdfb86777eb8001ecd",
+              "engine_bridge_py_sha256": "cbf1fa55aef999ca017d643adf19adecee9d1569837954c6fc6d9eabac6ed80a",
+              "evidence_py_sha256": "fa396dca155b29906121658737cb8c944583c8603f152a0eba6ba0c9ca0885dd",
+              "integrity_py_sha256": "d79a7f664a077dcc554d4840f6ff60f57579687125f86387ca1d18c874e35a19",
+              "cpp_soko_engine_src_sha256": "2fe1ec1723340ea6f34f7c3e4e44dfb916a16f94e6e854421f90ce28a5ec9e14",
+              "cpp_soko_engine_bin_sha256": "81fb82e5ca8306eb2da165fda011d59cee12548ac27848d10b9bfab54649a6eb",
+              "formal_kernel_py_sha256": "89f3ef2b172cb89dc21ddfa582aef416e8d4b3c7d426df24ca1c2c270aa9997f"
+            },
+            "checker_pins_ok": true,
+            "final_ascii": "############\n#..........#\n#.........F#\n#..........#\n############",
+            "route": "URRRRRRRRRD",
+            "room_id": "I-1",
+            "certificate_sha256": "4709dccca1fc85768ef8ac9cd26dc7b2355eb527d0aa1e91cd02025c8f183c55"
+          },
+          "isError": false
+        }
+      },
+      "elapsed_seconds": 0.005458
+    },
+    {
+      "request": {
+        "jsonrpc": "2.0",
+        "id": 7,
+        "method": "tools/call",
+        "params": {
+          "name": "soko_optimize_route",
+          "arguments": {
+            "room_id": "I-1",
+            "seed_route": "URRRRRRRRRD",
+            "window_len": 14,
+            "beam_width": 2000,
+            "budget_sec": 4
+          }
+        }
+      },
+      "response": {
+        "jsonrpc": "2.0",
+        "id": 7,
+        "result": {
+          "content": [
+            {
+              "type": "text",
+              "text": "{\n  \"epistemic_status\": \"VERIFIED\",\n  \"backend\": \"cpp20_bounded_exact_bfs\",\n  \"initial_len\": 11,\n  \"best_len\": 9,\n  \"keys_saved\": 2,\n  \"improved\": true,\n  \"best_route\": \"RRRRRRRRR\",\n  \"best_route_sha256_12\": \"179f01ec4093\",\n  \"traj_fnv64\": \"5d9fa11a70f4e067\",\n  \"stages\": [\n    \"bounded_exact_bfs\"\n  ],\n  \"dual_oracle_verified\": true,\n  \"triple_oracle_checked\": true,\n  \"differential_match\": true,\n  \"checker_pins\": {\n    \"oracle_py_sha256\": \"e52a7056fd70335a2000964db670d48814306b9893f28335d6d73e66be309456\",\n    \"flat_oracle_py_sha256\": \"d47e37cf2aaf86a2a171f6ea296ddbd22db55a65bd7c93cdfb86777eb8001ecd\",\n    \"engine_bridge_py_sha256\": \"cbf1fa55aef999ca017d643adf19adecee9d1569837954c6fc6d9eabac6ed80a\",\n    \"evidence_py_sha256\": \"fa396dca155b29906121658737cb8c944583c8603f152a0eba6ba0c9ca0885dd\",\n    \"integrity_py_sha256\": \"d79a7f664a077dcc554d4840f6ff60f57579687125f86387ca1d18c874e35a19\",\n    \"cpp_soko_engine_src_sha256\": \"2fe1ec1723340ea6f34f7c3e4e44dfb916a16f94e6e854421f90ce28a5ec9e14\",\n    \"cpp_soko_engine_bin_sha256\": \"81fb82e5ca8306eb2da165fda011d59cee12548ac27848d10b9bfab54649a6eb\",\n    \"formal_kernel_py_sha256\": \"89f3ef2b172cb89dc21ddfa582aef416e8d4b3c7d426df24ca1c2c270aa9997f\"\n  },\n  \"verification\": {\n    \"epistemic_status\": \"VERIFIED\",\n    \"evidence_level\": \"differential_replay\",\n    \"formal_proof_checked\": false,\n    \"external_spec_pinned\": false,\n    \"source_lock_asserted\": false,\n    \"problem\": {\n      \"adapter\": \"heroes-of-sokoban-ascii-v1\",\n      \"part\": 1,\n      \"grid\": [\n        \"############\",\n        \"#..........#\",\n        \"#F........G#\",\n        \"#..........#\",\n        \"############\"\n      ],\n      \"goal\": \"heroes occupy exactly the goal cells\",\n      \"termination\": \"alive and first win on final key\",\n      \"cost\": \"number of UDLRA keys\"\n    },\n    \"instance_sha256\": \"07209976634ec922a19491b9d36d0be011e336f5d45ac52a0a2ef91da9534ecb\",\n    \"route_sha256\": \"179f01ec4093c32d4bb60aeab1a9c37c689eb43520b50e66a9cdd32115c9b2ae\",\n    \"valid_winning_route\": true,\n    \"route_len\": 9,\n    \"route_sha256_12\": \"179f01ec4093\",\n    \"traj_fnv64\": \"5d9fa11a70f4e067\",\n    \"trajectory_digest_match\": true,\n    \"alive\": true,\n    \"exact_win\": true,\n    \"premature_win\": false,\n    \"steps_executed\": 9,\n    \"engines_executed\": [\n      \"python_spec_oracle\",\n      \"python_flat_bitmask_oracle\",\n      \"cpp20_soko_engine\"\n    ],\n    \"engines_count\": 3,\n    \"dual_engine_checked\": true,\n    \"triple_oracle_checked\": true,\n    \"differential_match\": true,\n    \"checker_pins\": {\n      \"oracle_py_sha256\": \"e52a7056fd70335a2000964db670d48814306b9893f28335d6d73e66be309456\",\n      \"flat_oracle_py_sha256\": \"d47e37cf2aaf86a2a171f6ea296ddbd22db55a65bd7c93cdfb86777eb8001ecd\",\n      \"engine_bridge_py_sha256\": \"cbf1fa55aef999ca017d643adf19adecee9d1569837954c6fc6d9eabac6ed80a\",\n      \"evidence_py_sha256\": \"fa396dca155b29906121658737cb8c944583c8603f152a0eba6ba0c9ca0885dd\",\n      \"integrity_py_sha256\": \"d79a7f664a077dcc554d4840f6ff60f57579687125f86387ca1d18c874e35a19\",\n      \"cpp_soko_engine_src_sha256\": \"2fe1ec1723340ea6f34f7c3e4e44dfb916a16f94e6e854421f90ce28a5ec9e14\",\n      \"cpp_soko_engine_bin_sha256\": \"81fb82e5ca8306eb2da165fda011d59cee12548ac27848d10b9bfab54649a6eb\",\n      \"formal_kernel_py_sha256\": \"89f3ef2b172cb89dc21ddfa582aef416e8d4b3c7d426df24ca1c2c270aa9997f\"\n    },\n    \"checker_pins_ok\": true,\n    \"final_ascii\": \"############\\n#..........#\\n#.........F#\\n#..........#\\n############\",\n    \"route\": \"RRRRRRRRR\",\n    \"certificate_sha256\": \"146d75ef92472fd5675f90e54a9815b847d975012e38e50d5456448e1ae9bbf4\"\n  },\n  \"search\": {\n    \"best_route\": \"RRRRRRRRR\",\n    \"stages\": [\n      \"bounded_exact_bfs\"\n    ],\n    \"search_algorithm\": \"exact_bfs\",\n    \"termination_reason\": \"solution\",\n    \"completed_depth\": 8,\n    \"timed_out\": false,\n    \"state_limit_reached\": false,\n    \"states_seen\": 27,\n    \"nodes_expanded\": 25,\n    \"transitions_checked\": 124,\n    \"duplicates_pruned\": 97\n  },\n  \"room_id\": \"I-1\"\n}"
+            }
+          ],
+          "structuredContent": {
+            "epistemic_status": "VERIFIED",
+            "backend": "cpp20_bounded_exact_bfs",
+            "initial_len": 11,
+            "best_len": 9,
+            "keys_saved": 2,
+            "improved": true,
+            "best_route": "RRRRRRRRR",
+            "best_route_sha256_12": "179f01ec4093",
+            "traj_fnv64": "5d9fa11a70f4e067",
+            "stages": [
+              "bounded_exact_bfs"
+            ],
+            "dual_oracle_verified": true,
+            "triple_oracle_checked": true,
+            "differential_match": true,
+            "checker_pins": {
+              "oracle_py_sha256": "e52a7056fd70335a2000964db670d48814306b9893f28335d6d73e66be309456",
+              "flat_oracle_py_sha256": "d47e37cf2aaf86a2a171f6ea296ddbd22db55a65bd7c93cdfb86777eb8001ecd",
+              "engine_bridge_py_sha256": "cbf1fa55aef999ca017d643adf19adecee9d1569837954c6fc6d9eabac6ed80a",
+              "evidence_py_sha256": "fa396dca155b29906121658737cb8c944583c8603f152a0eba6ba0c9ca0885dd",
+              "integrity_py_sha256": "d79a7f664a077dcc554d4840f6ff60f57579687125f86387ca1d18c874e35a19",
+              "cpp_soko_engine_src_sha256": "2fe1ec1723340ea6f34f7c3e4e44dfb916a16f94e6e854421f90ce28a5ec9e14",
+              "cpp_soko_engine_bin_sha256": "81fb82e5ca8306eb2da165fda011d59cee12548ac27848d10b9bfab54649a6eb",
+              "formal_kernel_py_sha256": "89f3ef2b172cb89dc21ddfa582aef416e8d4b3c7d426df24ca1c2c270aa9997f"
+            },
+            "verification": {
+              "epistemic_status": "VERIFIED",
+              "evidence_level": "differential_replay",
+              "formal_proof_checked": false,
+              "external_spec_pinned": false,
+              "source_lock_asserted": false,
+              "problem": {
+                "adapter": "heroes-of-sokoban-ascii-v1",
+                "part": 1,
+                "grid": [
+                  "############",
+                  "#..........#",
+                  "#F........G#",
+                  "#..........#",
+                  "############"
+                ],
+                "goal": "heroes occupy exactly the goal cells",
+                "termination": "alive and first win on final key",
+                "cost": "number of UDLRA keys"
+              },
+              "instance_sha256": "07209976634ec922a19491b9d36d0be011e336f5d45ac52a0a2ef91da9534ecb",
+              "route_sha256": "179f01ec4093c32d4bb60aeab1a9c37c689eb43520b50e66a9cdd32115c9b2ae",
+              "valid_winning_route": true,
+              "route_len": 9,
+              "route_sha256_12": "179f01ec4093",
+              "traj_fnv64": "5d9fa11a70f4e067",
+              "trajectory_digest_match": true,
+              "alive": true,
+              "exact_win": true,
+              "premature_win": false,
+              "steps_executed": 9,
+              "engines_executed": [
+                "python_spec_oracle",
+                "python_flat_bitmask_oracle",
+                "cpp20_soko_engine"
+              ],
+              "engines_count": 3,
+              "dual_engine_checked": true,
+              "triple_oracle_checked": true,
+              "differential_match": true,
+              "checker_pins": {
+                "oracle_py_sha256": "e52a7056fd70335a2000964db670d48814306b9893f28335d6d73e66be309456",
+                "flat_oracle_py_sha256": "d47e37cf2aaf86a2a171f6ea296ddbd22db55a65bd7c93cdfb86777eb8001ecd",
+                "engine_bridge_py_sha256": "cbf1fa55aef999ca017d643adf19adecee9d1569837954c6fc6d9eabac6ed80a",
+                "evidence_py_sha256": "fa396dca155b29906121658737cb8c944583c8603f152a0eba6ba0c9ca0885dd",
+                "integrity_py_sha256": "d79a7f664a077dcc554d4840f6ff60f57579687125f86387ca1d18c874e35a19",
+                "cpp_soko_engine_src_sha256": "2fe1ec1723340ea6f34f7c3e4e44dfb916a16f94e6e854421f90ce28a5ec9e14",
+                "cpp_soko_engine_bin_sha256": "81fb82e5ca8306eb2da165fda011d59cee12548ac27848d10b9bfab54649a6eb",
+                "formal_kernel_py_sha256": "89f3ef2b172cb89dc21ddfa582aef416e8d4b3c7d426df24ca1c2c270aa9997f"
+              },
+              "checker_pins_ok": true,
+              "final_ascii": "############\n#..........#\n#.........F#\n#..........#\n############",
+              "route": "RRRRRRRRR",
+              "certificate_sha256": "146d75ef92472fd5675f90e54a9815b847d975012e38e50d5456448e1ae9bbf4"
+            },
+            "search": {
+              "best_route": "RRRRRRRRR",
+              "stages": [
+                "bounded_exact_bfs"
+              ],
+              "search_algorithm": "exact_bfs",
+              "termination_reason": "solution",
+              "completed_depth": 8,
+              "timed_out": false,
+              "state_limit_reached": false,
+              "states_seen": 27,
+              "nodes_expanded": 25,
+              "transitions_checked": 124,
+              "duplicates_pruned": 97
+            },
+            "room_id": "I-1"
+          },
+          "isError": false
+        }
+      },
+      "elapsed_seconds": 0.011197
+    },
+    {
+      "request": {
+        "jsonrpc": "2.0",
+        "id": 8,
+        "method": "tools/call",
+        "params": {
+          "name": "soko_verify_route",
+          "arguments": {
+            "room_id": "I-1",
+            "route": "RRRRRRRRR"
+          }
+        }
+      },
+      "response": {
+        "jsonrpc": "2.0",
+        "id": 8,
+        "result": {
+          "content": [
+            {
+              "type": "text",
+              "text": "{\n  \"epistemic_status\": \"VERIFIED\",\n  \"evidence_level\": \"differential_replay\",\n  \"formal_proof_checked\": false,\n  \"external_spec_pinned\": false,\n  \"source_lock_asserted\": false,\n  \"problem\": {\n    \"adapter\": \"heroes-of-sokoban-ascii-v1\",\n    \"part\": 1,\n    \"grid\": [\n      \"############\",\n      \"#..........#\",\n      \"#F........G#\",\n      \"#..........#\",\n      \"############\"\n    ],\n    \"goal\": \"heroes occupy exactly the goal cells\",\n    \"termination\": \"alive and first win on final key\",\n    \"cost\": \"number of UDLRA keys\"\n  },\n  \"instance_sha256\": \"07209976634ec922a19491b9d36d0be011e336f5d45ac52a0a2ef91da9534ecb\",\n  \"route_sha256\": \"179f01ec4093c32d4bb60aeab1a9c37c689eb43520b50e66a9cdd32115c9b2ae\",\n  \"valid_winning_route\": true,\n  \"route_len\": 9,\n  \"route_sha256_12\": \"179f01ec4093\",\n  \"traj_fnv64\": \"5d9fa11a70f4e067\",\n  \"trajectory_digest_match\": true,\n  \"alive\": true,\n  \"exact_win\": true,\n  \"premature_win\": false,\n  \"steps_executed\": 9,\n  \"engines_executed\": [\n    \"python_spec_oracle\",\n    \"python_flat_bitmask_oracle\",\n    \"cpp20_soko_engine\"\n  ],\n  \"engines_count\": 3,\n  \"dual_engine_checked\": true,\n  \"triple_oracle_checked\": true,\n  \"differential_match\": true,\n  \"checker_pins\": {\n    \"oracle_py_sha256\": \"e52a7056fd70335a2000964db670d48814306b9893f28335d6d73e66be309456\",\n    \"flat_oracle_py_sha256\": \"d47e37cf2aaf86a2a171f6ea296ddbd22db55a65bd7c93cdfb86777eb8001ecd\",\n    \"engine_bridge_py_sha256\": \"cbf1fa55aef999ca017d643adf19adecee9d1569837954c6fc6d9eabac6ed80a\",\n    \"evidence_py_sha256\": \"fa396dca155b29906121658737cb8c944583c8603f152a0eba6ba0c9ca0885dd\",\n    \"integrity_py_sha256\": \"d79a7f664a077dcc554d4840f6ff60f57579687125f86387ca1d18c874e35a19\",\n    \"cpp_soko_engine_src_sha256\": \"2fe1ec1723340ea6f34f7c3e4e44dfb916a16f94e6e854421f90ce28a5ec9e14\",\n    \"cpp_soko_engine_bin_sha256\": \"81fb82e5ca8306eb2da165fda011d59cee12548ac27848d10b9bfab54649a6eb\",\n    \"formal_kernel_py_sha256\": \"89f3ef2b172cb89dc21ddfa582aef416e8d4b3c7d426df24ca1c2c270aa9997f\"\n  },\n  \"checker_pins_ok\": true,\n  \"final_ascii\": \"############\\n#..........#\\n#.........F#\\n#..........#\\n############\",\n  \"route\": \"RRRRRRRRR\",\n  \"room_id\": \"I-1\",\n  \"certificate_sha256\": \"556fc623a65318df270ac56fb331a9e76e82d78247978a64a0c4e72d7c72ec62\"\n}"
+            }
+          ],
+          "structuredContent": {
+            "epistemic_status": "VERIFIED",
+            "evidence_level": "differential_replay",
+            "formal_proof_checked": false,
+            "external_spec_pinned": false,
+            "source_lock_asserted": false,
+            "problem": {
+              "adapter": "heroes-of-sokoban-ascii-v1",
+              "part": 1,
+              "grid": [
+                "############",
+                "#..........#",
+                "#F........G#",
+                "#..........#",
+                "############"
+              ],
+              "goal": "heroes occupy exactly the goal cells",
+              "termination": "alive and first win on final key",
+              "cost": "number of UDLRA keys"
+            },
+            "instance_sha256": "07209976634ec922a19491b9d36d0be011e336f5d45ac52a0a2ef91da9534ecb",
+            "route_sha256": "179f01ec4093c32d4bb60aeab1a9c37c689eb43520b50e66a9cdd32115c9b2ae",
+            "valid_winning_route": true,
+            "route_len": 9,
+            "route_sha256_12": "179f01ec4093",
+            "traj_fnv64": "5d9fa11a70f4e067",
+            "trajectory_digest_match": true,
+            "alive": true,
+            "exact_win": true,
+            "premature_win": false,
+            "steps_executed": 9,
+            "engines_executed": [
+              "python_spec_oracle",
+              "python_flat_bitmask_oracle",
+              "cpp20_soko_engine"
+            ],
+            "engines_count": 3,
+            "dual_engine_checked": true,
+            "triple_oracle_checked": true,
+            "differential_match": true,
+            "checker_pins": {
+              "oracle_py_sha256": "e52a7056fd70335a2000964db670d48814306b9893f28335d6d73e66be309456",
+              "flat_oracle_py_sha256": "d47e37cf2aaf86a2a171f6ea296ddbd22db55a65bd7c93cdfb86777eb8001ecd",
+              "engine_bridge_py_sha256": "cbf1fa55aef999ca017d643adf19adecee9d1569837954c6fc6d9eabac6ed80a",
+              "evidence_py_sha256": "fa396dca155b29906121658737cb8c944583c8603f152a0eba6ba0c9ca0885dd",
+              "integrity_py_sha256": "d79a7f664a077dcc554d4840f6ff60f57579687125f86387ca1d18c874e35a19",
+              "cpp_soko_engine_src_sha256": "2fe1ec1723340ea6f34f7c3e4e44dfb916a16f94e6e854421f90ce28a5ec9e14",
+              "cpp_soko_engine_bin_sha256": "81fb82e5ca8306eb2da165fda011d59cee12548ac27848d10b9bfab54649a6eb",
+              "formal_kernel_py_sha256": "89f3ef2b172cb89dc21ddfa582aef416e8d4b3c7d426df24ca1c2c270aa9997f"
+            },
+            "checker_pins_ok": true,
+            "final_ascii": "############\n#..........#\n#.........F#\n#..........#\n############",
+            "route": "RRRRRRRRR",
+            "room_id": "I-1",
+            "certificate_sha256": "556fc623a65318df270ac56fb331a9e76e82d78247978a64a0c4e72d7c72ec62"
+          },
+          "isError": false
+        }
+      },
+      "elapsed_seconds": 0.00352
+    },
+    {
+      "request": {
+        "jsonrpc": "2.0",
+        "id": 9,
+        "method": "tools/call",
+        "params": {
+          "name": "soko_solve_room",
+          "arguments": {
+            "room_id": "I-1",
+            "max_depth": 12,
+            "beam_width": 2000,
+            "budget_sec": 2
+          }
+        }
+      },
+      "response": {
+        "jsonrpc": "2.0",
+        "id": 9,
+        "result": {
+          "content": [
+            {
+              "type": "text",
+              "text": "{\n  \"epistemic_status\": \"VERIFIED\",\n  \"solved\": true,\n  \"route_len\": 9,\n  \"route\": \"RRRRRRRRR\",\n  \"route_sha256_12\": \"179f01ec4093\",\n  \"traj_fnv64\": \"5d9fa11a70f4e067\",\n  \"states_explored\": 25,\n  \"dual_oracle_verified\": true,\n  \"triple_oracle_checked\": true,\n  \"checker_pins\": {\n    \"oracle_py_sha256\": \"e52a7056fd70335a2000964db670d48814306b9893f28335d6d73e66be309456\",\n    \"flat_oracle_py_sha256\": \"d47e37cf2aaf86a2a171f6ea296ddbd22db55a65bd7c93cdfb86777eb8001ecd\",\n    \"engine_bridge_py_sha256\": \"cbf1fa55aef999ca017d643adf19adecee9d1569837954c6fc6d9eabac6ed80a\",\n    \"evidence_py_sha256\": \"fa396dca155b29906121658737cb8c944583c8603f152a0eba6ba0c9ca0885dd\",\n    \"integrity_py_sha256\": \"d79a7f664a077dcc554d4840f6ff60f57579687125f86387ca1d18c874e35a19\",\n    \"cpp_soko_engine_src_sha256\": \"2fe1ec1723340ea6f34f7c3e4e44dfb916a16f94e6e854421f90ce28a5ec9e14\",\n    \"cpp_soko_engine_bin_sha256\": \"81fb82e5ca8306eb2da165fda011d59cee12548ac27848d10b9bfab54649a6eb\",\n    \"formal_kernel_py_sha256\": \"89f3ef2b172cb89dc21ddfa582aef416e8d4b3c7d426df24ca1c2c270aa9997f\"\n  },\n  \"verification\": {\n    \"epistemic_status\": \"VERIFIED\",\n    \"evidence_level\": \"differential_replay\",\n    \"formal_proof_checked\": false,\n    \"external_spec_pinned\": false,\n    \"source_lock_asserted\": false,\n    \"problem\": {\n      \"adapter\": \"heroes-of-sokoban-ascii-v1\",\n      \"part\": 1,\n      \"grid\": [\n        \"############\",\n        \"#..........#\",\n        \"#F........G#\",\n        \"#..........#\",\n        \"############\"\n      ],\n      \"goal\": \"heroes occupy exactly the goal cells\",\n      \"termination\": \"alive and first win on final key\",\n      \"cost\": \"number of UDLRA keys\"\n    },\n    \"instance_sha256\": \"07209976634ec922a19491b9d36d0be011e336f5d45ac52a0a2ef91da9534ecb\",\n    \"route_sha256\": \"179f01ec4093c32d4bb60aeab1a9c37c689eb43520b50e66a9cdd32115c9b2ae\",\n    \"valid_winning_route\": true,\n    \"route_len\": 9,\n    \"route_sha256_12\": \"179f01ec4093\",\n    \"traj_fnv64\": \"5d9fa11a70f4e067\",\n    \"trajectory_digest_match\": true,\n    \"alive\": true,\n    \"exact_win\": true,\n    \"premature_win\": false,\n    \"steps_executed\": 9,\n    \"engines_executed\": [\n      \"python_spec_oracle\",\n      \"python_flat_bitmask_oracle\",\n      \"cpp20_soko_engine\"\n    ],\n    \"engines_count\": 3,\n    \"dual_engine_checked\": true,\n    \"triple_oracle_checked\": true,\n    \"differential_match\": true,\n    \"checker_pins\": {\n      \"oracle_py_sha256\": \"e52a7056fd70335a2000964db670d48814306b9893f28335d6d73e66be309456\",\n      \"flat_oracle_py_sha256\": \"d47e37cf2aaf86a2a171f6ea296ddbd22db55a65bd7c93cdfb86777eb8001ecd\",\n      \"engine_bridge_py_sha256\": \"cbf1fa55aef999ca017d643adf19adecee9d1569837954c6fc6d9eabac6ed80a\",\n      \"evidence_py_sha256\": \"fa396dca155b29906121658737cb8c944583c8603f152a0eba6ba0c9ca0885dd\",\n      \"integrity_py_sha256\": \"d79a7f664a077dcc554d4840f6ff60f57579687125f86387ca1d18c874e35a19\",\n      \"cpp_soko_engine_src_sha256\": \"2fe1ec1723340ea6f34f7c3e4e44dfb916a16f94e6e854421f90ce28a5ec9e14\",\n      \"cpp_soko_engine_bin_sha256\": \"81fb82e5ca8306eb2da165fda011d59cee12548ac27848d10b9bfab54649a6eb\",\n      \"formal_kernel_py_sha256\": \"89f3ef2b172cb89dc21ddfa582aef416e8d4b3c7d426df24ca1c2c270aa9997f\"\n    },\n    \"checker_pins_ok\": true,\n    \"final_ascii\": \"############\\n#..........#\\n#.........F#\\n#..........#\\n############\",\n    \"route\": \"RRRRRRRRR\",\n    \"certificate_sha256\": \"146d75ef92472fd5675f90e54a9815b847d975012e38e50d5456448e1ae9bbf4\"\n  },\n  \"search\": {\n    \"solved\": true,\n    \"route\": \"RRRRRRRRR\",\n    \"explored\": 25,\n    \"search_algorithm\": \"exact_bfs\",\n    \"termination_reason\": \"solution\",\n    \"completed_depth\": 8,\n    \"timed_out\": false,\n    \"state_limit_reached\": false,\n    \"states_seen\": 27,\n    \"nodes_expanded\": 25,\n    \"transitions_checked\": 124,\n    \"duplicates_pruned\": 97\n  },\n  \"room_id\": \"I-1\"\n}"
+            }
+          ],
+          "structuredContent": {
+            "epistemic_status": "VERIFIED",
+            "solved": true,
+            "route_len": 9,
+            "route": "RRRRRRRRR",
+            "route_sha256_12": "179f01ec4093",
+            "traj_fnv64": "5d9fa11a70f4e067",
+            "states_explored": 25,
+            "dual_oracle_verified": true,
+            "triple_oracle_checked": true,
+            "checker_pins": {
+              "oracle_py_sha256": "e52a7056fd70335a2000964db670d48814306b9893f28335d6d73e66be309456",
+              "flat_oracle_py_sha256": "d47e37cf2aaf86a2a171f6ea296ddbd22db55a65bd7c93cdfb86777eb8001ecd",
+              "engine_bridge_py_sha256": "cbf1fa55aef999ca017d643adf19adecee9d1569837954c6fc6d9eabac6ed80a",
+              "evidence_py_sha256": "fa396dca155b29906121658737cb8c944583c8603f152a0eba6ba0c9ca0885dd",
+              "integrity_py_sha256": "d79a7f664a077dcc554d4840f6ff60f57579687125f86387ca1d18c874e35a19",
+              "cpp_soko_engine_src_sha256": "2fe1ec1723340ea6f34f7c3e4e44dfb916a16f94e6e854421f90ce28a5ec9e14",
+              "cpp_soko_engine_bin_sha256": "81fb82e5ca8306eb2da165fda011d59cee12548ac27848d10b9bfab54649a6eb",
+              "formal_kernel_py_sha256": "89f3ef2b172cb89dc21ddfa582aef416e8d4b3c7d426df24ca1c2c270aa9997f"
+            },
+            "verification": {
+              "epistemic_status": "VERIFIED",
+              "evidence_level": "differential_replay",
+              "formal_proof_checked": false,
+              "external_spec_pinned": false,
+              "source_lock_asserted": false,
+              "problem": {
+                "adapter": "heroes-of-sokoban-ascii-v1",
+                "part": 1,
+                "grid": [
+                  "############",
+                  "#..........#",
+                  "#F........G#",
+                  "#..........#",
+                  "############"
+                ],
+                "goal": "heroes occupy exactly the goal cells",
+                "termination": "alive and first win on final key",
+                "cost": "number of UDLRA keys"
+              },
+              "instance_sha256": "07209976634ec922a19491b9d36d0be011e336f5d45ac52a0a2ef91da9534ecb",
+              "route_sha256": "179f01ec4093c32d4bb60aeab1a9c37c689eb43520b50e66a9cdd32115c9b2ae",
+              "valid_winning_route": true,
+              "route_len": 9,
+              "route_sha256_12": "179f01ec4093",
+              "traj_fnv64": "5d9fa11a70f4e067",
+              "trajectory_digest_match": true,
+              "alive": true,
+              "exact_win": true,
+              "premature_win": false,
+              "steps_executed": 9,
+              "engines_executed": [
+                "python_spec_oracle",
+                "python_flat_bitmask_oracle",
+                "cpp20_soko_engine"
+              ],
+              "engines_count": 3,
+              "dual_engine_checked": true,
+              "triple_oracle_checked": true,
+              "differential_match": true,
+              "checker_pins": {
+                "oracle_py_sha256": "e52a7056fd70335a2000964db670d48814306b9893f28335d6d73e66be309456",
+                "flat_oracle_py_sha256": "d47e37cf2aaf86a2a171f6ea296ddbd22db55a65bd7c93cdfb86777eb8001ecd",
+                "engine_bridge_py_sha256": "cbf1fa55aef999ca017d643adf19adecee9d1569837954c6fc6d9eabac6ed80a",
+                "evidence_py_sha256": "fa396dca155b29906121658737cb8c944583c8603f152a0eba6ba0c9ca0885dd",
+                "integrity_py_sha256": "d79a7f664a077dcc554d4840f6ff60f57579687125f86387ca1d18c874e35a19",
+                "cpp_soko_engine_src_sha256": "2fe1ec1723340ea6f34f7c3e4e44dfb916a16f94e6e854421f90ce28a5ec9e14",
+                "cpp_soko_engine_bin_sha256": "81fb82e5ca8306eb2da165fda011d59cee12548ac27848d10b9bfab54649a6eb",
+                "formal_kernel_py_sha256": "89f3ef2b172cb89dc21ddfa582aef416e8d4b3c7d426df24ca1c2c270aa9997f"
+              },
+              "checker_pins_ok": true,
+              "final_ascii": "############\n#..........#\n#.........F#\n#..........#\n############",
+              "route": "RRRRRRRRR",
+              "certificate_sha256": "146d75ef92472fd5675f90e54a9815b847d975012e38e50d5456448e1ae9bbf4"
+            },
+            "search": {
+              "solved": true,
+              "route": "RRRRRRRRR",
+              "explored": 25,
+              "search_algorithm": "exact_bfs",
+              "termination_reason": "solution",
+              "completed_depth": 8,
+              "timed_out": false,
+              "state_limit_reached": false,
+              "states_seen": 27,
+              "nodes_expanded": 25,
+              "transitions_checked": 124,
+              "duplicates_pruned": 97
+            },
+            "room_id": "I-1"
+          },
+          "isError": false
+        }
+      },
+      "elapsed_seconds": 0.006043
+    },
+    {
+      "request": {
+        "jsonrpc": "2.0",
+        "id": 10,
+        "method": "tools/call",
+        "params": {
+          "name": "soko_verify_route",
+          "arguments": {
+            "room_id": "I-1",
+            "route": "RRRRRRRRR"
+          }
+        }
+      },
+      "response": {
+        "jsonrpc": "2.0",
+        "id": 10,
+        "result": {
+          "content": [
+            {
+              "type": "text",
+              "text": "{\n  \"epistemic_status\": \"VERIFIED\",\n  \"evidence_level\": \"differential_replay\",\n  \"formal_proof_checked\": false,\n  \"external_spec_pinned\": false,\n  \"source_lock_asserted\": false,\n  \"problem\": {\n    \"adapter\": \"heroes-of-sokoban-ascii-v1\",\n    \"part\": 1,\n    \"grid\": [\n      \"############\",\n      \"#..........#\",\n      \"#F........G#\",\n      \"#..........#\",\n      \"############\"\n    ],\n    \"goal\": \"heroes occupy exactly the goal cells\",\n    \"termination\": \"alive and first win on final key\",\n    \"cost\": \"number of UDLRA keys\"\n  },\n  \"instance_sha256\": \"07209976634ec922a19491b9d36d0be011e336f5d45ac52a0a2ef91da9534ecb\",\n  \"route_sha256\": \"179f01ec4093c32d4bb60aeab1a9c37c689eb43520b50e66a9cdd32115c9b2ae\",\n  \"valid_winning_route\": true,\n  \"route_len\": 9,\n  \"route_sha256_12\": \"179f01ec4093\",\n  \"traj_fnv64\": \"5d9fa11a70f4e067\",\n  \"trajectory_digest_match\": true,\n  \"alive\": true,\n  \"exact_win\": true,\n  \"premature_win\": false,\n  \"steps_executed\": 9,\n  \"engines_executed\": [\n    \"python_spec_oracle\",\n    \"python_flat_bitmask_oracle\",\n    \"cpp20_soko_engine\"\n  ],\n  \"engines_count\": 3,\n  \"dual_engine_checked\": true,\n  \"triple_oracle_checked\": true,\n  \"differential_match\": true,\n  \"checker_pins\": {\n    \"oracle_py_sha256\": \"e52a7056fd70335a2000964db670d48814306b9893f28335d6d73e66be309456\",\n    \"flat_oracle_py_sha256\": \"d47e37cf2aaf86a2a171f6ea296ddbd22db55a65bd7c93cdfb86777eb8001ecd\",\n    \"engine_bridge_py_sha256\": \"cbf1fa55aef999ca017d643adf19adecee9d1569837954c6fc6d9eabac6ed80a\",\n    \"evidence_py_sha256\": \"fa396dca155b29906121658737cb8c944583c8603f152a0eba6ba0c9ca0885dd\",\n    \"integrity_py_sha256\": \"d79a7f664a077dcc554d4840f6ff60f57579687125f86387ca1d18c874e35a19\",\n    \"cpp_soko_engine_src_sha256\": \"2fe1ec1723340ea6f34f7c3e4e44dfb916a16f94e6e854421f90ce28a5ec9e14\",\n    \"cpp_soko_engine_bin_sha256\": \"81fb82e5ca8306eb2da165fda011d59cee12548ac27848d10b9bfab54649a6eb\",\n    \"formal_kernel_py_sha256\": \"89f3ef2b172cb89dc21ddfa582aef416e8d4b3c7d426df24ca1c2c270aa9997f\"\n  },\n  \"checker_pins_ok\": true,\n  \"final_ascii\": \"############\\n#..........#\\n#.........F#\\n#..........#\\n############\",\n  \"route\": \"RRRRRRRRR\",\n  \"room_id\": \"I-1\",\n  \"certificate_sha256\": \"556fc623a65318df270ac56fb331a9e76e82d78247978a64a0c4e72d7c72ec62\"\n}"
+            }
+          ],
+          "structuredContent": {
+            "epistemic_status": "VERIFIED",
+            "evidence_level": "differential_replay",
+            "formal_proof_checked": false,
+            "external_spec_pinned": false,
+            "source_lock_asserted": false,
+            "problem": {
+              "adapter": "heroes-of-sokoban-ascii-v1",
+              "part": 1,
+              "grid": [
+                "############",
+                "#..........#",
+                "#F........G#",
+                "#..........#",
+                "############"
+              ],
+              "goal": "heroes occupy exactly the goal cells",
+              "termination": "alive and first win on final key",
+              "cost": "number of UDLRA keys"
+            },
+            "instance_sha256": "07209976634ec922a19491b9d36d0be011e336f5d45ac52a0a2ef91da9534ecb",
+            "route_sha256": "179f01ec4093c32d4bb60aeab1a9c37c689eb43520b50e66a9cdd32115c9b2ae",
+            "valid_winning_route": true,
+            "route_len": 9,
+            "route_sha256_12": "179f01ec4093",
+            "traj_fnv64": "5d9fa11a70f4e067",
+            "trajectory_digest_match": true,
+            "alive": true,
+            "exact_win": true,
+            "premature_win": false,
+            "steps_executed": 9,
+            "engines_executed": [
+              "python_spec_oracle",
+              "python_flat_bitmask_oracle",
+              "cpp20_soko_engine"
+            ],
+            "engines_count": 3,
+            "dual_engine_checked": true,
+            "triple_oracle_checked": true,
+            "differential_match": true,
+            "checker_pins": {
+              "oracle_py_sha256": "e52a7056fd70335a2000964db670d48814306b9893f28335d6d73e66be309456",
+              "flat_oracle_py_sha256": "d47e37cf2aaf86a2a171f6ea296ddbd22db55a65bd7c93cdfb86777eb8001ecd",
+              "engine_bridge_py_sha256": "cbf1fa55aef999ca017d643adf19adecee9d1569837954c6fc6d9eabac6ed80a",
+              "evidence_py_sha256": "fa396dca155b29906121658737cb8c944583c8603f152a0eba6ba0c9ca0885dd",
+              "integrity_py_sha256": "d79a7f664a077dcc554d4840f6ff60f57579687125f86387ca1d18c874e35a19",
+              "cpp_soko_engine_src_sha256": "2fe1ec1723340ea6f34f7c3e4e44dfb916a16f94e6e854421f90ce28a5ec9e14",
+              "cpp_soko_engine_bin_sha256": "81fb82e5ca8306eb2da165fda011d59cee12548ac27848d10b9bfab54649a6eb",
+              "formal_kernel_py_sha256": "89f3ef2b172cb89dc21ddfa582aef416e8d4b3c7d426df24ca1c2c270aa9997f"
+            },
+            "checker_pins_ok": true,
+            "final_ascii": "############\n#..........#\n#.........F#\n#..........#\n############",
+            "route": "RRRRRRRRR",
+            "room_id": "I-1",
+            "certificate_sha256": "556fc623a65318df270ac56fb331a9e76e82d78247978a64a0c4e72d7c72ec62"
+          },
+          "isError": false
+        }
+      },
+      "elapsed_seconds": 0.003766
+    },
+    {
+      "request": {
+        "jsonrpc": "2.0",
+        "id": 11,
+        "method": "tools/call",
+        "params": {
+          "name": "soko_optimize_route",
+          "arguments": {
+            "room_id": "III-14",
+            "window_len": 14,
+            "beam_width": 2000,
+            "budget_sec": 4
+          }
+        }
+      },
+      "response": {
+        "jsonrpc": "2.0",
+        "id": 11,
+        "result": {
+          "content": [
+            {
+              "type": "text",
+              "text": "{\n  \"epistemic_status\": \"VERIFIED\",\n  \"backend\": \"cpp20_bounded_exact_bfs\",\n  \"initial_len\": 48,\n  \"best_len\": 48,\n  \"keys_saved\": 0,\n  \"improved\": false,\n  \"best_route\": \"LLULULULRURURURURUAUDRRDDAUARRDLRAULDLDRARURDUUR\",\n  \"best_route_sha256_12\": \"cd934d25a629\",\n  \"traj_fnv64\": \"177291abef984a94\",\n  \"stages\": [\n    \"bounded_exact_bfs\"\n  ],\n  \"dual_oracle_verified\": true,\n  \"triple_oracle_checked\": true,\n  \"differential_match\": true,\n  \"checker_pins\": {\n    \"oracle_py_sha256\": \"e52a7056fd70335a2000964db670d48814306b9893f28335d6d73e66be309456\",\n    \"flat_oracle_py_sha256\": \"d47e37cf2aaf86a2a171f6ea296ddbd22db55a65bd7c93cdfb86777eb8001ecd\",\n    \"engine_bridge_py_sha256\": \"cbf1fa55aef999ca017d643adf19adecee9d1569837954c6fc6d9eabac6ed80a\",\n    \"evidence_py_sha256\": \"fa396dca155b29906121658737cb8c944583c8603f152a0eba6ba0c9ca0885dd\",\n    \"integrity_py_sha256\": \"d79a7f664a077dcc554d4840f6ff60f57579687125f86387ca1d18c874e35a19\",\n    \"cpp_soko_engine_src_sha256\": \"2fe1ec1723340ea6f34f7c3e4e44dfb916a16f94e6e854421f90ce28a5ec9e14\",\n    \"cpp_soko_engine_bin_sha256\": \"81fb82e5ca8306eb2da165fda011d59cee12548ac27848d10b9bfab54649a6eb\",\n    \"formal_kernel_py_sha256\": \"89f3ef2b172cb89dc21ddfa582aef416e8d4b3c7d426df24ca1c2c270aa9997f\"\n  },\n  \"verification\": {\n    \"epistemic_status\": \"VERIFIED\",\n    \"evidence_level\": \"differential_replay\",\n    \"formal_proof_checked\": false,\n    \"external_spec_pinned\": false,\n    \"source_lock_asserted\": false,\n    \"problem\": {\n      \"adapter\": \"heroes-of-sokoban-ascii-v1\",\n      \"part\": 3,\n      \"grid\": [\n        \"##############\",\n        \"#............#\",\n        \"#.5.}}}.]]]]]#\",\n        \"#...}}}.]G.G]#\",\n        \"#.D.}}}.]]]]]#\",\n        \"#............#\",\n        \"##############\"\n      ],\n      \"goal\": \"heroes occupy exactly the goal cells\",\n      \"termination\": \"alive and first win on final key\",\n      \"cost\": \"number of UDLRA keys\"\n    },\n    \"instance_sha256\": \"4d2f2213a78fa712fad9d47563ad685ee14fb4ce7ba273596c430c239d85bebe\",\n    \"route_sha256\": \"cd934d25a629be95f1e0be283bdbe7a419e76b58f604e7628d2ad1ce8fc33083\",\n    \"valid_winning_route\": true,\n    \"route_len\": 48,\n    \"route_sha256_12\": \"cd934d25a629\",\n    \"traj_fnv64\": \"177291abef984a94\",\n    \"trajectory_digest_match\": true,\n    \"alive\": true,\n    \"exact_win\": true,\n    \"premature_win\": false,\n    \"steps_executed\": 48,\n    \"engines_executed\": [\n      \"python_spec_oracle\",\n      \"python_flat_bitmask_oracle\",\n      \"cpp20_soko_engine\"\n    ],\n    \"engines_count\": 3,\n    \"dual_engine_checked\": true,\n    \"triple_oracle_checked\": true,\n    \"differential_match\": true,\n    \"checker_pins\": {\n      \"oracle_py_sha256\": \"e52a7056fd70335a2000964db670d48814306b9893f28335d6d73e66be309456\",\n      \"flat_oracle_py_sha256\": \"d47e37cf2aaf86a2a171f6ea296ddbd22db55a65bd7c93cdfb86777eb8001ecd\",\n      \"engine_bridge_py_sha256\": \"cbf1fa55aef999ca017d643adf19adecee9d1569837954c6fc6d9eabac6ed80a\",\n      \"evidence_py_sha256\": \"fa396dca155b29906121658737cb8c944583c8603f152a0eba6ba0c9ca0885dd\",\n      \"integrity_py_sha256\": \"d79a7f664a077dcc554d4840f6ff60f57579687125f86387ca1d18c874e35a19\",\n      \"cpp_soko_engine_src_sha256\": \"2fe1ec1723340ea6f34f7c3e4e44dfb916a16f94e6e854421f90ce28a5ec9e14\",\n      \"cpp_soko_engine_bin_sha256\": \"81fb82e5ca8306eb2da165fda011d59cee12548ac27848d10b9bfab54649a6eb\",\n      \"formal_kernel_py_sha256\": \"89f3ef2b172cb89dc21ddfa582aef416e8d4b3c7d426df24ca1c2c270aa9997f\"\n    },\n    \"checker_pins_ok\": true,\n    \"final_ascii\": \"##.....#######\\n.............#\\n....**#......#\\n....**#..B.6.#\\n....**#......#\\n#............#\\n##############\",\n    \"route\": \"LLULULULRURURURURUAUDRRDDAUARRDLRAULDLDRARURDUUR\",\n    \"certificate_sha256\": \"c1fccd0ed53dfef6665b805a9a8d911c0a946b6944ca2a276a405682dce71344\"\n  },\n  \"search\": {\n    \"best_route\": \"LLULULULRURURURURUAUDRRDDAUARRDLRAULDLDRARURDUUR\",\n    \"stages\": [\n      \"bounded_exact_bfs\"\n    ],\n    \"search_algorithm\": \"exact_bfs\",\n    \"termination_reason\": \"state_limit\",\n    \"completed_depth\": 6,\n    \"timed_out\": false,\n    \"state_limit_reached\": true,\n    \"states_seen\": 2000,\n    \"nodes_expanded\": 837,\n    \"transitions_checked\": 4183,\n    \"duplicates_pruned\": 2183\n  },\n  \"room_id\": \"III-14\"\n}"
+            }
+          ],
+          "structuredContent": {
+            "epistemic_status": "VERIFIED",
+            "backend": "cpp20_bounded_exact_bfs",
+            "initial_len": 48,
+            "best_len": 48,
+            "keys_saved": 0,
+            "improved": false,
+            "best_route": "LLULULULRURURURURUAUDRRDDAUARRDLRAULDLDRARURDUUR",
+            "best_route_sha256_12": "cd934d25a629",
+            "traj_fnv64": "177291abef984a94",
+            "stages": [
+              "bounded_exact_bfs"
+            ],
+            "dual_oracle_verified": true,
+            "triple_oracle_checked": true,
+            "differential_match": true,
+            "checker_pins": {
+              "oracle_py_sha256": "e52a7056fd70335a2000964db670d48814306b9893f28335d6d73e66be309456",
+              "flat_oracle_py_sha256": "d47e37cf2aaf86a2a171f6ea296ddbd22db55a65bd7c93cdfb86777eb8001ecd",
+              "engine_bridge_py_sha256": "cbf1fa55aef999ca017d643adf19adecee9d1569837954c6fc6d9eabac6ed80a",
+              "evidence_py_sha256": "fa396dca155b29906121658737cb8c944583c8603f152a0eba6ba0c9ca0885dd",
+              "integrity_py_sha256": "d79a7f664a077dcc554d4840f6ff60f57579687125f86387ca1d18c874e35a19",
+              "cpp_soko_engine_src_sha256": "2fe1ec1723340ea6f34f7c3e4e44dfb916a16f94e6e854421f90ce28a5ec9e14",
+              "cpp_soko_engine_bin_sha256": "81fb82e5ca8306eb2da165fda011d59cee12548ac27848d10b9bfab54649a6eb",
+              "formal_kernel_py_sha256": "89f3ef2b172cb89dc21ddfa582aef416e8d4b3c7d426df24ca1c2c270aa9997f"
+            },
+            "verification": {
+              "epistemic_status": "VERIFIED",
+              "evidence_level": "differential_replay",
+              "formal_proof_checked": false,
+              "external_spec_pinned": false,
+              "source_lock_asserted": false,
+              "problem": {
+                "adapter": "heroes-of-sokoban-ascii-v1",
+                "part": 3,
+                "grid": [
+                  "##############",
+                  "#............#",
+                  "#.5.}}}.]]]]]#",
+                  "#...}}}.]G.G]#",
+                  "#.D.}}}.]]]]]#",
+                  "#............#",
+                  "##############"
+                ],
+                "goal": "heroes occupy exactly the goal cells",
+                "termination": "alive and first win on final key",
+                "cost": "number of UDLRA keys"
+              },
+              "instance_sha256": "4d2f2213a78fa712fad9d47563ad685ee14fb4ce7ba273596c430c239d85bebe",
+              "route_sha256": "cd934d25a629be95f1e0be283bdbe7a419e76b58f604e7628d2ad1ce8fc33083",
+              "valid_winning_route": true,
+              "route_len": 48,
+              "route_sha256_12": "cd934d25a629",
+              "traj_fnv64": "177291abef984a94",
+              "trajectory_digest_match": true,
+              "alive": true,
+              "exact_win": true,
+              "premature_win": false,
+              "steps_executed": 48,
+              "engines_executed": [
+                "python_spec_oracle",
+                "python_flat_bitmask_oracle",
+                "cpp20_soko_engine"
+              ],
+              "engines_count": 3,
+              "dual_engine_checked": true,
+              "triple_oracle_checked": true,
+              "differential_match": true,
+              "checker_pins": {
+                "oracle_py_sha256": "e52a7056fd70335a2000964db670d48814306b9893f28335d6d73e66be309456",
+                "flat_oracle_py_sha256": "d47e37cf2aaf86a2a171f6ea296ddbd22db55a65bd7c93cdfb86777eb8001ecd",
+                "engine_bridge_py_sha256": "cbf1fa55aef999ca017d643adf19adecee9d1569837954c6fc6d9eabac6ed80a",
+                "evidence_py_sha256": "fa396dca155b29906121658737cb8c944583c8603f152a0eba6ba0c9ca0885dd",
+                "integrity_py_sha256": "d79a7f664a077dcc554d4840f6ff60f57579687125f86387ca1d18c874e35a19",
+                "cpp_soko_engine_src_sha256": "2fe1ec1723340ea6f34f7c3e4e44dfb916a16f94e6e854421f90ce28a5ec9e14",
+                "cpp_soko_engine_bin_sha256": "81fb82e5ca8306eb2da165fda011d59cee12548ac27848d10b9bfab54649a6eb",
+                "formal_kernel_py_sha256": "89f3ef2b172cb89dc21ddfa582aef416e8d4b3c7d426df24ca1c2c270aa9997f"
+              },
+              "checker_pins_ok": true,
+              "final_ascii": "##.....#######\n.............#\n....**#......#\n....**#..B.6.#\n....**#......#\n#............#\n##############",
+              "route": "LLULULULRURURURURUAUDRRDDAUARRDLRAULDLDRARURDUUR",
+              "certificate_sha256": "c1fccd0ed53dfef6665b805a9a8d911c0a946b6944ca2a276a405682dce71344"
+            },
+            "search": {
+              "best_route": "LLULULULRURURURURUAUDRRDDAUARRDLRAULDLDRARURDUUR",
+              "stages": [
+                "bounded_exact_bfs"
+              ],
+              "search_algorithm": "exact_bfs",
+              "termination_reason": "state_limit",
+              "completed_depth": 6,
+              "timed_out": false,
+              "state_limit_reached": true,
+              "states_seen": 2000,
+              "nodes_expanded": 837,
+              "transitions_checked": 4183,
+              "duplicates_pruned": 2183
+            },
+            "room_id": "III-14"
+          },
+          "isError": false
+        }
+      },
+      "elapsed_seconds": 0.05618
+    },
+    {
+      "request": {
+        "jsonrpc": "2.0",
+        "id": 12,
+        "method": "tools/call",
+        "params": {
+          "name": "soko_verify_route",
+          "arguments": {
+            "room_id": "III-14",
+            "route": "LLULULULRURURURURUAUDRRDDAUARRDLRAULDLDRARURDUUR"
+          }
+        }
+      },
+      "response": {
+        "jsonrpc": "2.0",
+        "id": 12,
+        "result": {
+          "content": [
+            {
+              "type": "text",
+              "text": "{\n  \"epistemic_status\": \"VERIFIED\",\n  \"evidence_level\": \"differential_replay\",\n  \"formal_proof_checked\": false,\n  \"external_spec_pinned\": false,\n  \"source_lock_asserted\": false,\n  \"problem\": {\n    \"adapter\": \"heroes-of-sokoban-ascii-v1\",\n    \"part\": 3,\n    \"grid\": [\n      \"##############\",\n      \"#............#\",\n      \"#.5.}}}.]]]]]#\",\n      \"#...}}}.]G.G]#\",\n      \"#.D.}}}.]]]]]#\",\n      \"#............#\",\n      \"##############\"\n    ],\n    \"goal\": \"heroes occupy exactly the goal cells\",\n    \"termination\": \"alive and first win on final key\",\n    \"cost\": \"number of UDLRA keys\"\n  },\n  \"instance_sha256\": \"4d2f2213a78fa712fad9d47563ad685ee14fb4ce7ba273596c430c239d85bebe\",\n  \"route_sha256\": \"cd934d25a629be95f1e0be283bdbe7a419e76b58f604e7628d2ad1ce8fc33083\",\n  \"valid_winning_route\": true,\n  \"route_len\": 48,\n  \"route_sha256_12\": \"cd934d25a629\",\n  \"traj_fnv64\": \"177291abef984a94\",\n  \"trajectory_digest_match\": true,\n  \"alive\": true,\n  \"exact_win\": true,\n  \"premature_win\": false,\n  \"steps_executed\": 48,\n  \"engines_executed\": [\n    \"python_spec_oracle\",\n    \"python_flat_bitmask_oracle\",\n    \"cpp20_soko_engine\"\n  ],\n  \"engines_count\": 3,\n  \"dual_engine_checked\": true,\n  \"triple_oracle_checked\": true,\n  \"differential_match\": true,\n  \"checker_pins\": {\n    \"oracle_py_sha256\": \"e52a7056fd70335a2000964db670d48814306b9893f28335d6d73e66be309456\",\n    \"flat_oracle_py_sha256\": \"d47e37cf2aaf86a2a171f6ea296ddbd22db55a65bd7c93cdfb86777eb8001ecd\",\n    \"engine_bridge_py_sha256\": \"cbf1fa55aef999ca017d643adf19adecee9d1569837954c6fc6d9eabac6ed80a\",\n    \"evidence_py_sha256\": \"fa396dca155b29906121658737cb8c944583c8603f152a0eba6ba0c9ca0885dd\",\n    \"integrity_py_sha256\": \"d79a7f664a077dcc554d4840f6ff60f57579687125f86387ca1d18c874e35a19\",\n    \"cpp_soko_engine_src_sha256\": \"2fe1ec1723340ea6f34f7c3e4e44dfb916a16f94e6e854421f90ce28a5ec9e14\",\n    \"cpp_soko_engine_bin_sha256\": \"81fb82e5ca8306eb2da165fda011d59cee12548ac27848d10b9bfab54649a6eb\",\n    \"formal_kernel_py_sha256\": \"89f3ef2b172cb89dc21ddfa582aef416e8d4b3c7d426df24ca1c2c270aa9997f\"\n  },\n  \"checker_pins_ok\": true,\n  \"final_ascii\": \"##.....#######\\n.............#\\n....**#......#\\n....**#..B.6.#\\n....**#......#\\n#............#\\n##############\",\n  \"route\": \"LLULULULRURURURURUAUDRRDDAUARRDLRAULDLDRARURDUUR\",\n  \"room_id\": \"III-14\",\n  \"certificate_sha256\": \"120059c4e9b9971033a5faa9e8fd4df019c14ffd3f1a2aca41308e62d6be56d7\"\n}"
+            }
+          ],
+          "structuredContent": {
+            "epistemic_status": "VERIFIED",
+            "evidence_level": "differential_replay",
+            "formal_proof_checked": false,
+            "external_spec_pinned": false,
+            "source_lock_asserted": false,
+            "problem": {
+              "adapter": "heroes-of-sokoban-ascii-v1",
+              "part": 3,
+              "grid": [
+                "##############",
+                "#............#",
+                "#.5.}}}.]]]]]#",
+                "#...}}}.]G.G]#",
+                "#.D.}}}.]]]]]#",
+                "#............#",
+                "##############"
+              ],
+              "goal": "heroes occupy exactly the goal cells",
+              "termination": "alive and first win on final key",
+              "cost": "number of UDLRA keys"
+            },
+            "instance_sha256": "4d2f2213a78fa712fad9d47563ad685ee14fb4ce7ba273596c430c239d85bebe",
+            "route_sha256": "cd934d25a629be95f1e0be283bdbe7a419e76b58f604e7628d2ad1ce8fc33083",
+            "valid_winning_route": true,
+            "route_len": 48,
+            "route_sha256_12": "cd934d25a629",
+            "traj_fnv64": "177291abef984a94",
+            "trajectory_digest_match": true,
+            "alive": true,
+            "exact_win": true,
+            "premature_win": false,
+            "steps_executed": 48,
+            "engines_executed": [
+              "python_spec_oracle",
+              "python_flat_bitmask_oracle",
+              "cpp20_soko_engine"
+            ],
+            "engines_count": 3,
+            "dual_engine_checked": true,
+            "triple_oracle_checked": true,
+            "differential_match": true,
+            "checker_pins": {
+              "oracle_py_sha256": "e52a7056fd70335a2000964db670d48814306b9893f28335d6d73e66be309456",
+              "flat_oracle_py_sha256": "d47e37cf2aaf86a2a171f6ea296ddbd22db55a65bd7c93cdfb86777eb8001ecd",
+              "engine_bridge_py_sha256": "cbf1fa55aef999ca017d643adf19adecee9d1569837954c6fc6d9eabac6ed80a",
+              "evidence_py_sha256": "fa396dca155b29906121658737cb8c944583c8603f152a0eba6ba0c9ca0885dd",
+              "integrity_py_sha256": "d79a7f664a077dcc554d4840f6ff60f57579687125f86387ca1d18c874e35a19",
+              "cpp_soko_engine_src_sha256": "2fe1ec1723340ea6f34f7c3e4e44dfb916a16f94e6e854421f90ce28a5ec9e14",
+              "cpp_soko_engine_bin_sha256": "81fb82e5ca8306eb2da165fda011d59cee12548ac27848d10b9bfab54649a6eb",
+              "formal_kernel_py_sha256": "89f3ef2b172cb89dc21ddfa582aef416e8d4b3c7d426df24ca1c2c270aa9997f"
+            },
+            "checker_pins_ok": true,
+            "final_ascii": "##.....#######\n.............#\n....**#......#\n....**#..B.6.#\n....**#......#\n#............#\n##############",
+            "route": "LLULULULRURURURURUAUDRRDDAUARRDLRAULDLDRARURDUUR",
+            "room_id": "III-14",
+            "certificate_sha256": "120059c4e9b9971033a5faa9e8fd4df019c14ffd3f1a2aca41308e62d6be56d7"
+          },
+          "isError": false
+        }
+      },
+      "elapsed_seconds": 0.010249
+    },
+    {
+      "request": {
+        "jsonrpc": "2.0",
+        "id": 13,
+        "method": "tools/call",
+        "params": {
+          "name": "soko_prove_floor",
+          "arguments": {
+            "room_id": "III-14",
+            "max_bound": 48,
+            "budget_sec": 2
+          }
+        }
+      },
+      "response": {
+        "jsonrpc": "2.0",
+        "id": 13,
+        "result": {
+          "content": [
+            {
+              "type": "text",
+              "text": "{\n  \"epistemic_status\": \"EXHAUSTIVE_LOWER_BOUND\",\n  \"proven_floor\": 12,\n  \"reported_floor\": 12,\n  \"exact_optimum_reached\": false,\n  \"evidence_level\": \"bounded_exhaustive_search\",\n  \"formal_proof_checked\": false,\n  \"external_spec_pinned\": false,\n  \"source_lock_asserted\": false,\n  \"problem\": {\n    \"adapter\": \"heroes-of-sokoban-ascii-v1\",\n    \"part\": 3,\n    \"grid\": [\n      \"##############\",\n      \"#............#\",\n      \"#.5.}}}.]]]]]#\",\n      \"#...}}}.]G.G]#\",\n      \"#.D.}}}.]]]]]#\",\n      \"#............#\",\n      \"##############\"\n    ],\n    \"goal\": \"heroes occupy exactly the goal cells\",\n    \"termination\": \"alive and first win on final key\",\n    \"cost\": \"number of UDLRA keys\"\n  },\n  \"instance_sha256\": \"4d2f2213a78fa712fad9d47563ad685ee14fb4ce7ba273596c430c239d85bebe\",\n  \"search\": {\n    \"epistemic_status\": \"EXHAUSTIVE_LOWER_BOUND\",\n    \"proven_floor\": 12,\n    \"exact_optimum_reached\": false,\n    \"winning_witness\": \"\",\n    \"exact_state_tt\": true,\n    \"quotient_pdb_enabled\": false,\n    \"exact_tt_prunes\": 122359,\n    \"hash_collisions_prevented\": 0,\n    \"edge_consistency_checks\": 0,\n    \"search_algorithm\": \"exact_bfs\",\n    \"termination_reason\": \"state_limit\",\n    \"completed_depth\": 11,\n    \"timed_out\": false,\n    \"state_limit_reached\": true,\n    \"states_seen\": 100000,\n    \"nodes_expanded\": 44472,\n    \"transitions_checked\": 222359,\n    \"duplicates_pruned\": 122359\n  },\n  \"quotient_pdb_enabled\": false,\n  \"exact_state_tt\": true,\n  \"exact_tt_prunes\": 122359,\n  \"hash_collisions_prevented\": 0,\n  \"nodes_expanded\": 44472,\n  \"edge_consistency_checks\": 0,\n  \"winning_witness\": null,\n  \"checker_pins\": {\n    \"oracle_py_sha256\": \"e52a7056fd70335a2000964db670d48814306b9893f28335d6d73e66be309456\",\n    \"flat_oracle_py_sha256\": \"d47e37cf2aaf86a2a171f6ea296ddbd22db55a65bd7c93cdfb86777eb8001ecd\",\n    \"engine_bridge_py_sha256\": \"cbf1fa55aef999ca017d643adf19adecee9d1569837954c6fc6d9eabac6ed80a\",\n    \"evidence_py_sha256\": \"fa396dca155b29906121658737cb8c944583c8603f152a0eba6ba0c9ca0885dd\",\n    \"integrity_py_sha256\": \"d79a7f664a077dcc554d4840f6ff60f57579687125f86387ca1d18c874e35a19\",\n    \"cpp_soko_engine_src_sha256\": \"2fe1ec1723340ea6f34f7c3e4e44dfb916a16f94e6e854421f90ce28a5ec9e14\",\n    \"cpp_soko_engine_bin_sha256\": \"81fb82e5ca8306eb2da165fda011d59cee12548ac27848d10b9bfab54649a6eb\",\n    \"formal_kernel_py_sha256\": \"89f3ef2b172cb89dc21ddfa582aef416e8d4b3c7d426df24ca1c2c270aa9997f\"\n  },\n  \"checker_pins_ok\": true,\n  \"guarantee\": \"Exact-state BFS under the local C++ transition rules ruled out winning routes shorter than 12 keys. This is an executable search result, not an independently checked formal proof.\",\n  \"room_id\": \"III-14\"\n}"
+            }
+          ],
+          "structuredContent": {
+            "epistemic_status": "EXHAUSTIVE_LOWER_BOUND",
+            "proven_floor": 12,
+            "reported_floor": 12,
+            "exact_optimum_reached": false,
+            "evidence_level": "bounded_exhaustive_search",
+            "formal_proof_checked": false,
+            "external_spec_pinned": false,
+            "source_lock_asserted": false,
+            "problem": {
+              "adapter": "heroes-of-sokoban-ascii-v1",
+              "part": 3,
+              "grid": [
+                "##############",
+                "#............#",
+                "#.5.}}}.]]]]]#",
+                "#...}}}.]G.G]#",
+                "#.D.}}}.]]]]]#",
+                "#............#",
+                "##############"
+              ],
+              "goal": "heroes occupy exactly the goal cells",
+              "termination": "alive and first win on final key",
+              "cost": "number of UDLRA keys"
+            },
+            "instance_sha256": "4d2f2213a78fa712fad9d47563ad685ee14fb4ce7ba273596c430c239d85bebe",
+            "search": {
+              "epistemic_status": "EXHAUSTIVE_LOWER_BOUND",
+              "proven_floor": 12,
+              "exact_optimum_reached": false,
+              "winning_witness": "",
+              "exact_state_tt": true,
+              "quotient_pdb_enabled": false,
+              "exact_tt_prunes": 122359,
+              "hash_collisions_prevented": 0,
+              "edge_consistency_checks": 0,
+              "search_algorithm": "exact_bfs",
+              "termination_reason": "state_limit",
+              "completed_depth": 11,
+              "timed_out": false,
+              "state_limit_reached": true,
+              "states_seen": 100000,
+              "nodes_expanded": 44472,
+              "transitions_checked": 222359,
+              "duplicates_pruned": 122359
+            },
+            "quotient_pdb_enabled": false,
+            "exact_state_tt": true,
+            "exact_tt_prunes": 122359,
+            "hash_collisions_prevented": 0,
+            "nodes_expanded": 44472,
+            "edge_consistency_checks": 0,
+            "winning_witness": null,
+            "checker_pins": {
+              "oracle_py_sha256": "e52a7056fd70335a2000964db670d48814306b9893f28335d6d73e66be309456",
+              "flat_oracle_py_sha256": "d47e37cf2aaf86a2a171f6ea296ddbd22db55a65bd7c93cdfb86777eb8001ecd",
+              "engine_bridge_py_sha256": "cbf1fa55aef999ca017d643adf19adecee9d1569837954c6fc6d9eabac6ed80a",
+              "evidence_py_sha256": "fa396dca155b29906121658737cb8c944583c8603f152a0eba6ba0c9ca0885dd",
+              "integrity_py_sha256": "d79a7f664a077dcc554d4840f6ff60f57579687125f86387ca1d18c874e35a19",
+              "cpp_soko_engine_src_sha256": "2fe1ec1723340ea6f34f7c3e4e44dfb916a16f94e6e854421f90ce28a5ec9e14",
+              "cpp_soko_engine_bin_sha256": "81fb82e5ca8306eb2da165fda011d59cee12548ac27848d10b9bfab54649a6eb",
+              "formal_kernel_py_sha256": "89f3ef2b172cb89dc21ddfa582aef416e8d4b3c7d426df24ca1c2c270aa9997f"
+            },
+            "checker_pins_ok": true,
+            "guarantee": "Exact-state BFS under the local C++ transition rules ruled out winning routes shorter than 12 keys. This is an executable search result, not an independently checked formal proof.",
+            "room_id": "III-14"
+          },
+          "isError": false
+        }
+      },
+      "elapsed_seconds": 1.947619
+    }
+  ],
+  "initialize": {
+    "request": {
+      "jsonrpc": "2.0",
+      "id": 1,
+      "method": "initialize",
+      "params": {
+        "protocolVersion": "2025-03-26",
+        "capabilities": {},
+        "clientInfo": {
+          "name": "soko-bounded-experiment",
+          "version": "1"
+        }
+      }
+    },
+    "response": {
+      "jsonrpc": "2.0",
+      "id": 1,
+      "result": {
+        "protocolVersion": "2025-03-26",
+        "capabilities": {
+          "tools": {
+            "listChanged": false
+          },
+          "resources": {
+            "subscribe": false,
+            "listChanged": false
+          },
+          "prompts": {
+            "listChanged": false
+          }
+        },
+        "serverInfo": {
+          "name": "soko-verified-mcp",
+          "version": "0.2.0"
+        },
+        "instructions": "Sokoban differential replay and bounded exact-state search. VERIFIED route outputs mean agreement between local interpreters, not a formal proof, an external engine replay, or a source-lock assertion. Use canonical starting rooms, inspect search completion/budgets, and distinguish historical registry records from current public records. formal_* tools are not available."
+      }
+    },
+    "elapsed_seconds": 0.054264
+  },
+  "tools": {
+    "request": {
+      "jsonrpc": "2.0",
+      "id": 2,
+      "method": "tools/list"
+    },
+    "response": {
+      "jsonrpc": "2.0",
+      "id": 2,
+      "result": {
+        "tools": [
+          {
+            "name": "soko_capabilities",
+            "description": "Report available backends and missing implementations in this checkout.",
+            "inputSchema": {
+              "type": "object",
+              "additionalProperties": false
+            },
+            "annotations": {
+              "readOnlyHint": true,
+              "idempotentHint": true,
+              "openWorldHint": false
+            }
+          },
+          {
+            "name": "soko_list_rooms",
+            "title": "List Built-In Frontier Benchmark Rooms",
+            "description": "List historical built-in room metadata and reference routes. Registry floors and records are not fresh external observations.",
+            "inputSchema": {
+              "type": "object",
+              "additionalProperties": false
+            },
+            "annotations": {
+              "readOnlyHint": true,
+              "idempotentHint": true,
+              "openWorldHint": false
+            }
+          },
+          {
+            "name": "soko_inspect_room",
+            "title": "Inspect Room Symmetries, Chirality & Bottlenecks",
+            "description": "Analyze a built-in room_id or custom (part, grid) for X/Y/180-degree dungeon symmetries, hero-switch chirality opportunities, switch-weighing deficits, and Bard rigid-translation constraints.",
+            "inputSchema": {
+              "type": "object",
+              "properties": {
+                "room_id": {
+                  "type": "string",
+                  "description": "Optional built-in Sokoban Eval Frontier room ID (e.g. 'I-1', 'II-22', 'III-14', 'III-15', 'III-20', 'III-22'). Omit when passing custom 'part' and 'grid'."
+                },
+                "part": {
+                  "type": "integer",
+                  "enum": [
+                    1,
+                    2,
+                    3
+                  ],
+                  "description": "Heroes of Sokoban game part (1 = Part I, 2 = Part II: Monsters, 3 = Part III: The Bard and The Druid). Required when 'room_id' is omitted."
+                },
+                "grid": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  },
+                  "description": "Rectangular ASCII room rows using PuzzleScript symbols (# wall, . floor, G goal, * crate, O goblin, L/R dragons, {/} switches, [/] doors, M monster gate, F/T/W/P/B/D active heroes, 1..6 inactive heroes)."
+                }
+              },
+              "additionalProperties": false
+            },
+            "annotations": {
+              "readOnlyHint": true,
+              "idempotentHint": true,
+              "openWorldHint": false
+            }
+          },
+          {
+            "name": "soko_verify_route",
+            "title": "Dual-Oracle Differential Route Verifier",
+            "description": "Replay a canonical starting room with two independent Python interpreters and C++ when available; return instance-bound differential evidence, not a formal proof.",
+            "inputSchema": {
+              "type": "object",
+              "properties": {
+                "room_id": {
+                  "type": "string",
+                  "description": "Optional built-in Sokoban Eval Frontier room ID (e.g. 'I-1', 'II-22', 'III-14', 'III-15', 'III-20', 'III-22'). Omit when passing custom 'part' and 'grid'."
+                },
+                "part": {
+                  "type": "integer",
+                  "enum": [
+                    1,
+                    2,
+                    3
+                  ],
+                  "description": "Heroes of Sokoban game part (1 = Part I, 2 = Part II: Monsters, 3 = Part III: The Bard and The Druid). Required when 'room_id' is omitted."
+                },
+                "grid": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  },
+                  "description": "Rectangular ASCII room rows using PuzzleScript symbols (# wall, . floor, G goal, * crate, O goblin, L/R dragons, {/} switches, [/] doors, M monster gate, F/T/W/P/B/D active heroes, 1..6 inactive heroes)."
+                },
+                "route": {
+                  "type": "string",
+                  "description": "Move string composed of U, D, L, R, and A (Action: switch active hero)."
+                }
+              },
+              "required": [
+                "route"
+              ],
+              "additionalProperties": false
+            },
+            "annotations": {
+              "readOnlyHint": true,
+              "idempotentHint": true,
+              "openWorldHint": false
+            }
+          },
+          {
+            "name": "soko_optimize_route",
+            "title": "Shorten a Seed Route with Bounded Exact BFS",
+            "description": "Try a shorter route with time- and state-bounded exact BFS; retain the seed if no improvement is found. Replay every candidate independently. Python window BFS is the fallback when C++ is unavailable.",
+            "inputSchema": {
+              "type": "object",
+              "properties": {
+                "room_id": {
+                  "type": "string",
+                  "description": "Optional built-in Sokoban Eval Frontier room ID (e.g. 'I-1', 'II-22', 'III-14', 'III-15', 'III-20', 'III-22'). Omit when passing custom 'part' and 'grid'."
+                },
+                "part": {
+                  "type": "integer",
+                  "enum": [
+                    1,
+                    2,
+                    3
+                  ],
+                  "description": "Heroes of Sokoban game part (1 = Part I, 2 = Part II: Monsters, 3 = Part III: The Bard and The Druid). Required when 'room_id' is omitted."
+                },
+                "grid": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  },
+                  "description": "Rectangular ASCII room rows using PuzzleScript symbols (# wall, . floor, G goal, * crate, O goblin, L/R dragons, {/} switches, [/] doors, M monster gate, F/T/W/P/B/D active heroes, 1..6 inactive heroes)."
+                },
+                "seed_route": {
+                  "type": "string",
+                  "description": "Valid U/D/L/R/A winning route to optimize (if omitted for a built-in room_id, uses the room's reference or prior record route)."
+                },
+                "beam_width": {
+                  "type": "integer",
+                  "default": 40000,
+                  "minimum": 2000,
+                  "maximum": 120000,
+                  "description": "Legacy name: maximum total retained BFS states (native hard ceiling 200000)."
+                },
+                "window_len": {
+                  "type": "integer",
+                  "default": 14,
+                  "minimum": 8,
+                  "maximum": 22,
+                  "description": "Window length for the Python fallback only; ignored by native exact BFS."
+                },
+                "budget_sec": {
+                  "type": "integer",
+                  "default": 35,
+                  "minimum": 4,
+                  "maximum": 180,
+                  "description": "Search-phase time budget in seconds; compilation and independent replay are additional."
+                }
+              },
+              "additionalProperties": false
+            },
+            "annotations": {
+              "readOnlyHint": true,
+              "idempotentHint": true,
+              "openWorldHint": false
+            }
+          },
+          {
+            "name": "soko_solve_room",
+            "title": "Solve a Room with Bounded Exact BFS",
+            "description": "Search with exact-state BFS and time/state caps, then independently replay a winning route. beam_width is the legacy name for the total state cap.",
+            "inputSchema": {
+              "type": "object",
+              "properties": {
+                "room_id": {
+                  "type": "string",
+                  "description": "Optional built-in Sokoban Eval Frontier room ID (e.g. 'I-1', 'II-22', 'III-14', 'III-15', 'III-20', 'III-22'). Omit when passing custom 'part' and 'grid'."
+                },
+                "part": {
+                  "type": "integer",
+                  "enum": [
+                    1,
+                    2,
+                    3
+                  ],
+                  "description": "Heroes of Sokoban game part (1 = Part I, 2 = Part II: Monsters, 3 = Part III: The Bard and The Druid). Required when 'room_id' is omitted."
+                },
+                "grid": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  },
+                  "description": "Rectangular ASCII room rows using PuzzleScript symbols (# wall, . floor, G goal, * crate, O goblin, L/R dragons, {/} switches, [/] doors, M monster gate, F/T/W/P/B/D active heroes, 1..6 inactive heroes)."
+                },
+                "max_depth": {
+                  "type": "integer",
+                  "default": 120,
+                  "minimum": 1,
+                  "maximum": 500
+                },
+                "beam_width": {
+                  "type": "integer",
+                  "default": 40000,
+                  "minimum": 2000,
+                  "maximum": 120000
+                },
+                "budget_sec": {
+                  "type": "integer",
+                  "default": 20,
+                  "minimum": 2,
+                  "maximum": 180
+                }
+              },
+              "additionalProperties": false
+            },
+            "annotations": {
+              "readOnlyHint": true,
+              "idempotentHint": true,
+              "openWorldHint": false
+            }
+          },
+          {
+            "name": "soko_prove_floor",
+            "title": "Compute a Local Exhaustive-Search Lower Bound",
+            "description": "Report only fully exhausted goal depths under local C++ rules. Timeouts and state caps remain explicit. No heuristic, PDB, or formal kernel proof is claimed.",
+            "inputSchema": {
+              "type": "object",
+              "properties": {
+                "room_id": {
+                  "type": "string",
+                  "description": "Optional built-in Sokoban Eval Frontier room ID (e.g. 'I-1', 'II-22', 'III-14', 'III-15', 'III-20', 'III-22'). Omit when passing custom 'part' and 'grid'."
+                },
+                "part": {
+                  "type": "integer",
+                  "enum": [
+                    1,
+                    2,
+                    3
+                  ],
+                  "description": "Heroes of Sokoban game part (1 = Part I, 2 = Part II: Monsters, 3 = Part III: The Bard and The Druid). Required when 'room_id' is omitted."
+                },
+                "grid": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  },
+                  "description": "Rectangular ASCII room rows using PuzzleScript symbols (# wall, . floor, G goal, * crate, O goblin, L/R dragons, {/} switches, [/] doors, M monster gate, F/T/W/P/B/D active heroes, 1..6 inactive heroes)."
+                },
+                "max_bound": {
+                  "type": "integer",
+                  "default": 25,
+                  "minimum": 1,
+                  "maximum": 200
+                },
+                "budget_sec": {
+                  "type": "integer",
+                  "default": 12,
+                  "minimum": 2,
+                  "maximum": 120
+                }
+              },
+              "additionalProperties": false
+            },
+            "annotations": {
+              "readOnlyHint": true,
+              "idempotentHint": true,
+              "openWorldHint": false
+            }
+          },
+          {
+            "name": "soko_verify_tcb_lock",
+            "title": "Verify Runtime SHA256SUMS TCB Lock",
+            "description": "Check the complete portable source manifest. Binary hashes are provenance only, not verified by this manifest; consistency is not independent approval.",
+            "inputSchema": {
+              "type": "object",
+              "additionalProperties": false
+            },
+            "annotations": {
+              "readOnlyHint": true,
+              "idempotentHint": true,
+              "openWorldHint": false
+            }
+          },
+          {
+            "name": "soko_run_planted_bug_audit",
+            "title": "Run 10-Mutation Proven-Commons Planted-Bug Audit",
+            "description": "Inject 10 realistic PuzzleScript physics bugs into the specification oracle (single-push collapse, rule-order swap, Bard Manhattan/post-move bugs, non-weighing walls, Wizard adjacent swap, inactive Priest heal, sequential Goblin kill, hero-cycle swap, missing Cancel) and verify 10/10 detection.",
+            "inputSchema": {
+              "type": "object",
+              "properties": {
+                "extra_vectors": {
+                  "type": "array",
+                  "description": "Optional additional regression test vectors to include in the mutation audit.",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "name": {
+                        "type": "string"
+                      },
+                      "part": {
+                        "type": "integer",
+                        "enum": [
+                          1,
+                          2,
+                          3
+                        ]
+                      },
+                      "grid": {
+                        "type": "array",
+                        "items": {
+                          "type": "string"
+                        }
+                      },
+                      "route": {
+                        "type": "string"
+                      },
+                      "expect_alive": {
+                        "type": "boolean"
+                      },
+                      "expect_win": {
+                        "type": "boolean"
+                      }
+                    },
+                    "required": [
+                      "part",
+                      "grid",
+                      "route"
+                    ]
+                  }
+                }
+              },
+              "additionalProperties": false
+            },
+            "annotations": {
+              "readOnlyHint": true,
+              "idempotentHint": true,
+              "openWorldHint": false
+            }
+          }
+        ]
+      }
+    },
+    "elapsed_seconds": 0.000226
+  },
+  "registry": {
+    "request": {
+      "jsonrpc": "2.0",
+      "id": 3,
+      "method": "resources/read",
+      "params": {
+        "uri": "soko://benchmarks/frontier"
+      }
+    },
+    "response": {
+      "jsonrpc": "2.0",
+      "id": 3,
+      "result": {
+        "contents": [
+          {
+            "uri": "soko://benchmarks/frontier",
+            "mimeType": "application/json",
+            "text": "{\n  \"I-1\": {\n    \"part\": 1,\n    \"title\": \"Part I, Room 1 (Opening Hall)\",\n    \"proven_floor\": 9,\n    \"shortest_known\": 9,\n    \"frontier_record\": 9,\n    \"reference_route\": \"RRRRRRRRR\",\n    \"grid\": [\n      \"############\",\n      \"#..........#\",\n      \"#F........G#\",\n      \"#..........#\",\n      \"############\"\n    ]\n  },\n  \"II-22\": {\n    \"part\": 2,\n    \"title\": \"Part II, Room 22 (Monster Gate Finale)\",\n    \"proven_floor\": 92,\n    \"shortest_known\": 92,\n    \"frontier_record\": 94,\n    \"reference_route\": \"ADDUUULDDRDDLDULDDRLLLLULURDLDRURUAAUUULLLLLLLAAAULURUARRRARRRDRUUDRRRDLLLDDDLDRLALUADDDRDRRUR\",\n    \"grid\": [\n      \"#############\",\n      \"#...#O.O#...#\",\n      \"#.F.#G.G#.2.#\",\n      \"#...#.O.#...#\",\n      \"##.###*###.##\",\n      \"#R*L.....R*L#\",\n      \"#.#.......#.#\",\n      \"#R*L.....R*L#\",\n      \"##.###M###.##\",\n      \"#...#...#...#\",\n      \"#.3.#G.G#.4.#\",\n      \"#...#...#...#\",\n      \"#############\"\n    ]\n  },\n  \"III-14\": {\n    \"part\": 3,\n    \"title\": \"Part III, Room 14 (Bard, Druid, and Nine Purple Switches - 14x7)\",\n    \"proven_floor\": 43,\n    \"shortest_known\": 48,\n    \"frontier_record\": 48,\n    \"reference_route\": \"LLULULULRURURURURUAUDRRDDAUARRDLRAULDLDRARURDUUR\",\n    \"grid\": [\n      \"##############\",\n      \"#............#\",\n      \"#.5.}}}.]]]]]#\",\n      \"#...}}}.]G.G]#\",\n      \"#.D.}}}.]]]]]#\",\n      \"#............#\",\n      \"##############\"\n    ]\n  },\n  \"III-14-15x7\": {\n    \"part\": 3,\n    \"title\": \"Part III, Room 14 (Verbatim 15x7 PuzzleScript Editor Variant)\",\n    \"proven_floor\": 43,\n    \"shortest_known\": 48,\n    \"frontier_record\": 48,\n    \"reference_route\": \"LLULULULRURURURURUAUDRRDDAUARRDLRAULDLDRARURDUUR\",\n    \"grid\": [\n      \"###############\",\n      \"#.............#\",\n      \"#.5.}}}.]]]]].#\",\n      \"#...}}}.]G.G].#\",\n      \"#.D.}}}.]]]]].#\",\n      \"#.............#\",\n      \"###############\"\n    ]\n  },\n  \"III-15\": {\n    \"part\": 3,\n    \"title\": \"Part III, Room 15 (Wizard and Druid Tunnel)\",\n    \"proven_floor\": 69,\n    \"shortest_known\": 69,\n    \"frontier_record\": 69,\n    \"reference_route\": \"AULADDALAULDRALAULDALALURALADLUALALDRALAULDALALURALADLUALALDLRAUAULLU\",\n    \"grid\": [\n      \"#########\",\n      \"#G#####W#\",\n      \"#########\",\n      \"#G#####6#\",\n      \"#########\"\n    ]\n  },\n  \"III-20\": {\n    \"part\": 3,\n    \"title\": \"Part III, Room 20 (Goblin Corridor - Chiral Record 84)\",\n    \"proven_floor\": 74,\n    \"shortest_known\": 84,\n    \"frontier_record\": 84,\n    \"prior_record_route_87\": \"RAUUURRRADAAADLURAAUAAALULLALAUAAARRDLRDRULURURDDAARAULLRRRRRDDRARRRRALUURDRUURARRDDRDR\",\n    \"reference_route\": \"ADDDRRADAAADRULARADAAADDLLALAAAARRRRUULAAUALLRADRRRRADRULRURRRRRARRUURURAURRRDDRAUUR\",\n    \"alternate_route_84\": \"ADDDRRADAAADRULARADAAADDLLALAAAARRRRUULAAUALLRADRRRRADRULRURRRRRARRUURURAURRRDDRAURU\",\n    \"grid\": [\n      \"###############\",\n      \"#....#O.O#...G#\",\n      \"#..##W...1##..#\",\n      \"#..#O..O..O#.G#\",\n      \"#4.#..OGO..#..#\",\n      \"#..#O..O..O#.G#\",\n      \"#..##2...6##..#\",\n      \"#....#O.O#...G#\",\n      \"###############\"\n    ]\n  },\n  \"III-22\": {\n    \"part\": 3,\n    \"title\": \"Part III, Room 22 (Six-Hero Finale)\",\n    \"proven_floor\": 9,\n    \"shortest_known\": 9,\n    \"frontier_record\": 9,\n    \"reference_route\": \"RRRRRRRRR\",\n    \"grid\": [\n      \"###############\",\n      \"#.............#\",\n      \"#.1.4......G.G#\",\n      \"#.............#\",\n      \"#.2.B......G.G#\",\n      \"#.............#\",\n      \"#.3.6......G.G#\",\n      \"#.............#\",\n      \"###############\"\n    ]\n  }\n}"
+          }
+        ]
+      }
+    },
+    "elapsed_seconds": 0.000235
+  },
+  "source_hashes_after": {
+    "SHA256SUMS": "52e61187fa3eb45b4c98e3164a8eaa970d43364d3e7cfa5c3bffbdab778fce51",
+    "cpp/soko_engine.cpp": "2fe1ec1723340ea6f34f7c3e4e44dfb916a16f94e6e854421f90ce28a5ec9e14",
+    "soko_mcp/__init__.py": "851c5c02ba22ac94bcc7a6463d0667c2242e6489e46af804887fdaf48eb5611f",
+    "soko_mcp/__main__.py": "c39143fd94c13b6a1eee792aab18daec0be5f72cb428e776cc045622bb22555b",
+    "soko_mcp/analyzer.py": "95799867c2b717b97967d35a273c7375c0edd4ed49b1e0d22eaff8549d6fc45b",
+    "soko_mcp/engine_bridge.py": "cbf1fa55aef999ca017d643adf19adecee9d1569837954c6fc6d9eabac6ed80a",
+    "soko_mcp/evidence.py": "fa396dca155b29906121658737cb8c944583c8603f152a0eba6ba0c9ca0885dd",
+    "soko_mcp/flat_oracle.py": "d47e37cf2aaf86a2a171f6ea296ddbd22db55a65bd7c93cdfb86777eb8001ecd",
+    "soko_mcp/formal_kernel.py": "89f3ef2b172cb89dc21ddfa582aef416e8d4b3c7d426df24ca1c2c270aa9997f",
+    "soko_mcp/integrity.py": "d79a7f664a077dcc554d4840f6ff60f57579687125f86387ca1d18c874e35a19",
+    "soko_mcp/oracle.py": "e52a7056fd70335a2000964db670d48814306b9893f28335d6d73e66be309456",
+    "soko_mcp/server.py": "3089ad21845ba98e3e5ad74c44cfd9fa1a7242da0c5dbbd56c81f2a2019dc91c"
+  },
+  "sources_unchanged": true
+}
