@@ -1,0 +1,71 @@
+{
+  "baseline": {
+    "attribution": "Public accepted route credited to the named Frontier holder.",
+    "holder": "a1kindus",
+    "length": 84,
+    "limits": "Dated public observation; lower bounds are reported by Frontier and not reproved by this import.",
+    "model": null,
+    "observed_at": "2026-11-12T16:02:41.921324+00:00",
+    "record_id": 140,
+    "replay_url": "https://soko.banteg.xyz/frontier/?room=III-20&record=140",
+    "response_sha256": "ec044bd85e3e5d30e4187745768fd5f48ad1e3edf11f5b715c2a1e55e1a9eb38",
+    "route": "ADDDRRADAAADRULARADAAADDLLALAAAARRRRUULAAUALLRADRRRRADRULRURRRRRARRUURURAURRRDDRAUUR",
+    "seed": 0,
+    "status": "public_accepted_baseline",
+    "uid": 18,
+    "url": "https://soko.banteg.xyz/api/replay/140"
+  },
+  "compiled_level_index": 28,
+  "coordinates": {
+    "grid_order": "rows",
+    "origin": "top-left",
+    "original_compiled_object_order": "column-major",
+    "transform": "identity",
+    "x_direction": "right",
+    "y_direction": "down"
+  },
+  "frontier_observation": {
+    "avatar": 1,
+    "handle": "a1kindus",
+    "id": 140,
+    "known": 84,
+    "length": 84,
+    "lower": 74,
+    "model": null,
+    "part": 3,
+    "room": 20,
+    "seed": 0,
+    "uid": 18
+  },
+  "frontier_record": 84,
+  "grid": [
+    "###############",
+    "#....#O.O#...G#",
+    "#..##W...1##..#",
+    "#..#O..O..O#.G#",
+    "#4.#..OGO..#..#",
+    "#..#O..O..O#.G#",
+    "#..##2...6##..#",
+    "#....#O.O#...G#",
+    "###############"
+  ],
+  "height": 9,
+  "id": "III-20",
+  "part": 3,
+  "proven_floor": 74,
+  "reference_route": "ADDDRRADAAADRULARADAAADDLLALAAAARRRRUULAAUALLRADRRRRADRULRURRRRRARRUURURAURRRDDRAUUR",
+  "room": 20,
+  "shortest_known": 84,
+  "source": {
+    "attribution": "Original puzzle design and PuzzleScript implementation: Jonah Ostroff.",
+    "author": "Jonah Ostroff",
+    "html_sha256": "380d343ad35a8f8caf6863341172a7771d0d28ced2824a7a3085990614562105",
+    "part": 3,
+    "source_sha256": "f66ceb8f8a2c23a3cb270bad62cdf194e47479772cab94f154ed26f0ff7c20e0",
+    "title": "Heroes of Sokoban III: The Bard and The Druid",
+    "url": "https://sites.math.washington.edu/~ostroff/puzzles/Heroes_of_Sokoban_III_The_Bard_and_The_Druid.html"
+  },
+  "title": "Heroes of Sokoban III: The Bard and The Druid \u2014 Room 20",
+  "tutorial_messages": [],
+  "width": 15
+}

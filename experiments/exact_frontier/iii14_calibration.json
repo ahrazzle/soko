@@ -1,0 +1,30 @@
+{
+  "status": "passed",
+  "baseline": {
+    "route": "LLULULULRURURURURUAUDRRDDAUARRDLRAULDLDRARURDUUR",
+    "length": 48,
+    "first_win": 48,
+    "door_open_steps": [
+      43,
+      44,
+      45,
+      46,
+      47,
+      48
+    ]
+  },
+  "initial_random": {
+    "seed": 7314,
+    "attempted": 500,
+    "surviving_and_matched": 410,
+    "losing_pruned": 90
+  },
+  "baseline_prefix_random": {
+    "seed": 149314,
+    "attempted": 100,
+    "surviving_and_matched": 89,
+    "losing_pruned": 11
+  },
+  "oracle": "soko_mcp.oracle.PuzzleScriptOracle",
+  "original_game_replay_required_for_witness": true
+}

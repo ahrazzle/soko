@@ -1,0 +1,29 @@
+{
+  "status": "passed",
+  "baseline": {
+    "route": "ADDDRRADAAADRULARADAAADDLLALAAAARRRRUULAAUALLRADRRRRADRULRURRRRRARRUURURAURRRDDRAUUR",
+    "length": 84,
+    "first_win": 84,
+    "compared_steps": 84
+  },
+  "initial_random": {
+    "seed": 20261112,
+    "attempted": 500,
+    "surviving_and_matched": 471,
+    "meaning": "seeded random walk steps, reset at death/win or every thirty keys"
+  },
+  "baseline_prefix_random": {
+    "attempted": 100,
+    "surviving_and_matched": 91,
+    "meaning": "seeded one-step random branches from baseline frames"
+  },
+  "hero_loss_cases": 0,
+  "mechanic_controls": {
+    "baseline_Wizard_petrification": true,
+    "switches_after_missing_role": 5,
+    "simultaneous_goblin_deaths": 2,
+    "post_combat_inputs": 3
+  },
+  "oracle": "soko_mcp.oracle.PuzzleScriptOracle",
+  "original_game_replay_required_for_witness": true
+}

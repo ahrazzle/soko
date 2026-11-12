@@ -6,6 +6,12 @@ Zero third-party Python packages are required (`python >= 3.10` standard library
 
 ## What's New in v0.3.0
 
+An optional [global record-query system](experiments/exact_frontier/README.md) now
+builds unrestricted bounded SAT problems for III-14 and III-20, verifies complete
+SAT assignments, checks optional UNSAT certificates, and replays candidates in
+the pinned original game. It requires separate research dependencies and has not
+yet demonstrated a new record or end-to-end formal equivalence.
+
 1. **`PairAtomQuotientPDB` + Multi-Core Exact-State Bucketed A* (`soko_prove_floor`):**
    - Adds a 39.7M-state **2-Atom Quotient Homomorphism Pattern Database (`PairAtomQuotientPDB`)** modeling unordered pairs of created weighing atoms (`{crate@cell, interior_wall@cell, UNBORN, SPARE}`), explicitly accounting for both rigid Bard 5x5 aura co-translation and wall-blocked/moving charmed crate pairs (including step 25 of `III-14`'s 48-key route), Druid `# <-> *` transmutations, border re-petrification, and 10th-crate `SPARE` creation.
    - Replaces per-iteration IDA* re-expansion on grids `<= 128` cells with **Multi-Core Exact-State Bucketed A*** (`CompactNode` full-state equality, zero hash-collision pruning, live collision counter, and runtime `h(s) <= 1 + h(s')` edge checks), raising the built-in MCP certified floor on `III-14` from `29` (in `v0.2.0`) to **`>= 33` in ~6.6s** and **`>= 35` in ~35s** with 100% exact-state deduplication.

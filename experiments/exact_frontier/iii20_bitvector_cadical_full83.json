@@ -1,0 +1,17 @@
+{
+  "approach": "whole-board bitvector SMT",
+  "instance": "III-20",
+  "baseline_length": 84,
+  "target_length": 83,
+  "start": 0,
+  "end": 84,
+  "horizon": 83,
+  "fixed_switches": true,
+  "backend": "cadical195",
+  "timeout_ms": 120000,
+  "status": "interrupted",
+  "reason": "User directed stopping the record-attempt campaign and prioritizing reusable unrestricted system integration.",
+  "proof_claim": null,
+  "candidate_found": false,
+  "model_sha256": "49644bff2cdc834d2deb28e95f9bcb9d125dc51a93d1275c0982cc3a5a13b2f4"
+}

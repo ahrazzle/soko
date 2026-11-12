@@ -1,0 +1,16 @@
+{
+  "approach": "whole-board bitvector SMT",
+  "instance": "III-20",
+  "baseline_length": 84,
+  "proof_claim": null,
+  "start": 24,
+  "end": 60,
+  "horizon": 35,
+  "timeout_ms": 30000,
+  "fixed_switches": true,
+  "build_seconds": 5.584,
+  "status": "unknown",
+  "reason_unknown": "timeout",
+  "statistics": "(:max-memory          254.17\n :memory              188.94\n :num-allocs          16939405028.00\n :rlimit-count        56469293\n :solve-eqs-elim-vars 509\n :solve-eqs-steps     362001\n :time                30.09)",
+  "elapsed_seconds": 36.651
+}

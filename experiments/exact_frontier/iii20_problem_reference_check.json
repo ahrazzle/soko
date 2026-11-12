@@ -1,0 +1,10 @@
+{
+  "status": "passed",
+  "pinned_baseline_builder": "sat",
+  "reference_length": 84,
+  "reference_actions_fixed": true,
+  "reference_states_fixed": true,
+  "unrestricted_builder": true,
+  "no_record_attempt": true,
+  "elapsed_seconds": 36.892
+}

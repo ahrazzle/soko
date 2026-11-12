@@ -1,0 +1,30 @@
+{
+  "bundle_sha256": "d37967c7b8b0739dcb775349278d628b87101c491c9f68496d35f2c9aba4e28a",
+  "length": 48,
+  "mode": "reference_control",
+  "original_certificate_sha256": "d34de4041a894878dc088eeb9e771e540a512ef17f0bfce4628826be3c478af3",
+  "original_replay": "passed",
+  "public_submission": false,
+  "room": "III-14",
+  "route": "LLULULULRURURURURUAUDRRDDAUARRDLRAULDLDRARURDUUR",
+  "semantic_equivalence_proved": false,
+  "solver": {
+    "assignment_path": "/tmp/soko-system-qualified-control14/sat/assignment.json",
+    "checker_sha256": null,
+    "checker_status": "assignment_verified",
+    "cnf_sha256": "9d5dddbc1850de13925f9df4ebce4e5e72b80802f84d84593d1c94a0b1b173cf",
+    "elapsed_seconds": 0.16883419800069532,
+    "phase": "complete",
+    "proof_path": null,
+    "proof_sha256": null,
+    "stats": {
+      "conflicts": 0,
+      "decisions": 0,
+      "propagations": 26063,
+      "restarts": 0
+    },
+    "status": "sat"
+  },
+  "solver_source_sha256": "68a440b51c69dd1a338f8b088b5c3066a8494e97750215d4aa6863b80e39ff6e",
+  "status": "reference_control_passed"
+}

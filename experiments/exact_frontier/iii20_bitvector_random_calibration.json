@@ -1,0 +1,19 @@
+{
+  "approach": "whole-board bitvector SMT",
+  "instance": "III-20",
+  "baseline_length": 84,
+  "proof_claim": null,
+  "z3_version": "5.4.1",
+  "model_sha256": "06cc51fdcd1efbd898f8e30680adbbe4b680815f739b2cff6ecb771a4972d132",
+  "oracle_sha256": "447b6c006dfe36347a96bd519b5ff23b76ed40352c0e5ccb32d42f496f402951",
+  "excluded_actions": [
+    "unchanged directional input",
+    "irreversible Druid destruction of a hero"
+  ],
+  "calibration": "passed",
+  "random_cases": 500,
+  "removable_noops": 139,
+  "irreversible_hero_loss_pruned": 1,
+  "seed": 20261112,
+  "elapsed_seconds": 12.484
+}

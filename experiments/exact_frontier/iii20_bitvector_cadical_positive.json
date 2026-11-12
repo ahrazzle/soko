@@ -1,0 +1,36 @@
+{
+  "approach": "whole-board bitvector SMT",
+  "instance": "III-20",
+  "baseline_length": 84,
+  "proof_claim": null,
+  "z3_version": "5.4.1",
+  "model_sha256": "239e85a7f070afb5993bcb7f2d2e23b0e3983d15374330adc3da1f8f726c7018",
+  "oracle_sha256": "447b6c006dfe36347a96bd519b5ff23b76ed40352c0e5ccb32d42f496f402951",
+  "excluded_actions": [
+    "unchanged directional input",
+    "irreversible Druid destruction of a hero"
+  ],
+  "start": 24,
+  "end": 60,
+  "horizon": 36,
+  "timeout_ms": 45000,
+  "fixed_switches": false,
+  "delete_index": null,
+  "build_seconds": 3.383,
+  "backend": "cadical195",
+  "backend_stage": "solving",
+  "variables": 142974,
+  "clauses": 1327052,
+  "cnf_sha256": "1badd67029cae51a14d2f4c5827b991ade425f99bbcf8af33965a37848fd2a7f",
+  "status": "sat",
+  "statistics": {
+    "restarts": 0,
+    "conflicts": 0,
+    "decisions": 0,
+    "propagations": 142974
+  },
+  "replacement": "LLALAAAARRRRUULAAUALLRADRRRRADRULRUR",
+  "route": "ADDDRRADAAADRULARADAAADDLLALAAAARRRRUULAAUALLRADRRRRADRULRURRRRRARRUURURAURRRDDRAUUR",
+  "local_replay": true,
+  "elapsed_seconds": 13.26
+}

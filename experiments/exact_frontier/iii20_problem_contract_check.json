@@ -1,0 +1,17 @@
+{
+  "status": "passed",
+  "package_import": true,
+  "global_zero_horizon": "unsat",
+  "zero_horizon_backend": "cadical195",
+  "no_record_attempt": true,
+  "one_step_action_aliases": [
+    "action_0_U",
+    "action_0_D",
+    "action_0_L",
+    "action_0_R",
+    "action_0_A"
+  ],
+  "one_step_action_bools": true,
+  "state_frames": 2,
+  "state_variables_per_frame": 9
+}

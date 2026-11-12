@@ -1,0 +1,103 @@
+{
+  "artifacts": {
+    "actions.json": "0f081726ad23ecdd90ba3b7b885982334d44b9fd8d563e57117620868b336cfe",
+    "calibration.json": "feade4e56d6b70a614023c65bf92d964fd8ac045f401c6904c7fd16d27e69864",
+    "frontier.json": "07850c7e7221f29e6510fead7ca37282f99852c144075d31e3e28a483fcdbccc",
+    "instance.json": "a8ffa48812d59a90fc358bb1ce437913046d868ce665509182f73ef2c176b676",
+    "problem.cnf": "9d5dddbc1850de13925f9df4ebce4e5e72b80802f84d84593d1c94a0b1b173cf"
+  },
+  "frontier_observation": {
+    "mode": "provided_snapshot",
+    "observed_at": "2026-11-12T17:17:51.171854+00:00",
+    "sha256": "07850c7e7221f29e6510fead7ca37282f99852c144075d31e3e28a483fcdbccc",
+    "url": "https://soko.banteg.xyz/api/frontier"
+  },
+  "incumbent": {
+    "avatar": 1,
+    "handle": "SJanuskas",
+    "id": 137,
+    "known": 48,
+    "length": 48,
+    "lower": 43,
+    "model": null,
+    "part": 3,
+    "room": 14,
+    "seed": 0,
+    "uid": 16
+  },
+  "mode": "reference_control",
+  "model_contract": {
+    "action_encoding": "one-hot Boolean variables named action_{zero_based_step}_{action}",
+    "actions": [
+      "U",
+      "D",
+      "L",
+      "R",
+      "A"
+    ],
+    "all_board_cells_modeled": true,
+    "bard_movement": "prior note aura; fixed point allows each blocked charmed object to remain independently; blocked Bard cancels the turn",
+    "board": "original 15x7",
+    "calibration_limits": "sampled oracle agreement is evidence, not a proof of model equivalence",
+    "door_behavior": "opens when all switches are weighed; closing can remove walls and crates or kill heroes",
+    "external_lower_bound_assumed": false,
+    "goal_absorbing": true,
+    "hero_loss_pruned": "Druid petrifying Bard and closing door on either hero are losing because both heroes are necessary for the two goals",
+    "noops": "permitted where the game permits them",
+    "objective": "first win at or before horizon inputs",
+    "prefix_or_neighborhood_restriction": false,
+    "redundant_global_landmarks": {
+      "all_material_switches": "some full-history frame has all nine switches occupied by walls or crates",
+      "guard": "exact original grid and catalog source hash checked before enabling",
+      "proof": "Before both heroes first enter the three-cell goal enclosure, a hero occupies a door while neither is on a switch; therefore nine material tokens weigh the switches. Each began as a boundary wall and must have been converted to a crate to reach a switch. A door closure can delete, but not create, material. See structure_system.md.",
+      "wall_to_crate_events": "at least nine Druid wall-to-crate events occur before victory"
+    },
+    "room": "III-14",
+    "solver_result_semantics": {
+      "sat": "candidate requiring independent original-game replay",
+      "unknown": "inconclusive",
+      "unsat": "no modeled win at or before horizon, subject to model correctness"
+    },
+    "state": [
+      "walls",
+      "crates",
+      "bard",
+      "druid",
+      "bard_active",
+      "notes",
+      "door_open"
+    ],
+    "state_encoding": "105-bit masks for walls, crates, each hero and notes; booleans for active hero and door",
+    "version": 1
+  },
+  "objective": {
+    "first_win_at_or_before": 48,
+    "observed_record_length": 48
+  },
+  "preparation_seconds": 10.237,
+  "room": "III-14",
+  "runtime_versions": {
+    "playwright": "1.62.0",
+    "python-sat": "1.9.dev22",
+    "z3-solver": "5.4.1.0"
+  },
+  "schema_version": 1,
+  "search_restrictions": [
+    "pinned_reference_actions_and_oracle_frames"
+  ],
+  "semantic_equivalence_proved": false,
+  "source_sha256": {
+    "experiments/exact_frontier/cnf_search.py": "e6a443352f7750edf9f3daecac61e8b5602db903e27ce18d4e33d45336c90c60",
+    "experiments/exact_frontier/iii14_problem.py": "ac96ffd0c569a7989929bdbba88ca58272868e1d7ac1d79f9655f22606c41da6",
+    "experiments/exact_frontier/iii14_smt.py": "4d40f35450837ec903f63322054f8ffc88486189c63db8d67bfc91c1708ba248",
+    "experiments/exact_frontier/iii20_bitvector.py": "8df4d05c71e944dae3c76978f4030f4f98ebe77af46f828a425ca4b366be0f6e",
+    "experiments/exact_frontier/iii20_problem.py": "275bded721707323ab18b307a28c23489a69e31ae7fef620ac52fadbf249be5d",
+    "experiments/exact_frontier/record_system.py": "92b844f4ed2be1ceee16e0a5086160e2b3d21adcafe3a2b2e10b698ffd550291",
+    "soko_mcp/catalog.py": "43d8b8aaf29c3e9fb857ea803a40edf5cc6e230e8e81e2c8eb002d41364f75ed",
+    "soko_mcp/data/catalog.json": "c79e2ddf755039ad09ee57d30e06efc594d0310d20cbdba26b40a4bd9ae5c8bc",
+    "soko_mcp/flat_oracle.py": "447b6c006dfe36347a96bd519b5ff23b76ed40352c0e5ccb32d42f496f402951",
+    "soko_mcp/oracle.py": "8145f311051a3f6bfa94467da7a6d9a30535f9edf1bb00662982da70e9cc9853",
+    "soko_mcp/original.py": "e9b288556c51363e1edbb161c2c119c540ad8aa6e5ae31e23739a6284f2800a6"
+  },
+  "status": "prepared"
+}
