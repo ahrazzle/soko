@@ -75,7 +75,7 @@ class SokoAndFormalVerifiedMcpTests(unittest.TestCase):
             },
         )
         self.assertEqual(init["result"]["protocolVersion"], "2025-03-26")
-        self.assertEqual(init["result"]["serverInfo"]["version"], "0.3.0")
+        self.assertEqual(init["result"]["serverInfo"]["version"], "0.4.0")
         self.assertIn("tools", init["result"]["capabilities"])
         self.client.notify("notifications/initialized")
 
@@ -104,6 +104,7 @@ class SokoAndFormalVerifiedMcpTests(unittest.TestCase):
                 "formal_synthesize_invariant",
                 "formal_triage_portfolio",
                 "formal_export_ledger",
+                "formal_audit_checkers",
             },
         )
         resources = self.client.request("resources/list")["result"]["resources"]
