@@ -39,6 +39,22 @@ The first pass (`outputs/*.cold.opt.json`, `*.fix.opt.json`, `*.fix2.opt.json`) 
 - Four of five rooms did reach the optimum. Iterating the optimizer is useful. The point is narrower: its stop signal cannot tell the four from the fifth.
 - Five rooms is a small sample. It is enough to refute "a stall means near-optimal", and too small to estimate how often stalls are false.
 
+## The same pattern in three other places
+
+Three other records in this group describe the same mechanism without using this repository's words. Each was found independently, and none cites the others.
+
+- `Moissanite-Labs/weft`, `docs/program/experiments/razi-cells-laws-2026-11/IDEAS.md`, law L7: "Inheritance anchors. On compress the blank arm found the ceiling body in 2 of 3 runs and heredity in 0 of 3. A fresh newborn is an independent draw. An heir stays near the first body. Where the best body is a different idea and not a refinement, draws beat inheritance."
+- The same file, K11: "'Nothing left to find' and 'nothing tried' look the same from above. ... A part that stopped at +0% after a cheap try is not evidence of no headroom until a stronger try (model, effort, or a note) has also failed."
+- `Foundation-0/f0`, `docs/research/gf2m-circuits/index.html`: "Walks within AES's usual way of writing the field stalled at 110." The record came from a sweep over 244,800 ways of writing the field.
+- `Foundation-0/f0`, `docs/research/machine-mathematics/index.html`: "The minimum holds only inside that template, not for every possible counterexample."
+
+Stripped of domain words, they share one mechanism. A search that starts from an incumbent explores the incumbent's neighbourhood. Its stop signal is a fact about the pair (incumbent, search), and it is true both at the optimum and at stopping points far from it. So:
+
+1. Searches that share a seed are one observation, however many there are.
+2. Only two things measure a gap: a bound that covers the whole space, or draws that do not inherit the seed (a cold start, another representation, another plan order).
+
+`Foundation-0/f0` `deep-fields/scouting/mathematics.md` adds the other half: the quiet places are "the proof and upper-bound side of tables", and "most gaps come from weak upper bounds". On the Frontier, the only accepted floor proofs listed on 2026-11-13 are banteg's three, for III-14, III-20 and III-21. Every player's proof count is 0.
+
 ## Defect found on the way (recorded, not fixed here)
 
 The optimizer first rejected every seed, including proven-optimal routes, with `seed_route (len=45) is not a valid winning route ... alive=True, exact_win=True, premature_win=False`. The real status was `REJECTED_TCB_UNLOCKED`. On first use, `ensure_cpp_engine` in `soko_mcp/engine_bridge.py` rebuilt the tracked `cpp/build/soko_engine` because its mtime looked older than the source. That changed its hash, so `sha256sum -c SHA256SUMS` failed. To reproduce deterministically: `touch cpp/soko_engine.cpp`, then run `verify`. Whether a fresh clone hits this depends on checkout timestamps; one clone in this session did, a second did not. The runs above used the committed binary, restored with `git checkout cpp/build/soko_engine`, with `SHA256SUMS` verifying. Under the GitHub SOP's one-gap-per-lane rule this is left for its own issue and PR.

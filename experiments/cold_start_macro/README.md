@@ -60,7 +60,7 @@ The capped search finds routes, not optimal ones. That made it useful as a seed 
 | --- | --- |
 | K 2, default | Exhausted at cost cap 900 without a win; 92,928 expanded, 1,584 progress cells |
 | K 24, default | Exhausted at cost cap 900 without a win; 113,812 expanded, the same 1,584 cells |
-| K 8, `--freedom 1 --rel-all 1` | See the dated note below |
+| K 8, `--freedom 1 --rel-all 1` | Stopped at the 12,000,000-state cap at cost 61, far short of any win; 361,908 expanded, 8,386 cells |
 
 The default cells saturate on III-21. Every hero starts sealed in, so "can walk to an exit" stays false for all six through most of any route. The search therefore cannot tell "Priest freed" from "nothing happened". See [docs/iii21-anatomy.md](../../docs/iii21-anatomy.md) for the room's structure.
 
