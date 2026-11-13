@@ -75,7 +75,7 @@ class SokoAndFormalVerifiedMcpTests(unittest.TestCase):
             },
         )
         self.assertEqual(init["result"]["protocolVersion"], "2025-03-26")
-        self.assertEqual(init["result"]["serverInfo"]["version"], "0.3.0")
+        self.assertEqual(init["result"]["serverInfo"]["version"], "0.4.0")
         self.assertIn("tools", init["result"]["capabilities"])
         self.client.notify("notifications/initialized")
 
@@ -107,6 +107,7 @@ class SokoAndFormalVerifiedMcpTests(unittest.TestCase):
                 "formal_synthesize_invariant",
                 "formal_triage_portfolio",
                 "formal_export_ledger",
+                "formal_audit_checkers",
             },
         )
         resources = self.client.request("resources/list")["result"]["resources"]
@@ -247,12 +248,14 @@ class SokoAndFormalVerifiedMcpTests(unittest.TestCase):
         self.assertTrue(flr22["exact_state_tt"])
         self.assertEqual(flr22["winning_witness"]["route_len"], 9)
 
-        # v0.3.0 PairAtomQuotientPDB + Multi-Core Exact-State Bucketed A* on III-14 (>= 31 in <= 5s, >= 33 in 7s, >= 35 in 35s!)
+        # v0.3.0 PairAtomQuotientPDB + Multi-Core Exact-State Bucketed A* on III-14 fixture (>= 31 within 8 s)
         flr14 = self.client.request(
             "tools/call",
             {"name": "soko_prove_floor", "arguments": {"room_id": "III-14", "max_bound": 31, "budget_sec": 8}},
         )["result"]["structuredContent"]
-        self.assertEqual(flr14["epistemic_status"], "VERIFIED")
+        # F-04: an unwitnessed floor is a lower bound, not VERIFIED.
+        self.assertEqual(flr14["epistemic_status"], "LOWER_BOUND_UNWITNESSED")
+        self.assertFalse(flr14["exact_optimum_reached"])
         self.assertTrue(flr14["quotient_pdb_enabled"])
         self.assertTrue(flr14["pair_atom_pdb_enabled"])
         self.assertEqual(flr14["search_strategy"], "multicore_exact_bucketed_astar")
@@ -264,7 +267,7 @@ class SokoAndFormalVerifiedMcpTests(unittest.TestCase):
             "tools/call",
             {"name": "soko_prove_floor", "arguments": {"room_id": "III-20", "max_bound": 12, "budget_sec": 3}},
         )["result"]["structuredContent"]
-        self.assertEqual(flr20["epistemic_status"], "VERIFIED")
+        self.assertEqual(flr20["epistemic_status"], "LOWER_BOUND_UNWITNESSED")
         self.assertTrue(flr20["wizard_ray_bound_enabled"])
         self.assertGreaterEqual(flr20["proven_floor"], 8)
 

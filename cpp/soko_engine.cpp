@@ -1489,10 +1489,10 @@ int main() {
             return 0;
         }
 
-        // Strategy A (Primary for M.n <= 128): Multi-Core Exact-State Bucketed A* (zero re-expansion across bounds!)
-        if (M.n <= 128) {
+        // Strategy A (Primary for M.n <= 256, v0.4.0): Multi-Core Exact-State Bucketed A* (covers III-14, III-20 [135], II-22 [169]!)
+        if (M.n <= 256) {
             struct CompactNode {
-                uint8_t raw_obj[128];
+                uint8_t raw_obj[256];
                 uint64_t notes0, notes1;
                 uint8_t y_open, p_open, g, h_cached, closed;
                 uint32_t parent;
@@ -1520,14 +1520,14 @@ int main() {
                 return true;
             };
 
-            const size_t MAX_ASTAR_NODES = 4500000;
-            const size_t HBITS = 23; // 8,388,608 hash slots
+            const size_t MAX_ASTAR_NODES = (budget_s >= 25.0) ? 15000000 : ((budget_s >= 10.0) ? 8000000 : 4000000);
+            const size_t HBITS = (budget_s >= 25.0) ? 25 : ((budget_s >= 10.0) ? 24 : 23); // 8,388,608 hash slots
             vector<uint64_t> hkeys(1ULL << HBITS, 0);
             vector<uint32_t> hvals(1ULL << HBITS, 0xFFFFFFFFu);
             const size_t HMASK = (1ULL << HBITS) - 1;
 
             vector<CompactNode> pool;
-            pool.reserve(min<size_t>(MAX_ASTAR_NODES, 524288));
+            pool.reserve(MAX_ASTAR_NODES);
             vector<vector<uint32_t>> buckets(max_bound + 4);
 
             uint64_t edge_checks = 0, total_nodes = 0, exact_dedups = 0, hash_collisions_prevented = 0;

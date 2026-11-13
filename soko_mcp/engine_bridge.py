@@ -55,6 +55,7 @@ def get_soko_checker_pins() -> Dict[str, Optional[str]]:
         "cpp_soko_engine_src_sha256": _file_sha256(CPP_SRC),
         "cpp_soko_engine_bin_sha256": _file_sha256(CPP_BIN),
         "formal_kernel_py_sha256": _file_sha256(pkg_dir / "formal_kernel.py"),
+        "checker_auditor_py_sha256": _file_sha256(pkg_dir / "checker_auditor.py"),
     }
 
 
@@ -67,6 +68,7 @@ def _required_checker_pins_ok(pins: Dict[str, Optional[str]]) -> bool:
         "cpp_soko_engine_src_sha256",
         "cpp_soko_engine_bin_sha256",
         "formal_kernel_py_sha256",
+        "checker_auditor_py_sha256",
     ):
         if not pins.get(key):
             return False
@@ -100,6 +102,7 @@ def verify_tcb_lock() -> Dict[str, Any]:
         "flat_oracle_py_sha256",
         "cpp_soko_engine_src_sha256",
         "formal_kernel_py_sha256",
+        "checker_auditor_py_sha256",
     )
     checker_pins_ok = all(bool(pins.get(k)) for k in required_pin_keys)
 
@@ -164,7 +167,7 @@ def get_capabilities() -> Dict[str, Any]:
     from .original import capability as original_capability
 
     return {
-        "version": "0.3.0",
+        "version": "0.4.0",
         "cpp_engine_ready": cpp_ready,
         "cpp_unavailable_reason": reason,
         "route_verification": {
@@ -202,6 +205,7 @@ def get_capabilities() -> Dict[str, Any]:
                 "formal_synthesize_invariant",
                 "formal_triage_portfolio",
                 "formal_export_ledger",
+                "formal_audit_checkers",
             ] if formal_present else [],
         },
         "catalog": {
@@ -524,6 +528,28 @@ def solve_room_verified(
     }
 
 
+def _shortest_known_route_len(part: int, grid: List[str]) -> Optional[int]:
+    """Length of the shortest reference route for this exact board that replays as a win."""
+    candidates = set()
+    for meta in FRONTIER_ROOMS.values():
+        if meta.get("part") == part and list(meta.get("grid", [])) == list(grid) and meta.get("reference_route"):
+            candidates.add(str(meta["reference_route"]))
+    try:
+        for meta in load_catalog().values():
+            if meta.get("part") == part and list(meta.get("grid", [])) == list(grid) and meta.get("reference_route"):
+                candidates.add(str(meta["reference_route"]))
+    except Exception:  # catalog data is optional for this cross-check
+        pass
+    best: Optional[int] = None
+    for route in candidates:
+        py_res = replay_oracle(part, grid, route)
+        flat_res = replay_flat_oracle(part, grid, route)
+        if py_res.get("exact_win") and flat_res.get("exact_win"):
+            n = len(route.strip())
+            best = n if best is None else min(best, n)
+    return best
+
+
 def prove_floor_verified(
     part: int,
     grid: List[str],
@@ -578,6 +604,29 @@ def prove_floor_verified(
     witness = str(cpp_out.get("winning_witness", "") or "")
     witness_verified = None
 
+    def _rejected(status: str, **extra: Any) -> Dict[str, Any]:
+        out = {
+            "epistemic_status": status,
+            "proven_floor": 0,
+            "exact_optimum_reached": False,
+            "nodes_expanded": cpp_out.get("nodes_expanded", 0),
+            "edge_consistency_checks": cpp_out.get("edge_consistency_checks", 0),
+            "checker_pins": get_soko_checker_pins(),
+        }
+        out.update(extra)
+        return out
+
+    try:
+        claimed_floor = int(cpp_out.get("proven_floor", 0))
+    except (TypeError, ValueError):
+        return _rejected("INCOMPLETE_CPP_OUTPUT")
+
+    # F-04: a search capped at max_bound refutes routes shorter than max_bound + 1 at most.
+    # A larger unwitnessed floor rests on the start heuristic alone (e.g. I-1 with max_bound=1
+    # reported floor 9 with 0 nodes and 0 edges), so it is rejected.
+    if not exact_opt and claimed_floor > int(max_bound) + 1:
+        return _rejected("REJECTED_FLOOR_EXCEEDS_MAX_BOUND", claimed_floor=claimed_floor, max_bound=int(max_bound))
+
     if exact_opt:
         if not witness and int(cpp_out.get("proven_floor", 0)) > 0:
             return {
@@ -589,7 +638,13 @@ def prove_floor_verified(
                 "checker_pins": get_soko_checker_pins(),
             }
         w_check = verify_route_dual(part, grid, witness)
-        if not w_check["valid_winning_route"] or w_check["route_len"] != int(cpp_out["proven_floor"]):
+        if w_check["valid_winning_route"] and w_check["route_len"] != claimed_floor:
+            return _rejected(
+                "REJECTED_WITNESS_FLOOR_MISMATCH",
+                claimed_floor=claimed_floor,
+                witness_len=w_check["route_len"],
+            )
+        if not w_check["valid_winning_route"]:
             return {
                 "epistemic_status": "REJECTED_INVALID_WITNESS",
                 "proven_floor": 0,
@@ -605,8 +660,44 @@ def prove_floor_verified(
             "traj_fnv64": w_check["traj_fnv64"],
         }
 
+    # F-04: checked after the witness, so an equal-length detour (DRRRRRRRRRU at floor 11 on I-1)
+    # is still caught. A lower bound can never exceed the length of a known winning route on the same board.
+    known_len = _shortest_known_route_len(part, grid)
+    if known_len is not None and claimed_floor > known_len:
+        return _rejected(
+            "REJECTED_FLOOR_EXCEEDS_KNOWN_ROUTE",
+            claimed_floor=claimed_floor,
+            shortest_known_route_len=known_len,
+        )
+
+    # F-04: VERIFIED is reserved for an exact optimum bound to a dual-oracle-checked witness on a board
+    # with a reference route to cross-check. Without a reference route nothing outside the engine's
+    # exact flag refutes a shorter win (a hall where RR wins in 2 accepted floor 4 with witness URRD),
+    # so that case is reported as WITNESS_MATCHES_CLAIM_UNREFERENCED, without a floor or guarantee.
+    if exact_opt and witness_verified is not None and known_len is None:
+        return {
+            "epistemic_status": "WITNESS_MATCHES_CLAIM_UNREFERENCED",
+            "optimality_proven": False,
+            "proven_floor": None,
+            "claimed_floor": claimed_floor,
+            "exact_optimum_reached": exact_opt,
+            "search_strategy": cpp_out.get("search_strategy", "exact_state_ida_star"),
+            "exact_state_tt": True,
+            "nodes_expanded": int(cpp_out.get("nodes_expanded", 0)),
+            "edge_consistency_checks": int(cpp_out.get("edge_consistency_checks", 0)),
+            "winning_witness": witness_verified,
+            "checker_pins": get_soko_checker_pins(),
+            "verification_note": (
+                "The dual-oracle-checked witness matches the claimed floor, but no reference route was available "
+                "for this board to check optimality. Shorter winning routes are not refuted, so it is not VERIFIED."
+            ),
+            "guarantee": None,
+        }
+
+    # Otherwise an inexact or unwitnessed floor is reported as an unwitnessed lower bound.
+    status = "VERIFIED" if (exact_opt and witness_verified is not None) else "LOWER_BOUND_UNWITNESSED"
     return {
-        "epistemic_status": "VERIFIED",
+        "epistemic_status": status,
         "optimality_proven": bool(exact_opt and witness_verified is not None),
         "proven_floor": int(cpp_out["proven_floor"]),
         "exact_optimum_reached": exact_opt,
@@ -621,6 +712,10 @@ def prove_floor_verified(
         "edge_consistency_checks": int(cpp_out["edge_consistency_checks"]),
         "winning_witness": witness_verified,
         "checker_pins": get_soko_checker_pins(),
+        "verification_note": (
+            None if status == "VERIFIED" else
+            "Lower bound from the engine's runtime-checked search; no optimal witness, so it is not VERIFIED."
+        ),
         "guarantee": (
             f"Exact-state deduplicated search ({cpp_out.get('search_strategy', 'exact_state_ida_star')}) with runtime "
             f"step-consistency assertions (h(s) <= 1 + h(s') checked across {cpp_out['edge_consistency_checks']} transitions, "
