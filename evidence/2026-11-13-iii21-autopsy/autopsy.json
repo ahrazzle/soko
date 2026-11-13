@@ -1,0 +1,5145 @@
+{
+ "summary": {
+  "room": "III-21",
+  "route_len": 316,
+  "route_sha256": "32625ea5b0ac0c9106f2d3ac6254eddec6d863dd4d1fd2a9ae18f6d55baf9a57",
+  "holder": "futarchist",
+  "record_id": 159,
+  "a_presses": 75,
+  "move_presses": 241,
+  "keys_by_hero": {
+   "F": 112,
+   "T": 40,
+   "W": 22,
+   "P": 42,
+   "B": 51,
+   "D": 49
+  },
+  "keys_by_band": {
+   "top": 56,
+   "middle": 179,
+   "bottom": 81
+  },
+  "segments": 76,
+  "hero_visits": {
+   "F": 13,
+   "T": 13,
+   "W": 13,
+   "P": 13,
+   "B": 12,
+   "D": 12
+  },
+  "band_transitions": 61,
+  "first_goal_key": 57,
+  "all_goals_key": 316,
+  "segments_detail": [
+   {
+    "hero": "F",
+    "start": 1,
+    "end": 29,
+    "keys": [
+     "R",
+     "R",
+     "R",
+     "D",
+     "R",
+     "R",
+     "D",
+     "R",
+     "R",
+     "R",
+     "U",
+     "R",
+     "R",
+     "D",
+     "R",
+     "R",
+     "U",
+     "U",
+     "R",
+     "R",
+     "R",
+     "R",
+     "R",
+     "L",
+     "L",
+     "L",
+     "L",
+     "D",
+     "D"
+    ],
+    "bands": [
+     "top"
+    ],
+    "n": 29,
+    "moves": 29,
+    "switches_in": 0
+   },
+   {
+    "hero": "T",
+    "start": 30,
+    "end": 31,
+    "keys": [
+     "A",
+     "U"
+    ],
+    "bands": [
+     "middle"
+    ],
+    "n": 2,
+    "moves": 1,
+    "switches_in": 1
+   },
+   {
+    "hero": "W",
+    "start": 32,
+    "end": 32,
+    "keys": [
+     "A"
+    ],
+    "bands": [
+     "bottom"
+    ],
+    "n": 1,
+    "moves": 0,
+    "switches_in": 1
+   },
+   {
+    "hero": "P",
+    "start": 33,
+    "end": 44,
+    "keys": [
+     "A",
+     "D",
+     "L",
+     "L",
+     "U",
+     "L",
+     "L",
+     "L",
+     "L",
+     "L",
+     "D",
+     "D"
+    ],
+    "bands": [
+     "top"
+    ],
+    "n": 12,
+    "moves": 11,
+    "switches_in": 1
+   },
+   {
+    "hero": "B",
+    "start": 45,
+    "end": 45,
+    "keys": [
+     "A"
+    ],
+    "bands": [
+     "middle"
+    ],
+    "n": 1,
+    "moves": 0,
+    "switches_in": 1
+   },
+   {
+    "hero": "D",
+    "start": 46,
+    "end": 46,
+    "keys": [
+     "A"
+    ],
+    "bands": [
+     "bottom"
+    ],
+    "n": 1,
+    "moves": 0,
+    "switches_in": 1
+   },
+   {
+    "hero": "F",
+    "start": 47,
+    "end": 66,
+    "keys": [
+     "A",
+     "L",
+     "L",
+     "L",
+     "U",
+     "L",
+     "D",
+     "D",
+     "D",
+     "R",
+     "D",
+     "L",
+     "U",
+     "L",
+     "D",
+     "D",
+     "L",
+     "L",
+     "U",
+     "U"
+    ],
+    "bands": [
+     "middle",
+     "top"
+    ],
+    "n": 20,
+    "moves": 19,
+    "switches_in": 1
+   },
+   {
+    "hero": "T",
+    "start": 67,
+    "end": 67,
+    "keys": [
+     "A"
+    ],
+    "bands": [
+     "middle"
+    ],
+    "n": 1,
+    "moves": 0,
+    "switches_in": 1
+   },
+   {
+    "hero": "W",
+    "start": 68,
+    "end": 68,
+    "keys": [
+     "A"
+    ],
+    "bands": [
+     "bottom"
+    ],
+    "n": 1,
+    "moves": 0,
+    "switches_in": 1
+   },
+   {
+    "hero": "P",
+    "start": 69,
+    "end": 74,
+    "keys": [
+     "A",
+     "U",
+     "L",
+     "L",
+     "U",
+     "L"
+    ],
+    "bands": [
+     "middle"
+    ],
+    "n": 6,
+    "moves": 5,
+    "switches_in": 1
+   },
+   {
+    "hero": "B",
+    "start": 75,
+    "end": 75,
+    "keys": [
+     "A"
+    ],
+    "bands": [
+     "middle"
+    ],
+    "n": 1,
+    "moves": 0,
+    "switches_in": 1
+   },
+   {
+    "hero": "D",
+    "start": 76,
+    "end": 77,
+    "keys": [
+     "A",
+     "U"
+    ],
+    "bands": [
+     "bottom"
+    ],
+    "n": 2,
+    "moves": 1,
+    "switches_in": 1
+   },
+   {
+    "hero": "F",
+    "start": 78,
+    "end": 84,
+    "keys": [
+     "A",
+     "D",
+     "L",
+     "L",
+     "L",
+     "L",
+     "L"
+    ],
+    "bands": [
+     "middle"
+    ],
+    "n": 7,
+    "moves": 6,
+    "switches_in": 1
+   },
+   {
+    "hero": "T",
+    "start": 85,
+    "end": 85,
+    "keys": [
+     "A"
+    ],
+    "bands": [
+     "middle"
+    ],
+    "n": 1,
+    "moves": 0,
+    "switches_in": 1
+   },
+   {
+    "hero": "W",
+    "start": 86,
+    "end": 86,
+    "keys": [
+     "A"
+    ],
+    "bands": [
+     "bottom"
+    ],
+    "n": 1,
+    "moves": 0,
+    "switches_in": 1
+   },
+   {
+    "hero": "P",
+    "start": 87,
+    "end": 89,
+    "keys": [
+     "A",
+     "D",
+     "L"
+    ],
+    "bands": [
+     "middle"
+    ],
+    "n": 3,
+    "moves": 2,
+    "switches_in": 1
+   },
+   {
+    "hero": "B",
+    "start": 90,
+    "end": 90,
+    "keys": [
+     "A"
+    ],
+    "bands": [
+     "middle"
+    ],
+    "n": 1,
+    "moves": 0,
+    "switches_in": 1
+   },
+   {
+    "hero": "D",
+    "start": 91,
+    "end": 91,
+    "keys": [
+     "A"
+    ],
+    "bands": [
+     "bottom"
+    ],
+    "n": 1,
+    "moves": 0,
+    "switches_in": 1
+   },
+   {
+    "hero": "F",
+    "start": 92,
+    "end": 94,
+    "keys": [
+     "A",
+     "L",
+     "D"
+    ],
+    "bands": [
+     "middle"
+    ],
+    "n": 3,
+    "moves": 2,
+    "switches_in": 1
+   },
+   {
+    "hero": "T",
+    "start": 95,
+    "end": 97,
+    "keys": [
+     "A",
+     "D",
+     "R"
+    ],
+    "bands": [
+     "middle"
+    ],
+    "n": 3,
+    "moves": 2,
+    "switches_in": 1
+   },
+   {
+    "hero": "W",
+    "start": 98,
+    "end": 98,
+    "keys": [
+     "A"
+    ],
+    "bands": [
+     "bottom"
+    ],
+    "n": 1,
+    "moves": 0,
+    "switches_in": 1
+   },
+   {
+    "hero": "P",
+    "start": 99,
+    "end": 99,
+    "keys": [
+     "A"
+    ],
+    "bands": [
+     "middle"
+    ],
+    "n": 1,
+    "moves": 0,
+    "switches_in": 1
+   },
+   {
+    "hero": "B",
+    "start": 100,
+    "end": 100,
+    "keys": [
+     "A"
+    ],
+    "bands": [
+     "middle"
+    ],
+    "n": 1,
+    "moves": 0,
+    "switches_in": 1
+   },
+   {
+    "hero": "D",
+    "start": 101,
+    "end": 104,
+    "keys": [
+     "A",
+     "L",
+     "L",
+     "D"
+    ],
+    "bands": [
+     "bottom"
+    ],
+    "n": 4,
+    "moves": 3,
+    "switches_in": 1
+   },
+   {
+    "hero": "F",
+    "start": 105,
+    "end": 107,
+    "keys": [
+     "A",
+     "U",
+     "L"
+    ],
+    "bands": [
+     "middle"
+    ],
+    "n": 3,
+    "moves": 2,
+    "switches_in": 1
+   },
+   {
+    "hero": "T",
+    "start": 108,
+    "end": 108,
+    "keys": [
+     "A"
+    ],
+    "bands": [
+     "middle"
+    ],
+    "n": 1,
+    "moves": 0,
+    "switches_in": 1
+   },
+   {
+    "hero": "W",
+    "start": 109,
+    "end": 110,
+    "keys": [
+     "A",
+     "L"
+    ],
+    "bands": [
+     "bottom"
+    ],
+    "n": 2,
+    "moves": 1,
+    "switches_in": 1
+   },
+   {
+    "hero": "P",
+    "start": 111,
+    "end": 113,
+    "keys": [
+     "A",
+     "R",
+     "U"
+    ],
+    "bands": [
+     "middle"
+    ],
+    "n": 3,
+    "moves": 2,
+    "switches_in": 1
+   },
+   {
+    "hero": "B",
+    "start": 114,
+    "end": 114,
+    "keys": [
+     "A"
+    ],
+    "bands": [
+     "middle"
+    ],
+    "n": 1,
+    "moves": 0,
+    "switches_in": 1
+   },
+   {
+    "hero": "D",
+    "start": 115,
+    "end": 115,
+    "keys": [
+     "A"
+    ],
+    "bands": [
+     "bottom"
+    ],
+    "n": 1,
+    "moves": 0,
+    "switches_in": 1
+   },
+   {
+    "hero": "F",
+    "start": 116,
+    "end": 121,
+    "keys": [
+     "A",
+     "R",
+     "R",
+     "R",
+     "R",
+     "R"
+    ],
+    "bands": [
+     "middle"
+    ],
+    "n": 6,
+    "moves": 5,
+    "switches_in": 1
+   },
+   {
+    "hero": "T",
+    "start": 122,
+    "end": 123,
+    "keys": [
+     "A",
+     "U"
+    ],
+    "bands": [
+     "middle"
+    ],
+    "n": 2,
+    "moves": 1,
+    "switches_in": 1
+   },
+   {
+    "hero": "W",
+    "start": 124,
+    "end": 124,
+    "keys": [
+     "A"
+    ],
+    "bands": [
+     "bottom"
+    ],
+    "n": 1,
+    "moves": 0,
+    "switches_in": 1
+   },
+   {
+    "hero": "P",
+    "start": 125,
+    "end": 128,
+    "keys": [
+     "A",
+     "R",
+     "D",
+     "R"
+    ],
+    "bands": [
+     "middle"
+    ],
+    "n": 4,
+    "moves": 3,
+    "switches_in": 1
+   },
+   {
+    "hero": "B",
+    "start": 129,
+    "end": 129,
+    "keys": [
+     "A"
+    ],
+    "bands": [
+     "middle"
+    ],
+    "n": 1,
+    "moves": 0,
+    "switches_in": 1
+   },
+   {
+    "hero": "D",
+    "start": 130,
+    "end": 130,
+    "keys": [
+     "A"
+    ],
+    "bands": [
+     "bottom"
+    ],
+    "n": 1,
+    "moves": 0,
+    "switches_in": 1
+   },
+   {
+    "hero": "F",
+    "start": 131,
+    "end": 137,
+    "keys": [
+     "A",
+     "R",
+     "R",
+     "D",
+     "R",
+     "R",
+     "U"
+    ],
+    "bands": [
+     "middle"
+    ],
+    "n": 7,
+    "moves": 6,
+    "switches_in": 1
+   },
+   {
+    "hero": "T",
+    "start": 138,
+    "end": 146,
+    "keys": [
+     "A",
+     "D",
+     "D",
+     "R",
+     "R",
+     "D",
+     "D",
+     "R",
+     "L"
+    ],
+    "bands": [
+     "bottom",
+     "middle"
+    ],
+    "n": 9,
+    "moves": 8,
+    "switches_in": 1
+   },
+   {
+    "hero": "W",
+    "start": 147,
+    "end": 147,
+    "keys": [
+     "A"
+    ],
+    "bands": [
+     "bottom"
+    ],
+    "n": 1,
+    "moves": 0,
+    "switches_in": 1
+   },
+   {
+    "hero": "P",
+    "start": 148,
+    "end": 149,
+    "keys": [
+     "A",
+     "U"
+    ],
+    "bands": [
+     "middle"
+    ],
+    "n": 2,
+    "moves": 1,
+    "switches_in": 1
+   },
+   {
+    "hero": "B",
+    "start": 150,
+    "end": 150,
+    "keys": [
+     "A"
+    ],
+    "bands": [
+     "middle"
+    ],
+    "n": 1,
+    "moves": 0,
+    "switches_in": 1
+   },
+   {
+    "hero": "D",
+    "start": 151,
+    "end": 151,
+    "keys": [
+     "A"
+    ],
+    "bands": [
+     "bottom"
+    ],
+    "n": 1,
+    "moves": 0,
+    "switches_in": 1
+   },
+   {
+    "hero": "F",
+    "start": 152,
+    "end": 163,
+    "keys": [
+     "A",
+     "U",
+     "L",
+     "L",
+     "R",
+     "R",
+     "U",
+     "R",
+     "U",
+     "R",
+     "D",
+     "D"
+    ],
+    "bands": [
+     "middle"
+    ],
+    "n": 12,
+    "moves": 11,
+    "switches_in": 1
+   },
+   {
+    "hero": "T",
+    "start": 164,
+    "end": 178,
+    "keys": [
+     "A",
+     "U",
+     "R",
+     "U",
+     "L",
+     "D",
+     "D",
+     "R",
+     "R",
+     "R",
+     "R",
+     "L",
+     "L",
+     "L",
+     "L"
+    ],
+    "bands": [
+     "bottom",
+     "middle"
+    ],
+    "n": 15,
+    "moves": 14,
+    "switches_in": 1
+   },
+   {
+    "hero": "W",
+    "start": 179,
+    "end": 179,
+    "keys": [
+     "A"
+    ],
+    "bands": [
+     "bottom"
+    ],
+    "n": 1,
+    "moves": 0,
+    "switches_in": 1
+   },
+   {
+    "hero": "P",
+    "start": 180,
+    "end": 182,
+    "keys": [
+     "A",
+     "U",
+     "U"
+    ],
+    "bands": [
+     "middle"
+    ],
+    "n": 3,
+    "moves": 2,
+    "switches_in": 1
+   },
+   {
+    "hero": "B",
+    "start": 183,
+    "end": 183,
+    "keys": [
+     "A"
+    ],
+    "bands": [
+     "middle"
+    ],
+    "n": 1,
+    "moves": 0,
+    "switches_in": 1
+   },
+   {
+    "hero": "D",
+    "start": 184,
+    "end": 184,
+    "keys": [
+     "A"
+    ],
+    "bands": [
+     "bottom"
+    ],
+    "n": 1,
+    "moves": 0,
+    "switches_in": 1
+   },
+   {
+    "hero": "F",
+    "start": 185,
+    "end": 197,
+    "keys": [
+     "A",
+     "R",
+     "D",
+     "D",
+     "R",
+     "R",
+     "R",
+     "D",
+     "R",
+     "R",
+     "R",
+     "R",
+     "R"
+    ],
+    "bands": [
+     "bottom",
+     "middle"
+    ],
+    "n": 13,
+    "moves": 12,
+    "switches_in": 1
+   },
+   {
+    "hero": "T",
+    "start": 198,
+    "end": 198,
+    "keys": [
+     "A"
+    ],
+    "bands": [
+     "bottom"
+    ],
+    "n": 1,
+    "moves": 0,
+    "switches_in": 1
+   },
+   {
+    "hero": "W",
+    "start": 199,
+    "end": 199,
+    "keys": [
+     "A"
+    ],
+    "bands": [
+     "bottom"
+    ],
+    "n": 1,
+    "moves": 0,
+    "switches_in": 1
+   },
+   {
+    "hero": "P",
+    "start": 200,
+    "end": 200,
+    "keys": [
+     "A"
+    ],
+    "bands": [
+     "middle"
+    ],
+    "n": 1,
+    "moves": 0,
+    "switches_in": 1
+   },
+   {
+    "hero": "B",
+    "start": 201,
+    "end": 201,
+    "keys": [
+     "A"
+    ],
+    "bands": [
+     "middle"
+    ],
+    "n": 1,
+    "moves": 0,
+    "switches_in": 1
+   },
+   {
+    "hero": "D",
+    "start": 202,
+    "end": 222,
+    "keys": [
+     "A",
+     "U",
+     "L",
+     "L",
+     "U",
+     "L",
+     "U",
+     "L",
+     "U",
+     "L",
+     "L",
+     "L",
+     "D",
+     "U",
+     "U",
+     "R",
+     "L",
+     "D",
+     "L",
+     "L",
+     "U"
+    ],
+    "bands": [
+     "bottom",
+     "middle"
+    ],
+    "n": 21,
+    "moves": 20,
+    "switches_in": 1
+   },
+   {
+    "hero": "F",
+    "start": 223,
+    "end": 228,
+    "keys": [
+     "A",
+     "L",
+     "L",
+     "L",
+     "U",
+     "U"
+    ],
+    "bands": [
+     "bottom",
+     "middle"
+    ],
+    "n": 6,
+    "moves": 5,
+    "switches_in": 1
+   },
+   {
+    "hero": "T",
+    "start": 229,
+    "end": 229,
+    "keys": [
+     "A"
+    ],
+    "bands": [
+     "bottom"
+    ],
+    "n": 1,
+    "moves": 0,
+    "switches_in": 1
+   },
+   {
+    "hero": "W",
+    "start": 230,
+    "end": 230,
+    "keys": [
+     "A"
+    ],
+    "bands": [
+     "bottom"
+    ],
+    "n": 1,
+    "moves": 0,
+    "switches_in": 1
+   },
+   {
+    "hero": "P",
+    "start": 231,
+    "end": 231,
+    "keys": [
+     "A"
+    ],
+    "bands": [
+     "middle"
+    ],
+    "n": 1,
+    "moves": 0,
+    "switches_in": 1
+   },
+   {
+    "hero": "B",
+    "start": 232,
+    "end": 253,
+    "keys": [
+     "A",
+     "L",
+     "L",
+     "L",
+     "L",
+     "L",
+     "D",
+     "L",
+     "L",
+     "L",
+     "D",
+     "U",
+     "L",
+     "L",
+     "U",
+     "L",
+     "L",
+     "L",
+     "L",
+     "L",
+     "L",
+     "L"
+    ],
+    "bands": [
+     "middle"
+    ],
+    "n": 22,
+    "moves": 21,
+    "switches_in": 1
+   },
+   {
+    "hero": "D",
+    "start": 254,
+    "end": 258,
+    "keys": [
+     "A",
+     "D",
+     "D",
+     "R",
+     "D"
+    ],
+    "bands": [
+     "middle"
+    ],
+    "n": 5,
+    "moves": 4,
+    "switches_in": 1
+   },
+   {
+    "hero": "F",
+    "start": 259,
+    "end": 262,
+    "keys": [
+     "A",
+     "L",
+     "D",
+     "D"
+    ],
+    "bands": [
+     "bottom"
+    ],
+    "n": 4,
+    "moves": 3,
+    "switches_in": 1
+   },
+   {
+    "hero": "T",
+    "start": 263,
+    "end": 264,
+    "keys": [
+     "A",
+     "U"
+    ],
+    "bands": [
+     "middle"
+    ],
+    "n": 2,
+    "moves": 1,
+    "switches_in": 1
+   },
+   {
+    "hero": "W",
+    "start": 265,
+    "end": 265,
+    "keys": [
+     "A"
+    ],
+    "bands": [
+     "bottom"
+    ],
+    "n": 1,
+    "moves": 0,
+    "switches_in": 1
+   },
+   {
+    "hero": "P",
+    "start": 266,
+    "end": 266,
+    "keys": [
+     "A"
+    ],
+    "bands": [
+     "middle"
+    ],
+    "n": 1,
+    "moves": 0,
+    "switches_in": 1
+   },
+   {
+    "hero": "B",
+    "start": 267,
+    "end": 271,
+    "keys": [
+     "A",
+     "L",
+     "D",
+     "U",
+     "R"
+    ],
+    "bands": [
+     "middle"
+    ],
+    "n": 5,
+    "moves": 4,
+    "switches_in": 1
+   },
+   {
+    "hero": "D",
+    "start": 272,
+    "end": 276,
+    "keys": [
+     "A",
+     "D",
+     "D",
+     "U",
+     "U"
+    ],
+    "bands": [
+     "middle"
+    ],
+    "n": 5,
+    "moves": 4,
+    "switches_in": 1
+   },
+   {
+    "hero": "F",
+    "start": 277,
+    "end": 277,
+    "keys": [
+     "A"
+    ],
+    "bands": [
+     "bottom"
+    ],
+    "n": 1,
+    "moves": 0,
+    "switches_in": 1
+   },
+   {
+    "hero": "T",
+    "start": 278,
+    "end": 278,
+    "keys": [
+     "A"
+    ],
+    "bands": [
+     "middle"
+    ],
+    "n": 1,
+    "moves": 0,
+    "switches_in": 1
+   },
+   {
+    "hero": "W",
+    "start": 279,
+    "end": 280,
+    "keys": [
+     "A",
+     "U"
+    ],
+    "bands": [
+     "bottom"
+    ],
+    "n": 2,
+    "moves": 1,
+    "switches_in": 1
+   },
+   {
+    "hero": "P",
+    "start": 281,
+    "end": 281,
+    "keys": [
+     "A"
+    ],
+    "bands": [
+     "middle"
+    ],
+    "n": 1,
+    "moves": 0,
+    "switches_in": 1
+   },
+   {
+    "hero": "B",
+    "start": 282,
+    "end": 296,
+    "keys": [
+     "A",
+     "R",
+     "R",
+     "R",
+     "R",
+     "R",
+     "R",
+     "R",
+     "R",
+     "U",
+     "U",
+     "U",
+     "R",
+     "U",
+     "U"
+    ],
+    "bands": [
+     "middle",
+     "top"
+    ],
+    "n": 15,
+    "moves": 14,
+    "switches_in": 1
+   },
+   {
+    "hero": "D",
+    "start": 297,
+    "end": 302,
+    "keys": [
+     "A",
+     "D",
+     "R",
+     "D",
+     "D",
+     "D"
+    ],
+    "bands": [
+     "bottom",
+     "middle"
+    ],
+    "n": 6,
+    "moves": 5,
+    "switches_in": 1
+   },
+   {
+    "hero": "F",
+    "start": 303,
+    "end": 303,
+    "keys": [
+     "A"
+    ],
+    "bands": [
+     "bottom"
+    ],
+    "n": 1,
+    "moves": 0,
+    "switches_in": 1
+   },
+   {
+    "hero": "T",
+    "start": 304,
+    "end": 304,
+    "keys": [
+     "A"
+    ],
+    "bands": [
+     "middle"
+    ],
+    "n": 1,
+    "moves": 0,
+    "switches_in": 1
+   },
+   {
+    "hero": "W",
+    "start": 305,
+    "end": 312,
+    "keys": [
+     "A",
+     "U",
+     "U",
+     "U",
+     "R",
+     "D",
+     "D",
+     "D"
+    ],
+    "bands": [
+     "bottom",
+     "middle"
+    ],
+    "n": 8,
+    "moves": 7,
+    "switches_in": 1
+   },
+   {
+    "hero": "P",
+    "start": 313,
+    "end": 316,
+    "keys": [
+     "A",
+     "U",
+     "U",
+     "L"
+    ],
+    "bands": [
+     "top"
+    ],
+    "n": 4,
+    "moves": 3,
+    "switches_in": 1
+   }
+  ]
+ },
+ "frames": [
+  {
+   "i": 1,
+   "key": "R",
+   "active_before": "F",
+   "active": "F",
+   "x": 3,
+   "y": 1,
+   "band": "top",
+   "moved": true,
+   "won": false,
+   "heroes_on_goals": 0
+  },
+  {
+   "i": 2,
+   "key": "R",
+   "active_before": "F",
+   "active": "F",
+   "x": 4,
+   "y": 1,
+   "band": "top",
+   "moved": true,
+   "won": false,
+   "heroes_on_goals": 0
+  },
+  {
+   "i": 3,
+   "key": "R",
+   "active_before": "F",
+   "active": "F",
+   "x": 5,
+   "y": 1,
+   "band": "top",
+   "moved": true,
+   "won": false,
+   "heroes_on_goals": 0
+  },
+  {
+   "i": 4,
+   "key": "D",
+   "active_before": "F",
+   "active": "F",
+   "x": 5,
+   "y": 2,
+   "band": "top",
+   "moved": true,
+   "won": false,
+   "heroes_on_goals": 0
+  },
+  {
+   "i": 5,
+   "key": "R",
+   "active_before": "F",
+   "active": "F",
+   "x": 6,
+   "y": 2,
+   "band": "top",
+   "moved": true,
+   "won": false,
+   "heroes_on_goals": 0
+  },
+  {
+   "i": 6,
+   "key": "R",
+   "active_before": "F",
+   "active": "F",
+   "x": 7,
+   "y": 2,
+   "band": "top",
+   "moved": true,
+   "won": false,
+   "heroes_on_goals": 0
+  },
+  {
+   "i": 7,
+   "key": "D",
+   "active_before": "F",
+   "active": "F",
+   "x": 7,
+   "y": 3,
+   "band": "top",
+   "moved": true,
+   "won": false,
+   "heroes_on_goals": 0
+  },
+  {
+   "i": 8,
+   "key": "R",
+   "active_before": "F",
+   "active": "F",
+   "x": 8,
+   "y": 3,
+   "band": "top",
+   "moved": true,
+   "won": false,
+   "heroes_on_goals": 0
+  },
+  {
+   "i": 9,
+   "key": "R",
+   "active_before": "F",
+   "active": "F",
+   "x": 9,
+   "y": 3,
+   "band": "top",
+   "moved": true,
+   "won": false,
+   "heroes_on_goals": 0
+  },
+  {
+   "i": 10,
+   "key": "R",
+   "active_before": "F",
+   "active": "F",
+   "x": 10,
+   "y": 3,
+   "band": "top",
+   "moved": true,
+   "won": false,
+   "heroes_on_goals": 0
+  },
+  {
+   "i": 11,
+   "key": "U",
+   "active_before": "F",
+   "active": "F",
+   "x": 10,
+   "y": 2,
+   "band": "top",
+   "moved": true,
+   "won": false,
+   "heroes_on_goals": 0
+  },
+  {
+   "i": 12,
+   "key": "R",
+   "active_before": "F",
+   "active": "F",
+   "x": 11,
+   "y": 2,
+   "band": "top",
+   "moved": true,
+   "won": false,
+   "heroes_on_goals": 0
+  },
+  {
+   "i": 13,
+   "key": "R",
+   "active_before": "F",
+   "active": "F",
+   "x": 12,
+   "y": 2,
+   "band": "top",
+   "moved": true,
+   "won": false,
+   "heroes_on_goals": 0
+  },
+  {
+   "i": 14,
+   "key": "D",
+   "active_before": "F",
+   "active": "F",
+   "x": 12,
+   "y": 3,
+   "band": "top",
+   "moved": true,
+   "won": false,
+   "heroes_on_goals": 0
+  },
+  {
+   "i": 15,
+   "key": "R",
+   "active_before": "F",
+   "active": "F",
+   "x": 13,
+   "y": 3,
+   "band": "top",
+   "moved": true,
+   "won": false,
+   "heroes_on_goals": 0
+  },
+  {
+   "i": 16,
+   "key": "R",
+   "active_before": "F",
+   "active": "F",
+   "x": 14,
+   "y": 3,
+   "band": "top",
+   "moved": true,
+   "won": false,
+   "heroes_on_goals": 0
+  },
+  {
+   "i": 17,
+   "key": "U",
+   "active_before": "F",
+   "active": "F",
+   "x": 14,
+   "y": 2,
+   "band": "top",
+   "moved": true,
+   "won": false,
+   "heroes_on_goals": 0
+  },
+  {
+   "i": 18,
+   "key": "U",
+   "active_before": "F",
+   "active": "F",
+   "x": 14,
+   "y": 1,
+   "band": "top",
+   "moved": true,
+   "won": false,
+   "heroes_on_goals": 0
+  },
+  {
+   "i": 19,
+   "key": "R",
+   "active_before": "F",
+   "active": "F",
+   "x": 15,
+   "y": 1,
+   "band": "top",
+   "moved": true,
+   "won": false,
+   "heroes_on_goals": 0
+  },
+  {
+   "i": 20,
+   "key": "R",
+   "active_before": "F",
+   "active": "F",
+   "x": 16,
+   "y": 1,
+   "band": "top",
+   "moved": true,
+   "won": false,
+   "heroes_on_goals": 0
+  },
+  {
+   "i": 21,
+   "key": "R",
+   "active_before": "F",
+   "active": "F",
+   "x": 17,
+   "y": 1,
+   "band": "top",
+   "moved": true,
+   "won": false,
+   "heroes_on_goals": 0
+  },
+  {
+   "i": 22,
+   "key": "R",
+   "active_before": "F",
+   "active": "F",
+   "x": 18,
+   "y": 1,
+   "band": "top",
+   "moved": true,
+   "won": false,
+   "heroes_on_goals": 0
+  },
+  {
+   "i": 23,
+   "key": "R",
+   "active_before": "F",
+   "active": "F",
+   "x": 19,
+   "y": 1,
+   "band": "top",
+   "moved": true,
+   "won": false,
+   "heroes_on_goals": 0
+  },
+  {
+   "i": 24,
+   "key": "L",
+   "active_before": "F",
+   "active": "F",
+   "x": 18,
+   "y": 1,
+   "band": "top",
+   "moved": true,
+   "won": false,
+   "heroes_on_goals": 0
+  },
+  {
+   "i": 25,
+   "key": "L",
+   "active_before": "F",
+   "active": "F",
+   "x": 17,
+   "y": 1,
+   "band": "top",
+   "moved": true,
+   "won": false,
+   "heroes_on_goals": 0
+  },
+  {
+   "i": 26,
+   "key": "L",
+   "active_before": "F",
+   "active": "F",
+   "x": 16,
+   "y": 1,
+   "band": "top",
+   "moved": true,
+   "won": false,
+   "heroes_on_goals": 0
+  },
+  {
+   "i": 27,
+   "key": "L",
+   "active_before": "F",
+   "active": "F",
+   "x": 15,
+   "y": 1,
+   "band": "top",
+   "moved": true,
+   "won": false,
+   "heroes_on_goals": 0
+  },
+  {
+   "i": 28,
+   "key": "D",
+   "active_before": "F",
+   "active": "F",
+   "x": 15,
+   "y": 2,
+   "band": "top",
+   "moved": true,
+   "won": false,
+   "heroes_on_goals": 0
+  },
+  {
+   "i": 29,
+   "key": "D",
+   "active_before": "F",
+   "active": "F",
+   "x": 15,
+   "y": 3,
+   "band": "top",
+   "moved": true,
+   "won": false,
+   "heroes_on_goals": 0
+  },
+  {
+   "i": 30,
+   "key": "A",
+   "active_before": "F",
+   "active": "T",
+   "x": 2,
+   "y": 6,
+   "band": "middle",
+   "moved": true,
+   "won": false,
+   "heroes_on_goals": 0
+  },
+  {
+   "i": 31,
+   "key": "U",
+   "active_before": "T",
+   "active": "T",
+   "x": 2,
+   "y": 5,
+   "band": "middle",
+   "moved": true,
+   "won": false,
+   "heroes_on_goals": 0
+  },
+  {
+   "i": 32,
+   "key": "A",
+   "active_before": "T",
+   "active": "W",
+   "x": 2,
+   "y": 11,
+   "band": "bottom",
+   "moved": true,
+   "won": false,
+   "heroes_on_goals": 0
+  },
+  {
+   "i": 33,
+   "key": "A",
+   "active_before": "W",
+   "active": "P",
+   "x": 21,
+   "y": 1,
+   "band": "top",
+   "moved": true,
+   "won": false,
+   "heroes_on_goals": 0
+  },
+  {
+   "i": 34,
+   "key": "D",
+   "active_before": "P",
+   "active": "P",
+   "x": 21,
+   "y": 2,
+   "band": "top",
+   "moved": true,
+   "won": false,
+   "heroes_on_goals": 0
+  },
+  {
+   "i": 35,
+   "key": "L",
+   "active_before": "P",
+   "active": "P",
+   "x": 20,
+   "y": 2,
+   "band": "top",
+   "moved": true,
+   "won": false,
+   "heroes_on_goals": 0
+  },
+  {
+   "i": 36,
+   "key": "L",
+   "active_before": "P",
+   "active": "P",
+   "x": 19,
+   "y": 2,
+   "band": "top",
+   "moved": true,
+   "won": false,
+   "heroes_on_goals": 0
+  },
+  {
+   "i": 37,
+   "key": "U",
+   "active_before": "P",
+   "active": "P",
+   "x": 19,
+   "y": 1,
+   "band": "top",
+   "moved": true,
+   "won": false,
+   "heroes_on_goals": 0
+  },
+  {
+   "i": 38,
+   "key": "L",
+   "active_before": "P",
+   "active": "P",
+   "x": 18,
+   "y": 1,
+   "band": "top",
+   "moved": true,
+   "won": false,
+   "heroes_on_goals": 0
+  },
+  {
+   "i": 39,
+   "key": "L",
+   "active_before": "P",
+   "active": "P",
+   "x": 17,
+   "y": 1,
+   "band": "top",
+   "moved": true,
+   "won": false,
+   "heroes_on_goals": 0
+  },
+  {
+   "i": 40,
+   "key": "L",
+   "active_before": "P",
+   "active": "P",
+   "x": 16,
+   "y": 1,
+   "band": "top",
+   "moved": true,
+   "won": false,
+   "heroes_on_goals": 0
+  },
+  {
+   "i": 41,
+   "key": "L",
+   "active_before": "P",
+   "active": "P",
+   "x": 15,
+   "y": 1,
+   "band": "top",
+   "moved": true,
+   "won": false,
+   "heroes_on_goals": 0
+  },
+  {
+   "i": 42,
+   "key": "L",
+   "active_before": "P",
+   "active": "P",
+   "x": 14,
+   "y": 1,
+   "band": "top",
+   "moved": true,
+   "won": false,
+   "heroes_on_goals": 0
+  },
+  {
+   "i": 43,
+   "key": "D",
+   "active_before": "P",
+   "active": "P",
+   "x": 14,
+   "y": 2,
+   "band": "top",
+   "moved": true,
+   "won": false,
+   "heroes_on_goals": 0
+  },
+  {
+   "i": 44,
+   "key": "D",
+   "active_before": "P",
+   "active": "P",
+   "x": 14,
+   "y": 3,
+   "band": "top",
+   "moved": true,
+   "won": false,
+   "heroes_on_goals": 0
+  },
+  {
+   "i": 45,
+   "key": "A",
+   "active_before": "P",
+   "active": "B",
+   "x": 20,
+   "y": 6,
+   "band": "middle",
+   "moved": true,
+   "won": false,
+   "heroes_on_goals": 0
+  },
+  {
+   "i": 46,
+   "key": "A",
+   "active_before": "B",
+   "active": "D",
+   "x": 20,
+   "y": 11,
+   "band": "bottom",
+   "moved": true,
+   "won": false,
+   "heroes_on_goals": 0
+  },
+  {
+   "i": 47,
+   "key": "A",
+   "active_before": "D",
+   "active": "F",
+   "x": 15,
+   "y": 3,
+   "band": "top",
+   "moved": true,
+   "won": false,
+   "heroes_on_goals": 0
+  },
+  {
+   "i": 48,
+   "key": "L",
+   "active_before": "F",
+   "active": "F",
+   "x": 14,
+   "y": 3,
+   "band": "top",
+   "moved": true,
+   "won": false,
+   "heroes_on_goals": 0
+  },
+  {
+   "i": 49,
+   "key": "L",
+   "active_before": "F",
+   "active": "F",
+   "x": 13,
+   "y": 3,
+   "band": "top",
+   "moved": true,
+   "won": false,
+   "heroes_on_goals": 0
+  },
+  {
+   "i": 50,
+   "key": "L",
+   "active_before": "F",
+   "active": "F",
+   "x": 12,
+   "y": 3,
+   "band": "top",
+   "moved": true,
+   "won": false,
+   "heroes_on_goals": 0
+  },
+  {
+   "i": 51,
+   "key": "U",
+   "active_before": "F",
+   "active": "F",
+   "x": 12,
+   "y": 2,
+   "band": "top",
+   "moved": true,
+   "won": false,
+   "heroes_on_goals": 0
+  },
+  {
+   "i": 52,
+   "key": "L",
+   "active_before": "F",
+   "active": "F",
+   "x": 11,
+   "y": 2,
+   "band": "top",
+   "moved": true,
+   "won": false,
+   "heroes_on_goals": 0
+  },
+  {
+   "i": 53,
+   "key": "D",
+   "active_before": "F",
+   "active": "F",
+   "x": 11,
+   "y": 3,
+   "band": "top",
+   "moved": true,
+   "won": false,
+   "heroes_on_goals": 0
+  },
+  {
+   "i": 54,
+   "key": "D",
+   "active_before": "F",
+   "active": "F",
+   "x": 11,
+   "y": 4,
+   "band": "middle",
+   "moved": true,
+   "won": false,
+   "heroes_on_goals": 0
+  },
+  {
+   "i": 55,
+   "key": "D",
+   "active_before": "F",
+   "active": "F",
+   "x": 11,
+   "y": 5,
+   "band": "middle",
+   "moved": true,
+   "won": false,
+   "heroes_on_goals": 0
+  },
+  {
+   "i": 56,
+   "key": "R",
+   "active_before": "F",
+   "active": "F",
+   "x": 12,
+   "y": 5,
+   "band": "middle",
+   "moved": true,
+   "won": false,
+   "heroes_on_goals": 0
+  },
+  {
+   "i": 57,
+   "key": "D",
+   "active_before": "F",
+   "active": "F",
+   "x": 12,
+   "y": 6,
+   "band": "middle",
+   "moved": true,
+   "won": false,
+   "heroes_on_goals": 1
+  },
+  {
+   "i": 58,
+   "key": "L",
+   "active_before": "F",
+   "active": "F",
+   "x": 11,
+   "y": 6,
+   "band": "middle",
+   "moved": true,
+   "won": false,
+   "heroes_on_goals": 1
+  },
+  {
+   "i": 59,
+   "key": "U",
+   "active_before": "F",
+   "active": "F",
+   "x": 11,
+   "y": 5,
+   "band": "middle",
+   "moved": true,
+   "won": false,
+   "heroes_on_goals": 1
+  },
+  {
+   "i": 60,
+   "key": "L",
+   "active_before": "F",
+   "active": "F",
+   "x": 10,
+   "y": 5,
+   "band": "middle",
+   "moved": true,
+   "won": false,
+   "heroes_on_goals": 1
+  },
+  {
+   "i": 61,
+   "key": "D",
+   "active_before": "F",
+   "active": "F",
+   "x": 10,
+   "y": 6,
+   "band": "middle",
+   "moved": true,
+   "won": false,
+   "heroes_on_goals": 1
+  },
+  {
+   "i": 62,
+   "key": "D",
+   "active_before": "F",
+   "active": "F",
+   "x": 10,
+   "y": 7,
+   "band": "middle",
+   "moved": true,
+   "won": false,
+   "heroes_on_goals": 0
+  },
+  {
+   "i": 63,
+   "key": "L",
+   "active_before": "F",
+   "active": "F",
+   "x": 9,
+   "y": 7,
+   "band": "middle",
+   "moved": true,
+   "won": false,
+   "heroes_on_goals": 0
+  },
+  {
+   "i": 64,
+   "key": "L",
+   "active_before": "F",
+   "active": "F",
+   "x": 8,
+   "y": 7,
+   "band": "middle",
+   "moved": true,
+   "won": false,
+   "heroes_on_goals": 0
+  },
+  {
+   "i": 65,
+   "key": "U",
+   "active_before": "F",
+   "active": "F",
+   "x": 8,
+   "y": 6,
+   "band": "middle",
+   "moved": true,
+   "won": false,
+   "heroes_on_goals": 0
+  },
+  {
+   "i": 66,
+   "key": "U",
+   "active_before": "F",
+   "active": "F",
+   "x": 8,
+   "y": 5,
+   "band": "middle",
+   "moved": true,
+   "won": false,
+   "heroes_on_goals": 0
+  },
+  {
+   "i": 67,
+   "key": "A",
+   "active_before": "F",
+   "active": "T",
+   "x": 2,
+   "y": 5,
+   "band": "middle",
+   "moved": true,
+   "won": false,
+   "heroes_on_goals": 0
+  },
+  {
+   "i": 68,
+   "key": "A",
+   "active_before": "T",
+   "active": "W",
+   "x": 2,
+   "y": 11,
+   "band": "bottom",
+   "moved": true,
+   "won": false,
+   "heroes_on_goals": 0
+  },
+  {
+   "i": 69,
+   "key": "A",
+   "active_before": "W",
+   "active": "P",
+   "x": 10,
+   "y": 8,
+   "band": "middle",
+   "moved": true,
+   "won": false,
+   "heroes_on_goals": 0
+  },
+  {
+   "i": 70,
+   "key": "U",
+   "active_before": "P",
+   "active": "P",
+   "x": 10,
+   "y": 7,
+   "band": "middle",
+   "moved": true,
+   "won": false,
+   "heroes_on_goals": 0
+  },
+  {
+   "i": 71,
+   "key": "L",
+   "active_before": "P",
+   "active": "P",
+   "x": 9,
+   "y": 7,
+   "band": "middle",
+   "moved": true,
+   "won": false,
+   "heroes_on_goals": 0
+  },
+  {
+   "i": 72,
+   "key": "L",
+   "active_before": "P",
+   "active": "P",
+   "x": 8,
+   "y": 7,
+   "band": "middle",
+   "moved": true,
+   "won": false,
+   "heroes_on_goals": 0
+  },
+  {
+   "i": 73,
+   "key": "U",
+   "active_before": "P",
+   "active": "P",
+   "x": 8,
+   "y": 6,
+   "band": "middle",
+   "moved": true,
+   "won": false,
+   "heroes_on_goals": 0
+  },
+  {
+   "i": 74,
+   "key": "L",
+   "active_before": "P",
+   "active": "P",
+   "x": 7,
+   "y": 6,
+   "band": "middle",
+   "moved": true,
+   "won": false,
+   "heroes_on_goals": 0
+  },
+  {
+   "i": 75,
+   "key": "A",
+   "active_before": "P",
+   "active": "B",
+   "x": 20,
+   "y": 6,
+   "band": "middle",
+   "moved": true,
+   "won": false,
+   "heroes_on_goals": 0
+  },
+  {
+   "i": 76,
+   "key": "A",
+   "active_before": "B",
+   "active": "D",
+   "x": 20,
+   "y": 11,
+   "band": "bottom",
+   "moved": true,
+   "won": false,
+   "heroes_on_goals": 0
+  },
+  {
+   "i": 77,
+   "key": "U",
+   "active_before": "D",
+   "active": "D",
+   "x": 20,
+   "y": 10,
+   "band": "bottom",
+   "moved": true,
+   "won": false,
+   "heroes_on_goals": 0
+  },
+  {
+   "i": 78,
+   "key": "A",
+   "active_before": "D",
+   "active": "F",
+   "x": 8,
+   "y": 5,
+   "band": "middle",
+   "moved": true,
+   "won": false,
+   "heroes_on_goals": 0
+  },
+  {
+   "i": 79,
+   "key": "D",
+   "active_before": "F",
+   "active": "F",
+   "x": 8,
+   "y": 6,
+   "band": "middle",
+   "moved": true,
+   "won": false,
+   "heroes_on_goals": 0
+  },
+  {
+   "i": 80,
+   "key": "L",
+   "active_before": "F",
+   "active": "F",
+   "x": 7,
+   "y": 6,
+   "band": "middle",
+   "moved": true,
+   "won": false,
+   "heroes_on_goals": 0
+  },
+  {
+   "i": 81,
+   "key": "L",
+   "active_before": "F",
+   "active": "F",
+   "x": 6,
+   "y": 6,
+   "band": "middle",
+   "moved": true,
+   "won": false,
+   "heroes_on_goals": 0
+  },
+  {
+   "i": 82,
+   "key": "L",
+   "active_before": "F",
+   "active": "F",
+   "x": 5,
+   "y": 6,
+   "band": "middle",
+   "moved": true,
+   "won": false,
+   "heroes_on_goals": 0
+  },
+  {
+   "i": 83,
+   "key": "L",
+   "active_before": "F",
+   "active": "F",
+   "x": 4,
+   "y": 6,
+   "band": "middle",
+   "moved": true,
+   "won": false,
+   "heroes_on_goals": 0
+  },
+  {
+   "i": 84,
+   "key": "L",
+   "active_before": "F",
+   "active": "F",
+   "x": 3,
+   "y": 6,
+   "band": "middle",
+   "moved": true,
+   "won": false,
+   "heroes_on_goals": 0
+  },
+  {
+   "i": 85,
+   "key": "A",
+   "active_before": "F",
+   "active": "T",
+   "x": 2,
+   "y": 5,
+   "band": "middle",
+   "moved": true,
+   "won": false,
+   "heroes_on_goals": 0
+  },
+  {
+   "i": 86,
+   "key": "A",
+   "active_before": "T",
+   "active": "W",
+   "x": 2,
+   "y": 11,
+   "band": "bottom",
+   "moved": true,
+   "won": false,
+   "heroes_on_goals": 0
+  },
+  {
+   "i": 87,
+   "key": "A",
+   "active_before": "W",
+   "active": "P",
+   "x": 2,
+   "y": 6,
+   "band": "middle",
+   "moved": true,
+   "won": false,
+   "heroes_on_goals": 0
+  },
+  {
+   "i": 88,
+   "key": "D",
+   "active_before": "P",
+   "active": "P",
+   "x": 2,
+   "y": 7,
+   "band": "middle",
+   "moved": true,
+   "won": false,
+   "heroes_on_goals": 0
+  },
+  {
+   "i": 89,
+   "key": "L",
+   "active_before": "P",
+   "active": "P",
+   "x": 1,
+   "y": 7,
+   "band": "middle",
+   "moved": true,
+   "won": false,
+   "heroes_on_goals": 0
+  },
+  {
+   "i": 90,
+   "key": "A",
+   "active_before": "P",
+   "active": "B",
+   "x": 20,
+   "y": 6,
+   "band": "middle",
+   "moved": true,
+   "won": false,
+   "heroes_on_goals": 0
+  },
+  {
+   "i": 91,
+   "key": "A",
+   "active_before": "B",
+   "active": "D",
+   "x": 20,
+   "y": 10,
+   "band": "bottom",
+   "moved": true,
+   "won": false,
+   "heroes_on_goals": 0
+  },
+  {
+   "i": 92,
+   "key": "A",
+   "active_before": "D",
+   "active": "F",
+   "x": 3,
+   "y": 6,
+   "band": "middle",
+   "moved": true,
+   "won": false,
+   "heroes_on_goals": 0
+  },
+  {
+   "i": 93,
+   "key": "L",
+   "active_before": "F",
+   "active": "F",
+   "x": 2,
+   "y": 6,
+   "band": "middle",
+   "moved": true,
+   "won": false,
+   "heroes_on_goals": 0
+  },
+  {
+   "i": 94,
+   "key": "D",
+   "active_before": "F",
+   "active": "F",
+   "x": 2,
+   "y": 7,
+   "band": "middle",
+   "moved": true,
+   "won": false,
+   "heroes_on_goals": 0
+  },
+  {
+   "i": 95,
+   "key": "A",
+   "active_before": "F",
+   "active": "T",
+   "x": 2,
+   "y": 5,
+   "band": "middle",
+   "moved": true,
+   "won": false,
+   "heroes_on_goals": 0
+  },
+  {
+   "i": 96,
+   "key": "D",
+   "active_before": "T",
+   "active": "T",
+   "x": 2,
+   "y": 6,
+   "band": "middle",
+   "moved": true,
+   "won": false,
+   "heroes_on_goals": 0
+  },
+  {
+   "i": 97,
+   "key": "R",
+   "active_before": "T",
+   "active": "T",
+   "x": 3,
+   "y": 6,
+   "band": "middle",
+   "moved": true,
+   "won": false,
+   "heroes_on_goals": 0
+  },
+  {
+   "i": 98,
+   "key": "A",
+   "active_before": "T",
+   "active": "W",
+   "x": 2,
+   "y": 11,
+   "band": "bottom",
+   "moved": true,
+   "won": false,
+   "heroes_on_goals": 0
+  },
+  {
+   "i": 99,
+   "key": "A",
+   "active_before": "W",
+   "active": "P",
+   "x": 1,
+   "y": 7,
+   "band": "middle",
+   "moved": true,
+   "won": false,
+   "heroes_on_goals": 0
+  },
+  {
+   "i": 100,
+   "key": "A",
+   "active_before": "P",
+   "active": "B",
+   "x": 20,
+   "y": 6,
+   "band": "middle",
+   "moved": true,
+   "won": false,
+   "heroes_on_goals": 0
+  },
+  {
+   "i": 101,
+   "key": "A",
+   "active_before": "B",
+   "active": "D",
+   "x": 20,
+   "y": 10,
+   "band": "bottom",
+   "moved": true,
+   "won": false,
+   "heroes_on_goals": 0
+  },
+  {
+   "i": 102,
+   "key": "L",
+   "active_before": "D",
+   "active": "D",
+   "x": 19,
+   "y": 10,
+   "band": "bottom",
+   "moved": true,
+   "won": false,
+   "heroes_on_goals": 0
+  },
+  {
+   "i": 103,
+   "key": "L",
+   "active_before": "D",
+   "active": "D",
+   "x": 19,
+   "y": 10,
+   "band": "bottom",
+   "moved": true,
+   "won": false,
+   "heroes_on_goals": 0
+  },
+  {
+   "i": 104,
+   "key": "D",
+   "active_before": "D",
+   "active": "D",
+   "x": 19,
+   "y": 11,
+   "band": "bottom",
+   "moved": true,
+   "won": false,
+   "heroes_on_goals": 0
+  },
+  {
+   "i": 105,
+   "key": "A",
+   "active_before": "D",
+   "active": "F",
+   "x": 2,
+   "y": 7,
+   "band": "middle",
+   "moved": true,
+   "won": false,
+   "heroes_on_goals": 0
+  },
+  {
+   "i": 106,
+   "key": "U",
+   "active_before": "F",
+   "active": "F",
+   "x": 2,
+   "y": 6,
+   "band": "middle",
+   "moved": true,
+   "won": false,
+   "heroes_on_goals": 0
+  },
+  {
+   "i": 107,
+   "key": "L",
+   "active_before": "F",
+   "active": "F",
+   "x": 1,
+   "y": 6,
+   "band": "middle",
+   "moved": true,
+   "won": false,
+   "heroes_on_goals": 0
+  },
+  {
+   "i": 108,
+   "key": "A",
+   "active_before": "F",
+   "active": "T",
+   "x": 3,
+   "y": 6,
+   "band": "middle",
+   "moved": true,
+   "won": false,
+   "heroes_on_goals": 0
+  },
+  {
+   "i": 109,
+   "key": "A",
+   "active_before": "T",
+   "active": "W",
+   "x": 2,
+   "y": 11,
+   "band": "bottom",
+   "moved": true,
+   "won": false,
+   "heroes_on_goals": 0
+  },
+  {
+   "i": 110,
+   "key": "L",
+   "active_before": "W",
+   "active": "W",
+   "x": 1,
+   "y": 11,
+   "band": "bottom",
+   "moved": true,
+   "won": false,
+   "heroes_on_goals": 0
+  },
+  {
+   "i": 111,
+   "key": "A",
+   "active_before": "W",
+   "active": "P",
+   "x": 1,
+   "y": 7,
+   "band": "middle",
+   "moved": true,
+   "won": false,
+   "heroes_on_goals": 0
+  },
+  {
+   "i": 112,
+   "key": "R",
+   "active_before": "P",
+   "active": "P",
+   "x": 2,
+   "y": 7,
+   "band": "middle",
+   "moved": true,
+   "won": false,
+   "heroes_on_goals": 0
+  },
+  {
+   "i": 113,
+   "key": "U",
+   "active_before": "P",
+   "active": "P",
+   "x": 2,
+   "y": 6,
+   "band": "middle",
+   "moved": true,
+   "won": false,
+   "heroes_on_goals": 0
+  },
+  {
+   "i": 114,
+   "key": "A",
+   "active_before": "P",
+   "active": "B",
+   "x": 20,
+   "y": 6,
+   "band": "middle",
+   "moved": true,
+   "won": false,
+   "heroes_on_goals": 0
+  },
+  {
+   "i": 115,
+   "key": "A",
+   "active_before": "B",
+   "active": "D",
+   "x": 19,
+   "y": 11,
+   "band": "bottom",
+   "moved": true,
+   "won": false,
+   "heroes_on_goals": 0
+  },
+  {
+   "i": 116,
+   "key": "A",
+   "active_before": "D",
+   "active": "F",
+   "x": 1,
+   "y": 6,
+   "band": "middle",
+   "moved": true,
+   "won": false,
+   "heroes_on_goals": 0
+  },
+  {
+   "i": 117,
+   "key": "R",
+   "active_before": "F",
+   "active": "F",
+   "x": 2,
+   "y": 6,
+   "band": "middle",
+   "moved": true,
+   "won": false,
+   "heroes_on_goals": 0
+  },
+  {
+   "i": 118,
+   "key": "R",
+   "active_before": "F",
+   "active": "F",
+   "x": 3,
+   "y": 6,
+   "band": "middle",
+   "moved": true,
+   "won": false,
+   "heroes_on_goals": 0
+  },
+  {
+   "i": 119,
+   "key": "R",
+   "active_before": "F",
+   "active": "F",
+   "x": 4,
+   "y": 6,
+   "band": "middle",
+   "moved": true,
+   "won": false,
+   "heroes_on_goals": 0
+  },
+  {
+   "i": 120,
+   "key": "R",
+   "active_before": "F",
+   "active": "F",
+   "x": 5,
+   "y": 6,
+   "band": "middle",
+   "moved": true,
+   "won": false,
+   "heroes_on_goals": 0
+  },
+  {
+   "i": 121,
+   "key": "R",
+   "active_before": "F",
+   "active": "F",
+   "x": 6,
+   "y": 6,
+   "band": "middle",
+   "moved": true,
+   "won": false,
+   "heroes_on_goals": 0
+  },
+  {
+   "i": 122,
+   "key": "A",
+   "active_before": "F",
+   "active": "T",
+   "x": 8,
+   "y": 6,
+   "band": "middle",
+   "moved": true,
+   "won": false,
+   "heroes_on_goals": 0
+  },
+  {
+   "i": 123,
+   "key": "U",
+   "active_before": "T",
+   "active": "T",
+   "x": 8,
+   "y": 5,
+   "band": "middle",
+   "moved": true,
+   "won": false,
+   "heroes_on_goals": 0
+  },
+  {
+   "i": 124,
+   "key": "A",
+   "active_before": "T",
+   "active": "W",
+   "x": 1,
+   "y": 11,
+   "band": "bottom",
+   "moved": true,
+   "won": false,
+   "heroes_on_goals": 0
+  },
+  {
+   "i": 125,
+   "key": "A",
+   "active_before": "W",
+   "active": "P",
+   "x": 7,
+   "y": 6,
+   "band": "middle",
+   "moved": true,
+   "won": false,
+   "heroes_on_goals": 0
+  },
+  {
+   "i": 126,
+   "key": "R",
+   "active_before": "P",
+   "active": "P",
+   "x": 8,
+   "y": 6,
+   "band": "middle",
+   "moved": true,
+   "won": false,
+   "heroes_on_goals": 0
+  },
+  {
+   "i": 127,
+   "key": "D",
+   "active_before": "P",
+   "active": "P",
+   "x": 8,
+   "y": 7,
+   "band": "middle",
+   "moved": true,
+   "won": false,
+   "heroes_on_goals": 0
+  },
+  {
+   "i": 128,
+   "key": "R",
+   "active_before": "P",
+   "active": "P",
+   "x": 9,
+   "y": 7,
+   "band": "middle",
+   "moved": true,
+   "won": false,
+   "heroes_on_goals": 0
+  },
+  {
+   "i": 129,
+   "key": "A",
+   "active_before": "P",
+   "active": "B",
+   "x": 20,
+   "y": 6,
+   "band": "middle",
+   "moved": true,
+   "won": false,
+   "heroes_on_goals": 0
+  },
+  {
+   "i": 130,
+   "key": "A",
+   "active_before": "B",
+   "active": "D",
+   "x": 19,
+   "y": 11,
+   "band": "bottom",
+   "moved": true,
+   "won": false,
+   "heroes_on_goals": 0
+  },
+  {
+   "i": 131,
+   "key": "A",
+   "active_before": "D",
+   "active": "F",
+   "x": 6,
+   "y": 6,
+   "band": "middle",
+   "moved": true,
+   "won": false,
+   "heroes_on_goals": 0
+  },
+  {
+   "i": 132,
+   "key": "R",
+   "active_before": "F",
+   "active": "F",
+   "x": 7,
+   "y": 6,
+   "band": "middle",
+   "moved": true,
+   "won": false,
+   "heroes_on_goals": 0
+  },
+  {
+   "i": 133,
+   "key": "R",
+   "active_before": "F",
+   "active": "F",
+   "x": 8,
+   "y": 6,
+   "band": "middle",
+   "moved": true,
+   "won": false,
+   "heroes_on_goals": 0
+  },
+  {
+   "i": 134,
+   "key": "D",
+   "active_before": "F",
+   "active": "F",
+   "x": 8,
+   "y": 7,
+   "band": "middle",
+   "moved": true,
+   "won": false,
+   "heroes_on_goals": 0
+  },
+  {
+   "i": 135,
+   "key": "R",
+   "active_before": "F",
+   "active": "F",
+   "x": 9,
+   "y": 7,
+   "band": "middle",
+   "moved": true,
+   "won": false,
+   "heroes_on_goals": 0
+  },
+  {
+   "i": 136,
+   "key": "R",
+   "active_before": "F",
+   "active": "F",
+   "x": 10,
+   "y": 7,
+   "band": "middle",
+   "moved": true,
+   "won": false,
+   "heroes_on_goals": 0
+  },
+  {
+   "i": 137,
+   "key": "U",
+   "active_before": "F",
+   "active": "F",
+   "x": 10,
+   "y": 6,
+   "band": "middle",
+   "moved": true,
+   "won": false,
+   "heroes_on_goals": 1
+  },
+  {
+   "i": 138,
+   "key": "A",
+   "active_before": "F",
+   "active": "T",
+   "x": 8,
+   "y": 5,
+   "band": "middle",
+   "moved": true,
+   "won": false,
+   "heroes_on_goals": 1
+  },
+  {
+   "i": 139,
+   "key": "D",
+   "active_before": "T",
+   "active": "T",
+   "x": 8,
+   "y": 6,
+   "band": "middle",
+   "moved": true,
+   "won": false,
+   "heroes_on_goals": 1
+  },
+  {
+   "i": 140,
+   "key": "D",
+   "active_before": "T",
+   "active": "T",
+   "x": 8,
+   "y": 7,
+   "band": "middle",
+   "moved": true,
+   "won": false,
+   "heroes_on_goals": 1
+  },
+  {
+   "i": 141,
+   "key": "R",
+   "active_before": "T",
+   "active": "T",
+   "x": 9,
+   "y": 7,
+   "band": "middle",
+   "moved": true,
+   "won": false,
+   "heroes_on_goals": 1
+  },
+  {
+   "i": 142,
+   "key": "R",
+   "active_before": "T",
+   "active": "T",
+   "x": 10,
+   "y": 7,
+   "band": "middle",
+   "moved": true,
+   "won": false,
+   "heroes_on_goals": 1
+  },
+  {
+   "i": 143,
+   "key": "D",
+   "active_before": "T",
+   "active": "T",
+   "x": 10,
+   "y": 8,
+   "band": "middle",
+   "moved": true,
+   "won": false,
+   "heroes_on_goals": 0
+  },
+  {
+   "i": 144,
+   "key": "D",
+   "active_before": "T",
+   "active": "T",
+   "x": 10,
+   "y": 9,
+   "band": "bottom",
+   "moved": true,
+   "won": false,
+   "heroes_on_goals": 0
+  },
+  {
+   "i": 145,
+   "key": "R",
+   "active_before": "T",
+   "active": "T",
+   "x": 11,
+   "y": 9,
+   "band": "bottom",
+   "moved": true,
+   "won": false,
+   "heroes_on_goals": 0
+  },
+  {
+   "i": 146,
+   "key": "L",
+   "active_before": "T",
+   "active": "T",
+   "x": 10,
+   "y": 9,
+   "band": "bottom",
+   "moved": true,
+   "won": false,
+   "heroes_on_goals": 0
+  },
+  {
+   "i": 147,
+   "key": "A",
+   "active_before": "T",
+   "active": "W",
+   "x": 1,
+   "y": 11,
+   "band": "bottom",
+   "moved": true,
+   "won": false,
+   "heroes_on_goals": 0
+  },
+  {
+   "i": 148,
+   "key": "A",
+   "active_before": "W",
+   "active": "P",
+   "x": 11,
+   "y": 7,
+   "band": "middle",
+   "moved": true,
+   "won": false,
+   "heroes_on_goals": 0
+  },
+  {
+   "i": 149,
+   "key": "U",
+   "active_before": "P",
+   "active": "P",
+   "x": 11,
+   "y": 6,
+   "band": "middle",
+   "moved": true,
+   "won": false,
+   "heroes_on_goals": 0
+  },
+  {
+   "i": 150,
+   "key": "A",
+   "active_before": "P",
+   "active": "B",
+   "x": 20,
+   "y": 6,
+   "band": "middle",
+   "moved": true,
+   "won": false,
+   "heroes_on_goals": 0
+  },
+  {
+   "i": 151,
+   "key": "A",
+   "active_before": "B",
+   "active": "D",
+   "x": 19,
+   "y": 11,
+   "band": "bottom",
+   "moved": true,
+   "won": false,
+   "heroes_on_goals": 0
+  },
+  {
+   "i": 152,
+   "key": "A",
+   "active_before": "D",
+   "active": "F",
+   "x": 10,
+   "y": 8,
+   "band": "middle",
+   "moved": true,
+   "won": false,
+   "heroes_on_goals": 0
+  },
+  {
+   "i": 153,
+   "key": "U",
+   "active_before": "F",
+   "active": "F",
+   "x": 10,
+   "y": 7,
+   "band": "middle",
+   "moved": true,
+   "won": false,
+   "heroes_on_goals": 0
+  },
+  {
+   "i": 154,
+   "key": "L",
+   "active_before": "F",
+   "active": "F",
+   "x": 9,
+   "y": 7,
+   "band": "middle",
+   "moved": true,
+   "won": false,
+   "heroes_on_goals": 0
+  },
+  {
+   "i": 155,
+   "key": "L",
+   "active_before": "F",
+   "active": "F",
+   "x": 8,
+   "y": 7,
+   "band": "middle",
+   "moved": true,
+   "won": false,
+   "heroes_on_goals": 0
+  },
+  {
+   "i": 156,
+   "key": "R",
+   "active_before": "F",
+   "active": "F",
+   "x": 9,
+   "y": 7,
+   "band": "middle",
+   "moved": true,
+   "won": false,
+   "heroes_on_goals": 0
+  },
+  {
+   "i": 157,
+   "key": "R",
+   "active_before": "F",
+   "active": "F",
+   "x": 10,
+   "y": 7,
+   "band": "middle",
+   "moved": true,
+   "won": false,
+   "heroes_on_goals": 0
+  },
+  {
+   "i": 158,
+   "key": "U",
+   "active_before": "F",
+   "active": "F",
+   "x": 10,
+   "y": 6,
+   "band": "middle",
+   "moved": true,
+   "won": false,
+   "heroes_on_goals": 1
+  },
+  {
+   "i": 159,
+   "key": "R",
+   "active_before": "F",
+   "active": "F",
+   "x": 11,
+   "y": 6,
+   "band": "middle",
+   "moved": true,
+   "won": false,
+   "heroes_on_goals": 1
+  },
+  {
+   "i": 160,
+   "key": "U",
+   "active_before": "F",
+   "active": "F",
+   "x": 11,
+   "y": 5,
+   "band": "middle",
+   "moved": true,
+   "won": false,
+   "heroes_on_goals": 1
+  },
+  {
+   "i": 161,
+   "key": "R",
+   "active_before": "F",
+   "active": "F",
+   "x": 12,
+   "y": 5,
+   "band": "middle",
+   "moved": true,
+   "won": false,
+   "heroes_on_goals": 1
+  },
+  {
+   "i": 162,
+   "key": "D",
+   "active_before": "F",
+   "active": "F",
+   "x": 12,
+   "y": 6,
+   "band": "middle",
+   "moved": true,
+   "won": false,
+   "heroes_on_goals": 1
+  },
+  {
+   "i": 163,
+   "key": "D",
+   "active_before": "F",
+   "active": "F",
+   "x": 12,
+   "y": 7,
+   "band": "middle",
+   "moved": true,
+   "won": false,
+   "heroes_on_goals": 0
+  },
+  {
+   "i": 164,
+   "key": "A",
+   "active_before": "F",
+   "active": "T",
+   "x": 10,
+   "y": 9,
+   "band": "bottom",
+   "moved": true,
+   "won": false,
+   "heroes_on_goals": 0
+  },
+  {
+   "i": 165,
+   "key": "U",
+   "active_before": "T",
+   "active": "T",
+   "x": 10,
+   "y": 8,
+   "band": "middle",
+   "moved": true,
+   "won": false,
+   "heroes_on_goals": 0
+  },
+  {
+   "i": 166,
+   "key": "R",
+   "active_before": "T",
+   "active": "T",
+   "x": 11,
+   "y": 8,
+   "band": "middle",
+   "moved": true,
+   "won": false,
+   "heroes_on_goals": 0
+  },
+  {
+   "i": 167,
+   "key": "U",
+   "active_before": "T",
+   "active": "T",
+   "x": 11,
+   "y": 7,
+   "band": "middle",
+   "moved": true,
+   "won": false,
+   "heroes_on_goals": 0
+  },
+  {
+   "i": 168,
+   "key": "L",
+   "active_before": "T",
+   "active": "T",
+   "x": 10,
+   "y": 7,
+   "band": "middle",
+   "moved": true,
+   "won": false,
+   "heroes_on_goals": 0
+  },
+  {
+   "i": 169,
+   "key": "D",
+   "active_before": "T",
+   "active": "T",
+   "x": 10,
+   "y": 8,
+   "band": "middle",
+   "moved": true,
+   "won": false,
+   "heroes_on_goals": 0
+  },
+  {
+   "i": 170,
+   "key": "D",
+   "active_before": "T",
+   "active": "T",
+   "x": 10,
+   "y": 9,
+   "band": "bottom",
+   "moved": true,
+   "won": false,
+   "heroes_on_goals": 0
+  },
+  {
+   "i": 171,
+   "key": "R",
+   "active_before": "T",
+   "active": "T",
+   "x": 11,
+   "y": 9,
+   "band": "bottom",
+   "moved": true,
+   "won": false,
+   "heroes_on_goals": 0
+  },
+  {
+   "i": 172,
+   "key": "R",
+   "active_before": "T",
+   "active": "T",
+   "x": 12,
+   "y": 9,
+   "band": "bottom",
+   "moved": true,
+   "won": false,
+   "heroes_on_goals": 0
+  },
+  {
+   "i": 173,
+   "key": "R",
+   "active_before": "T",
+   "active": "T",
+   "x": 13,
+   "y": 9,
+   "band": "bottom",
+   "moved": true,
+   "won": false,
+   "heroes_on_goals": 0
+  },
+  {
+   "i": 174,
+   "key": "R",
+   "active_before": "T",
+   "active": "T",
+   "x": 14,
+   "y": 9,
+   "band": "bottom",
+   "moved": true,
+   "won": false,
+   "heroes_on_goals": 0
+  },
+  {
+   "i": 175,
+   "key": "L",
+   "active_before": "T",
+   "active": "T",
+   "x": 13,
+   "y": 9,
+   "band": "bottom",
+   "moved": true,
+   "won": false,
+   "heroes_on_goals": 0
+  },
+  {
+   "i": 176,
+   "key": "L",
+   "active_before": "T",
+   "active": "T",
+   "x": 12,
+   "y": 9,
+   "band": "bottom",
+   "moved": true,
+   "won": false,
+   "heroes_on_goals": 0
+  },
+  {
+   "i": 177,
+   "key": "L",
+   "active_before": "T",
+   "active": "T",
+   "x": 11,
+   "y": 9,
+   "band": "bottom",
+   "moved": true,
+   "won": false,
+   "heroes_on_goals": 0
+  },
+  {
+   "i": 178,
+   "key": "L",
+   "active_before": "T",
+   "active": "T",
+   "x": 10,
+   "y": 9,
+   "band": "bottom",
+   "moved": true,
+   "won": false,
+   "heroes_on_goals": 0
+  },
+  {
+   "i": 179,
+   "key": "A",
+   "active_before": "T",
+   "active": "W",
+   "x": 1,
+   "y": 11,
+   "band": "bottom",
+   "moved": true,
+   "won": false,
+   "heroes_on_goals": 0
+  },
+  {
+   "i": 180,
+   "key": "A",
+   "active_before": "W",
+   "active": "P",
+   "x": 12,
+   "y": 8,
+   "band": "middle",
+   "moved": true,
+   "won": false,
+   "heroes_on_goals": 0
+  },
+  {
+   "i": 181,
+   "key": "U",
+   "active_before": "P",
+   "active": "P",
+   "x": 12,
+   "y": 7,
+   "band": "middle",
+   "moved": true,
+   "won": false,
+   "heroes_on_goals": 0
+  },
+  {
+   "i": 182,
+   "key": "U",
+   "active_before": "P",
+   "active": "P",
+   "x": 12,
+   "y": 6,
+   "band": "middle",
+   "moved": true,
+   "won": false,
+   "heroes_on_goals": 1
+  },
+  {
+   "i": 183,
+   "key": "A",
+   "active_before": "P",
+   "active": "B",
+   "x": 20,
+   "y": 6,
+   "band": "middle",
+   "moved": true,
+   "won": false,
+   "heroes_on_goals": 1
+  },
+  {
+   "i": 184,
+   "key": "A",
+   "active_before": "B",
+   "active": "D",
+   "x": 19,
+   "y": 11,
+   "band": "bottom",
+   "moved": true,
+   "won": false,
+   "heroes_on_goals": 1
+  },
+  {
+   "i": 185,
+   "key": "A",
+   "active_before": "D",
+   "active": "F",
+   "x": 11,
+   "y": 7,
+   "band": "middle",
+   "moved": true,
+   "won": false,
+   "heroes_on_goals": 1
+  },
+  {
+   "i": 186,
+   "key": "R",
+   "active_before": "F",
+   "active": "F",
+   "x": 12,
+   "y": 7,
+   "band": "middle",
+   "moved": true,
+   "won": false,
+   "heroes_on_goals": 1
+  },
+  {
+   "i": 187,
+   "key": "D",
+   "active_before": "F",
+   "active": "F",
+   "x": 12,
+   "y": 8,
+   "band": "middle",
+   "moved": true,
+   "won": false,
+   "heroes_on_goals": 1
+  },
+  {
+   "i": 188,
+   "key": "D",
+   "active_before": "F",
+   "active": "F",
+   "x": 12,
+   "y": 9,
+   "band": "bottom",
+   "moved": true,
+   "won": false,
+   "heroes_on_goals": 1
+  },
+  {
+   "i": 189,
+   "key": "R",
+   "active_before": "F",
+   "active": "F",
+   "x": 13,
+   "y": 9,
+   "band": "bottom",
+   "moved": true,
+   "won": false,
+   "heroes_on_goals": 1
+  },
+  {
+   "i": 190,
+   "key": "R",
+   "active_before": "F",
+   "active": "F",
+   "x": 14,
+   "y": 9,
+   "band": "bottom",
+   "moved": true,
+   "won": false,
+   "heroes_on_goals": 1
+  },
+  {
+   "i": 191,
+   "key": "R",
+   "active_before": "F",
+   "active": "F",
+   "x": 15,
+   "y": 9,
+   "band": "bottom",
+   "moved": true,
+   "won": false,
+   "heroes_on_goals": 1
+  },
+  {
+   "i": 192,
+   "key": "D",
+   "active_before": "F",
+   "active": "F",
+   "x": 15,
+   "y": 10,
+   "band": "bottom",
+   "moved": true,
+   "won": false,
+   "heroes_on_goals": 1
+  },
+  {
+   "i": 193,
+   "key": "R",
+   "active_before": "F",
+   "active": "F",
+   "x": 16,
+   "y": 10,
+   "band": "bottom",
+   "moved": true,
+   "won": false,
+   "heroes_on_goals": 1
+  },
+  {
+   "i": 194,
+   "key": "R",
+   "active_before": "F",
+   "active": "F",
+   "x": 17,
+   "y": 10,
+   "band": "bottom",
+   "moved": true,
+   "won": false,
+   "heroes_on_goals": 1
+  },
+  {
+   "i": 195,
+   "key": "R",
+   "active_before": "F",
+   "active": "F",
+   "x": 18,
+   "y": 10,
+   "band": "bottom",
+   "moved": true,
+   "won": false,
+   "heroes_on_goals": 1
+  },
+  {
+   "i": 196,
+   "key": "R",
+   "active_before": "F",
+   "active": "F",
+   "x": 19,
+   "y": 10,
+   "band": "bottom",
+   "moved": true,
+   "won": false,
+   "heroes_on_goals": 1
+  },
+  {
+   "i": 197,
+   "key": "R",
+   "active_before": "F",
+   "active": "F",
+   "x": 20,
+   "y": 10,
+   "band": "bottom",
+   "moved": true,
+   "won": false,
+   "heroes_on_goals": 1
+  },
+  {
+   "i": 198,
+   "key": "A",
+   "active_before": "F",
+   "active": "T",
+   "x": 10,
+   "y": 9,
+   "band": "bottom",
+   "moved": true,
+   "won": false,
+   "heroes_on_goals": 1
+  },
+  {
+   "i": 199,
+   "key": "A",
+   "active_before": "T",
+   "active": "W",
+   "x": 1,
+   "y": 11,
+   "band": "bottom",
+   "moved": true,
+   "won": false,
+   "heroes_on_goals": 1
+  },
+  {
+   "i": 200,
+   "key": "A",
+   "active_before": "W",
+   "active": "P",
+   "x": 12,
+   "y": 6,
+   "band": "middle",
+   "moved": true,
+   "won": false,
+   "heroes_on_goals": 1
+  },
+  {
+   "i": 201,
+   "key": "A",
+   "active_before": "P",
+   "active": "B",
+   "x": 20,
+   "y": 6,
+   "band": "middle",
+   "moved": true,
+   "won": false,
+   "heroes_on_goals": 1
+  },
+  {
+   "i": 202,
+   "key": "A",
+   "active_before": "B",
+   "active": "D",
+   "x": 19,
+   "y": 11,
+   "band": "bottom",
+   "moved": true,
+   "won": false,
+   "heroes_on_goals": 1
+  },
+  {
+   "i": 203,
+   "key": "U",
+   "active_before": "D",
+   "active": "D",
+   "x": 19,
+   "y": 10,
+   "band": "bottom",
+   "moved": true,
+   "won": false,
+   "heroes_on_goals": 1
+  },
+  {
+   "i": 204,
+   "key": "L",
+   "active_before": "D",
+   "active": "D",
+   "x": 18,
+   "y": 10,
+   "band": "bottom",
+   "moved": true,
+   "won": false,
+   "heroes_on_goals": 1
+  },
+  {
+   "i": 205,
+   "key": "L",
+   "active_before": "D",
+   "active": "D",
+   "x": 17,
+   "y": 10,
+   "band": "bottom",
+   "moved": true,
+   "won": false,
+   "heroes_on_goals": 1
+  },
+  {
+   "i": 206,
+   "key": "U",
+   "active_before": "D",
+   "active": "D",
+   "x": 17,
+   "y": 10,
+   "band": "bottom",
+   "moved": true,
+   "won": false,
+   "heroes_on_goals": 1
+  },
+  {
+   "i": 207,
+   "key": "L",
+   "active_before": "D",
+   "active": "D",
+   "x": 16,
+   "y": 10,
+   "band": "bottom",
+   "moved": true,
+   "won": false,
+   "heroes_on_goals": 1
+  },
+  {
+   "i": 208,
+   "key": "U",
+   "active_before": "D",
+   "active": "D",
+   "x": 16,
+   "y": 10,
+   "band": "bottom",
+   "moved": true,
+   "won": false,
+   "heroes_on_goals": 1
+  },
+  {
+   "i": 209,
+   "key": "L",
+   "active_before": "D",
+   "active": "D",
+   "x": 15,
+   "y": 10,
+   "band": "bottom",
+   "moved": true,
+   "won": false,
+   "heroes_on_goals": 1
+  },
+  {
+   "i": 210,
+   "key": "U",
+   "active_before": "D",
+   "active": "D",
+   "x": 15,
+   "y": 9,
+   "band": "bottom",
+   "moved": true,
+   "won": false,
+   "heroes_on_goals": 1
+  },
+  {
+   "i": 211,
+   "key": "L",
+   "active_before": "D",
+   "active": "D",
+   "x": 14,
+   "y": 9,
+   "band": "bottom",
+   "moved": true,
+   "won": false,
+   "heroes_on_goals": 1
+  },
+  {
+   "i": 212,
+   "key": "L",
+   "active_before": "D",
+   "active": "D",
+   "x": 13,
+   "y": 9,
+   "band": "bottom",
+   "moved": true,
+   "won": false,
+   "heroes_on_goals": 1
+  },
+  {
+   "i": 213,
+   "key": "L",
+   "active_before": "D",
+   "active": "D",
+   "x": 12,
+   "y": 9,
+   "band": "bottom",
+   "moved": true,
+   "won": false,
+   "heroes_on_goals": 1
+  },
+  {
+   "i": 214,
+   "key": "D",
+   "active_before": "D",
+   "active": "D",
+   "x": 12,
+   "y": 9,
+   "band": "bottom",
+   "moved": true,
+   "won": false,
+   "heroes_on_goals": 1
+  },
+  {
+   "i": 215,
+   "key": "U",
+   "active_before": "D",
+   "active": "D",
+   "x": 12,
+   "y": 8,
+   "band": "middle",
+   "moved": true,
+   "won": false,
+   "heroes_on_goals": 1
+  },
+  {
+   "i": 216,
+   "key": "U",
+   "active_before": "D",
+   "active": "D",
+   "x": 12,
+   "y": 7,
+   "band": "middle",
+   "moved": true,
+   "won": false,
+   "heroes_on_goals": 1
+  },
+  {
+   "i": 217,
+   "key": "R",
+   "active_before": "D",
+   "active": "D",
+   "x": 12,
+   "y": 7,
+   "band": "middle",
+   "moved": true,
+   "won": false,
+   "heroes_on_goals": 1
+  },
+  {
+   "i": 218,
+   "key": "L",
+   "active_before": "D",
+   "active": "D",
+   "x": 11,
+   "y": 7,
+   "band": "middle",
+   "moved": true,
+   "won": false,
+   "heroes_on_goals": 1
+  },
+  {
+   "i": 219,
+   "key": "D",
+   "active_before": "D",
+   "active": "D",
+   "x": 11,
+   "y": 7,
+   "band": "middle",
+   "moved": true,
+   "won": false,
+   "heroes_on_goals": 1
+  },
+  {
+   "i": 220,
+   "key": "L",
+   "active_before": "D",
+   "active": "D",
+   "x": 10,
+   "y": 7,
+   "band": "middle",
+   "moved": true,
+   "won": false,
+   "heroes_on_goals": 1
+  },
+  {
+   "i": 221,
+   "key": "L",
+   "active_before": "D",
+   "active": "D",
+   "x": 9,
+   "y": 7,
+   "band": "middle",
+   "moved": true,
+   "won": false,
+   "heroes_on_goals": 1
+  },
+  {
+   "i": 222,
+   "key": "U",
+   "active_before": "D",
+   "active": "D",
+   "x": 9,
+   "y": 7,
+   "band": "middle",
+   "moved": true,
+   "won": false,
+   "heroes_on_goals": 1
+  },
+  {
+   "i": 223,
+   "key": "A",
+   "active_before": "D",
+   "active": "F",
+   "x": 20,
+   "y": 10,
+   "band": "bottom",
+   "moved": true,
+   "won": false,
+   "heroes_on_goals": 1
+  },
+  {
+   "i": 224,
+   "key": "L",
+   "active_before": "F",
+   "active": "F",
+   "x": 19,
+   "y": 10,
+   "band": "bottom",
+   "moved": true,
+   "won": false,
+   "heroes_on_goals": 1
+  },
+  {
+   "i": 225,
+   "key": "L",
+   "active_before": "F",
+   "active": "F",
+   "x": 18,
+   "y": 10,
+   "band": "bottom",
+   "moved": true,
+   "won": false,
+   "heroes_on_goals": 1
+  },
+  {
+   "i": 226,
+   "key": "L",
+   "active_before": "F",
+   "active": "F",
+   "x": 17,
+   "y": 10,
+   "band": "bottom",
+   "moved": true,
+   "won": false,
+   "heroes_on_goals": 1
+  },
+  {
+   "i": 227,
+   "key": "U",
+   "active_before": "F",
+   "active": "F",
+   "x": 17,
+   "y": 9,
+   "band": "bottom",
+   "moved": true,
+   "won": false,
+   "heroes_on_goals": 1
+  },
+  {
+   "i": 228,
+   "key": "U",
+   "active_before": "F",
+   "active": "F",
+   "x": 17,
+   "y": 8,
+   "band": "middle",
+   "moved": true,
+   "won": false,
+   "heroes_on_goals": 1
+  },
+  {
+   "i": 229,
+   "key": "A",
+   "active_before": "F",
+   "active": "T",
+   "x": 10,
+   "y": 9,
+   "band": "bottom",
+   "moved": true,
+   "won": false,
+   "heroes_on_goals": 1
+  },
+  {
+   "i": 230,
+   "key": "A",
+   "active_before": "T",
+   "active": "W",
+   "x": 1,
+   "y": 11,
+   "band": "bottom",
+   "moved": true,
+   "won": false,
+   "heroes_on_goals": 1
+  },
+  {
+   "i": 231,
+   "key": "A",
+   "active_before": "W",
+   "active": "P",
+   "x": 12,
+   "y": 6,
+   "band": "middle",
+   "moved": true,
+   "won": false,
+   "heroes_on_goals": 1
+  },
+  {
+   "i": 232,
+   "key": "A",
+   "active_before": "P",
+   "active": "B",
+   "x": 20,
+   "y": 6,
+   "band": "middle",
+   "moved": true,
+   "won": false,
+   "heroes_on_goals": 1
+  },
+  {
+   "i": 233,
+   "key": "L",
+   "active_before": "B",
+   "active": "B",
+   "x": 19,
+   "y": 6,
+   "band": "middle",
+   "moved": true,
+   "won": false,
+   "heroes_on_goals": 1
+  },
+  {
+   "i": 234,
+   "key": "L",
+   "active_before": "B",
+   "active": "B",
+   "x": 18,
+   "y": 6,
+   "band": "middle",
+   "moved": true,
+   "won": false,
+   "heroes_on_goals": 1
+  },
+  {
+   "i": 235,
+   "key": "L",
+   "active_before": "B",
+   "active": "B",
+   "x": 17,
+   "y": 6,
+   "band": "middle",
+   "moved": true,
+   "won": false,
+   "heroes_on_goals": 1
+  },
+  {
+   "i": 236,
+   "key": "L",
+   "active_before": "B",
+   "active": "B",
+   "x": 16,
+   "y": 6,
+   "band": "middle",
+   "moved": true,
+   "won": false,
+   "heroes_on_goals": 1
+  },
+  {
+   "i": 237,
+   "key": "L",
+   "active_before": "B",
+   "active": "B",
+   "x": 15,
+   "y": 6,
+   "band": "middle",
+   "moved": true,
+   "won": false,
+   "heroes_on_goals": 1
+  },
+  {
+   "i": 238,
+   "key": "D",
+   "active_before": "B",
+   "active": "B",
+   "x": 15,
+   "y": 7,
+   "band": "middle",
+   "moved": true,
+   "won": false,
+   "heroes_on_goals": 1
+  },
+  {
+   "i": 239,
+   "key": "L",
+   "active_before": "B",
+   "active": "B",
+   "x": 14,
+   "y": 7,
+   "band": "middle",
+   "moved": true,
+   "won": false,
+   "heroes_on_goals": 1
+  },
+  {
+   "i": 240,
+   "key": "L",
+   "active_before": "B",
+   "active": "B",
+   "x": 13,
+   "y": 7,
+   "band": "middle",
+   "moved": true,
+   "won": false,
+   "heroes_on_goals": 0
+  },
+  {
+   "i": 241,
+   "key": "L",
+   "active_before": "B",
+   "active": "B",
+   "x": 12,
+   "y": 7,
+   "band": "middle",
+   "moved": true,
+   "won": false,
+   "heroes_on_goals": 1
+  },
+  {
+   "i": 242,
+   "key": "D",
+   "active_before": "B",
+   "active": "B",
+   "x": 12,
+   "y": 8,
+   "band": "middle",
+   "moved": true,
+   "won": false,
+   "heroes_on_goals": 0
+  },
+  {
+   "i": 243,
+   "key": "U",
+   "active_before": "B",
+   "active": "B",
+   "x": 12,
+   "y": 7,
+   "band": "middle",
+   "moved": true,
+   "won": false,
+   "heroes_on_goals": 1
+  },
+  {
+   "i": 244,
+   "key": "L",
+   "active_before": "B",
+   "active": "B",
+   "x": 11,
+   "y": 7,
+   "band": "middle",
+   "moved": true,
+   "won": false,
+   "heroes_on_goals": 1
+  },
+  {
+   "i": 245,
+   "key": "L",
+   "active_before": "B",
+   "active": "B",
+   "x": 10,
+   "y": 7,
+   "band": "middle",
+   "moved": true,
+   "won": false,
+   "heroes_on_goals": 0
+  },
+  {
+   "i": 246,
+   "key": "U",
+   "active_before": "B",
+   "active": "B",
+   "x": 10,
+   "y": 6,
+   "band": "middle",
+   "moved": true,
+   "won": false,
+   "heroes_on_goals": 1
+  },
+  {
+   "i": 247,
+   "key": "L",
+   "active_before": "B",
+   "active": "B",
+   "x": 9,
+   "y": 6,
+   "band": "middle",
+   "moved": true,
+   "won": false,
+   "heroes_on_goals": 0
+  },
+  {
+   "i": 248,
+   "key": "L",
+   "active_before": "B",
+   "active": "B",
+   "x": 8,
+   "y": 6,
+   "band": "middle",
+   "moved": true,
+   "won": false,
+   "heroes_on_goals": 0
+  },
+  {
+   "i": 249,
+   "key": "L",
+   "active_before": "B",
+   "active": "B",
+   "x": 7,
+   "y": 6,
+   "band": "middle",
+   "moved": true,
+   "won": false,
+   "heroes_on_goals": 0
+  },
+  {
+   "i": 250,
+   "key": "L",
+   "active_before": "B",
+   "active": "B",
+   "x": 6,
+   "y": 6,
+   "band": "middle",
+   "moved": true,
+   "won": false,
+   "heroes_on_goals": 0
+  },
+  {
+   "i": 251,
+   "key": "L",
+   "active_before": "B",
+   "active": "B",
+   "x": 5,
+   "y": 6,
+   "band": "middle",
+   "moved": true,
+   "won": false,
+   "heroes_on_goals": 0
+  },
+  {
+   "i": 252,
+   "key": "L",
+   "active_before": "B",
+   "active": "B",
+   "x": 4,
+   "y": 6,
+   "band": "middle",
+   "moved": true,
+   "won": false,
+   "heroes_on_goals": 0
+  },
+  {
+   "i": 253,
+   "key": "L",
+   "active_before": "B",
+   "active": "B",
+   "x": 3,
+   "y": 6,
+   "band": "middle",
+   "moved": true,
+   "won": false,
+   "heroes_on_goals": 0
+  },
+  {
+   "i": 254,
+   "key": "A",
+   "active_before": "B",
+   "active": "D",
+   "x": 1,
+   "y": 6,
+   "band": "middle",
+   "moved": true,
+   "won": false,
+   "heroes_on_goals": 0
+  },
+  {
+   "i": 255,
+   "key": "D",
+   "active_before": "D",
+   "active": "D",
+   "x": 1,
+   "y": 7,
+   "band": "middle",
+   "moved": true,
+   "won": false,
+   "heroes_on_goals": 0
+  },
+  {
+   "i": 256,
+   "key": "D",
+   "active_before": "D",
+   "active": "D",
+   "x": 1,
+   "y": 7,
+   "band": "middle",
+   "moved": true,
+   "won": false,
+   "heroes_on_goals": 0
+  },
+  {
+   "i": 257,
+   "key": "R",
+   "active_before": "D",
+   "active": "D",
+   "x": 2,
+   "y": 7,
+   "band": "middle",
+   "moved": true,
+   "won": false,
+   "heroes_on_goals": 0
+  },
+  {
+   "i": 258,
+   "key": "D",
+   "active_before": "D",
+   "active": "D",
+   "x": 2,
+   "y": 7,
+   "band": "middle",
+   "moved": true,
+   "won": false,
+   "heroes_on_goals": 0
+  },
+  {
+   "i": 259,
+   "key": "A",
+   "active_before": "D",
+   "active": "F",
+   "x": 13,
+   "y": 9,
+   "band": "bottom",
+   "moved": true,
+   "won": false,
+   "heroes_on_goals": 0
+  },
+  {
+   "i": 260,
+   "key": "L",
+   "active_before": "F",
+   "active": "F",
+   "x": 12,
+   "y": 9,
+   "band": "bottom",
+   "moved": true,
+   "won": false,
+   "heroes_on_goals": 0
+  },
+  {
+   "i": 261,
+   "key": "D",
+   "active_before": "F",
+   "active": "F",
+   "x": 12,
+   "y": 10,
+   "band": "bottom",
+   "moved": true,
+   "won": false,
+   "heroes_on_goals": 0
+  },
+  {
+   "i": 262,
+   "key": "D",
+   "active_before": "F",
+   "active": "F",
+   "x": 12,
+   "y": 11,
+   "band": "bottom",
+   "moved": true,
+   "won": false,
+   "heroes_on_goals": 1
+  },
+  {
+   "i": 263,
+   "key": "A",
+   "active_before": "F",
+   "active": "T",
+   "x": 9,
+   "y": 7,
+   "band": "middle",
+   "moved": true,
+   "won": false,
+   "heroes_on_goals": 1
+  },
+  {
+   "i": 264,
+   "key": "U",
+   "active_before": "T",
+   "active": "T",
+   "x": 9,
+   "y": 6,
+   "band": "middle",
+   "moved": true,
+   "won": false,
+   "heroes_on_goals": 1
+  },
+  {
+   "i": 265,
+   "key": "A",
+   "active_before": "T",
+   "active": "W",
+   "x": 1,
+   "y": 11,
+   "band": "bottom",
+   "moved": true,
+   "won": false,
+   "heroes_on_goals": 1
+  },
+  {
+   "i": 266,
+   "key": "A",
+   "active_before": "W",
+   "active": "P",
+   "x": 2,
+   "y": 6,
+   "band": "middle",
+   "moved": true,
+   "won": false,
+   "heroes_on_goals": 1
+  },
+  {
+   "i": 267,
+   "key": "A",
+   "active_before": "P",
+   "active": "B",
+   "x": 3,
+   "y": 6,
+   "band": "middle",
+   "moved": true,
+   "won": false,
+   "heroes_on_goals": 1
+  },
+  {
+   "i": 268,
+   "key": "L",
+   "active_before": "B",
+   "active": "B",
+   "x": 2,
+   "y": 6,
+   "band": "middle",
+   "moved": true,
+   "won": false,
+   "heroes_on_goals": 1
+  },
+  {
+   "i": 269,
+   "key": "D",
+   "active_before": "B",
+   "active": "B",
+   "x": 2,
+   "y": 7,
+   "band": "middle",
+   "moved": true,
+   "won": false,
+   "heroes_on_goals": 1
+  },
+  {
+   "i": 270,
+   "key": "U",
+   "active_before": "B",
+   "active": "B",
+   "x": 2,
+   "y": 6,
+   "band": "middle",
+   "moved": true,
+   "won": false,
+   "heroes_on_goals": 1
+  },
+  {
+   "i": 271,
+   "key": "R",
+   "active_before": "B",
+   "active": "B",
+   "x": 3,
+   "y": 6,
+   "band": "middle",
+   "moved": true,
+   "won": false,
+   "heroes_on_goals": 1
+  },
+  {
+   "i": 272,
+   "key": "A",
+   "active_before": "B",
+   "active": "D",
+   "x": 1,
+   "y": 7,
+   "band": "middle",
+   "moved": true,
+   "won": false,
+   "heroes_on_goals": 1
+  },
+  {
+   "i": 273,
+   "key": "D",
+   "active_before": "D",
+   "active": "D",
+   "x": 1,
+   "y": 8,
+   "band": "middle",
+   "moved": true,
+   "won": false,
+   "heroes_on_goals": 1
+  },
+  {
+   "i": 274,
+   "key": "D",
+   "active_before": "D",
+   "active": "D",
+   "x": 1,
+   "y": 8,
+   "band": "middle",
+   "moved": true,
+   "won": false,
+   "heroes_on_goals": 1
+  },
+  {
+   "i": 275,
+   "key": "U",
+   "active_before": "D",
+   "active": "D",
+   "x": 1,
+   "y": 7,
+   "band": "middle",
+   "moved": true,
+   "won": false,
+   "heroes_on_goals": 1
+  },
+  {
+   "i": 276,
+   "key": "U",
+   "active_before": "D",
+   "active": "D",
+   "x": 1,
+   "y": 6,
+   "band": "middle",
+   "moved": true,
+   "won": false,
+   "heroes_on_goals": 1
+  },
+  {
+   "i": 277,
+   "key": "A",
+   "active_before": "D",
+   "active": "F",
+   "x": 12,
+   "y": 11,
+   "band": "bottom",
+   "moved": true,
+   "won": false,
+   "heroes_on_goals": 1
+  },
+  {
+   "i": 278,
+   "key": "A",
+   "active_before": "F",
+   "active": "T",
+   "x": 9,
+   "y": 6,
+   "band": "middle",
+   "moved": true,
+   "won": false,
+   "heroes_on_goals": 1
+  },
+  {
+   "i": 279,
+   "key": "A",
+   "active_before": "T",
+   "active": "W",
+   "x": 1,
+   "y": 11,
+   "band": "bottom",
+   "moved": true,
+   "won": false,
+   "heroes_on_goals": 1
+  },
+  {
+   "i": 280,
+   "key": "U",
+   "active_before": "W",
+   "active": "W",
+   "x": 1,
+   "y": 9,
+   "band": "bottom",
+   "moved": true,
+   "won": false,
+   "heroes_on_goals": 1
+  },
+  {
+   "i": 281,
+   "key": "A",
+   "active_before": "W",
+   "active": "P",
+   "x": 2,
+   "y": 6,
+   "band": "middle",
+   "moved": true,
+   "won": false,
+   "heroes_on_goals": 1
+  },
+  {
+   "i": 282,
+   "key": "A",
+   "active_before": "P",
+   "active": "B",
+   "x": 3,
+   "y": 6,
+   "band": "middle",
+   "moved": true,
+   "won": false,
+   "heroes_on_goals": 1
+  },
+  {
+   "i": 283,
+   "key": "R",
+   "active_before": "B",
+   "active": "B",
+   "x": 4,
+   "y": 6,
+   "band": "middle",
+   "moved": true,
+   "won": false,
+   "heroes_on_goals": 1
+  },
+  {
+   "i": 284,
+   "key": "R",
+   "active_before": "B",
+   "active": "B",
+   "x": 5,
+   "y": 6,
+   "band": "middle",
+   "moved": true,
+   "won": false,
+   "heroes_on_goals": 1
+  },
+  {
+   "i": 285,
+   "key": "R",
+   "active_before": "B",
+   "active": "B",
+   "x": 6,
+   "y": 6,
+   "band": "middle",
+   "moved": true,
+   "won": false,
+   "heroes_on_goals": 1
+  },
+  {
+   "i": 286,
+   "key": "R",
+   "active_before": "B",
+   "active": "B",
+   "x": 7,
+   "y": 6,
+   "band": "middle",
+   "moved": true,
+   "won": false,
+   "heroes_on_goals": 1
+  },
+  {
+   "i": 287,
+   "key": "R",
+   "active_before": "B",
+   "active": "B",
+   "x": 8,
+   "y": 6,
+   "band": "middle",
+   "moved": true,
+   "won": false,
+   "heroes_on_goals": 2
+  },
+  {
+   "i": 288,
+   "key": "R",
+   "active_before": "B",
+   "active": "B",
+   "x": 9,
+   "y": 6,
+   "band": "middle",
+   "moved": true,
+   "won": false,
+   "heroes_on_goals": 1
+  },
+  {
+   "i": 289,
+   "key": "R",
+   "active_before": "B",
+   "active": "B",
+   "x": 10,
+   "y": 6,
+   "band": "middle",
+   "moved": true,
+   "won": false,
+   "heroes_on_goals": 3
+  },
+  {
+   "i": 290,
+   "key": "R",
+   "active_before": "B",
+   "active": "B",
+   "x": 11,
+   "y": 6,
+   "band": "middle",
+   "moved": true,
+   "won": false,
+   "heroes_on_goals": 3
+  },
+  {
+   "i": 291,
+   "key": "U",
+   "active_before": "B",
+   "active": "B",
+   "x": 11,
+   "y": 5,
+   "band": "middle",
+   "moved": true,
+   "won": false,
+   "heroes_on_goals": 2
+  },
+  {
+   "i": 292,
+   "key": "U",
+   "active_before": "B",
+   "active": "B",
+   "x": 11,
+   "y": 4,
+   "band": "middle",
+   "moved": true,
+   "won": false,
+   "heroes_on_goals": 2
+  },
+  {
+   "i": 293,
+   "key": "U",
+   "active_before": "B",
+   "active": "B",
+   "x": 11,
+   "y": 3,
+   "band": "top",
+   "moved": true,
+   "won": false,
+   "heroes_on_goals": 2
+  },
+  {
+   "i": 294,
+   "key": "R",
+   "active_before": "B",
+   "active": "B",
+   "x": 12,
+   "y": 3,
+   "band": "top",
+   "moved": true,
+   "won": false,
+   "heroes_on_goals": 2
+  },
+  {
+   "i": 295,
+   "key": "U",
+   "active_before": "B",
+   "active": "B",
+   "x": 12,
+   "y": 2,
+   "band": "top",
+   "moved": true,
+   "won": false,
+   "heroes_on_goals": 2
+  },
+  {
+   "i": 296,
+   "key": "U",
+   "active_before": "B",
+   "active": "B",
+   "x": 12,
+   "y": 1,
+   "band": "top",
+   "moved": true,
+   "won": false,
+   "heroes_on_goals": 3
+  },
+  {
+   "i": 297,
+   "key": "A",
+   "active_before": "B",
+   "active": "D",
+   "x": 9,
+   "y": 6,
+   "band": "middle",
+   "moved": true,
+   "won": false,
+   "heroes_on_goals": 3
+  },
+  {
+   "i": 298,
+   "key": "D",
+   "active_before": "D",
+   "active": "D",
+   "x": 9,
+   "y": 7,
+   "band": "middle",
+   "moved": true,
+   "won": false,
+   "heroes_on_goals": 3
+  },
+  {
+   "i": 299,
+   "key": "R",
+   "active_before": "D",
+   "active": "D",
+   "x": 10,
+   "y": 7,
+   "band": "middle",
+   "moved": true,
+   "won": false,
+   "heroes_on_goals": 3
+  },
+  {
+   "i": 300,
+   "key": "D",
+   "active_before": "D",
+   "active": "D",
+   "x": 10,
+   "y": 8,
+   "band": "middle",
+   "moved": true,
+   "won": false,
+   "heroes_on_goals": 3
+  },
+  {
+   "i": 301,
+   "key": "D",
+   "active_before": "D",
+   "active": "D",
+   "x": 10,
+   "y": 9,
+   "band": "bottom",
+   "moved": true,
+   "won": false,
+   "heroes_on_goals": 3
+  },
+  {
+   "i": 302,
+   "key": "D",
+   "active_before": "D",
+   "active": "D",
+   "x": 10,
+   "y": 9,
+   "band": "bottom",
+   "moved": true,
+   "won": false,
+   "heroes_on_goals": 3
+  },
+  {
+   "i": 303,
+   "key": "A",
+   "active_before": "D",
+   "active": "F",
+   "x": 12,
+   "y": 11,
+   "band": "bottom",
+   "moved": true,
+   "won": false,
+   "heroes_on_goals": 3
+  },
+  {
+   "i": 304,
+   "key": "A",
+   "active_before": "F",
+   "active": "T",
+   "x": 12,
+   "y": 6,
+   "band": "middle",
+   "moved": true,
+   "won": false,
+   "heroes_on_goals": 3
+  },
+  {
+   "i": 305,
+   "key": "A",
+   "active_before": "T",
+   "active": "W",
+   "x": 1,
+   "y": 9,
+   "band": "bottom",
+   "moved": true,
+   "won": false,
+   "heroes_on_goals": 3
+  },
+  {
+   "i": 306,
+   "key": "U",
+   "active_before": "W",
+   "active": "W",
+   "x": 1,
+   "y": 8,
+   "band": "middle",
+   "moved": true,
+   "won": false,
+   "heroes_on_goals": 3
+  },
+  {
+   "i": 307,
+   "key": "U",
+   "active_before": "W",
+   "active": "W",
+   "x": 1,
+   "y": 7,
+   "band": "middle",
+   "moved": true,
+   "won": false,
+   "heroes_on_goals": 3
+  },
+  {
+   "i": 308,
+   "key": "U",
+   "active_before": "W",
+   "active": "W",
+   "x": 1,
+   "y": 6,
+   "band": "middle",
+   "moved": true,
+   "won": false,
+   "heroes_on_goals": 3
+  },
+  {
+   "i": 309,
+   "key": "R",
+   "active_before": "W",
+   "active": "W",
+   "x": 10,
+   "y": 6,
+   "band": "middle",
+   "moved": true,
+   "won": false,
+   "heroes_on_goals": 4
+  },
+  {
+   "i": 310,
+   "key": "D",
+   "active_before": "W",
+   "active": "W",
+   "x": 10,
+   "y": 9,
+   "band": "bottom",
+   "moved": true,
+   "won": false,
+   "heroes_on_goals": 4
+  },
+  {
+   "i": 311,
+   "key": "D",
+   "active_before": "W",
+   "active": "W",
+   "x": 10,
+   "y": 10,
+   "band": "bottom",
+   "moved": true,
+   "won": false,
+   "heroes_on_goals": 4
+  },
+  {
+   "i": 312,
+   "key": "D",
+   "active_before": "W",
+   "active": "W",
+   "x": 10,
+   "y": 11,
+   "band": "bottom",
+   "moved": true,
+   "won": false,
+   "heroes_on_goals": 5
+  },
+  {
+   "i": 313,
+   "key": "A",
+   "active_before": "W",
+   "active": "P",
+   "x": 11,
+   "y": 3,
+   "band": "top",
+   "moved": true,
+   "won": false,
+   "heroes_on_goals": 5
+  },
+  {
+   "i": 314,
+   "key": "U",
+   "active_before": "P",
+   "active": "P",
+   "x": 11,
+   "y": 2,
+   "band": "top",
+   "moved": true,
+   "won": false,
+   "heroes_on_goals": 5
+  },
+  {
+   "i": 315,
+   "key": "U",
+   "active_before": "P",
+   "active": "P",
+   "x": 11,
+   "y": 1,
+   "band": "top",
+   "moved": true,
+   "won": false,
+   "heroes_on_goals": 5
+  },
+  {
+   "i": 316,
+   "key": "L",
+   "active_before": "P",
+   "active": "P",
+   "x": 10,
+   "y": 1,
+   "band": "top",
+   "moved": true,
+   "won": true,
+   "heroes_on_goals": 6
+  }
+ ]
+}
