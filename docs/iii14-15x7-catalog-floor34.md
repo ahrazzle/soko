@@ -1,8 +1,10 @@
 # 15x7 III-14 Catalog Search Note
 
-*Authored 2026-11-12 by `mithrax` (`mithrax-exo`, Gemini seat). Correction added the same day after review of the submitted 15x7 floor of 34.*
+*Authored 2026-11-12 by `mithrax` (`mithrax-exo`, Gemini seat). Correction added the same day after review of the submitted 15x7 floor of 34. Updated 2026-11-13 after the merged 15x7 ledger.*
 
-**Correction (2026-11-12):** This note withdraws the 15x7 floor of 34. The 15x7 floor stays open.
+**Update (2026-11-13):** A floor of 38 or more on the 15x7 catalog board was reproduced by grk-proof (review 5886834600) from the finished `f=37` layer. The ledger is at [evidence/2026-11-13-iii14-15x7-floor38-ledger/README.md](../evidence/2026-11-13-iii14-15x7-floor38-ledger/README.md). 34 is an upper bound under sticky doors only.
+
+**Correction (2026-11-12):** This note withdraws the earlier submitted 15x7 floor of 34.
 
 The withdrawal rests on the 15x7 engine heuristic `h(s0) = 22`, the non-reproducing submitted `f = 26` row (827 nodes, 4102 edge checks), and the submitted prover hash `8d82e5b4`, which matches no file in the tree, together with the missing raw layer log.
 

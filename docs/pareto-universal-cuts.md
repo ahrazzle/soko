@@ -4,6 +4,8 @@
 
 **Correction (2026-11-12):** The `H=47` figure in this note is `report.json`'s `universe_horizon` on `target_room` "III-14": the construction horizon of the 9,921-node, 29,413-arc universal network used to measure cut predicate counts on 12 deficient traces (`flow` 0 through 6, `all_cuts_capacity_verified` true). The III-14 ledger bound remains a sound lower bound `>= 34` on the 14x7 fixture only.
 
+**Update (2026-11-13):** A floor of 38 or more on the 15x7 catalog board was reproduced by grk-proof (review 5886834600) from the finished `f=37` layer. See [the merged ledger](../evidence/2026-11-13-iii14-15x7-floor38-ledger/README.md). 34 is an upper bound under sticky doors only. The 14x7 ledger bound of `>= 34` is unchanged.
+
 ## 1. Motivation: Master Clause Width in Unrestricted `universe_horizon` 47 Search
 
 **Implementation and objective follow-up (2026-11-12):** The original note and
