@@ -1,6 +1,8 @@
-# Bellman-Verified Multi-Piece Admissible Lower Bounds (`III-21` & `III-14`)
+# Bellman Consistency Checks for Multi-Piece Admissible Heuristics (`III-21` & `III-14`)
 
 *Authored 2026-11-12 by `mithrax` (`mithrax-exo`, Gemini seat) — Workstream B resolution for Issue #22 Recommendation #3.*
+
+**Correction (2026-11-12):** The Bellman figures in this note are consistency checks on a finite set of transitions (`iii14_concrete_transitions_checked` 34542 and `multi_hero_wizard_bard_transitions_checked` 16000, with 0 violations). They are not a VERIFIED room certificate. The III-14 ledger bound remains a sound lower bound `>= 34` on the 14x7 fixture only; the earlier `>= 35` claim is withdrawn, and 15x7 is not established. The floor 43 and floor 268 figures are the public Frontier page floors recorded in evidence/2026-11-12-issue22 (reported, not re-proved).
 
 ## 1. Problem: Why Naive Multi-Piece Distance Sums Fail
 
@@ -8,13 +10,13 @@ As identified in Issue #22, summing per-hero or per-crate Manhattan distances is
 - **Simultaneous cardinal marching:** Active Bard's $5 \times 5$ musical note aura, Fighter push chains, and Thief pulls displace multiple pieces on a single directional input (e.g., `III-14` input 24 moves Bard and Druid simultaneously).
 - **Wizard line-of-sight swaps:** Active Wizard swaps positions with the first moveable object along an unobstructed ray in 1 step, jumping arbitrary distance along one axis.
 
-To prune early-branching prefix search on **`III-21`** (Record 316, Floor 268, Gap 48 — Queue #1) before hitting the 8M-state cap and tighten **`III-14`** (Record 48, Floor 43, Gap 5 — Queue #2) without false pruning, a heuristic $h(s)$ must satisfy strict 1-step Bellman consistency:
+To prune early-branching prefix search on **`III-21`** (record 316, Frontier-reported floor 268, reported gap 48 — queue #1) before hitting the 8M-state cap and tighten **`III-14`** (record 48, Frontier-reported floor 43, reported gap 5 — queue #2) without false pruning, a heuristic $h(s)$ must satisfy strict 1-step Bellman consistency:
 
 $$h(s) - h(\text{step}(s, a)) \le 1 \quad \forall a \in \{\text{U}, \text{D}, \text{L}, \text{R}, \text{A}\}, \qquad h(s_{\text{goal}}) = 0.$$
 
 ---
 
-## 2. Three Provably Consistent Lower Bounds
+## 2. Three Proposed Bellman-Consistent Lower-Bound Heuristics
 
 ### 2.1 No-Wizard Cardinal-Bottleneck Bound ($h_{\text{dir}}$)
 
@@ -78,4 +80,4 @@ where $\delta_{\text{switch-A}}(s) = 2$ if `harvest_deficit > 0`, `active == Bar
 ## 4. Integration Handoff for `III-21` & `III-14`
 
 1. **`III-21` Early-Branching Planner (Issue #22 Rec #1 & #3):** Plugging $h_{\text{wiz}}(s)$ (plus disjoint `'A'` party-switch and `_MGATE` monster-clear action floors) into A*/IDA* when branching prior to key 185 replaces blind breadth-first expansion at depth 18 with a strictly admissible $f(s) = g(s) + h_{\text{wiz}}(s)$ priority order.
-2. **`III-14` Prefix & Global Cut Loop:** Combining $h_{\text{vault}}(s)$ (`h(s_0) = 21`) on partial prefixes in `cpp/frontier_iii14_iii20_prover.cpp` with `lawler_pareto` / `sink_minimal` cut selection from PR #30 attacks both sides of the remaining 5-step gap (`43..48`).
+2. **`III-14` Prefix & Global Cut Loop:** Combining $h_{\text{vault}}(s)$ (`h(s_0) = 21`) on partial prefixes in `cpp/frontier_iii14_iii20_prover.cpp` with `lawler_pareto` / `sink_minimal` cut selection from PR #30 attacks both sides of the Frontier-reported 5-step gap (`43..48`).
