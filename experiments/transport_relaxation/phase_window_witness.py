@@ -88,7 +88,20 @@ def _run_on_edges(
 
 
 def _strict_int(x: Any) -> bool:
-    return isinstance(x, int) and not isinstance(x, bool)
+    return type(x) is int
+
+
+def _strict_bool(x: Any) -> bool:
+    return type(x) is bool
+
+
+def _strict_int_pairs(edges: Any) -> bool:
+    if not isinstance(edges, list):
+        return False
+    for e in edges:
+        if not (isinstance(e, list) and len(e) == 2 and type(e[0]) is int and type(e[1]) is int):
+            return False
+    return True
 
 
 def _indices_in_range(
@@ -143,6 +156,8 @@ def certify_phase_window_transport(
     `verify_phase_window_certificate` re-derives everything from the recorded
     inputs. No intermediate tick is enumerated.
     """
+    if type(n_crates) is not int or type(n_targets) is not int:
+        raise ValueError("n_crates and n_targets must be ints")
     b_min = _to_q(phase_min)
     b_max = _to_q(phase_max)
     if n_crates <= 0 or n_targets <= 0 or b_min > b_max:
@@ -208,10 +223,17 @@ def verify_phase_window_certificate(cert: Dict[str, Any]) -> Tuple[bool, str]:
     inflates a knot flow, drops a window from the union, records a source side
     other than the recomputed cut, names a `max_phase_q` that is not a knot
     attaining the recomputed maximum, uses a crate or target index outside
-    0..n-1, or re-hashes any of those mutated claims. The only way to pass is to
-    exhibit real flows and real cuts.
+    0..n-1, records a non-int flow or cut, a non-bool flag, a non-int active
+    edge, or re-hashes any of those mutated claims. The only way to pass is to
+    exhibit real flows and real cuts, with recorded types matching the
+    recomputed values exactly. A payload that cannot be hashed returns
+    malformed_certificate rather than raising.
     """
-    if _canon_sha256(cert) != cert.get("certificate_sha256"):
+    try:
+        digest = _canon_sha256(cert)
+    except TypeError:
+        return False, "malformed_certificate"
+    if digest != cert.get("certificate_sha256"):
         return False, "certificate_sha256_mismatch"
     try:
         n_c = int(cert["n_crates"])
@@ -238,9 +260,13 @@ def verify_phase_window_certificate(cert: Dict[str, Any]) -> Tuple[bool, str]:
 
     union_edges = sorted({(c, t) for (c, t, _, _) in clipped})
     static_flow, _, _, _, _ = _run_on_edges(n_c, n_t, union_edges)
-    if static_flow != int(cert["static_union_flow"]):
+    if not _strict_int(cert.get("static_union_flow")):
+        return False, "malformed_certificate"
+    if static_flow != cert["static_union_flow"]:
         return False, "static_union_flow_mismatch"
-    if bool(static_flow == n_c) != bool(cert["static_union_feasible"]):
+    if not _strict_bool(cert.get("static_union_feasible")):
+        return False, "malformed_certificate"
+    if bool(static_flow == n_c) != cert["static_union_feasible"]:
         return False, "static_union_flag_mismatch"
 
     witnesses = cert.get("knot_witnesses", [])
@@ -255,13 +281,15 @@ def verify_phase_window_certificate(cert: Dict[str, Any]) -> Tuple[bool, str]:
         if kw.get("phase_q") != _q_str(bk):
             return False, "knot_phase_mismatch"
         active = [(c, t) for (c, t, lo, hi) in clipped if lo <= bk <= hi]
-        if [list(e) for e in active] != kw.get("active_edges"):
+        rec_active = kw.get("active_edges")
+        if not _strict_int_pairs(rec_active):
+            return False, "malformed_certificate"
+        if [list(e) for e in active] != rec_active:
             return False, "active_edges_mismatch"
         flow, cut, net, src, sink = _run_on_edges(n_c, n_t, active)
-        try:
-            rec_flow = int(kw["max_flow"])
-            rec_cap = int(kw["min_cut_capacity"])
-        except (KeyError, TypeError, ValueError):
+        rec_flow = kw.get("max_flow")
+        rec_cap = kw.get("min_cut_capacity")
+        if not (_strict_int(rec_flow) and _strict_int(rec_cap)):
             return False, "malformed_certificate"
         if flow != rec_flow:
             return False, f"flow_recomputation_mismatch:{flow}!={kw['max_flow']}"
@@ -290,14 +318,20 @@ def verify_phase_window_certificate(cert: Dict[str, Any]) -> Tuple[bool, str]:
         knot_flows.append((_q_str(bk), flow))
         max_flow = max(max_flow, flow)
 
-    if max_flow != int(cert["max_phase_flow"]):
+    if not _strict_int(cert.get("max_phase_flow")):
+        return False, "malformed_certificate"
+    if max_flow != cert["max_phase_flow"]:
         return False, "max_phase_flow_mismatch"
     # max_phase_q must name a knot whose recomputed flow attains the maximum.
     argmax_phases = {q for (q, f) in knot_flows if f == max_flow}
     if cert.get("max_phase_q") not in argmax_phases:
         return False, "max_phase_q_mismatch"
-    if bool(max_flow == n_c) != bool(cert["phase_window_feasible"]):
+    if not _strict_bool(cert.get("phase_window_feasible")):
+        return False, "malformed_certificate"
+    if bool(max_flow == n_c) != cert["phase_window_feasible"]:
         return False, "phase_feasible_flag_mismatch"
+    if not _strict_bool(cert.get("static_union_false_feasibility_caught")):
+        return False, "malformed_certificate"
     if cert["static_union_false_feasibility_caught"] != bool(
         static_flow == n_c and max_flow < n_c
     ):

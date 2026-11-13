@@ -185,5 +185,182 @@ class PhaseWindowWitnessForgeryTests(unittest.TestCase):
                 )
 
 
+def _flow2():
+    # Knot 0 has flow/capacity 1; static union and max phase flow are 2.
+    return certify_phase_window_transport(
+        n_crates=2,
+        n_targets=2,
+        window_edges=[(0, 0, 0, 10), (1, 1, 5, 10)],
+        phase_min=0,
+        phase_max=10,
+    )
+
+
+def _flow1():
+    # Every knot has flow/capacity 1; max phase flow is 1.
+    return certify_phase_window_transport(
+        n_crates=2,
+        n_targets=2,
+        window_edges=[(0, 0, 0, 4), (0, 1, 0, 4), (1, 0, 6, 10), (1, 1, 6, 10)],
+        phase_min=0,
+        phase_max=10,
+    )
+
+
+class PhaseWindowWitnessTypeCheckTests(unittest.TestCase):
+    """Regression tests for grk-proof review 5887628888 on PR #47."""
+
+    def _assert_rehashed_malformed(self, cert) -> None:
+        # Rehash first so a failure is from the type check, not the hash.
+        try:
+            ok, msg = verify_phase_window_certificate(_rehash(cert))
+        except TypeError:
+            self.fail("verifier raised TypeError; expected malformed_certificate")
+        self.assertFalse(ok)
+        self.assertEqual(msg, "malformed_certificate")
+
+    def test_float_static_union_flow_is_malformed(self) -> None:
+        cert = _flow2()
+        self.assertEqual(cert["static_union_flow"], 2)
+        cert["static_union_flow"] = 2.9
+        self._assert_rehashed_malformed(cert)
+
+    def test_float_max_phase_flow_is_malformed(self) -> None:
+        cert = _flow2()
+        self.assertEqual(cert["max_phase_flow"], 2)
+        cert["max_phase_flow"] = 2.9
+        self._assert_rehashed_malformed(cert)
+
+    def test_float_knot_max_flow_is_malformed(self) -> None:
+        cert = _flow2()
+        self.assertEqual(cert["knot_witnesses"][0]["max_flow"], 1)
+        cert["knot_witnesses"][0]["max_flow"] = 1.9
+        self._assert_rehashed_malformed(cert)
+
+    def test_float_knot_min_cut_capacity_is_malformed(self) -> None:
+        cert = _flow2()
+        self.assertEqual(cert["knot_witnesses"][0]["min_cut_capacity"], 1)
+        cert["knot_witnesses"][0]["min_cut_capacity"] = 1.9
+        self._assert_rehashed_malformed(cert)
+
+    def test_string_knot_min_cut_capacity_is_malformed(self) -> None:
+        cert = _flow2()
+        self.assertEqual(cert["knot_witnesses"][0]["min_cut_capacity"], 1)
+        cert["knot_witnesses"][0]["min_cut_capacity"] = "1"
+        self._assert_rehashed_malformed(cert)
+
+    def test_bool_knot_max_flow_is_malformed(self) -> None:
+        cert = _flow1()
+        self.assertEqual(cert["knot_witnesses"][0]["max_flow"], 1)
+        cert["knot_witnesses"][0]["max_flow"] = True
+        self._assert_rehashed_malformed(cert)
+
+    def test_bool_knot_min_cut_capacity_is_malformed(self) -> None:
+        cert = _flow1()
+        self.assertEqual(cert["knot_witnesses"][0]["min_cut_capacity"], 1)
+        cert["knot_witnesses"][0]["min_cut_capacity"] = True
+        self._assert_rehashed_malformed(cert)
+
+    def test_bool_max_phase_flow_is_malformed(self) -> None:
+        cert = _flow1()
+        self.assertEqual(cert["max_phase_flow"], 1)
+        cert["max_phase_flow"] = True
+        self._assert_rehashed_malformed(cert)
+
+    def test_none_static_union_flow_is_malformed(self) -> None:
+        cert = _flow2()
+        cert["static_union_flow"] = None
+        self._assert_rehashed_malformed(cert)
+
+    def test_none_max_phase_flow_is_malformed(self) -> None:
+        cert = _flow2()
+        cert["max_phase_flow"] = None
+        self._assert_rehashed_malformed(cert)
+
+    def test_string_phase_window_feasible_is_malformed(self) -> None:
+        cert = _flow2()
+        self.assertTrue(cert["phase_window_feasible"])
+        cert["phase_window_feasible"] = "false"
+        self._assert_rehashed_malformed(cert)
+
+    def test_int_static_union_feasible_is_malformed(self) -> None:
+        cert = _flow2()
+        self.assertTrue(cert["static_union_feasible"])
+        cert["static_union_feasible"] = 1
+        self._assert_rehashed_malformed(cert)
+
+    def test_int_phase_window_feasible_zero_is_malformed(self) -> None:
+        cert = _cert()
+        self.assertFalse(cert["phase_window_feasible"])
+        cert["phase_window_feasible"] = 0
+        self._assert_rehashed_malformed(cert)
+
+    def test_int_false_feasibility_caught_is_malformed(self) -> None:
+        cert = _cert()
+        self.assertTrue(cert["static_union_false_feasibility_caught"])
+        cert["static_union_false_feasibility_caught"] = 1
+        self._assert_rehashed_malformed(cert)
+
+    def test_bool_standins_in_active_edges_are_malformed(self) -> None:
+        cert = certify_phase_window_transport(
+            n_crates=2,
+            n_targets=2,
+            window_edges=[(0, 0, 0, 10), (1, 1, 0, 10)],
+            phase_min=0,
+            phase_max=10,
+        )
+        self.assertEqual(cert["knot_witnesses"][0]["active_edges"], [[0, 0], [1, 1]])
+        cert["knot_witnesses"][0]["active_edges"] = [[False, False], [True, True]]
+        self._assert_rehashed_malformed(cert)
+
+    def test_unserializable_index_is_malformed_not_raised(self) -> None:
+        class _Unserializable:
+            pass
+
+        cert = _cert()
+        cert["window_edges_q"][0][0] = _Unserializable()
+        try:
+            ok, msg = verify_phase_window_certificate(cert)
+        except TypeError:
+            self.fail("verifier raised TypeError; expected malformed_certificate")
+        self.assertFalse(ok)
+        self.assertEqual(msg, "malformed_certificate")
+
+        try:
+            import numpy as np
+        except ImportError:
+            return
+        cert = _cert()
+        cert["window_edges_q"][0][0] = np.int64(0)
+        try:
+            ok, msg = verify_phase_window_certificate(cert)
+        except TypeError:
+            self.fail("verifier raised TypeError on np.int64; expected malformed_certificate")
+        self.assertFalse(ok)
+        self.assertEqual(msg, "malformed_certificate")
+
+    def test_certifier_rejects_non_int_n_crates_and_n_targets(self) -> None:
+        bad_counts = [True, 1.0, "1"]
+        try:
+            import numpy as np
+        except ImportError:
+            np = None
+        else:
+            bad_counts.extend([np.int64(1), np.int32(1)])
+        windows = [(0, 0, 0, 10)]
+        for bad in bad_counts:
+            with self.subTest(field="n_crates", value=repr(bad)):
+                with self.assertRaises(ValueError):
+                    certify_phase_window_transport(
+                        n_crates=bad, n_targets=2, window_edges=windows,
+                        phase_min=0, phase_max=10,
+                    )
+            with self.subTest(field="n_targets", value=repr(bad)):
+                with self.assertRaises(ValueError):
+                    certify_phase_window_transport(
+                        n_crates=2, n_targets=bad, window_edges=windows,
+                        phase_min=0, phase_max=10,
+                    )
+
 if __name__ == "__main__":
     unittest.main()
