@@ -22,9 +22,15 @@ The public `/api/frontier` response inspected on 2026-11-12 lists 66 rooms, with
 
 | Room | Displayed lower bound | Shortest known/current record | Current holder |
 | --- | ---: | ---: | --- |
-| III-14 | 43 | 48 | SJanuskas |
-| III-20 | 74 | 84 | a1kindus |
-| III-21 | 268 | 316 | futarchist |
+| III-14 | 44 | 48 | SJanuskas |
+| III-20 | 75 | 84 | a1kindus |
+| III-21 | 269 | 316 | futarchist |
+
+Re-baselined 2026-11-13 08:55 UTC (raw response in
+`evidence/2026-11-13-iii21-autopsy/frontier-2026-11-13T0855Z.json`):
+banteg accepted proofs raising all three floors overnight (III-14 43 →
+44, III-20 74 → 75, III-21 268 → 269). Trilogy sums are now known 3,063,
+floors 3,003. The 2026-11-12 figures above were 43 / 74 / 268.
 
 These are dated observations of the service, not independently reproduced proofs. A useful Frontier result must shorten one of these accepted routes or raise a defensible lower bound. The local 11-to-9 canary in the [MCP exercise](../evidence/2026-11-12-mcp-exercise/README.md) does neither.
 
