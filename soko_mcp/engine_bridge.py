@@ -55,6 +55,7 @@ def get_soko_checker_pins() -> Dict[str, Optional[str]]:
         "cpp_soko_engine_src_sha256": _file_sha256(CPP_SRC),
         "cpp_soko_engine_bin_sha256": _file_sha256(CPP_BIN),
         "formal_kernel_py_sha256": _file_sha256(pkg_dir / "formal_kernel.py"),
+        "checker_auditor_py_sha256": _file_sha256(pkg_dir / "checker_auditor.py"),
     }
 
 
@@ -164,7 +165,7 @@ def get_capabilities() -> Dict[str, Any]:
     from .original import capability as original_capability
 
     return {
-        "version": "0.3.0",
+        "version": "0.4.0",
         "cpp_engine_ready": cpp_ready,
         "cpp_unavailable_reason": reason,
         "route_verification": {
@@ -186,6 +187,7 @@ def get_capabilities() -> Dict[str, Any]:
             "abstractions": [
                 "BardDruidQuotientPDB",
                 "PairAtomQuotientPDB",
+                "RowStripQuotientPDB",
                 "WizardRayGoalBound",
                 "ExactBucketedAStar",
                 "ExactDynStateIDAStar",
@@ -202,6 +204,7 @@ def get_capabilities() -> Dict[str, Any]:
                 "formal_synthesize_invariant",
                 "formal_triage_portfolio",
                 "formal_export_ledger",
+                "formal_audit_checkers",
             ] if formal_present else [],
         },
         "catalog": {

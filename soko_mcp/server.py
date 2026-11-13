@@ -7,6 +7,7 @@ from typing import Any, BinaryIO, Dict, List, Optional, Tuple
 
 from . import __version__
 from .analyzer import inspect_room
+from .checker_auditor import audit_builtin_soko_oracles, audit_dual_checkers
 from .engine_bridge import (
     ensure_cpp_engine,
     get_capabilities,
@@ -44,9 +45,9 @@ SERVER_INFO = {
 }
 
 SERVER_INSTRUCTIONS = (
-    "Domain-General Formal-Systems & Verified-Bar MCP Server v0.3.0 implementing the Foundation-0 and Proven-Commons "
-    "methodology: (1) Use the 7 `formal_*` tools (`formal_define_system`, `formal_verify_trace`, `formal_solve_system`, "
-    "`formal_certify_lower_bound`, `formal_synthesize_invariant`, `formal_triage_portfolio`, `formal_export_ledger`) to model "
+    "Domain-General Formal-Systems & Verified-Bar MCP Server v0.4.0 implementing the Foundation-0 and Proven-Commons "
+    "methodology: (1) Use the 8 `formal_*` tools (`formal_define_system`, `formal_verify_trace`, `formal_solve_system`, "
+    "`formal_certify_lower_bound`, `formal_synthesize_invariant`, `formal_triage_portfolio`, `formal_export_ledger`, `formal_audit_checkers`) to model "
     "ANY discrete planning, scheduling, protocol safety, or optimization problem as an AST-sandboxed dual-checker system with "
     "mandatory negative controls, mutation-kill gates, exact Dijkstra / Beam / Window-LNS search, Quotient Homomorphism / "
     "Inductive Potential lower bounds, and Houdini inductive safety or irreversible deadlock-trap synthesis; (2) Use the "
@@ -404,11 +405,11 @@ TOOLS.extend(
                 "system_id": {"type": "string"},
                 "proof_mode": {
                     "type": "string",
-                    "enum": ["quotient_homomorphism", "inductive_potential"],
+                    "enum": ["quotient_homomorphism", "inductive_potential", "cost_partitioned_quotients", "rational_lp_dual"],
                 },
                 "certificate_code": {
                     "type": "string",
-                    "description": "Pure Python module defining `project(state)` (for quotient_homomorphism) or `potential(state)` (for inductive_potential), plus optional `enumerate_states()`.",
+                    "description": "Pure Python module defining `project(state)` (quotient_homomorphism), `potential(state)` (inductive_potential), `projections()` (cost_partitioned_quotients), or `features(s)`/`goal_rhs()`/`dual_y()` (rational_lp_dual), plus optional `enumerate_states()`.",
                 },
                 "claimed_lower_bound": {"type": "integer"},
                 "max_concrete_states": {"type": "integer", "default": 100000, "minimum": 10, "maximum": 500000},
@@ -502,6 +503,22 @@ TOOLS.extend(
                         "required": ["claim_id", "statement", "epistemic_status"],
                     },
                 }
+            },
+            "additionalProperties": False,
+        },
+        "annotations": {"readOnlyHint": True, "idempotentHint": True, "openWorldHint": False},
+    },
+    {
+        "name": "formal_audit_checkers",
+        "title": "Audit Python Certificate Checkers for AST Soundness & Anti-Tautology",
+        "description": "Run the Foundation-0 / formal-claims-audit#16 static AST soundness and alpha-normalized skeleton auditor on one or two Python checker scripts (or set `builtin_soko_oracles=true` to self-audit `oracle.py` vs `flat_oracle.py`), catching F-01 optimistic-True flags, IEEE-754 float drift, vacuous stubs, and variable-renamed copy-paste tautologies.",
+        "inputSchema": {
+            "type": "object",
+            "properties": {
+                "spec_code": {"type": "string", "description": "Primary specification / checker Python source code."},
+                "impl_code": {"type": "string", "description": "Optional independent second checker Python source code for alpha-skeleton anti-tautology comparison."},
+                "strict_exact_math": {"type": "boolean", "default": True},
+                "builtin_soko_oracles": {"type": "boolean", "default": False, "description": "If true, self-audit built-in `soko_mcp/oracle.py` against `soko_mcp/flat_oracle.py`."},
             },
             "additionalProperties": False,
         },
@@ -630,7 +647,7 @@ def _read_resource_content(uri: str) -> Dict[str, Any]:
             "3. **Certify Lower Bounds (`formal_certify_lower_bound`):** Supply either a finite `project(state)` Quotient "
             "Homomorphism or an Inductive Potential `potential(state)` (`V(s) <= cost(s,a,s') + V(s')`) to obtain a `PROVEN` "
             "lower bound without trusting solver heuristics.\n"
-            "4. **Export Ledger (`formal_export_ledger`):** Emit SHA-256-pinned claims under `PROVEN`, `VERIFIED`, `KNOWN`, or `CONJECTURE`.\n"
+            "4. **Export Ledger (`formal_export_ledger`, `formal_audit_checkers`):** Emit SHA-256-pinned claims under `PROVEN`, `VERIFIED`, `KNOWN`, or `CONJECTURE`.\n"
         )
         return {"uri": uri, "mimeType": "text/markdown", "text": text}
     if uri == "formal://examples/lease-fencing-spec":
@@ -918,6 +935,18 @@ def dispatch_tool_call(name: str, args: Dict[str, Any]) -> Dict[str, Any]:
 
     if name == "formal_export_ledger":
         return export_formal_ledger(args.get("extra_claims"))
+
+    if name == "formal_audit_checkers":
+        if bool(args.get("builtin_soko_oracles", False)):
+            return audit_builtin_soko_oracles()
+        spec_src = str(args.get("spec_code", ""))
+        if not spec_src.strip():
+            raise ValueError("Provide either `spec_code` or set `builtin_soko_oracles=true`.")
+        return audit_dual_checkers(
+            spec_source=spec_src,
+            impl_source=args.get("impl_code"),
+            strict_exact_math=bool(args.get("strict_exact_math", True)),
+        )
 
     raise KeyError(f"Unknown tool: {name}")
 
