@@ -41,3 +41,18 @@ indicate a different frontier but do not prove better coverage or a record.
 
 Publish code, tests, negative or positive result and limits. Stop this line if
 larger master constraints erase its benefit; no unlimited compute campaign.
+
+## Follow-up: checkpoint serialization only
+
+The three paired diagnostics show no convincing benefit from prefix learning;
+it stays opt-in. A separate cProfile diagnostic attributes 4.95 of 10.32 seconds
+to checkpointing, including 2.86 seconds inside `_save`. The next bounded change
+replaces repeated indented JSON encoding with compact JSON, retaining the same
+data, source checks, checkpoint frequency and atomic replacement.
+
+Compare the frozen pretty-writer commit `2d0bd9a` with the new writer in isolated
+worktrees, three alternating-order pairs of 15-second default-policy runs.
+Check decoded checkpoint equivalence and common candidate prefixes, retain all
+evidence, and report this as a same-host fixed-budget diagnostic, not a general
+solver speedup or proof-coverage result. No additional search algorithm change
+is made in this comparison.

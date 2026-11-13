@@ -26,6 +26,22 @@ No record bound is claimed. The exact and flow models depend on the documented
 necessary-condition and mechanics assumptions; the symbolic model is not itself
 proof of equivalence to the original engine.
 
+`--learn-prefix-frames` opts into stronger deterministic refinement. After a
+deterministic contradiction passes the retained-transition and separate Python
+oracle recheck, the master learns the complete actual Bard/Druid/active frame
+under each checked contiguous action prefix. All material remains present in
+that replay. The facts are derived privately during the recheck, not read from
+asserted serialized states. Other action prefixes remain unconstrained by those
+implications. Terminal absorption holds positions and active identity fixed.
+
+The original exact nogood is retained. Invalid, disagreeing or timed-out checks
+install nothing; SMT cores do not learn these extra frames. The option defaults
+off. Output reports `prefix_frames_learned` and `prefix_max_depth`, which count
+installed facts and replay depth, not unique search coverage. The driver
+`python -m experiments.causal_solver.compare_prefix_learning --output /tmp/new-prefix-comparison`
+compares it with the baseline using three alternating-order pairs of sequential
+30-second workers; choose a fresh output directory.
+
 Candidates are locally replayed immediately, truncated at the first win, then
 replayed in the pinned original engine. Only that final replay can produce
 `original_verified_win`. For unrestricted original-verified wins, the program attempts a fresh read-only
