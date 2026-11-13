@@ -670,8 +670,31 @@ def prove_floor_verified(
             shortest_known_route_len=known_len,
         )
 
-    # F-04: VERIFIED is reserved for an exact optimum bound to a dual-oracle-checked witness.
-    # Otherwise the floor is reported as an unwitnessed lower bound.
+    # F-04: VERIFIED is reserved for an exact optimum bound to a dual-oracle-checked witness on a board
+    # with a reference route to cross-check. Without a reference route nothing outside the engine's
+    # exact flag refutes a shorter win (a hall where RR wins in 2 accepted floor 4 with witness URRD),
+    # so that case is reported as WITNESS_MATCHES_CLAIM_UNREFERENCED, without a floor or guarantee.
+    if exact_opt and witness_verified is not None and known_len is None:
+        return {
+            "epistemic_status": "WITNESS_MATCHES_CLAIM_UNREFERENCED",
+            "optimality_proven": False,
+            "proven_floor": None,
+            "claimed_floor": claimed_floor,
+            "exact_optimum_reached": exact_opt,
+            "search_strategy": cpp_out.get("search_strategy", "exact_state_ida_star"),
+            "exact_state_tt": True,
+            "nodes_expanded": int(cpp_out.get("nodes_expanded", 0)),
+            "edge_consistency_checks": int(cpp_out.get("edge_consistency_checks", 0)),
+            "winning_witness": witness_verified,
+            "checker_pins": get_soko_checker_pins(),
+            "verification_note": (
+                "The dual-oracle-checked witness matches the claimed floor, but no reference route was available "
+                "for this board to check optimality. Shorter winning routes are not refuted, so it is not VERIFIED."
+            ),
+            "guarantee": None,
+        }
+
+    # Otherwise an inexact or unwitnessed floor is reported as an unwitnessed lower bound.
     status = "VERIFIED" if (exact_opt and witness_verified is not None) else "LOWER_BOUND_UNWITNESSED"
     return {
         "epistemic_status": status,

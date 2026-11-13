@@ -174,7 +174,7 @@ TOOLS: List[Dict[str, Any]] = [
     {
         "name": "soko_prove_floor",
         "title": "Certify Lower Bound via Multi-Core Exact-State A* & Pair-Atom Quotient PDB",
-        "description": "Prove a machine-checked lower bound (floor >= B) using Multi-Core Exact-State Bucketed A* (or collision-free Exact-DynState IDA*), automatic PairAtomQuotientPDB + BardDruidQuotientPDB + WizardRayGoalBound construction, fail-closed witness verification, and runtime step-consistency assertions (h(s) <= 1 + h(s')) on every transition.",
+        "description": "Prove a machine-checked lower bound (floor >= B) using Multi-Core Exact-State Bucketed A* (or collision-free Exact-DynState IDA*), automatic PairAtomQuotientPDB + BardDruidQuotientPDB + WizardRayGoalBound construction, fail-closed witness verification, and runtime step-consistency assertions (h(s) <= 1 + h(s')) on every transition. VERIFIED is issued only for an exact optimum with a dual-oracle-checked witness on a board that has a reference route; without a reference route the result is WITNESS_MATCHES_CLAIM_UNREFERENCED (no floor, no guarantee), and an inexact search returns LOWER_BOUND_UNWITNESSED.",
         "inputSchema": {
             "type": "object",
             "properties": {

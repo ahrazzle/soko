@@ -137,6 +137,37 @@ class F04ProveFloorTests(unittest.TestCase):
         self.assertEqual(out["epistemic_status"], "REJECTED_FLOOR_EXCEEDS_KNOWN_ROUTE")
         self.assertEqual(out["shortest_known_route_len"], 9)
 
+    def test_unreferenced_board_longer_witness_not_verified(self) -> None:
+        # grk-proof repro (review 5884391228): a hall with no reference route where RR wins in 2.
+        # The engine claims an exact floor of 4 with the valid 4-key witness URRD.
+        grid = ["#####", "#...#", "#F.G#", "#####"]
+        self.assertTrue(verify_route_dual(1, grid, "RR")["valid_winning_route"])
+        self.assertTrue(verify_route_dual(1, grid, "URRD")["valid_winning_route"])
+        fake = {
+            "epistemic_status": "VERIFIED",
+            "proven_floor": 4,
+            "exact_optimum_reached": True,
+            "exact_state_tt": True,
+            "winning_witness": "URRD",
+            "nodes_expanded": 1,
+            "edge_consistency_checks": 0,
+        }
+
+        def _invoke_side_effect(mode: str, *args, **kwargs):
+            if mode == "prove_lb":
+                return fake
+            return None
+
+        with mock.patch("soko_mcp.engine_bridge._invoke_cpp", side_effect=_invoke_side_effect):
+            out = prove_floor_verified(1, grid, max_bound=12, budget_sec=1)
+        self.assertNotEqual(out["epistemic_status"], "VERIFIED")
+        self.assertEqual(out["epistemic_status"], "WITNESS_MATCHES_CLAIM_UNREFERENCED")
+        self.assertFalse(out["optimality_proven"])
+        self.assertIsNone(out["proven_floor"])
+        self.assertEqual(out["claimed_floor"], 4)
+        self.assertIsNone(out["guarantee"])
+        self.assertIn("no reference route", out["verification_note"])
+
     def test_inexact_floor_is_not_verified(self) -> None:
         out = self._run_fake({
             "epistemic_status": "VERIFIED",

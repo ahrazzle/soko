@@ -77,7 +77,7 @@ claude mcp add soko-verified -- python3 -m soko_mcp
 | **Sokoban** | **Tool** | `soko_verify_route` | Triple-oracle (`PuzzleScriptOracle` + `FlatBitmaskOracle` + `C++20`) per-frame trajectory digest verifier |
 | **Sokoban** | **Tool** | `soko_optimize_route` | Shorten seed routes via Sliding-Window Exact BFS + Chiral-Mirror Tube Beam + Iterative Refinement |
 | **Sokoban** | **Tool** | `soko_solve_room` | Solve `(part, grid)` rooms from scratch via bucket-diversified C++20 beam search |
-| **Sokoban** | **Tool** | `soko_prove_floor` | Multi-Core Exact-State Bucketed A* (`<= 256` cells) + `PairAtomQuotientPDB` + `BardDruidQuotientPDB` + `WizardRayGoalBound` |
+| **Sokoban** | **Tool** | `soko_prove_floor` | Multi-Core Exact-State Bucketed A* (`<= 256` cells) + `PairAtomQuotientPDB` + `BardDruidQuotientPDB` + `WizardRayGoalBound`. Returns `VERIFIED` only for an exact optimum with a dual-oracle-checked witness on a board with a reference route; otherwise `WITNESS_MATCHES_CLAIM_UNREFERENCED` (no reference route) or `LOWER_BOUND_UNWITNESSED` (inexact search) |
 | **Sokoban** | **Tool** | `soko_run_planted_bug_audit` | Cross-oracle baseline parity + 10-mutation Proven-Commons Planted-Bug Suite (`10/10` caught) |
 | **Sokoban** | **Tool** | `soko_verify_tcb_lock` | Path-confined runtime `SHA256SUMS` manifest verification and SHA-256 checker pin inspection |
 
