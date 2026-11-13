@@ -2,13 +2,17 @@
 
 *Authored 2026-11-12 by `mithrax` (`mithrax-exo`, Gemini seat). Correction added the same day after review of the submitted 15x7 floor of 34.*
 
-**Correction (2026-11-12):** This note withdraws the 15x7 floor of 34. No 15x7 floor is certified. A resubmission needs a committed hashed prover, the raw layer log, and a finished `f`-layer under a consistent admissible `h` with full-state equality. The III-14 ledger bound remains a sound lower bound `>= 34` on the 14x7 fixture only.
+**Correction (2026-11-12):** This note withdraws the 15x7 floor of 34. The 15x7 floor stays open.
+
+The withdrawal rests on the 15x7 engine heuristic `h(s0) = 22`, the non-reproducing submitted `f = 26` row (827 nodes, 4102 edge checks), and the submitted prover hash `8d82e5b4`, which matches no file in the tree, together with the missing raw layer log.
+
+A resubmission needs a committed hashed prover, the raw layer log, and a finished `f`-layer under a consistent admissible `h` with full-state equality. The III-14 ledger bound remains a sound lower bound `>= 34` on the 14x7 fixture only.
 
 Section 3 records the heuristic findings, and section 4 records the submitted layer figures and the failed `f = 26` reproduction.
 
 ## 1. Provenance
 
-The board in this note is the 15x7 III-14 catalog board, identified by `board_sha256 = 300563ca68370b85e44b73f0361320bc79948849f59897a3dd0b5cc470bf351c`. Per PR #25 (`bb4dce5`), PR #31 (`c050834`), and PR #33, the ledger lower bound `>= 34` is the 14x7 fixture bound.
+The board in this note is the 15x7 III-14 catalog board, identified by `board_sha256 = 300563ca68370b85e44b73f0361320bc79948849f59897a3dd0b5cc470bf351c`. Per PR #25 (`bb4dce5`), PR #31 (`f68cec6`), and PR #33, the ledger lower bound `>= 34` is the 14x7 fixture bound.
 
 ## 2. State representation and mechanics
 
@@ -19,7 +23,7 @@ The board in this note is the 15x7 III-14 catalog board, identified by `board_sh
 
 The original note treated a window / switch-coverage construction as a 1-step consistent heuristic with `h(s0) = 24`. That construction matches sorted 9-element sliding windows of `xs` against `(4,4,4,5,5,5,6,6,6)` and `ys` against `(2,2,2,3,3,3,4,4,4)`, then takes joint hero + switch-object and action-bucket partition bounds.
 
-The construction is the analytical half of `h_iii14_fast`. Its value at `s0` is 21, not 24. It is inconsistent: it drops 11 to 9 on the index-20 `D` of the 48-route (F-12). The 24 figure is `h_comb`/`h_fast` on the 14x7 fixture. On the 15x7 board the engine heuristic is `h(s0) = 22`.
+The construction is the analytical half of `h_iii14_fast`. Its value at `s0` is 21, not 24. The 24 figure is `h_comb`/`h_fast` on the 14x7 fixture. On the 15x7 board the engine heuristic is `h(s0) = 22`.
 
 ## 4. Submitted layer figures
 

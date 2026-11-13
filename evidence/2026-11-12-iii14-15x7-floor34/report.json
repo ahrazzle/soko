@@ -11,7 +11,6 @@
   "findings": {
     "window_heuristic": "analytical half of h_iii14_fast",
     "window_heuristic_h_s0": 21,
-    "inconsistency": "drops 11 to 9 on the index-20 D of the 48-route (F-12)",
     "h_comb_h_fast_14x7": 24,
     "engine_h_s0_15x7": 22,
     "submitted_prover_source_sha256_prefix": "8d82e5b4",
