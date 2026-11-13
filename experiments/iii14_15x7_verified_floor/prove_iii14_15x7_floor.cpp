@@ -6,6 +6,7 @@
 // Run:
 //   ./prove_iii14_15x7_floor 90.0
 
+#include <cassert>
 #include "iii14_15x7_core.hpp"
 #include "iii14_ringflow5_pdb.hpp"
 #include "iii14_harvest_pdb.hpp"
