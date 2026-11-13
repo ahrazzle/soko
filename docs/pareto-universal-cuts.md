@@ -6,6 +6,24 @@
 
 ## 1. Motivation: Master Clause Width in Unrestricted `universe_horizon` 47 Search
 
+**Implementation and objective follow-up (2026-11-12):** The original note and
+report preserve reported measurements; they do not include the twelve input
+assignments or runnable selection code. A reproducible implementation of the
+two residual extrema is now available through `--cut-selection` in the global
+and causal search drivers; see the [new comparison](../evidence/2026-11-12-residual-cuts/README.md).
+It uses different, retained inputs and does not reproduce the original figures.
+
+The shared-predicate gadget in section 2 is **not an exact objective encoding
+for arbitrary directed pairs**. With pairs `u1 -> v1`, `u2 -> v2` and source side
+`{s, u1, v1}`, neither pair crosses, but the gadget charges for the cross-pair
+path `u1 -> pred_in -> pred_out -> v2`. Its minimum cost is `P` rather than zero;
+the [executable counterexample](../experiments/transport_relaxation/predicate_gadget_counterexample.py)
+enumerates all four auxiliary placements. Additional structural restrictions
+would need to be established for each contracted group. Checking the original
+cut's capacity can still establish a valid inequality; it does not establish
+minimum predicate count. The generic exact-optimality interpretation of the
+proposal and its finite checks should therefore not be used for integration.
+
 In PR #21 (`b760a1c`), unrestricted global search at `universe_horizon` 47 on `III-14` (`9,921` universal nodes, `29,413` universal arcs) accepted 150 checked cuts in 120s yet ended `unknown`. Because `cut_certificate.py` evaluates universal boundary arcs across **all** candidate edges—including arcs with `capacity == 0` under the current hero trace—standard forward residual reachability from `source` (`source_minimal`) ignores disabled arcs and slices across an average of **1,895.50 distinct symbolic predicates** per cut, generating wide `z3.PbGe(..., 9)` constraints.
 
 ## 2. Two-Stage Picard-Queyranne + Lawler Predicate-Hyperedge Construction

@@ -6,6 +6,12 @@ It is a global relaxation of the original initial-state problem. It neither
 fixes a route prefix nor restricts the number or order of control changes.
 An abstract winning trace is not a playable solution.
 
+Both this global-flow loop and the causal search accept
+`--cut-selection source_minimal|sink_minimal`. The default remains source-minimal.
+The sink-side alternative uses reverse residual reachability after the same
+max-flow solve, preserving all universal boundary edges and independent cut
+checking. See the [implementation and reproducible comparison](../../evidence/2026-11-12-residual-cuts/README.md).
+
 ## Optimization from first principles
 
 The concrete problem is a shortest path in the directed graph of legal game

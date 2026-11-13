@@ -90,18 +90,21 @@ def _save(path, result):
 
 def run(horizon, budget_seconds, *, control=None, phase_order='exact-first',
         use_events=False, symmetry=False, encoding='compact', html=None,
-        chromium=None, output=None, event_encoding='integer'):
+        chromium=None, output=None, event_encoding='integer', cut_selection='source_minimal'):
     if type(horizon) is not int or horizon < 0:
         raise ValueError('invalid horizon')
     if isinstance(budget_seconds, bool) or not isinstance(budget_seconds, (int, float)) or not math.isfinite(budget_seconds) or budget_seconds <= 0:
         raise ValueError('budget must be positive and finite')
     if phase_order not in ('exact-first', 'flow-first'):
         raise ValueError('invalid phase order')
+    if cut_selection not in universal_flow.CUT_SELECTIONS:
+        raise ValueError('invalid cut selection')
     started = time.monotonic()
     deadline = started + budget_seconds
     result = {'status': 'running', 'horizon': horizon, 'control': control,
               'phase_order': phase_order, 'events': use_events, 'symmetry': symmetry,
               'encoding': encoding, 'event_encoding': event_encoding,
+              'cut_selection': cut_selection,
               'candidates': [], 'cuts': [], 'phases': [],
               'source_hashes_before': source_hashes(), 'record_comparison': {'status': 'not_available'}, 'record_claim': False}
 
@@ -163,7 +166,7 @@ def run(horizon, budget_seconds, *, control=None, phase_order='exact-first',
                 result.update(status='control_failed', reason='spurious route won locally')
                 break
             if control == 'reference':
-                flow = phase('flow_evaluate', lambda: causal.evaluate_flow(universe, candidate))
+                flow = phase('flow_evaluate', lambda: causal.evaluate_flow(universe, candidate, cut_selection=cut_selection))
                 item['flow_value'] = flow['flow_value']
                 if flow['flow_value'] != 9:
                     result.update(status='control_failed', reason='reference flow below nine')
@@ -203,7 +206,7 @@ def run(horizon, budget_seconds, *, control=None, phase_order='exact-first',
             if remaining() <= 0:
                 break
             if which == 'flow':
-                flow = phase('flow_evaluate', lambda: causal.evaluate_flow(universe, candidate))
+                flow = phase('flow_evaluate', lambda: causal.evaluate_flow(universe, candidate, cut_selection=cut_selection))
                 item['flow_value'] = flow['flow_value']
                 if flow['flow_value'] < 9:
                     cert = phase('flow_certificate', lambda: cut_certificate.make_cut_certificate(universe, candidate, flow))
@@ -301,6 +304,7 @@ def run_bounded(options, output):
         proc.wait()
         result = json.loads(output.read_text()) if output.exists() else {
             'horizon': options['horizon'], 'control': options.get('control'),
+            'cut_selection': options.get('cut_selection', 'source_minimal'),
             'candidates': [], 'cuts': [], 'phases': [], 'source_hashes_before': before}
         result.update(status='unknown', reason='hard wall budget exhausted',
                       elapsed_seconds=time.monotonic() - started, record_claim=False)
@@ -345,6 +349,8 @@ def main():
     p.add_argument('--symmetry', action='store_true')
     p.add_argument('--encoding', choices=('compact', 'causal', 'legacy'), default='compact')
     p.add_argument('--event-encoding', choices=('integer', 'bitvector'), default='integer')
+    p.add_argument('--cut-selection', choices=universal_flow.CUT_SELECTIONS,
+                   default='source_minimal')
     p.add_argument('--html')
     p.add_argument('--chromium')
     p.add_argument('--output', type=Path, required=True)
@@ -360,6 +366,7 @@ def main():
                'control': args.control, 'phase_order': args.phase_order,
                'use_events': args.use_events, 'symmetry': args.symmetry,
                'encoding': args.encoding, 'event_encoding': args.event_encoding,
+               'cut_selection': args.cut_selection,
                'html': args.html, 'chromium': args.chromium}
     result = run_bounded(options, args.output)
     print(json.dumps({'status': result['status'], 'output': str(args.output)}))

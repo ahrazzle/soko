@@ -1,0 +1,44 @@
+{
+  "pairs": [
+    [
+      "u1",
+      "v1"
+    ],
+    [
+      "u2",
+      "v2"
+    ]
+  ],
+  "source_side": [
+    "s",
+    "u1",
+    "v1"
+  ],
+  "predicate_weight": 10,
+  "large_weight": 1000,
+  "original_predicate_cost": 0,
+  "auxiliary_placements": [
+    {
+      "pred_in_in_source": false,
+      "pred_out_in_source": false,
+      "cost": 1000
+    },
+    {
+      "pred_in_in_source": false,
+      "pred_out_in_source": true,
+      "cost": 2000
+    },
+    {
+      "pred_in_in_source": true,
+      "pred_out_in_source": false,
+      "cost": 10
+    },
+    {
+      "pred_in_in_source": true,
+      "pred_out_in_source": true,
+      "cost": 1000
+    }
+  ],
+  "minimum_gadget_cost": 10,
+  "scope": "The arbitrary-pair gadget charges cross pairs; this does not invalidate independently checked original cut capacities."
+}

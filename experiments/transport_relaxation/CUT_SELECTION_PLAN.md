@@ -33,3 +33,14 @@ The new assignment-specific intact-flow boundary is not substituted for this
 universal boundary: omitted inactive arcs can become enabled on another hero
 schedule. New heuristic formulas and the Lawler shared-predicate proposal are
 separate work, pending their own executable implementations and checks.
+
+## Implemented outcome
+
+Both residual extrema are implemented in the universal and causal evaluators
+and selectable through both search CLIs. The [retained comparison](../../evidence/2026-11-12-residual-cuts/README.md)
+has independently checked certificates for twelve predetermined flow-zero
+inputs: sink-side selection reduces structural predicate count by 95.28%.
+Both end-to-end controls pass, but sink-side selection needs five cuts against
+the source-side control's one. The source default is retained. All 55 focused
+tests pass, and the arbitrary-pair gadget's unsupported objective claim has a
+small executable counterexample. No record or stronger bound is claimed.
