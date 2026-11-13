@@ -87,6 +87,26 @@ def _run_on_edges(
     return flow, cut, net, src, sink
 
 
+def _strict_int(x: Any) -> bool:
+    return isinstance(x, int) and not isinstance(x, bool)
+
+
+def _indices_in_range(
+    window_edges: Sequence[Tuple[Any, Any, Any, Any]],
+    n_crates: int,
+    n_targets: int,
+) -> bool:
+    """True iff every crate index is in 0..n_crates-1 and every target index is
+    in 0..n_targets-1. Python list indexing would otherwise alias -1 to the last
+    node and raise on n, so the network builder must never see either."""
+    for c_idx, t_idx, _, _ in window_edges:
+        if not (_strict_int(c_idx) and _strict_int(t_idx)):
+            return False
+        if not (0 <= c_idx < n_crates and 0 <= t_idx < n_targets):
+            return False
+    return True
+
+
 def _clip_and_knots(
     window_edges: Sequence[Tuple[int, int, RationalLike, RationalLike]],
     b_min: Fraction,
@@ -127,6 +147,8 @@ def certify_phase_window_transport(
     b_max = _to_q(phase_max)
     if n_crates <= 0 or n_targets <= 0 or b_min > b_max:
         raise ValueError("Invalid crate/target counts or phase interval")
+    if not _indices_in_range(window_edges, n_crates, n_targets):
+        raise ValueError("Crate or target index outside 0..n-1")
 
     clipped, knots = _clip_and_knots(window_edges, b_min, b_max)
 
@@ -183,8 +205,11 @@ def verify_phase_window_certificate(cert: Dict[str, Any]) -> Tuple[bool, str]:
     against the re-derived values, never trusted.
 
     A prover that invents a passing cut capacity fails here. So does one that
-    inflates a knot flow, drops a window from the union, or re-hashes mutated
-    claims. The only way to pass is to exhibit real flows and real cuts.
+    inflates a knot flow, drops a window from the union, records a source side
+    other than the recomputed cut, names a `max_phase_q` that is not a knot
+    attaining the recomputed maximum, uses a crate or target index outside
+    0..n-1, or re-hashes any of those mutated claims. The only way to pass is to
+    exhibit real flows and real cuts.
     """
     if _canon_sha256(cert) != cert.get("certificate_sha256"):
         return False, "certificate_sha256_mismatch"
@@ -199,6 +224,15 @@ def verify_phase_window_certificate(cert: Dict[str, Any]) -> Tuple[bool, str]:
         ]
     except (KeyError, TypeError, ValueError, ZeroDivisionError):
         return False, "malformed_certificate"
+    if not (_strict_int(cert["n_crates"]) and _strict_int(cert["n_targets"])):
+        return False, "malformed_certificate"
+    if n_c <= 0 or n_t <= 0 or b_min > b_max:
+        return False, "invalid_counts_or_phase_interval"
+    raw_windows = cert["window_edges_q"]
+    if not all(isinstance(w, list) and len(w) == 4 for w in raw_windows):
+        return False, "malformed_certificate"
+    if not _indices_in_range(raw_windows, n_c, n_t):
+        return False, "window_index_out_of_range"
 
     clipped, knots = _clip_and_knots(windows, b_min, b_max)
 
@@ -214,23 +248,54 @@ def verify_phase_window_certificate(cert: Dict[str, Any]) -> Tuple[bool, str]:
         return False, "knot_count_mismatch"
 
     max_flow = -1
+    knot_flows: List[Tuple[str, int]] = []
     for bk, kw in zip(knots, witnesses):
+        if not isinstance(kw, dict):
+            return False, "malformed_certificate"
         if kw.get("phase_q") != _q_str(bk):
             return False, "knot_phase_mismatch"
         active = [(c, t) for (c, t, lo, hi) in clipped if lo <= bk <= hi]
         if [list(e) for e in active] != kw.get("active_edges"):
             return False, "active_edges_mismatch"
         flow, cut, net, src, sink = _run_on_edges(n_c, n_t, active)
-        if flow != int(kw["max_flow"]):
+        try:
+            rec_flow = int(kw["max_flow"])
+            rec_cap = int(kw["min_cut_capacity"])
+        except (KeyError, TypeError, ValueError):
+            return False, "malformed_certificate"
+        if flow != rec_flow:
             return False, f"flow_recomputation_mismatch:{flow}!={kw['max_flow']}"
-        if cut["capacity"] != int(kw["min_cut_capacity"]):
+        if cut["capacity"] != rec_cap:
             return False, "cut_capacity_mismatch"
         if not verify_9flow_min_cut(net, src, sink, cut):
             return False, "cut_self_check_failed"
+        # The recorded source side is part of the hashed payload, so it is
+        # checked too: it must equal the recomputed residual-reachable side, and
+        # the cut it defines must pass verify_9flow_min_cut with the recorded
+        # capacity, which in turn must equal the recomputed flow.
+        rec_side = kw.get("source_side")
+        if not isinstance(rec_side, list) or not all(isinstance(x, str) for x in rec_side):
+            return False, "malformed_certificate"
+        if rec_side != cut["source_side"]:
+            return False, "source_side_mismatch"
+        recorded_cut = {
+            "capacity": rec_cap,
+            "source_side": rec_side,
+            "crossing_edges": cut["crossing_edges"],
+        }
+        if not verify_9flow_min_cut(net, src, sink, recorded_cut):
+            return False, "recorded_cut_check_failed"
+        if rec_cap != flow:
+            return False, "recorded_cut_not_tight"
+        knot_flows.append((_q_str(bk), flow))
         max_flow = max(max_flow, flow)
 
     if max_flow != int(cert["max_phase_flow"]):
         return False, "max_phase_flow_mismatch"
+    # max_phase_q must name a knot whose recomputed flow attains the maximum.
+    argmax_phases = {q for (q, f) in knot_flows if f == max_flow}
+    if cert.get("max_phase_q") not in argmax_phases:
+        return False, "max_phase_q_mismatch"
     if bool(max_flow == n_c) != bool(cert["phase_window_feasible"]):
         return False, "phase_feasible_flag_mismatch"
     if cert["static_union_false_feasibility_caught"] != bool(

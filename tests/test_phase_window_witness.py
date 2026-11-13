@@ -84,5 +84,95 @@ class PhaseWindowWitnessTests(unittest.TestCase):
         self.assertTrue(ok)
 
 
+def _rehash(cert):
+    cert["certificate_sha256"] = _canon_sha256(cert)
+    return cert
+
+
+class PhaseWindowWitnessForgeryTests(unittest.TestCase):
+    """Regression tests for grk-proof review 5887432722 on PR #45."""
+
+    def test_forged_max_phase_q_off_knot_is_rejected(self) -> None:
+        cert = _cert()
+        cert["max_phase_q"] = "5/1"  # not a knot; no window is open at 5
+        ok, msg = verify_phase_window_certificate(_rehash(cert))
+        self.assertFalse(ok)
+        self.assertEqual(msg, "max_phase_q_mismatch")
+
+    def test_forged_max_phase_q_zero_on_non_argmax_knot_is_rejected(self) -> None:
+        cert = certify_phase_window_transport(
+            n_crates=2,
+            n_targets=2,
+            window_edges=[(0, 0, 0, 10), (1, 1, 6, 10)],
+            phase_min=0,
+            phase_max=10,
+        )
+        self.assertEqual(cert["max_phase_q"], "6/1")
+        self.assertEqual(cert["knot_witnesses"][0]["phase_q"], "0/1")
+        self.assertEqual(cert["knot_witnesses"][0]["max_flow"], 1)
+        self.assertTrue(verify_phase_window_certificate(cert)[0])
+        cert["max_phase_q"] = "0/1"
+        ok, msg = verify_phase_window_certificate(_rehash(cert))
+        self.assertFalse(ok)
+        self.assertEqual(msg, "max_phase_q_mismatch")
+
+    def test_swapped_source_side_is_rejected(self) -> None:
+        cert = _cert()
+        kws = cert["knot_witnesses"]
+        self.assertNotEqual(kws[0]["source_side"], kws[2]["source_side"])
+        kws[0]["source_side"], kws[2]["source_side"] = kws[2]["source_side"], kws[0]["source_side"]
+        ok, msg = verify_phase_window_certificate(_rehash(cert))
+        self.assertFalse(ok)
+        self.assertEqual(msg, "source_side_mismatch")
+
+    def test_replaced_source_side_is_rejected(self) -> None:
+        cert = _cert()
+        cert["knot_witnesses"][1]["source_side"] = ["src"]
+        ok, msg = verify_phase_window_certificate(_rehash(cert))
+        self.assertFalse(ok)
+        self.assertEqual(msg, "source_side_mismatch")
+
+    def _assert_index_attack_rejected(self, slot: int, value: int) -> None:
+        cert = _cert()
+        cert["window_edges_q"][0][slot] = value
+        ok, msg = verify_phase_window_certificate(_rehash(cert))
+        self.assertFalse(ok)
+        self.assertEqual(msg, "window_index_out_of_range")
+
+    def test_crate_minus_one_is_rejected(self) -> None:
+        self._assert_index_attack_rejected(0, -1)
+
+    def test_crate_n_is_rejected(self) -> None:
+        self._assert_index_attack_rejected(0, 3)
+
+    def test_target_minus_one_is_rejected(self) -> None:
+        self._assert_index_attack_rejected(1, -1)
+
+    def test_target_n_is_rejected(self) -> None:
+        self._assert_index_attack_rejected(1, 3)
+
+    def test_crate_minus_one_false_feasibility_is_rejected(self) -> None:
+        # Pre-fix exploit shape: crate -1 aliased the last crate, so a
+        # certificate could claim a routing that names no real crate.
+        cert = certify_phase_window_transport(
+            n_crates=2, n_targets=2,
+            window_edges=[(0, 0, 0, 10), (1, 1, 0, 10)],
+            phase_min=0, phase_max=10,
+        )
+        cert["window_edges_q"][1][0] = -1
+        ok, msg = verify_phase_window_certificate(_rehash(cert))
+        self.assertFalse(ok)
+        self.assertEqual(msg, "window_index_out_of_range")
+
+    def test_certifier_refuses_out_of_range_indices(self) -> None:
+        for edge in [(-1, 0, 0, 10), (3, 0, 0, 10), (0, -1, 0, 10), (0, 3, 0, 10)]:
+            with self.assertRaises(ValueError):
+                certify_phase_window_transport(
+                    n_crates=3, n_targets=3,
+                    window_edges=PHASE_DISJOINT_WINDOWS + [edge],
+                    phase_min=0, phase_max=10,
+                )
+
+
 if __name__ == "__main__":
     unittest.main()
