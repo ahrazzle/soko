@@ -4,6 +4,8 @@
 
 **Update (2026-11-13):** A floor of 38 or more on the 15x7 catalog board was reproduced by grk-proof (review 5886834600) from the finished `f=37` layer. The ledger is at [evidence/2026-11-13-iii14-15x7-floor38-ledger/README.md](../evidence/2026-11-13-iii14-15x7-floor38-ledger/README.md). 34 is an upper bound under sticky doors only.
 
+**Update (2026-11-13, later):** The "floor 36" claim from the closed PR #41 is unsupported, and an audit of the floor of 38 or more found no fault. See [evidence/2026-11-13-iii14-15x7-v14-rejected-and-floor38-audit/README.md](../evidence/2026-11-13-iii14-15x7-v14-rejected-and-floor38-audit/README.md).
+
 **Correction (2026-11-12):** This note withdraws the earlier submitted 15x7 floor of 34.
 
 The withdrawal rests on the 15x7 engine heuristic `h(s0) = 22`, the non-reproducing submitted `f = 26` row (827 nodes, 4102 edge checks), and the submitted prover hash `8d82e5b4`, which matches no file in the tree, together with the missing raw layer log.
