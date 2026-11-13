@@ -3,10 +3,18 @@
 `python -m experiments.causal_solver.search --horizon 47 --budget-seconds 60 --output result.json`
 starts an unrestricted bounded query. It pins neither route nor hero history. The
 master uses terminal absorption, so winning prefixes of every length up to the
-horizon are represented. Event constraints are enabled by default; `--no-events`
-disables them and `--symmetry` requests the optional normalization. The default
+horizon are represented. Event constraints are disabled by default; `--events`
+enables them and `--symmetry` requests the optional normalization. The default
 phase order checks exact completion before flow; `--phase-order flow-first`
 reverses this. A feasible flow never establishes exact completion.
+
+`--cut-selection sink_minimal` selects the complement of reverse residual
+reachability into the sink after the same max-flow solve. The default is
+`source_minimal`. Both modes retain every universal boundary arc, including
+disabled arcs, and use the same independent certificate checks. The option
+affects the flow phase; the default exact-first order can reject a candidate
+before any flow call. Narrower predicates do not guarantee faster search;
+see the [fixed-input comparison](../../evidence/2026-11-12-residual-cuts/README.md).
 
 The worker builds the universal network and independently checks its complete
 specification. Every deficient flow cut is independently checked before it is
