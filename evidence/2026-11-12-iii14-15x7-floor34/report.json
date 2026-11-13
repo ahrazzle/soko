@@ -1,0 +1,41 @@
+{
+  "experiment": "2026-11-12-iii14-15x7-catalog-note",
+  "target_room": "III-14",
+  "board_dimensions": [15, 7],
+  "board_sha256_lf": "300563ca68370b85e44b73f0361320bc79948849f59897a3dd0b5cc470bf351c",
+  "submitted_prover_source_sha256": "8d82e5b48a1d6aacf7f37cbf5382e5b7ce39e8c7ce72dfa1753a8b9582a27080",
+  "status": "withdrawn",
+  "known_15x7_upper_bound": 48,
+  "submitted_48_witness": "LLULULUULRRURURURUAUDRRDDAUARRDLRAULDLDRARURDUUR",
+  "state_representation": "lossless_256bit_packed_full_state",
+  "findings": {
+    "window_heuristic": "analytical half of h_iii14_fast",
+    "window_heuristic_h_s0": 21,
+    "inconsistency": "drops 11 to 9 on the index-20 D of the 48-route (F-12)",
+    "h_comb_h_fast_14x7": 24,
+    "engine_h_s0_15x7": 22,
+    "submitted_prover_source_sha256_prefix": "8d82e5b4",
+    "submitted_prover_source_sha256_match": "no file in the tree",
+    "reproduced_f26_nodes": 827,
+    "reproduced_f26_edge_checks": 4102
+  },
+  "submitted_layer_33_completion": {
+    "completed_f_layer": 33,
+    "unique_states": 67752828,
+    "linear_probe_collisions": 44744875,
+    "edge_checks": 118037280,
+    "elapsed_seconds": 87.9881
+  },
+  "submitted_budget_termination": {
+    "in_progress_f_layer": 34,
+    "unique_states": 71084822,
+    "linear_probe_collisions": 51019835,
+    "edge_checks": 129638499,
+    "elapsed_seconds": 95.1275
+  },
+  "submitted_f26_row": {
+    "completed_f_layer": 26,
+    "unique_states": 1723,
+    "edge_checks": 2530
+  }
+}
