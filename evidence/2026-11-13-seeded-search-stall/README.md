@@ -39,6 +39,18 @@ The first pass (`outputs/*.cold.opt.json`, `*.fix.opt.json`, `*.fix2.opt.json`) 
 - Four of five rooms did reach the optimum. Iterating the optimizer is useful. The point is narrower: its stop signal cannot tell the four from the fifth.
 - Five rooms is a small sample. It is enough to refute "a stall means near-optimal", and too small to estimate how often stalls are false.
 
+## Draws on the open rooms (negative, recorded so nobody repeats them)
+
+The test above implies that independent draws are worth more than further polishing from the record. So the same pipeline was run once on the open rooms, with 600 s per cold run and the optimizer iterated to a fixed point at 90 s per round.
+
+| Room | Record | Cold draws | After polishing to a fixed point |
+| --- | ---: | --- | --- |
+| III-14 | 48 | 91 (`--K 4 --nov 1 --freedom 1`), 97 (`--K 16 --nov 1 --freedom 1 --rel-all 1`) | 52 and 58, both locally verified; no improvement on the next round |
+| III-20 | 84 | none: default filter exhausted after 233 states; complete filter hit 9,000,000 states at cost 71 | not run |
+| III-21 | 316 | none (see [the cold-start README](../../experiments/cold_start_macro/README.md#iii-21-runs)) | not run |
+
+Routes are in `open-room-draws/`. Two draws are a tiny sample. They show only that this generator's basins on III-14 sit above the record, not that 48 is optimal.
+
 ## The same pattern in three other places
 
 Three other records in this group describe the same mechanism without using this repository's words. Each was found independently, and none cites the others.
@@ -57,7 +69,7 @@ Stripped of domain words, they share one mechanism. A search that starts from an
 
 ## Defect found on the way (recorded, not fixed here)
 
-The optimizer first rejected every seed, including proven-optimal routes, with `seed_route (len=45) is not a valid winning route ... alive=True, exact_win=True, premature_win=False`. The real status was `REJECTED_TCB_UNLOCKED`. On first use, `ensure_cpp_engine` in `soko_mcp/engine_bridge.py` rebuilt the tracked `cpp/build/soko_engine` because its mtime looked older than the source. That changed its hash, so `sha256sum -c SHA256SUMS` failed. To reproduce deterministically: `touch cpp/soko_engine.cpp`, then run `verify`. Whether a fresh clone hits this depends on checkout timestamps; one clone in this session did, a second did not. The runs above used the committed binary, restored with `git checkout cpp/build/soko_engine`, with `SHA256SUMS` verifying. Under the GitHub SOP's one-gap-per-lane rule this is left for its own issue and PR.
+The optimizer first rejected every seed, including proven-optimal routes, with `seed_route (len=45) is not a valid winning route ... alive=True, exact_win=True, premature_win=False`. The real status was `REJECTED_TCB_UNLOCKED`. On first use, `ensure_cpp_engine` in `soko_mcp/engine_bridge.py` rebuilt the tracked `cpp/build/soko_engine` because its mtime looked older than the source. That changed its hash, so `sha256sum -c SHA256SUMS` failed. To reproduce deterministically: `touch cpp/soko_engine.cpp`, then run `verify`. Whether a fresh clone hits this depends on checkout timestamps; one clone in this session did, a second did not. The runs above used the committed binary, restored with `git checkout cpp/build/soko_engine`, with `SHA256SUMS` verifying. Under the GitHub SOP's one-gap-per-lane rule it is filed as [issue 49](https://github.com/ahrazzle/soko/issues/49) and not fixed here.
 
 ## Reproduce
 
