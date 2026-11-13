@@ -90,7 +90,8 @@ def _save(path, result):
 
 def run(horizon, budget_seconds, *, control=None, phase_order='exact-first',
         use_events=False, symmetry=False, encoding='compact', html=None,
-        chromium=None, output=None, event_encoding='integer', cut_selection='source_minimal'):
+        chromium=None, output=None, event_encoding='integer', cut_selection='source_minimal',
+        learn_prefix_frames=False):
     if type(horizon) is not int or horizon < 0:
         raise ValueError('invalid horizon')
     if isinstance(budget_seconds, bool) or not isinstance(budget_seconds, (int, float)) or not math.isfinite(budget_seconds) or budget_seconds <= 0:
@@ -99,12 +100,15 @@ def run(horizon, budget_seconds, *, control=None, phase_order='exact-first',
         raise ValueError('invalid phase order')
     if cut_selection not in universal_flow.CUT_SELECTIONS:
         raise ValueError('invalid cut selection')
+    if type(learn_prefix_frames) is not bool:
+        raise ValueError('learn_prefix_frames must be Boolean')
     started = time.monotonic()
     deadline = started + budget_seconds
     result = {'status': 'running', 'horizon': horizon, 'control': control,
               'phase_order': phase_order, 'events': use_events, 'symmetry': symmetry,
               'encoding': encoding, 'event_encoding': event_encoding,
               'cut_selection': cut_selection,
+              'learn_prefix_frames': learn_prefix_frames,
               'candidates': [], 'cuts': [], 'phases': [],
               'source_hashes_before': source_hashes(), 'record_comparison': {'status': 'not_available'}, 'record_claim': False}
 
@@ -230,7 +234,9 @@ def run(horizon, budget_seconds, *, control=None, phase_order='exact-first',
                     break
                 if checked['status'] != 'unsat':
                     raise ValueError('unexpected exact status')
-                verification = phase('exact_certificate_recheck', lambda: refinement.add_core_cut(m, checked['certificate'], timeout_seconds=remaining()))
+                verification = phase('exact_certificate_recheck', lambda: refinement.add_core_cut(
+                    m, checked['certificate'], timeout_seconds=remaining(),
+                    learn_prefix_frames=learn_prefix_frames))
                 verification.pop('expression', None)
                 item['exact_verification'] = verification
                 if not verification.get('verified') or not verification.get('added'):
@@ -305,6 +311,7 @@ def run_bounded(options, output):
         result = json.loads(output.read_text()) if output.exists() else {
             'horizon': options['horizon'], 'control': options.get('control'),
             'cut_selection': options.get('cut_selection', 'source_minimal'),
+            'learn_prefix_frames': options.get('learn_prefix_frames', False),
             'candidates': [], 'cuts': [], 'phases': [], 'source_hashes_before': before}
         result.update(status='unknown', reason='hard wall budget exhausted',
                       elapsed_seconds=time.monotonic() - started, record_claim=False)
@@ -351,6 +358,7 @@ def main():
     p.add_argument('--event-encoding', choices=('integer', 'bitvector'), default='integer')
     p.add_argument('--cut-selection', choices=universal_flow.CUT_SELECTIONS,
                    default='source_minimal')
+    p.add_argument('--learn-prefix-frames', action='store_true')
     p.add_argument('--html')
     p.add_argument('--chromium')
     p.add_argument('--output', type=Path, required=True)
@@ -367,6 +375,7 @@ def main():
                'use_events': args.use_events, 'symmetry': args.symmetry,
                'encoding': args.encoding, 'event_encoding': args.event_encoding,
                'cut_selection': args.cut_selection,
+               'learn_prefix_frames': args.learn_prefix_frames,
                'html': args.html, 'chromium': args.chromium}
     result = run_bounded(options, args.output)
     print(json.dumps({'status': result['status'], 'output': str(args.output)}))
