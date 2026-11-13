@@ -1,0 +1,28 @@
+{
+  "experiment": "2026-11-12-iii14-15x7-floor34",
+  "target_room": "III-14",
+  "board_dimensions": [15, 7],
+  "board_sha256_lf": "300563ca68370b85e44b73f0361320bc79948849f59897a3dd0b5cc470bf351c",
+  "prover_source_sha256": "8d82e5b48a1d6aacf7f37cbf5382e5b7ce39e8c7ce72dfa1753a8b9582a27080",
+  "status": "LOWER_BOUND_UNWITNESSED",
+  "certified_15x7_floor": 34,
+  "known_15x7_upper_bound": 48,
+  "verified_48_witness": "LLULULUULRRURURURUAUDRRDDAUARRDLRAULDLDRARURDUUR",
+  "state_representation": "lossless_256bit_packed_full_state",
+  "step_inconsistencies_detected": 0,
+  "layer_33_completion": {
+    "completed_f_layer": 33,
+    "certified_floor": 34,
+    "unique_states": 67752828,
+    "linear_probe_collisions": 44744875,
+    "edge_checks": 118037280,
+    "elapsed_seconds": 87.9881
+  },
+  "budget_termination": {
+    "in_progress_f_layer": 34,
+    "unique_states": 71084822,
+    "linear_probe_collisions": 51019835,
+    "edge_checks": 129638499,
+    "elapsed_seconds": 95.1275
+  }
+}
