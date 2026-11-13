@@ -132,34 +132,45 @@ class PhaseWindowWitnessForgeryTests(unittest.TestCase):
         self.assertFalse(ok)
         self.assertEqual(msg, "source_side_mismatch")
 
-    def _assert_index_attack_rejected(self, slot: int, value: int) -> None:
+    def _assert_index_attack_rejected(self, edge_pos: int, slot: int, value: int) -> None:
+        # Rewrite one window and every knot's matching active edge, so the
+        # forged certificate is self-consistent apart from the index itself.
+        # With -1 on an edge whose real index is n-1, flows and cuts are
+        # unchanged under Python's negative-index aliasing.
         cert = _cert()
-        cert["window_edges_q"][0][slot] = value
+        orig = cert["window_edges_q"][edge_pos][:2]
+        cert["window_edges_q"][edge_pos][slot] = value
+        forged = cert["window_edges_q"][edge_pos][:2]
+        for kw in cert["knot_witnesses"]:
+            kw["active_edges"] = [forged if e == orig else e for e in kw["active_edges"]]
         ok, msg = verify_phase_window_certificate(_rehash(cert))
         self.assertFalse(ok)
         self.assertEqual(msg, "window_index_out_of_range")
 
     def test_crate_minus_one_is_rejected(self) -> None:
-        self._assert_index_attack_rejected(0, -1)
+        self._assert_index_attack_rejected(3, 0, -1)  # (2, 1) -> (-1, 1)
 
     def test_crate_n_is_rejected(self) -> None:
-        self._assert_index_attack_rejected(0, 3)
+        self._assert_index_attack_rejected(0, 0, 3)
 
     def test_target_minus_one_is_rejected(self) -> None:
-        self._assert_index_attack_rejected(1, -1)
+        self._assert_index_attack_rejected(6, 1, -1)  # (1, 2) -> (1, -1)
 
     def test_target_n_is_rejected(self) -> None:
-        self._assert_index_attack_rejected(1, 3)
+        self._assert_index_attack_rejected(0, 1, 3)
 
     def test_crate_minus_one_false_feasibility_is_rejected(self) -> None:
-        # Pre-fix exploit shape: crate -1 aliased the last crate, so a
-        # certificate could claim a routing that names no real crate.
+        # Review 5887432722 shape: crate 1 has no window at all, but naming
+        # crate -1 aliased it and produced a feasible, passing certificate.
         cert = certify_phase_window_transport(
             n_crates=2, n_targets=2,
             window_edges=[(0, 0, 0, 10), (1, 1, 0, 10)],
             phase_min=0, phase_max=10,
         )
+        self.assertTrue(cert["phase_window_feasible"])
         cert["window_edges_q"][1][0] = -1
+        for kw in cert["knot_witnesses"]:
+            kw["active_edges"] = [[-1, 1] if e == [1, 1] else e for e in kw["active_edges"]]
         ok, msg = verify_phase_window_certificate(_rehash(cert))
         self.assertFalse(ok)
         self.assertEqual(msg, "window_index_out_of_range")
