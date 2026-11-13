@@ -16,6 +16,8 @@ Zero third-party Python packages are required (`python >= 3.10` standard library
    - Synchronized with [`Foundation-0/formal-claims-audit#16`](https://github.com/Foundation-0/formal-claims-audit/pull/16) (alongside [`Foundation-0/math0#9`](https://github.com/Foundation-0/math0/pull/9) and [`Foundation-0/f0#36`](https://github.com/Foundation-0/f0/pull/36)): audits single or dual Python checkers for `F-01` optimistic `True` flags, IEEE-754 float drift, vacuous stubs, and alpha-renamed copy-paste tautologies.
 4. **`Foundation-0/incentre-lattices` Locked-Checker `tracks/` Harness (`tracks/iii-14/`, `tracks/iii-20/`):**
    - Adds standalone dual-oracle `verify.py` scripts and append-only `results.tsv` ledgers logging both breakthroughs and negative high-width LNS runs.
+5. **15x7 catalog board `III-14`, floor of 38 or more:**
+   - A floor of 38 or more was reproduced by grk-proof (review 5886834600) from the finished `f=37` layer. The ledger is at [evidence/2026-11-13-iii14-15x7-floor38-ledger/README.md](evidence/2026-11-13-iii14-15x7-floor38-ledger/README.md). 34 is an upper bound under sticky doors only.
 
 ## Earlier: v0.3.0
 
@@ -87,7 +89,7 @@ claude mcp add soko-verified -- python3 -m soko_mcp
 | :--- | :---: | :---: | :---: | :--- |
 | **`III-20` (Primary)** | **`84`** | **`VERIFIED`** | `eecbea96b091` | Live Frontier record (floor `74`): `ADDDRRADAAADRULARADAAADDLLALAAAARRRRUULAAUALLRADRRRRADRULRURRRRRARRUURURAURRRDDRAUUR` |
 | **`III-20` (Alt)** | **`84`** | **`VERIFIED`** | `4edff1ad8c90` | Alternate 84-key ending (`URU`): `ADDDRRADAAADRULARADAAADDLLALAAAARRRRUULAAUALLRADRRRRADRULRURRRRRARRUURURAURRRDDRAURU` |
-| **`III-14` (`14x7` & `15x7`)** | **`48`** | **`VERIFIED`** | `cd934d25a629` | Matches 48 shortest known. Lower bound `>= 34` holds on the 14x7 fixture only (standalone prover, completed layer of `79,587,434` exact states); it is not established for the 15x7 catalog board: `LLULULULRURURURURUAUDRRDDAUARRDLRAULDLDRARURDUUR` |
+| **`III-14` (`14x7` & `15x7`)** | **`48`** | **`VERIFIED`** | `cd934d25a629` | Matches 48 shortest known. On the 15x7 catalog board, a floor of 38 or more was reproduced by grk-proof (review 5886834600) from the finished `f=37` layer; see [the merged ledger](evidence/2026-11-13-iii14-15x7-floor38-ledger/README.md). 34 is an upper bound under sticky doors only. The 14x7 fixture still has the standalone-prover lower bound `>= 34` (completed layer of `79,587,434` exact states): `LLULULULRURURURURUAUDRRDDAUARRDLRAULDLDRARURDUUR` |
 | **`II-22`** | **`94`** | **`VERIFIED`** | `d5e82e8e3c65` | Verified baseline (`92` closed optimal on Frontier): `ADDUUULDDRDDLDULDDRLLLLULURDLDRURUAAUUULLLLLLLAAAULURUARRRARRRDRUUDRRRDLLLDDDLDRLALUADDDRDRRUR` |
 | **`III-15`** | **`69`** | **`VERIFIED`** | `76e195c497c1` | Proven optimal: `AULADDALAULDRALAULDALALURALADLUALALDRALAULDALALURALADLUALALDLRAUAULLU` |
 | **`I-1` / `III-22`** | **`9`** | **`VERIFIED`** | `179f01ec4093` | Proven optimal opening & finale: `RRRRRRRRR` |
