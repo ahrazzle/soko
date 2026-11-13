@@ -1,0 +1,6 @@
+{"room": "III-10", "proven_optimum": 45, "trail": [47, 45], "stalled_at_fixed_point": true, "gap_at_stop": 0, "null_control_improved": false}
+{"room": "III-12", "proven_optimum": 44, "trail": [61, 52, 45, 44], "stalled_at_fixed_point": true, "gap_at_stop": 0, "null_control_improved": false}
+{"room": "III-13", "proven_optimum": 57, "trail": [67, 57], "stalled_at_fixed_point": true, "gap_at_stop": 0, "null_control_improved": false}
+{"room": "III-15", "proven_optimum": 69, "trail": [89, 70, 69], "stalled_at_fixed_point": true, "gap_at_stop": 0, "null_control_improved": false}
+{"room": "III-16", "proven_optimum": 47, "trail": [84, 77], "stalled_at_fixed_point": true, "gap_at_stop": 30, "null_control_improved": false}
+false stalls (no-improvement verdict above the proven optimum): ['III-16']

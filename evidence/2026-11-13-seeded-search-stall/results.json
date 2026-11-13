@@ -1,0 +1,85 @@
+[
+  {
+    "room": "III-10",
+    "proven_optimum": 45,
+    "cold_seed_len": 47,
+    "trail": [
+      47,
+      45
+    ],
+    "final_len": 45,
+    "stalled_at_fixed_point": true,
+    "gap_at_stop": 0,
+    "null_control_improved": false,
+    "null_control_len": 45,
+    "cold_seed": "LLARLLLLALLLLLALLDDRRRRARRRRRRDDLARRRRLLLLALLLL",
+    "final_route": "LLARLLLLALLLLLRRRRRRDDLALLDDRRRRRRRRLLLLALLLL"
+  },
+  {
+    "room": "III-12",
+    "proven_optimum": 44,
+    "cold_seed_len": 61,
+    "trail": [
+      61,
+      52,
+      45,
+      44
+    ],
+    "final_len": 44,
+    "stalled_at_fixed_point": true,
+    "gap_at_stop": 0,
+    "null_control_improved": false,
+    "null_control_len": 44,
+    "cold_seed": "LULRULRUULRALLLLADDDRRURURURRURADADLRUURURDURDRDAURRDRRDDDADD",
+    "final_route": "UUUUDDDALLLLARRRRRADAURURUDRDRDAURRDRRDDDADD"
+  },
+  {
+    "room": "III-13",
+    "proven_optimum": 57,
+    "cold_seed_len": 67,
+    "trail": [
+      67,
+      57
+    ],
+    "final_len": 57,
+    "stalled_at_fixed_point": true,
+    "gap_at_stop": 0,
+    "null_control_improved": false,
+    "null_control_len": 57,
+    "cold_seed": "DADARURRUULULDARRULLAALAURRRDARRRARRURUALAARRDRRARRRAAUARDRUARRRRRD",
+    "final_route": "DRADAURRULLDARRULLLRAALARARRARRDRRRURRARRRAADARURDARRRRRU"
+  },
+  {
+    "room": "III-15",
+    "proven_optimum": 69,
+    "cold_seed_len": 89,
+    "trail": [
+      89,
+      70,
+      69
+    ],
+    "final_len": 69,
+    "stalled_at_fixed_point": true,
+    "gap_at_stop": 0,
+    "null_control_improved": false,
+    "null_control_len": 69,
+    "cold_seed": "AULADDLAULAURAULADLUALRADLADAURAULAULDAULAULAUADRADLADLUADLADLAUAURAULADLUADLALDRULALUALU",
+    "final_route": "AULADDLALAURDLUALADLALAURDLALAULALADRALAULDLALAURALADLULALADLRULAUALU"
+  },
+  {
+    "room": "III-16",
+    "proven_optimum": 47,
+    "cold_seed_len": 84,
+    "trail": [
+      84,
+      77
+    ],
+    "final_len": 77,
+    "stalled_at_fixed_point": true,
+    "gap_at_stop": 30,
+    "null_control_improved": false,
+    "null_control_len": 47,
+    "cold_seed": "RARUURLUALUUAUADARDRDUAURRUALDAURRLLADLRRDRALDALADALRADARALUARURURUUADRADAUUURRRRRRR",
+    "final_route": "RARUURLUALUUAUADARDRDUAURRUALDAURRLLADLRRDRLDALDDDLARAUALRURURUUADRUUURRRRRRR"
+  }
+]
