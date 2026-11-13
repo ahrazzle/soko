@@ -1,8 +1,9 @@
 // Standalone Zero-Collision 5-Quotient-PDB + Multi-Core Exact-State Bucketed A* Prover for Room III-14 (v0.4.0)
 // Integrates Foundation-0/finite-state-proofs FastRowStripPDB (exact 4-cell {empty,crate,wall}^4 row automata on y=2,3,4
 // via y <-> 6-y reflection symmetry) + PairAtomHomPDB + HarvestColPDB + BardDruidQuotientPDB.
-// Eliminates F-11/F-12 hand-written analytical inadmissibility hazards; certifies floor >= 34 across 81.44M exact Packed14
-// states (23,879 live 64-bit hash collisions caught, 127,373,463 runtime step-consistency checks, 0 violations).
+// Eliminates F-11/F-12 hand-written analytical inadmissibility hazards. On the 14x7 III-14 fixture the completed f-layer
+// gives a lower bound >= 34 across 79,587,434 exact Packed14 states (22,551 live 64-bit hash collisions caught,
+// 123,784,748 runtime step-consistency checks, 0 violations). FINAL_CERT counters after the 82 s cutoff vary by machine.
 // Standalone Zero-Collision PairAtomQuotientPDB + Multi-Core Exact-State A* Certifier for Room III-14
 // Implements 36-byte Packed14 full-state deduplication (catching and preventing 64-bit hash collisions),
 // 39.7M-state PairAtomQuotientPDB (admitting both co-moving and wall-blocked charmed pairs),
@@ -1118,7 +1119,8 @@ int main() {
         cout << "[PASS] Pure 5-Quotient-PDB Homomorphism verified on 48-key route!\n" << flush;
     }
 
-    const int F_CAP = 36; // Prune f > 36 immediately after step-consistency check to certify floor >= 36..37!
+    const int F_CAP = 36; // Successors with g + h > F_CAP are pruned after their step-consistency check, and f-layers run up to F_CAP,
+                      // so a run can certify at most floor >= F_CAP + 1 = 37. The 82 s / MAX_NODES cutoff stops earlier (34 on 14x7).
     const size_t MAX_NODES = 112000000;
     vector<AStarNode> pool;
     pool.reserve(MAX_NODES);

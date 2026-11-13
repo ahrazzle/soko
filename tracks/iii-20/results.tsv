@@ -3,4 +3,4 @@ timestamp	version	method	metric	value	epistemic_status	notes
 2026-11-12T00:15:00Z	v0.1.0	chiral_mirror_tube_beam	upper_bound	84	VERIFIED	@a1kindus world record (sha256:eecbea96b091 & 4edff1ad8c90), -1 below 85 holdout
 2026-11-12T15:09:00Z	v0.3.0	WizardRayGoalBound_single_core_ida	lower_bound	25	VERIFIED	M.n=135 fell back to single-core IDA* under M.n<=128 gate
 2026-11-12T23:50:00Z	v0.4.0	chiral_tube_beam_100k_win20	upper_bound	84	VERIFIED	Confirmed 84 stability across 100k-beam + window-20 LNS pass (no <=83 route found)
-2026-11-12T23:57:50Z	v0.4.0	multicore_exact_bucketed_astar_Mn256	lower_bound	48	VERIFIED	Raised generic MCP floor 25 -> 48 in 30.08s (8.48M expanded, 77,437 live 64-bit hash collisions caught, 25.10M edges checked, 0 violations)
+2026-11-12T23:57:50Z	v0.4.0	multicore_exact_bucketed_astar_Mn256	lower_bound	48	LOWER_BOUND_UNWITNESSED	Generic MCP lower bound 25 -> 48 at a 30 s budget, returned in 10.8 to 19.2 s depending on machine (8,475,805 expanded, 77,437 live 64-bit hash collisions caught, 25,096,136 edges checked, 0 violations); no exact optimum, no witness

@@ -2,5 +2,5 @@ timestamp	version	method	metric	value	epistemic_status	notes
 2026-11-11T23:40:00Z	v0.1.0	single_hero_manhattan_ida	lower_bound	9	REJECTED_F04	Lossy tag-only TT risk + trivial bound
 2026-11-12T01:18:00Z	v0.2.0	BardDruidQuotientPDB_exact_ida	lower_bound	29	VERIFIED	1.15M quotient states; 0 step violations
 2026-11-12T15:09:00Z	v0.3.0	PairAtomPDB_plus_h_iii14_fast	lower_bound	35	REJECTED_F11_F12	Uncovered F-11 8-crate tandem-entry & F-12 X/Y window bugs in h_iii14_fast
-2026-11-12T23:48:00Z	v0.4.0	Pure_5PDB_FastRowStripPDB_ExactAStar	lower_bound	34	VERIFIED	100% pure Quotient-Homomorphism (81.44M exact states, 23,879 hash collisions caught, 127.37M edges, 0 violations)
+2026-11-12T23:48:00Z	v0.4.0	Pure_5PDB_FastRowStripPDB_ExactAStar	lower_bound	34	LOWER_BOUND	14x7 fixture only; pure Quotient-Homomorphism completed layer (79,587,434 exact states, 22,551 hash collisions caught, 123,784,748 edges, 0 violations)
 2026-11-12T23:50:00Z	v0.4.0	chiral_tube_beam_100k_win22	upper_bound	48	VERIFIED	Matches shortest-known 48 (sha256:cd934d25a629); no <48 witness in 24s deep LNS pass

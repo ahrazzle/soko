@@ -144,7 +144,8 @@ class Foundation0SynthesisV04Tests(unittest.TestCase):
         self.assertEqual(caps["version"], "0.4.0")
         self.assertIn("formal_audit_checkers", caps["formal_systems"]["tools"])
         if caps["cpp_engine_ready"]:
-            self.assertIn("RowStripQuotientPDB", caps["lower_bound_proving"]["abstractions"])
+            # RowStripQuotientPDB lives only in the standalone III-14 prover, not in cpp/soko_engine.cpp.
+            self.assertNotIn("RowStripQuotientPDB", caps["lower_bound_proving"]["abstractions"])
 
     def test_02_gfq_codes_cost_partitioned_quotients_beats_pointwise_max(self) -> None:
         # Optimal cost is 3*6 + 3 + 2 = 23.
@@ -268,6 +269,19 @@ def dual_y():
         )
         self.assertEqual(bad_res["epistemic_status"], "REJECTED_DUAL_OPERATOR_INFEASIBLE")
 
+        # A truncated concrete graph has unindexed successors; it must be rejected, not raise KeyError.
+        trunc_res = dispatch_tool_call(
+            "formal_certify_lower_bound",
+            {
+                "system_id": "f0_dual_resource_v04",
+                "proof_mode": "rational_lp_dual",
+                "certificate_code": lp_code,
+                "claimed_lower_bound": 23,
+                "max_concrete_states": 6,
+            },
+        )
+        self.assertEqual(trunc_res["epistemic_status"], "REJECTED_INCOMPLETE_CONCRETE_GRAPH_FOR_QUOTIENT")
+
     def test_04_formal_audit_checkers_self_audit_and_hazard_detection(self) -> None:
         # 1. Built-in self-audit of oracle.py vs flat_oracle.py
         builtin_rep = dispatch_tool_call("formal_audit_checkers", {"builtin_soko_oracles": True})
@@ -299,7 +313,7 @@ def dual_y():
         if caps["cpp_engine_ready"]:
             r20 = FRONTIER_ROOMS["III-20"]
             pf20 = prove_floor_verified(3, r20["grid"], max_bound=30, budget_sec=4)
-            self.assertEqual(pf20["epistemic_status"], "VERIFIED")
+            self.assertEqual(pf20["epistemic_status"], "LOWER_BOUND_UNWITNESSED")
             self.assertEqual(pf20["search_strategy"], "multicore_exact_bucketed_astar")
             self.assertGreaterEqual(pf20["proven_floor"], 18)
 

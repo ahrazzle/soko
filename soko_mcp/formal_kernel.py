@@ -1558,6 +1558,17 @@ def certify_formal_lower_bound(
                 "certificate_code must define `features(state)`, `goal_rhs()`, and `dual_y()` "
                 "for proof_mode='rational_lp_dual'"
             )
+        if not complete_space:
+            # A truncated graph has successors that were never indexed in `concrete_states`,
+            # so their features cannot be checked. Reject instead of raising KeyError.
+            return {
+                "epistemic_status": "REJECTED_INCOMPLETE_CONCRETE_GRAPH_FOR_QUOTIENT",
+                "system_id": reg.system_id,
+                "reason": (
+                    f"Concrete reachable state space exceeded max_concrete_states={max_concrete_states}; "
+                    "increase max_concrete_states or supply an inductively closed `enumerate_states()`."
+                ),
+            }
 
         def _to_frac_vec(seq: Any, ctx_label: str) -> Tuple[Fraction, ...]:
             tup = tuple(seq)
