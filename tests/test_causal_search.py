@@ -44,6 +44,7 @@ class CausalSearchTests(unittest.TestCase):
             add_cut.assert_not_called()
             self.assertEqual(flow.call_args.kwargs['cut_selection'], 'sink_minimal')
             self.assertEqual(result['cut_selection'], 'sink_minimal')
+            self.assertFalse(result['learn_prefix_frames'])
             self.assertEqual(json.loads(target.read_text())['status'], 'unknown')
 
     def test_hard_budget_ends_build_and_writes_checkpoint(self):
@@ -65,13 +66,15 @@ class CausalSearchTests(unittest.TestCase):
                 options = json.loads(command[command.index('--options') + 1])
                 self.assertEqual(options['html'], str(Path('relative.html').resolve()))
                 self.assertEqual(options['chromium'], str(Path('bin/chromium').resolve()))
+                self.assertTrue(options['learn_prefix_frames'])
                 output.write_text(json.dumps({'status': 'unknown', 'source_hashes_before': {'s': 'h'}}))
                 return SimpleNamespace(wait=lambda timeout: 0, returncode=0)
 
             with patch.object(search, 'source_hashes', return_value={'s': 'h'}), \
                  patch.object(search.subprocess, 'Popen', side_effect=launch):
                 result = search.run_bounded({'horizon': 1, 'budget_seconds': 1,
-                    'html': 'relative.html', 'chromium': 'bin/chromium'}, output)
+                    'html': 'relative.html', 'chromium': 'bin/chromium',
+                    'learn_prefix_frames': True}, output)
             self.assertEqual(result['status'], 'unknown')
 
 
