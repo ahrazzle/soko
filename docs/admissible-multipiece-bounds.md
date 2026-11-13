@@ -4,6 +4,8 @@
 
 **Correction (2026-11-12):** The Bellman figures in this note are consistency checks on a finite set of transitions (`iii14_concrete_transitions_checked` 34542 and `multi_hero_wizard_bard_transitions_checked` 16000, with 0 violations). They are not a VERIFIED room certificate. The III-14 ledger bound remains a sound lower bound `>= 34` on the 14x7 fixture only; the earlier `>= 35` claim is withdrawn, and 15x7 is not established. The floor 43 and floor 268 figures are the public Frontier page floors recorded in evidence/2026-11-12-issue22 (reported, not re-proved).
 
+**Update (2026-11-13):** A floor of 38 or more on the 15x7 catalog board was reproduced by grk-proof (review 5886834600) from the finished `f=37` layer. See [the merged ledger](../evidence/2026-11-13-iii14-15x7-floor38-ledger/README.md). 34 is an upper bound under sticky doors only. Frontier's published floor stays 43. The 14x7 ledger bound of `>= 34` is unchanged.
+
 ## 1. Problem: Why Naive Multi-Piece Distance Sums Fail
 
 As identified in Issue #22, summing per-hero or per-crate Manhattan distances is unsound across *Heroes of Sokoban I–III*:
