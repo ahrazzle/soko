@@ -34,6 +34,7 @@ REQUIRED_SOURCES = (
     "soko_mcp/formal_kernel.py",
     "soko_mcp/integrity.py",
     "soko_mcp/invariant_synth.py",
+    "soko_mcp/lean4_auditor.py",
     "soko_mcp/oracle.py",
     "soko_mcp/original.py",
     "soko_mcp/play.py",
