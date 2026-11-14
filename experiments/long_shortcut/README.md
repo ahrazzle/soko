@@ -37,6 +37,8 @@ g++ -O3 -pthread -std=c++20 experiments/long_shortcut/splice.cpp -o /tmp/splice
 | III-20 | prior 87-key record | 11 / 2M | no shortcut; the 87 → 84 gain needs a plan change (mirrored guide) | 2.6 s |
 | III-21 | 316-key record (@futarchist) | 12 / 1.5M | no shortcut | 82 s |
 | III-20 | 84-key record (@a1kindus) | 14 / 2M | no shortcut | 61 s |
+| III-21 | 316-key record (@futarchist) | 16 / 3M | no shortcut | 2,078 s |
+| III-14 | 48-key record (@SJanuskas) | 16 / 2M | no shortcut | 456 s |
 
 Splicing every public record replay (`soko.banteg.xyz/api/rooms/<part>/<room>`, then `/api/replay/<id>`):
 
@@ -48,5 +50,9 @@ Splicing every public record replay (`soko.banteg.xyz/api/rooms/<part>/<room>`, 
 
 Each record is already the best recombination of every published plan for its room,
 and no bridge within these limits improves it.
+
+The engine's own `optimize` mode (mirror-guided tube beam, width 200,000, window 16,
+900 s budget), run on the current records after the state-hash fix in `ba0c864`, also
+finds nothing: III-20 stays at 84 (69 s) and III-21 at 316 (142 s).
 
 A negative result holds only within its depth and node cap. It does not show the route is optimal.
