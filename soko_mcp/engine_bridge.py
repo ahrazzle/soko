@@ -26,7 +26,7 @@ import tempfile
 from typing import Any, Dict, List, Optional, Tuple
 
 from .catalog import get_room, load_catalog
-from .evidence import digest, problem_identity, validate_room
+from .evidence import digest, normalize_route, problem_identity, validate_room
 from .flat_oracle import replay_flat_oracle
 from .oracle import FRONTIER_ROOMS, PuzzleScriptOracle, replay_oracle
 
@@ -59,20 +59,21 @@ def get_soko_checker_pins() -> Dict[str, Optional[str]]:
     }
 
 
-def _required_checker_pins_ok(pins: Dict[str, Optional[str]]) -> bool:
-    for key in (
-        "oracle_py_sha256",
-        "flat_oracle_py_sha256",
-        "engine_bridge_py_sha256",
-        "evidence_py_sha256",
-        "cpp_soko_engine_src_sha256",
-        "cpp_soko_engine_bin_sha256",
-        "formal_kernel_py_sha256",
-        "checker_auditor_py_sha256",
-    ):
-        if not pins.get(key):
-            return False
-    return True
+_PYTHON_TCB_PINS = (
+    "oracle_py_sha256",
+    "flat_oracle_py_sha256",
+    "engine_bridge_py_sha256",
+    "evidence_py_sha256",
+    "formal_kernel_py_sha256",
+    "checker_auditor_py_sha256",
+)
+
+
+def _required_checker_pins_ok(pins: Dict[str, Optional[str]], require_cpp: bool = True) -> bool:
+    """Python checker pins are always required; native pins only when native output is relied on."""
+    if not all(pins.get(key) for key in _PYTHON_TCB_PINS):
+        return False
+    return not require_cpp or bool(pins.get("cpp_soko_engine_src_sha256") and pins.get("cpp_soko_engine_bin_sha256"))
 
 
 def _runtime_tcb_locked() -> Tuple[bool, Dict[str, Any]]:
@@ -80,78 +81,32 @@ def _runtime_tcb_locked() -> Tuple[bool, Dict[str, Any]]:
     return bool(lock.get("tcb_locked")), lock
 
 
-def _is_confined_to_repo(rel_path: str) -> Tuple[bool, Optional[Path]]:
-    raw_p = Path(rel_path)
-    if raw_p.is_absolute() or ".." in raw_p.parts:
-        return False, None
-    root_resolved = REPO_ROOT.resolve()
-    candidate = (REPO_ROOT / raw_p).resolve()
-    try:
-        candidate.relative_to(root_resolved)
-    except ValueError:
-        return False, None
-    return True, candidate
-
-
 def verify_tcb_lock() -> Dict[str, Any]:
-    """Verify runtime SHA256SUMS integrity with strict REPO_ROOT confinement + TCB checker pins."""
-    cpp_bin = ensure_cpp_engine()
+    """Check the portable source manifest; report the local binary hash separately.
+
+    A matching manifest shows the checker sources equal the committed hashes. It is
+    not independent review, binary reproducibility, or a proof of correctness, and
+    inspecting it never compiles anything. The compiled engine is machine-specific,
+    so it is observed (hashed) but never accepted as a manifest entry.
+    """
+    from .integrity import verify_source_manifest
+
+    report = verify_source_manifest(REPO_ROOT, SHA256SUMS_PATH)
     pins = get_soko_checker_pins()
-    required_pin_keys = (
-        "oracle_py_sha256",
-        "flat_oracle_py_sha256",
-        "cpp_soko_engine_src_sha256",
-        "formal_kernel_py_sha256",
-        "checker_auditor_py_sha256",
-    )
-    checker_pins_ok = all(bool(pins.get(k)) for k in required_pin_keys)
-
-    manifest_present = SHA256SUMS_PATH.is_file()
-    checked_files = 0
-    mismatched: List[Dict[str, str]] = []
-    missing: List[str] = []
-    unconfined_paths: List[str] = []
-
-    if manifest_present:
-        for raw_line in SHA256SUMS_PATH.read_text(encoding="utf-8").splitlines():
-            line = raw_line.strip()
-            if not line:
-                continue
-            parts = line.split(None, 1)
-            if len(parts) != 2:
-                unconfined_paths.append(line)
-                continue
-            expected_hash, rel_path = parts[0].strip(), parts[1].strip().lstrip("*")
-            confined, target = _is_confined_to_repo(rel_path)
-            if not confined or target is None:
-                unconfined_paths.append(rel_path)
-                continue
-            actual_hash = _file_sha256(target)
-            checked_files += 1
-            if actual_hash is None:
-                missing.append(rel_path)
-            elif actual_hash != expected_hash:
-                mismatched.append({"file": rel_path, "expected": expected_hash, "actual": actual_hash})
-
-    ok = (
-        manifest_present
-        and checked_files > 0
-        and checker_pins_ok
-        and not unconfined_paths
-        and not mismatched
-        and not missing
-    )
+    pins_ok = _required_checker_pins_ok(pins, require_cpp=False)
+    ok = bool(report["source_integrity_verified"]) and pins_ok
     return {
+        **report,
         "epistemic_status": "VERIFIED" if ok else "TAMPERED_OR_UNLOCKED",
         "tcb_locked": ok,
-        "manifest_present": manifest_present,
-        "checker_pins_ok": checker_pins_ok,
-        "files_verified": checked_files,
-        "unconfined_paths": unconfined_paths,
-        "mismatched_files": mismatched,
-        "missing_files": missing,
-        "cpp_engine_compiled": cpp_bin is not None,
+        "lock_scope": "source_manifest",
+        "checker_pins_ok": pins_ok,
+        "cpp_engine_compiled": CPP_BIN.is_file(),
         "checker_pins": pins,
+        "compiled_binary": {
+            "sha256": pins.get("cpp_soko_engine_bin_sha256"),
+            "verified_by_manifest": False,
+        },
     }
 
 
@@ -306,8 +261,12 @@ def verify_route_dual(
     _skip_cpp_for_test: bool = False,
     _skip_flat_for_test: bool = False,
 ) -> Dict[str, Any]:
-    """Fail-closed multi-oracle route verifier (PuzzleScriptOracle + FlatBitmaskOracle + C++20 engine)."""
-    clean = route.strip().upper()
+    """Fail-closed multi-oracle route verifier (PuzzleScriptOracle + FlatBitmaskOracle + C++20 engine).
+
+    Malformed rooms and routes are rejected before any interpreter or native code runs.
+    """
+    validate_room(part, grid)
+    clean = normalize_route(route)
     py_res = replay_oracle(part, grid, clean)
     flat_res = None if _skip_flat_for_test else replay_flat_oracle(part, grid, clean)
     cpp_res = None if _skip_cpp_for_test else _invoke_cpp("verify", part, grid, 0, 0, 5, clean or "-")
@@ -351,7 +310,7 @@ def verify_route_dual(
 
     dual_or_triple_checked = len(engines_executed) >= 2 and (not require_cpp or cpp_res is not None)
     pins = get_soko_checker_pins()
-    pins_ok = _required_checker_pins_ok(pins)
+    pins_ok = _required_checker_pins_ok(pins, require_cpp=cpp_res is not None)
     tcb_locked, _tcb_report = _runtime_tcb_locked()
     is_verified = (
         dual_or_triple_checked
@@ -368,8 +327,14 @@ def verify_route_dual(
     else:
         epistemic = "VERIFIED" if is_verified else "REJECTED"
 
-    return {
+    result = {
         "epistemic_status": epistemic,
+        "evidence_level": "differential_replay",
+        "formal_proof_checked": False,
+        "external_spec_pinned": False,
+        "source_lock_asserted": False,
+        **problem_identity(part, grid),
+        "route_sha256": hashlib.sha256(clean.encode("ascii")).hexdigest(),
         "valid_winning_route": is_verified,
         "route_len": py_res["route_len"],
         "route_sha256_12": py_res["route_sha256_12"],
@@ -389,6 +354,8 @@ def verify_route_dual(
         "final_ascii": py_res["final_ascii"],
         "route": clean,
     }
+    result["certificate_sha256"] = digest(result)
+    return result
 
 
 def _python_window_shortcut(part: int, grid: List[str], route: str, win_len: int = 10) -> str:
@@ -563,6 +530,7 @@ def prove_floor_verified(
             "epistemic_status": "REJECTED_TCB_UNLOCKED",
             "proven_floor": 0,
             "exact_optimum_reached": False,
+            "guarantee": None,
             "checker_pins": get_soko_checker_pins(),
             "tcb_lock_report": tcb_report,
         }
@@ -570,51 +538,40 @@ def prove_floor_verified(
     if cpp_out is None:
         raise RuntimeError("C++20 compiler (g++ or clang++) and grid <= 512 cells are required for prove_lb lower-bound proving.")
 
-    raw_status = cpp_out.get("epistemic_status")
-    if not isinstance(raw_status, str) or not raw_status:
-        return {
-            "epistemic_status": "INCOMPLETE_CPP_OUTPUT",
-            "proven_floor": 0,
-            "exact_optimum_reached": False,
-            "nodes_expanded": cpp_out.get("nodes_expanded", 0),
-            "edge_consistency_checks": cpp_out.get("edge_consistency_checks", 0),
-            "checker_pins": get_soko_checker_pins(),
-        }
-    if raw_status != "VERIFIED":
-        return {
-            "epistemic_status": raw_status,
-            "proven_floor": 0,
-            "exact_optimum_reached": False,
-            "nodes_expanded": cpp_out.get("nodes_expanded", 0),
-            "edge_consistency_checks": cpp_out.get("edge_consistency_checks", 0),
-            "checker_pins": get_soko_checker_pins(),
-        }
-
-    if not cpp_out.get("exact_state_tt", False):
-        return {
-            "epistemic_status": "REJECTED_LOSSY_TT",
-            "proven_floor": 0,
-            "exact_optimum_reached": False,
-            "nodes_expanded": cpp_out.get("nodes_expanded", 0),
-            "edge_consistency_checks": cpp_out.get("edge_consistency_checks", 0),
-            "checker_pins": get_soko_checker_pins(),
-        }
-
-    exact_opt = bool(cpp_out.get("exact_optimum_reached", False))
-    witness = str(cpp_out.get("winning_witness", "") or "")
-    witness_verified = None
+    def _count(key: str) -> int:
+        try:
+            return int(cpp_out.get(key, 0) or 0)
+        except (TypeError, ValueError):
+            return 0
 
     def _rejected(status: str, **extra: Any) -> Dict[str, Any]:
+        # A rejected claim keeps only the trivial floor 0 and never carries a guarantee.
         out = {
             "epistemic_status": status,
             "proven_floor": 0,
             "exact_optimum_reached": False,
-            "nodes_expanded": cpp_out.get("nodes_expanded", 0),
-            "edge_consistency_checks": cpp_out.get("edge_consistency_checks", 0),
+            "guarantee": None,
+            "nodes_expanded": _count("nodes_expanded"),
+            "edge_consistency_checks": _count("edge_consistency_checks"),
             "checker_pins": get_soko_checker_pins(),
         }
         out.update(extra)
         return out
+
+    raw_status = cpp_out.get("epistemic_status")
+    if not isinstance(raw_status, str) or not raw_status:
+        return _rejected("INCOMPLETE_CPP_OUTPUT")
+    # The native prover reports VERIFIED only with a witness and EXHAUSTIVE_LOWER_BOUND otherwise.
+    if raw_status not in ("VERIFIED", "EXHAUSTIVE_LOWER_BOUND"):
+        return _rejected(raw_status)
+    if not cpp_out.get("exact_state_tt", False):
+        return _rejected("REJECTED_LOSSY_TT")
+
+    exact_opt = bool(cpp_out.get("exact_optimum_reached", False))
+    if raw_status != "VERIFIED" and exact_opt:
+        return _rejected("REJECTED_INCONSISTENT_STATUS")
+    witness = str(cpp_out.get("winning_witness", "") or "")
+    witness_verified = None
 
     try:
         claimed_floor = int(cpp_out.get("proven_floor", 0))
@@ -626,17 +583,18 @@ def prove_floor_verified(
     # reported floor 9 with 0 nodes and 0 edges), so it is rejected.
     if not exact_opt and claimed_floor > int(max_bound) + 1:
         return _rejected("REJECTED_FLOOR_EXCEEDS_MAX_BOUND", claimed_floor=claimed_floor, max_bound=int(max_bound))
+    # An inexact floor can refute at most the routes up to the deepest completed layer.
+    if not exact_opt and "completed_depth" in cpp_out:
+        try:
+            completed = int(cpp_out["completed_depth"])
+        except (TypeError, ValueError):
+            return _rejected("INCOMPLETE_CPP_OUTPUT")
+        if claimed_floor > completed + 1:
+            return _rejected("REJECTED_FLOOR_EXCEEDS_COMPLETED_DEPTH", claimed_floor=claimed_floor, completed_depth=completed)
 
     if exact_opt:
-        if not witness and int(cpp_out.get("proven_floor", 0)) > 0:
-            return {
-                "epistemic_status": "REJECTED_NO_WITNESS",
-                "proven_floor": 0,
-                "exact_optimum_reached": False,
-                "nodes_expanded": cpp_out.get("nodes_expanded", 0),
-                "edge_consistency_checks": cpp_out.get("edge_consistency_checks", 0),
-                "checker_pins": get_soko_checker_pins(),
-            }
+        if not witness and claimed_floor > 0:
+            return _rejected("REJECTED_NO_WITNESS")
         w_check = verify_route_dual(part, grid, witness)
         if w_check["valid_winning_route"] and w_check["route_len"] != claimed_floor:
             return _rejected(
@@ -645,14 +603,7 @@ def prove_floor_verified(
                 witness_len=w_check["route_len"],
             )
         if not w_check["valid_winning_route"]:
-            return {
-                "epistemic_status": "REJECTED_INVALID_WITNESS",
-                "proven_floor": 0,
-                "exact_optimum_reached": False,
-                "nodes_expanded": cpp_out.get("nodes_expanded", 0),
-                "edge_consistency_checks": cpp_out.get("edge_consistency_checks", 0),
-                "checker_pins": get_soko_checker_pins(),
-            }
+            return _rejected("REJECTED_INVALID_WITNESS")
         witness_verified = {
             "route": witness,
             "route_len": w_check["route_len"],
@@ -670,6 +621,13 @@ def prove_floor_verified(
             shortest_known_route_len=known_len,
         )
 
+    search_strategy = cpp_out.get("search_strategy", "exact_state_ida_star")
+    search_fields = {
+        "completed_depth": cpp_out.get("completed_depth"),
+        "termination_reason": cpp_out.get("termination_reason"),
+        "timed_out": cpp_out.get("timed_out"),
+    }
+
     # F-04: VERIFIED is reserved for an exact optimum bound to a dual-oracle-checked witness on a board
     # with a reference route to cross-check. Without a reference route nothing outside the engine's
     # exact flag refutes a shorter win (a hall where RR wins in 2 accepted floor 4 with witness URRD),
@@ -681,10 +639,11 @@ def prove_floor_verified(
             "proven_floor": None,
             "claimed_floor": claimed_floor,
             "exact_optimum_reached": exact_opt,
-            "search_strategy": cpp_out.get("search_strategy", "exact_state_ida_star"),
+            "search_strategy": search_strategy,
             "exact_state_tt": True,
-            "nodes_expanded": int(cpp_out.get("nodes_expanded", 0)),
-            "edge_consistency_checks": int(cpp_out.get("edge_consistency_checks", 0)),
+            "nodes_expanded": _count("nodes_expanded"),
+            "edge_consistency_checks": _count("edge_consistency_checks"),
+            **search_fields,
             "winning_witness": witness_verified,
             "checker_pins": get_soko_checker_pins(),
             "verification_note": (
@@ -696,20 +655,22 @@ def prove_floor_verified(
 
     # Otherwise an inexact or unwitnessed floor is reported as an unwitnessed lower bound.
     status = "VERIFIED" if (exact_opt and witness_verified is not None) else "LOWER_BOUND_UNWITNESSED"
+    edges = _count("edge_consistency_checks")
     return {
         "epistemic_status": status,
         "optimality_proven": bool(exact_opt and witness_verified is not None),
-        "proven_floor": int(cpp_out["proven_floor"]),
+        "proven_floor": claimed_floor,
         "exact_optimum_reached": exact_opt,
-        "search_strategy": cpp_out.get("search_strategy", "exact_state_ida_star"),
+        "search_strategy": search_strategy,
         "quotient_pdb_enabled": bool(cpp_out.get("quotient_pdb_enabled", False)),
         "pair_atom_pdb_enabled": bool(cpp_out.get("pair_atom_pdb_enabled", False)),
         "wizard_ray_bound_enabled": bool(cpp_out.get("wizard_ray_bound_enabled", False)),
         "exact_state_tt": True,
-        "exact_tt_prunes": int(cpp_out.get("exact_tt_prunes", 0)),
-        "hash_collisions_prevented": int(cpp_out.get("hash_collisions_prevented", 0)),
-        "nodes_expanded": int(cpp_out["nodes_expanded"]),
-        "edge_consistency_checks": int(cpp_out["edge_consistency_checks"]),
+        "exact_tt_prunes": _count("exact_tt_prunes"),
+        "hash_collisions_prevented": _count("hash_collisions_prevented"),
+        "nodes_expanded": _count("nodes_expanded"),
+        "edge_consistency_checks": edges,
+        **search_fields,
         "winning_witness": witness_verified,
         "checker_pins": get_soko_checker_pins(),
         "verification_note": (
@@ -717,9 +678,10 @@ def prove_floor_verified(
             "Lower bound from the engine's runtime-checked search; no optimal witness, so it is not VERIFIED."
         ),
         "guarantee": (
-            f"Exact-state deduplicated search ({cpp_out.get('search_strategy', 'exact_state_ida_star')}) with runtime "
-            f"step-consistency assertions (h(s) <= 1 + h(s') checked across {cpp_out['edge_consistency_checks']} transitions, "
-            f"quotient_pdb={cpp_out.get('quotient_pdb_enabled', False)}, pair_atom_pdb={cpp_out.get('pair_atom_pdb_enabled', False)}) "
-            f"refutes all winning routes of length < {cpp_out['proven_floor']}."
+            None if claimed_floor <= 0 else
+            f"Exact-state deduplicated search ({search_strategy}) refutes all winning routes of length "
+            f"< {claimed_floor}, provided its heuristic (quotient_pdb={cpp_out.get('quotient_pdb_enabled', False)}, "
+            f"pair_atom_pdb={cpp_out.get('pair_atom_pdb_enabled', False)}) is admissible. The runtime check "
+            f"h(s) <= 1 + h(s') covered the {edges} transitions it expanded, not pruned branches."
         ),
     }

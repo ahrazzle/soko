@@ -31,7 +31,8 @@ class BoundedSearchTests(unittest.TestCase):
         result = self.invoke("optimize", p1=1000, p2=14, route=seed)
         self.assertEqual(result["best_route"], "R" * 9)
         self.assertTrue(verify_route_dual(1, meta["grid"], result["best_route"])["valid_winning_route"])
-        self.assertEqual(result["search_algorithm"], "exact_bfs")
+        # The improvement must come from the exact window search, not the heuristic tube beam.
+        self.assertTrue(result["stages"][0].startswith("window_bfs:"))
 
     def test_zero_budget_never_claims_positive_floor(self):
         result = self.invoke("prove_lb", p1=500, budget=0)
@@ -42,11 +43,14 @@ class BoundedSearchTests(unittest.TestCase):
         self.assertEqual(result["nodes_expanded"], 0)
 
     def test_interrupted_layer_does_not_claim_requested_bound(self):
-        # This corridor requires four R moves. A three-state cap interrupts
-        # expansion at depth two, before the next goal-depth is ruled out.
+        # This corridor requires four R moves. A three-state cap interrupts the
+        # A* layer f = h(start) = 4 before the goal is generated. Layers below
+        # the start heuristic count as complete (conditional on admissibility)
+        # once the start node is expanded, so the floor is 4, never the bound.
         result = self.invoke("prove_lb", grid=["F...G"], p1=100, p2=3)
-        self.assertEqual(result["completed_depth"], 2)
-        self.assertEqual(result["proven_floor"], 3)
+        self.assertEqual(result["completed_depth"], 3)
+        self.assertEqual(result["proven_floor"], 4)
+        self.assertLessEqual(result["proven_floor"], 4)  # the true optimum
         self.assertEqual(result["termination_reason"], "state_limit")
         self.assertEqual(result["states_seen"], 3)
         self.assertFalse(result["exact_optimum_reached"])

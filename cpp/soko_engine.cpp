@@ -1388,9 +1388,16 @@ int main() {
     if (mode == "optimize") {
         int beam_w = max(2000, p1);
         int win_len = max(8, p2);
-        double total_budget = max(4.0, (double)p3);
+        double total_budget = max(0.0, (double)p3);
         string best = seed_route;
         vector<string> log_entries;
+        auto opt_t0 = chrono::steady_clock::now();
+        if (total_budget <= 0.0) {
+            cout << "{\"initial_len\":" << seed_route.size() << ",\"best_len\":" << seed_route.size()
+                 << ",\"improved\":false,\"best_route\":\"" << seed_route << "\",\"stages\":[]"
+                 << ",\"timed_out\":true}\n";
+            return 0;
+        }
 
         string w_opt = exact_window_shortcut(M, s0, best, win_len);
         if (w_opt.size() < best.size()) {
@@ -1453,15 +1460,26 @@ int main() {
              << ",\"best_len\":" << best.size()
              << ",\"improved\":" << (best.size() < seed_route.size() ? "true" : "false")
              << ",\"best_route\":\"" << best << "\""
-             << ",\"stages\":[" << log_str << "]}\n";
+             << ",\"stages\":[" << log_str << "]"
+             << ",\"timed_out\":" << (chrono::duration<double>(chrono::steady_clock::now() - opt_t0).count() > total_budget ? "true" : "false")
+             << "}\n";
         return 0;
     }
 
     if (mode == "solve") {
-        int max_d = max(1, p1), beam_w = max(2000, p2);
-        double budget_s = max(2.0, (double)p3);
+        int max_d = max(0, p1), beam_w = max(2000, p2);
+        double budget_s = max(0.0, (double)p3);
         auto t0 = chrono::steady_clock::now();
-        if (check_win(M, s0)) { cout << "{\"solved\":true,\"len\":0,\"route\":\"\",\"explored\":1}\n"; return 0; }
+        if (check_win(M, s0)) {
+            cout << "{\"solved\":true,\"len\":0,\"route\":\"\",\"explored\":1,\"nodes_expanded\":0"
+                 << ",\"completed_depth\":0,\"termination_reason\":\"solved\",\"timed_out\":false"
+                 << ",\"search_algorithm\":\"bucketed_beam\"}\n";
+            return 0;
+        }
+        uint64_t solve_nodes = 0;
+        int solve_completed = 0;
+        string solve_term = "depth_limit";
+        bool solve_timed_out = false;
 
         struct PRec { int prev; char mv; };
         vector<vector<PRec>> trace(max_d + 1);
@@ -1472,7 +1490,10 @@ int main() {
         string best_win;
 
         for (int d = 1; d <= max_d; ++d) {
-            if (chrono::duration<double>(chrono::steady_clock::now() - t0).count() > budget_s || seen.cnt > 12000000) break;
+            if (chrono::duration<double>(chrono::steady_clock::now() - t0).count() >= budget_s) {
+                solve_timed_out = true; solve_term = "time_budget"; break;
+            }
+            if (seen.cnt > 12000000) { solve_term = "state_limit"; break; }
             vector<DynState> c_states;
             vector<PRec> c_precs;
             vector<int> c_bkt;
@@ -1483,6 +1504,7 @@ int main() {
             order_keys.reserve(cur.size() * 4);
 
             for (int i = 0; i < (int)cur.size(); ++i) {
+                ++solve_nodes;
                 for (int mv = 0; mv < 5; ++mv) {
                     DynState ns = cur[i];
                     int res = step_state(M, ns, mv, true);
@@ -1517,7 +1539,9 @@ int main() {
                 }
                 if (!best_win.empty()) break;
             }
-            if (!best_win.empty() || c_states.empty()) break;
+            if (!best_win.empty()) { solve_term = "solved"; break; }
+            if (c_states.empty()) { solve_term = "exhausted"; break; }
+            solve_completed = d;
             sort(order_keys.begin(), order_keys.end());
             unordered_map<int, int> bc;
             vector<DynState> nxt;
@@ -1540,13 +1564,24 @@ int main() {
         cout << "{\"solved\":" << (!best_win.empty() ? "true" : "false")
              << ",\"len\":" << best_win.size()
              << ",\"route\":\"" << best_win << "\""
-             << ",\"explored\":" << seen.cnt << "}\n";
+             << ",\"explored\":" << seen.cnt
+             << ",\"nodes_expanded\":" << solve_nodes
+             << ",\"completed_depth\":" << solve_completed
+             << ",\"termination_reason\":\"" << solve_term << "\""
+             << ",\"timed_out\":" << (solve_timed_out ? "true" : "false")
+             << ",\"search_algorithm\":\"bucketed_beam\"}\n";
         return 0;
     }
 
     if (mode == "prove_lb") {
-        int max_bound = max(1, p1);
-        double budget_s = max(2.0, (double)p3);
+        // Contract: VERIFIED only with a witness; otherwise EXHAUSTIVE_LOWER_BOUND.
+        // A floor never exceeds max_bound + 1 and nothing is claimed before the
+        // start node has been expanded. A zero budget or state cap is honored.
+        // g and h are stored in uint8_t, so the bound is clamped to 250.
+        int requested_bound = max(1, p1);
+        int max_bound = min(requested_bound, 250);
+        double budget_s = max(0.0, (double)p3);
+        size_t state_cap = p2 > 0 ? (size_t)p2 : 0;
         auto t0 = chrono::steady_clock::now();
         bool has_druid = false, has_wizard = false, has_fighter = false;
         for (int i = 0; i < M.n; ++i) {
@@ -1611,6 +1646,8 @@ int main() {
                  << ",\"wizard_ray_bound_enabled\":" << (wiz_bound.enabled ? "true" : "false")
                  << ",\"exact_state_tt\":true,\"exact_tt_prunes\":0,\"hash_collisions_prevented\":0"
                  << ",\"nodes_expanded\":0,\"edge_consistency_checks\":0"
+                 << ",\"completed_depth\":-1,\"termination_reason\":\"solved\",\"timed_out\":false"
+                 << ",\"states_seen\":1,\"search_algorithm\":\"trivial_initial_win\""
                  << ",\"winning_witness\":\"\",\"epistemic_status\":\"VERIFIED\"}\n";
             return 0;
         }
@@ -1646,14 +1683,15 @@ int main() {
                 return true;
             };
 
-            const size_t MAX_ASTAR_NODES = (budget_s >= 25.0) ? 15000000 : ((budget_s >= 10.0) ? 8000000 : 4000000);
+            const size_t MAX_ASTAR_NODES = state_cap ? state_cap
+                : ((budget_s >= 25.0) ? 15000000 : ((budget_s >= 10.0) ? 8000000 : 4000000));
             const size_t HBITS = (budget_s >= 25.0) ? 25 : ((budget_s >= 10.0) ? 24 : 23); // 8,388,608 hash slots
             vector<uint64_t> hkeys(1ULL << HBITS, 0);
             vector<uint32_t> hvals(1ULL << HBITS, 0xFFFFFFFFu);
             const size_t HMASK = (1ULL << HBITS) - 1;
 
             vector<CompactNode> pool;
-            pool.reserve(MAX_ASTAR_NODES);
+            pool.reserve(min<size_t>(MAX_ASTAR_NODES, 4000000));
             vector<vector<uint32_t>> buckets(max_bound + 4);
 
             uint64_t edge_checks = 0, total_nodes = 0, exact_dedups = 0, hash_collisions_prevented = 0;
@@ -1705,11 +1743,32 @@ int main() {
                 }
             };
 
+            string termination = "max_bound";
+            bool timed_out = false, start_expanded = false;
+            auto elapsed = [&]() { return chrono::duration<double>(chrono::steady_clock::now() - t0).count(); };
             if (h0 <= max_bound) {
                 uint64_t hk0 = s0.hash64(M.n, M.has_bard); if (!hk0) hk0 = 1;
                 upsert_node(hk0, s0, 0, (uint8_t)min(255, h0), 0xFFFFFFFFu, 0);
+            } else if (budget_s <= 0.0 || (state_cap && state_cap <= 1)) {
+                timed_out = budget_s <= 0.0;
+                termination = timed_out ? "time_budget" : "state_limit";
             } else {
-                proven_floor = h0;
+                // The start heuristic already exceeds the bound. Expand the start node so the
+                // claim max_bound + 1 rests on checked transitions, not on h(s0) alone.
+                bool any_successor = false;
+                for (int mv = 0; mv < 5 && !consistency_violated; ++mv) {
+                    DynState ns = s0;
+                    int res = step_state(M, ns, mv, true);
+                    if (res < 0) continue;
+                    any_successor = true;
+                    int hns = (res == 1) ? 0 : h_admissible(ns);
+                    edge_checks++;
+                    if (h0 > 1 + hns && hns < 999) consistency_violated = true;
+                }
+                total_nodes = 1;
+                start_expanded = true;
+                termination = any_successor ? "heuristic_exceeds_bound" : "exhausted";
+                proven_floor = max_bound + 1;
             }
 
             const unsigned n_threads = max(1u, min(8u, thread::hardware_concurrency()));
@@ -1721,11 +1780,12 @@ int main() {
                 size_t base = 0;
                 bool stopped_early = false;
                 while (base < buckets[f].size() && !solved && !consistency_violated) {
-                    if (chrono::duration<double>(chrono::steady_clock::now() - t0).count() > budget_s ||
-                        pool.size() + BATCH * 5 > MAX_ASTAR_NODES) {
-                        stopped_early = true; break;
+                    if (elapsed() >= budget_s) { stopped_early = true; timed_out = true; termination = "time_budget"; break; }
+                    if (state_cap ? pool.size() >= MAX_ASTAR_NODES : pool.size() + BATCH * 5 > MAX_ASTAR_NODES) {
+                        stopped_early = true; termination = "state_limit"; break;
                     }
-                    size_t end = min(buckets[f].size(), base + BATCH);
+                    // With an explicit state cap, expand one node at a time so the cap is exact.
+                    size_t end = min(buckets[f].size(), base + (state_cap ? (size_t)1 : BATCH));
                     vector<uint32_t> active;
                     active.reserve(end - base);
                     for (size_t idx = base; idx < end; ++idx) {
@@ -1737,6 +1797,7 @@ int main() {
                     base = end;
                     if (active.empty()) continue;
                     total_nodes += active.size();
+                    start_expanded = true;
 
                     unsigned nt = (active.size() >= 128) ? n_threads : 1u;
                     vector<vector<CandRec>> outs(nt);
@@ -1812,8 +1873,17 @@ int main() {
                 }
                 vector<uint32_t>().swap(buckets[f]);
                 if (consistency_violated || stopped_early) break;
-                if (!solved) proven_floor = f + 1;
+                if (!solved) {
+                    proven_floor = f + 1;
+                    bool open_left = false;
+                    for (int g2 = f + 1; g2 <= max_bound && !open_left; ++g2) open_left = !buckets[g2].empty();
+                    if (!open_left) { termination = "exhausted"; proven_floor = max_bound + 1; break; }
+                }
             }
+            if (solved) termination = "solved";
+            // Nothing is claimed unless the start node was actually expanded.
+            if (!solved && !start_expanded) proven_floor = 0;
+            if (!solved) proven_floor = min(proven_floor, max_bound + 1);
 
             if (consistency_violated) {
                 cout << "{\"proven_floor\":0,\"exact_optimum_reached\":false,\"nodes_expanded\":" << total_nodes
@@ -1832,8 +1902,15 @@ int main() {
                  << ",\"hash_collisions_prevented\":" << hash_collisions_prevented
                  << ",\"nodes_expanded\":" << total_nodes
                  << ",\"edge_consistency_checks\":" << edge_checks
+                 << ",\"completed_depth\":" << (proven_floor - 1)
+                 << ",\"termination_reason\":\"" << termination << "\""
+                 << ",\"timed_out\":" << (timed_out ? "true" : "false")
+                 << ",\"states_seen\":" << pool.size()
+                 << ",\"start_heuristic\":" << h0
+                 << ",\"requested_bound\":" << requested_bound << ",\"effective_bound\":" << max_bound
+                 << ",\"search_algorithm\":\"exact_state_bucketed_astar\""
                  << ",\"winning_witness\":\"" << winning_witness << "\""
-                 << ",\"epistemic_status\":\"VERIFIED\"}\n";
+                 << ",\"epistemic_status\":\"" << (solved ? "VERIFIED" : "EXHAUSTIVE_LOWER_BOUND") << "\"}\n";
             return 0;
         }
 
@@ -1914,6 +1991,8 @@ int main() {
             if (found) { solved = true; proven_floor = bound; break; }
             else proven_floor = bound + 1;
         }
+        if (!solved && total_nodes == 0) proven_floor = 0;
+        if (!solved) proven_floor = min(proven_floor, max_bound + 1);
 
         if (consistency_violated) {
             cout << "{\"proven_floor\":0,\"exact_optimum_reached\":false,\"nodes_expanded\":" << total_nodes
@@ -1932,8 +2011,11 @@ int main() {
              << ",\"hash_collisions_prevented\":" << hash_collisions_prevented
              << ",\"nodes_expanded\":" << total_nodes
              << ",\"edge_consistency_checks\":" << edge_checks
+             << ",\"completed_depth\":" << (proven_floor - 1)
+             << ",\"termination_reason\":\"" << (solved ? "solved" : (total_nodes == 0 ? "not_started" : "max_bound_or_budget")) << "\""
+             << ",\"search_algorithm\":\"exact_state_ida_star\""
              << ",\"winning_witness\":\"" << winning_witness << "\""
-             << ",\"epistemic_status\":\"VERIFIED\"}\n";
+             << ",\"epistemic_status\":\"" << (solved ? "VERIFIED" : "EXHAUSTIVE_LOWER_BOUND") << "\"}\n";
         return 0;
     }
 

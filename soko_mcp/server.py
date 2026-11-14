@@ -814,11 +814,14 @@ def dispatch_tool_call(name: str, args: Dict[str, Any]) -> Dict[str, Any]:
         res = verify_route_dual(
             part,
             grid,
-            str(args["route"]),
+            args["route"],
             require_cpp=bool(args.get("require_cpp", False)),
         )
         if rid:
+            # The certificate must cover the room binding too, so recompute it.
             res["room_id"] = rid
+            res.pop("certificate_sha256", None)
+            res["certificate_sha256"] = digest(res)
         return res
 
     if name == "soko_optimize_route":
