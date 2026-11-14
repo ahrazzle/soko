@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 import io
+import json
 import os
 import tempfile
 import unittest
@@ -115,6 +116,20 @@ class TestCommandLine(unittest.TestCase):
                 self.assertEqual(main([clean, bad]), 1)
             with redirect_stderr(io.StringIO()):
                 self.assertEqual(main([]), 2)
+
+    def test_non_utf8_file_exits_nonzero_with_json(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp:
+            path = os.path.join(tmp, "not-utf8.lean")
+            Path(path).write_bytes(b"\xff\xfe theorem a : False := by sorry\n")
+            buf = io.StringIO()
+            with redirect_stdout(buf):
+                code = main([path])
+            self.assertEqual(code, 1)
+            payload = json.loads(buf.getvalue())
+            self.assertEqual(len(payload), 1)
+            self.assertEqual(payload[0]["label"], path)
+            self.assertFalse(payload[0]["ok"])
+            self.assertIn("UnicodeDecodeError", payload[0]["error"])
 
 
 if __name__ == "__main__":

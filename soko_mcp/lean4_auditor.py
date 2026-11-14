@@ -150,8 +150,15 @@ def main(argv: Sequence[str] | None = None) -> int:
         return 2
     results = []
     for path in args:
-        with open(path, encoding="utf-8") as fh:
-            results.append(audit_lean4_source(fh.read(), label=path))
+        try:
+            with open(path, encoding="utf-8") as fh:
+                results.append(audit_lean4_source(fh.read(), label=path))
+        except UnicodeDecodeError as exc:
+            results.append({
+                "label": path,
+                "ok": False,
+                "error": f"{type(exc).__name__}: {exc}",
+            })
     print(json.dumps(results, indent=2, sort_keys=True))
     return 0 if all(r["ok"] for r in results) else 1
 
