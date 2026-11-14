@@ -11,5 +11,15 @@ requires-python = ">=3.10"
 license = {text = "Apache-2.0"}
 dependencies = []
 
+[project.optional-dependencies]
+# Needed only by experiments/causal_solver and experiments/exact_frontier and their tests.
+research = ["z3-solver==5.4.1.0", "python-sat==1.9.dev22"]
+
 [project.scripts]
 soko-verified-mcp = "soko_mcp.__main__:main"
+
+[tool.setuptools]
+packages = ["soko_mcp"]
+
+[tool.setuptools.package-data]
+soko_mcp = ["data/*.json"]

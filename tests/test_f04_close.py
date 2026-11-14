@@ -120,8 +120,13 @@ class F04ProveFloorTests(unittest.TestCase):
         meta = FRONTIER_ROOMS["I-1"]
         out = prove_floor_verified(meta["part"], meta["grid"], max_bound=1, budget_sec=2)
         self.assertNotEqual(out["epistemic_status"], "VERIFIED")
-        self.assertEqual(out["epistemic_status"], "REJECTED_FLOOR_EXCEEDS_MAX_BOUND")
-        self.assertEqual(out["proven_floor"], 0)
+        # The native prover now caps its own claim at max_bound + 1 after expanding the
+        # start node, so the old floor-9-with-zero-nodes output can no longer occur.
+        # The bridge-side rejection is still covered by the fake-output test above.
+        self.assertEqual(out["epistemic_status"], "LOWER_BOUND_UNWITNESSED")
+        self.assertLessEqual(out["proven_floor"], 2)
+        self.assertEqual(out["termination_reason"], "heuristic_exceeds_bound")
+        self.assertGreater(out["edge_consistency_checks"], 0)
 
     def test_equal_length_nonoptimal_witness_rejected(self) -> None:
         out = self._run_fake({
