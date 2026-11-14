@@ -213,12 +213,26 @@ def resolve_room_input(
     return None, part, list(grid), None
 
 
+def _cpp_bin_stamp() -> Path:
+    return CPP_BIN.with_name(CPP_BIN.name + ".src-sha256")
+
+
 def ensure_cpp_engine() -> Optional[Path]:
-    """Compile cpp/soko_engine.cpp on demand if g++ or clang++ is available."""
+    """Compile cpp/soko_engine.cpp on demand if g++ or clang++ is available.
+
+    The binary is reused only when a stamp beside it records the SHA-256 of the exact
+    source it was built from. File timestamps are not trusted: a fresh clone or an
+    unpacked archive can make old source look older than an existing binary.
+    """
     if not CPP_SRC.is_file():
         return None
-    if CPP_BIN.is_file() and CPP_BIN.stat().st_mtime >= CPP_SRC.stat().st_mtime:
-        return CPP_BIN
+    src_sha = _file_sha256(CPP_SRC)
+    stamp = _cpp_bin_stamp()
+    try:
+        if CPP_BIN.is_file() and stamp.read_text(encoding="ascii").strip() == src_sha:
+            return CPP_BIN
+    except OSError:
+        pass
     compiler = shutil.which("g++") or shutil.which("clang++")
     if not compiler:
         return None
@@ -230,6 +244,9 @@ def ensure_cpp_engine() -> Optional[Path]:
         if res.returncode != 0:
             return None
         candidate.replace(CPP_BIN)
+        stamp_tmp = Path(temporary) / stamp.name
+        stamp_tmp.write_text(f"{src_sha}\n", encoding="ascii")
+        stamp_tmp.replace(stamp)
     return CPP_BIN
 
 
