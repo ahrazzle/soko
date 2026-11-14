@@ -422,9 +422,13 @@ def optimize_route_verified(
     clean_seed = seed_route.strip().upper()
     seed_check = verify_route_dual(part, grid, clean_seed)
     if not seed_check["valid_winning_route"]:
+        # Lead with the verifier's status: a seed can be a real win and still be rejected,
+        # e.g. REJECTED_TCB_UNLOCKED, and the alive/win triple alone hides that (#49).
         raise ValueError(
-            f"seed_route (len={len(clean_seed)}) is not a valid winning route for this room: "
-            f"alive={seed_check['alive']}, exact_win={seed_check['exact_win']}, premature_win={seed_check['premature_win']}"
+            f"seed_route (len={len(clean_seed)}) was rejected by the verifier: "
+            f"epistemic_status={seed_check['epistemic_status']}, alive={seed_check['alive']}, "
+            f"exact_win={seed_check['exact_win']}, premature_win={seed_check['premature_win']}, "
+            f"differential_match={seed_check['differential_match']}"
         )
 
     cpp_out = _invoke_cpp("optimize", part, grid, beam_width, window_len, budget_sec, clean_seed)

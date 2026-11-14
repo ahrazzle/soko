@@ -31,5 +31,19 @@ class OptimizeSeedTests(unittest.TestCase):
         self.assertEqual(self.seed_for({"room_id": "III-20", "seed_route": "RRRR"}), "RRRR")
 
 
+
+class OptimizeSeedRejectionTests(unittest.TestCase):
+    def test_rejected_seed_error_names_the_verifier_status(self):
+        from soko_mcp import engine_bridge as eb
+        meta = FRONTIER_ROOMS["III-20"]
+        unlocked = {"tcb_locked": False}
+        with patch.object(eb, "_runtime_tcb_locked", return_value=(False, unlocked)):
+            with self.assertRaises(ValueError) as ctx:
+                eb.optimize_route_verified(meta["part"], meta["grid"], meta["reference_route"], budget_sec=0)
+        message = str(ctx.exception)
+        self.assertIn("epistemic_status=REJECTED_TCB_UNLOCKED", message)
+        self.assertIn("exact_win=True", message)
+
+
 if __name__ == "__main__":
     unittest.main()
