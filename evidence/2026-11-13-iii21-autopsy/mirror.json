@@ -1,0 +1,157 @@
+{
+ "room": "III-21",
+ "board": {
+  "width": 23,
+  "height": 13
+ },
+ "mirror_x_static_mismatches": 16,
+ "mismatches_per_row": {
+  "0": 0,
+  "1": 0,
+  "2": 0,
+  "3": 0,
+  "4": 0,
+  "5": 0,
+  "6": 0,
+  "7": 2,
+  "8": 0,
+  "9": 6,
+  "10": 4,
+  "11": 4,
+  "12": 0
+ },
+ "mismatch_cells": [
+  {
+   "x": 9,
+   "y": 7,
+   "cell": "*",
+   "mirror_cell": "#"
+  },
+  {
+   "x": 13,
+   "y": 7,
+   "cell": "#",
+   "mirror_cell": "*"
+  },
+  {
+   "x": 7,
+   "y": 9,
+   "cell": ".",
+   "mirror_cell": "*"
+  },
+  {
+   "x": 9,
+   "y": 9,
+   "cell": "#",
+   "mirror_cell": "O"
+  },
+  {
+   "x": 10,
+   "y": 9,
+   "cell": ".",
+   "mirror_cell": "*"
+  },
+  {
+   "x": 12,
+   "y": 9,
+   "cell": "*",
+   "mirror_cell": "."
+  },
+  {
+   "x": 13,
+   "y": 9,
+   "cell": "O",
+   "mirror_cell": "#"
+  },
+  {
+   "x": 15,
+   "y": 9,
+   "cell": "*",
+   "mirror_cell": "."
+  },
+  {
+   "x": 5,
+   "y": 10,
+   "cell": "#",
+   "mirror_cell": "."
+  },
+  {
+   "x": 6,
+   "y": 10,
+   "cell": "#",
+   "mirror_cell": "."
+  },
+  {
+   "x": 16,
+   "y": 10,
+   "cell": ".",
+   "mirror_cell": "#"
+  },
+  {
+   "x": 17,
+   "y": 10,
+   "cell": ".",
+   "mirror_cell": "#"
+  },
+  {
+   "x": 5,
+   "y": 11,
+   "cell": "#",
+   "mirror_cell": "."
+  },
+  {
+   "x": 6,
+   "y": 11,
+   "cell": "#",
+   "mirror_cell": "."
+  },
+  {
+   "x": 16,
+   "y": 11,
+   "cell": ".",
+   "mirror_cell": "#"
+  },
+  {
+   "x": 17,
+   "y": 11,
+   "cell": ".",
+   "mirror_cell": "#"
+  }
+ ],
+ "symmetric_rows": [
+  0,
+  1,
+  2,
+  3,
+  4,
+  5,
+  6,
+  8,
+  12
+ ],
+ "breaking_rows": [
+  7,
+  9,
+  10,
+  11
+ ],
+ "hero_permutation_slots": {
+  "1": 4,
+  "4": 1,
+  "2": 5,
+  "5": 2,
+  "3": 6,
+  "6": 3
+ },
+ "hero_permutation_roles": {
+  "Fighter": "Priest",
+  "Thief": "Bard",
+  "Wizard": "Druid",
+  "Priest": "Fighter",
+  "Bard": "Thief",
+  "Druid": "Wizard"
+ },
+ "permutation_commutes_with_cycle": true,
+ "permutation_preserves_roles": false,
+ "conclusion": "Left-right mirror is exact on the static board for rows 0-6, 8 and 12 and breaks only in rows 7, 9, 10, 11 (16 cells, all in the Wizard/Druid chamber and its ceiling). The induced hero permutation commutes with the A-cycle but swaps every hero role, so the mirror is a geometry-only symmetry: it does NOT transport routes. It licenses geometry-equivalent single-hero sub-tasks in the symmetric bands and a symmetry-breaking search constraint, not a mirrored route."
+}
