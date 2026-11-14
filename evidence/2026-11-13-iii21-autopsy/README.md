@@ -49,7 +49,8 @@ dual + triple oracle, differential match.)
   and switches on. Those are not waste in the naive sense — to reach a
   hero two steps ahead in the fixed cycle you must pass through the hero
   between — but they price the interleaving: every pass through all six
-  heroes costs at least 5 `A`s, and the route makes 13 passes.
+  heroes costs at least 5 `A`s, and the route visits Fighter, Thief,
+  Wizard and Priest 13 times each and Bard and Druid 12 times each.
 - **Keys by hero:** Fighter 112, Bard 51, Druid 49, Priest 42,
   Thief 40, Wizard 22. The Fighter does over a third of the route.
 - **Keys by band:** top 56, middle 179, bottom 81; **61 band
@@ -63,7 +64,8 @@ dual + triple oracle, differential match.)
 - **Endgame is a final scramble:** the first hero reaches a goal at key
   57, but the second does not arrive until key 287; then 289, 309, 312,
   and the sixth on the winning key 316. The first 286 keys are setup
-  with at most one hero parked; the last 30 keys park all six.
+  with at most one hero parked; keys 287-316 bring heroes two through
+  six onto goals, and all six stand on goals only on the winning key.
 - **Longest single-hero stretches:** Fighter 29 (opening, keys 1–29),
   Bard 22 (232–253), Druid 21 (202–222), Fighter 20 (47–66).
 
@@ -103,12 +105,23 @@ concrete follow-up for the inspector.
 
 `optimize-w24.log`: sliding-window optimisation of the 316 seed with
 window 24 (wider than the 18-key window run on 2026-11-12), beam 40,000,
-budget 240 s, C++20 engine, run time 215 s. Result: 316 → **316**,
+budget 240 s, C++20 engine, reported run time 215 s (not in the log). Result: 316 → **316**,
 0 keys saved, `improved: false`, `epistemic_status: VERIFIED`,
 dual-oracle verified, triple-oracle checked, differential match. The
 returned route is byte-identical to the seed (sha `39362103ceed`, the
-same prefix recorded by the isolated planner in PR #12). No window of 24
-anywhere in the route admits a shorter path between its endpoint states.
+same prefix recorded by the isolated planner in PR #12).
+
+What that run searched: `exact_window_shortcut` in `cpp/soko_engine.cpp`
+starts a window every `max(2, win_len / 3)` keys, which is every 8 keys
+for a window of 24, and stops a window's BFS once its queue passes
+150,000 nodes. A stage is logged only when a window shortens the route.
+The empty `stages` list therefore means no improving window was found
+under that stride and node cap. It does not mean every 24-key span was
+searched exhaustively. The original log does not record elapsed time,
+window, beam or budget. `optimize-w24-timed.log` is a rerun of the same
+command on 2026-11-14 with its parameters and wall-clock time recorded:
+96.7 s, exit 0, and a JSON result identical to `optimize-w24.log`.
+
 This is a negative result at a wider window than the previous best
 attempt, and it is consistent with the planner's calibration that the
 suffix from key 246 is tight. It does not prove 316 optimal.
@@ -171,7 +184,7 @@ suffix from key 246 is tight. It does not prove 316 optimal.
 
 - No shorter route, no raised floor, no optimality claim for 316.
 - The mirror result is not a route. The transit-`A` count is not slack
-  — it is a price, and the dependencies that force 13 passes are not
+  — it is a price, and the dependencies that force 12-13 visits per hero are not
   yet mapped.
 - The III-14 / III-20 / III-21 floors quoted here are Frontier-reported,
   not reproved in this bundle.

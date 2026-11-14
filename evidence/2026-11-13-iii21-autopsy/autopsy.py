@@ -15,6 +15,7 @@ Usage (from the repo root):
   python3 evidence/2026-11-13-iii21-autopsy/autopsy.py
 Writes autopsy.json and autopsy.md next to itself.
 """
+import hashlib
 import json
 import subprocess
 import sys
@@ -92,7 +93,8 @@ def main():
     summary = {
         "room": "III-21",
         "route_len": len(ROUTE),
-        "route_sha256": room["baseline"]["response_sha256"],
+        "route_sha256": hashlib.sha256(ROUTE.encode("ascii")).hexdigest(),
+        "baseline_response_sha256": room["baseline"]["response_sha256"],
         "holder": "futarchist",
         "record_id": 159,
         "a_presses": ROUTE.count("A"),

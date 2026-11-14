@@ -10,10 +10,10 @@ Adds a dated evidence bundle for III-21, re-baselines the live Frontier numbers 
 ## Findings
 
 - Live Frontier, 2026-11-13: only III-14 (44/48), III-20 (75/84) and III-21 (269/316) still have a gap. Banteg accepted proofs raising all three floors overnight. Trilogy sums are now 3,063 known and 3,003 floor.
-- The 316-key route uses 75 hero-switch presses out of 316 keys. It visits the six heroes in strict cycle order, 13 passes, with 39 switches that do nothing but pass through a hero to reach the next one. Work is spread across the three board bands with 61 crossings, and the first 286 keys park at most one hero on a goal. The last 30 keys park all six.
+- The 316-key route uses 75 hero-switch presses out of 316 keys. It visits the six heroes in strict cycle order, 13 visits each for Fighter, Thief, Wizard and Priest and 12 each for Bard and Druid, with 39 switches that do nothing but pass through a hero to reach the next one. Work is spread across the three board bands with 61 crossings, and the first 286 keys park at most one hero on a goal. Keys 287-316 bring heroes two through six onto goals, and all six stand on goals only on the winning key.
 - The board is exactly mirror-symmetric left to right on rows 0-6, 8 and 12, and breaks on 16 cells in rows 7, 9, 10 and 11. The mirror permutes the heroes in a way that commutes with the switch cycle but swaps every hero role, so it does not transport routes. It is a geometry-only symmetry.
 - Fresh-clone defect: a new checkout can rebuild the pinned engine binary on first use, because the reuse check is based on file times. The rebuilt binary differs from the pinned hash, the lock then fails, and the optimiser refuses to run with an error that blames the route. Restoring the pinned binary clears it. The defect note lists three fix directions for review. None is applied here.
-- Optimiser, window 24, beam 40,000, 215 s: 316 stays 316, 0 keys saved. No 24-key window anywhere in the route admits a shorter path between its endpoint states.
+- Optimiser, window 24, beam 40,000, budget 240 s: 316 stays 316, 0 keys saved. The engine starts a window every 8 keys and stops each window's BFS at 150,000 queued nodes, so this shows no improving window under that stride and cap. It does not show that every 24-key span was searched, and it does not show 316 optimal. A timed rerun (`optimize-w24-timed.log`) took 96.7 s and returned the same result.
 
 ## Validation
 

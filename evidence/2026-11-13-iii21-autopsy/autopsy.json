@@ -2,7 +2,8 @@
  "summary": {
   "room": "III-21",
   "route_len": 316,
-  "route_sha256": "32625ea5b0ac0c9106f2d3ac6254eddec6d863dd4d1fd2a9ae18f6d55baf9a57",
+  "route_sha256": "39362103ceedf8d5f2ff4f7513839c58617f9a7ad0aa6fad070dd0d69269a17c",
+  "baseline_response_sha256": "32625ea5b0ac0c9106f2d3ac6254eddec6d863dd4d1fd2a9ae18f6d55baf9a57",
   "holder": "futarchist",
   "record_id": 159,
   "a_presses": 75,
