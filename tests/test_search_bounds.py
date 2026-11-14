@@ -6,6 +6,7 @@ import time
 import unittest
 
 from soko_mcp.engine_bridge import ensure_cpp_engine, verify_route_dual
+from soko_mcp.catalog import load_catalog
 from soko_mcp.oracle import FRONTIER_ROOMS
 
 
@@ -95,6 +96,27 @@ class BoundedSearchTests(unittest.TestCase):
         self.assertTrue(solved["timed_out"])
         self.assertTrue(optimized["timed_out"])
         self.assertLess(time.monotonic() - start, 5)
+
+    def test_large_board_ida_star_reports_how_it_stopped(self):
+        # Boards over 256 cells use the IDA* strategy (review 5907250524, finding 4).
+        meta = load_catalog()["III-21"]
+        finished = self.invoke("prove_lb", grid=meta["grid"], part=3, p1=5, p2=0, budget=30)
+        self.assertEqual(finished["search_strategy"], "exact_state_ida_star")
+        self.assertEqual(finished["termination_reason"], "max_bound")
+        self.assertFalse(finished["timed_out"])
+        self.assertEqual(finished["proven_floor"], 6)
+        self.assertEqual(finished["completed_depth"], 5)
+        self.assertGreater(finished["states_seen"], 0)
+        stopped = self.invoke("prove_lb", grid=meta["grid"], part=3, p1=40, p2=0, budget=0)
+        self.assertEqual(stopped["termination_reason"], "time_budget")
+        self.assertTrue(stopped["timed_out"])
+        self.assertEqual(stopped["proven_floor"], 0)
+
+    def test_bound_zero_is_not_raised_to_one(self):
+        result = self.invoke("prove_lb", p1=0)
+        self.assertEqual(result["requested_bound"], 0)
+        self.assertEqual(result["proven_floor"], 1)
+        self.assertEqual(result["termination_reason"], "heuristic_exceeds_bound")
 
 
 if __name__ == "__main__":

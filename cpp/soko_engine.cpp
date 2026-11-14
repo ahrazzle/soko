@@ -1622,7 +1622,7 @@ int main() {
         // A floor never exceeds max_bound + 1 and nothing is claimed before the
         // start node has been expanded. A zero budget or state cap is honored.
         // g and h are stored in uint8_t, so the bound is clamped to 250.
-        int requested_bound = max(1, p1);
+        int requested_bound = max(0, p1);
         int max_bound = min(requested_bound, 250);
         double budget_s = max(0.0, (double)p3);
         size_t state_cap = p2 > 0 ? (size_t)p2 : 0;
@@ -1972,11 +1972,11 @@ int main() {
 
         uint64_t edge_checks = 0, total_nodes = 0, exact_tt_prunes = 0, hash_collisions_prevented = 0;
         int proven_floor = h_admissible(s0);
-        bool solved = false, consistency_violated = false;
+        bool solved = false, consistency_violated = false, any_timed_out = false;
         string winning_witness;
 
         for (int bound = proven_floor; !solved && !consistency_violated && bound <= max_bound; ++bound) {
-            if (chrono::duration<double>(chrono::steady_clock::now() - t0).count() > budget_s) break;
+            if (chrono::duration<double>(chrono::steady_clock::now() - t0).count() > budget_s) { any_timed_out = true; break; }
             uint16_t iter_id = (uint16_t)(bound + 1);
             bool found = false, timed_out = false;
             int h0 = h_admissible(s0);
@@ -2031,6 +2031,7 @@ int main() {
                 }
             };
             dfs(s0, 0, h0);
+            if (timed_out) any_timed_out = true;
             if (consistency_violated || timed_out) break;
             if (found) { solved = true; proven_floor = bound; break; }
             else proven_floor = bound + 1;
@@ -2056,7 +2057,13 @@ int main() {
              << ",\"nodes_expanded\":" << total_nodes
              << ",\"edge_consistency_checks\":" << edge_checks
              << ",\"completed_depth\":" << (proven_floor - 1)
-             << ",\"termination_reason\":\"" << (solved ? "solved" : (total_nodes == 0 ? "not_started" : "max_bound_or_budget")) << "\""
+             << ",\"termination_reason\":\""
+             << (solved ? "solved" : any_timed_out ? "time_budget" : total_nodes == 0 ? "not_started" : "max_bound") << "\""
+             << ",\"timed_out\":" << (any_timed_out ? "true" : "false")
+             // IDA* re-expands states in every iteration, so this counts expansions, not distinct states.
+             << ",\"states_seen\":" << total_nodes
+             << ",\"states_seen_counts_reexpansions\":true"
+             << ",\"requested_bound\":" << requested_bound << ",\"effective_bound\":" << max_bound
              << ",\"search_algorithm\":\"exact_state_ida_star\""
              << ",\"winning_witness\":\"" << winning_witness << "\""
              << ",\"epistemic_status\":\"" << (solved ? "VERIFIED" : "EXHAUSTIVE_LOWER_BOUND") << "\"}\n";

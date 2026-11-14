@@ -545,8 +545,21 @@ def prove_floor_verified(
     budget_sec: int = 15,
 ) -> Dict[str, Any]:
     validate_room(part, grid)
+
+    def _unavailable(reason: str) -> Dict[str, Any]:
+        # No native search ran, so there is nothing to claim beyond the trivial floor 0.
+        return {
+            "epistemic_status": "BACKEND_UNAVAILABLE",
+            "unavailable_reason": reason,
+            "proven_floor": 0,
+            "exact_optimum_reached": False,
+            "guarantee": None,
+            "checker_pins": get_soko_checker_pins(),
+        }
+
+    # The source lock covers sources only, so check it before anything is compiled.
     tcb_locked, tcb_report = _runtime_tcb_locked()
-    if not tcb_locked or not _required_checker_pins_ok(get_soko_checker_pins()):
+    if not tcb_locked:
         return {
             "epistemic_status": "REJECTED_TCB_UNLOCKED",
             "proven_floor": 0,
@@ -555,9 +568,16 @@ def prove_floor_verified(
             "checker_pins": get_soko_checker_pins(),
             "tcb_lock_report": tcb_report,
         }
+    if len(grid) * len(grid[0]) > 512:
+        return _unavailable("grid_exceeds_512_cells")
+    # Compile before requiring the binary pin: on a fresh clone the binary does not exist yet.
+    if ensure_cpp_engine() is None:
+        return _unavailable("missing_cpp_source" if not CPP_SRC.is_file() else "cpp_compile_unavailable_or_failed")
+    if not _required_checker_pins_ok(get_soko_checker_pins()):
+        return _unavailable("cpp_engine_pin_missing")
     cpp_out = _invoke_cpp("prove_lb", part, grid, max_bound, 0, budget_sec, "-")
     if cpp_out is None:
-        raise RuntimeError("C++20 compiler (g++ or clang++) and grid <= 512 cells are required for prove_lb lower-bound proving.")
+        return _unavailable("cpp_invocation_failed")
 
     def _count(key: str) -> int:
         try:
@@ -647,6 +667,8 @@ def prove_floor_verified(
         "completed_depth": cpp_out.get("completed_depth"),
         "termination_reason": cpp_out.get("termination_reason"),
         "timed_out": cpp_out.get("timed_out"),
+        "states_seen": cpp_out.get("states_seen"),
+        "states_seen_counts_reexpansions": bool(cpp_out.get("states_seen_counts_reexpansions", False)),
     }
 
     # F-04: VERIFIED is reserved for an exact optimum bound to a dual-oracle-checked witness on a board
