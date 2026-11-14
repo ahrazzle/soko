@@ -1363,6 +1363,40 @@ int main() {
 
     auto [M, s0] = parse_level(part, w, h, rows);
 
+    if (mode == "perft") {
+        // Move-generator check in the style of chess perft: for each depth up to p1,
+        // the number of distinct states first reached at that depth (no-op moves
+        // pruned, deaths dropped) and an order-independent hash of those states
+        // (sum mod 2^64 of their FNV-1a frame digests). Equal counts alone miss
+        // engines that reach different states; the hash does not.
+        int depth = max(0, min(p1, 64));
+        unordered_map<uint64_t, vector<DynState>> seen;
+        auto add = [&](const DynState& st) {
+            auto& bucket = seen[st.hash64(M.n, M.has_bard)];
+            for (const auto& t : bucket) if (t.eq(st, M.n, M.has_bard)) return false;
+            bucket.push_back(st);
+            return true;
+        };
+        add(s0);
+        vector<DynState> layer = {s0};
+        cout << "{\"layers\":[";
+        for (int d = 1; d <= depth; ++d) {
+            vector<DynState> next;
+            uint64_t sum = 0;
+            for (const auto& st : layer)
+                for (int mv = 0; mv < 5; ++mv) {
+                    DynState ns = st;
+                    if (step_state(M, ns, mv, true) < 0) continue;
+                    if (add(ns)) { next.push_back(ns); sum += fold_traj_fnv64(M, ns, 14695981039346656037ULL); }
+                }
+            char hex[17]; snprintf(hex, sizeof hex, "%016llx", (unsigned long long)sum);
+            cout << (d > 1 ? "," : "") << "[" << next.size() << ",\"" << hex << "\"]";
+            layer.swap(next);
+        }
+        cout << "]}\n";
+        return 0;
+    }
+
     if (mode == "verify") {
         DynState cur = s0;
         uint64_t traj_h = fold_traj_fnv64(M, cur, 14695981039346656037ULL);
