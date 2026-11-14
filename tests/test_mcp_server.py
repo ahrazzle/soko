@@ -248,10 +248,13 @@ class SokoAndFormalVerifiedMcpTests(unittest.TestCase):
         self.assertTrue(flr22["exact_state_tt"])
         self.assertEqual(flr22["winning_witness"]["route_len"], 9)
 
-        # v0.3.0 PairAtomQuotientPDB + Multi-Core Exact-State Bucketed A* on III-14 fixture (>= 31 within 8 s)
+        # v0.3.0 PairAtomQuotientPDB + Multi-Core Exact-State Bucketed A* on III-14.
+        # The assertion is on the search result, not on speed: with bound 31 the A* exhausts
+        # every layer up to 31 (about 7.5 s on a quiet machine, ~5.5 s of it building the
+        # pattern databases). The old 8 s budget left no headroom and failed under load.
         flr14 = self.client.request(
             "tools/call",
-            {"name": "soko_prove_floor", "arguments": {"room_id": "III-14", "max_bound": 31, "budget_sec": 8}},
+            {"name": "soko_prove_floor", "arguments": {"room_id": "III-14", "max_bound": 31, "budget_sec": 60}},
         )["result"]["structuredContent"]
         # F-04: an unwitnessed floor is a lower bound, not VERIFIED.
         self.assertEqual(flr14["epistemic_status"], "LOWER_BOUND_UNWITNESSED")
@@ -260,7 +263,9 @@ class SokoAndFormalVerifiedMcpTests(unittest.TestCase):
         self.assertTrue(flr14["pair_atom_pdb_enabled"])
         self.assertEqual(flr14["search_strategy"], "multicore_exact_bucketed_astar")
         self.assertTrue(flr14["exact_state_tt"])
-        self.assertGreaterEqual(flr14["proven_floor"], 31)
+        self.assertFalse(flr14["timed_out"])
+        self.assertEqual(flr14["termination_reason"], "exhausted")
+        self.assertEqual(flr14["proven_floor"], 32)
 
         # v0.3.0 WizardRayGoalBound fixes F-04b trivial floor=1 on Wizard rooms (III-15 & III-20):
         flr20 = self.client.request(

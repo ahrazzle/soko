@@ -16,22 +16,30 @@ import re
 REPO_ROOT = Path(__file__).resolve().parent.parent
 # Exact coverage is intentional: a valid hash of one unrelated file cannot
 # substitute for the implementation that accepts certificates.
+# Checker and prover sources only. Documentation, tests, ledgers and compiled
+# binaries are deliberately excluded: a doc edit must not unlock the TCB, and a
+# binary is machine-specific, so it is hashed at runtime instead of pinned here.
 REQUIRED_SOURCES = (
+    "cpp/frontier_iii14_iii20_prover.cpp",
     "cpp/soko_engine.cpp",
     "soko_mcp/__init__.py",
     "soko_mcp/__main__.py",
     "soko_mcp/analyzer.py",
     "soko_mcp/catalog.py",
+    "soko_mcp/checker_auditor.py",
     "soko_mcp/data/catalog.json",
     "soko_mcp/engine_bridge.py",
     "soko_mcp/evidence.py",
     "soko_mcp/flat_oracle.py",
     "soko_mcp/formal_kernel.py",
     "soko_mcp/integrity.py",
+    "soko_mcp/invariant_synth.py",
     "soko_mcp/oracle.py",
     "soko_mcp/original.py",
     "soko_mcp/play.py",
     "soko_mcp/server.py",
+    "tracks/iii-14/verify.py",
+    "tracks/iii-20/verify.py",
 )
 
 
