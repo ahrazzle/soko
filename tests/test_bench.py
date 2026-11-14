@@ -58,6 +58,22 @@ class BenchSignatureTests(unittest.TestCase):
             self.assertIn(out["termination_reason"], ("solved", "exhausted"))
 
 
+    def test_counts_do_not_depend_on_thread_count(self):
+        # The A* expands each f-layer in parallel batches. A solving batch used to stop
+        # counting edges at the thread that held the win, so II-12@30 reported 1,252,678
+        # edge checks on 4 threads and 1,246,415 on 8 (seen on an 8-core machine, #56).
+        import os
+        from unittest import mock
+        from soko_mcp.engine_bridge import _invoke_cpp
+        room = get_room("II-12")
+        runs = []
+        for threads in ("1", "8"):
+            with mock.patch.dict(os.environ, {"SOKO_ENGINE_THREADS": threads}):
+                out = _invoke_cpp("prove_lb", room["part"], room["grid"], 30, 0, 300)
+            runs.append({key: out.get(key) for key in PROVE_KEYS})
+        self.assertEqual(runs[0], runs[1])
+
+
 if __name__ == "__main__":
     if "--write" in sys.argv:
         BENCH_PATH.write_text(json.dumps(measure(), indent=1, sort_keys=True) + "\n")

@@ -1815,7 +1815,11 @@ int main() {
                 proven_floor = max_bound + 1;
             }
 
-            const unsigned n_threads = max(1u, min(8u, thread::hardware_concurrency()));
+            // SOKO_ENGINE_THREADS overrides the thread count, so tests can check that the
+            // reported counts do not depend on it.
+            const char* threads_env = getenv("SOKO_ENGINE_THREADS");
+            const unsigned n_threads = threads_env && atoi(threads_env) > 0
+                ? (unsigned)min(64, atoi(threads_env)) : max(1u, min(8u, thread::hardware_concurrency()));
             const size_t BATCH = 16384;
             struct CandRec { uint64_t hk; DynState ns; uint8_t g, h, won; uint32_t par; char mv; };
             atomic<bool> incons_flag{false};
@@ -1893,9 +1897,11 @@ int main() {
                         for (auto& t : ths) t.join();
                     }
                     if (incons_flag.load()) { consistency_violated = true; break; }
+                    // Every edge in the batch was checked, so count them all before merging.
+                    // Stopping at the thread that holds the win made the count depend on how
+                    // many threads split the batch.
+                    for (unsigned tid = 0; tid < nt; ++tid) { edge_checks += ecs[tid]; exact_dedups += deds[tid]; }
                     for (unsigned tid = 0; tid < nt; ++tid) {
-                        edge_checks += ecs[tid];
-                        exact_dedups += deds[tid];
                         for (const auto& c : outs[tid]) {
                             if (c.won) {
                                 solved = true;
