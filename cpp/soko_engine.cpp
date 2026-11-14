@@ -211,6 +211,9 @@ inline bool check_win(const LevelMeta& M, const DynState& s) {
 // Several simultaneously active heroes (e.g. I-22, II-12, III-22). PuzzleScript
 // assigns directions to every Player at once and resolves ability rules before
 // ordinary movement; this mirrors PuzzleScriptOracle._step_multiple.
+// Scope: it mirrors the oracle under default flags only. The oracle's planted-bug
+// mutators (BUG_09 cycle order, BUG_10 cancel exemption) have no native plumbing,
+// like the rest of this engine, so do not assume flag parity with the oracle.
 int multi_step_state(const LevelMeta& M, DynState& s, int mv, bool prune_noop) {
     const DynState snap = s;
     int players[MAX_CELLS], np = 0;
