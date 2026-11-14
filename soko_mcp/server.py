@@ -216,8 +216,8 @@ TOOLS: List[Dict[str, Any]] = [
     },
     {
         "name": "soko_verify_tcb_lock",
-        "title": "Verify Runtime SHA256SUMS Manifest & TCB Checker Pins",
-        "description": "Verify runtime cryptographic SHA-256 hashes of all tracked repository files against SHA256SUMS and return SHA-256 pins for every Python and C++20 checker.",
+        "title": "Verify the Checker Source Manifest & TCB Checker Pins",
+        "description": "Verify the SHA-256 hashes of the checker and prover sources listed in SHA256SUMS (the source manifest only; nothing is compiled) and return SHA-256 pins for every Python and C++20 checker. The local compiled engine is hashed and reported separately; it is never a manifest entry.",
         "inputSchema": {"type": "object", "additionalProperties": False},
         "annotations": {"readOnlyHint": True, "idempotentHint": True, "openWorldHint": False},
     },

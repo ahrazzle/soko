@@ -546,6 +546,21 @@ def prove_floor_verified(
 ) -> Dict[str, Any]:
     validate_room(part, grid)
     tcb_locked, tcb_report = _runtime_tcb_locked()
+    # Compile (or reuse the stamped build) before requiring the binary pin, so the
+    # first prove-floor on a fresh clone searches instead of reporting the lock as
+    # unlocked. A missing compiler or a failed build gets its own status.
+    if tcb_locked and ensure_cpp_engine() is None:
+        return {
+            "epistemic_status": "REJECTED_CPP_ENGINE_UNAVAILABLE",
+            "proven_floor": 0,
+            "exact_optimum_reached": False,
+            "guarantee": None,
+            "cpp_unavailable_reason": "missing_cpp_source" if not CPP_SRC.is_file() else "cpp_compile_unavailable_or_failed",
+            "checker_pins": get_soko_checker_pins(),
+            "tcb_lock_report": tcb_report,
+        }
+    if tcb_locked:
+        tcb_locked, tcb_report = _runtime_tcb_locked()
     if not tcb_locked or not _required_checker_pins_ok(get_soko_checker_pins()):
         return {
             "epistemic_status": "REJECTED_TCB_UNLOCKED",
@@ -647,6 +662,7 @@ def prove_floor_verified(
         "completed_depth": cpp_out.get("completed_depth"),
         "termination_reason": cpp_out.get("termination_reason"),
         "timed_out": cpp_out.get("timed_out"),
+        "states_seen": cpp_out.get("states_seen"),
     }
 
     # F-04: VERIFIED is reserved for an exact optimum bound to a dual-oracle-checked witness on a board

@@ -1972,12 +1972,14 @@ int main() {
 
         uint64_t edge_checks = 0, total_nodes = 0, exact_tt_prunes = 0, hash_collisions_prevented = 0;
         int proven_floor = h_admissible(s0);
-        bool solved = false, consistency_violated = false;
+        bool solved = false, consistency_violated = false, b_timed_out = false;
+        uint16_t last_iter_id = 0;
         string winning_witness;
 
         for (int bound = proven_floor; !solved && !consistency_violated && bound <= max_bound; ++bound) {
-            if (chrono::duration<double>(chrono::steady_clock::now() - t0).count() > budget_s) break;
+            if (chrono::duration<double>(chrono::steady_clock::now() - t0).count() > budget_s) { b_timed_out = true; break; }
             uint16_t iter_id = (uint16_t)(bound + 1);
+            last_iter_id = iter_id;
             bool found = false, timed_out = false;
             int h0 = h_admissible(s0);
             if (h0 > bound) { proven_floor = h0; bound = h0 - 1; continue; }
@@ -2031,12 +2033,21 @@ int main() {
                 }
             };
             dfs(s0, 0, h0);
+            if (timed_out) b_timed_out = true;
             if (consistency_violated || timed_out) break;
             if (found) { solved = true; proven_floor = bound; break; }
             else proven_floor = bound + 1;
         }
         if (!solved && total_nodes == 0) proven_floor = 0;
         if (!solved) proven_floor = min(proven_floor, max_bound + 1);
+        // states_seen for strategy B: distinct exact states resident in the
+        // transposition table for the last IDA* iteration (a lower bound on the
+        // distinct states that iteration visited, capped by TT_SIZE).
+        uint64_t b_states_seen = 0;
+        if (last_iter_id != 0)
+            for (const auto& ent : tt) if (ent.iter_id == last_iter_id) b_states_seen++;
+        const char* b_termination = solved ? "solved"
+            : (b_timed_out ? "time_budget" : (total_nodes == 0 ? "not_started" : "max_bound"));
 
         if (consistency_violated) {
             cout << "{\"proven_floor\":0,\"exact_optimum_reached\":false,\"nodes_expanded\":" << total_nodes
@@ -2056,7 +2067,9 @@ int main() {
              << ",\"nodes_expanded\":" << total_nodes
              << ",\"edge_consistency_checks\":" << edge_checks
              << ",\"completed_depth\":" << (proven_floor - 1)
-             << ",\"termination_reason\":\"" << (solved ? "solved" : (total_nodes == 0 ? "not_started" : "max_bound_or_budget")) << "\""
+             << ",\"termination_reason\":\"" << b_termination << "\""
+             << ",\"timed_out\":" << (b_timed_out ? "true" : "false")
+             << ",\"states_seen\":" << b_states_seen
              << ",\"search_algorithm\":\"exact_state_ida_star\""
              << ",\"winning_witness\":\"" << winning_witness << "\""
              << ",\"epistemic_status\":\"" << (solved ? "VERIFIED" : "EXHAUSTIVE_LOWER_BOUND") << "\"}\n";

@@ -22,7 +22,15 @@ jobs:
         run: python -m pip install ".[research]"
       - name: Source lock covers every checker source and matches
         run: python -m soko_mcp.integrity
+      - name: First Sokoban command on a clean checkout is prove-floor (it must compile and search)
+        run: |
+          test ! -e cpp/build/soko_engine
+          python -m soko_mcp prove-floor --room fixture:I-1 --max-bound 12 --budget-sec 10 | tee "$RUNNER_TEMP/first-prove-floor.json"
+          python -c "import json, os; d = json.load(open(os.environ['RUNNER_TEMP'] + '/first-prove-floor.json')); assert d['epistemic_status'] == 'VERIFIED' and d['proven_floor'] == 9, d"
+          test -x cpp/build/soko_engine
       - name: Build the native engine from source (a failed build fails CI instead of dropping the C++ oracle)
         run: python -c "from soko_mcp.engine_bridge import ensure_cpp_engine as e; assert e(), 'C++ engine did not build'"
       - name: Unit, regression and differential tests
         run: python -m unittest discover -s tests -v
+      - name: README floor claims are ones this repository reproduces
+        run: python tools/check_readme_floors.py --reproduce
