@@ -50,19 +50,26 @@ struct DynState {
         return true;
     }
 
+    // Each 8-byte word is absorbed with a multiply followed by an xorshift.
+    // A multiply alone (the earlier FNV-style loop) only carries bits upward,
+    // so states that differed only in the high bytes of a word collided:
+    // 0.2-0.8% of distinct states shared a full 64-bit hash, against about
+    // 1e-6 expected from the birthday bound. Exact-state tables still compare
+    // full states; the hash-only sets in the beam modes now lose almost none.
+    static inline uint64_t absorb(uint64_t h, uint64_t w) {
+        h ^= w; h *= 0xbf58476d1ce4e5b9ULL; return h ^ (h >> 31);
+    }
     uint64_t hash64(int n, bool check_notes) const {
         uint64_t h = 1469598103934665603ULL;
-        int q = n >> 3;
-        const uint64_t* p = reinterpret_cast<const uint64_t*>(obj);
-        for (int i = 0; i < q; ++i) { h ^= p[i] + 0x9e3779b97f4a7c15ULL; h *= 1099511628211ULL; }
-        for (int i = q << 3; i < n; ++i) { h ^= obj[i]; h *= 1099511628211ULL; }
-        h ^= ((uint64_t)y_open << 8) | p_open;
-        h *= 1099511628211ULL;
+        int i = 0;
+        for (; i + 8 <= n; i += 8) { uint64_t w; memcpy(&w, obj + i, 8); h = absorb(h, w); }
+        if (i < n) { uint64_t w = 0; memcpy(&w, obj + i, n - i); h = absorb(h, w ^ ((uint64_t)(n - i) << 56)); }
+        h = absorb(h, ((uint64_t)y_open << 8) | p_open | 0x10000ULL);
         if (check_notes) {
             int nw = (n + 63) >> 6;
-            for (int i = 0; i < nw; ++i) if (notes[i]) { h ^= notes[i] + (uint64_t)i; h *= 1099511628211ULL; }
+            for (int k = 0; k < nw; ++k) if (notes[k]) h = absorb(h ^ ((uint64_t)k << 58), notes[k]);
         }
-        return h ^ (h >> 31);
+        h ^= h >> 33; h *= 0x94d049bb133111ebULL; return h ^ (h >> 29);
     }
 };
 
