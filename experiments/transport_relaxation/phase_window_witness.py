@@ -43,6 +43,12 @@ from experiments.transport_relaxation.dinic_kernel import CertifiedDinic, verify
 
 RationalLike = Union[int, str, Fraction]
 
+# Upper bound on n_crates and n_targets, in both the certifier and the verifier.
+# The flow network has 2 + n_crates + 2 * n_targets nodes and is rebuilt once
+# per knot, so an unbounded recorded count would let a certificate force an
+# arbitrarily large allocation. Real phase-window instances are far below this.
+MAX_COUNT = 10_000
+
 
 def _to_q(x: RationalLike) -> Fraction:
     return x if isinstance(x, Fraction) else Fraction(x)
@@ -162,6 +168,8 @@ def certify_phase_window_transport(
     b_max = _to_q(phase_max)
     if n_crates <= 0 or n_targets <= 0 or b_min > b_max:
         raise ValueError("Invalid crate/target counts or phase interval")
+    if n_crates > MAX_COUNT or n_targets > MAX_COUNT:
+        raise ValueError(f"n_crates and n_targets must be at most {MAX_COUNT}")
     if not _indices_in_range(window_edges, n_crates, n_targets):
         raise ValueError("Crate or target index outside 0..n-1")
 
@@ -224,7 +232,8 @@ def verify_phase_window_certificate(cert: Dict[str, Any]) -> Tuple[bool, str]:
     other than the recomputed cut, names a `max_phase_q` that is not a knot
     attaining the recomputed maximum, uses a crate or target index outside
     0..n-1, records a non-int flow or cut, a non-bool flag, a non-int active
-    edge, or re-hashes any of those mutated claims. The only way to pass is to
+    edge, a non-list knot_witnesses, an infinite phase bound or endpoint, or a
+    count above MAX_COUNT, or re-hashes any of those mutated claims. The only way to pass is to
     exhibit real flows and real cuts, with recorded types matching the
     recomputed values exactly. A payload that cannot be hashed returns
     malformed_certificate rather than raising.
@@ -244,12 +253,15 @@ def verify_phase_window_certificate(cert: Dict[str, Any]) -> Tuple[bool, str]:
             (int(c), int(t), Fraction(lo), Fraction(hi))
             for c, t, lo, hi in cert["window_edges_q"]
         ]
-    except (KeyError, TypeError, ValueError, ZeroDivisionError):
+    except (KeyError, TypeError, ValueError, ZeroDivisionError, OverflowError):
+        # OverflowError: Fraction(float('inf')) and Fraction(float('-inf')).
         return False, "malformed_certificate"
     if not (_strict_int(cert["n_crates"]) and _strict_int(cert["n_targets"])):
         return False, "malformed_certificate"
     if n_c <= 0 or n_t <= 0 or b_min > b_max:
         return False, "invalid_counts_or_phase_interval"
+    if n_c > MAX_COUNT or n_t > MAX_COUNT:
+        return False, "count_exceeds_max"
     raw_windows = cert["window_edges_q"]
     if not all(isinstance(w, list) and len(w) == 4 for w in raw_windows):
         return False, "malformed_certificate"
@@ -270,6 +282,8 @@ def verify_phase_window_certificate(cert: Dict[str, Any]) -> Tuple[bool, str]:
         return False, "static_union_flag_mismatch"
 
     witnesses = cert.get("knot_witnesses", [])
+    if not isinstance(witnesses, list):
+        return False, "malformed_certificate"
     if len(witnesses) != len(knots):
         return False, "knot_count_mismatch"
 

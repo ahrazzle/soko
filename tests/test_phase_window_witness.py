@@ -7,6 +7,7 @@ import unittest
 from experiments.transport_relaxation.phase_window_witness import (
     certify_phase_window_transport,
     verify_phase_window_certificate,
+    MAX_COUNT,
     _canon_sha256,
 )
 
@@ -361,6 +362,91 @@ class PhaseWindowWitnessTypeCheckTests(unittest.TestCase):
                         n_crates=2, n_targets=bad, window_edges=windows,
                         phase_min=0, phase_max=10,
                     )
+
+
+class PhaseWindowWitnessReview2Tests(unittest.TestCase):
+    """Regression tests for review 5887774780 on PR #47."""
+
+    def _verify_no_raise(self, cert):
+        try:
+            return verify_phase_window_certificate(cert)
+        except Exception as exc:  # noqa: BLE001 - any raise is the bug
+            self.fail(f"verifier raised {type(exc).__name__}: {exc}")
+
+    def test_infinite_phase_bounds_are_malformed(self) -> None:
+        for field in ("phase_min_q", "phase_max_q"):
+            for value in (float("inf"), float("-inf")):
+                with self.subTest(field=field, value=value):
+                    cert = _cert()
+                    cert[field] = value
+                    ok, msg = self._verify_no_raise(_rehash(cert))
+                    self.assertFalse(ok)
+                    self.assertEqual(msg, "malformed_certificate")
+
+    def test_infinite_window_endpoints_are_malformed(self) -> None:
+        for pos in (2, 3):
+            for value in (float("inf"), float("-inf")):
+                with self.subTest(pos=pos, value=value):
+                    cert = _cert()
+                    cert["window_edges_q"][0][pos] = value
+                    ok, msg = self._verify_no_raise(_rehash(cert))
+                    self.assertFalse(ok)
+                    self.assertEqual(msg, "malformed_certificate")
+
+    def test_non_list_knot_witnesses_are_malformed(self) -> None:
+        for value in (None, True, False, 1.5, 0, 3, "abc", {"a": 1}, (1, 2, 3)):
+            with self.subTest(value=repr(value)):
+                cert = _cert()
+                cert["knot_witnesses"] = value
+                ok, msg = self._verify_no_raise(_rehash(cert))
+                self.assertFalse(ok)
+                self.assertEqual(msg, "malformed_certificate")
+
+    def test_missing_knot_witnesses_still_count_mismatch(self) -> None:
+        cert = _cert()
+        del cert["knot_witnesses"]
+        ok, msg = self._verify_no_raise(_rehash(cert))
+        self.assertFalse(ok)
+        self.assertEqual(msg, "knot_count_mismatch")
+
+    def test_count_just_above_cap_is_rejected_by_verifier(self) -> None:
+        for field in ("n_crates", "n_targets"):
+            with self.subTest(field=field):
+                cert = _cert()
+                cert[field] = MAX_COUNT + 1
+                ok, msg = self._verify_no_raise(_rehash(cert))
+                self.assertFalse(ok)
+                self.assertEqual(msg, "count_exceeds_max")
+
+    def test_huge_count_is_rejected_before_graph_build(self) -> None:
+        for field in ("n_crates", "n_targets"):
+            with self.subTest(field=field):
+                cert = _cert()
+                cert[field] = 10**100
+                ok, msg = self._verify_no_raise(_rehash(cert))
+                self.assertFalse(ok)
+                self.assertEqual(msg, "count_exceeds_max")
+
+    def test_certifier_rejects_counts_above_cap(self) -> None:
+        windows = [(0, 0, 0, 10)]
+        for kwargs in (
+            {"n_crates": MAX_COUNT + 1, "n_targets": 2},
+            {"n_crates": 2, "n_targets": MAX_COUNT + 1},
+            {"n_crates": 10**100, "n_targets": 2},
+        ):
+            with self.subTest(**{k: str(v)[:12] for k, v in kwargs.items()}):
+                with self.assertRaises(ValueError):
+                    certify_phase_window_transport(
+                        window_edges=windows, phase_min=0, phase_max=10, **kwargs
+                    )
+
+    def test_honest_certificate_at_cap_shape_still_verifies(self) -> None:
+        cert = certify_phase_window_transport(
+            n_crates=1, n_targets=MAX_COUNT, window_edges=[(0, MAX_COUNT - 1, 0, 10)],
+            phase_min=0, phase_max=10,
+        )
+        self.assertEqual(verify_phase_window_certificate(cert), (True, "verified"))
+
 
 if __name__ == "__main__":
     unittest.main()
