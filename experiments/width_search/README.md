@@ -74,8 +74,9 @@ h     22  17  13   7   8   8   6   4   0
 48-g  48  40  31  24  18  12   8   4   0
 ```
 
-h is 22 at the start against a proven 44, and it stays flat at 7 or 8 from key 24 to
-key 39 while the route closes a gap of 17 down to 2. Those keys are the setup: the
+h is 22 at the start, against a 48-key route and a reproduced floor of 38 on this
+board (`evidence/2026-11-13-iii14-15x7-floor38-ledger`). It stays flat at 7 or 8 from
+key 24 to key 39 while the route closes a gap of 17 down to 2. Those keys are the setup: the
 Druid turns border walls into crates, the Bard's aura herds them onto the nine purple
 switches, and the Druid sets them as walls in column 6. Only then do the doors around
 the goals open. Neither a lowest-h beam nor a novelty beam can tell those keys from
