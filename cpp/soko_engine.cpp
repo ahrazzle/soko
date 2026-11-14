@@ -159,16 +159,11 @@ bool run_late(const LevelMeta& M, DynState& s) {
                     }
                 }
             }
-        int monsters_left = 0;
         for (int i = 0; i < M.n; ++i) {
             if (dying[i]) {
                 if (is_monster(M.part, s.obj[i])) s.obj[i] = 0;
                 else if (is_hero(s.obj[i])) return true;
             }
-            if (is_monster(M.part, s.obj[i])) monsters_left++;
-        }
-        if (monsters_left == 0) {
-            for (int i = 0; i < M.n; ++i) if (s.obj[i] == 20) s.obj[i] = 0;
         }
     }
     if (!M.y_switches.empty()) {
@@ -193,6 +188,13 @@ bool run_late(const LevelMeta& M, DynState& s) {
             for (int idx : M.p_doors_init) { if (is_hero(s.obj[idx])) return true; s.obj[idx] = 19; }
         }
     }
+    // The monster gate opens after the door phase: a closing colored door may
+    // crush the last monster on this same turn (original rule order).
+    if (M.part >= 2) {
+        bool any_monster = false;
+        for (int i = 0; i < M.n && !any_monster; ++i) any_monster = is_monster(M.part, s.obj[i]);
+        if (!any_monster) for (int i = 0; i < M.n; ++i) if (s.obj[i] == 20) s.obj[i] = 0;
+    }
     if (M.has_bard) {
         for (int i = 0; i < M.n; ++i) if (s.has_note(i) && !is_moveable(M.part, s.obj[i])) s.notes[i >> 6] &= ~(1ULL << (i & 63));
     }
@@ -206,7 +208,131 @@ inline bool check_win(const LevelMeta& M, const DynState& s) {
     return hc == (int)M.goals.size();
 }
 
+// Several simultaneously active heroes (e.g. I-22, II-12, III-22). PuzzleScript
+// assigns directions to every Player at once and resolves ability rules before
+// ordinary movement; this mirrors PuzzleScriptOracle._step_multiple.
+int multi_step_state(const LevelMeta& M, DynState& s, int mv, bool prune_noop) {
+    const DynState snap = s;
+    int players[MAX_CELLS], np = 0;
+    uint8_t initial[MAX_CELLS];
+    for (int i = 0; i < M.n; ++i) if (is_active(s.obj[i])) players[np++] = i;
+    for (int k = 0; k < np; ++k) initial[k] = s.obj[players[k]];
+    auto cancel = [&]() {
+        s = snap;
+        return prune_noop ? -1 : (check_win(M, s) ? 1 : 0);
+    };
+    auto finish = [&]() {
+        if (M.part == 2)
+            for (int k = 0; k < np; ++k) if (is_active(s.obj[players[k]])) return cancel();
+        if (run_late(M, s)) return -1;
+        if (prune_noop && s.eq(snap, M.n, M.has_bard)) return -1;
+        return check_win(M, s) ? 1 : 0;
+    };
+
+    if (mv == 4) {
+        bool pending[MAX_CELLS] = {};
+        for (int k = 0; k < np; ++k) pending[k] = true;
+        for (int offset = 1; offset < M.max_heroes; ++offset)
+            for (int slot = 0; slot < M.max_heroes; ++slot) {
+                uint8_t identity = (uint8_t)(slot + 7);
+                for (int k = 0; k < np; ++k) {
+                    if (!pending[k] || initial[k] + 6 != identity) continue;
+                    uint8_t target = (uint8_t)(((slot + offset) % M.max_heroes) + 7);
+                    int f = -1;
+                    for (int x = 0; x < M.w && f < 0; ++x)
+                        for (int y = 0; y < M.h; ++y)
+                            if (s.obj[y * M.w + x] == target) { f = y * M.w + x; break; }
+                    if (f >= 0) { s.obj[players[k]] = identity; s.obj[f] = (uint8_t)(target - 6); pending[k] = false; }
+                }
+            }
+        return finish();
+    }
+
+    const int dx = DX[mv], dy = DY[mv];
+    auto adj = [&](int i) {
+        int x = i % M.w + dx, y = i / M.w + dy;
+        return (x >= 0 && x < M.w && y >= 0 && y < M.h) ? y * M.w + x : -1;
+    };
+    bool motion[MAX_CELLS] = {};
+    for (int k = 0; k < np; ++k) motion[players[k]] = true;
+    for (int k = 0; k < np; ++k) {
+        int src = players[k];
+        if (initial[k] == 1) {
+            for (int t = adj(src); t >= 0 && is_moveable(M.part, s.obj[t]); t = adj(t)) motion[t] = true;
+        } else if (initial[k] == 2) {
+            int x = src % M.w - dx, y = src / M.w - dy;
+            if (x >= 0 && x < M.w && y >= 0 && y < M.h && is_moveable(M.part, s.obj[y * M.w + x])) motion[y * M.w + x] = true;
+        }
+    }
+    for (int k = 0; k < np; ++k) {  // Wizard warpballs pass through active heroes.
+        if (initial[k] != 3) continue;
+        int src = players[k];
+        motion[src] = false;
+        int t = adj(src);
+        while (t >= 0) {
+            uint8_t o = s.obj[t];
+            if (is_static_obj(o)) { motion[src] = true; break; }
+            if (is_moveable(M.part, o)) { s.obj[src] = o; s.obj[t] = 3; break; }
+            t = adj(t);
+        }
+        if (t < 0 && M.part == 3) motion[src] = true;
+    }
+    for (int k = 0; k < np; ++k) {  // Druid transformations precede movement.
+        int src = players[k];
+        if (initial[k] != 6 || s.obj[src] != 6) continue;
+        int t = adj(src);
+        if (t < 0 || s.obj[t] == 0) continue;
+        motion[src] = false;
+        uint8_t o = s.obj[t];
+        if (o == 14 || o == 15 || o == 13) s.obj[t] = (o == 13) ? 14 : 13;
+        else if (is_hero(o) && !is_healer(o)) {
+            bool shielded = false;
+            int tx = t % M.w, ty = t / M.w;
+            for (int d = 0; d < 4; ++d) {
+                int hx = tx + DX[d], hy = ty + DY[d];
+                if (hx >= 0 && hx < M.w && hy >= 0 && hy < M.h && is_healer(s.obj[hy * M.w + hx])) shielded = true;
+            }
+            if (!shielded) s.obj[t] = 13;
+        }
+    }
+    bool bard[MAX_CELLS] = {};
+    bool any_bard = false;
+    for (int k = 0; k < np; ++k)
+        if (initial[k] == 5 && s.obj[players[k]] == 5) { bard[players[k]] = true; any_bard = true; }
+    if (any_bard) {  // Bard pseudo-movement overwrites other active heroes.
+        bool pending[MAX_CELLS] = {};
+        for (int i = 0; i < M.n; ++i) {
+            pending[i] = bard[i] || (s.has_note(i) && is_moveable(M.part, s.obj[i]));
+            if (bard[i]) motion[i] = false;
+        }
+        for (bool progress = true; progress;) {
+            progress = false;
+            for (int i = 0; i < M.n; ++i) {
+                if (!pending[i]) continue;
+                int t = adj(i);
+                if (t >= 0 && (s.obj[t] == 0 || (is_active(s.obj[t]) && s.obj[t] != 5))) {
+                    s.obj[t] = s.obj[i]; s.obj[i] = 0; pending[i] = false; progress = true;
+                }
+            }
+        }
+        for (int i = 0; i < M.n; ++i) if (pending[i] && bard[i]) return cancel();
+    }
+    if (M.has_bard) s.clr_notes();
+    for (bool progress = true; progress;) {
+        progress = false;
+        for (int i = 0; i < M.n; ++i) {
+            if (!motion[i]) continue;
+            int t = adj(i);
+            if (t >= 0 && s.obj[t] == 0) { s.obj[t] = s.obj[i]; s.obj[i] = 0; motion[i] = false; progress = true; }
+        }
+    }
+    return finish();
+}
+
 int step_state(const LevelMeta& M, DynState& s, int mv, bool prune_noop = true) {
+    int active_count = 0;
+    for (int i = 0; i < M.n && active_count < 2; ++i) if (is_active(s.obj[i])) ++active_count;
+    if (active_count > 1) return multi_step_state(M, s, mv, prune_noop);
     int ai = -1;
     for (int i = 0; i < M.n; ++i) if (is_active(s.obj[i])) { ai = i; break; }
     if (ai < 0) return -1;
