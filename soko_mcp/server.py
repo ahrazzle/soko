@@ -814,18 +814,29 @@ def dispatch_tool_call(name: str, args: Dict[str, Any]) -> Dict[str, Any]:
         res = verify_route_dual(
             part,
             grid,
-            str(args["route"]),
+            args["route"],
             require_cpp=bool(args.get("require_cpp", False)),
         )
         if rid:
+            # The certificate must cover the room binding too, so recompute it.
             res["room_id"] = rid
+            res.pop("certificate_sha256", None)
+            res["certificate_sha256"] = digest(res)
         return res
 
     if name == "soko_optimize_route":
         rid, part, grid, meta = resolve_room_input(args.get("room_id"), args.get("part"), args.get("grid"))
         seed = args.get("seed_route")
-        if not seed and meta:
-            seed = meta.get("prior_record_route_87") or meta.get("reference_route")
+        if not seed:
+            # Catalog rooms do not carry the prior 87-key III-20 record; take it from the
+            # fixture for the identical board so the 87 -> 84 generator control still runs.
+            # The board match also covers callers that pass part and grid without a room_id.
+            prior = (meta or {}).get("prior_record_route_87") or next(
+                (f["prior_record_route_87"] for f in FRONTIER_ROOMS.values()
+                 if f.get("prior_record_route_87") and f["part"] == part and list(f["grid"]) == list(grid)),
+                None,
+            )
+            seed = prior or (meta or {}).get("reference_route")
         if not seed:
             raise ValueError("Provide 'seed_route' (or specify a built-in 'room_id' with a reference route).")
         res = optimize_route_verified(

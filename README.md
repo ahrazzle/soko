@@ -4,6 +4,13 @@ Model Context Protocol (MCP) server and C++20 verification/search/prover toolkit
 
 Zero third-party Python packages are required (`python >= 3.10` standard library only). On first Sokoban tool call, `soko_mcp` automatically compiles the C++20 engine (`cpp/soko_engine.cpp`) via `g++` or `clang++` (`-O3 -pthread -std=c++20`), while maintaining fail-closed dual-Python verification (`PuzzleScriptOracle` + zero-shared-code `FlatBitmaskOracle`) and honest capability reporting (`soko_capabilities`) even when no C++20 compiler is present.
 
+## Verification status (2026-11-14)
+
+- The test suite runs in CI on every push and pull request (`.github/workflows/tests.yml`). Before this date the repository had no CI, and the suite had failed on `main` since PR #9 without anyone noticing.
+- The vault-lineage imports had overwritten two hardened layers: the native engine's original-rule mechanics, and the repository's evidence-boundary contract. Between PR #9 and this date the C++ engine disagreed with both Python oracles on rooms with more than one active hero (I-22, II-12), and native `prove_lb` labelled zero-search and unsolvable results `VERIFIED`. Both are fixed. A seeded catalog-wide differential test (`tests/test_engine_differential.py`) guards native parity. The old engine agreed with the oracles on every sampled III-14, III-20 and II-22 route, so the bounds published for those boards are not affected.
+- `SHA256SUMS` locks checker and prover sources only (`python3 -m soko_mcp.integrity`). A matching lock shows the files are unchanged. It does not show that they are correct, which is why CI runs the tests. Compiled binaries are built from source and are not committed.
+- Experiments in `experiments/causal_solver` and `experiments/exact_frontier` need the optional extras: `pip install ".[research]"`.
+
 ## What's New in v0.4.0 (Two-Way `Foundation-0` Synthesis)
 
 1. **`Foundation-0/gfq-codes` Exact Rational LP Dual & Cost-Partitioned Quotient Certificates (`formal_certify_lower_bound`):**
@@ -76,29 +83,30 @@ claude mcp add soko-verified -- python3 -m soko_mcp
 | **Sokoban** | **Tool** | `soko_replay_original` | Replay UDLRA keys in the pinned original PuzzleScript browser engine |
 | **Sokoban** | **Tool** | `soko_play` | Stateless original-engine play with portable JSON checkpoints, undo and reset |
 | **Sokoban** | **Tool** | `soko_inspect_room` | Detect `X`/`Y`/`180`-degree symmetries, hero-switch chirality, switch deficits, and Bard constraints |
-| **Sokoban** | **Tool** | `soko_verify_route` | Triple-oracle (`PuzzleScriptOracle` + `FlatBitmaskOracle` + `C++20`) per-frame trajectory digest verifier |
+| **Sokoban** | **Tool** | `soko_verify_route` | Per-frame trajectory digest verifier: always the two Python oracles (`PuzzleScriptOracle` + `FlatBitmaskOracle`), plus the `C++20` engine when it compiles. Returns a `certificate_sha256` bound to the instance, route and checker pins |
 | **Sokoban** | **Tool** | `soko_optimize_route` | Shorten seed routes via Sliding-Window Exact BFS + Chiral-Mirror Tube Beam + Iterative Refinement |
 | **Sokoban** | **Tool** | `soko_solve_room` | Solve `(part, grid)` rooms from scratch via bucket-diversified C++20 beam search |
 | **Sokoban** | **Tool** | `soko_prove_floor` | Multi-Core Exact-State Bucketed A* (`<= 256` cells) + `PairAtomQuotientPDB` + `BardDruidQuotientPDB` + `WizardRayGoalBound`. Returns `VERIFIED` only for an exact optimum with a dual-oracle-checked witness on a board with a reference route; otherwise `WITNESS_MATCHES_CLAIM_UNREFERENCED` (no reference route) or `LOWER_BOUND_UNWITNESSED` (inexact search) |
 | **Sokoban** | **Tool** | `soko_run_planted_bug_audit` | Cross-oracle baseline parity + 10-mutation Proven-Commons Planted-Bug Suite (`10/10` caught) |
-| **Sokoban** | **Tool** | `soko_verify_tcb_lock` | Path-confined runtime `SHA256SUMS` manifest verification and SHA-256 checker pin inspection |
+| **Sokoban** | **Tool** | `soko_verify_tcb_lock` | Path-confined source-manifest check (complete coverage of checker and prover sources, no compilation) and SHA-256 checker pin inspection; the local binary is hashed separately |
 
 ## Verified Frontier Route Ledger (`a1kindus`)
 
 | Room | Keys | Status | SHA-256 (12) | Notes & Submission String |
 | :--- | :---: | :---: | :---: | :--- |
-| **`III-20` (Primary)** | **`84`** | **`VERIFIED`** | `eecbea96b091` | Live Frontier record (floor `74`): `ADDDRRADAAADRULARADAAADDLLALAAAARRRRUULAAUALLRADRRRRADRULRURRRRRARRUURURAURRRDDRAUUR` |
+| **`III-20` (Primary)** | **`84`** | **`VERIFIED`** | `eecbea96b091` | Live Frontier record (proven minimum `76` by banteg, accepted 2026-11-13): `ADDDRRADAAADRULARADAAADDLLALAAAARRRRUULAAUALLRADRRRRADRULRURRRRRARRUURURAURRRDDRAUUR` |
 | **`III-20` (Alt)** | **`84`** | **`VERIFIED`** | `4edff1ad8c90` | Alternate 84-key ending (`URU`): `ADDDRRADAAADRULARADAAADDLLALAAAARRRRUULAAUALLRADRRRRADRULRURRRRRARRUURURAURRRDDRAURU` |
-| **`III-14` (`14x7` & `15x7`)** | **`48`** | **`VERIFIED`** | `cd934d25a629` | Matches 48 shortest known. On the 15x7 catalog board, a floor of 38 or more was reproduced by grk-proof (review 5886834600) from the finished `f=37` layer; see [the merged ledger](evidence/2026-11-13-iii14-15x7-floor38-ledger/README.md). 34 is an upper bound under sticky doors only. The 14x7 fixture still has the standalone-prover lower bound `>= 34` (completed layer of `79,587,434` exact states): `LLULULULRURURURURUAUDRRDDAUARRDLRAULDLDRARURDUUR` |
+| **`III-14` (`14x7` & `15x7`)** | **`48`** | **`VERIFIED`** | `cd934d25a629` | Matches 48 shortest known. The frontier's accepted proven minimum is 44 (banteg, 2026-11-13). On the 15x7 catalog board, a floor of 38 or more was reproduced by grk-proof (review 5886834600) from the finished `f=37` layer; see [the merged ledger](evidence/2026-11-13-iii14-15x7-floor38-ledger/README.md). 34 is an upper bound under sticky doors only. The 14x7 fixture still has the standalone-prover lower bound `>= 34` (completed layer of `79,587,434` exact states): `LLULULULRURURURURUAUDRRDDAUARRDLRAULDLDRARURDUUR` |
 | **`II-22`** | **`94`** | **`VERIFIED`** | `d5e82e8e3c65` | Verified baseline (`92` closed optimal on Frontier): `ADDUUULDDRDDLDULDDRLLLLULURDLDRURUAAUUULLLLLLLAAAULURUARRRARRRDRUUDRRRDLLLDDDLDRLALUADDDRDRRUR` |
 | **`III-15`** | **`69`** | **`VERIFIED`** | `76e195c497c1` | Proven optimal: `AULADDALAULDRALAULDALALURALADLUALALDRALAULDALALURALADLUALALDLRAUAULLU` |
-| **`I-1` / `III-22`** | **`9`** | **`VERIFIED`** | `179f01ec4093` | Proven optimal opening & finale: `RRRRRRRRR` |
+| **`I-1` fixture / `III-22`** | **`9`** | **`VERIFIED`** | `179f01ec4093` | Proven optimal on the legacy `fixture:I-1` board and on III-22: `RRRRRRRRR`. The original I-1 room in the catalog (13x5) is a different board, with record and floor 8 |
 
 ## CLI & Test Quickstart
 
 ```bash
-# Verify SHA256SUMS lock and run all unit & regression test suites
-sha256sum -c SHA256SUMS
+# Verify the source lock (complete coverage, no compilation) and run every test suite
+python3 -m soko_mcp.integrity
+pip install ".[research]"   # optional: z3 / python-sat for the research experiments' tests
 python3 -m unittest discover -s tests -v
 
 # Run CLI commands directly
