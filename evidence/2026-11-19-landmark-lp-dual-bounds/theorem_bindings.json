@@ -1,0 +1,42 @@
+{
+  "schema_version": 1,
+  "mcproof_branch": "feat/formal-verification-loop-v0.2",
+  "bindings": [
+    {
+      "soko_component": "experiments/landmark_dual_bounds/prove_iii14_15x7_landmark_floor.cpp::Switch3x3_15PDB",
+      "lean_theorem": "Mcproof.Spec.quotientHeuristic_step_consistent",
+      "companion_theorem": "Mcproof.Spec.quotientHeuristic_admissible",
+      "role": "Certifies that any backward-BFS quotient distance hQ(pi(s)) with hQ(pi(g))=0 and 0-or-1 quotient edge drops is globally 1-step consistent and admissible."
+    },
+    {
+      "soko_component": "experiments/landmark_dual_bounds/prove_iii14_15x7_landmark_floor.cpp::lookup_plus_harvest",
+      "lean_theorem": "Mcproof.Spec.zeroSelfLoop_deficit_composition",
+      "companion_theorem": "Mcproof.Spec.conservation_harvest_potential_repair",
+      "role": "Certifies that adding max(0, 9 - m_act(s)) to Switch3x3_15PDB preserves global 1-step consistency because every outer-border harvest maps to a self-loop in Switch3x3_15PDB."
+    },
+    {
+      "soko_component": "experiments/landmark_dual_bounds/quotient_consistency_lp.py::prefunded_transmutation_potential",
+      "lean_theorem": "Mcproof.Spec.prefundedHeuristic_step_consistent",
+      "companion_theorem": "Mcproof.Spec.prefundedVal_bounded_drop_witness",
+      "role": "Certifies the soko#38 closed-form pre-funded transmutation potential repair (turning the 12 -> 10 Druid drop into 11 -> 10)."
+    },
+    {
+      "soko_component": "experiments/landmark_dual_bounds/hero_assignment_bounds.py::evaluate_operator_counting_bound",
+      "lean_theorem": "Mcproof.Spec.operatorCounting_dual_div_admissible",
+      "companion_theorem": "Mcproof.Spec.ceilDiv_step_consistent_and_admissible",
+      "role": "Certifies exact rational operator-counting LP dual admissibility and proves integer ceiling preserves global 1-step consistency under 1/n shared Bard/Fighter/Druid actions."
+    },
+    {
+      "soko_component": "experiments/landmark_dual_bounds/hero_assignment_bounds.py::cycle_switch_tax",
+      "lean_theorem": "Mcproof.Spec.cyclicSwitchTax_triangle",
+      "companion_theorem": "Mcproof.Spec.cyclicSwitchDist_metric_and_witness",
+      "role": "Certifies triangle inequality and metric admissibility of cyclic 'A' party-switch cost ((target + k - active) % k)."
+    },
+    {
+      "soko_component": "experiments/transport_relaxation/intact_flow_allocation.py::allocate_intact_9flow",
+      "lean_theorem": "Mcproof.Spec.vertexSplit_unit_flow_horizon_bound",
+      "companion_theorem": "Mcproof.Spec.dualFloorNat_sound_and_witness",
+      "role": "Certifies vertex-split unit-capacity flow c_in(t) -> c_out(t) and min-cut horizon bounds."
+    }
+  ]
+}
