@@ -1,0 +1,19 @@
+[INIT] Canonical 15x7 Room III-14 board_sha256_lf = 300563ca68370b85e44b73f0361320bc79948849f59897a3dd0b5cc470bf351c
+[BUILD] Built BedrockConservedSwitch3x3 (946 MiB) + PetrifiedColFlow (867 MiB) in 108.88s
+[QUOTIENT AUDIT] bsw9: edges=4125601380 viol=0 | pcf: edges=22298783175 viol=0 (48.73s)
+[CONCRETE WALK AUDIT] edges_checked=55000021 packed24_bijective=1000000 violations=0 (1.17s)
+[ROOT] h(s0)=29 [bsw9+need9=27, pcf=29] | soko#38 h: 16 -> 16
+  [CERTIFIED 15x7 FLOOR >= 30] f=29 expanded=3 unique_canon_states=14 edges_checked=15 collisions_prevented=0 time=0.00s
+  [CERTIFIED 15x7 FLOOR >= 31] f=30 expanded=210 unique_canon_states=736 edges_checked=985 collisions_prevented=0 time=0.01s
+  [CERTIFIED 15x7 FLOOR >= 32] f=31 expanded=719 unique_canon_states=2592 edges_checked=3509 collisions_prevented=0 time=0.02s
+  [CERTIFIED 15x7 FLOOR >= 33] f=32 expanded=5185 unique_canon_states=18059 edges_checked=24939 collisions_prevented=0 time=0.05s
+  [CERTIFIED 15x7 FLOOR >= 34] f=33 expanded=16706 unique_canon_states=57459 edges_checked=81126 collisions_prevented=3 time=0.11s
+  [CERTIFIED 15x7 FLOOR >= 35] f=34 expanded=62935 unique_canon_states=206072 edges_checked=302688 collisions_prevented=25 time=0.26s
+  [CERTIFIED 15x7 FLOOR >= 36] f=35 expanded=210110 unique_canon_states=666460 edges_checked=1000478 collisions_prevented=256 time=0.40s
+  [CERTIFIED 15x7 FLOOR >= 37] f=36 expanded=675401 unique_canon_states=2093289 edges_checked=3195609 collisions_prevented=2524 time=0.54s
+  [CERTIFIED 15x7 FLOOR >= 38] f=37 expanded=2219716 unique_canon_states=6767349 edges_checked=10433186 collisions_prevented=26585 time=0.91s
+  [CERTIFIED 15x7 FLOOR >= 39] f=38 expanded=6991617 unique_canon_states=21028585 edges_checked=32803746 collisions_prevented=260512 time=1.92s
+  [CERTIFIED 15x7 FLOOR >= 40] f=39 expanded=22400061 unique_canon_states=66421410 edges_checked=104666448 collisions_prevented=2721815 time=4.99s
+  [CERTIFIED 15x7 FLOOR >= 41] f=40 expanded=68659449 unique_canon_states=200419558 edges_checked=319817625 collisions_prevented=28527620 time=13.91s
+  [CERTIFIED 15x7 FLOOR >= 42] f=41 expanded=212609019 unique_canon_states=612628443 edges_checked=986342539 collisions_prevented=489093954 time=88.28s
+[SUMMARY] status=LOWER_BOUND_UNWITNESSED certified_15x7_floor=42 stop_reason=state_cap_during_layer_42 expanded=267155728 unique_canon_states=741241265 astar_edges=1239248858 bellman_violations=0 total_time=413.64s

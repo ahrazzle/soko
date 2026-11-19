@@ -1,0 +1,87 @@
+SHOT plans=1 secs=90 width=40000 cap=8000000
+
+======== cal_246_official prefix=246 remaining<= 70 assign=F(12,11) T(12,6) W(10,11) P(10,1) B(12,1) D(10,6)
+  jobs GateHeld > Shaft(1) > WFree > Deliver > Win
+  start sh1=## sh2=## Wfree=false mid=0 right=0 w1010=false w1210=true gate=false hog=1 act=B done=0 prog=3 guide=76 GateHeld > Shaft(1) > WFree > Deliver > Win
+  -- GateHeld states=1 already=0 path=0 left=70
+    bfs GateHeld depth 0 seen=5 exp=1 hits=0 t=0.0s
+    bfs GateHeld depth 1 seen=17 exp=5 hits=0 t=0.0s
+    bfs GateHeld FIRST at g=3 sh1=## sh2=## Wfree=false mid=0 right=0 w1010=false w1210=true gate=true hog=0 act=B seen=27 t=0.0s
+    bfs GateHeld depth 2 seen=61 exp=17 hits=1 t=0.0s
+    bfs GateHeld depth 3 seen=196 exp=61 hits=3 t=0.0s
+    bfs GateHeld depth 4 seen=578 exp=196 hits=8 t=0.0s
+    bfs GateHeld depth 5 seen=1666 exp=578 hits=8 t=0.0s
+    bfs GateHeld depth 6 seen=4688 exp=1666 hits=8 t=0.0s
+    bfs GateHeld depth 7 seen=12979 exp=4688 hits=8 t=0.0s
+    bfs GateHeld collected hits=8 best_len=3 exp=4688 seen=12979 t=0.0s
+    realized GateHeld n=8 best_len=3 sh1=## sh2=## Wfree=false mid=0 right=0 w1010=false w1210=true gate=true hog=0 act=B
+  -- Shaft(1) states=8 already=0 path=3 left=67
+    bfs Shaft(1) depth 0 seen=29 exp=8 hits=0 t=0.0s
+    bfs Shaft(1) depth 1 seen=90 exp=29 hits=0 t=0.0s
+    bfs Shaft(1) depth 2 seen=278 exp=90 hits=0 t=0.0s
+    bfs Shaft(1) depth 3 seen=839 exp=278 hits=0 t=0.0s
+    bfs Shaft(1) depth 4 seen=2433 exp=839 hits=0 t=0.0s
+    bfs Shaft(1) depth 5 seen=6809 exp=2433 hits=0 t=0.0s
+    bfs Shaft(1) depth 6 seen=18333 exp=6809 hits=0 t=0.1s
+    bfs Shaft(1) depth 7 seen=47633 exp=18333 hits=0 t=0.1s
+    bfs Shaft(1) depth 8 seen=119626 exp=47633 hits=0 t=0.3s
+    bfs Shaft(1) depth 9 seen=291235 exp=119626 hits=0 t=0.7s
+    bfs Shaft(1) depth 10 seen=689044 exp=291235 hits=0 t=1.2s
+    bfs Shaft(1) depth 11 seen=1588534 exp=689044 hits=0 t=2.2s
+    bfs Shaft(1) depth 12 seen=3577122 exp=1588534 hits=0 t=4.7s
+    bfs Shaft(1) depth 13 seen=7885186 exp=3577122 hits=0 t=16.3s
+    bfs Shaft(1) cap at g=14 seen=8000002 exp=3627689 hits=0
+    bfs Shaft(1) cap hits=0 best_len=0 exp=3627689 seen=8000002 t=16.5s
+    guided Shaft(1) est=7 exact_hits=0 (cap)
+    guided Shaft(1) d=1 kept=3 prog=1020 h=69 sh1=## sh2=## Wfree=false mid=0 right=0 w1010=false w1210=true gate=true hog=0 act=B seen=4 t=0.0s
+    guided Shaft(1) d=2 kept=9 prog=1020 h=64 sh1=## sh2=## Wfree=false mid=0 right=0 w1010=false w1210=true gate=true hog=0 act=D seen=13 t=0.0s
+    guided Shaft(1) d=3 kept=28 prog=1020 h=64 sh1=## sh2=## Wfree=false mid=0 right=0 w1010=false w1210=true gate=true hog=0 act=D seen=41 t=0.0s
+    guided Shaft(1) d=5 kept=264 prog=1020 h=64 sh1=## sh2=## Wfree=false mid=0 right=0 w1010=false w1210=true gate=true hog=0 act=D seen=390 t=0.0s
+    guided Shaft(1) d=10 kept=40000 prog=1032 h=63 sh1=*# sh2=## Wfree=false mid=0 right=0 w1010=false w1210=true gate=true hog=0 act=D seen=78151 t=0.3s
+    guided Shaft(1) d=15 kept=40000 prog=1032 h=59 sh1=*# sh2=## Wfree=false mid=0 right=0 w1010=false w1210=true gate=true hog=1 act=D seen=599105 t=1.5s
+    guided Shaft(1) d=20 kept=40000 prog=1032 h=53 sh1=*# sh2=## Wfree=false mid=0 right=0 w1010=false w1210=true gate=true hog=2 act=D seen=1127866 t=2.5s
+    guided Shaft(1) d=25 kept=40000 prog=1032 h=48 sh1=*# sh2=## Wfree=false mid=0 right=0 w1010=false w1210=true gate=true hog=2 act=D seen=1743365 t=3.7s
+    guided Shaft(1) d=30 kept=40000 prog=1032 h=47 sh1=*# sh2=## Wfree=false mid=0 right=0 w1010=false w1210=true gate=true hog=2 act=D seen=2321965 t=4.7s
+    guided Shaft(1) d=35 kept=40000 prog=1032 h=47 sh1=*# sh2=*# Wfree=false mid=0 right=0 w1010=false w1210=true gate=true hog=2 act=D seen=2832728 t=5.7s
+    guided Shaft(1) d=40 kept=40000 prog=1032 h=47 sh1=*# sh2=*# Wfree=false mid=0 right=0 w1010=false w1210=true gate=true hog=2 act=D seen=3301154 t=6.6s
+    guided Shaft(1) maxd hits=0 exp=1228835 seen=3301154
+    guided Shaft(1) d=1 kept=3 prog=1020 h=66 sh1=## sh2=## Wfree=false mid=0 right=0 w1010=false w1210=true gate=true hog=0 act=D seen=4 t=0.0s
+    guided Shaft(1) d=2 kept=9 prog=1020 h=66 sh1=## sh2=## Wfree=false mid=0 right=0 w1010=false w1210=true gate=true hog=0 act=D seen=13 t=0.0s
+    guided Shaft(1) d=3 kept=26 prog=1020 h=64 sh1=## sh2=## Wfree=false mid=0 right=0 w1010=false w1210=true gate=true hog=0 act=D seen=39 t=0.0s
+    guided Shaft(1) d=5 kept=252 prog=1020 h=64 sh1=## sh2=## Wfree=false mid=0 right=0 w1010=false w1210=true gate=true hog=0 act=D seen=372 t=0.0s
+    guided Shaft(1) d=10 kept=40000 prog=1032 h=64 sh1=*# sh2=## Wfree=false mid=0 right=0 w1010=false w1210=true gate=true hog=0 act=D seen=71939 t=0.2s
+    guided Shaft(1) d=15 kept=40000 prog=1032 h=59 sh1=*# sh2=## Wfree=false mid=0 right=0 w1010=false w1210=true gate=true hog=1 act=D seen=585700 t=1.3s
+    guided Shaft(1) d=20 kept=40000 prog=1032 h=53 sh1=*# sh2=## Wfree=false mid=0 right=0 w1010=false w1210=true gate=true hog=2 act=D seen=1133658 t=2.4s
+    guided Shaft(1) d=25 kept=40000 prog=1032 h=50 sh1=*# sh2=## Wfree=false mid=0 right=0 w1010=false w1210=true gate=true hog=1 act=D seen=1723556 t=3.4s
+    guided Shaft(1) d=30 kept=40000 prog=1032 h=50 sh1=*# sh2=## Wfree=false mid=0 right=0 w1010=false w1210=true gate=true hog=1 act=D seen=2287766 t=4.4s
+    guided Shaft(1) d=35 kept=40000 prog=1032 h=50 sh1=*# sh2=*# Wfree=false mid=0 right=0 w1010=false w1210=true gate=true hog=1 act=D seen=2815085 t=5.3s
+    guided Shaft(1) d=40 kept=40000 prog=1032 h=50 sh1=*# sh2=*# Wfree=false mid=0 right=0 w1010=false w1210=true gate=true hog=1 act=D seen=3288968 t=6.2s
+    guided Shaft(1) maxd hits=0 exp=1226758 seen=3288968
+    guided Shaft(1) d=1 kept=4 prog=1020 h=64 sh1=## sh2=## Wfree=false mid=0 right=0 w1010=false w1210=true gate=true hog=0 act=D seen=5 t=0.0s
+    guided Shaft(1) d=2 kept=14 prog=1020 h=64 sh1=## sh2=## Wfree=false mid=0 right=0 w1010=false w1210=true gate=true hog=0 act=D seen=19 t=0.0s
+    guided Shaft(1) d=3 kept=45 prog=1020 h=64 sh1=## sh2=## Wfree=false mid=0 right=0 w1010=false w1210=true gate=true hog=0 act=D seen=64 t=0.0s
+    guided Shaft(1) d=5 kept=420 prog=1020 h=64 sh1=## sh2=## Wfree=false mid=0 right=0 w1010=false w1210=true gate=true hog=0 act=D seen=623 t=0.0s
+    guided Shaft(1) d=10 kept=40000 prog=1032 h=63 sh1=*# sh2=## Wfree=false mid=0 right=0 w1010=false w1210=true gate=true hog=0 act=D seen=101639 t=0.3s
+    guided Shaft(1) d=15 kept=40000 prog=1032 h=57 sh1=*# sh2=## Wfree=false mid=0 right=0 w1010=false w1210=true gate=true hog=1 act=D seen=633536 t=1.6s
+    guided Shaft(1) d=20 kept=40000 prog=1032 h=52 sh1=*# sh2=## Wfree=false mid=0 right=0 w1010=false w1210=true gate=true hog=2 act=D seen=1177284 t=2.6s
+    guided Shaft(1) d=25 kept=40000 prog=1032 h=47 sh1=*# sh2=## Wfree=false mid=0 right=0 w1010=false w1210=true gate=true hog=2 act=D seen=1793329 t=3.7s
+    guided Shaft(1) d=30 kept=40000 prog=1032 h=47 sh1=*# sh2=## Wfree=false mid=0 right=0 w1010=false w1210=true gate=true hog=2 act=D seen=2359729 t=4.7s
+    guided Shaft(1) d=35 kept=40000 prog=1032 h=47 sh1=*# sh2=*# Wfree=false mid=0 right=0 w1010=false w1210=true gate=true hog=2 act=D seen=2862244 t=5.7s
+    guided Shaft(1) d=40 kept=40000 prog=1032 h=47 sh1=*# sh2=*# Wfree=false mid=0 right=0 w1010=false w1210=true gate=true hog=2 act=D seen=3331867 t=6.6s
+    guided Shaft(1) maxd hits=0 exp=1239007 seen=3331867
+    guided Shaft(1) d=1 kept=3 prog=1020 h=68 sh1=## sh2=## Wfree=false mid=0 right=0 w1010=false w1210=true gate=true hog=0 act=D seen=4 t=0.0s
+    guided Shaft(1) d=2 kept=8 prog=1020 h=66 sh1=## sh2=## Wfree=false mid=0 right=0 w1010=false w1210=true gate=true hog=0 act=D seen=12 t=0.0s
+    guided Shaft(1) d=3 kept=24 prog=1020 h=66 sh1=## sh2=## Wfree=false mid=0 right=0 w1010=false w1210=true gate=true hog=0 act=D seen=36 t=0.0s
+    guided Shaft(1) d=5 kept=232 prog=1032 h=74 sh1=*# sh2=## Wfree=false mid=0 right=0 w1010=false w1210=true gate=true hog=0 act=D seen=343 t=0.0s
+    guided Shaft(1) d=10 kept=38714 prog=1032 h=64 sh1=*# sh2=## Wfree=false mid=0 right=0 w1010=false w1210=true gate=true hog=0 act=D seen=62156 t=0.2s
+    guided Shaft(1) d=15 kept=40000 prog=1032 h=59 sh1=*# sh2=## Wfree=false mid=0 right=0 w1010=false w1210=true gate=true hog=1 act=D seen=553376 t=1.3s
+    guided Shaft(1) d=20 kept=40000 prog=1032 h=53 sh1=*# sh2=## Wfree=false mid=0 right=0 w1010=false w1210=true gate=true hog=2 act=D seen=1080832 t=2.4s
+    guided Shaft(1) d=25 kept=40000 prog=1032 h=51 sh1=*# sh2=## Wfree=false mid=0 right=0 w1010=false w1210=true gate=true hog=2 act=D seen=1666018 t=3.5s
+    guided Shaft(1) d=30 kept=40000 prog=1032 h=51 sh1=*# sh2=*# Wfree=false mid=0 right=0 w1010=false w1210=true gate=true hog=2 act=D seen=2236478 t=4.5s
+    guided Shaft(1) d=35 kept=40000 prog=1032 h=51 sh1=*# sh2=*# Wfree=false mid=0 right=0 w1010=false w1210=true gate=true hog=2 act=D seen=2739836 t=5.5s
+    guided Shaft(1) d=40 kept=40000 prog=1032 h=51 sh1=*# sh2=*# Wfree=false mid=0 right=0 w1010=false w1210=true gate=true hog=2 act=D seen=3243193 t=6.5s
+    guided Shaft(1) maxd hits=0 exp=1222156 seen=3243193
+  FAIL Shaft(1) not realized
+  CALIBRATION MISSED (chain or finish beam needs work)
+
+SHOT DONE cal_ok=false best=316 

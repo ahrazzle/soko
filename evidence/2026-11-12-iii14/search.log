@@ -1,0 +1,20 @@
+engine ok, starting search
+iterative rounds=1 best=48
+after iterative 48 LLULULULRURURURURUAUDRRDDAUARRDLRAULDLDRARURDUUR elapsed 120.15167666001071
+beam from 0 remaining=48
+beam from 8 remaining=40
+beam from 12 remaining=36
+beam from 16 remaining=32
+beam from 18 remaining=30
+beam from 19 remaining=29
+beam from 21 remaining=27
+beam from 24 remaining=24
+beam from 26 remaining=22
+beam from 30 remaining=18
+beam from 34 remaining=14
+beam from 38 remaining=10
+beam from 41 remaining=7
+beam from 43 remaining=5
+iterative rounds=1 best=48
+FINAL 48 LLULULULRURURURURUAUDRRDDAUARRDLRAULDLDRARURDUUR
+done

@@ -1,0 +1,105 @@
+{
+  "epistemic_status": "VERIFIED",
+  "task_ref": "ahrazzle/soko#53 C3 (III-21 Retrograde Endgame Tablebase)",
+  "quotient_tablebase_audit": {
+    "total_states": 259584,
+    "reachable_states": 71670,
+    "goal_states": 180,
+    "forward_edges_checked": 14924148,
+    "goal_violations": 0,
+    "step_violations": 0
+  },
+  "route_316_verification": {
+    "root_h_tb": 1,
+    "states_checked": 317,
+    "admissibility_violations": 0,
+    "step_consistency_violations": 0,
+    "exact_tail_steps": [
+      314,
+      315,
+      316
+    ],
+    "tail_profile_t304_316": [
+      {
+        "t": 304,
+        "remaining": 12,
+        "h_tb": 4
+      },
+      {
+        "t": 305,
+        "remaining": 11,
+        "h_tb": 3
+      },
+      {
+        "t": 306,
+        "remaining": 10,
+        "h_tb": 3
+      },
+      {
+        "t": 307,
+        "remaining": 9,
+        "h_tb": 3
+      },
+      {
+        "t": 308,
+        "remaining": 8,
+        "h_tb": 3
+      },
+      {
+        "t": 309,
+        "remaining": 7,
+        "h_tb": 3
+      },
+      {
+        "t": 310,
+        "remaining": 6,
+        "h_tb": 2
+      },
+      {
+        "t": 311,
+        "remaining": 5,
+        "h_tb": 2
+      },
+      {
+        "t": 312,
+        "remaining": 4,
+        "h_tb": 2
+      },
+      {
+        "t": 313,
+        "remaining": 3,
+        "h_tb": 2
+      },
+      {
+        "t": 314,
+        "remaining": 2,
+        "h_tb": 2
+      },
+      {
+        "t": 315,
+        "remaining": 1,
+        "h_tb": 1
+      },
+      {
+        "t": 316,
+        "remaining": 0,
+        "h_tb": 0
+      }
+    ]
+  },
+  "bidirectional_endgame_search": {
+    "suffix_start_step": 306,
+    "exact_suffix_distance": 10,
+    "blind_bfs_expanded_states": 40545,
+    "tb_guided_astar_expanded_states": 12343,
+    "astar_strictly_fewer_expansions": true,
+    "concrete_retrograde_states_built": 11,
+    "bidirectional_meet_states_count": 7,
+    "recovered_full_route_len": 316,
+    "dual_oracle_verified": true
+  },
+  "must_fail_controls": {
+    "corrupted_tb_drop_rejected": true,
+    "truncated_315_route_rejected": true
+  }
+}

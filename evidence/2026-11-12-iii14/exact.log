@@ -1,0 +1,11 @@
+=== exact cut18 remain30 max_d=29 budget=90.0s ===
+    B=(2,2) D=(6,1) act=D crates=9 sw=0/9
+[cut18 remain30] done t=90.0s expanded=1458358 seen=3576458 queue=2118100 best=none max_d=29
+=== exact cut19 remain29 max_d=28 budget=60.0s ===
+    B=(2,2) D=(6,1) act=B crates=9 sw=0/9
+[cut19 remain29] done t=60.0s expanded=1135773 seen=2837284 queue=1701511 best=none max_d=28
+=== exact cut21 remain27 max_d=26 budget=60.0s ===
+    B=(2,2) D=(6,1) act=B crates=9 sw=0/9
+[cut21 remain27] done t=60.0s expanded=1124297 seen=2781863 queue=1657566 best=none max_d=26
+=== exact cut25 remain23 max_d=22 budget=90.0s ===
+    B=(4,4) D=(6,3) act=B crates=9 sw=4/9

@@ -40,6 +40,11 @@ class CatalogTests(unittest.TestCase):
 
     def test_every_baseline_has_attribution_snapshot_and_valid_route(self):
         self.assertEqual(sum(len(r['reference_route']) for r in list_rooms()), 3063)
+        self.assertEqual(sum(r['shortest_known'] for r in list_rooms()), 3063)
+        self.assertEqual(sum(r['proven_floor'] for r in list_rooms()), 3006)
+        self.assertEqual(get_room('III-14')['proven_floor'], 44)
+        self.assertEqual(get_room('III-20')['proven_floor'], 77)
+        self.assertEqual(get_room('III-21')['proven_floor'], 270)
         for room in list_rooms():
             route, baseline, record = room['reference_route'], room['baseline'], room['frontier_observation']
             self.assertEqual(route, baseline['route'])
@@ -51,7 +56,7 @@ class CatalogTests(unittest.TestCase):
             self.assertEqual(baseline['record_id'], record['id'])
             self.assertIn(f'/api/replay/{record["id"]}', baseline['url'])
             self.assertIn(f'record={record["id"]}', baseline['replay_url'])
-            self.assertTrue(baseline['observed_at'].startswith('2026-11-12T'))
+            self.assertTrue(baseline['observed_at'].startswith('2026-11-19T'))
             self.assertEqual(len(baseline['response_sha256']), 64)
             self.assertEqual(room['shortest_known'], record['known'])
             self.assertEqual(room['proven_floor'], record['lower'])
