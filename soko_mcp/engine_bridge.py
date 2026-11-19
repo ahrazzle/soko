@@ -26,7 +26,7 @@ import tempfile
 from typing import Any, Dict, List, Optional, Tuple
 
 from .catalog import get_room, load_catalog
-from .evidence import digest, must_fail, normalize_route, problem_identity, validate_room
+from .evidence import digest, must_fail, normalize_route, problem_identity, validate_room, verify_certificate_gate
 from .flat_oracle import replay_flat_oracle
 from .oracle import FRONTIER_ROOMS, PuzzleScriptOracle, replay_oracle
 
@@ -358,10 +358,45 @@ def verify_route_dual(
         epistemic = "VERIFIED" if is_verified else "REJECTED"
 
     controls_log: List[str] = []
-    must_fail("single_oracle_insufficient", len(["python_spec_oracle"]) >= 2, controls_log)
+    must_fail(
+        "rejected_route_promoted_to_verified",
+        bool(
+            verify_certificate_gate(
+                {
+                    "epistemic_status": "VERIFIED",
+                    "valid_winning_route": False,
+                    "must_fail_controls": ["probe"],
+                }
+            )["passed"]
+        ),
+        controls_log,
+    )
     if py_res["exact_win"]:
-        post_win = replay_oracle(part, grid, clean + "U")
-        must_fail("post_win_extra_key_rejected", bool(post_win["exact_win"]), controls_log)
+        if len(clean) > 0:
+            trunc_prefix = clean[:-1]
+            must_fail(
+                "truncated_prefix_rejected",
+                bool(
+                    replay_oracle(part, grid, trunc_prefix)["exact_win"]
+                    or (
+                        not _skip_flat_for_test
+                        and replay_flat_oracle(part, grid, trunc_prefix)["exact_win"]
+                    )
+                ),
+                controls_log,
+            )
+        extra_route = clean + "U"
+        must_fail(
+            "post_win_extra_key_rejected",
+            bool(
+                replay_oracle(part, grid, extra_route)["exact_win"]
+                or (
+                    not _skip_flat_for_test
+                    and replay_flat_oracle(part, grid, extra_route)["exact_win"]
+                )
+            ),
+            controls_log,
+        )
 
     result = {
         "epistemic_status": epistemic,
@@ -470,7 +505,15 @@ def optimize_route_verified(
 
     controls_log = list(cand_check["must_fail_controls"])
     if cand_check["route_len"] < len(clean_seed):
-        must_fail("seed_already_at_improved_len", len(clean_seed) <= cand_check["route_len"], controls_log)
+        seed_prefix = clean_seed[: cand_check["route_len"]]
+        must_fail(
+            "seed_already_at_improved_len",
+            bool(
+                replay_oracle(part, grid, seed_prefix)["exact_win"]
+                or replay_flat_oracle(part, grid, seed_prefix)["exact_win"]
+            ),
+            controls_log,
+        )
 
     out = {
         "epistemic_status": "VERIFIED",
@@ -737,14 +780,47 @@ def prove_floor_verified(
     floor_controls: List[str] = []
     must_fail(
         "unwitnessed_bound_promoted_to_verified",
-        (not exact_opt or witness_verified is None) and status == "VERIFIED",
+        bool(
+            verify_certificate_gate(
+                {
+                    "epistemic_status": "VERIFIED",
+                    "proven_floor": max(1, claimed_floor),
+                    "exact_optimum_reached": False,
+                    "optimality_proven": False,
+                    "winning_witness": None,
+                    "must_fail_controls": ["probe"],
+                }
+            )["passed"]
+        ),
         floor_controls,
     )
     must_fail(
-        "inexact_floor_above_max_bound_plus_one",
-        (not exact_opt) and claimed_floor > int(max_bound) + 1,
+        "empirical_floor_promoted_to_proven",
+        bool(
+            verify_certificate_gate(
+                {
+                    "epistemic_status": "PROVEN",
+                    "proven_floor": max(1, claimed_floor),
+                    "exact_optimum_reached": True,
+                    "optimality_proven": True,
+                    "formal_proof_checked": False,
+                    "winning_witness": {"route": "R", "route_len": max(1, claimed_floor)},
+                    "must_fail_controls": ["probe"],
+                }
+            )["passed"]
+        ),
         floor_controls,
     )
+    if witness_verified is not None and claimed_floor > 0:
+        w_trunc = witness[: claimed_floor - 1]
+        must_fail(
+            "truncated_witness_prefix_rejected",
+            bool(
+                replay_oracle(part, grid, w_trunc)["exact_win"]
+                or replay_flat_oracle(part, grid, w_trunc)["exact_win"]
+            ),
+            floor_controls,
+        )
     edges = _count("edge_consistency_checks")
     out_floor = {
         "epistemic_status": status,

@@ -82,7 +82,9 @@ class MustFailAndTierSwapCorruptionTests(unittest.TestCase):
         i1 = FRONTIER_ROOMS["I-1"]
         route_cert = verify_route_dual(i1["part"], i1["grid"], i1["reference_route"])
         self.assertEqual(route_cert["epistemic_status"], "VERIFIED")
-        self.assertGreaterEqual(len(route_cert["must_fail_controls"]), 2)
+        self.assertIn("rejected_route_promoted_to_verified", route_cert["must_fail_controls"])
+        self.assertIn("truncated_prefix_rejected", route_cert["must_fail_controls"])
+        self.assertIn("post_win_extra_key_rejected", route_cert["must_fail_controls"])
         self.assertTrue(verify_certificate_gate(route_cert)["passed"])
 
         for slug in ("iii-14", "iii-20"):
@@ -96,6 +98,9 @@ class MustFailAndTierSwapCorruptionTests(unittest.TestCase):
         if ensure_cpp_engine() is not None:
             exact_floor = prove_floor_verified(i1["part"], i1["grid"], max_bound=12, budget_sec=30)
             self.assertEqual(exact_floor["epistemic_status"], "VERIFIED")
+            self.assertIn("unwitnessed_bound_promoted_to_verified", exact_floor["must_fail_controls"])
+            self.assertIn("empirical_floor_promoted_to_proven", exact_floor["must_fail_controls"])
+            self.assertIn("truncated_witness_prefix_rejected", exact_floor["must_fail_controls"])
             self.assertTrue(verify_certificate_gate(exact_floor)["passed"])
 
             # Detour of length 11 on I-1 shortened back to 9 via deterministic window shortcut:
