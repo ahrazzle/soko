@@ -2,7 +2,7 @@
   "adapter_id": "mde:soko-eval",
   "base_weights_sha256": "10cc391b403021dd11c614679d2fd92f611c3681d29e29651b717316965d61e1",
   "certificate_f16_sha256": "aae2c30c50745b9f573a4441b1ee9de08c090b676bbee2b057d1aa032491403b",
-  "corpus_tree_sha256": "ca7f16d0ec7e81e371f7afac11fd44bc1c489d6a36d695709b6ee658f92abca6",
+  "corpus_tree_sha256": "49fdb5603e04fe908cd4b46dec38af377a8d77000280e2f1dd7b30ee05e7653a",
   "derivation_recipe": {
     "activations_npz_sha256": "7aa279e416f2570cf48785eaabeccafce44934df19aa3040114b3252cc836f8e",
     "compiler": "mde-soko-betaedit/0.1.0",

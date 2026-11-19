@@ -1,9 +1,9 @@
 {
-  "adapter_gguf_sha256": "cca338e2862fba22ac4e803c0c1384fd5b6164470aced298ac4d5a0fef143a1c",
+  "adapter_gguf_sha256": "75d2114eac20bd6d1ddad3a1dc7017162d8da7caf45d2728538652552e7ab973",
   "adapter_id": "mde:soko-eval",
   "adapter_path": "mde_soko/artifacts/p2b/soko-eval.p2b.f16.gguf",
   "base_weights_sha256": "10cc391b403021dd11c614679d2fd92f611c3681d29e29651b717316965d61e1",
-  "binding_sha256": "aa3a57bded1833ecabd130f51569092265eacef74225306e9248fee6a31eaeab",
+  "binding_sha256": "9cc4f3b1c6cef0051bd0fb3b07982a27b872afb87029ec9e598e3e1f85e6a67e",
   "certificate": {
     "factor_digest": "2606b178ffb3dc606a7d9bc0e4fd6c4160c5fc8eed3c73fdbcfdfcdf481b4de8",
     "frobenius_sq_scaled": 3839142,
@@ -28,8 +28,8 @@
   "schema": "warp-modeld-bundle/v0.1",
   "source_lineage": {
     "contested_heads": [],
-    "corpus_tree_sha256": "ca7f16d0ec7e81e371f7afac11fd44bc1c489d6a36d695709b6ee658f92abca6",
-    "soko_sha256sums_digest": "96191efd46860503d27ddb59c18421be360048963f4d5048e5a2228034f80257"
+    "corpus_tree_sha256": "49fdb5603e04fe908cd4b46dec38af377a8d77000280e2f1dd7b30ee05e7653a",
+    "soko_sha256sums_digest": "5d0128fba2d4959872379f962dda2411f8bcae9d5bba1abafa3a12d355bc5bc2"
   },
   "zone_manifest_id": "sha256:4cf8df174c942632ed0798b333f7e5d17295cb5e16cc9281db0139e42272a4db"
 }

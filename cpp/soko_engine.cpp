@@ -13,10 +13,31 @@
  *   - Collision-safe bucket chaining in `exact_window_shortcut`.
  */
 
-#include <bits/stdc++.h>
+#include <algorithm>
+#include <array>
+#include <atomic>
+#include <chrono>
+#include <cmath>
+#include <cstdint>
+#include <cstdio>
+#include <cstring>
+#include <functional>
+#include <iomanip>
+#include <iostream>
+#include <mutex>
+#include <numeric>
+#include <queue>
+#include <sstream>
+#include <string>
+#include <thread>
+#include <unordered_map>
+#include <unordered_set>
+#include <utility>
+#include <vector>
 using namespace std;
 
 static constexpr int MAX_CELLS = 512;
+static constexpr uint8_t OBJ_CORPSE = 21;
 static const int DX[4] = {0, 0, -1, 1};
 static const int DY[4] = {-1, 1, 0, 0};
 static const char DCH[5] = {'U', 'D', 'L', 'R', 'A'};
@@ -145,6 +166,7 @@ bool run_late(const LevelMeta& M, DynState& s) {
                 }
             }
     }
+    bool corpse = false;
     if (M.part >= 2) {
         for (int y = 0; y < M.h; ++y)
             for (int x = 0; x < M.w; ++x)
@@ -169,7 +191,7 @@ bool run_late(const LevelMeta& M, DynState& s) {
         for (int i = 0; i < M.n; ++i) {
             if (dying[i]) {
                 if (is_monster(M.part, s.obj[i])) s.obj[i] = 0;
-                else if (is_hero(s.obj[i])) return true;
+                else if (is_hero(s.obj[i])) { s.obj[i] = OBJ_CORPSE; corpse = true; }
             }
         }
     }
@@ -181,7 +203,7 @@ bool run_late(const LevelMeta& M, DynState& s) {
             for (int idx : M.y_doors_init) if (s.obj[idx] == 18) s.obj[idx] = 0;
         } else if (any_u && s.y_open) {
             s.y_open = 0;
-            for (int idx : M.y_doors_init) { if (is_hero(s.obj[idx])) return true; s.obj[idx] = 18; }
+            for (int idx : M.y_doors_init) { if (is_hero(s.obj[idx])) corpse = true; s.obj[idx] = 18; }
         }
     }
     if (!M.p_switches.empty()) {
@@ -192,7 +214,7 @@ bool run_late(const LevelMeta& M, DynState& s) {
             for (int idx : M.p_doors_init) if (s.obj[idx] == 19) s.obj[idx] = 0;
         } else if (any_u && s.p_open) {
             s.p_open = 0;
-            for (int idx : M.p_doors_init) { if (is_hero(s.obj[idx])) return true; s.obj[idx] = 19; }
+            for (int idx : M.p_doors_init) { if (is_hero(s.obj[idx])) corpse = true; s.obj[idx] = 19; }
         }
     }
     // The monster gate opens after the door phase: a closing colored door may
@@ -205,7 +227,7 @@ bool run_late(const LevelMeta& M, DynState& s) {
     if (M.has_bard) {
         for (int i = 0; i < M.n; ++i) if (s.has_note(i) && !is_moveable(M.part, s.obj[i])) s.notes[i >> 6] &= ~(1ULL << (i & 63));
     }
-    return false;
+    return corpse;
 }
 
 inline bool check_win(const LevelMeta& M, const DynState& s) {
@@ -535,6 +557,7 @@ string render_ascii(const LevelMeta& M, const DynState& s) {
             else if (o == 15) ch = 'O'; else if (o == 16) ch = 'L';
             else if (o == 17) ch = 'R'; else if (o == 18) ch = '[';
             else if (o == 19) ch = ']'; else if (o == 20) ch = 'M';
+            else if (o == OBJ_CORPSE) ch = 'X';
             else if (M.floor_grid[i] == 1) ch = 'G';
             else if (M.floor_grid[i] == 2) ch = '{';
             else if (M.floor_grid[i] == 3) ch = '}';
