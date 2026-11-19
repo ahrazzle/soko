@@ -9,6 +9,8 @@ import tempfile
 import unittest
 
 from experiments.landmark_dual_bounds_v2.iii14_bidirectional_endgame import (
+    III14VaultEndgameTB,
+    build_iii14_topology,
     run_iii14_bidirectional_endgame_audit,
 )
 from experiments.landmark_dual_bounds_v2.replay_v2 import (
@@ -55,6 +57,13 @@ class TestLandmarkDualBoundsV2(unittest.TestCase):
         self.assertLess(eg["tb_guided_astar_expanded_states"] * 20, eg["blind_bfs_expanded_states"])
         self.assertTrue(eg["rebuilt_48_route_dual_verified"])
         self.assertTrue(all(res["must_fail_controls"].values()))
+
+        # Regression for NEON-E1: Bard at (8, 1) moving L can push crate (6, 2)->(5, 2) (`cov45: 0 -> 1`)
+        tb = III14VaultEndgameTB(build_iii14_topology())
+        bl_8_1 = tb.loc_of(1 * 15 + 8)
+        dl_11_3 = tb.loc_of(3 * 15 + 11)
+        u_8_1 = tb.enc(bl_8_1, dl_11_3, 0, 26, 0)
+        self.assertTrue(any((v % 2) == 1 for v in tb.fwd_adj[u_8_1]))
 
     def test_03_decoupled_v2_evidence_receipts_and_must_fail_tamper_rejection(self) -> None:
         summary = verify_all_v2_receipts(DEFAULT_EVIDENCE_DIR)

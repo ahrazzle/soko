@@ -5,7 +5,7 @@
     "total_states": 147852,
     "reachable_states": 64296,
     "goal_states": 216,
-    "forward_quotient_edges_checked": 819753,
+    "forward_quotient_edges_checked": 845232,
     "goal_violations": 0,
     "step_violations": 0
   },
@@ -28,7 +28,7 @@
     "remaining_keys_certified_exact": 12,
     "sub_48_tail_exists_from_t36": false,
     "blind_bfs_expanded_states": 116848,
-    "tb_guided_astar_expanded_states": 2425,
+    "tb_guided_astar_expanded_states": 2457,
     "rebuilt_48_route_dual_verified": true,
     "rebuilt_traj_fnv64": "48019692d1b5491c"
   },

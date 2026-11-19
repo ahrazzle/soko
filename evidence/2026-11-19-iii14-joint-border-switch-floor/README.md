@@ -18,7 +18,7 @@ Tracing all `49` states along the `48`-key reference route `R48` (`9b6f169376d12
 | `PetrifiedColFlow15PDB` | `909,397,320` (`867 MiB`) | `22,298,783,175` | `0` | Separates `s4, s5, c6, w6, k1L, k1R, k2V, r2, r3` + `(d, adj)` + pigeonhole Column-6 blow-off (`h(s0): 27 -> 29`) |
 | Concrete Walk + `Packed24` Audit | `1,000,000` bijective states | `55,000,021` concrete edges | `0` | Lossless 24-byte base-3 5-cell/byte state packing (`sizeof(Packed24) == 24`) |
 | 256-Shard 10-Thread Layered A* | `741,241,265` canonical states | `1,239,248,858` A* edges | `0` | Certified floor **`>= 42`** (`LOWER_BOUND_UNWITNESSED`), shrinking `f = 37` `17.40x` vs `main` (`117.77M -> 6.77M`) |
-| `III14VaultEndgameTB` (`t = 36 -> 48`) | `147,852` (`64,296` reachable) | `819,753` | `0` | Exact `12`-key tail certified (`0` sub-48 tails from `t = 36`), **`48.18x`** A* reduction (`2,425` vs `116,848` blind BFS) |
+| `III14VaultEndgameTB` (`t = 36 -> 48`) | `147,852` (`64,296` reachable) | `845,232` | `0` | Exact `12`-key tail certified (`0` sub-48 tails from `t = 36`), **`47.56x`** A* reduction (`2,457` vs `116,848` blind BFS) |
 
 ## Layer Progression (`main` vs `V1` vs `V2`)
 
@@ -41,4 +41,4 @@ python3 -O -B -m unittest tests/test_landmark_dual_bounds_v2.py -v
 ## What Is Not Proved
 
 - `LOWER_BOUND_UNWITNESSED` (`>= 42`) proves no winning route of length `<= 41` exists on canonical `15x7` Room 14 (`board_sha256_lf = 300563ca68370b85e44b73f0361320bc79948849f59897a3dd0b5cc470bf351c`). Closing `f = 42, 43` (`>= 44`) at the observed `3.05x` per-layer branching requires ~`5.6B` states (`~140 GiB` RAM or external-memory bucketed A*) unless `t = 18..25` outer-column (`x = 0..2`) flow is coupled directly with `st9`.
-- The `12`-key endgame search from `t = 36` proves no `< 12` completion exists from `R48`'s `t = 36` state (`48.18x` speedup over blind BFS) and discovers an alternate `48`-key route (`48019692d1b5491c`), which does not rule out `< 48` routes diverging before `t = 36`.
+- The `12`-key endgame search from `t = 36` proves no `< 12` completion exists from `R48`'s `t = 36` state (`47.56x` speedup over blind BFS) and discovers an alternate `48`-key route (`48019692d1b5491c`), which does not rule out `< 48` routes diverging before `t = 36`.

@@ -446,8 +446,9 @@ class III14VaultEndgameTB:
 
                         # Bard (`ah == 0`): move `bl -> nbl`, `dl -> dl or ndl`, `c6 -> nc6`, `cov45 -> 0 or 1`
                         b_edges: Set[int] = set()
-                        # Can Bard change `cov45`? Only if `[4..5] x [2..4]` (`x <= 5`) intersects `aura[bc]` (`bx <= 7`)!
-                        can_touch_45 = any((bc % W) <= 7 for bc in loc_cells[bl])
+                        # Can Bard change `cov45`? Only if `[4..5] x [2..4]` (`x <= 5`) can be modified by a crate
+                        # inside `aura[bc]` (`bx - 2 <= 6` -> `bx <= 8`, e.g. `(8,1)` moving `L` pushes `(6,2)->(5,2)`)!
+                        can_touch_45 = any((bc % W) <= 8 for bc in loc_cells[bl])
                         ncov_opts = (0, 1) if can_touch_45 else (cov45,)
                         # Can Bard carry Druid? Only if some `bc in loc_cells[bl]` has some `dc in loc_cells[dl]` in `aura[bc]`!
                         can_carry_d = any(

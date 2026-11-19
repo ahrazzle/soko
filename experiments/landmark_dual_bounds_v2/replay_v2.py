@@ -2,14 +2,11 @@
 
 Verifies:
   1. `iii14_15x7_v2_floor_receipt.json` (dynamic SHA-256 check against `prove_iii14_15x7_v2_floor.cpp`,
-     `board_sha256_lf` check, `0` quotient-edge violations across `> 5B` edges, `0` concrete-walk
-     violations across `> 50M` edges, `0` Bellman violations, `1,000,000` `Packed24` bijective states,
+     `board_sha256_lf` check, `0` quotient-edge violations across `26.42B` edges, `0` concrete-walk
+     violations across `55M` edges, `0` Bellman violations, `1,000,000` `Packed24` bijective states,
      and live `must_fail` controls rejecting `VERIFIED` tier-swap on unwitnessed bounds and SHA tampering).
-  2. `iii14_vault_endgame_tb_receipt.json` (`147,852`-state retrograde quotient tablebase, `819,753`
-     quotient edges with `0` violations, `48.18x` A* node reduction over blind BFS, dual-oracle replay).
-  3. `quotient_lp_synthesizer_receipt.json` (cross-domain exact `Fraction` 1-Lipschitz Quotient-LP +
-     zero-self-loop deficit certificates across `soko`, `Foundation-0/finite-state-proofs` Hardin strip,
-     and multi-agent cyclic switch routing, independently verified with zero shared imports).
+  2. `iii14_vault_endgame_tb_receipt.json` (`147,852`-state retrograde quotient tablebase, `845,232`
+     quotient edges with `0` violations, `47.56x` A* node reduction over blind BFS, dual-oracle replay).
 """
 from __future__ import annotations
 
