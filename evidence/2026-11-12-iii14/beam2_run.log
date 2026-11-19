@@ -1,0 +1,136 @@
+======= cut 25 max 22 (47 would be 22) =======
+BEAM cut25 max_d=22 beam=150000 t=50 B=(4,4) D=(6,3) bard=true crates=9 seed=true
+[cut25] seed suffix 23 loaded, 24 states, seed_win=true
+  [cut25] d=1 kept=5 seen=6 top_sc=8002635 top_sw=5/9 9/9cum=0 t=0.0s
+  [cut25] d=2 kept=17 seen=23 top_sc=12002650 top_sw=7/9 9/9cum=0 t=0.0s
+  [cut25] d=3 kept=60 seen=83 top_sc=12002650 top_sw=6/9 9/9cum=0 t=0.0s
+  [cut25] d=4 kept=196 seen=279 top_sc=14002650 top_sw=8/9 9/9cum=0 t=0.0s
+  [cut25] d=6 kept=1720 seen=2586 top_sc=16002650 top_sw=9/9 9/9cum=6 t=0.0s
+  [cut25] d=8 kept=13559 seen=21058 top_sc=16161750 top_sw=9/9 9/9cum=57 t=0.1s
+  [cut25] d=10 kept=93660 seen=150761 top_sc=16241440 top_sw=9/9 9/9cum=411 t=0.2s
+  [cut25] d=12 kept=150000 seen=771521 top_sc=16241725 top_sw=8/9 9/9cum=2397 t=0.8s
+  [cut25] first PERM9 at 14 t=1.19s B=(7,4) D=(7,2) AUARRDLRALUARU
+  [cut25] d=14 kept=150000 seen=1516481 top_sc=218062110 top_sw=9/9 9/9cum=14269 t=1.5s
+  [cut25] d=14 perm9_in_beam=2 tried_finish=2
+  [cut25] d=16 kept=150000 seen=2253377 top_sc=218161810 top_sw=9/9 9/9cum=65537 t=2.5s
+  [cut25] d=16 perm9_in_beam=13 tried_finish=13
+  [cut25] d=18 kept=150000 seen=3002411 top_sc=218201810 top_sw=9/9 9/9cum=249497 t=3.1s
+  [cut25] d=18 perm9_in_beam=103 tried_finish=40
+  [cut25] d=20 kept=150000 seen=3765548 top_sc=218226800 top_sw=9/9 9/9cum=859444 t=4.3s
+  [cut25] d=20 perm9_in_beam=508 tried_finish=40
+  [cut25] d=22 kept=150000 seen=4528102 top_sc=218266200 top_sw=9/9 9/9cum=1669794 t=5.0s
+[cut25] done t=5.00s seen=4528102 best=None first99=Some(14)
+NONE
+======= cut 18 max 29 =======
+BEAM cut18 max_d=29 beam=150000 t=55 B=(2,2) D=(6,1) bard=false crates=9 seed=true
+[cut18] seed suffix 30 loaded, 31 states, seed_win=true
+  [cut18] d=1 kept=5 seen=6 top_sc=-110 top_sw=0/9 9/9cum=0 t=0.0s
+  [cut18] d=2 kept=18 seen=24 top_sc=505 top_sw=0/9 9/9cum=0 t=0.0s
+  [cut18] d=3 kept=62 seen=86 top_sc=2000490 top_sw=1/9 9/9cum=0 t=0.0s
+  [cut18] d=4 kept=198 seen=284 top_sc=4000805 top_sw=2/9 9/9cum=0 t=0.0s
+  [cut18] d=6 kept=1673 seen=2545 top_sc=6002635 top_sw=4/9 9/9cum=0 t=0.0s
+  [cut18] d=8 kept=12453 seen=19639 top_sc=10002650 top_sw=5/9 9/9cum=0 t=0.0s
+  [cut18] d=10 kept=83868 seen=136207 top_sc=14002650 top_sw=7/9 9/9cum=0 t=0.2s
+  [cut18] d=12 kept=150000 seen=734449 top_sc=16002650 top_sw=8/9 9/9cum=3 t=0.7s
+  [cut18] d=14 kept=150000 seen=1550789 top_sc=16082340 top_sw=8/9 9/9cum=381 t=1.4s
+  [cut18] first PERM9 at 16 t=2.00s B=(7,4) D=(7,3) RUAULRDRRRDDDRRU
+  [cut18] d=16 kept=150000 seen=2354952 top_sc=217923010 top_sw=9/9 9/9cum=4235 t=2.4s
+  [cut18] d=16 perm9_in_beam=1 tried_finish=1
+  [cut18] d=18 kept=150000 seen=3143137 top_sc=218007700 top_sw=9/9 9/9cum=22266 t=3.2s
+  [cut18] d=18 perm9_in_beam=4 tried_finish=4
+  [cut18] d=20 kept=150000 seen=3936103 top_sc=218027700 top_sw=9/9 9/9cum=87012 t=4.4s
+  [cut18] d=20 perm9_in_beam=28 tried_finish=28
+  [cut18] d=22 kept=150000 seen=4710285 top_sc=218141810 top_sw=9/9 9/9cum=262771 t=5.2s
+  [cut18] d=22 perm9_in_beam=128 tried_finish=40
+  [cut18] d=24 kept=150000 seen=5485971 top_sc=218181810 top_sw=9/9 9/9cum=803525 t=5.9s
+  [cut18] d=24 perm9_in_beam=449 tried_finish=40
+  [cut18] d=26 kept=150000 seen=6265026 top_sc=218241510 top_sw=9/9 9/9cum=1591564 t=6.7s
+  [cut18] d=26 perm9_in_beam=1787 tried_finish=40
+  [cut18] d=28 kept=150000 seen=7028482 top_sc=218266500 top_sw=9/9 9/9cum=2302134 t=7.5s
+  [cut18] d=28 perm9_in_beam=7079 tried_finish=40
+[cut18] done t=8.78s seen=7409414 best=None first99=Some(16)
+NONE
+======= cut 19 max 28 =======
+BEAM cut19 max_d=28 beam=150000 t=50 B=(2,2) D=(6,1) bard=true crates=9 seed=true
+[cut19] seed suffix 29 loaded, 30 states, seed_win=true
+  [cut19] d=1 kept=5 seen=6 top_sc=505 top_sw=0/9 9/9cum=0 t=0.0s
+  [cut19] d=2 kept=19 seen=25 top_sc=2000490 top_sw=1/9 9/9cum=0 t=0.0s
+  [cut19] d=3 kept=71 seen=96 top_sc=4000805 top_sw=2/9 9/9cum=0 t=0.0s
+  [cut19] d=4 kept=236 seen=332 top_sc=6001135 top_sw=4/9 9/9cum=0 t=0.0s
+  [cut19] d=6 kept=2122 seen=3181 top_sc=10002650 top_sw=6/9 9/9cum=0 t=0.0s
+  [cut19] d=8 kept=15713 seen=24744 top_sc=14002650 top_sw=8/9 9/9cum=0 t=0.1s
+  [cut19] d=10 kept=106813 seen=172854 top_sc=14082340 top_sw=8/9 9/9cum=0 t=0.2s
+  [cut19] d=12 kept=150000 seen=847574 top_sc=16002650 top_sw=9/9 9/9cum=88 t=0.8s
+  [cut19] d=14 kept=150000 seen=1665162 top_sc=16161750 top_sw=9/9 9/9cum=1179 t=1.5s
+  [cut19] first PERM9 at 16 t=2.04s B=(7,4) D=(7,3) ULRDRRRAUADDDRRU
+  [cut19] d=16 kept=150000 seen=2465227 top_sc=217923010 top_sw=9/9 9/9cum=7540 t=2.4s
+  [cut19] d=16 perm9_in_beam=1 tried_finish=1
+  [cut19] d=18 kept=150000 seen=3243739 top_sc=218007700 top_sw=9/9 9/9cum=33578 t=3.1s
+  [cut19] d=18 perm9_in_beam=4 tried_finish=4
+  [cut19] d=20 kept=150000 seen=4029194 top_sc=218062110 top_sw=9/9 9/9cum=115714 t=4.1s
+  [cut19] d=20 perm9_in_beam=29 tried_finish=29
+  [cut19] d=22 kept=150000 seen=4801020 top_sc=218161810 top_sw=9/9 9/9cum=337270 t=4.8s
+  [cut19] d=22 perm9_in_beam=125 tried_finish=40
+  [cut19] d=24 kept=150000 seen=5582916 top_sc=218201810 top_sw=9/9 9/9cum=1019158 t=5.6s
+  [cut19] d=24 perm9_in_beam=488 tried_finish=40
+  [cut19] d=26 kept=150000 seen=6359372 top_sc=218246500 top_sw=9/9 9/9cum=1805084 t=6.3s
+  [cut19] d=26 perm9_in_beam=2003 tried_finish=40
+  [cut19] d=28 kept=150000 seen=7121639 top_sc=218266500 top_sw=9/9 9/9cum=2512967 t=7.1s
+[cut19] done t=7.08s seen=7121639 best=None first99=Some(16)
+NONE
+======= H17A max 30 =======
+BEAM from max_d=30 beam=150000 t=55 B=(2,2) D=(5,1) bard=false crates=9 seed=false
+  [from] d=1 kept=5 seen=6 top_sc=-110 top_sw=0/9 9/9cum=0 t=0.0s
+  [from] d=2 kept=18 seen=24 top_sc=490 top_sw=0/9 9/9cum=0 t=0.0s
+  [from] d=3 kept=62 seen=86 top_sc=2000490 top_sw=1/9 9/9cum=0 t=0.0s
+  [from] d=4 kept=197 seen=283 top_sc=4000805 top_sw=3/9 9/9cum=0 t=0.0s
+  [from] d=6 kept=1792 seen=2677 top_sc=6002635 top_sw=4/9 9/9cum=0 t=0.0s
+  [from] d=8 kept=14184 seen=21982 top_sc=10002650 top_sw=5/9 9/9cum=0 t=0.0s
+  [from] d=10 kept=99522 seen=159517 top_sc=14002635 top_sw=8/9 9/9cum=0 t=0.2s
+  [from] d=12 kept=150000 seen=813236 top_sc=14082325 top_sw=8/9 9/9cum=7 t=0.8s
+  [from] d=14 kept=150000 seen=1644033 top_sc=16002935 top_sw=9/9 9/9cum=292 t=1.5s
+  [from] d=16 kept=150000 seen=2466678 top_sc=16162035 top_sw=9/9 9/9cum=3873 t=2.5s
+  [from] first PERM9 at 17 t=2.49s B=(7,4) D=(7,2) RURAULRDRRDRDDRRU
+  [from] d=18 kept=150000 seen=3268625 top_sc=217923310 top_sw=9/9 9/9cum=21976 t=3.3s
+  [from] d=18 perm9_in_beam=4 tried_finish=4
+  [from] d=20 kept=150000 seen=4073514 top_sc=218008000 top_sw=9/9 9/9cum=90831 t=4.4s
+  [from] d=20 perm9_in_beam=30 tried_finish=30
+  [from] d=22 kept=150000 seen=4864501 top_sc=218082410 top_sw=9/9 9/9cum=289024 t=5.2s
+  [from] d=22 perm9_in_beam=177 tried_finish=40
+  [from] d=24 kept=150000 seen=5660042 top_sc=218147100 top_sw=9/9 9/9cum=948102 t=6.0s
+  [from] d=24 perm9_in_beam=702 tried_finish=40
+  [from] d=26 kept=150000 seen=6445337 top_sc=218182110 top_sw=9/9 9/9cum=1764162 t=6.8s
+  [from] d=26 perm9_in_beam=2810 tried_finish=40
+  [from] d=28 kept=150000 seen=7208641 top_sc=218226500 top_sw=9/9 9/9cum=2494587 t=7.6s
+  [from] d=28 perm9_in_beam=10779 tried_finish=40
+  [from] d=30 kept=150000 seen=7970660 top_sc=218266500 top_sw=9/9 9/9cum=3219541 t=9.1s
+[from] done t=9.11s seen=7970660 best=None first99=Some(17)
+NONE
+======= H16 max 31 =======
+BEAM from max_d=31 beam=150000 t=55 B=(2,2) D=(2,1) bard=false crates=9 seed=false
+  [from] d=1 kept=4 seen=5 top_sc=-140 top_sw=0/9 9/9cum=0 t=0.0s
+  [from] d=2 kept=14 seen=19 top_sc=-125 top_sw=0/9 9/9cum=0 t=0.0s
+  [from] d=3 kept=47 seen=66 top_sc=190 top_sw=0/9 9/9cum=0 t=0.0s
+  [from] d=4 kept=145 seen=211 top_sc=1105 top_sw=1/9 9/9cum=0 t=0.0s
+  [from] d=6 kept=1317 seen=1968 top_sc=6002035 top_sw=5/9 9/9cum=0 t=0.0s
+  [from] d=8 kept=11156 seen=17001 top_sc=10002050 top_sw=6/9 9/9cum=0 t=0.0s
+  [from] d=10 kept=85249 seen=133430 top_sc=10081740 top_sw=6/9 9/9cum=0 t=0.2s
+  [from] d=12 kept=150000 seen=782249 top_sc=14002635 top_sw=9/9 9/9cum=2 t=0.7s
+  [from] d=14 kept=150000 seen=1605582 top_sc=14082325 top_sw=9/9 9/9cum=245 t=1.5s
+  [from] d=16 kept=150000 seen=2421603 top_sc=16002950 top_sw=9/9 9/9cum=2257 t=2.5s
+  [from] d=18 kept=150000 seen=3236928 top_sc=16082650 top_sw=9/9 9/9cum=10770 t=3.2s
+  [from] first PERM9 at 20 t=3.99s B=(7,4) D=(7,3) RUADRRDLURRRDRULDDRU
+  [from] d=20 kept=150000 seen=4034539 top_sc=217923010 top_sw=9/9 9/9cum=41342 t=4.3s
+  [from] d=20 perm9_in_beam=1 tried_finish=1
+  [from] d=22 kept=150000 seen=4850467 top_sc=218007700 top_sw=9/9 9/9cum=127096 t=5.1s
+  [from] d=22 perm9_in_beam=5 tried_finish=5
+  [from] d=24 kept=150000 seen=5674087 top_sc=218082410 top_sw=9/9 9/9cum=351766 t=6.0s
+  [from] d=24 perm9_in_beam=25 tried_finish=25
+  [from] d=26 kept=150000 seen=6493698 top_sc=218107400 top_sw=9/9 9/9cum=1109968 t=6.7s
+  [from] d=26 perm9_in_beam=107 tried_finish=40
+  [from] d=28 kept=150000 seen=7306780 top_sc=218167100 top_sw=9/9 9/9cum=2084771 t=7.5s
+  [from] d=28 perm9_in_beam=440 tried_finish=40
+  [from] d=30 kept=150000 seen=8103505 top_sc=218246800 top_sw=9/9 9/9cum=2958259 t=9.0s
+  [from] d=30 perm9_in_beam=1968 tried_finish=40
+[from] done t=9.35s seen=8502180 best=None first99=Some(20)
+NONE

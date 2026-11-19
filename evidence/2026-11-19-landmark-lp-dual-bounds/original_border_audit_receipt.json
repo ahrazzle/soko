@@ -1,0 +1,151 @@
+{
+  "epistemic_status": "VERIFIED",
+  "scope_question": "ahrazzle/soko#38: Does the original Part III game allow Druid to harvest outer border walls in 15x7 III-14?",
+  "outer_border_harvest_legal_in_original": true,
+  "outer_border_harvest_strictly_necessary_in_room14": true,
+  "minimum_border_harvests_required_to_win": 9,
+  "source_pins": {
+    "source_url": "https://sites.math.washington.edu/~ostroff/puzzles/Heroes_of_Sokoban_III_The_Bard_and_The_Druid.html",
+    "html_sha256": "380d343ad35a8f8caf6863341172a7771d0d28ced2824a7a3085990614562105",
+    "puzzlescript_source_sha256": "f66ceb8f8a2c23a3cb270bad62cdf194e47479772cab94f154ed26f0ff7c20e0"
+  },
+  "room14_level": {
+    "room_number": 14,
+    "levels_section_start_line": 566,
+    "width": 15,
+    "height": 7,
+    "board_sha256_lf": "300563ca68370b85e44b73f0361320bc79948849f59897a3dd0b5cc470bf351c",
+    "outer_perimeter_walls": 40,
+    "interior_walls": 0,
+    "initial_crates": 0,
+    "purple_switches": 9
+  },
+  "puzzlescript_rule_evidence": {
+    "legend_wall_glyph": [
+      {
+        "line": 262,
+        "text": "# = Wall"
+      }
+    ],
+    "distinct_border_wall_objects_found": [],
+    "druid_wall_to_crate_rule": [
+      {
+        "line": 334,
+        "text": "[> Druid | Wall] -> [Druid | Crate Sfx8]"
+      }
+    ]
+  },
+  "witness_replays": {
+    "R48": {
+      "route": "LLULULULRURURURURUAUDRRDDAUARRDLRAULDLDRARURDUUR",
+      "length": 48,
+      "route_sha256": "cd934d25a629be95f1e0be283bdbe7a419e76b58f604e7628d2ad1ce8fc33083",
+      "traj_fnv64": "9b6f169376d12a7a",
+      "dual_oracle_exact_win": true,
+      "origin_border_wall_count": 40,
+      "distinct_border_walls_harvested": 9,
+      "harvested_coords": [
+        [
+          0,
+          1
+        ],
+        [
+          0,
+          2
+        ],
+        [
+          0,
+          3
+        ],
+        [
+          0,
+          4
+        ],
+        [
+          2,
+          0
+        ],
+        [
+          3,
+          0
+        ],
+        [
+          4,
+          0
+        ],
+        [
+          5,
+          0
+        ],
+        [
+          6,
+          0
+        ]
+      ],
+      "atom_40_invariant_preserved": true,
+      "max_simultaneous_nonhero_switch_obstacles": 9,
+      "final_win": true
+    },
+    "W41": {
+      "route": "LLULULUULRRURURURUAUDRRDDAUARRDLRAULDLDRARURDUUR",
+      "length": 48,
+      "route_sha256": "7912633680d46655f4d0ac732946e6e0a7051ab42951670864a1ecc2e75c188a",
+      "traj_fnv64": "99603a2d9df3ae6d",
+      "dual_oracle_exact_win": true,
+      "origin_border_wall_count": 40,
+      "distinct_border_walls_harvested": 9,
+      "harvested_coords": [
+        [
+          0,
+          1
+        ],
+        [
+          0,
+          2
+        ],
+        [
+          0,
+          3
+        ],
+        [
+          0,
+          4
+        ],
+        [
+          1,
+          0
+        ],
+        [
+          3,
+          0
+        ],
+        [
+          4,
+          0
+        ],
+        [
+          5,
+          0
+        ],
+        [
+          6,
+          0
+        ]
+      ],
+      "atom_40_invariant_preserved": true,
+      "max_simultaneous_nonhero_switch_obstacles": 9,
+      "final_win": true
+    }
+  },
+  "must_fail_control": {
+    "control_name": "frozen_outer_border_unsolvable_room14",
+    "interior_walls": 0,
+    "initial_crates": 0,
+    "hero_count": 2,
+    "switch_count": 9,
+    "max_weighable_switches_without_border_harvest": 2,
+    "unsolvable_without_border_harvest": true,
+    "r48_step2_targets_outer_border_wall": true,
+    "must_fail_triggered": true
+  }
+}

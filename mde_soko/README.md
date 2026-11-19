@@ -1,6 +1,6 @@
 # Sokoban Evaluation Domain Pack (`mde:soko-eval`)
 
-`mde_soko` packages a Sokoban evaluation domain (`mde:soko-eval`), a deterministic CPU `float64` `BetaEdit` adapter compiler, and a four-mode benchmark runner inside `ahrazzle/soko`. Every Sokoban rule check and trajectory replay runs through `soko_mcp` without modifying any of the 21 checker and prover files locked in root `SHA256SUMS`.
+`mde_soko` packages a Sokoban evaluation domain (`mde:soko-eval`), a deterministic CPU `float64` `BetaEdit` adapter compiler, and a four-mode benchmark runner inside `ahrazzle/soko`. Sokoban replay uses locked `soko_mcp` checkers; this PR also updates root TCB entries required for dual-oracle corpse parity (`soko_mcp/flat_oracle.py`, `cpp/soko_engine.cpp`, regenerated `SHA256SUMS`) so `mde_soko` dual verification matches native and Python oracles on fatal steps.
 
 ## Quick Verification (`pytest + numpy` only)
 
@@ -35,9 +35,11 @@ python3 -B -m mde_soko prose-check
 | `P2-A` (unprojected, norm-matched) | `0.228833` | `330.871` | n/a | n/a | `< 1e-6` | REJECT (`leakage_energy_exceeds_cap`) |
 | `Sabotage` (low-norm rank-4 control) | `5.062952` | `447248.18` | n/a | n/a | `0.300256` | REJECT (`leakage` + `safety_dot`) |
 
-## Live `Qwen3.5-4B` Evaluation (`mde_soko/results/soko_eval_live_receipt.json`)
+## Historical live `Qwen3.5-4B` evaluation (`mde_soko/results/soko_eval_live_receipt.json`)
 
-Executed locally on `Qwen3.5-4B-Q8_0.gguf` (`sha256: 10cc391b...`, `llama-server` `0.5.0` commit `7fe450e19`, `temperature = 0.0`, `top_p = 1.0`, `seed = 20261119`, per-slot erase across Gated DeltaNet layers):
+**Status:** historical archive only (`evidence_status: historical_archive`, captured at `git_head_sha=382e9daf`). Not current PR-head evidence; re-run `python3 -B -m mde_soko eval` with a local `Qwen3.5-4B-Q8_0.gguf` and `llama-server` to refresh. The receipt’s S3 `II-4` `DUAL_ORACLE_MISMATCH` predates the `FlatBitmaskOracle` corpse (`X`) fix now in root TCB (`soko_mcp/flat_oracle.py`, `cpp/soko_engine.cpp`); dual-oracle parity on `II-4` `"RRR"` holds after that fix.
+
+Executed locally on `Qwen3.5-4B-Q8_0.gguf` (`sha256: 10cc391b...`, `llama-server` `0.5.0` commit `7fe450e19`, `temperature = 0.0`, `top_p = 1.0`, `seed = 20261119`, per-slot erase across Gated DeltaNet layers) at commit `382e9daf`:
 
 - **Live `step0` off-register retention (`24` `y = 0` anchors)**: `P2-B` achieves `24/24` (`100.0%`) top-1 token agreement with `B0` (`mean_abs_top1_logprob_delta = 0.000533`, max `0.002904`), whereas norm-matched unprojected `P2-A` drops to `20/24` (`83.33%`, `mean_abs_top1_logprob_delta = 0.500661`, max `3.965778`, `939x` larger shift).
 - **Public `validation.jsonl` (`16` rooms, `1`-shot open-loop)**: `B0` scores `4/16` (`25.0%`, `4/4` on `H_RULE` and `0/12` on `H_ROUTE`/`H_PROBE`/`H_CELL`), while `P2-A` and `P2-B` each score `1/16` (`6.25%`, `1/4` on `H_RULE`). Single-layer rank-8 weight editing preserves off-register behavior (`100%` `step0` agreement) without solving unseen single-shot Sokoban routes at `4B` scale.
@@ -50,7 +52,7 @@ Executed locally on `Qwen3.5-4B-Q8_0.gguf` (`sha256: 10cc391b...`, `llama-server
 | `S2` (`P2-B` stateful probe loop) | `1/18` (`5.6%`, `I-1`) | `18/18` (`100.0%` probed) | `4088` (`227.1`) | `[1, 1, -4088]` | `5` fatal steps rolled back safely, `8` stagnation warnings |
 | `S3` (`P2-B` 4.0s Python cell, `k <= 4`) | `0/18` (`0.0%`) | `1` forbidden import blocked | `4320` (`240.0`) | `[1, 0, -4320]` | `2` `PREMATURE_WIN_EXTRA_KEYS` (`I-1`), `2` `4.0s` timeouts, `1` `DUAL_ORACLE_MISMATCH` (`II-4`) |
 
-- **Live differential catch (`II-4` `"RRR"`)**: `S3` Turn 1 flagged `DUAL_ORACLE_MISMATCH` on fatal Goblin collision. Both `PuzzleScriptOracle` and `FlatBitmaskOracle` agree `alive == False`, `exact_win == False`, and `traj_fnv64`, while `PuzzleScriptOracle` renders `'X'` (`#....XO.#...#`) and `FlatBitmaskOracle` renders `'F'` (`#....FO.#...#`). `verify_route_dual_strict` rejected the route fail-closed.
+- **Historical S3 note (`II-4` `"RRR"`, pre-corpse TCB at `382e9daf`)**: the archived receipt logged `DUAL_ORACLE_MISMATCH` because `FlatBitmaskOracle` still rendered `'F'` on fatal steps. After the TCB corpse fix, both oracles render `'X'` and agree (`tests/test_flat_oracle_corpse.py`).
 
 ## Scope Limits
 

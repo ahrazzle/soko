@@ -1640,6 +1640,8 @@
     }
   },
   "domain_id": "mde:soko-eval",
+  "evidence_status": "historical_archive",
+  "evidence_note": "Archive of a single live llama-server run pinned to provenance.git_head_sha=382e9dafbe4ce500f454feafcae1a7e7c859333a. This file is not current evidence for PR head: do not treat it as automatically reproducible without the same GGUF, llama-server build, and commit. The S3 II-4 DUAL_ORACLE_MISMATCH row predates FlatBitmaskOracle corpse rendering (_CORPSE/X); dual-oracle parity on II-4 RRR holds after the TCB fix in #60/this branch. Regenerate with: python3 -B -m mde_soko eval --base-gguf <Qwen3.5-4B-Q8_0.gguf>.",
   "provenance": {
     "base_gguf_filename": "Qwen3.5-4B-Q8_0.gguf",
     "base_gguf_sha256": "10cc391b403021dd11c614679d2fd92f611c3681d29e29651b717316965d61e1",

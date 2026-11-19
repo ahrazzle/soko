@@ -137,7 +137,8 @@ class Foundation0SynthesisV04Tests(unittest.TestCase):
                 ],
             },
         )
-        assert reg["epistemic_status"] == "VERIFIED" and reg["tcb_locked"], reg
+        if reg["epistemic_status"] != "VERIFIED" or not reg["tcb_locked"]:
+            raise RuntimeError(f"formal_define_system failed: {reg}")
 
     def test_01_capabilities_and_17_tools_v040(self) -> None:
         caps = get_capabilities()
@@ -283,9 +284,9 @@ def dual_y():
         self.assertEqual(trunc_res["epistemic_status"], "REJECTED_INCOMPLETE_CONCRETE_GRAPH_FOR_QUOTIENT")
 
     def test_04_formal_audit_checkers_self_audit_and_hazard_detection(self) -> None:
-        # 1. Built-in self-audit of oracle.py vs flat_oracle.py
+        # 1. Built-in self-audit of oracle.py vs flat_oracle.py (static AST lint -> LINT_PASS, not VERIFIED)
         builtin_rep = dispatch_tool_call("formal_audit_checkers", {"builtin_soko_oracles": True})
-        self.assertEqual(builtin_rep["epistemic_status"], "VERIFIED")
+        self.assertEqual(builtin_rep["epistemic_status"], "LINT_PASS")
         self.assertEqual(builtin_rep["verdict"], "PASS")
         self.assertTrue(builtin_rep["distinct_alpha_skeleton"])
 

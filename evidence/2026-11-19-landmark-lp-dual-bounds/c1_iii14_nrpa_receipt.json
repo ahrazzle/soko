@@ -1,0 +1,38 @@
+{
+  "epistemic_status": "VERIFIED",
+  "task_ref": "ahrazzle/soko#53 C1 (Deterministic-Seed Unseeded NRPA on 15x7 III-14)",
+  "nrpa_source_sha256": "85dd1db2fa850f2c05b563f0127667703fe100f2ca27de4254bcdeb1b8eaee30",
+  "base_seed": 20261119,
+  "nrpa_level": 3,
+  "iterations_per_level": 22,
+  "restarts_primitive_open": 6,
+  "restarts_open_horizon": 18,
+  "open_horizon_cap": 76,
+  "restarts_sub48_probe": 12,
+  "total_rollouts_executed": 383328,
+  "primitive_wins_count": 0,
+  "macro_wins_count": 1,
+  "winning_restarts_count": 1,
+  "wins_at_or_below_47": 0,
+  "reproduced_48_from_scratch": false,
+  "found_sub_48_route": false,
+  "shortest_nrpa_win_len": 70,
+  "shortest_nrpa_win_route": "DRDLDUULLULULURURURUADRRDDAURUULLDAURRALULLDLLDRDDRARUADRRURUARRRRAUUL",
+  "verified_winning_rollouts": [
+    {
+      "restart_id": 19,
+      "arm": "macro_open",
+      "seed": 20451252,
+      "horizon": 76,
+      "length": 70,
+      "route": "DRDLDUULLULULURURURUADRRDDAURUULLDAURRALULLDLLDRDDRARUADRRURUARRRRAUUL",
+      "route_sha256": "5e126650548e7041b377478d38e480360159c37337676faf14bc2d5222ea852b",
+      "traj_fnv64": "b80a2b184a306a76",
+      "dual_oracle_verified": true
+    }
+  ],
+  "must_fail_controls": {
+    "truncated_47_prefix_rejected": true,
+    "post_win_49_extra_key_rejected": true
+  }
+}

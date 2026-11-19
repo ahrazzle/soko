@@ -1,0 +1,85 @@
+======= BEAM cut 25 max 23 beam 120k (want <=22) =======
+BEAM cut25 max_d=23 beam=120000 t=45 B=(4,4) D=(6,3) bard=true crates=9 seed=true
+[cut25] seed suffix 23 loaded, 24 states, seed_win=true
+  [cut25] d=1 kept=5 seen=6 top_sc=6000355 top_sw=6/9 9/9cum=0 t=0.0s
+  [cut25] d=2 kept=17 seen=23 top_sc=7001365 top_sw=7/9 9/9cum=0 t=0.0s
+  [cut25] d=3 kept=60 seen=83 top_sc=7001355 top_sw=7/9 9/9cum=0 t=0.0s
+  [cut25] d=4 kept=196 seen=279 top_sc=8001365 top_sw=8/9 9/9cum=0 t=0.0s
+  [cut25] first 9/9 at 6 t=0.00s B=(6,4) D=(7,3) RDRULR
+  [cut25] d=6 kept=1720 seen=2586 top_sc=59001365 top_sw=9/9 9/9cum=6 t=0.0s
+  [cut25] d=8 kept=13559 seen=21058 top_sc=59040775 top_sw=9/9 9/9cum=57 t=0.1s
+  [cut25] d=10 kept=93660 seen=150761 top_sc=59060570 top_sw=9/9 9/9cum=411 t=0.2s
+  [cut25] d=12 kept=120000 seen=700999 top_sc=59060670 top_sw=9/9 9/9cum=2397 t=0.8s
+  [cut25] d=14 kept=120000 seen=1327070 top_sc=59080375 top_sw=9/9 9/9cum=14047 t=1.4s
+  [cut25] d=16 kept=120000 seen=1963204 top_sc=59080385 top_sw=9/9 9/9cum=61233 t=2.3s
+  [cut25] d=18 kept=120000 seen=2606820 top_sc=59100180 top_sw=9/9 9/9cum=236752 t=3.0s
+  [cut25] d=20 kept=120000 seen=3244566 top_sc=59100375 top_sw=9/9 9/9cum=824662 t=3.7s
+  [cut25] d=22 kept=120000 seen=3867537 top_sc=59119795 top_sw=9/9 9/9cum=1762592 t=4.8s
+  [cut25] WIN 23 t=4.78s AUARRDLRALULDDRARURRDUU
+[cut25] done t=5.10s seen=4176925 best=Some(23) first99=Some(6)
+SUFFIX 23 AUARRDLRALULDDRARURRDUU
+======= BEAM cut 21 max 26 beam 120k (want <=26) =======
+BEAM cut21 max_d=26 beam=120000 t=50 B=(2,2) D=(6,1) bard=true crates=9 seed=true
+[cut21] seed suffix 27 loaded, 28 states, seed_win=true
+  [cut21] d=1 kept=5 seen=6 top_sc=999665 top_sw=1/9 9/9cum=0 t=0.0s
+  [cut21] d=2 kept=18 seen=24 top_sc=2000065 top_sw=2/9 9/9cum=0 t=0.0s
+  [cut21] d=3 kept=66 seen=90 top_sc=4000365 top_sw=4/9 9/9cum=0 t=0.0s
+  [cut21] d=4 kept=220 seen=310 top_sc=6000365 top_sw=6/9 9/9cum=0 t=0.0s
+  [cut21] d=6 kept=1895 seen=2864 top_sc=8001265 top_sw=8/9 9/9cum=0 t=0.0s
+  [cut21] d=8 kept=13646 seen=21664 top_sc=8001365 top_sw=8/9 9/9cum=0 t=0.1s
+  [cut21] first 9/9 at 10 t=0.11s B=(6,4) D=(7,3) RRRDDDRULR
+  [cut21] d=10 kept=91032 seen=148169 top_sc=59001365 top_sw=9/9 9/9cum=29 t=0.2s
+  [cut21] d=12 kept=120000 seen=703269 top_sc=59040775 top_sw=9/9 9/9cum=314 t=0.7s
+  [cut21] d=14 kept=120000 seen=1376327 top_sc=59060570 top_sw=9/9 9/9cum=2600 t=1.4s
+  [cut21] d=16 kept=120000 seen=2047002 top_sc=59060680 top_sw=9/9 9/9cum=13785 t=2.1s
+  [cut21] d=18 kept=120000 seen=2716917 top_sc=59080385 top_sw=9/9 9/9cum=55345 t=2.8s
+  [cut21] d=20 kept=120000 seen=3384410 top_sc=59100180 top_sw=9/9 9/9cum=193440 t=3.4s
+  [cut21] d=22 kept=120000 seen=4033743 top_sc=59119585 top_sw=9/9 9/9cum=604398 t=4.4s
+  [cut21] d=24 kept=120000 seen=4683176 top_sc=59100380 top_sw=9/9 9/9cum=1514447 t=5.0s
+  [cut21] d=26 kept=120000 seen=5315573 top_sc=59119885 top_sw=9/9 9/9cum=2461157 t=5.6s
+[cut21] done t=5.64s seen=5315573 best=None first99=Some(10)
+NONE
+======= BEAM cut 19 max 28 beam 120k =======
+BEAM cut19 max_d=28 beam=120000 t=50 B=(2,2) D=(6,1) bard=true crates=9 seed=true
+[cut19] seed suffix 29 loaded, 30 states, seed_win=true
+  [cut19] d=1 kept=5 seen=6 top_sc=-335 top_sw=0/9 9/9cum=0 t=0.0s
+  [cut19] d=2 kept=19 seen=25 top_sc=999565 top_sw=1/9 9/9cum=0 t=0.0s
+  [cut19] d=3 kept=71 seen=96 top_sc=2000165 top_sw=2/9 9/9cum=0 t=0.0s
+  [cut19] d=4 kept=236 seen=332 top_sc=5000165 top_sw=5/9 9/9cum=0 t=0.0s
+  [cut19] d=6 kept=2122 seen=3181 top_sc=6001365 top_sw=6/9 9/9cum=0 t=0.0s
+  [cut19] d=8 kept=15713 seen=24744 top_sc=8001365 top_sw=8/9 9/9cum=0 t=0.1s
+  [cut19] d=10 kept=106813 seen=172854 top_sc=8021160 top_sw=8/9 9/9cum=0 t=0.2s
+  [cut19] first 9/9 at 11 t=0.22s B=(5,4) D=(6,3) DLRDRRRUUDD
+  [cut19] d=12 kept=120000 seen=777646 top_sc=59001365 top_sw=9/9 9/9cum=88 t=0.8s
+  [cut19] d=14 kept=120000 seen=1464183 top_sc=59040865 top_sw=9/9 9/9cum=1196 t=1.5s
+  [cut19] d=16 kept=120000 seen=2150358 top_sc=59060680 top_sw=9/9 9/9cum=6796 t=2.3s
+  [cut19] d=18 kept=120000 seen=2831315 top_sc=59080385 top_sw=9/9 9/9cum=28412 t=3.0s
+  [cut19] d=20 kept=120000 seen=3510072 top_sc=59100180 top_sw=9/9 9/9cum=96195 t=3.7s
+  [cut19] d=22 kept=120000 seen=4169362 top_sc=59100180 top_sw=9/9 9/9cum=291195 t=4.7s
+  [cut19] d=24 kept=120000 seen=4822233 top_sc=59100190 top_sw=9/9 9/9cum=869813 t=5.3s
+  [cut19] d=26 kept=120000 seen=5462871 top_sc=59100380 top_sw=9/9 9/9cum=1777858 t=5.9s
+  [cut19] d=28 kept=120000 seen=6097501 top_sc=59139890 top_sw=9/9 9/9cum=2731552 t=6.5s
+[cut19] done t=6.55s seen=6097501 best=None first99=Some(11)
+NONE
+======= BEAM cut 18 max 29 beam 120k (30 would equal 48) =======
+BEAM cut18 max_d=29 beam=150000 t=55 B=(2,2) D=(6,1) bard=false crates=9 seed=true
+[cut18] seed suffix 30 loaded, 31 states, seed_win=true
+  [cut18] d=1 kept=5 seen=6 top_sc=999155 top_sw=1/9 9/9cum=0 t=0.0s
+  [cut18] d=2 kept=18 seen=24 top_sc=999165 top_sw=1/9 9/9cum=0 t=0.0s
+  [cut18] d=3 kept=62 seen=86 top_sc=999665 top_sw=1/9 9/9cum=0 t=0.0s
+  [cut18] d=4 kept=198 seen=284 top_sc=2000165 top_sw=2/9 9/9cum=0 t=0.0s
+  [cut18] d=6 kept=1673 seen=2545 top_sc=5000265 top_sw=5/9 9/9cum=0 t=0.0s
+  [cut18] d=8 kept=12453 seen=19639 top_sc=7000365 top_sw=7/9 9/9cum=0 t=0.1s
+  [cut18] d=10 kept=83868 seen=136207 top_sc=8001355 top_sw=8/9 9/9cum=0 t=0.2s
+  [cut18] first 9/9 at 12 t=0.39s B=(5,4) D=(6,3) ADLRDRRRUUDD
+  [cut18] d=12 kept=150000 seen=738670 top_sc=59001265 top_sw=9/9 9/9cum=3 t=0.8s
+  [cut18] d=14 kept=150000 seen=1577796 top_sc=59021060 top_sw=9/9 9/9cum=381 t=1.5s
+  [cut18] d=16 kept=150000 seen=2433465 top_sc=59060670 top_sw=9/9 9/9cum=3932 t=2.5s
+  [cut18] d=18 kept=150000 seen=3297842 top_sc=59080375 top_sw=9/9 9/9cum=19626 t=3.3s
+  [cut18] d=20 kept=150000 seen=4148365 top_sc=59080385 top_sw=9/9 9/9cum=74979 t=4.4s
+  [cut18] d=22 kept=150000 seen=4986575 top_sc=59100190 top_sw=9/9 9/9cum=243604 t=5.3s
+  [cut18] d=24 kept=150000 seen=5805530 top_sc=59100375 top_sw=9/9 9/9cum=730567 t=6.1s
+  [cut18] d=26 kept=150000 seen=6628440 top_sc=59100280 top_sw=9/9 9/9cum=1858084 t=6.9s
+  [cut18] d=28 kept=150000 seen=7430324 top_sc=59119885 top_sw=9/9 9/9cum=3048834 t=8.4s
+[cut18] done t=8.82s seen=7824725 best=None first99=Some(12)
+NONE

@@ -16,6 +16,7 @@ import sys
 REPO_ROOT = Path(__file__).resolve().parents[2]
 sys.path.insert(0, str(REPO_ROOT))
 
+from soko_mcp.evidence import digest, must_fail
 from soko_mcp.flat_oracle import replay_flat_oracle
 from soko_mcp.oracle import FRONTIER_ROOMS, replay_oracle
 
@@ -27,9 +28,11 @@ REFERENCE_ROUTE = 'LLULULULRURURURURUAUDRRDDAUARRDLRAULDLDRARURDUUR'
 
 def verify_candidate(route: str = REFERENCE_ROUTE) -> dict:
     meta = FRONTIER_ROOMS[ROOM_ID]
+    part = int(meta["part"])
+    grid = list(meta["grid"])
     clean = route.strip().upper()
-    spec_res = replay_oracle(int(meta["part"]), list(meta["grid"]), clean)
-    flat_res = replay_flat_oracle(int(meta["part"]), list(meta["grid"]), clean)
+    spec_res = replay_oracle(part, grid, clean)
+    flat_res = replay_flat_oracle(part, grid, clean)
     parity = (
         spec_res["alive"] == flat_res["alive"]
         and spec_res["exact_win"] == flat_res["exact_win"]
@@ -38,7 +41,10 @@ def verify_candidate(route: str = REFERENCE_ROUTE) -> dict:
         and spec_res["final_ascii"] == flat_res["final_ascii"]
     )
     valid = bool(parity and spec_res["exact_win"] and not spec_res["premature_win"])
-    return {
+    controls: list[str] = []
+    must_fail("truncated_reference_prefix", replay_oracle(part, grid, REFERENCE_ROUTE[:-1])["exact_win"], controls)
+    must_fail("extra_key_after_win", replay_oracle(part, grid, REFERENCE_ROUTE + "U")["exact_win"], controls)
+    out = {
         "epistemic_status": "VERIFIED" if valid else "REJECTED",
         "room_id": ROOM_ID,
         "valid_winning_route": valid,
@@ -46,9 +52,12 @@ def verify_candidate(route: str = REFERENCE_ROUTE) -> dict:
         "route_len": len(clean),
         "beats_reference_best": valid and len(clean) < REFERENCE_BEST_LEN,
         "published_frontier_floor": PUBLISHED_FRONTIER_FLOOR,
+        "must_fail_controls": controls,
         "route_sha256_12": hashlib.sha256(clean.encode("utf-8")).hexdigest()[:12],
         "traj_fnv64": spec_res["traj_fnv64"],
     }
+    out["certificate_sha256"] = digest(out)
+    return out
 
 
 if __name__ == "__main__":
