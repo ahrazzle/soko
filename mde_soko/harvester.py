@@ -7,9 +7,15 @@ import json
 import math
 import os
 from pathlib import Path
-from typing import Any, Sequence
+from typing import TYPE_CHECKING, Any, Sequence
 
-import numpy as np
+if TYPE_CHECKING:
+    import numpy as np
+else:
+    try:
+        import numpy as np
+    except ImportError:
+        np = None  # type: ignore[assignment]
 
 from .scrub import soko_repo_root, write_clean_json_atomic
 

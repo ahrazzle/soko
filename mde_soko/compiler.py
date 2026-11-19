@@ -8,9 +8,15 @@ import json
 import math
 import struct
 from pathlib import Path
-from typing import Any, Sequence
+from typing import TYPE_CHECKING, Any, Sequence
 
-import numpy as np
+if TYPE_CHECKING:
+    import numpy as np
+else:
+    try:
+        import numpy as np
+    except ImportError:
+        np = None  # type: ignore[assignment]
 
 from .lineage import compute_soko_plane1_lineage
 from .scrub import soko_repo_root, to_repo_rel_or_tag, write_clean_json_atomic
