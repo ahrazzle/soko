@@ -66,6 +66,9 @@ _FORBIDDEN_CALL_NAMES: Set[str] = {
     "property",
 }
 
+# Builtins that can return floats from exact inputs (pow(2, -1) == 0.5).
+_FLOAT_PRODUCING_NAMES: Set[str] = {"pow", "float", "complex"}
+
 SAFE_BUILTINS: Dict[str, Any] = {
     "abs": abs,
     "all": all,
@@ -129,6 +132,10 @@ def validate_pure_ast(code: str, label: str, exact_arithmetic_only: bool = True)
             raise ValueError(f"[{label}] Mutable global/nonlocal state is forbidden for deterministic verification.")
         if isinstance(node, (ast.AsyncFunctionDef, ast.Await, ast.AsyncFor, ast.AsyncWith, ast.Yield, ast.YieldFrom)):
             raise ValueError(f"[{label}] Async/generator constructs are forbidden inside formal specifications.")
+        if isinstance(node, ast.ClassDef):
+            raise ValueError(f"[{label}] Class definitions are forbidden inside formal modules.")
+        if isinstance(node, ast.FunctionDef) and node.name.startswith("__"):
+            raise ValueError(f"[{label}] Dunder function name {node.name!r} is forbidden inside formal modules.")
         if isinstance(node, ast.Try):
             for handler in node.handlers:
                 if handler.type is None:
@@ -149,6 +156,22 @@ def validate_pure_ast(code: str, label: str, exact_arithmetic_only: bool = True)
                 raise ValueError(
                     f"[{label}] Floating-point '/' division rejected under exact_arithmetic_only=True "
                     "(use integer '//' or Fraction(a, b))."
+                )
+            if isinstance(node, (ast.BinOp, ast.AugAssign)) and isinstance(node.op, ast.Pow):
+                exponent = node.right if isinstance(node, ast.BinOp) else node.value
+                if not (
+                    isinstance(exponent, ast.Constant)
+                    and isinstance(exponent.value, int)
+                    and not isinstance(exponent.value, bool)
+                    and exponent.value >= 0
+                ):
+                    raise ValueError(
+                        f"[{label}] '**' with a negative or non-literal exponent rejected under "
+                        "exact_arithmetic_only=True (int ** -k and Fraction ** non-integer produce floats)."
+                    )
+            if isinstance(node, ast.Name) and node.id in _FLOAT_PRODUCING_NAMES:
+                raise ValueError(
+                    f"[{label}] Float-producing builtin {node.id!r} rejected under exact_arithmetic_only=True."
                 )
 
     skeleton = _alpha_normalize_skeleton(tree)
@@ -244,6 +267,19 @@ def assert_exact_immutable(val: Any, ctx: str, exact_only: bool = True) -> None:
     )
 
 
+def _require_exact_number(val: Any, ctx: str, exact_only: bool = True) -> Any:
+    """Fail closed unless `val` is an exact int or Fraction (finite float only when not exact_only)."""
+    if type(val) is int or type(val) is Fraction:
+        return val
+    if type(val) is float:
+        if exact_only:
+            raise TypeError(f"[{ctx}] Float potential {val!r} forbidden under exact_arithmetic_only=True.")
+        if not math.isfinite(val):
+            raise TypeError(f"[{ctx}] Non-finite potential {val!r} rejected (NaN/inf comparisons are unsound).")
+        return val
+    raise TypeError(f"[{ctx}] Potential must be exact int or Fraction, got {type(val).__name__}.")
+
+
 def _canonical_repr(val: Any) -> str:
     if isinstance(val, frozenset):
         items = sorted(_canonical_repr(x) for x in val)
@@ -312,7 +348,7 @@ class CompiledChecker:
         if fn is None:
             return 1
         c = fn(state, action, next_state)
-        if not isinstance(c, int) or isinstance(c, bool) or c < 0:
+        if type(c) is not int or c < 0:
             raise ValueError(f"[{self.label}.step_cost] Step cost must be a non-negative integer, got {c!r}")
         return c
 
@@ -507,7 +543,13 @@ def define_formal_system(
                 "spec_result": sr,
                 "impl_result": ir,
             }
-        pos_results.append({"name": wname, "steps": sr["steps_executed"], "cost": sr["total_cost"], "transcript_sha256_12": sr["transcript_sha256"][:12]})
+        pos_results.append({
+            "name": wname,
+            "steps": sr["steps_executed"],
+            "cost": sr["total_cost"],
+            "transcript_sha256": sr["transcript_sha256"],
+            "transcript_sha256_12": sr["transcript_sha256"][:12],
+        })
 
     # 2. Verify 100% rejection on must-fail negative controls across BOTH checkers
     neg_rejected = 0
@@ -539,9 +581,7 @@ def define_formal_system(
     s0 = spec.initial_state()
     u0 = impl.initial_state()
     q: deque[Tuple[Any, Any, Tuple[Any, ...]]] = deque([(s0, u0, ())])
-    obs0 = spec.project_obs(s0)
-    inv0_s, _ = spec.invariant(s0)
-    seen_obs: Set[Any] = {(obs0, spec.is_goal(s0), inv0_s)}
+    seen_pairs: Set[Tuple[Any, Any]] = {(s0, u0)}
     fuzz_states = 0
     fuzz_edges = 0
     fuzz_sample_traces: List[Tuple[Any, ...]] = []
@@ -625,10 +665,23 @@ def define_formal_system(
                     "impl_goal": goal_nu,
                     "reason": "successor goal predicate mismatch (not masked by duplicate project_obs)",
                 }
-            inv_ns, _ = spec.invariant(ns)
-            obs_key = (obs_ns, goal_ns, inv_ns)
-            if obs_key not in seen_obs and len(seen_obs) < max(1, int(bounded_fuzz_nodes)):
-                seen_obs.add(obs_key)
+            inv_ns, rsn_ns = spec.invariant(ns)
+            inv_nu, rsn_nu = impl.invariant(nu)
+            acts_ns = spec.actions(ns)
+            acts_nu = impl.actions(nu)
+            if inv_ns != inv_nu or set(acts_ns) != set(acts_nu):
+                return {
+                    "epistemic_status": "REJECTED_DIFFERENTIAL_MISMATCH",
+                    "tcb_locked": False,
+                    "system_id": sid,
+                    "diverging_trace": [_canonical_repr(a) for a in path + (act,)],
+                    "spec_inv_actions": [inv_ns, rsn_ns, sorted(_canonical_repr(a) for a in acts_ns)],
+                    "impl_inv_actions": [inv_nu, rsn_nu, sorted(_canonical_repr(a) for a in acts_nu)],
+                    "reason": "successor invariant or action-set mismatch (checked on every edge, not masked by project_obs)",
+                }
+            pair_next = (ns, nu)
+            if pair_next not in seen_pairs and len(seen_pairs) < max(1, int(bounded_fuzz_nodes)):
+                seen_pairs.add(pair_next)
                 q.append((ns, nu, path + (act,)))
 
     # 4. Planted-Mutation Adequacy Gate (every planted bug must be killed by witnesses, controls, or fuzz traces!)
@@ -731,6 +784,104 @@ def _get_locked_system(system_id: str) -> RegisteredFormalSystem:
             f"Currently registered: {sorted(FORMAL_REGISTRY)}"
         )
     return FORMAL_REGISTRY[sid]
+
+
+def _is_sha256_hex(val: Any) -> bool:
+    if not isinstance(val, str) or len(val) != 64:
+        return False
+    return all(ch in "0123456789abcdef" for ch in val.lower())
+
+
+def _check_dual_state_parity(
+    system_id: str,
+    spec: Any,
+    impl: Any,
+    sc: Any,
+    uc: Any,
+    path: Sequence[Any],
+) -> Optional[Dict[str, Any]]:
+    """Verify full SPEC/IMPL state agreement (observation, invariant, goal, legal action set)."""
+    obs_s = spec.project_obs(sc)
+    obs_u = impl.project_obs(uc)
+    inv_s, rsn_s = spec.invariant(sc)
+    inv_u, rsn_u = impl.invariant(uc)
+    goal_s = spec.is_goal(sc)
+    goal_u = impl.is_goal(uc)
+    acts_s = spec.actions(sc)
+    acts_u = impl.actions(uc)
+    if (
+        obs_s != obs_u
+        or inv_s != inv_u
+        or goal_s != goal_u
+        or set(acts_s) != set(acts_u)
+    ):
+        return {
+            "epistemic_status": "REJECTED_DIFFERENTIAL_MISMATCH",
+            "system_id": system_id,
+            "diverging_trace": [_canonical_repr(a) for a in path],
+            "spec_obs": _canonical_repr(obs_s),
+            "impl_obs": _canonical_repr(obs_u),
+            "spec_goal_inv": [goal_s, inv_s, rsn_s],
+            "impl_goal_inv": [goal_u, inv_u, rsn_u],
+        }
+    return None
+
+
+def _verify_reachable_dual_parity(
+    system_id: str,
+    spec: Any,
+    impl: Any,
+    check_step_cost: bool = True,
+    max_pairs: int = 100000,
+) -> Optional[Dict[str, Any]]:
+    """Verify SPEC/IMPL parity across the reachable state space from (s0, u0)."""
+    s0 = spec.initial_state()
+    u0 = impl.initial_state()
+    q: deque[Tuple[Any, Any, Tuple[Any, ...]]] = deque([(s0, u0, ())])
+    visited_pairs: Set[Tuple[Any, Any]] = {(s0, u0)}
+    while q:
+        sc, uc, path = q.popleft()
+        mismatch = _check_dual_state_parity(system_id, spec, impl, sc, uc, path)
+        if mismatch is not None:
+            return mismatch
+        for act in spec.actions(sc):
+            ns = spec.step(sc, act)
+            nu = impl.step(uc, act)
+            npath = path + (act,)
+            if (ns is None) != (nu is None):
+                return {
+                    "epistemic_status": "REJECTED_STEP_SURVIVAL_DIVERGENCE",
+                    "system_id": system_id,
+                    "diverging_trace": [_canonical_repr(a) for a in npath],
+                }
+            if ns is None:
+                continue
+            if check_step_cost:
+                cs = spec.step_cost(sc, act, ns)
+                cu = impl.step_cost(uc, act, nu)
+                if cs != cu:
+                    return {
+                        "epistemic_status": "REJECTED_TRANSITION_DIVERGENCE",
+                        "system_id": system_id,
+                        "diverging_trace": [_canonical_repr(a) for a in npath],
+                        "spec_step_cost": cs,
+                        "impl_step_cost": cu,
+                    }
+            next_mismatch = _check_dual_state_parity(system_id, spec, impl, ns, nu, npath)
+            if next_mismatch is not None:
+                return next_mismatch
+            pair = (ns, nu)
+            if pair not in visited_pairs:
+                if len(visited_pairs) >= max_pairs:
+                    return {
+                        "epistemic_status": "REJECTED_INCOMPLETE_DUAL_PARITY_CHECK",
+                        "system_id": system_id,
+                        "pairs_checked": len(visited_pairs),
+                        "reason": f"Reachable dual-checker state pairs exceeded cap={max_pairs}.",
+                    }
+                visited_pairs.add(pair)
+                q.append((ns, nu, npath))
+    return None
 
 
 def verify_formal_trace(
@@ -929,17 +1080,24 @@ def solve_formal_system(
         u0 = impl.initial_state()
         counter = 0
         pq: List[Tuple[int, int, Any, Any, Tuple[Any, ...]]] = [(0, 0, s0, u0, ())]
-        best_g: Dict[Any, int] = {s0: 0}
+        best_g: Dict[Tuple[Any, Any], int] = {(s0, u0): 0}
+        seen_spec_states: Set[Any] = {s0}
         truncated_by_budget = False
+        # Smallest cost-to-reach among successors dropped by the max_states budget. A goal popped
+        # at cost g is optimal only if g <= this value (pruning by max_cost drops only paths with
+        # cost > max_cost >= g, so it cannot hide a cheaper goal).
+        min_state_pruned_g: Optional[int] = None
         edges_checked = 0
 
         while pq:
             g, _, s_cur, u_cur, path = heapq.heappop(pq)
-            if g > best_g.get(s_cur, g):
+            pair_cur = (s_cur, u_cur)
+            if g > best_g.get(pair_cur, g):
                 continue
 
-            if spec.project_obs(s_cur) != impl.project_obs(u_cur):
-                raise RuntimeError(f"Dual-checker observation divergence during Dijkstra at trace {path!r}")
+            mismatch = _check_dual_state_parity(reg.system_id, spec, impl, s_cur, u_cur, path)
+            if mismatch is not None:
+                return mismatch
 
             inv_ok, inv_reason = spec.invariant(s_cur)
             if mode == "find_invariant_violation" and not inv_ok:
@@ -952,13 +1110,31 @@ def solve_formal_system(
                     "invariant_reason": inv_reason,
                     "steps": len(path),
                     "total_cost": g,
-                    "states_explored": len(best_g),
+                    "states_explored": len(seen_spec_states),
                     "trace": list(path),
                     "verification": ver,
                 }
 
             if mode == "reach_goal" and inv_ok and spec.is_goal(s_cur):
                 ver = verify_formal_trace(system_id, path, verification_goal="goal_witness", require_exact_terminal_goal=True)
+                if min_state_pruned_g is not None and min_state_pruned_g < g:
+                    # A state dropped by the max_states budget could lead to a cheaper goal.
+                    return {
+                        "epistemic_status": "VERIFIED_FEASIBLE_NOT_PROVEN_OPTIMAL" if ver["verified"] else "REJECTED",
+                        "certificate_kind": None,
+                        "system_id": reg.system_id,
+                        "mode": mode,
+                        "solved": ver["verified"],
+                        "optimal_cost": None,
+                        "best_found_cost": g,
+                        "unexplored_lower_bound": min_state_pruned_g,
+                        "truncated_by_budget": True,
+                        "steps": len(path),
+                        "states_explored": len(seen_spec_states),
+                        "edges_checked": edges_checked,
+                        "trace": list(path),
+                        "verification": ver,
+                    }
                 # Since Dijkstra expands states in non-decreasing exact integer step_cost >= 0,
                 # the first valid goal popped is guaranteed minimum-cost!
                 cert_out = {
@@ -969,7 +1145,7 @@ def solve_formal_system(
                     "solved": ver["verified"],
                     "optimal_cost": g,
                     "steps": len(path),
-                    "states_explored": len(best_g),
+                    "states_explored": len(seen_spec_states),
                     "edges_checked": edges_checked,
                     "trace": list(path),
                     "verification": ver,
@@ -984,25 +1160,44 @@ def solve_formal_system(
             for act in spec.actions(s_cur):
                 ns = spec.step(s_cur, act)
                 nu = impl.step(u_cur, act)
+                npath = path + (act,)
                 edges_checked += 1
                 if (ns is None) != (nu is None):
-                    raise RuntimeError(f"Dual-checker survival divergence on {path + (act,)!r}")
+                    return {
+                        "epistemic_status": "REJECTED_STEP_SURVIVAL_DIVERGENCE",
+                        "system_id": reg.system_id,
+                        "diverging_trace": [_canonical_repr(a) for a in npath],
+                    }
                 if ns is None:
                     continue
                 step_c = spec.step_cost(s_cur, act, ns)
-                if step_c != impl.step_cost(u_cur, act, nu):
-                    raise RuntimeError(f"Dual-checker step_cost divergence on {path + (act,)!r}")
+                impl_c = impl.step_cost(u_cur, act, nu)
+                if step_c != impl_c:
+                    return {
+                        "epistemic_status": "REJECTED_TRANSITION_DIVERGENCE",
+                        "system_id": reg.system_id,
+                        "diverging_trace": [_canonical_repr(a) for a in npath],
+                        "spec_step_cost": step_c,
+                        "impl_step_cost": impl_c,
+                    }
+                next_mismatch = _check_dual_state_parity(reg.system_id, spec, impl, ns, nu, npath)
+                if next_mismatch is not None:
+                    return next_mismatch
                 ng = g + step_c
                 if ng > max_cost:
                     truncated_by_budget = True
                     continue
-                if ns not in best_g or ng < best_g[ns]:
-                    if len(best_g) >= max_states:
+                pair_next = (ns, nu)
+                if pair_next not in best_g or ng < best_g[pair_next]:
+                    if pair_next not in best_g and len(best_g) >= max_states:
                         truncated_by_budget = True
+                        if min_state_pruned_g is None or ng < min_state_pruned_g:
+                            min_state_pruned_g = ng
                         continue
-                    best_g[ns] = ng
+                    best_g[pair_next] = ng
+                    seen_spec_states.add(ns)
                     counter += 1
-                    heapq.heappush(pq, (ng, counter, ns, nu, path + (act,)))
+                    heapq.heappush(pq, (ng, counter, ns, nu, npath))
 
         if not truncated_by_budget:
             # Complete reachable state space exhausted across BOTH SPEC and IMPL!
@@ -1018,7 +1213,7 @@ def solve_formal_system(
                 "solved": False,
                 "counterexample_found": False,
                 "complete_state_space_exhausted": True,
-                "reachable_states_verified": len(best_g),
+                "reachable_states_verified": len(seen_spec_states),
                 "transitions_verified": edges_checked,
                 "checker_pins": {
                     "spec_sha256": spec.code_sha256,
@@ -1036,7 +1231,7 @@ def solve_formal_system(
             "solved": False,
             "counterexample_found": False,
             "complete_state_space_exhausted": False,
-            "states_explored": len(best_g),
+            "states_explored": len(seen_spec_states),
             "edges_checked": edges_checked,
         }
 
@@ -1132,6 +1327,8 @@ def certify_formal_lower_bound(
     universe_code: Optional[str] = None,
 ) -> Dict[str, Any]:
     """Machine-check a lower bound (`OPT >= B`) via Quotient Homomorphism or Inductive Potential Certificate."""
+    if type(claimed_lower_bound) is not int:
+        raise TypeError(f"claimed_lower_bound must be an exact int, got {type(claimed_lower_bound).__name__}")
     reg = _get_locked_system(system_id)
     spec = reg.spec
     impl = reg.impl
@@ -1195,45 +1392,101 @@ def certify_formal_lower_bound(
                 "system_id": reg.system_id,
                 "escaping_transition": [_canonical_repr(x) for x in escape_witness],
             }
+        reach_mismatch = _verify_reachable_dual_parity(
+            reg.system_id,
+            spec,
+            impl,
+            check_step_cost=True,
+            max_pairs=max(max_concrete_states, len(state_set) * 2),
+        )
+        if reach_mismatch is not None:
+            return reach_mismatch
         complete_space = True
     else:
-        q: deque[Tuple[Any, Any]] = deque([(s0, u0)])
-        visited: Set[Any] = {s0}
+        q: deque[Tuple[Any, Any, Tuple[Any, ...]]] = deque([(s0, u0, ())])
+        visited_pairs: Set[Tuple[Any, Any]] = {(s0, u0)}
+        seen_concrete: Set[Any] = {s0}
+        seen_edges: Set[Tuple[Any, Any, Any, int]] = set()
         truncated = False
         while q:
-            sc, uc = q.popleft()
-            if spec.project_obs(sc) != impl.project_obs(uc):
-                raise RuntimeError("SPEC/IMPL divergence during lower-bound graph enumeration")
+            sc, uc, path = q.popleft()
+            mismatch = _check_dual_state_parity(reg.system_id, spec, impl, sc, uc, path)
+            if mismatch is not None:
+                return mismatch
             inv_ok, _ = spec.invariant(sc)
             if not inv_ok:
                 continue
-            concrete_states.append(sc)
+            if sc not in seen_concrete or len(concrete_states) == 0 or sc not in concrete_states:
+                if sc not in concrete_states:
+                    concrete_states.append(sc)
             for act in spec.actions(sc):
                 ns = spec.step(sc, act)
                 nu = impl.step(uc, act)
+                npath = path + (act,)
                 if (ns is None) != (nu is None):
-                    raise RuntimeError("SPEC/IMPL step survival divergence during lower-bound check")
+                    return {
+                        "epistemic_status": "REJECTED_STEP_SURVIVAL_DIVERGENCE",
+                        "system_id": reg.system_id,
+                        "diverging_trace": [_canonical_repr(a) for a in npath],
+                    }
                 if ns is None:
                     continue
+                next_mismatch = _check_dual_state_parity(reg.system_id, spec, impl, ns, nu, npath)
+                if next_mismatch is not None:
+                    return next_mismatch
                 inv_n, _ = spec.invariant(ns)
                 if not inv_n:
                     continue
                 c = spec.step_cost(sc, act, ns)
-                if c != impl.step_cost(uc, act, nu):
-                    raise RuntimeError("SPEC/IMPL step_cost divergence during lower-bound check")
-                concrete_edges.append((sc, act, ns, c))
-                if ns not in visited:
-                    if len(visited) >= max_concrete_states:
+                cu = impl.step_cost(uc, act, nu)
+                if c != cu:
+                    return {
+                        "epistemic_status": "REJECTED_TRANSITION_DIVERGENCE",
+                        "system_id": reg.system_id,
+                        "diverging_trace": [_canonical_repr(a) for a in npath],
+                        "spec_step_cost": c,
+                        "impl_step_cost": cu,
+                    }
+                edge_tup = (sc, act, ns, c)
+                if edge_tup not in seen_edges:
+                    seen_edges.add(edge_tup)
+                    concrete_edges.append(edge_tup)
+                pair = (ns, nu)
+                if pair not in visited_pairs:
+                    if ns not in seen_concrete and len(seen_concrete) >= max_concrete_states:
                         truncated = True
                         continue
-                    visited.add(ns)
-                    q.append((ns, nu))
+                    visited_pairs.add(pair)
+                    seen_concrete.add(ns)
+                    q.append((ns, nu, npath))
         complete_space = not truncated
 
     if proof_mode == "inductive_potential":
-        pot_fn = cert_ns.get("potential")
-        if not callable(pot_fn):
+        raw_pot_fn = cert_ns.get("potential")
+        if not callable(raw_pot_fn):
             raise ValueError("certificate_code must define `potential(state) -> int | Fraction` for proof_mode='inductive_potential'")
+        pot_cache: Dict[Any, Any] = {}
+
+        def pot_fn(state: Any) -> Any:
+            if state not in pot_cache:
+                pot_cache[state] = _require_exact_number(raw_pot_fn(state), "potential(state)", reg.exact_only)
+            return pot_cache[state]
+
+        if not complete_space:
+            return {
+                "epistemic_status": "REJECTED_INCOMPLETE_CONCRETE_GRAPH_FOR_POTENTIAL",
+                "system_id": reg.system_id,
+                "certified_lower_bound": None,
+                "complete_domain_closed": False,
+                "states_checked": len(concrete_states),
+                "reason": (
+                    f"Concrete reachable state space exceeded max_concrete_states={max_concrete_states}; "
+                    "an inductive lower-bound potential cannot certify optimal goal cost on a truncated "
+                    "subgraph because unreached transitions or goal states may violate step-consistency "
+                    "or goal non-positivity. Increase max_concrete_states or supply an inductively closed "
+                    "`enumerate_states()` universe."
+                ),
+            }
 
         # Check 1: Goal non-positivity: is_goal(s) => V(s) <= 0
         for st in concrete_states:
@@ -1251,7 +1504,10 @@ def certify_formal_lower_bound(
         for st, act, ns, cost in concrete_edges:
             vs = pot_fn(st)
             vns = pot_fn(ns)
-            if vs > cost + vns:
+            rhs = cost + vns
+            if type(rhs) is float and not math.isfinite(rhs):
+                raise TypeError(f"[potential(state)] Non-finite edge sum {rhs!r} rejected.")
+            if vs > rhs:
                 return {
                     "epistemic_status": "REJECTED_STEP_CONSISTENCY_VIOLATION",
                     "system_id": reg.system_id,
@@ -1328,7 +1584,7 @@ def certify_formal_lower_bound(
             abs_rev_adj.setdefault(v_abs, []).append((u_abs, cost))
 
         # Exact backward Dijkstra from abstract goals in Quotient Graph
-        INF = 10**15
+        # Unreachable abstract states are simply absent from h_abs (no finite sentinel).
         h_abs: Dict[Any, int] = {g: 0 for g in abs_goals}
         pq_abs: List[Tuple[int, int, Any]] = []
         ctr = 0
@@ -1338,32 +1594,33 @@ def certify_formal_lower_bound(
 
         while pq_abs:
             d, _, v_abs = heapq.heappop(pq_abs)
-            if d > h_abs.get(v_abs, INF):
+            if d > h_abs[v_abs]:
                 continue
             for u_abs, w_cost in abs_rev_adj.get(v_abs, ()):
                 nd = d + w_cost
-                if nd < h_abs.get(u_abs, INF):
+                if u_abs not in h_abs or nd < h_abs[u_abs]:
                     h_abs[u_abs] = nd
                     ctr += 1
                     heapq.heappush(pq_abs, (nd, ctr, u_abs))
 
         # Exhaustively machine-check concrete homomorphism step-consistency: h(pi(s)) <= cost(s,a,s') + h(pi(s'))
         for st, act, ns, cost in concrete_edges:
-            hs = h_abs.get(proj_fn(st), INF)
-            hns = h_abs.get(proj_fn(ns), INF)
-            if hs > cost + hns:
+            hs = h_abs.get(proj_fn(st))
+            hns = h_abs.get(proj_fn(ns))
+            # h(pi(s)) <= cost + h(pi(s')); an unreachable successor makes the right side infinite.
+            if hns is not None and (hs is None or hs > cost + hns):
                 return {
                     "epistemic_status": "REJECTED_HOMOMORPHISM_INCONSISTENT",
                     "system_id": reg.system_id,
                     "violating_transition": [_canonical_repr(st), _canonical_repr(act), _canonical_repr(ns)],
                 }
 
-        h0 = h_abs.get(proj_fn(s0), INF)
-        if h0 < claimed_lower_bound:
+        h0 = h_abs.get(proj_fn(s0))
+        if h0 is not None and h0 < claimed_lower_bound:
             return {
                 "epistemic_status": "REJECTED_QUOTIENT_BOUND_TOO_WEAK",
                 "system_id": reg.system_id,
-                "quotient_initial_bound": None if h0 >= INF else h0,
+                "quotient_initial_bound": h0,
                 "claimed_lower_bound": claimed_lower_bound,
             }
 
@@ -1372,7 +1629,7 @@ def certify_formal_lower_bound(
             "certificate_kind": "QUOTIENT_HOMOMORPHISM_LOWER_BOUND",
             "system_id": reg.system_id,
             "certified_lower_bound": claimed_lower_bound,
-            "quotient_exact_bound": "UNREACHABLE_INF" if h0 >= INF else h0,
+            "quotient_exact_bound": "UNREACHABLE_INF" if h0 is None else h0,
             "concrete_states_verified": len(concrete_states),
             "quotient_states": len(abs_nodes),
             "compression_ratio": round(len(concrete_states) / max(1, len(abs_nodes)), 3),
@@ -1426,7 +1683,7 @@ def certify_formal_lower_bound(
             w_sum = Fraction(0, 1)
             for m_idx, (pname, _pfn, wfn) in enumerate(parsed_projs):
                 raw_w = wfn(st, act, ns)
-                if isinstance(raw_w, bool) or not isinstance(raw_w, (int, Fraction)):
+                if type(raw_w) is not int and type(raw_w) is not Fraction:
                     raise TypeError(f"Weight function {pname!r} must return exact int or Fraction, got {type(raw_w).__name__}")
                 wf = Fraction(raw_w)
                 if wf < 0:
@@ -1449,7 +1706,6 @@ def certify_formal_lower_bound(
                 }
 
         # Step 2: Solve exact Fraction backward Dijkstra on each Quotient Graph Q_m and machine-check step consistency!
-        INF_F = Fraction(10**18, 1)
         total_exact_bound = Fraction(0, 1)
         component_reports: List[Dict[str, Any]] = []
         unreachable_any = False
@@ -1477,20 +1733,20 @@ def certify_formal_lower_bound(
                 heapq.heappush(pq_f, (Fraction(0, 1), ctr, g))
             while pq_f:
                 d_f, _, v_a = heapq.heappop(pq_f)
-                if d_f > h_abs_f.get(v_a, INF_F):
+                if d_f > h_abs_f[v_a]:
                     continue
                 for u_a, w_f in abs_rev.get(v_a, ()):
                     nd_f = d_f + w_f
-                    if nd_f < h_abs_f.get(u_a, INF_F):
+                    if u_a not in h_abs_f or nd_f < h_abs_f[u_a]:
                         h_abs_f[u_a] = nd_f
                         ctr += 1
                         heapq.heappush(pq_f, (nd_f, ctr, u_a))
 
             for e_idx, (st, act, ns, _cost) in enumerate(concrete_edges):
-                hs_f = h_abs_f.get(pfn(st), INF_F)
-                hns_f = h_abs_f.get(pfn(ns), INF_F)
+                hs_f = h_abs_f.get(pfn(st))
+                hns_f = h_abs_f.get(pfn(ns))
                 wf = edge_weights_per_m[m_idx][e_idx]
-                if hs_f > wf + hns_f:
+                if hns_f is not None and (hs_f is None or hs_f > wf + hns_f):
                     return {
                         "epistemic_status": "REJECTED_HOMOMORPHISM_INCONSISTENT",
                         "system_id": reg.system_id,
@@ -1498,25 +1754,27 @@ def certify_formal_lower_bound(
                         "violating_transition": [_canonical_repr(st), _canonical_repr(act), _canonical_repr(ns)],
                     }
 
-            h0_f = h_abs_f.get(pfn(s0), INF_F)
-            if h0_f >= INF_F:
+            h0_f = h_abs_f.get(pfn(s0))
+            if h0_f is None:
                 unreachable_any = True
             else:
                 total_exact_bound += h0_f
             component_reports.append({
                 "name": pname,
                 "quotient_states": len(abs_nodes),
-                "exact_initial_bound": "UNREACHABLE_INF" if h0_f >= INF_F else str(h0_f),
+                "exact_initial_bound": "UNREACHABLE_INF" if h0_f is None else str(h0_f),
             })
 
         # Since all concrete step costs are integers, ceil(total_exact_bound) is a valid integer lower bound!
         if unreachable_any:
-            certified_int_bound = 10**15
+            # Some quotient cannot reach its abstract goals from pi(s0), so no concrete plan exists
+            # and every finite claimed bound holds. No finite sentinel stands in for infinity.
+            certified_int_bound = None
         else:
             num, den = total_exact_bound.numerator, total_exact_bound.denominator
             certified_int_bound = -(-num // den)
 
-        if certified_int_bound < claimed_lower_bound:
+        if certified_int_bound is not None and certified_int_bound < claimed_lower_bound:
             return {
                 "epistemic_status": "REJECTED_PARTITIONED_BOUND_TOO_WEAK",
                 "system_id": reg.system_id,
@@ -1574,7 +1832,7 @@ def certify_formal_lower_bound(
             tup = tuple(seq)
             out_v: List[Fraction] = []
             for item in tup:
-                if isinstance(item, bool) or not isinstance(item, (int, Fraction)):
+                if type(item) is not int and type(item) is not Fraction:
                     raise TypeError(f"[{ctx_label}] Expected exact int or Fraction, got {type(item).__name__}")
                 out_v.append(Fraction(item))
             return tuple(out_v)
@@ -1741,32 +1999,56 @@ def synthesize_formal_invariant(
                         "escaping_transition": [_canonical_repr(st), _canonical_repr(act), _canonical_repr(ns)],
                     }
                 concrete_edges.append((st, act, ns))
+        reach_mismatch = _verify_reachable_dual_parity(
+            reg.system_id,
+            spec,
+            impl,
+            check_step_cost=False,
+            max_pairs=max(max_concrete_states, len(state_set) * 2),
+        )
+        if reach_mismatch is not None:
+            return reach_mismatch
         complete_space = True
     else:
-        q: deque[Tuple[Any, Any]] = deque([(s0, u0)])
-        visited: Set[Any] = {s0}
+        q: deque[Tuple[Any, Any, Tuple[Any, ...]]] = deque([(s0, u0, ())])
+        visited_pairs: Set[Tuple[Any, Any]] = {(s0, u0)}
+        seen_concrete: Set[Any] = {s0}
+        seen_edges: Set[Tuple[Any, Any, Any]] = set()
         truncated = False
         while q:
-            sc, uc = q.popleft()
-            if spec.project_obs(sc) != impl.project_obs(uc):
-                raise RuntimeError("SPEC/IMPL observation divergence during invariant synthesis")
-            concrete_states.append(sc)
+            sc, uc, path = q.popleft()
+            mismatch = _check_dual_state_parity(reg.system_id, spec, impl, sc, uc, path)
+            if mismatch is not None:
+                return mismatch
+            if sc not in concrete_states:
+                concrete_states.append(sc)
             for act in spec.actions(sc):
                 ns = spec.step(sc, act)
                 nu = impl.step(uc, act)
+                npath = path + (act,)
                 if (ns is None) != (nu is None):
-                    raise RuntimeError("SPEC/IMPL survival divergence during invariant synthesis")
+                    return {
+                        "epistemic_status": "REJECTED_STEP_SURVIVAL_DIVERGENCE",
+                        "system_id": reg.system_id,
+                        "diverging_trace": [_canonical_repr(a) for a in npath],
+                    }
                 if ns is None:
                     continue
-                if spec.project_obs(ns) != impl.project_obs(nu):
-                    raise RuntimeError("SPEC/IMPL next-state divergence during invariant synthesis")
-                concrete_edges.append((sc, act, ns))
-                if ns not in visited:
-                    if len(visited) >= max_concrete_states:
+                next_mismatch = _check_dual_state_parity(reg.system_id, spec, impl, ns, nu, npath)
+                if next_mismatch is not None:
+                    return next_mismatch
+                edge_tup = (sc, act, ns)
+                if edge_tup not in seen_edges:
+                    seen_edges.add(edge_tup)
+                    concrete_edges.append(edge_tup)
+                pair = (ns, nu)
+                if pair not in visited_pairs:
+                    if ns not in seen_concrete and len(seen_concrete) >= max_concrete_states:
                         truncated = True
                         continue
-                    visited.add(ns)
-                    q.append((ns, nu))
+                    visited_pairs.add(pair)
+                    seen_concrete.add(ns)
+                    q.append((ns, nu, npath))
         complete_space = not truncated
 
     state_idx = {st: i for i, st in enumerate(concrete_states)}
@@ -1960,22 +2242,70 @@ def synthesize_formal_invariant(
     raise ValueError(f"Unsupported synthesis_mode {synthesis_mode!r}; use 'houdini_safety' or 'deadlock_trap'")
 
 
+def _portfolio_item_verified_in_registry(system_id: str, floor_v: int, known_v: int) -> bool:
+    reg = FORMAL_REGISTRY.get(system_id)
+    if reg is None:
+        return False
+    floor_ok = floor_v == 0
+    witness_ok = False
+    for cert in reg.certificates:
+        st = cert.get("epistemic_status")
+        if st == "PROVEN":
+            lb = cert.get("certified_lower_bound")
+            if isinstance(lb, int) and lb >= floor_v:
+                floor_ok = True
+            opt = cert.get("optimal_cost")
+            if isinstance(opt, int):
+                if opt >= floor_v:
+                    floor_ok = True
+                if opt <= known_v and cert.get("solved") is True:
+                    witness_ok = True
+        if st == "VERIFIED":
+            if cert.get("certificate_kind") == "TRACE_GOAL_WITNESS" and cert.get("verified") is True:
+                tc = cert.get("total_cost")
+                if isinstance(tc, int) and tc <= known_v:
+                    witness_ok = True
+            if cert.get("certificate_kind") == "DUAL_CHECKER_SYSTEM_LOCK":
+                for pw in cert.get("positive_witnesses_verified") or []:
+                    pw_c = pw.get("cost")
+                    if isinstance(pw_c, int) and pw_c <= known_v:
+                        witness_ok = True
+    return floor_ok and witness_ok
+
+
 def triage_formal_portfolio(items: List[Dict[str, Any]]) -> Dict[str, Any]:
     """Rank open problem instances by Proven-Commons expected verified gain per CPU-second."""
     ranked: List[Dict[str, Any]] = []
     closed_count = 0
+    all_registry_verified = len(items) > 0
 
     for item in items:
         iid = str(item["id"])
         floor_v = int(item["proven_floor"])
         known_v = int(item.get("shortest_known", item["live_record"]))
         live_v = int(item["live_record"])
+        if floor_v < 0 or known_v < 0 or live_v < 0 or floor_v > known_v or known_v > live_v:
+            return {
+                "epistemic_status": "REJECTED_INCONSISTENT_PORTFOLIO_BOUNDS",
+                "invalid_item_id": iid,
+                "proven_floor": floor_v,
+                "shortest_known": known_v,
+                "live_record": live_v,
+                "reason": (
+                    f"Item {iid!r} violates 0 <= proven_floor <= shortest_known <= live_record "
+                    f"({floor_v}, {known_v}, {live_v})."
+                ),
+            }
+        item_verified = _portfolio_item_verified_in_registry(iid, floor_v, known_v)
+        if not item_verified:
+            all_registry_verified = False
+
         active_cells = max(2, int(item.get("active_cells", 64)))
         eff_branching = max(1.5, float(item.get("eff_branching", 4.0)))
         chiral_bonus = 0.75 if bool(item.get("has_chiral_symmetry", False)) else 0.0
 
-        live_slack = max(0, live_v - known_v)
-        holdout_gap = max(0, known_v - floor_v)
+        live_slack = live_v - known_v
+        holdout_gap = known_v - floor_v
 
         if live_slack == 0 and holdout_gap == 0:
             closed_count += 1
@@ -1992,6 +2322,7 @@ def triage_formal_portfolio(items: List[Dict[str, Any]]) -> Dict[str, Any]:
         ranked.append({
             "id": iid,
             "status": status,
+            "bounds_verified_in_registry": item_verified,
             "priority_score": priority,
             "proven_floor": floor_v,
             "shortest_known": known_v,
@@ -2003,12 +2334,49 @@ def triage_formal_portfolio(items: List[Dict[str, Any]]) -> Dict[str, Any]:
 
     ranked.sort(key=lambda r: (-r["priority_score"], -r["live_slack"], r["id"]))
     return {
-        "epistemic_status": "VERIFIED",
+        "epistemic_status": "VERIFIED" if all_registry_verified else "UNVERIFIED_CALLER_BOUNDS",
+        "caller_bounds_verified": all_registry_verified,
         "total_items": len(items),
         "closed_optimal_count": closed_count,
         "open_items_count": len(items) - closed_count,
         "ranked_portfolio": ranked,
     }
+
+
+def _collect_registry_artifact_digests() -> Tuple[Set[str], Set[str]]:
+    proven_digests: Set[str] = set()
+    verified_digests: Set[str] = set()
+    for reg in FORMAL_REGISTRY.values():
+        verified_digests.add(reg.spec.code_sha256.lower())
+        verified_digests.add(reg.impl.code_sha256.lower())
+        for cert in reg.certificates:
+            cst = cert.get("epistemic_status")
+            pins = cert.get("checker_pins") or {}
+            cand_hashes: List[str] = []
+            for key in ("certificate_sha256", "candidates_sha256", "spec_sha256", "impl_sha256"):
+                val = pins.get(key)
+                if _is_sha256_hex(val):
+                    cand_hashes.append(val.lower())
+            tr_sha = cert.get("transcript_sha256")
+            if _is_sha256_hex(tr_sha):
+                cand_hashes.append(tr_sha.lower())
+            ver_sub = cert.get("verification")
+            if isinstance(ver_sub, dict):
+                v_tr = ver_sub.get("transcript_sha256")
+                if _is_sha256_hex(v_tr):
+                    cand_hashes.append(v_tr.lower())
+            for pw in cert.get("positive_witnesses_verified") or []:
+                pw_tr = pw.get("transcript_sha256")
+                if _is_sha256_hex(pw_tr):
+                    cand_hashes.append(pw_tr.lower())
+            if cst == "PROVEN":
+                for h in cand_hashes:
+                    proven_digests.add(h)
+                    verified_digests.add(h)
+            elif cst == "VERIFIED":
+                for h in cand_hashes:
+                    verified_digests.add(h)
+    return proven_digests, verified_digests
 
 
 def export_formal_ledger(extra_claims: Optional[List[Dict[str, Any]]] = None) -> Dict[str, Any]:
@@ -2026,16 +2394,42 @@ def export_formal_ledger(extra_claims: Optional[List[Dict[str, Any]]] = None) ->
             "certificates": reg.certificates,
         }
 
+    proven_digests, verified_digests = _collect_registry_artifact_digests()
     validated_extra: List[Dict[str, Any]] = []
     for cl in extra_claims or []:
+        cid = cl.get("claim_id", "<unnamed>")
         st = str(cl.get("epistemic_status", "CONJECTURE")).upper()
         if st not in allowed:
             raise ValueError(f"Invalid epistemic_status {st!r}; must be one of {sorted(allowed)}")
-        if st in ("PROVEN", "VERIFIED") and not cl.get("witness_or_proof_sha256"):
+        raw_digest = cl.get("witness_or_proof_sha256")
+        if raw_digest is not None and not _is_sha256_hex(raw_digest):
             raise ValueError(
-                f"Claim {cl.get('claim_id', '<unnamed>')!r} cannot be tagged {st} without `witness_or_proof_sha256`!"
+                f"Claim {cid!r} supplies invalid `witness_or_proof_sha256` {raw_digest!r}; "
+                "expected a 64-character lowercase hex SHA-256 digest."
             )
-        validated_extra.append({**cl, "epistemic_status": st})
+        if st in ("PROVEN", "VERIFIED"):
+            if not _is_sha256_hex(raw_digest):
+                raise ValueError(
+                    f"Claim {cid!r} cannot be tagged {st} without a valid 64-hex `witness_or_proof_sha256`!"
+                )
+            norm_digest = str(raw_digest).lower()
+            if st == "PROVEN" and norm_digest not in proven_digests:
+                raise ValueError(
+                    f"Claim {cid!r} cannot be tagged PROVEN: digest {norm_digest[:12]}... is not bound to any "
+                    "PROVEN certificate in FORMAL_REGISTRY."
+                )
+            if st == "VERIFIED" and norm_digest not in verified_digests:
+                raise ValueError(
+                    f"Claim {cid!r} cannot be tagged VERIFIED: digest {norm_digest[:12]}... is not bound to any "
+                    "machine-checked artifact in FORMAL_REGISTRY (use KNOWN or CONJECTURE for external claims)."
+                )
+            validated_extra.append({**cl, "epistemic_status": st, "witness_or_proof_sha256": norm_digest})
+        else:
+            norm_cl = dict(cl)
+            norm_cl["epistemic_status"] = st
+            if isinstance(raw_digest, str):
+                norm_cl["witness_or_proof_sha256"] = raw_digest.lower()
+            validated_extra.append(norm_cl)
 
     return {
         "ledger_standard": "Foundation-0 + Proven-Commons Verified Bar v2",
