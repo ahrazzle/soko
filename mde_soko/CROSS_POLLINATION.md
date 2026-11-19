@@ -31,4 +31,4 @@
 
 ## What Is Not Claimed
 
-`mde_soko` does not modify any of the `21` TCB source files locked in root `SHA256SUMS`, and its `FixedRadixCertificate` bounds adapter Frobenius norm, spectral norm, `K0` covariance leakage, and safety-direction inner products rather than proving puzzle optimality.
+`mde_soko` updates a small set of locked TCB files (`soko_mcp/flat_oracle.py`, `cpp/soko_engine.cpp`, refreshed `SHA256SUMS`) so dual-oracle corpse rendering matches fatal-step replay used in `S2`/`S3`. Its `FixedRadixCertificate` bounds adapter Frobenius norm, spectral norm, `K0` covariance leakage, and safety-direction inner products rather than proving puzzle optimality.

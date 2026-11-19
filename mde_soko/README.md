@@ -1,6 +1,8 @@
 # Sokoban Evaluation Domain Pack (`mde:soko-eval`)
 
-`mde_soko` packages a Sokoban evaluation domain (`mde:soko-eval`), a deterministic CPU `float64` `BetaEdit` adapter compiler, and a four-mode benchmark runner inside `ahrazzle/soko`. Sokoban replay uses locked `soko_mcp` checkers; this PR also updates root TCB entries required for dual-oracle corpse parity (`soko_mcp/flat_oracle.py`, `cpp/soko_engine.cpp`, regenerated `SHA256SUMS`) so `mde_soko` dual verification matches native and Python oracles on fatal steps.
+`mde_soko` packages a Sokoban evaluation domain (`mde:soko-eval`), a deterministic CPU `float64` `BetaEdit` adapter compiler, and a four-mode benchmark runner inside `ahrazzle/soko`.
+
+Sokoban replay uses locked `soko_mcp` checkers. This PR also updates root TCB entries for dual-oracle corpse parity (`soko_mcp/flat_oracle.py`, `cpp/soko_engine.cpp`, `SHA256SUMS`) so `mde_soko` verification matches native and Python oracles on fatal steps.
 
 ## Quick Verification (`pytest + numpy` only)
 
@@ -37,7 +39,9 @@ python3 -B -m mde_soko prose-check
 
 ## Historical live `Qwen3.5-4B` evaluation (`mde_soko/results/soko_eval_live_receipt.json`)
 
-**Status:** historical archive only (`evidence_status: historical_archive`, captured at `git_head_sha=382e9daf`). Not current PR-head evidence; re-run `python3 -B -m mde_soko eval` with a local `Qwen3.5-4B-Q8_0.gguf` and `llama-server` to refresh. The receipt’s S3 `II-4` `DUAL_ORACLE_MISMATCH` predates the `FlatBitmaskOracle` corpse (`X`) fix now in root TCB (`soko_mcp/flat_oracle.py`, `cpp/soko_engine.cpp`); dual-oracle parity on `II-4` `"RRR"` holds after that fix.
+**Status:** historical archive only (`evidence_status: historical_archive`, captured at `git_head_sha=382e9daf`). Not current PR-head evidence.
+
+Re-run `python3 -B -m mde_soko eval` with a local `Qwen3.5-4B-Q8_0.gguf` and `llama-server` to refresh. The receipt’s S3 `II-4` `DUAL_ORACLE_MISMATCH` predates the `FlatBitmaskOracle` corpse (`X`) fix in root TCB; dual-oracle parity on `II-4` `"RRR"` holds after that fix.
 
 Executed locally on `Qwen3.5-4B-Q8_0.gguf` (`sha256: 10cc391b...`, `llama-server` `0.5.0` commit `7fe450e19`, `temperature = 0.0`, `top_p = 1.0`, `seed = 20261119`, per-slot erase across Gated DeltaNet layers) at commit `382e9daf`:
 
