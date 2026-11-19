@@ -1,11 +1,18 @@
 // transport_relaxation_9flow_audit.cpp
-// Standalone C++20 Diagnostic, Counterexample Synthesis, Time-Expanded 9-Flow Verifier,
-// and Unblocked-Crate Non-Stuttering Theorem Checker for Room III-14 (15x7, SHA-256 f66ceb8f...).
+// Standalone C++20 bipartite Hall matching vs time-expanded intact-border 9-flow
+// comparator on Room III-14 (15x7) schedules r30 and r33.
 //
-// Compile & run:
-//   g++ -O3 -std=c++20 transport_relaxation_9flow_audit.cpp -o transport_audit && ./transport_audit
+// Compile & run (portable ISO C++20, Clang or GCC):
+//   c++ -O2 -std=c++20 transport_relaxation_9flow_audit.cpp -o transport_audit && ./transport_audit
 
-#include <bits/stdc++.h>
+#include <algorithm>
+#include <cstdint>
+#include <functional>
+#include <iostream>
+#include <queue>
+#include <string>
+#include <unordered_set>
+#include <vector>
 using namespace std;
 
 using u128 = unsigned __int128;
