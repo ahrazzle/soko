@@ -26,7 +26,7 @@ import tempfile
 from typing import Any, Dict, List, Optional, Tuple
 
 from .catalog import get_room, load_catalog
-from .evidence import digest, normalize_route, problem_identity, validate_room
+from .evidence import digest, must_fail, normalize_route, problem_identity, validate_room, verify_certificate_gate
 from .flat_oracle import replay_flat_oracle
 from .oracle import FRONTIER_ROOMS, PuzzleScriptOracle, replay_oracle
 
@@ -228,11 +228,14 @@ def ensure_cpp_engine() -> Optional[Path]:
         return None
     src_sha = _file_sha256(CPP_SRC)
     stamp = _cpp_bin_stamp()
-    try:
-        if CPP_BIN.is_file() and stamp.read_text(encoding="ascii").strip() == src_sha:
-            return CPP_BIN
-    except OSError:
-        pass
+    cached_sha: Optional[str] = None
+    if CPP_BIN.is_file() and stamp.is_file():
+        try:
+            cached_sha = stamp.read_text(encoding="ascii").strip()
+        except OSError:
+            cached_sha = None
+    if cached_sha is not None and cached_sha == src_sha:
+        return CPP_BIN
     compiler = shutil.which("g++") or shutil.which("clang++")
     if not compiler:
         return None
@@ -250,20 +253,30 @@ def ensure_cpp_engine() -> Optional[Path]:
     return CPP_BIN
 
 
-def _invoke_cpp(mode: str, part: int, grid: List[str], p1: int, p2: int, p3: int, route: str = "-") -> Optional[Dict[str, Any]]:
+def _invoke_cpp(
+    mode: str,
+    part: int,
+    grid: List[str],
+    p1: int,
+    p2: int,
+    p3: int,
+    route: str = "-",
+    p4: int = 0,
+) -> Optional[Dict[str, Any]]:
     exe = ensure_cpp_engine()
     if exe is None:
         return None
     h, w = len(grid), len(grid[0])
     if w * h > 512:
         return None
-    payload = f"{mode} {part} {w} {h} {p1} {p2} {p3}\n" + "\n".join(grid) + f"\n{route or '-'}\n"
+    header = f"{mode} {part} {w} {h} {p1} {p2} {p3}" + (f" {p4}" if p4 > 0 else "")
+    payload = header + "\n" + "\n".join(grid) + f"\n{route or '-'}\n"
     proc = subprocess.run(
         [str(exe)],
         input=payload,
         capture_output=True,
         text=True,
-        timeout=max(30, p3 + 30),
+        timeout=max(120 if p4 > 0 else 30, p3 + 30),
     )
     if proc.returncode != 0 or not proc.stdout.strip():
         return None
@@ -344,6 +357,47 @@ def verify_route_dual(
     else:
         epistemic = "VERIFIED" if is_verified else "REJECTED"
 
+    controls_log: List[str] = []
+    must_fail(
+        "rejected_route_promoted_to_verified",
+        bool(
+            verify_certificate_gate(
+                {
+                    "epistemic_status": "VERIFIED",
+                    "valid_winning_route": False,
+                    "must_fail_controls": ["probe"],
+                }
+            )["passed"]
+        ),
+        controls_log,
+    )
+    if py_res["exact_win"]:
+        if len(clean) > 0:
+            trunc_prefix = clean[:-1]
+            must_fail(
+                "truncated_prefix_rejected",
+                bool(
+                    replay_oracle(part, grid, trunc_prefix)["exact_win"]
+                    or (
+                        not _skip_flat_for_test
+                        and replay_flat_oracle(part, grid, trunc_prefix)["exact_win"]
+                    )
+                ),
+                controls_log,
+            )
+        extra_route = clean + "U"
+        must_fail(
+            "post_win_extra_key_rejected",
+            bool(
+                replay_oracle(part, grid, extra_route)["exact_win"]
+                or (
+                    not _skip_flat_for_test
+                    and replay_flat_oracle(part, grid, extra_route)["exact_win"]
+                )
+            ),
+            controls_log,
+        )
+
     result = {
         "epistemic_status": epistemic,
         "evidence_level": "differential_replay",
@@ -366,6 +420,7 @@ def verify_route_dual(
         "dual_engine_checked": dual_or_triple_checked,
         "triple_oracle_checked": len(engines_executed) == 3,
         "differential_match": differential_match,
+        "must_fail_controls": controls_log,
         "checker_pins": pins,
         "checker_pins_ok": pins_ok,
         "final_ascii": py_res["final_ascii"],
@@ -418,6 +473,7 @@ def optimize_route_verified(
     beam_width: int = 40000,
     window_len: int = 14,
     budget_sec: int = 35,
+    max_states: int = 0,
 ) -> Dict[str, Any]:
     clean_seed = seed_route.strip().upper()
     seed_check = verify_route_dual(part, grid, clean_seed)
@@ -431,10 +487,12 @@ def optimize_route_verified(
             f"differential_match={seed_check['differential_match']}"
         )
 
-    cpp_out = _invoke_cpp("optimize", part, grid, beam_width, window_len, budget_sec, clean_seed)
+    cpp_out = _invoke_cpp("optimize", part, grid, beam_width, window_len, budget_sec, clean_seed, p4=max_states)
+    states_seen = 0
     if cpp_out is not None and "best_route" in cpp_out:
         cand_route = cpp_out["best_route"]
         stages = cpp_out.get("stages", [])
+        states_seen = int(cpp_out.get("states_seen", 0) or 0)
         backend = "cpp20_zero_alloc_engine"
     else:
         cand_route = _python_window_shortcut(part, grid, clean_seed, min(10, window_len))
@@ -445,7 +503,19 @@ def optimize_route_verified(
     if not cand_check["valid_winning_route"]:
         raise RuntimeError("Optimizer produced a candidate route that failed multi-oracle differential verification!")
 
-    return {
+    controls_log = list(cand_check["must_fail_controls"])
+    if cand_check["route_len"] < len(clean_seed):
+        seed_prefix = clean_seed[: cand_check["route_len"]]
+        must_fail(
+            "seed_already_at_improved_len",
+            bool(
+                replay_oracle(part, grid, seed_prefix)["exact_win"]
+                or replay_flat_oracle(part, grid, seed_prefix)["exact_win"]
+            ),
+            controls_log,
+        )
+
+    out = {
         "epistemic_status": "VERIFIED",
         "backend": backend,
         "initial_len": len(clean_seed),
@@ -456,11 +526,16 @@ def optimize_route_verified(
         "best_route_sha256_12": cand_check["route_sha256_12"],
         "traj_fnv64": cand_check["traj_fnv64"],
         "stages": stages,
+        "states_seen": states_seen,
+        "max_states": max_states,
         "dual_oracle_verified": True,
         "triple_oracle_checked": cand_check["triple_oracle_checked"],
         "differential_match": cand_check["differential_match"],
+        "must_fail_controls": controls_log,
         "checker_pins": cand_check["checker_pins"],
     }
+    out["certificate_sha256"] = digest(out)
+    return out
 
 
 def solve_room_verified(
@@ -497,7 +572,7 @@ def solve_room_verified(
         v = verify_route_dual(part, grid, route)
         if not v["valid_winning_route"]:
             raise RuntimeError("Solver candidate failed multi-oracle verification!")
-        return {
+        out_solved = {
             "epistemic_status": "VERIFIED",
             "solved": True,
             "route_len": v["route_len"],
@@ -507,8 +582,11 @@ def solve_room_verified(
             "states_explored": cpp_out.get("explored", 0),
             "dual_oracle_verified": True,
             "triple_oracle_checked": v["triple_oracle_checked"],
+            "must_fail_controls": list(v["must_fail_controls"]),
             "checker_pins": v["checker_pins"],
         }
+        out_solved["certificate_sha256"] = digest(out_solved)
+        return out_solved
     return {
         "epistemic_status": "UNSOLVED_WITHIN_BUDGET",
         "solved": False,
@@ -523,11 +601,12 @@ def _shortest_known_route_len(part: int, grid: List[str]) -> Optional[int]:
         if meta.get("part") == part and list(meta.get("grid", [])) == list(grid) and meta.get("reference_route"):
             candidates.add(str(meta["reference_route"]))
     try:
-        for meta in load_catalog().values():
-            if meta.get("part") == part and list(meta.get("grid", [])) == list(grid) and meta.get("reference_route"):
-                candidates.add(str(meta["reference_route"]))
-    except Exception:  # catalog data is optional for this cross-check
-        pass
+        catalog_rooms = load_catalog()
+    except (OSError, ValueError, KeyError):  # catalog data is optional for this cross-check
+        catalog_rooms = {}
+    for meta in catalog_rooms.values():
+        if meta.get("part") == part and list(meta.get("grid", [])) == list(grid) and meta.get("reference_route"):
+            candidates.add(str(meta["reference_route"]))
     best: Optional[int] = None
     for route in candidates:
         py_res = replay_oracle(part, grid, route)
@@ -698,12 +777,57 @@ def prove_floor_verified(
 
     # Otherwise an inexact or unwitnessed floor is reported as an unwitnessed lower bound.
     status = "VERIFIED" if (exact_opt and witness_verified is not None) else "LOWER_BOUND_UNWITNESSED"
+    floor_controls: List[str] = []
+    must_fail(
+        "unwitnessed_bound_promoted_to_verified",
+        bool(
+            verify_certificate_gate(
+                {
+                    "epistemic_status": "VERIFIED",
+                    "proven_floor": max(1, claimed_floor),
+                    "exact_optimum_reached": False,
+                    "optimality_proven": False,
+                    "winning_witness": None,
+                    "must_fail_controls": ["probe"],
+                }
+            )["passed"]
+        ),
+        floor_controls,
+    )
+    must_fail(
+        "empirical_floor_promoted_to_proven",
+        bool(
+            verify_certificate_gate(
+                {
+                    "epistemic_status": "PROVEN",
+                    "proven_floor": max(1, claimed_floor),
+                    "exact_optimum_reached": True,
+                    "optimality_proven": True,
+                    "formal_proof_checked": False,
+                    "winning_witness": {"route": "R", "route_len": max(1, claimed_floor)},
+                    "must_fail_controls": ["probe"],
+                }
+            )["passed"]
+        ),
+        floor_controls,
+    )
+    if witness_verified is not None and claimed_floor > 0:
+        w_trunc = witness[: claimed_floor - 1]
+        must_fail(
+            "truncated_witness_prefix_rejected",
+            bool(
+                replay_oracle(part, grid, w_trunc)["exact_win"]
+                or replay_flat_oracle(part, grid, w_trunc)["exact_win"]
+            ),
+            floor_controls,
+        )
     edges = _count("edge_consistency_checks")
-    return {
+    out_floor = {
         "epistemic_status": status,
         "optimality_proven": bool(exact_opt and witness_verified is not None),
         "proven_floor": claimed_floor,
         "exact_optimum_reached": exact_opt,
+        "formal_proof_checked": False,
         "search_strategy": search_strategy,
         "quotient_pdb_enabled": bool(cpp_out.get("quotient_pdb_enabled", False)),
         "pair_atom_pdb_enabled": bool(cpp_out.get("pair_atom_pdb_enabled", False)),
@@ -715,6 +839,7 @@ def prove_floor_verified(
         "edge_consistency_checks": edges,
         **search_fields,
         "winning_witness": witness_verified,
+        "must_fail_controls": floor_controls,
         "checker_pins": get_soko_checker_pins(),
         "verification_note": (
             None if status == "VERIFIED" else
@@ -728,3 +853,5 @@ def prove_floor_verified(
             f"h(s) <= 1 + h(s') covered the {edges} transitions it expanded, not pruned branches."
         ),
     }
+    out_floor["certificate_sha256"] = digest(out_floor)
+    return out_floor

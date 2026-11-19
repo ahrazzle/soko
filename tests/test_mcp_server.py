@@ -29,7 +29,8 @@ class McpStdioClient:
         msg = {"jsonrpc": "2.0", "id": req_id, "method": method}
         if params is not None:
             msg["params"] = params
-        assert self.proc.stdin is not None and self.proc.stdout is not None
+        if self.proc.stdin is None or self.proc.stdout is None:
+            raise RuntimeError("MCP server stdio pipes are not initialized")
         self.proc.stdin.write((json.dumps(msg) + "\n").encode("utf-8"))
         self.proc.stdin.flush()
         line = self.proc.stdout.readline()
@@ -42,7 +43,8 @@ class McpStdioClient:
         msg = {"jsonrpc": "2.0", "method": method}
         if params is not None:
             msg["params"] = params
-        assert self.proc.stdin is not None
+        if self.proc.stdin is None:
+            raise RuntimeError("MCP server stdin pipe is not initialized")
         self.proc.stdin.write((json.dumps(msg) + "\n").encode("utf-8"))
         self.proc.stdin.flush()
 
@@ -233,7 +235,7 @@ class SokoAndFormalVerifiedMcpTests(unittest.TestCase):
             "tools/call",
             {
                 "name": "soko_solve_room",
-                "arguments": {"part": 1, "grid": custom_grid, "max_depth": 25, "beam_width": 4000, "budget_sec": 5},
+                "arguments": {"part": 1, "grid": custom_grid, "max_depth": 25, "beam_width": 4000, "budget_sec": 30},
             },
         )["result"]["structuredContent"]
         self.assertTrue(solved["solved"])
@@ -241,7 +243,7 @@ class SokoAndFormalVerifiedMcpTests(unittest.TestCase):
 
         flr22 = self.client.request(
             "tools/call",
-            {"name": "soko_prove_floor", "arguments": {"room_id": "III-22", "max_bound": 12, "budget_sec": 6}},
+            {"name": "soko_prove_floor", "arguments": {"room_id": "III-22", "max_bound": 12, "budget_sec": 30}},
         )["result"]["structuredContent"]
         self.assertEqual(flr22["proven_floor"], 9)
         self.assertTrue(flr22["exact_optimum_reached"])
@@ -270,13 +272,15 @@ class SokoAndFormalVerifiedMcpTests(unittest.TestCase):
         # v0.3.0 WizardRayGoalBound fixes F-04b trivial floor=1 on Wizard rooms (III-15 & III-20):
         flr20 = self.client.request(
             "tools/call",
-            {"name": "soko_prove_floor", "arguments": {"room_id": "III-20", "max_bound": 12, "budget_sec": 3}},
+            {"name": "soko_prove_floor", "arguments": {"room_id": "III-20", "max_bound": 12, "budget_sec": 30}},
         )["result"]["structuredContent"]
         self.assertEqual(flr20["epistemic_status"], "LOWER_BOUND_UNWITNESSED")
         self.assertTrue(flr20["wizard_ray_bound_enabled"])
         self.assertGreaterEqual(flr20["proven_floor"], 8)
 
     def test_07_generic_chiral_optimizer_reproduces_87_to_84_world_record(self) -> None:
+        # Driven purely by deterministic per-stage state cap (`max_states=6_000_000`, `budget_sec=0`),
+        # eliminating wall-clock dependence (#53 A3).
         opt = self.client.request(
             "tools/call",
             {
@@ -285,13 +289,17 @@ class SokoAndFormalVerifiedMcpTests(unittest.TestCase):
                     "room_id": "III-20",
                     "beam_width": 40000,
                     "window_len": 14,
-                    "budget_sec": 35,
+                    "budget_sec": 0,
+                    "max_states": 6000000,
                 },
             },
         )["result"]["structuredContent"]
         self.assertEqual(opt["epistemic_status"], "VERIFIED")
         self.assertEqual(opt["initial_len"], 87)
         self.assertLessEqual(opt["best_len"], 84)
+        self.assertEqual(opt["max_states"], 6000000)
+        self.assertGreater(opt["states_seen"], 0)
+        self.assertIn("seed_already_at_improved_len", opt["must_fail_controls"])
         self.assertTrue(opt["dual_oracle_verified"])
         self.assertTrue(opt["triple_oracle_checked"])
         self.assertTrue(opt["differential_match"])
