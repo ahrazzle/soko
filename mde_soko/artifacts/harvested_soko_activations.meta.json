@@ -1,0 +1,17 @@
+{
+  "d_in": 2560,
+  "d_out": 9216,
+  "k0_sketch_rank": 64,
+  "model_id": "Qwen/Qwen3.5-4B",
+  "n_compile_decision_states": 64,
+  "n_compile_prompts": 32,
+  "n_k0_anchors": 24,
+  "n_k0_noise_full": 512,
+  "npz_bytes": 908726,
+  "npz_sha256": "7aa279e416f2570cf48785eaabeccafce44934df19aa3040114b3252cc836f8e",
+  "res_sketch_rank": 12,
+  "residual_rel_scale": 0.32,
+  "schema": "mde-soko-harvested-activations/v0.1",
+  "target_layer": 31,
+  "target_tensor_safetensors": "model.language_model.layers.31.mlp.up_proj.weight"
+}

@@ -1,0 +1,621 @@
+{
+  "rooms": [
+    {
+      "baseline_dual_oracle_verified": true,
+      "baseline_route_len": 8,
+      "baseline_route_sha256": "eef526b7ebbf16caa0f5e7903019a38556aeda65f04dff3dd1857ea45dcb1552",
+      "baseline_traj_fnv64": "ab1bac69e76f3549",
+      "board_sha256_lf": "7d2f0a5583a1ca085caf8ece5cd5255df70d45000977de3ab952b9ca454f1ab4",
+      "grid": [
+        "#############",
+        "#...........#",
+        "#.F.......G.#",
+        "#...........#",
+        "#############"
+      ],
+      "height": 5,
+      "mechanics_tags": [
+        "fighter_walk",
+        "premature_win_guard"
+      ],
+      "part": 1,
+      "proven_floor": 8,
+      "room": 1,
+      "room_id": "I-1",
+      "selection_rationale": "13x5 opening Fighter walk testing bare-JSON and 8-key exact final-input win.",
+      "shortest_known": 8,
+      "source_html_sha256": "9811b0538cc7dd73cb7ef271d8f5ff5d4395329a7b87c6cf18c94d7a126bf311",
+      "source_puzzlescript_sha256": "81a1d27115fc40c04f27bb39d0ef12ebffbea513e3fe9f550b5173bb683728a3",
+      "title": "Heroes of Sokoban \u2014 Room 1",
+      "tutorial_messages": [
+        "Walk to the exit."
+      ],
+      "width": 13
+    },
+    {
+      "baseline_dual_oracle_verified": true,
+      "baseline_route_len": 20,
+      "baseline_route_sha256": "fb474288f2e1ac35561097784cb3159b3324c562f9ac3023cc26b8f3d4f7d79b",
+      "baseline_traj_fnv64": "5a401090f361c287",
+      "board_sha256_lf": "8221dd9c10a7aa9bb3c9e96809c28437a86021512baa1b01c346ee25262218cf",
+      "grid": [
+        "#############",
+        "#...#.*.#.*.#",
+        "#.F...*.**G.#",
+        "#...#.*.#.*.#",
+        "#############"
+      ],
+      "height": 5,
+      "mechanics_tags": [
+        "fighter_chain_push"
+      ],
+      "part": 1,
+      "proven_floor": 20,
+      "room": 2,
+      "room_id": "I-2",
+      "selection_rationale": "Canonical Fighter multi-crate chain-pushing room.",
+      "shortest_known": 20,
+      "source_html_sha256": "9811b0538cc7dd73cb7ef271d8f5ff5d4395329a7b87c6cf18c94d7a126bf311",
+      "source_puzzlescript_sha256": "81a1d27115fc40c04f27bb39d0ef12ebffbea513e3fe9f550b5173bb683728a3",
+      "title": "Heroes of Sokoban \u2014 Room 2",
+      "tutorial_messages": [
+        "Red warrior pushes blocks."
+      ],
+      "width": 13
+    },
+    {
+      "baseline_dual_oracle_verified": true,
+      "baseline_route_len": 10,
+      "baseline_route_sha256": "4a5bdc032623ecb3b1593427cfdad57fb4aa00c2e31f3ccee3e76595f2ec9c97",
+      "baseline_traj_fnv64": "2905b239f084e821",
+      "board_sha256_lf": "318e41b50c5b6cce5c1126e838c2cb7607773285efc7dc491d8ba8dd4f7b379e",
+      "grid": [
+        "#############",
+        "#...#...#...#",
+        "#.F.*.{.#.G.#",
+        "#...#...[...#",
+        "#############"
+      ],
+      "height": 5,
+      "mechanics_tags": [
+        "fighter_push",
+        "yellow_switch_door"
+      ],
+      "part": 1,
+      "proven_floor": 10,
+      "room": 3,
+      "room_id": "I-3",
+      "selection_rationale": "Fighter crate push onto yellow switch holding open yellow door.",
+      "shortest_known": 10,
+      "source_html_sha256": "9811b0538cc7dd73cb7ef271d8f5ff5d4395329a7b87c6cf18c94d7a126bf311",
+      "source_puzzlescript_sha256": "81a1d27115fc40c04f27bb39d0ef12ebffbea513e3fe9f550b5173bb683728a3",
+      "title": "Heroes of Sokoban \u2014 Room 3",
+      "tutorial_messages": [
+        "Hold down switches to open doors."
+      ],
+      "width": 13
+    },
+    {
+      "baseline_dual_oracle_verified": true,
+      "baseline_route_len": 20,
+      "baseline_route_sha256": "a0fa464332e29a2bc49c3e95a719580750a73fa90b0eeaafd0b84b63771d594a",
+      "baseline_traj_fnv64": "3a57857e31ec3907",
+      "board_sha256_lf": "f3ca82f900a97e570a9360aadc90295a2779bfc512b8e9ea4ce1745dc6d2ccd8",
+      "grid": [
+        "#############",
+        "#...#..*#...#",
+        "#.T.*.{.#.G.#",
+        "#...#..*[...#",
+        "#############"
+      ],
+      "height": 5,
+      "mechanics_tags": [
+        "thief_pull",
+        "yellow_switch_door"
+      ],
+      "part": 1,
+      "proven_floor": 20,
+      "room": 5,
+      "room_id": "I-5",
+      "selection_rationale": "Green Thief pulling a Moveable onto a yellow switch.",
+      "shortest_known": 20,
+      "source_html_sha256": "9811b0538cc7dd73cb7ef271d8f5ff5d4395329a7b87c6cf18c94d7a126bf311",
+      "source_puzzlescript_sha256": "81a1d27115fc40c04f27bb39d0ef12ebffbea513e3fe9f550b5173bb683728a3",
+      "title": "Heroes of Sokoban \u2014 Room 5",
+      "tutorial_messages": [
+        "Green thief pulls blocks."
+      ],
+      "width": 13
+    },
+    {
+      "baseline_dual_oracle_verified": true,
+      "baseline_route_len": 22,
+      "baseline_route_sha256": "a85ffa352b6358cbbd957aba03450cf0659414f941764944c94cfcb6fcce0aa9",
+      "baseline_traj_fnv64": "3f5affad38ce63d4",
+      "board_sha256_lf": "5fbf2e169d114c0ec8edbf5db30f83426b57a1adbdc896723bbcc23c9a494864",
+      "grid": [
+        "#############",
+        "#...*.{.#...#",
+        "#.W.*.{.[.G.#",
+        "#...#...#...#",
+        "#############"
+      ],
+      "height": 5,
+      "mechanics_tags": [
+        "wizard_warp_swap",
+        "yellow_switch_door"
+      ],
+      "part": 1,
+      "proven_floor": 22,
+      "room": 8,
+      "room_id": "I-8",
+      "selection_rationale": "Blue Wizard orthogonal ray warp-swap onto yellow switches.",
+      "shortest_known": 22,
+      "source_html_sha256": "9811b0538cc7dd73cb7ef271d8f5ff5d4395329a7b87c6cf18c94d7a126bf311",
+      "source_puzzlescript_sha256": "81a1d27115fc40c04f27bb39d0ef12ebffbea513e3fe9f550b5173bb683728a3",
+      "title": "Heroes of Sokoban \u2014 Room 8",
+      "tutorial_messages": [
+        "Blue wizard teleports to blocks."
+      ],
+      "width": 13
+    },
+    {
+      "baseline_dual_oracle_verified": true,
+      "baseline_route_len": 13,
+      "baseline_route_sha256": "4bf761ee181cc7c55a5ba2ad9ec25bbfe909a03bebceb96655397a1a033e72db",
+      "baseline_traj_fnv64": "a60bd638c11de0e0",
+      "board_sha256_lf": "350321143c5d8cf19bf2c2db9a1e329591f6f86587861c216fcb62b26b23a784",
+      "grid": [
+        "########",
+        "#3..G[*#",
+        "########",
+        "#F**G{{#",
+        "########",
+        "#2.[G..#",
+        "########"
+      ],
+      "height": 7,
+      "mechanics_tags": [
+        "party_switch_cycle",
+        "fighter_chain_push",
+        "thief_pull",
+        "wizard_warp_swap"
+      ],
+      "part": 1,
+      "proven_floor": 13,
+      "room": 20,
+      "room_id": "I-20",
+      "selection_rationale": "Compact 8x7 three-hero 1->2->3 A-cycle puzzle.",
+      "shortest_known": 13,
+      "source_html_sha256": "9811b0538cc7dd73cb7ef271d8f5ff5d4395329a7b87c6cf18c94d7a126bf311",
+      "source_puzzlescript_sha256": "81a1d27115fc40c04f27bb39d0ef12ebffbea513e3fe9f550b5173bb683728a3",
+      "title": "Heroes of Sokoban \u2014 Room 20",
+      "tutorial_messages": [],
+      "width": 8
+    },
+    {
+      "baseline_dual_oracle_verified": true,
+      "baseline_route_len": 23,
+      "baseline_route_sha256": "bcc11556c5f2825d7902ca743d266a245d0ce854e82dda7b07716baf0c8eff89",
+      "baseline_traj_fnv64": "c77e935beca7f453",
+      "board_sha256_lf": "434202e5ac6de7a4eab354a798443d0c83b9d54b4d991988b6ccec6acad17233",
+      "grid": [
+        "#############",
+        "#.......#...#",
+        "#...*...#.G.#",
+        "#.F...O.#...#",
+        "#...*...##O##",
+        "#...........#",
+        "#############"
+      ],
+      "height": 7,
+      "mechanics_tags": [
+        "goblin_simultaneous_death",
+        "fighter_push"
+      ],
+      "part": 2,
+      "proven_floor": 23,
+      "room": 4,
+      "room_id": "II-4",
+      "selection_rationale": "Simultaneous Goblin mutual elimination in Late phase.",
+      "shortest_known": 23,
+      "source_html_sha256": "a91a1e38706a1bf70a3d1d612a89370b1f5f7c86eefbe86e13a0e2288415f14e",
+      "source_puzzlescript_sha256": "1f8b35dbd51d33552c0d394ec0dbc76cd6e8be6db253eedb267d3912ed1a9738",
+      "title": "Heroes of Sokoban II: Monsters \u2014 Room 4",
+      "tutorial_messages": [
+        "Goblins attack each other too."
+      ],
+      "width": 13
+    },
+    {
+      "baseline_dual_oracle_verified": true,
+      "baseline_route_len": 21,
+      "baseline_route_sha256": "acef33b46dec3c3c2067cd2fbc82edd2f06a642357af7a633dd70fe6bb2ecdc6",
+      "baseline_traj_fnv64": "3ef44d745e12a359",
+      "board_sha256_lf": "d9d8d9b46a7c5b1089965e1c70ffcbabce12cf422edfe911fec75330b515efcb",
+      "grid": [
+        "###############",
+        "#.............#",
+        "#..T..###.....#",
+        "#.....L.#.....#",
+        "#.......#.....#",
+        "#.............#",
+        "#.....#.......#",
+        "#.....#.R..G..#",
+        "#.....###.....#",
+        "#.............#",
+        "###############"
+      ],
+      "height": 11,
+      "mechanics_tags": [
+        "dragon_fire",
+        "thief_navigation"
+      ],
+      "part": 2,
+      "proven_floor": 21,
+      "room": 5,
+      "room_id": "II-5",
+      "selection_rationale": "Left/Right Dragon horizontal fire-ray navigation.",
+      "shortest_known": 21,
+      "source_html_sha256": "a91a1e38706a1bf70a3d1d612a89370b1f5f7c86eefbe86e13a0e2288415f14e",
+      "source_puzzlescript_sha256": "1f8b35dbd51d33552c0d394ec0dbc76cd6e8be6db253eedb267d3912ed1a9738",
+      "title": "Heroes of Sokoban II: Monsters \u2014 Room 5",
+      "tutorial_messages": [
+        "Dragons breathe fire."
+      ],
+      "width": 15
+    },
+    {
+      "baseline_dual_oracle_verified": true,
+      "baseline_route_len": 19,
+      "baseline_route_sha256": "5c8c716acc5f0d9ac5baca6257b92b02a667f9a121de833537f00bfcdff671a6",
+      "baseline_traj_fnv64": "c7a38380895c0ee1",
+      "board_sha256_lf": "bc23e56122a3f1e93a1352490dca336a70dc64afaa2883113a501558ebc0cace",
+      "grid": [
+        "#############",
+        "#R.O.O.O.O.T#",
+        "###########{#",
+        "###########]#",
+        "#G#3.[.}.G#G#",
+        "#]###########",
+        "#{###########",
+        "#1..O...O..L#",
+        "#############"
+      ],
+      "height": 9,
+      "mechanics_tags": [
+        "dragon_fire",
+        "goblin_simultaneous_death",
+        "party_switch_cycle",
+        "dual_switches"
+      ],
+      "part": 2,
+      "proven_floor": 19,
+      "room": 8,
+      "room_id": "II-8",
+      "selection_rationale": "Multi-hero timing with Dragons, Goblins, and dual switches.",
+      "shortest_known": 19,
+      "source_html_sha256": "a91a1e38706a1bf70a3d1d612a89370b1f5f7c86eefbe86e13a0e2288415f14e",
+      "source_puzzlescript_sha256": "1f8b35dbd51d33552c0d394ec0dbc76cd6e8be6db253eedb267d3912ed1a9738",
+      "title": "Heroes of Sokoban II: Monsters \u2014 Room 8",
+      "tutorial_messages": [
+        "Think fast!"
+      ],
+      "width": 13
+    },
+    {
+      "baseline_dual_oracle_verified": true,
+      "baseline_route_len": 33,
+      "baseline_route_sha256": "f8673ee1aa72d7b33559344e8ca6800b3c2c2acd406e9d892995c7a5e5595c51",
+      "baseline_traj_fnv64": "c2217dabf223d2de",
+      "board_sha256_lf": "32c63b6aa714fe5f270d871312ab5a5be33adc9f9d6a338bc826e9cd89b84809",
+      "grid": [
+        "###########",
+        "#L...R#...#",
+        "#.....#...#",
+        "#.....M.G.#",
+        "#.T.*.#...#",
+        "#.....#...#",
+        "###########"
+      ],
+      "height": 7,
+      "mechanics_tags": [
+        "dragon_fire",
+        "monster_gate",
+        "thief_pull"
+      ],
+      "part": 2,
+      "proven_floor": 33,
+      "room": 10,
+      "room_id": "II-10",
+      "selection_rationale": "Thief crate pull redirecting Dragon fire to open Monster gate M.",
+      "shortest_known": 33,
+      "source_html_sha256": "a91a1e38706a1bf70a3d1d612a89370b1f5f7c86eefbe86e13a0e2288415f14e",
+      "source_puzzlescript_sha256": "1f8b35dbd51d33552c0d394ec0dbc76cd6e8be6db253eedb267d3912ed1a9738",
+      "title": "Heroes of Sokoban II: Monsters \u2014 Room 10",
+      "tutorial_messages": [
+        "Kill monsters to open the M wall."
+      ],
+      "width": 11
+    },
+    {
+      "baseline_dual_oracle_verified": true,
+      "baseline_route_len": 15,
+      "baseline_route_sha256": "4f903732a190d019c84cecceebef8768e756e0adbfd7ce157d8bc169882b306e",
+      "baseline_traj_fnv64": "2a407a0ec077360d",
+      "board_sha256_lf": "1b36c279576ea4b9b9fcbe52598bf8cbc48e746043fde011e157d70b6f9c6f33",
+      "grid": [
+        "###########",
+        "#...#O#O#O#",
+        "#.P.......#",
+        "#...**O**.#",
+        "#********.#",
+        "#R..G.....#",
+        "###########"
+      ],
+      "height": 7,
+      "mechanics_tags": [
+        "priest_immunity",
+        "goblin_combat",
+        "dragon_fire"
+      ],
+      "part": 2,
+      "proven_floor": 15,
+      "room": 13,
+      "room_id": "II-13",
+      "selection_rationale": "Yellow Priest direct combat immunity amidst Goblins and Dragon fire.",
+      "shortest_known": 15,
+      "source_html_sha256": "a91a1e38706a1bf70a3d1d612a89370b1f5f7c86eefbe86e13a0e2288415f14e",
+      "source_puzzlescript_sha256": "1f8b35dbd51d33552c0d394ec0dbc76cd6e8be6db253eedb267d3912ed1a9738",
+      "title": "Heroes of Sokoban II: Monsters \u2014 Room 13",
+      "tutorial_messages": [
+        "Yellow priest is protected."
+      ],
+      "width": 11
+    },
+    {
+      "baseline_dual_oracle_verified": true,
+      "baseline_route_len": 28,
+      "baseline_route_sha256": "083827e4259ea886e4b33f389157927ed2aea13210b80a6bc4737146afb94002",
+      "baseline_traj_fnv64": "c17415c5b8ced604",
+      "board_sha256_lf": "c75b6c5d9f2ffdd0668f1f6ffc0017cb922fda5bc8f8acb01b6d27fc2c9c38a1",
+      "grid": [
+        "############",
+        "#...#.O#O###",
+        "#.F.#......#",
+        "#...#.##O..#",
+        "#.4...O#G.G#",
+        "#...#.##.O.#",
+        "############"
+      ],
+      "height": 7,
+      "mechanics_tags": [
+        "priest_goblin_simultaneous_shield",
+        "party_switch_cycle"
+      ],
+      "part": 2,
+      "proven_floor": 28,
+      "room": 15,
+      "room_id": "II-15",
+      "selection_rationale": "Inactive Priest 4 orthogonal heal aura shielding Fighter F.",
+      "shortest_known": 28,
+      "source_html_sha256": "a91a1e38706a1bf70a3d1d612a89370b1f5f7c86eefbe86e13a0e2288415f14e",
+      "source_puzzlescript_sha256": "1f8b35dbd51d33552c0d394ec0dbc76cd6e8be6db253eedb267d3912ed1a9738",
+      "title": "Heroes of Sokoban II: Monsters \u2014 Room 15",
+      "tutorial_messages": [
+        "Heroes next to a priest are safe."
+      ],
+      "width": 12
+    },
+    {
+      "baseline_dual_oracle_verified": true,
+      "baseline_route_len": 28,
+      "baseline_route_sha256": "60f7d723ed2ea4024f6d11a87cdb417f58834da31644282c234411776c5580e5",
+      "baseline_traj_fnv64": "621c16c67ba1f4fb",
+      "board_sha256_lf": "feb622e30e5b03aa1ce33526ced490ceeb093c7352ad1a432fb397feba5b9fe0",
+      "grid": [
+        "#############",
+        "#{#....{#...#",
+        "#.#.*#B.[.G.#",
+        "#*#.....#...#",
+        "#############"
+      ],
+      "height": 5,
+      "mechanics_tags": [
+        "bard_5x5_chebyshev_charm",
+        "yellow_switch_door"
+      ],
+      "part": 3,
+      "proven_floor": 28,
+      "room": 2,
+      "room_id": "III-2",
+      "selection_rationale": "Purple Bard end-of-prior-turn 5x5 Chebyshev Note aura crate translation.",
+      "shortest_known": 28,
+      "source_html_sha256": "380d343ad35a8f8caf6863341172a7771d0d28ced2824a7a3085990614562105",
+      "source_puzzlescript_sha256": "f66ceb8f8a2c23a3cb270bad62cdf194e47479772cab94f154ed26f0ff7c20e0",
+      "title": "Heroes of Sokoban III: The Bard and The Druid \u2014 Room 2",
+      "tutorial_messages": [
+        "Purple bard charms nearby crates."
+      ],
+      "width": 13
+    },
+    {
+      "baseline_dual_oracle_verified": true,
+      "baseline_route_len": 18,
+      "baseline_route_sha256": "0b08d56a1ba83043bfe776a0aeab9072a06efb5895c42aeee8bc7bc65c22741b",
+      "baseline_traj_fnv64": "2e798d52ca8cdabd",
+      "board_sha256_lf": "f1968d132ef911dbc6fb54d6eca2e1a9b42991edd3c8fae40a5a7117b6216136",
+      "grid": [
+        "#############",
+        "#.......#...#",
+        "#...#...#...#",
+        "#O..B..OM.G.#",
+        "#...#...#...#",
+        "#.......#...#",
+        "#############"
+      ],
+      "height": 7,
+      "mechanics_tags": [
+        "bard_5x5_chebyshev_charm",
+        "goblin_charm",
+        "monster_gate"
+      ],
+      "part": 3,
+      "proven_floor": 18,
+      "room": 4,
+      "room_id": "III-4",
+      "selection_rationale": "Bard charming Goblins into mutual elimination to open Monster gate M.",
+      "shortest_known": 18,
+      "source_html_sha256": "380d343ad35a8f8caf6863341172a7771d0d28ced2824a7a3085990614562105",
+      "source_puzzlescript_sha256": "f66ceb8f8a2c23a3cb270bad62cdf194e47479772cab94f154ed26f0ff7c20e0",
+      "title": "Heroes of Sokoban III: The Bard and The Druid \u2014 Room 4",
+      "tutorial_messages": [
+        "Monsters may also be charmed."
+      ],
+      "width": 13
+    },
+    {
+      "baseline_dual_oracle_verified": true,
+      "baseline_route_len": 20,
+      "baseline_route_sha256": "1e9b5c317b0d983be3303924cb01f3c54b3cd073eb2394251c1f944d9a9910df",
+      "baseline_traj_fnv64": "9c4fb6a6ac4a29b0",
+      "board_sha256_lf": "2c5778384ae4c4a67cee298306651f1fd8887dfcd23664188bd9761a2bf84d47",
+      "grid": [
+        "############",
+        "#G#.F.{..O.#",
+        "#.[........#",
+        "#G#.5.{..O.#",
+        "############"
+      ],
+      "height": 5,
+      "mechanics_tags": [
+        "bard_5x5_chebyshev_charm",
+        "hero_charm",
+        "party_switch_cycle"
+      ],
+      "part": 3,
+      "proven_floor": 20,
+      "room": 5,
+      "room_id": "III-5",
+      "selection_rationale": "Bard charming party heroes across switches and Goblins.",
+      "shortest_known": 20,
+      "source_html_sha256": "380d343ad35a8f8caf6863341172a7771d0d28ced2824a7a3085990614562105",
+      "source_puzzlescript_sha256": "f66ceb8f8a2c23a3cb270bad62cdf194e47479772cab94f154ed26f0ff7c20e0",
+      "title": "Heroes of Sokoban III: The Bard and The Druid \u2014 Room 5",
+      "tutorial_messages": [
+        "No one can resist the bard's music."
+      ],
+      "width": 12
+    },
+    {
+      "baseline_dual_oracle_verified": true,
+      "baseline_route_len": 45,
+      "baseline_route_sha256": "3cd1963eb0e18277c418d56d2113064843e133459d578011f4ff4566245b6bdd",
+      "baseline_traj_fnv64": "d9378d1ccd64ffa9",
+      "board_sha256_lf": "3d19cbe8e79f8f87d99e5d033ef092c5e2251af5b57d24b8da841921e2e0838f",
+      "grid": [
+        "#############",
+        "#.[.{.2.#.D.#",
+        "#.#########.#",
+        "#....G.G..#.#",
+        "#############"
+      ],
+      "height": 5,
+      "mechanics_tags": [
+        "druid_wall_crate_transmutation",
+        "thief_pull",
+        "yellow_switch_door"
+      ],
+      "part": 3,
+      "proven_floor": 45,
+      "room": 10,
+      "room_id": "III-10",
+      "selection_rationale": "Orange Druid Wall <-> Crate transmutation paired with Thief pull.",
+      "shortest_known": 45,
+      "source_html_sha256": "380d343ad35a8f8caf6863341172a7771d0d28ced2824a7a3085990614562105",
+      "source_puzzlescript_sha256": "f66ceb8f8a2c23a3cb270bad62cdf194e47479772cab94f154ed26f0ff7c20e0",
+      "title": "Heroes of Sokoban III: The Bard and The Druid \u2014 Room 10",
+      "tutorial_messages": [
+        "Orange druid turns stone into wood, wood into stone."
+      ],
+      "width": 13
+    },
+    {
+      "baseline_dual_oracle_verified": true,
+      "baseline_route_len": 48,
+      "baseline_route_sha256": "cd934d25a629be95f1e0be283bdbe7a419e76b58f604e7628d2ad1ce8fc33083",
+      "baseline_traj_fnv64": "9b6f169376d12a7a",
+      "board_sha256_lf": "300563ca68370b85e44b73f0361320bc79948849f59897a3dd0b5cc470bf351c",
+      "grid": [
+        "###############",
+        "#.............#",
+        "#.5.}}}.]]]]].#",
+        "#...}}}.]G.G].#",
+        "#.D.}}}.]]]]].#",
+        "#.............#",
+        "###############"
+      ],
+      "height": 7,
+      "mechanics_tags": [
+        "druid_wall_crate_transmutation",
+        "bard_5x5_chebyshev_charm",
+        "transmuted_wall_switch_weighing",
+        "frontier_gap_room"
+      ],
+      "part": 3,
+      "proven_floor": 43,
+      "room": 14,
+      "room_id": "III-14",
+      "selection_rationale": "Canonical 15x7 Frontier room combining Druid border-wall harvest and Bard switch weighing.",
+      "shortest_known": 48,
+      "source_html_sha256": "380d343ad35a8f8caf6863341172a7771d0d28ced2824a7a3085990614562105",
+      "source_puzzlescript_sha256": "f66ceb8f8a2c23a3cb270bad62cdf194e47479772cab94f154ed26f0ff7c20e0",
+      "title": "Heroes of Sokoban III: The Bard and The Druid \u2014 Room 14",
+      "tutorial_messages": [],
+      "width": 15
+    },
+    {
+      "baseline_dual_oracle_verified": true,
+      "baseline_route_len": 9,
+      "baseline_route_sha256": "179f01ec4093c32d4bb60aeab1a9c37c689eb43520b50e66a9cdd32115c9b2ae",
+      "baseline_traj_fnv64": "d2954ce027d798cb",
+      "board_sha256_lf": "ccad8d502f3ea9283db22dc941abb6f9e28c78b160eb5cf07aaef31d6cc29671",
+      "grid": [
+        "################",
+        "#..............#",
+        "#.1.4......G.G.#",
+        "#..............#",
+        "#.2.B......G.G.#",
+        "#..............#",
+        "#.3.6......G.G.#",
+        "#..............#",
+        "################"
+      ],
+      "height": 9,
+      "mechanics_tags": [
+        "bard_5x5_chebyshev_charm",
+        "six_hero_finale"
+      ],
+      "part": 3,
+      "proven_floor": 9,
+      "room": 22,
+      "room_id": "III-22",
+      "selection_rationale": "Six-Hero Finale testing 5x5 Chebyshev corner reach (2,2).",
+      "shortest_known": 9,
+      "source_html_sha256": "380d343ad35a8f8caf6863341172a7771d0d28ced2824a7a3085990614562105",
+      "source_puzzlescript_sha256": "f66ceb8f8a2c23a3cb270bad62cdf194e47479772cab94f154ed26f0ff7c20e0",
+      "title": "Heroes of Sokoban III: The Bard and The Druid \u2014 Room 22",
+      "tutorial_messages": [],
+      "width": 16
+    }
+  ],
+  "rooms_by_part": {
+    "part_1": 6,
+    "part_2": 6,
+    "part_3": 6
+  },
+  "schema": "mde-soko-benchmark-18/v0.1",
+  "spoiler_routes_included": false,
+  "total_rooms": 18,
+  "zone_manifest_id": "sha256:4cf8df174c942632ed0798b333f7e5d17295cb5e16cc9281db0139e42272a4db"
+}

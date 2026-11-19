@@ -1,0 +1,28 @@
+{
+  "adapter_id": "mde:soko-eval",
+  "base_weights_sha256": "10cc391b403021dd11c614679d2fd92f611c3681d29e29651b717316965d61e1",
+  "certificate_f16_sha256": "aae2c30c50745b9f573a4441b1ee9de08c090b676bbee2b057d1aa032491403b",
+  "corpus_tree_sha256": "34d7b53a35b506f597dcb8b7395ffc6c6f57622622fd5fa12abb90a5244b00c6",
+  "derivation_recipe": {
+    "activations_npz_sha256": "7aa279e416f2570cf48785eaabeccafce44934df19aa3040114b3252cc836f8e",
+    "compiler": "mde-soko-betaedit/0.1.0",
+    "domain_id": "mde:soko-eval",
+    "lambda_leakage": 250.0,
+    "lambda_ridge": 4.0,
+    "output_gain": 0.85,
+    "preservation_weight": 2.0,
+    "projector_epoch": 1,
+    "radix_scale_exp2": 24,
+    "rank": 8,
+    "seed": 20261119,
+    "target_tensor_gguf": "blk.31.ffn_up.weight",
+    "target_tensor_safetensors": "model.language_model.layers.31.mlp.up_proj.weight",
+    "zone_manifest_id": "sha256:4cf8df174c942632ed0798b333f7e5d17295cb5e16cc9281db0139e42272a4db"
+  },
+  "factor_f16_digest": "2606b178ffb3dc606a7d9bc0e4fd6c4160c5fc8eed3c73fdbcfdfcdf481b4de8",
+  "factor_int4_f16_digest": "ce8251dda158c2cd59c61ac8b5a9a4feca1b1f83787b740ee780863c4a519092",
+  "factor_int4_int8_digest": "8594dfc1181f3b37b413e982d475ebb1b4cc7a8154c4e46abd0a032f7b0210ef",
+  "plane1_spec_sha256": "aa628857cb0b372be14caccd71864af6462c0b46295c568e2c172015b9a2630b",
+  "schema": "mde-soko-binding/v0.1",
+  "zone_manifest_id": "sha256:4cf8df174c942632ed0798b333f7e5d17295cb5e16cc9281db0139e42272a4db"
+}

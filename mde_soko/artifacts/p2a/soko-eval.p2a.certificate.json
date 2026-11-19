@@ -1,0 +1,10 @@
+{
+  "factor_digest": "a4edd714bc96ccbbf513397ce42fad54f7bbaf247beff8b57e8e77b85704a414",
+  "frobenius_sq_scaled": 3839187,
+  "leakage_energy_scaled": 5551096188,
+  "max_safety_dot_sq_scaled": 9,
+  "projector_epoch": 1,
+  "quant_dtype": "f16",
+  "radix_scale_exp2": 24,
+  "spectral_norm_sq_scaled": 2047545
+}

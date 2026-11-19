@@ -1,0 +1,16 @@
+{
+  "corpus_tree_sha256": "34d7b53a35b506f597dcb8b7395ffc6c6f57622622fd5fa12abb90a5244b00c6",
+  "domain_id": "mde:soko-eval",
+  "partition_counts": {
+    "benchmark_rooms": 18,
+    "compile_rooms": 32,
+    "hybrid_k0_noise": 512,
+    "hybrid_k0_y0_anchors": 24,
+    "trilogy_total_rooms": 66,
+    "validation_rooms": 16
+  },
+  "plane1_spec_sha256": "aa628857cb0b372be14caccd71864af6462c0b46295c568e2c172015b9a2630b",
+  "schema": "mde-soko-datasets-manifest/v0.1",
+  "zero_room_overlap_verified": true,
+  "zone_manifest_id": "sha256:4cf8df174c942632ed0798b333f7e5d17295cb5e16cc9281db0139e42272a4db"
+}

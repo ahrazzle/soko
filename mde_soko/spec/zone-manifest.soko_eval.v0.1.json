@@ -1,0 +1,28 @@
+{
+  "default_zone": "prose",
+  "domain": "mde:soko-eval",
+  "precedence_order": [
+    "human_authority",
+    "repo_policy",
+    "soko_eval",
+    "prose"
+  ],
+  "schema": "mde-zone-manifest/v0.1",
+  "version": "0.1.0",
+  "zones": {
+    "prose": {
+      "active_packs": [],
+      "description": "General plain-language documentation and off-register text.",
+      "l1_bank_tag": 0
+    },
+    "soko_eval": {
+      "active_packs": [
+        "mde:soko-eval"
+      ],
+      "description": "Heroes of Sokoban evaluation prompts, JSON route actions, and 4-second room micro-solver cells.",
+      "forbid_soko_mcp_imports_in_cells": true,
+      "l1_bank_tag": 4,
+      "require_dual_oracle_win": true
+    }
+  }
+}
