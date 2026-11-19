@@ -12,7 +12,7 @@ from __future__ import annotations
 import hashlib
 from typing import Any, Dict, List, Tuple
 
-# Canonical cell object integer codes (0..20), matching C++20 `DynState` byte encoding
+# Canonical cell object integer codes (0..21), matching C++20 `DynState` byte encoding
 _EMPTY = 0
 _ACT_F, _ACT_T, _ACT_W, _ACT_P, _ACT_B, _ACT_D = 1, 2, 3, 4, 5, 6
 _INA_1, _INA_2, _INA_3, _INA_4, _INA_5, _INA_6 = 7, 8, 9, 10, 11, 12
@@ -24,6 +24,7 @@ _DRAG_R = 17
 _YDOOR = 18
 _PDOOR = 19
 _MGATE = 20
+_CORPSE = 21
 
 _CHAR_TO_OBJ: Dict[str, int] = {
     "F": _ACT_F,
@@ -49,6 +50,7 @@ _CHAR_TO_OBJ: Dict[str, int] = {
 }
 
 _OBJ_TO_CHAR: Dict[int, str] = {v: k for k, v in _CHAR_TO_OBJ.items()}
+_OBJ_TO_CHAR[_CORPSE] = "X"  # not an input tile; produced only by fatal Late rules
 
 _STEP_DELTAS: Dict[str, Tuple[int, int]] = {
     "U": (0, -1),
@@ -245,6 +247,7 @@ class FlatBitmaskOracle:
                         if self._is_monster_code(tc):
                             self.cells[idx] = _EMPTY
                         elif self._is_hero_code(tc):
+                            self.cells[idx] = _CORPSE
                             hero_died = True
 
         # Yellow switches & doors
