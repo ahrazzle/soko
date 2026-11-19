@@ -1,0 +1,60 @@
+{
+  "base_commit": "27406dd",
+  "sample_size": 12,
+  "all_sample_flow_values": [
+    0
+  ],
+  "comparison": {
+    "crossing_edges": {
+      "aggregate_percent_change": -76.7331560283688,
+      "equal_count": 0,
+      "sink_greater_count": 0,
+      "sink_less_count": 12,
+      "sink_total": 5249,
+      "source_total": 22560
+    },
+    "grouped_all_predicates": {
+      "aggregate_percent_change": -95.27925531914893,
+      "equal_count": 0,
+      "sink_greater_count": 0,
+      "sink_less_count": 12,
+      "sink_total": 1065,
+      "source_total": 22560
+    },
+    "unique_nonconstant_predicates": {
+      "aggregate_percent_change": -95.27925531914893,
+      "equal_count": 0,
+      "sink_greater_count": 0,
+      "sink_less_count": 12,
+      "sink_total": 1065,
+      "source_total": 22560
+    }
+  },
+  "controls": {
+    "source_minimal": {
+      "status": "reference_control_passed",
+      "cut_selection": "source_minimal",
+      "iterations": 2,
+      "cuts_checked": 1,
+      "elapsed_seconds": 2.1844390760015813,
+      "flow_witness_checked": true,
+      "record_claim": false
+    },
+    "sink_minimal": {
+      "status": "reference_control_passed",
+      "cut_selection": "sink_minimal",
+      "iterations": 6,
+      "cuts_checked": 5,
+      "elapsed_seconds": 3.8565053239944973,
+      "flow_witness_checked": true,
+      "record_claim": false
+    }
+  },
+  "control_timing_caveat": "Single controls ran concurrently with tests; times are not a speed benchmark.",
+  "tests": {
+    "focused_passed": 55,
+    "command": "python -m unittest tests.test_residual_cut_selection tests.test_universal_flow tests.test_global_cut_certificates tests.test_global_master tests.test_global_search tests.test_causal_master tests.test_causal_search tests.test_transport_nonstuttering_9flow -v"
+  },
+  "record_claim": false,
+  "default_changed": false
+}

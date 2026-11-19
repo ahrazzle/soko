@@ -65,5 +65,5 @@ class EvidenceBoundaryTests(unittest.TestCase):
             with self.subTest(output=output), patch.object(bridge, "_invoke_cpp", return_value=output):
                 result = bridge.prove_floor_verified(1, ["F.G"], 2, 1)
                 self.assertIsNone(result["guarantee"])
-                self.assertIsNone(result["proven_floor"])
+                self.assertEqual(result["proven_floor"], 0)  # trivial floor only
                 self.assertFalse(result["exact_optimum_reached"])

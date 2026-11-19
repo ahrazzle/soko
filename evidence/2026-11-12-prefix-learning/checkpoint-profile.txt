@@ -1,0 +1,17 @@
+Command: /tmp/soko-causal-venv/bin/python -m cProfile -o /tmp/soko-policy-ablation/exact-source-profile.pstats -m experiments.causal_solver.search --worker --options '{"horizon":47,"budget_seconds":10}' --output /tmp/soko-policy-ablation/exact-source-profile.json
+Source commit: 91accff
+Instrumentation overhead is included; timings are diagnostic.
+
+Fri Nov 13 03:24:03 2026    /tmp/soko-policy-ablation/exact-source-profile.pstats
+
+         13121219 function calls (10041792 primitive calls) in 10.320 seconds
+
+   Ordered by: cumulative time
+   List reduced from 1597 to 5 due to restriction <'checkpoint|source_hashes|_save|dumps|read_bytes'>
+
+   ncalls  tottime  percall  cumtime  percall filename:lineno(function)
+      103    0.012    0.000    4.952    0.048 /workspace/soko-new-work-review/experiments/causal_solver/search.py:114(checkpoint)
+      103    0.002    0.000    2.855    0.028 /workspace/soko-new-work-review/experiments/causal_solver/search.py:81(_save)
+      150    0.009    0.000    2.789    0.019 /opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/json/__init__.py:183(dumps)
+      104    0.048    0.000    2.099    0.020 /workspace/soko-new-work-review/experiments/causal_solver/search.py:31(source_hashes)
+     6373    0.019    0.000    0.188    0.000 /opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/pathlib.py:1015(read_bytes)

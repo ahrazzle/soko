@@ -56,6 +56,8 @@ For a controlled comparison, vary one meaningful component at a time, use the sa
 
 ## The next concrete experiments
 
+For a dated view across all 66 rooms, run the [portfolio screening report](../experiments/portfolio/README.md). It preserves public floors as reported claims, keeps exclusions visible, and records the source snapshot for reproduction. The [2026-11-12 observation](../evidence/2026-11-12-issue22/README.md) prioritizes III-21 followed by III-14 with III-20 excluded; zero reported gap does not certify optimality.
+
 These are proposed tests, not claims that they will win:
 
 1. **III-20 strategy ablation.** Same initial 87-key route, compiler and budgets: compare its untransformed guide, mirrored guide, and mirrored guide plus iterative refinement. Include role-aware versus role-agnostic guide distance. The positive control is rediscovery of the accepted 84-key route. Measure which component reliably changes the route and which only increases work before chasing 83.

@@ -1,0 +1,38 @@
+{
+  "route_sha256": "39362103ceedf8d5f2ff4f7513839c58617f9a7ad0aa6fad070dd0d69269a17c",
+  "result": {
+    "epistemic_status": "VERIFIED",
+    "valid_winning_route": true,
+    "route_len": 316,
+    "route_sha256_12": "39362103ceed",
+    "traj_fnv64": "565d5ad06cfe2b52",
+    "trajectory_digest_match": true,
+    "alive": true,
+    "exact_win": true,
+    "premature_win": false,
+    "steps_executed": 316,
+    "engines_executed": [
+      "python_spec_oracle",
+      "python_flat_bitmask_oracle",
+      "cpp20_soko_engine"
+    ],
+    "engines_count": 3,
+    "dual_engine_checked": true,
+    "triple_oracle_checked": true,
+    "differential_match": true,
+    "checker_pins": {
+      "oracle_py_sha256": "8145f311051a3f6bfa94467da7a6d9a30535f9edf1bb00662982da70e9cc9853",
+      "flat_oracle_py_sha256": "447b6c006dfe36347a96bd519b5ff23b76ed40352c0e5ccb32d42f496f402951",
+      "engine_bridge_py_sha256": "f932e73537416bad08e2368c568426d99c01cee86f8c7b1b73d3059639ef223f",
+      "evidence_py_sha256": "2bad704a7d39ee3a63505918e5917a097a0ba6da27a3e6b0bf246edc9dc76d7c",
+      "integrity_py_sha256": "138a6dd0d49d6af497e4e311e38165947f0e27deb706059f708b2e21bdf90437",
+      "catalog_py_sha256": "43d8b8aaf29c3e9fb857ea803a40edf5cc6e230e8e81e2c8eb002d41364f75ed",
+      "cpp_soko_engine_src_sha256": "af3da24fa9a624acf13f10773e52752721113eadcdd500dbcc17923e2d528f47",
+      "cpp_soko_engine_bin_sha256": "e41f9b0d8f8192b86b775c33586d385125a1d54ec0753ac161a7a96756f1e9fa",
+      "formal_kernel_py_sha256": "15faf8e54a6b4f4623206001d07254fdd375c161c1b0cab934ac7c33844074d2"
+    },
+    "checker_pins_ok": true,
+    "final_ascii": "#######################\n#.....*..#P.5#......*.#\n#...#....#...#....#...#\n#######.........#######\n#####.#####.#####.#####\n#.*##O#.*#..*#..#.##..#\n#*........6.2#........#\n#.*##O#.....**..#.##..#\n#.*##.####.#*####*#####\n#.#####..#**......#####\n#...###.##.#.##......*#\n#*..###.##3.1##...#...#\n#######################",
+    "route": "RRRDRRDRRRURRDRRUURRRRRLLLLDDAUAADLLULLLLLDDAAALLLULDDDRDLULDDLLUUAAAULLULAAUADLLLLLAAADLAAALDADRAAAALLDAULAALARUAAARRRRRAUAARDRAAARRDRRUADDRRDDRLAAUAAAULLRRURURDDAURULDDRRRRLLLLAAUUAAARDDRRRDRRRRRAAAAAULLULULULLLDUURLDLLUALLLUUAAAALLLLLDLLLDULLULLLLLLLADDRDALDDAUAAALDURADDUUAAAUAARRRRRRRRUUURUUADRDDDAAAUUURDDDAUUL"
+  }
+}

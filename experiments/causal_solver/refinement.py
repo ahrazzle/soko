@@ -138,7 +138,8 @@ def _prefix_lemmas(solver, actions, states, descriptors, encoding):
         solver.add(z3.Implies(guard, z3.And(*[v == c for v, c in zip(states[t + 1], state)])))
 
 
-def _deterministic_check(descriptors, horizon, encoding, deadline, independent=False):
+def _deterministic_check(descriptors, horizon, encoding, deadline, independent=False,
+                         checked_frames=None):
     """Decide a fixed exact prefix by determinism, with full material present.
 
     On independent replay use the retained transition and separately compare
@@ -181,6 +182,14 @@ def _deterministic_check(descriptors, horizon, encoding, deadline, independent=F
         concrete = mechanics.eval_state(state)
         if oracle is not None and concrete != mechanics.oracle_state(oracle):
             return {'status': 'rejected', 'reason': f'independent oracle mismatch at frame {t}'}
+        if independent and checked_frames is not None:
+            # These facts come from the full-material transition and agreeing
+            # oracle, never from the certificate's asserted hero equalities.
+            # Retain them privately: a rejected/unknown replay must install none.
+            points = tuple(((mask.bit_length() - 1) % mechanics.W,
+                            (mask.bit_length() - 1) // mechanics.W)
+                           for mask in concrete[2:4])
+            checked_frames.append((t, points[0], points[1], concrete[4]))
         for descriptor in constraints.get(t, ()):
             kind, _, *values = descriptor
             if kind == 'active':
@@ -323,7 +332,8 @@ class ExactRefiner:
                                   expected_metadata=_metadata(self.horizon, self.encoding))
 
 
-def _check_certificate(certificate, timeout_seconds, expected_metadata=None):
+def _check_certificate(certificate, timeout_seconds, expected_metadata=None,
+                       checked_frames=None):
     timeout_ms = _timeout_ms(timeout_seconds)
     started = time.perf_counter()
     rejected = {'status': 'rejected', 'verified': False}
@@ -359,7 +369,7 @@ def _check_certificate(certificate, timeout_seconds, expected_metadata=None):
         return {'status': 'unknown', 'verified': False, 'reason_unknown': 'zero budget'}
     if certificate['kind'] == 'deterministic_prefix':
         replay = _deterministic_check(core, horizon, encoding, started + timeout_seconds,
-                                      independent=True)
+                                      independent=True, checked_frames=checked_frames)
         status = replay['status']
         validation = {**{k: v for k, v in replay.items() if k != 'core'},
                       'status': 'verified' if status == 'unsat' else 'unknown' if status == 'unknown' else 'rejected',
@@ -385,21 +395,30 @@ def _check_certificate(certificate, timeout_seconds, expected_metadata=None):
     return {**validation, 'certificate': checked}
 
 
-def add_core_cut(master, certificate, timeout_seconds=10):
+def add_core_cut(master, certificate, timeout_seconds=10, *, learn_prefix_frames=False):
     """Recheck, then install OR(not core equalities) on a hero/action master.
 
     The supplied ``validation`` field is never trusted. Unknown, mismatched or
     tampered certificates leave the master's solver completely unchanged.
+    Optional prefix implications use only complete hero/activity facts obtained
+    during this independent deterministic replay. SMT cores learn no frames.
     """
+    if type(learn_prefix_frames) is not bool:
+        raise ValueError('learn_prefix_frames must be Boolean')
+    started = time.perf_counter()
+    metrics = {'prefix_frames_learned': 0, 'prefix_max_depth': None}
     try:
         metadata = certificate['metadata']
         if type(master.horizon) is not int or master.horizon != metadata['horizon']:
             raise ValueError('master/certificate horizon mismatch')
     except (TypeError, KeyError, ValueError, AttributeError) as exc:
-        return {'status': 'rejected', 'verified': False, 'added': False, 'reason': str(exc)}
-    validation = _check_certificate(certificate, timeout_seconds)
+        return {'status': 'rejected', 'verified': False, 'added': False,
+                'reason': str(exc), **metrics}
+    checked_frames = [] if learn_prefix_frames else None
+    validation = _check_certificate(certificate, timeout_seconds,
+                                    checked_frames=checked_frames)
     if not validation['verified']:
-        return {**validation, 'added': False}
+        return {**validation, 'added': False, **metrics}
     predicates = []
     for kind, t, *values in certificate['core']:
         if kind == 'action':
@@ -413,5 +432,27 @@ def add_core_cut(master, certificate, timeout_seconds=10):
                                getattr(frame, hero + '_y') == y)
         predicates.append(predicate)
     expression = z3.Or(*[z3.Not(p) for p in predicates])
-    master.solver.add(expression)
-    return {**validation, 'added': True, 'expression': expression}
+    implications = []
+    if checked_frames:
+        fixed = {d[1]: d[2] for d in certificate['core'] if d[0] == 'action'}
+        prefix = []
+        for t, bard, druid, active in checked_frames:
+            if t:
+                # Replay stops at the first absent action, so every surviving
+                # frame has exactly this contiguous guard, including absorption.
+                prefix.append(master.actions[t - 1][KEYS.index(fixed[t - 1])])
+            frame = master.frames[t]
+            implications.append(z3.Implies(z3.And(*prefix), z3.And(
+                frame.bard_x == bard[0], frame.bard_y == bard[1],
+                frame.druid_x == druid[0], frame.druid_y == druid[1],
+                frame.active == active)))
+        # Keep all mutation after validation and construction. In particular,
+        # partial replay facts cannot escape when the opt-in budget expires.
+        if time.perf_counter() - started >= timeout_seconds:
+            return {**validation, 'status': 'unknown', 'verified': False,
+                    'added': False, 'reason_unknown': 'prefix learning budget exhausted',
+                    **metrics}
+        metrics = {'prefix_frames_learned': len(implications),
+                   'prefix_max_depth': checked_frames[-1][0]}
+    master.solver.add(expression, *implications)
+    return {**validation, 'added': True, 'expression': expression, **metrics}

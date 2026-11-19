@@ -97,11 +97,13 @@ class SearchLimitTests(unittest.TestCase):
             env = dict(os.environ, PYTHONPATH=str(root))
             proc = subprocess.run([sys.executable, '-m', 'experiments.transport_relaxation.global_search',
                                    'run', '--horizon', '0', '--output', 'relative-result',
+                                   '--cut-selection', 'sink_minimal',
                                    '--timeout-seconds', '30'], cwd=directory, env=env,
                                   capture_output=True, text=True, timeout=40)
             self.assertEqual(proc.returncode, 0, proc.stderr)
             result = json.loads((Path(directory) / 'relative-result' / 'result.json').read_text())
             self.assertEqual(result['status'], 'unverified_master_unsat')
+            self.assertEqual(result['cut_selection'], 'sink_minimal')
             self.assertFalse(result['record_claim'])
             self.assertNotIn('abstract_lower_bound', result)
 
@@ -138,15 +140,17 @@ class SearchLimitTests(unittest.TestCase):
         self.assertNotIn('abstract_lower_bound', result)
 
     def test_one_iteration_reference_control_remains_unknown(self):
-        with TemporaryDirectory() as directory:
-            result = global_search.search(Path(directory), 48, timeout_seconds=30,
-                                          max_iterations=1, control=True)
-            self.assertEqual(result['status'], 'unknown')
-            self.assertEqual(result['reason'], 'iteration budget exhausted')
-            self.assertEqual(result['cuts_checked'], 1)
-            self.assertFalse(result['record_claim'])
-            self.assertNotIn('abstract_lower_bound', result)
-            self.assertTrue((Path(directory) / 'result.json').is_file())
+        for mode in universal_flow.CUT_SELECTIONS:
+            with self.subTest(mode=mode), TemporaryDirectory() as directory:
+                result = global_search.search(Path(directory), 48, timeout_seconds=30,
+                                              max_iterations=1, control=True, cut_selection=mode)
+                self.assertEqual(result['status'], 'unknown')
+                self.assertEqual(result['reason'], 'iteration budget exhausted')
+                self.assertEqual(result['cuts_checked'], 1)
+                self.assertEqual(result['cut_selection'], mode)
+                self.assertFalse(result['record_claim'])
+                self.assertNotIn('abstract_lower_bound', result)
+                self.assertTrue((Path(directory) / 'result.json').is_file())
 
 
 if __name__ == '__main__':

@@ -1,0 +1,23 @@
+{
+  "room": "III-14",
+  "source_route_sha256": "cd934d25a629be95f1e0be283bdbe7a419e76b58f604e7628d2ad1ce8fc33083",
+  "input": 24,
+  "key": "D",
+  "before": {
+    "bard_x": 4,
+    "bard_y": 2,
+    "druid_x": 6,
+    "druid_y": 1,
+    "active": true
+  },
+  "after": {
+    "bard_x": 4,
+    "bard_y": 3,
+    "druid_x": 6,
+    "druid_y": 2,
+    "active": true
+  },
+  "sum_of_hero_displacements": 2,
+  "input_cost": 1,
+  "scope": "One input can move two heroes; independent per-hero costs need a sound composition argument."
+}

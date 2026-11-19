@@ -1,0 +1,234 @@
+{
+  "checkpoint_comparison": {
+    "command": [
+      "/tmp/soko-causal-venv/bin/python",
+      "evidence/2026-11-12-prefix-learning/compare_checkpoints.py",
+      "--pretty-checkout",
+      "/workspace/soko-pre-compact-checkpoints",
+      "--compact-checkout",
+      "/workspace/soko-new-work-review",
+      "--output",
+      "/tmp/soko-checkpoint-ablation"
+    ],
+    "budget_seconds": 15,
+    "driver_sha256": "2ccb701bf967c9c7d7c7e6e8faf93d15bb9d9c806202e63a957105d093bce876",
+    "git_heads": {
+      "pretty": "2d0bd9a8baa80610144085bc000a2568d3d5d98d",
+      "compact": "7dc39949f98ce682db91ff2735fa6a0a049cb49a"
+    },
+    "runs": [
+      {
+        "artifact": "pretty-1.json",
+        "mode": "pretty",
+        "command": [
+          "/tmp/soko-causal-venv/bin/python",
+          "-m",
+          "experiments.causal_solver.search",
+          "--horizon",
+          "47",
+          "--budget-seconds",
+          "15",
+          "--output",
+          "/tmp/soko-checkpoint-ablation/pretty-1.json"
+        ],
+        "status": "unknown",
+        "record_claim": false,
+        "candidates": 34,
+        "checked_cuts": 34,
+        "median_rejected_depth": 4.0,
+        "maximum_rejected_depth": 16,
+        "elapsed_seconds": 15.074938097000995,
+        "bytes": 591329
+      },
+      {
+        "artifact": "compact-1.json",
+        "mode": "compact",
+        "command": [
+          "/tmp/soko-causal-venv/bin/python",
+          "-m",
+          "experiments.causal_solver.search",
+          "--horizon",
+          "47",
+          "--budget-seconds",
+          "15",
+          "--output",
+          "/tmp/soko-checkpoint-ablation/compact-1.json"
+        ],
+        "status": "unknown",
+        "record_claim": false,
+        "candidates": 44,
+        "checked_cuts": 43,
+        "median_rejected_depth": 5,
+        "maximum_rejected_depth": 16,
+        "elapsed_seconds": 15.076729423999495,
+        "bytes": 394920
+      },
+      {
+        "artifact": "compact-2.json",
+        "mode": "compact",
+        "command": [
+          "/tmp/soko-causal-venv/bin/python",
+          "-m",
+          "experiments.causal_solver.search",
+          "--horizon",
+          "47",
+          "--budget-seconds",
+          "15",
+          "--output",
+          "/tmp/soko-checkpoint-ablation/compact-2.json"
+        ],
+        "status": "unknown",
+        "record_claim": false,
+        "candidates": 47,
+        "checked_cuts": 46,
+        "median_rejected_depth": 5.0,
+        "maximum_rejected_depth": 16,
+        "elapsed_seconds": 15.07143726600043,
+        "bytes": 420766
+      },
+      {
+        "artifact": "pretty-2.json",
+        "mode": "pretty",
+        "command": [
+          "/tmp/soko-causal-venv/bin/python",
+          "-m",
+          "experiments.causal_solver.search",
+          "--horizon",
+          "47",
+          "--budget-seconds",
+          "15",
+          "--output",
+          "/tmp/soko-checkpoint-ablation/pretty-2.json"
+        ],
+        "status": "unknown",
+        "record_claim": false,
+        "candidates": 45,
+        "checked_cuts": 44,
+        "median_rejected_depth": 5.0,
+        "maximum_rejected_depth": 16,
+        "elapsed_seconds": 15.103939881999395,
+        "bytes": 767475
+      },
+      {
+        "artifact": "pretty-3.json",
+        "mode": "pretty",
+        "command": [
+          "/tmp/soko-causal-venv/bin/python",
+          "-m",
+          "experiments.causal_solver.search",
+          "--horizon",
+          "47",
+          "--budget-seconds",
+          "15",
+          "--output",
+          "/tmp/soko-checkpoint-ablation/pretty-3.json"
+        ],
+        "status": "unknown",
+        "record_claim": false,
+        "candidates": 39,
+        "checked_cuts": 38,
+        "median_rejected_depth": 5,
+        "maximum_rejected_depth": 16,
+        "elapsed_seconds": 15.14383580499998,
+        "bytes": 673146
+      },
+      {
+        "artifact": "compact-3.json",
+        "mode": "compact",
+        "command": [
+          "/tmp/soko-causal-venv/bin/python",
+          "-m",
+          "experiments.causal_solver.search",
+          "--horizon",
+          "47",
+          "--budget-seconds",
+          "15",
+          "--output",
+          "/tmp/soko-checkpoint-ablation/compact-3.json"
+        ],
+        "status": "unknown",
+        "record_claim": false,
+        "candidates": 50,
+        "checked_cuts": 49,
+        "median_rejected_depth": 5.0,
+        "maximum_rejected_depth": 16,
+        "elapsed_seconds": 15.068071318004513,
+        "bytes": 449861
+      }
+    ],
+    "common_prefixes": [
+      {
+        "pair": 1,
+        "candidate_prefix_length": 34,
+        "identical": true,
+        "differing_sources": [
+          "experiments/causal_solver/search.py"
+        ],
+        "common_core_certificates_identical": true
+      },
+      {
+        "pair": 2,
+        "candidate_prefix_length": 45,
+        "identical": true,
+        "differing_sources": [
+          "experiments/causal_solver/search.py"
+        ],
+        "common_core_certificates_identical": true
+      },
+      {
+        "pair": 3,
+        "candidate_prefix_length": 39,
+        "identical": true,
+        "differing_sources": [
+          "experiments/causal_solver/search.py"
+        ],
+        "common_core_certificates_identical": true
+      }
+    ]
+  },
+  "checkpoint_medians": {
+    "pretty_checked_cuts": 38,
+    "compact_checked_cuts": 46,
+    "increase_percent": 21.052631578947366
+  },
+  "prefix_learning": {
+    "selection": "Initial pair conservatively replaced because concurrent reviewer-test overlap could not be ruled out. All original and replacement artifacts retained.",
+    "baseline_checked_cuts": [
+      61,
+      63,
+      64
+    ],
+    "learned_checked_cuts": [
+      65,
+      59,
+      64
+    ],
+    "baseline_max_depth": [
+      16,
+      16,
+      16
+    ],
+    "learned_max_depth": [
+      17,
+      17,
+      17
+    ],
+    "conclusion": "No convincing gain; remains opt-in."
+  },
+  "live_observation": {
+    "observed_at": "2026-11-13T03:32:20.865474+00:00",
+    "url": "https://soko.banteg.xyz/api/frontier",
+    "sha256": "eac06593f4289a32e682fbc236db54db9604104f3997424a0884a3ae4d178743",
+    "III-14": {
+      "reported_record": 48,
+      "reported_floor": 44
+    },
+    "III-21": {
+      "reported_record": 316,
+      "reported_floor": 269
+    },
+    "locally_reproved": false
+  },
+  "new_record": false,
+  "new_bound": false
+}

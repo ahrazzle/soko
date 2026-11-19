@@ -18,7 +18,7 @@ from soko_mcp.server import dispatch_tool_call  # noqa: E402
 class CapabilityContractTests(unittest.TestCase):
     def test_soko_capabilities_reports_honest_runtime_readiness(self) -> None:
         caps = dispatch_tool_call("soko_capabilities", {})
-        self.assertEqual(caps["version"], "0.3.0")
+        self.assertEqual(caps["version"], "0.4.0")
         self.assertTrue(caps["cpp_engine_ready"])
         self.assertIsNone(caps["cpp_unavailable_reason"])
         self.assertEqual(caps["route_verification"]["total_oracles"], 3)

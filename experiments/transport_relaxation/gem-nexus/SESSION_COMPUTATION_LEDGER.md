@@ -1,5 +1,12 @@
 # III-14 Transport-Relaxation Rungs, Non-Stuttering CNF, and Exact-State Lower-Bound Ledger
 
+**Correction (2026-11-12):** The Multi-Core Exact-State Bucketed A* row below
+that cites `floor >= 35` is a **withdrawn certificate claim**, not a current
+lower bound. See [PR #25 review
+5884260825](https://github.com/ahrazzle/soko/pull/25#pullrequestreview-5884260825)
+and `evidence/2026-11-12-nonstuttering-9flow-ledger/README.md`; session metrics
+are kept for audit history.
+
 This ledger captures the complete empirical, combinatorial, and
 formal-verification computations linking the nine-token transport
 relaxation (experiments/transport_relaxation/) to concrete Part III
@@ -130,9 +137,12 @@ cpp/soko_engine.cpp</th>
 (CompactNode / Packed14, zero lossy TT pruning)</th>
 <th style="text-align: left;">III-14</th>
 <th style="text-align: left;">Generic 10s budget: floor &gt;= 32 (1,014
-live 64-bit hash collisions caught); 35s prover run: floor &gt;= 35
-across 27,656,589 exact states, 110,803,961 transitions, 22,658 hash
-collisions prevented</th>
+live 64-bit hash collisions caught); 35s prover run: printed layer 35 across
+27,656,589 exact states, 110,803,961 transitions, 22,658 hash collisions
+prevented — <strong>withdrawn as a certificate</strong> (PR #25 review
+5884260825): the prover later hits STEP INCONSISTENCY at layer 36, emits no
+FINAL_CERT, and the sound 14×7 fixture bound is &gt;= 34 only, not &gt;= 35 on
+15×7.</th>
 <th style="text-align: left;">cpp/soko_engine.cpp,
 cpp/frontier_iii14_iii20_prover.cpp</th>
 </tr>

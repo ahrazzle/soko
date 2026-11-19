@@ -3,10 +3,18 @@
 `python -m experiments.causal_solver.search --horizon 47 --budget-seconds 60 --output result.json`
 starts an unrestricted bounded query. It pins neither route nor hero history. The
 master uses terminal absorption, so winning prefixes of every length up to the
-horizon are represented. Event constraints are enabled by default; `--no-events`
-disables them and `--symmetry` requests the optional normalization. The default
+horizon are represented. Event constraints are disabled by default; `--events`
+enables them and `--symmetry` requests the optional normalization. The default
 phase order checks exact completion before flow; `--phase-order flow-first`
 reverses this. A feasible flow never establishes exact completion.
+
+`--cut-selection sink_minimal` selects the complement of reverse residual
+reachability into the sink after the same max-flow solve. The default is
+`source_minimal`. Both modes retain every universal boundary arc, including
+disabled arcs, and use the same independent certificate checks. The option
+affects the flow phase; the default exact-first order can reject a candidate
+before any flow call. Narrower predicates do not guarantee faster search;
+see the [fixed-input comparison](../../evidence/2026-11-12-residual-cuts/README.md).
 
 The worker builds the universal network and independently checks its complete
 specification. Every deficient flow cut is independently checked before it is
@@ -17,6 +25,22 @@ deterministic-transition replay recipes, not a standalone proof of global UNSAT.
 No record bound is claimed. The exact and flow models depend on the documented
 necessary-condition and mechanics assumptions; the symbolic model is not itself
 proof of equivalence to the original engine.
+
+`--learn-prefix-frames` opts into stronger deterministic refinement. After a
+deterministic contradiction passes the retained-transition and separate Python
+oracle recheck, the master learns the complete actual Bard/Druid/active frame
+under each checked contiguous action prefix. All material remains present in
+that replay. The facts are derived privately during the recheck, not read from
+asserted serialized states. Other action prefixes remain unconstrained by those
+implications. Terminal absorption holds positions and active identity fixed.
+
+The original exact nogood is retained. Invalid, disagreeing or timed-out checks
+install nothing; SMT cores do not learn these extra frames. The option defaults
+off. Output reports `prefix_frames_learned` and `prefix_max_depth`, which count
+installed facts and replay depth, not unique search coverage. The driver
+`python -m experiments.causal_solver.compare_prefix_learning --output /tmp/new-prefix-comparison`
+compares it with the baseline using three alternating-order pairs of sequential
+30-second workers; choose a fresh output directory.
 
 Candidates are locally replayed immediately, truncated at the first win, then
 replayed in the pinned original engine. Only that final replay can produce

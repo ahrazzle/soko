@@ -34,22 +34,29 @@ class CausalSearchTests(unittest.TestCase):
                   patch.object(search.global_master, 'decode', return_value=assignment),
                   patch.object(search, 'local_replay', return_value={'status': 'not_won'}),
                   patch.object(search.refinement, 'ExactRefiner', return_value=refiner),
-                  patch.object(search.refinement, 'add_core_cut') as add_cut):
-                result = search.run(48, 5, output=target)
+                  patch.object(search.refinement, 'add_core_cut') as add_cut,
+                  patch.object(search.causal, 'evaluate_flow', return_value={'flow_value': 9}) as flow):
+                result = search.run(48, 5, output=target, phase_order='flow-first',
+                                    cut_selection='sink_minimal')
             self.assertEqual(result['status'], 'unknown')
             self.assertEqual(result['cuts'], [])
             self.assertEqual(len(result['candidates']), 1)
             add_cut.assert_not_called()
+            self.assertEqual(flow.call_args.kwargs['cut_selection'], 'sink_minimal')
+            self.assertEqual(result['cut_selection'], 'sink_minimal')
+            self.assertFalse(result['learn_prefix_frames'])
             self.assertEqual(json.loads(target.read_text())['status'], 'unknown')
 
     def test_hard_budget_ends_build_and_writes_checkpoint(self):
         with tempfile.TemporaryDirectory() as directory:
             output = Path(directory) / 'out.json'
-            result = search.run_bounded({'horizon': 48, 'budget_seconds': 0.01}, output)
+            result = search.run_bounded({'horizon': 48, 'budget_seconds': 0.01,
+                                        'cut_selection': 'sink_minimal'}, output)
             self.assertEqual(result['status'], 'unknown')
             self.assertEqual(result['reason'], 'hard wall budget exhausted')
             self.assertTrue(output.exists())
             self.assertFalse(result['record_claim'])
+            self.assertEqual(result['cut_selection'], 'sink_minimal')
 
     def test_worker_uses_absolute_html_and_executable_paths(self):
         with tempfile.TemporaryDirectory() as directory:
@@ -59,13 +66,15 @@ class CausalSearchTests(unittest.TestCase):
                 options = json.loads(command[command.index('--options') + 1])
                 self.assertEqual(options['html'], str(Path('relative.html').resolve()))
                 self.assertEqual(options['chromium'], str(Path('bin/chromium').resolve()))
+                self.assertTrue(options['learn_prefix_frames'])
                 output.write_text(json.dumps({'status': 'unknown', 'source_hashes_before': {'s': 'h'}}))
                 return SimpleNamespace(wait=lambda timeout: 0, returncode=0)
 
             with patch.object(search, 'source_hashes', return_value={'s': 'h'}), \
                  patch.object(search.subprocess, 'Popen', side_effect=launch):
                 result = search.run_bounded({'horizon': 1, 'budget_seconds': 1,
-                    'html': 'relative.html', 'chromium': 'bin/chromium'}, output)
+                    'html': 'relative.html', 'chromium': 'bin/chromium',
+                    'learn_prefix_frames': True}, output)
             self.assertEqual(result['status'], 'unknown')
 
 

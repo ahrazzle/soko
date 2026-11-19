@@ -15,6 +15,8 @@ import json
 
 from . import allocation, flow_allocation, model
 
+CUT_SELECTIONS = ('source_minimal', 'sink_minimal')
+
 
 @dataclass(frozen=True)
 class Arc:
@@ -141,7 +143,54 @@ def universe_identity(universe: Universe) -> str:
     return hashlib.sha256(encoded).hexdigest()
 
 
-def evaluate_flow(universe: Universe, assignment: Mapping) -> dict:
+def validate_cut_selection(cut_selection, node_count, source, sink):
+    """Validate the requested extremum and graph endpoints before solving."""
+    if cut_selection not in CUT_SELECTIONS:
+        raise ValueError('unknown cut selection')
+    if (type(source) is not int or type(sink) is not int
+            or not 0 <= source < node_count or not 0 <= sink < node_count
+            or source == sink):
+        raise ValueError('invalid source or sink')
+
+
+def residual_source_partition(network, source, sink, cut_selection='source_minimal'):
+    """Return the smallest or largest source side of a maximum-flow min cut.
+
+    Traverse every positive residual edge, including reverse residual edges.
+    The sink-minimal sink side is the set that can reach the sink; its
+    complement is the largest source side. Requires a completed max flow.
+    """
+    graph = network.graph
+    validate_cut_selection(cut_selection, len(graph), source, sink)
+    if cut_selection == 'source_minimal':
+        reached, pending = {source}, deque([source])
+        while pending:
+            node = pending.popleft()
+            for edge in graph[node]:
+                if edge.capacity > 0 and edge.to not in reached:
+                    reached.add(edge.to)
+                    pending.append(edge.to)
+        source_side = reached
+    else:
+        incoming = [[] for _ in graph]
+        for node, edges in enumerate(graph):
+            for edge in edges:
+                if edge.capacity > 0:
+                    incoming[edge.to].append(node)
+        reached, pending = {sink}, deque([sink])
+        while pending:
+            node = pending.popleft()
+            for predecessor in incoming[node]:
+                if predecessor not in reached:
+                    reached.add(predecessor)
+                    pending.append(predecessor)
+        source_side = set(range(len(graph))) - reached
+    if source not in source_side or sink in source_side:
+        raise ValueError('residual graph still has a source-to-sink path')
+    return source_side
+
+
+def evaluate_flow(universe: Universe, assignment: Mapping, *, cut_selection='source_minimal') -> dict:
     """Evaluate a complete valid master assignment and its universal min cut.
 
     The first distinct hero-goal pair must occur at the final frame, matching
@@ -151,6 +200,7 @@ def evaluate_flow(universe: Universe, assignment: Mapping) -> dict:
     for independent checking. The reconstructed witness follows
     ``flow_allocation._witness``.
     """
+    validate_cut_selection(cut_selection, len(universe.node_labels), universe.source, universe.sink)
     model.exact._guard_current_source()
     if not isinstance(assignment, Mapping):
         raise ValueError('assignment must supply route, heroes and landmark')
@@ -175,14 +225,7 @@ def evaluate_flow(universe: Universe, assignment: Mapping) -> dict:
     for arc, value in zip(universe.edges, capacities):
         network.add_edge(arc.source, arc.target, value)
     value = network.max_flow(universe.source, universe.sink)
-    source_side = {universe.source}
-    pending = deque([universe.source])
-    while pending:
-        node = pending.popleft()
-        for edge in network.graph[node]:
-            if edge.capacity > 0 and edge.to not in source_side:
-                source_side.add(edge.to)
-                pending.append(edge.to)
+    source_side = residual_source_partition(network, universe.source, universe.sink, cut_selection)
     crossing = [arc for arc in universe.edges
                 if arc.source in source_side and arc.target not in source_side]
     crossing_capacity = sum(capacities[arc.edge_id] for arc in crossing)
@@ -203,7 +246,7 @@ def evaluate_flow(universe: Universe, assignment: Mapping) -> dict:
             edge_ids[pair] = arc.edge_id
         edge_paths = [[edge_ids[pair] for pair in zip(path, path[1:])] for path in paths]
         witness = flow_allocation._witness(route, heroes, landmark, labelled_paths)
-    return {'flow_value': value, 'source_side': sorted(source_side),
+    return {'flow_value': value, 'source_side': sorted(source_side), 'cut_selection': cut_selection,
             'crossing_ids': [arc.edge_id for arc in crossing],
             'crossing_capacity': crossing_capacity,
             'flow_paths': paths, 'flow_edge_paths': edge_paths, 'witness': witness}

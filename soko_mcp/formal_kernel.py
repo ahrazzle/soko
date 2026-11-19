@@ -172,6 +172,10 @@ def _alpha_normalize_skeleton(tree: ast.AST) -> str:
         "potential",
         "enumerate_states",
         "predicates",
+        "projections",
+        "features",
+        "goal_rhs",
+        "dual_y",
     }
 
     def map_name(name: str) -> str:
@@ -1383,7 +1387,286 @@ def certify_formal_lower_bound(
         reg.certificates.append(cert_q)
         return cert_q
 
-    raise ValueError(f"Unsupported proof_mode {proof_mode!r}; use 'quotient_homomorphism' or 'inductive_potential'")
+    if proof_mode == "cost_partitioned_quotients":
+        # Inbound from Foundation-0/gfq-codes + finite-state-proofs:
+        # Additive Rational Action-Cost Partitioning across M >= 2 Quotient Graph Homomorphisms
+        # in exact `fractions.Fraction` arithmetic (zero floating-point LP solver in TCB!).
+        proj_list_fn = cert_ns.get("projections")
+        if not callable(proj_list_fn):
+            raise ValueError(
+                "certificate_code must define `projections() -> sequence of (name, project_fn, weight_fn)` "
+                "for proof_mode='cost_partitioned_quotients'"
+            )
+        if not complete_space:
+            return {
+                "epistemic_status": "REJECTED_INCOMPLETE_CONCRETE_GRAPH_FOR_QUOTIENT",
+                "system_id": reg.system_id,
+                "reason": (
+                    f"Concrete reachable state space exceeded max_concrete_states={max_concrete_states}; "
+                    "increase max_concrete_states or supply an inductively closed `enumerate_states()`."
+                ),
+            }
+
+        raw_projs = list(proj_list_fn())
+        if len(raw_projs) < 2:
+            raise ValueError("projections() must return at least 2 (name, project_fn, weight_fn) entries")
+
+        parsed_projs: List[Tuple[str, Callable[[Any], Any], Callable[[Any, Any, Any], Any]]] = []
+        for entry in raw_projs:
+            if not isinstance(entry, (tuple, list)) or len(entry) != 3:
+                raise ValueError("Each entry in projections() must be (name, project_fn, weight_fn)")
+            pname, pfn, wfn = str(entry[0]), entry[1], entry[2]
+            if not callable(pfn) or not callable(wfn):
+                raise ValueError(f"Projection {pname!r} must supply callable project_fn(s) and weight_fn(s, a, ns)")
+            parsed_projs.append((pname, pfn, wfn))
+
+        # Step 1: Verify exact rational non-negativity and cost-partitioning sum_m w_m(s, a, s') <= cost(s, a, s')
+        edge_weights_per_m: List[List[Fraction]] = [[] for _ in parsed_projs]
+        for st, act, ns, cost in concrete_edges:
+            w_sum = Fraction(0, 1)
+            for m_idx, (pname, _pfn, wfn) in enumerate(parsed_projs):
+                raw_w = wfn(st, act, ns)
+                if isinstance(raw_w, bool) or not isinstance(raw_w, (int, Fraction)):
+                    raise TypeError(f"Weight function {pname!r} must return exact int or Fraction, got {type(raw_w).__name__}")
+                wf = Fraction(raw_w)
+                if wf < 0:
+                    return {
+                        "epistemic_status": "REJECTED_NEGATIVE_PARTITION_WEIGHT",
+                        "system_id": reg.system_id,
+                        "projection": pname,
+                        "violating_transition": [_canonical_repr(st), _canonical_repr(act), _canonical_repr(ns)],
+                        "weight": str(wf),
+                    }
+                edge_weights_per_m[m_idx].append(wf)
+                w_sum += wf
+            if w_sum > Fraction(cost, 1):
+                return {
+                    "epistemic_status": "REJECTED_COST_PARTITION_OVERFLOW",
+                    "system_id": reg.system_id,
+                    "violating_transition": [_canonical_repr(st), _canonical_repr(act), _canonical_repr(ns)],
+                    "partition_weight_sum": str(w_sum),
+                    "concrete_step_cost": cost,
+                }
+
+        # Step 2: Solve exact Fraction backward Dijkstra on each Quotient Graph Q_m and machine-check step consistency!
+        INF_F = Fraction(10**18, 1)
+        total_exact_bound = Fraction(0, 1)
+        component_reports: List[Dict[str, Any]] = []
+        unreachable_any = False
+
+        for m_idx, (pname, pfn, _wfn) in enumerate(parsed_projs):
+            abs_rev: Dict[Any, List[Tuple[Any, Fraction]]] = {}
+            abs_goals: Set[Any] = set()
+            abs_nodes: Set[Any] = set()
+            for st in concrete_states:
+                an = pfn(st)
+                assert_exact_immutable(an, f"{pname}.project", reg.exact_only)
+                abs_nodes.add(an)
+                if spec.is_goal(st):
+                    abs_goals.add(an)
+            for e_idx, (st, _act, ns, _cost) in enumerate(concrete_edges):
+                u_a = pfn(st)
+                v_a = pfn(ns)
+                abs_rev.setdefault(v_a, []).append((u_a, edge_weights_per_m[m_idx][e_idx]))
+
+            h_abs_f: Dict[Any, Fraction] = {g: Fraction(0, 1) for g in abs_goals}
+            pq_f: List[Tuple[Fraction, int, Any]] = []
+            ctr = 0
+            for g in abs_goals:
+                ctr += 1
+                heapq.heappush(pq_f, (Fraction(0, 1), ctr, g))
+            while pq_f:
+                d_f, _, v_a = heapq.heappop(pq_f)
+                if d_f > h_abs_f.get(v_a, INF_F):
+                    continue
+                for u_a, w_f in abs_rev.get(v_a, ()):
+                    nd_f = d_f + w_f
+                    if nd_f < h_abs_f.get(u_a, INF_F):
+                        h_abs_f[u_a] = nd_f
+                        ctr += 1
+                        heapq.heappush(pq_f, (nd_f, ctr, u_a))
+
+            for e_idx, (st, act, ns, _cost) in enumerate(concrete_edges):
+                hs_f = h_abs_f.get(pfn(st), INF_F)
+                hns_f = h_abs_f.get(pfn(ns), INF_F)
+                wf = edge_weights_per_m[m_idx][e_idx]
+                if hs_f > wf + hns_f:
+                    return {
+                        "epistemic_status": "REJECTED_HOMOMORPHISM_INCONSISTENT",
+                        "system_id": reg.system_id,
+                        "projection": pname,
+                        "violating_transition": [_canonical_repr(st), _canonical_repr(act), _canonical_repr(ns)],
+                    }
+
+            h0_f = h_abs_f.get(pfn(s0), INF_F)
+            if h0_f >= INF_F:
+                unreachable_any = True
+            else:
+                total_exact_bound += h0_f
+            component_reports.append({
+                "name": pname,
+                "quotient_states": len(abs_nodes),
+                "exact_initial_bound": "UNREACHABLE_INF" if h0_f >= INF_F else str(h0_f),
+            })
+
+        # Since all concrete step costs are integers, ceil(total_exact_bound) is a valid integer lower bound!
+        if unreachable_any:
+            certified_int_bound = 10**15
+        else:
+            num, den = total_exact_bound.numerator, total_exact_bound.denominator
+            certified_int_bound = -(-num // den)
+
+        if certified_int_bound < claimed_lower_bound:
+            return {
+                "epistemic_status": "REJECTED_PARTITIONED_BOUND_TOO_WEAK",
+                "system_id": reg.system_id,
+                "exact_rational_sum": "UNREACHABLE_INF" if unreachable_any else str(total_exact_bound),
+                "ceil_integer_bound": None if unreachable_any else certified_int_bound,
+                "claimed_lower_bound": claimed_lower_bound,
+                "components": component_reports,
+            }
+
+        cert_cp = {
+            "epistemic_status": "PROVEN",
+            "certificate_kind": "COST_PARTITIONED_QUOTIENT_LOWER_BOUND",
+            "system_id": reg.system_id,
+            "certified_lower_bound": claimed_lower_bound,
+            "exact_rational_sum": "UNREACHABLE_INF" if unreachable_any else str(total_exact_bound),
+            "ceil_integer_bound": "UNREACHABLE_INF" if unreachable_any else certified_int_bound,
+            "concrete_states_verified": len(concrete_states),
+            "partition_inequalities_verified": len(concrete_edges),
+            "components": component_reports,
+            "checker_pins": {
+                "spec_sha256": spec.code_sha256,
+                "impl_sha256": impl.code_sha256,
+                "certificate_sha256": cert_sha256,
+                "formal_kernel_sha256": kernel_sha256(),
+            },
+        }
+        reg.certificates.append(cert_cp)
+        return cert_cp
+
+    if proof_mode == "rational_lp_dual":
+        # Inbound from Foundation-0/gfq-codes (`check_bound.py` / `check_bound_independent.py`):
+        # Verifies an exact `fractions.Fraction` operator-counting / state-equation Farkas dual certificate
+        # (`y >= 0`, `y^T (b - F(goal)) <= 0`, `y^T (F(s') - F(s)) <= cost(s, a, s')`) with ZERO float LP solver in TCB!
+        feat_fn = cert_ns.get("features")
+        rhs_fn = cert_ns.get("goal_rhs")
+        dual_fn = cert_ns.get("dual_y")
+        if not (callable(feat_fn) and callable(rhs_fn) and callable(dual_fn)):
+            raise ValueError(
+                "certificate_code must define `features(state)`, `goal_rhs()`, and `dual_y()` "
+                "for proof_mode='rational_lp_dual'"
+            )
+        if not complete_space:
+            # A truncated graph has successors that were never indexed in `concrete_states`,
+            # so their features cannot be checked. Reject instead of raising KeyError.
+            return {
+                "epistemic_status": "REJECTED_INCOMPLETE_CONCRETE_GRAPH_FOR_QUOTIENT",
+                "system_id": reg.system_id,
+                "reason": (
+                    f"Concrete reachable state space exceeded max_concrete_states={max_concrete_states}; "
+                    "increase max_concrete_states or supply an inductively closed `enumerate_states()`."
+                ),
+            }
+
+        def _to_frac_vec(seq: Any, ctx_label: str) -> Tuple[Fraction, ...]:
+            tup = tuple(seq)
+            out_v: List[Fraction] = []
+            for item in tup:
+                if isinstance(item, bool) or not isinstance(item, (int, Fraction)):
+                    raise TypeError(f"[{ctx_label}] Expected exact int or Fraction, got {type(item).__name__}")
+                out_v.append(Fraction(item))
+            return tuple(out_v)
+
+        b_vec = _to_frac_vec(rhs_fn(), "goal_rhs")
+        y_vec = _to_frac_vec(dual_fn(), "dual_y")
+        dim = len(y_vec)
+        if dim == 0 or len(b_vec) != dim:
+            raise ValueError(f"Dimension mismatch: len(dual_y)={dim} vs len(goal_rhs)={len(b_vec)}")
+
+        for idx_y, y_i in enumerate(y_vec):
+            if y_i < 0:
+                return {
+                    "epistemic_status": "REJECTED_NEGATIVE_DUAL_MULTIPLIER",
+                    "system_id": reg.system_id,
+                    "index": idx_y,
+                    "dual_multiplier": str(y_i),
+                }
+
+        feat_cache: Dict[Any, Tuple[Fraction, ...]] = {}
+        for st in concrete_states:
+            fv = _to_frac_vec(feat_fn(st), "features")
+            if len(fv) != dim:
+                raise ValueError(f"features(state) length {len(fv)} != dual dimension {dim}")
+            feat_cache[st] = fv
+            if spec.is_goal(st):
+                # Goal condition: y^T (b - F(g)) <= 0 so V(g) = y^T (b - F(g)) <= 0!
+                v_goal = sum((y_vec[i] * (b_vec[i] - fv[i]) for i in range(dim)), Fraction(0, 1))
+                if v_goal > 0:
+                    return {
+                        "epistemic_status": "REJECTED_DUAL_GOAL_VIOLATION",
+                        "system_id": reg.system_id,
+                        "violating_goal_state": _canonical_repr(st),
+                        "dual_goal_value": str(v_goal),
+                    }
+
+        # Dual feasibility on every concrete operator transition: y^T (F(s') - F(s)) <= cost(s, a, s')
+        # (equivalently V(s) - V(s') <= cost(s, a, s') where V(s) = y^T (b - F(s)))!
+        for st, act, ns, cost in concrete_edges:
+            fs = feat_cache[st]
+            fns = feat_cache[ns]
+            lhs = sum((y_vec[i] * (fns[i] - fs[i]) for i in range(dim)), Fraction(0, 1))
+            if lhs > Fraction(cost, 1):
+                return {
+                    "epistemic_status": "REJECTED_DUAL_OPERATOR_INFEASIBLE",
+                    "system_id": reg.system_id,
+                    "violating_transition": [_canonical_repr(st), _canonical_repr(act), _canonical_repr(ns)],
+                    "dual_gain": str(lhs),
+                    "step_cost": cost,
+                }
+
+        f0 = feat_cache[s0]
+        v0_exact = sum((y_vec[i] * (b_vec[i] - f0[i]) for i in range(dim)), Fraction(0, 1))
+        ceil_v0 = -(-v0_exact.numerator // v0_exact.denominator)
+        if ceil_v0 < claimed_lower_bound:
+            return {
+                "epistemic_status": "REJECTED_DUAL_OBJECTIVE_TOO_WEAK",
+                "system_id": reg.system_id,
+                "exact_dual_objective": str(v0_exact),
+                "ceil_integer_bound": ceil_v0,
+                "claimed_lower_bound": claimed_lower_bound,
+            }
+
+        status_lp = "PROVEN" if complete_space else "VERIFIED_ON_BOUNDED_REACHABLE_SUBGRAPH"
+        cert_lp = {
+            "epistemic_status": status_lp,
+            "certificate_kind": "RATIONAL_LP_DUAL_FARKAS_LOWER_BOUND",
+            "system_id": reg.system_id,
+            "certified_lower_bound": claimed_lower_bound,
+            "exact_dual_objective": str(v0_exact),
+            "ceil_integer_bound": ceil_v0,
+            "dual_dimension": dim,
+            "dual_multipliers": [str(y) for y in y_vec],
+            "complete_domain_closed": complete_space,
+            "states_checked": len(concrete_states),
+            "operator_inequalities_checked": len(concrete_edges),
+            "checker_pins": {
+                "spec_sha256": spec.code_sha256,
+                "impl_sha256": impl.code_sha256,
+                "certificate_sha256": cert_sha256,
+                "certificate_skeleton_sha256": cert_skel,
+                "formal_kernel_sha256": kernel_sha256(),
+            },
+        }
+        if complete_space:
+            reg.certificates.append(cert_lp)
+        return cert_lp
+
+    raise ValueError(
+        f"Unsupported proof_mode {proof_mode!r}; use 'quotient_homomorphism', 'inductive_potential', "
+        "'cost_partitioned_quotients', or 'rational_lp_dual'"
+    )
 
 
 def synthesize_formal_invariant(

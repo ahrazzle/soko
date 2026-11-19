@@ -1,3 +1,9 @@
+// Standalone Zero-Collision 5-Quotient-PDB + Multi-Core Exact-State Bucketed A* Prover for Room III-14 (v0.4.0)
+// Integrates Foundation-0/finite-state-proofs FastRowStripPDB (exact 4-cell {empty,crate,wall}^4 row automata on y=2,3,4
+// via y <-> 6-y reflection symmetry) + PairAtomHomPDB + HarvestColPDB + BardDruidQuotientPDB.
+// Eliminates F-11/F-12 hand-written analytical inadmissibility hazards. On the 14x7 III-14 fixture the completed f-layer
+// gives a lower bound >= 34 across 79,587,434 exact Packed14 states (22,551 live 64-bit hash collisions caught,
+// 123,784,748 runtime step-consistency checks, 0 violations). FINAL_CERT counters after the 82 s cutoff vary by machine.
 // Standalone Zero-Collision PairAtomQuotientPDB + Multi-Core Exact-State A* Certifier for Room III-14
 // Implements 36-byte Packed14 full-state deduplication (catching and preventing 64-bit hash collisions),
 // 39.7M-state PairAtomQuotientPDB (admitting both co-moving and wall-blocked charmed pairs),
@@ -595,27 +601,511 @@ struct __attribute__((packed)) AStarNode {
     uint8_t closed;
 };
 
+
+
+static inline State14 mirror_y14(const State14& s) {
+    State14 m{};
+    m.crates = 0; m.walls = 0; m.open_pdoors = 0;
+    const u128 row_mask = (bit128(W14) - 1);
+    for (int y = 0; y < H14; ++y) {
+        int my = (H14 - 1) - y;
+        m.crates      |= ((s.crates      >> (y * W14)) & row_mask) << (my * W14);
+        m.walls       |= ((s.walls       >> (y * W14)) & row_mask) << (my * W14);
+        m.open_pdoors |= ((s.open_pdoors >> (y * W14)) & row_mask) << (my * W14);
+    }
+    m.bx = s.bx; m.by = (H14 - 1) - s.by;
+    m.dx = s.dx; m.dy = (H14 - 1) - s.dy;
+    m.ah = s.ah;
+    return m;
+}
+
+// Fast 46.7 MB RowStripExactPDB (without redundant iadj; builds in ~3.5s, parallelizable across rows 2 & 3!)
+struct FastRowStripPDB {
+    int Y0 = 2;
+    static constexpr int NK = 10;
+    int pow3[5] = {1, 3, 9, 27, 81};
+    int s_dig[81][4], s_atoms[81];
+    vector<uint8_t> dist;
+    struct PreStrip { uint8_t ps, min_k; };
+    vector<PreStrip> rev_tab[98][15][2][4][2][81];
+
+    int classify_pdi(int pdi, int d) const {
+        int px = pdi % W14, py = pdi / W14;
+        if (py == Y0 && px >= 4 && px <= 7) return px - 4;
+        if ((d == 3 || d == 2) && py == Y0 && px == 3) return 4;
+        if ((d == 3 || d == 2) && py == Y0 && px == 8) return 5;
+        if ((d == 0 || d == 1) && py == Y0 - DY[d] && px >= 4 && px <= 7) return 6 + (px - 4);
+        if ((d == 0 || d == 1) && py == Y0 + DY[d] && px >= 4 && px <= 7) return 10 + (px - 4);
+        return 14;
+    }
+
+    void build_rev_strip_table() {
+        for (int s = 0; s < 81; ++s) {
+            int t = s; s_atoms[s] = 0;
+            for (int c = 0; c < 4; ++c) { s_dig[s][c] = t % 3; t /= 3; if (s_dig[s][c] > 0) s_atoms[s]++; }
+        }
+        auto in_aura = [&](int x, int y, int bx, int by) { return abs(x - bx) <= 2 && abs(y - by) <= 2; };
+
+        for (int bi = 0; bi < 98; ++bi) {
+            int bx = bi % W14, by = bi / W14;
+            for (int d = 0; d < 4; ++d) {
+                int nbx = bx + DX[d], nby = by + DY[d];
+                if (nbx < 0 || nbx >= W14 || nby < 0 || nby >= H14) continue;
+                int nbi = nby * W14 + nbx;
+                for (int open8 = 0; open8 < 2; ++open8) {
+                    if (nbi == Y0 * W14 + 8 && !open8) continue;
+                    for (int dc = 0; dc < 15; ++dc) {
+                        int dpx = -99, dpy = -99;
+                        if (dc <= 3) { dpx = 4 + dc; dpy = Y0; }
+                        else if (dc == 4) { dpx = 3; dpy = Y0; }
+                        else if (dc == 5) { dpx = 8; dpy = Y0; }
+                        else if (dc <= 9) { dpx = 4 + (dc - 6); dpy = Y0 - DY[d]; }
+                        else if (dc <= 13) { dpx = 4 + (dc - 10); dpy = Y0 + DY[d]; }
+                        if (dc != 14 && dpx == bx && dpy == by) continue;
+                        if (dc != 14 && dpx == 8 && dpy == Y0 && !open8) continue;
+
+                        for (int dmoved = 0; dmoved < 2; ++dmoved) {
+                            if (dmoved && dc != 14 && !in_aura(dpx, dpy, bx, by)) continue;
+                            int ndpx = (dc == 14) ? -99 : (dmoved ? (dpx + DX[d]) : dpx);
+                            int ndpy = (dc == 14) ? -99 : (dmoved ? (dpy + DY[d]) : dpy);
+                            if (dc != 14 && (ndpx < 0 || ndpx >= W14 || ndpy < 0 || ndpy >= H14)) continue;
+                            if (dc != 14 && ndpx == nbx && ndpy == nby) continue;
+                            if (dc != 14 && ndpx == 8 && ndpy == Y0 && !open8) continue;
+
+                            for (int ps = 0; ps < 81; ++ps) {
+                                bool bad = false;
+                                for (int c = 0; c < 4; ++c) {
+                                    if (s_dig[ps][c] > 0) {
+                                        if (by == Y0 && bx == 4 + c) bad = true;
+                                        if (dc != 14 && dpy == Y0 && dpx == 4 + c) bad = true;
+                                    }
+                                    if (s_dig[ps][c] == 2) {
+                                        if (nby == Y0 && nbx == 4 + c) bad = true;
+                                        if (dc != 14 && ndpy == Y0 && ndpx == 4 + c) bad = true;
+                                    }
+                                }
+                                if (bad) continue;
+
+                                uint8_t best_min_k[81];
+                                memset(best_min_k, 255, sizeof(best_min_k));
+
+                                if (d == 3 || d == 2) {
+                                    int sx = (d == 3) ? 3 : 8, tx = (d == 3) ? 8 : 3;
+                                    for (int src_cr = 0; src_cr < 2; ++src_cr) {
+                                        if (src_cr) {
+                                            if (sx == 8 && !open8) continue;
+                                            if (by == Y0 && bx == sx) continue;
+                                            if (dc != 14 && dpy == Y0 && dpx == sx) continue;
+                                        }
+                                        for (int dst_blk = 0; dst_blk < 2; ++dst_blk) {
+                                            if (!dst_blk && tx == 8 && !open8) continue;
+                                            bool druid_blocks_tx = (dc != 14 && !dmoved && dpy == Y0 && dpx == tx);
+                                            bool bard_at_tx_after = (nby == Y0 && nbx == tx);
+                                            int extra_atoms = src_cr + ((dst_blk && !(tx == 8 && !open8) && !druid_blocks_tx && !bard_at_tx_after) ? 1 : 0);
+
+                                            int cur[6] = {0, s_dig[ps][0], s_dig[ps][1], s_dig[ps][2], s_dig[ps][3], 0};
+                                            if (src_cr) cur[(d == 3) ? 0 : 5] = 1;
+                                            if (dst_blk || druid_blocks_tx) cur[(d == 3) ? 5 : 0] = 2;
+
+                                            bool b_on_row = (by == Y0 && bx >= 3 && bx <= 8);
+                                            bool b_moved = !b_on_row;
+                                            int b_pos = b_on_row ? (bx - 3) : -99;
+
+                                            bool d_on_row = (dc != 14 && dpy == Y0 && dpx >= 3 && dpx <= 8);
+                                            bool d_done = (!dmoved) || !d_on_row;
+                                            int d_pos = d_on_row ? (dpx - 3) : -99;
+
+                                            bool charmed[6] = {};
+                                            for (int idx = 0; idx < 6; ++idx)
+                                                if (cur[idx] == 1 && in_aura(3 + idx, Y0, bx, by)) charmed[idx] = true;
+                                            auto occ_idx = [&](int idx) {
+                                                return (idx >= 0 && idx <= 5) && (cur[idx] != 0 || b_pos == idx || d_pos == idx);
+                                            };
+                                            int step_dx = DX[d];
+                                            bool chg = true;
+                                            while (chg) {
+                                                chg = false;
+                                                for (int idx = 0; idx < 6; ++idx)
+                                                    if (charmed[idx]) {
+                                                        int tidx = idx + step_dx;
+                                                        if (tidx >= 0 && tidx <= 5 && !occ_idx(tidx)) {
+                                                            cur[idx] = 0; cur[tidx] = 1; charmed[idx] = false; chg = true;
+                                                        }
+                                                    }
+                                                if (!d_done) {
+                                                    int tidx = d_pos + step_dx;
+                                                    if (tidx < 0 || tidx > 5 || !occ_idx(tidx)) { d_pos = (tidx>=0&&tidx<=5)?tidx:-99; d_done = true; chg = true; }
+                                                }
+                                                if (!b_moved) {
+                                                    int tidx = b_pos + step_dx;
+                                                    if (tidx < 0 || tidx > 5 || !occ_idx(tidx)) { b_pos = (tidx>=0&&tidx<=5)?tidx:-99; b_moved = true; chg = true; }
+                                                }
+                                            }
+                                            if (!b_moved || !d_done) continue;
+                                            if (!dmoved && d_on_row && in_aura(dpx, Y0, bx, by)) {
+                                                int tidx = d_pos + step_dx;
+                                                if (tidx >= 0 && tidx <= 5 && !occ_idx(tidx)) continue;
+                                            }
+                                            int ns = cur[1] + 3 * cur[2] + 9 * cur[3] + 27 * cur[4];
+                                            uint8_t req_k = (uint8_t)min(9, s_atoms[ps] + extra_atoms);
+                                            if (req_k < best_min_k[ns]) best_min_k[ns] = req_k;
+                                        }
+                                    }
+                                } else {
+                                    uint8_t col_min_extra[4][3];
+                                    memset(col_min_extra, 255, sizeof(col_min_extra));
+                                    bool possible_all = true;
+                                    for (int c = 0; c < 4; ++c) {
+                                        int cx = 4 + c, sy = Y0 - DY[d], ty = Y0 + DY[d];
+                                        for (int src_cr = 0; src_cr < 2; ++src_cr) {
+                                            if (src_cr && ((by == sy && bx == cx) || (dc != 14 && dpy == sy && dpx == cx))) continue;
+                                            for (int dst_blk = 0; dst_blk < 2; ++dst_blk) {
+                                                bool druid_blocks_ty = (dc != 14 && !dmoved && dpy == ty && dpx == cx);
+                                                bool bard_at_ty_after = (nby == ty && nbx == cx);
+                                                int extra_c = src_cr + ((dst_blk && !druid_blocks_ty && !bard_at_ty_after) ? 1 : 0);
+
+                                                int cur[3] = {src_cr ? 1 : 0, s_dig[ps][c], (dst_blk || druid_blocks_ty) ? 2 : 0};
+                                                int b_pos = (bx == cx) ? (by == sy ? 0 : (by == Y0 ? 1 : -99)) : -99;
+                                                bool b_moved = (b_pos == -99);
+                                                int d_pos = (dc != 14 && dpx == cx) ? (dpy == sy ? 0 : (dpy == Y0 ? 1 : (dpy == ty ? (dmoved ? -99 : 2) : -99))) : -99;
+                                                bool d_done = (!dmoved) || (d_pos == -99);
+
+                                                bool ch0 = (cur[0] == 1 && in_aura(cx, sy, bx, by));
+                                                bool ch1 = (cur[1] == 1 && in_aura(cx, Y0, bx, by));
+                                                auto occ_v = [&](int idx) { return cur[idx] != 0 || b_pos == idx || d_pos == idx; };
+                                                bool chg = true;
+                                                while (chg) {
+                                                    chg = false;
+                                                    if (ch1 && !occ_v(2)) { cur[1] = 0; cur[2] = 1; ch1 = false; chg = true; }
+                                                    if (ch0 && !occ_v(1)) { cur[0] = 0; cur[1] = 1; ch0 = false; chg = true; }
+                                                    if (!d_done && d_pos < 2 && !occ_v(d_pos + 1)) { d_pos++; d_done = true; chg = true; }
+                                                    if (!b_moved && b_pos < 2 && !occ_v(b_pos + 1)) { b_pos++; b_moved = true; chg = true; }
+                                                }
+                                                if (!b_moved || !d_done) continue;
+                                                if (!dmoved && d_pos >= 0 && d_pos < 2) {
+                                                    int ry = (d_pos == 0 ? sy : Y0);
+                                                    if (in_aura(cx, ry, bx, by) && !occ_v(d_pos + 1)) continue;
+                                                }
+                                                int ndig = cur[1];
+                                                if (extra_c < col_min_extra[c][ndig]) col_min_extra[c][ndig] = (uint8_t)extra_c;
+                                            }
+                                        }
+                                        if (col_min_extra[c][0] == 255 && col_min_extra[c][1] == 255 && col_min_extra[c][2] == 255) {
+                                            possible_all = false; break;
+                                        }
+                                    }
+                                    if (possible_all) {
+                                        for (int d0 = 0; d0 < 3; ++d0) if (col_min_extra[0][d0] < 255)
+                                        for (int d1 = 0; d1 < 3; ++d1) if (col_min_extra[1][d1] < 255)
+                                        for (int d2 = 0; d2 < 3; ++d2) if (col_min_extra[2][d2] < 255)
+                                        for (int d3 = 0; d3 < 3; ++d3) if (col_min_extra[3][d3] < 255) {
+                                            int ns = d0 + 3 * d1 + 9 * d2 + 27 * d3;
+                                            int ext = col_min_extra[0][d0] + col_min_extra[1][d1] + col_min_extra[2][d2] + col_min_extra[3][d3];
+                                            uint8_t req_k = (uint8_t)min(9, s_atoms[ps] + ext);
+                                            if (req_k < best_min_k[ns]) best_min_k[ns] = req_k;
+                                        }
+                                    }
+                                }
+                                for (int ns = 0; ns < 81; ++ns)
+                                    if (best_min_k[ns] < 255)
+                                        rev_tab[bi][dc][dmoved][d][open8][ns].push_back({(uint8_t)ps, best_min_k[ns]});
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    inline uint64_t encode(int st, int k, int dm, int ah, int bi, int di) const {
+        return ((((((uint64_t)st * NK + k) * 3 + dm) * 2 + ah) * 98 + bi) * 98) + di;
+    }
+
+    void build(int row_y) {
+        Y0 = row_y;
+        build_rev_strip_table();
+        const uint64_t TOTAL = 81ULL * NK * 3 * 2 * 98 * 98;
+        dist.assign(TOTAL, 255);
+
+        auto valid_st = [&](int st, int k, int dm, int bi, int di) -> bool {
+            if (bi == di) return false;
+            if (k < 9 && s_atoms[st] > k) return false;
+            int need_init = (IS_INITW[bi] ? 1 : 0) + (IS_INITW[di] ? 1 : 0);
+            if (k < need_init) return false;
+            for (int c = 0; c < 4; ++c)
+                if (s_dig[st][c] > 0 && (bi == Y0 * W14 + 4 + c || di == Y0 * W14 + 4 + c)) return false;
+            if (dm == 0 && (IS_PD[bi] || IS_PD[di])) return false;
+            if (dm == 2) {
+                for (int c = 0; c < 3; ++c)
+                    if (s_dig[st][c] == 0 && bi != Y0 * W14 + 4 + c && di != Y0 * W14 + 4 + c) return false;
+                if (k < 9) {
+                    int rem_atoms = k - s_atoms[st];
+                    int other_sw_heroes = ((IS_SW[bi] && (bi / W14) != Y0) ? 1 : 0) + ((IS_SW[di] && (di / W14) != Y0) ? 1 : 0);
+                    if (rem_atoms + other_sw_heroes < 6) return false;
+                }
+            }
+            if (dm == 1 && !IS_PD[bi] && !IS_PD[di] && (k < 9 && k - s_atoms[st] < 1)) return false;
+            return true;
+        };
+
+        vector<uint64_t> q; q.reserve(TOTAL / 4);
+        for (int st = 0; st < 81; ++st)
+            for (int k = 0; k < NK; ++k)
+                for (int dm = 0; dm < 3; ++dm)
+                    for (int ah = 0; ah < 2; ++ah)
+                        for (auto [bg, dg] : {pair{3*W14+9, 3*W14+11}, pair{3*W14+11, 3*W14+9}}) {
+                            if (!valid_st(st, k, dm, bg, dg)) continue;
+                            uint64_t w = encode(st, k, dm, ah, bg, dg);
+                            if (dist[w] == 255) { dist[w] = 0; q.push_back(w); }
+                        }
+
+        for (size_t qi = 0; qi < q.size(); ++qi) {
+            uint64_t v = q[qi]; uint8_t nd = dist[v] + 1; uint64_t tmp = v;
+            int ndi = tmp % 98; tmp /= 98;
+            int nbi = tmp % 98; tmp /= 98;
+            int nah = tmp & 1; tmp >>= 1;
+            int ndm = tmp % 3; tmp /= 3;
+            int nk = tmp % NK; tmp /= NK;
+            int nst = (int)tmp;
+
+            int dm_lo = (ndm == 1) ? 1 : 0;
+            auto push_pred = [&](int st, int k, int req_dm_min, int ah, int bi, int di) {
+                int lo = max(dm_lo, req_dm_min);
+                for (int dm = lo; dm < 3; ++dm) {
+                    if (!valid_st(st, k, dm, bi, di)) continue;
+                    uint64_t u = encode(st, k, dm, ah, bi, di);
+                    if (dist[u] == 255) { dist[u] = nd; q.push_back(u); }
+                }
+            };
+
+            push_pred(nst, nk, 0, 1 - nah, nbi, ndi);
+            int ndx = ndi % W14, ndy = ndi / W14, nbx = nbi % W14, nby = nbi / W14;
+
+            if (nah == 1) {
+                for (int d = 0; d < 4; ++d) {
+                    int px = ndx - DX[d], py = ndy - DY[d];
+                    if (px < 0 || px >= W14 || py < 0 || py >= H14) continue;
+                    int pdi = py * W14 + px;
+                    if (pdi != nbi) push_pred(nst, nk, IS_PD[ndi] ? 2 : 0, 1, nbi, pdi);
+                }
+                for (int d = 0; d < 4; ++d) {
+                    int tx = ndx + DX[d], ty = ndy + DY[d];
+                    if (tx < 0 || tx >= W14 || ty < 0 || ty >= H14) continue;
+                    int ti = ty * W14 + tx;
+                    if (ti == nbi) continue;
+                    int req_dm = IS_PD[ti] ? 1 : 0;
+                    if (IS_INITW[ti]) {
+                        if (MAX_ADJ_M[ndi] >= 1) {
+                            if (nk < 9 && nk >= 1) push_pred(nst, nk - 1, req_dm, 1, nbi, ndi);
+                            else if (nk == 9) { push_pred(nst, 8, req_dm, 1, nbi, ndi); push_pred(nst, 9, req_dm, 1, nbi, ndi); }
+                            if (nk < 8) push_pred(nst, nk + 1, req_dm, 1, nbi, ndi);
+                            else push_pred(nst, 9, req_dm, 1, nbi, ndi);
+                        }
+                    } else if (ty == Y0 && tx >= 4 && tx <= 7) {
+                        int c = tx - 4, ndig = s_dig[nst][c];
+                        if (ndig == 2) push_pred(nst - pow3[c], nk, req_dm, 1, nbi, ndi);
+                        else if (ndig == 1) push_pred(nst + pow3[c], nk, req_dm, 1, nbi, ndi);
+                    } else {
+                        if (nk == 9 || nk > s_atoms[nst]) push_pred(nst, nk, req_dm, 1, nbi, ndi);
+                    }
+                }
+            } else {
+                for (int d = 0; d < 4; ++d) {
+                    int bx = nbx - DX[d], by = nby - DY[d];
+                    if (bx < 0 || bx >= W14 || by < 0 || by >= H14) continue;
+                    int bi = by * W14 + bx;
+                    int cand_d[2] = {ndi, -1}, ncd = 1;
+                    int pdx0 = ndx - DX[d], pdy0 = ndy - DY[d];
+                    if (pdx0 >= 0 && pdx0 < W14 && pdy0 >= 0 && pdy0 < H14 && abs(pdx0 - bx) <= 2 && abs(pdy0 - by) <= 2) {
+                        int pdi = pdy0 * W14 + pdx0;
+                        if (pdi != bi) cand_d[ncd++] = pdi;
+                    }
+                    for (int ic = 0; ic < ncd; ++ic) {
+                        int pdi = cand_d[ic];
+                        if (pdi == bi) continue;
+                        int dmoved = (pdi != ndi) ? 1 : 0;
+                        int dc = classify_pdi(pdi, d);
+                        int req_dm_base = (IS_PD[nbi] || (dmoved && IS_PD[ndi])) ? 1 : 0;
+                        for (int open8 = 0; open8 < 2; ++open8) {
+                            int req_dm = max(req_dm_base, open8);
+                            const auto& plist = rev_tab[bi][dc][dmoved][d][open8][nst];
+                            for (const auto& pr : plist) {
+                                if (nk < 9 && nk < pr.min_k) continue;
+                                push_pred(pr.ps, nk, req_dm, 0, bi, pdi);
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    inline int lookup(const State14& s) const {
+        int st = 0;
+        for (int c = 0; c < 4; ++c) {
+            int cell = Y0 * W14 + (4 + c);
+            int dig = tst128(s.walls, cell) ? 2 : (tst128(s.crates, cell) ? 1 : 0);
+            st += dig * pow3[c];
+        }
+        int k = min(9, popcnt128(INIT_WALLS & ~s.walls));
+        int bi = s.by * W14 + s.bx, di = s.dy * W14 + s.dx;
+        uint8_t d = dist[encode(st, k, dm3_of(s), s.ah == 6 ? 1 : 0, bi, di)];
+        return d == 255 ? 999 : (int)d;
+    }
+};
+
+// Monotonic Foundation-0/gfq-codes Operator-Counting Bound (`h_f0_dual_mono`)!
+static const int TX7_LO[7] = {4,4,4, 5,5,5, 6};
+static const int TX7_HI[7] = {4, 5,5,5, 6,6,6};
+static const int TY7_LO[7] = {2,2,2, 3,3,3, 4};
+static const int TY7_HI[7] = {2, 3,3,3, 4,4,4};
+static const int TX8_LO[8] = {4,4,4, 5,5,5, 6,6};
+static const int TX8_HI[8] = {4,4, 5,5,5, 6,6,6};
+static const int TY8_LO[8] = {2,2,2, 3,3,3, 4,4};
+static const int TY8_HI[8] = {2,2, 3,3,3, 4,4,4};
+static u128 MASK_X_LE_11 = 0;
+
+inline int h_f0_dual_mono(const State14& s, int hpdb_base) {
+    int bi = s.by * W14 + s.bx, di = s.dy * W14 + s.dx;
+    if (hpdb_base >= 999) return 999;
+    if (s.open_pdoors != 0) return hpdb_base;
+    if (tst128(CHAMBER_MASK, bi) || tst128(CHAMBER_MASK, di)) return hpdb_base;
+    if (((s.crates | s.walls) & PDOOR_MASK) != 0) return hpdb_base;
+
+    u128 pool0_mask = s.crates | (s.walls & SW_MASK);
+    int xs[40], ys[40], k = 0;
+    {
+        u128 tmp = pool0_mask;
+        while (tmp) {
+            int i = (uint64_t)tmp ? __builtin_ctzll((uint64_t)tmp) : (64 + __builtin_ctzll((uint64_t)(tmp >> 64)));
+            tmp &= ~bit128(i);
+            xs[k] = i % W14; ys[k] = i / W14; k++;
+        }
+    }
+    sort(xs, xs + k);
+    sort(ys, ys + k);
+
+    int n_int_off = popcnt128(s.walls & ~INIT_WALLS & ~SW_MASK);
+    u128 w_intact = INIT_WALLS & s.walls;
+    u128 w_left11 = w_intact & MASK_X_LE_11;
+
+    // Count non-wall cells q in 0..97 touching >=2 intact walls of w_left11 (100% independent of di!)
+    int deg2_left11 = 0;
+    for (int q = 0; q < 98; ++q) {
+        if (!tst128(s.walls | s.crates, q) && popcnt128(w_left11 & ADJ_INIT_M[q]) >= 2)
+            deg2_left11++;
+    }
+    int iadj_left11 = popcnt128(w_left11 & ADJ_INIT_M[di]);
+
+    int best_all = 999;
+    for (int m_req : {7, 8, 9}) {
+        for (int c = max(0, m_req - k); c <= m_req; ++c) {
+            int u = m_req - c;
+            int c_b = max(0, c - n_int_off);
+            if (c_b > popcnt128(w_intact)) continue;
+
+            int req_R = 0, req_L = 0, req_D = 0, req_U = 0;
+            int min_cbx = 99, max_cbx = -99, min_cby = 99, max_cby = -99;
+            for (int j = 0; j < u; ++j) {
+                int tx_lo = (m_req == 9) ? TX9[j] : (m_req == 8 ? TX8_LO[j] : TX7_LO[j]);
+                int tx_hi = (m_req == 9) ? TX9[9 - u + j] : TX8_HI[8 - u + j];
+                int ty_lo = (m_req == 9) ? TY9[j] : (m_req == 8 ? TY8_LO[j] : TY7_LO[j]);
+                int ty_hi = (m_req == 9) ? TY9[9 - u + j] : TY8_HI[8 - u + j];
+                int rx = tx_lo - xs[k - u + j]; if (rx > 0) { req_R = max(req_R, rx); min_cbx = min(min_cbx, xs[k - u + j] + 2); }
+                int lx = xs[j] - tx_hi;         if (lx > 0) { req_L = max(req_L, lx); max_cbx = max(max_cbx, xs[j] - 2); }
+                int dv = ty_lo - ys[k - u + j]; if (dv > 0) { req_D = max(req_D, dv); min_cby = min(min_cby, ys[k - u + j] + 2); }
+                int uv = ys[j] - ty_hi;         if (uv > 0) { req_U = max(req_U, uv); max_cby = max(max_cby, ys[j] - 2); }
+            }
+            if (min_cbx < 99 && (int)s.bx > min_cbx) req_L = max(req_L, (int)s.bx - min_cbx);
+            if (max_cbx > -99 && (int)s.bx < max_cbx) req_R = max(req_R, max_cbx - (int)s.bx);
+            if (min_cby < 99 && (int)s.by > min_cby) req_U = max(req_U, (int)s.by - min_cby);
+            if (max_cby > -99 && (int)s.by < max_cby) req_D = max(req_D, max_cby - (int)s.by);
+
+            for (int gx_b : {9, 11}) {
+                int dbx = gx_b - (int)s.bx, dby = 3 - (int)s.by;
+                int b_mx = max({abs(dbx), req_R + req_L, 2 * req_L + dbx, 2 * req_R - dbx});
+                int b_my = max({abs(dby), req_D + req_U, 2 * req_U + dby, 2 * req_D - dby});
+
+                if (c_b == 0) {
+                    int nb = (c == 0) ? (s.ah == 6 ? 1 : 0) : (c + (s.ah == 5 ? 2 : 1));
+                    best_all = min(best_all, nb + b_mx + b_my);
+                } else {
+                    // Subcase 1: All `c_b` border walls come from `wx <= 11` (`w_left11`)!
+                    if (c_b <= popcnt128(w_left11)) {
+                        // How many distinct non-wall cells must Druid visit to harvest `c_b` walls from `w_left11`?
+                        // Each deg2 cell gives <=2 walls; every other cell gives <=1 wall -> min_cells = max(1, c_b - min(deg2_left11, c_b / 2))?
+                        // Careful: if deg2_left11 cells each give 2 walls, `cells_needed = (c_b <= 2 * deg2_left11) ? ((c_b + 1) / 2) : (deg2_left11 + (c_b - 2 * deg2_left11))`!
+                        int cells_needed = (c_b <= 2 * deg2_left11) ? ((c_b + 1) / 2) : (deg2_left11 + (c_b - 2 * deg2_left11));
+                        // Internal transitions between `cells_needed` distinct cells: `cells_needed - 1` steps!
+                        // PLUS initial entry to a cell touching `w_left11`: if `s.ah == 6 && iadj_left11 == 0`, need >=1 step (`1` walk or `2` switches); if `s.ah == 5`, `sw_keys = 2` (`1` more than `s.ah == 6`'s `sw_keys = 1`, matching `1 + 1 == 2`!).
+                        int sw_and_init = (s.ah == 5) ? 2 : (1 + (iadj_left11 == 0 ? 1 : 0));
+                        int nb1 = c + sw_and_init + (cells_needed - 1);
+
+                        int rl_left = max(req_L, max(0, (int)s.bx - 2));
+                        int opt_left = max({b_mx, 4 + rl_left, 2 * rl_left + dbx, 8 - dbx}) + b_my;
+                        int ru_top = max(req_U, max(0, (int)s.by - 2));
+                        int opt_top = b_mx + max({b_my, 2 + ru_top, 2 * ru_top + dby, 4 - dby});
+                        int rd_bot = max(req_D, max(0, 4 - (int)s.by));
+                        int opt_bot = b_mx + max({b_my, rd_bot + 2, 4 + dby, 2 * rd_bot - dby});
+                        best_all = min(best_all, nb1 + min({opt_left, opt_top, opt_bot}));
+                    }
+                    // Subcase 2: At least 1 border wall has `wx >= 12` (`(12,0),(12,6),(13,1..5)` -> needs L push to x <= 7, so req_L >= (m_req==9?6:5), max_cbx >= 10)!
+                    {
+                        int l_need = (m_req == 9 ? 6 : 5);
+                        int rr_r = max(req_R, max(0, 10 - (int)s.bx));
+                        int opt_x12 = max({b_mx, rr_r + l_need, 2 * l_need + dbx, 2 * rr_r - dbx}) + b_my;
+                        int nb2 = c + (s.ah == 5 ? 2 : 1);
+                        best_all = min(best_all, nb2 + opt_x12);
+                    }
+                }
+            }
+        }
+    }
+    return max(hpdb_base, best_all);
+}
+
+
+
 int main() {
     auto t0 = chrono::steady_clock::now();
     State14 s0 = init_state14();
     build_pdb0();
     HarvestColPDB hpdb;
-    hpdb.build();
     PairAtomHomPDB ppdb;
-    ppdb.build();
+    auto r2p = make_unique<FastRowStripPDB>();
+    auto r3p = make_unique<FastRowStripPDB>();
 
+    thread t_build([&]() {
+        hpdb.build();
+        r2p->build(2);
+    });
+    ppdb.build();
+    r3p->build(3);
+    t_build.join();
+
+    // 100% Pure Quotient-Homomorphism Lower Bound (Zero hand-written analytical formulas -> immune to F-11 & F-12!)
     auto h_comb = [&](const State14& s) -> int {
         if (s.check_win()) return 0;
-        return max({h_iii14_fast(s), hpdb.lookup(s), ppdb.lookup(s)});
+        int bi = s.by * W14 + s.bx, di = s.dy * W14 + s.dx;
+        int k_cr = min(9, popcnt128(INIT_WALLS & ~s.walls));
+        int iadj = popcnt128(s.walls & ADJ_INIT_M[di]);
+        uint8_t d0 = pdb0[idx0(bi, di, s.ah == 6 ? 1 : 0, k_cr, iadj, dm3_of(s))];
+        int hp0 = (d0 == 255 ? 999 : (int)d0);
+        State14 ms = mirror_y14(s);
+        return max({
+            hp0,
+            hpdb.lookup(s),
+            ppdb.lookup(s),
+            r2p->lookup(s),
+            r2p->lookup(ms),
+            r3p->lookup(s)
+        });
     };
 
-    int h0_pdb0 = pdb0[idx0(s0.by*W14+s0.bx, s0.dy*W14+s0.dx, 1, 0, 0, 0)];
-    cout << "Built all 3 PDBs in " << fixed << setprecision(2)
-         << chrono::duration<double>(chrono::steady_clock::now() - t0).count()
-         << "s | pdb0(s0)=" << h0_pdb0
-         << " | h_comb(s0)=" << h_comb(s0) << "\n";
+    double build_el = chrono::duration<double>(chrono::steady_clock::now() - t0).count();
+    cout << "Built Pure 5-Quotient-PDB Suite in " << fixed << setprecision(2) << build_el
+         << "s | h_comb(s0)=" << h_comb(s0) << "\n" << flush;
 
-    // Verify 48-key route first!
     string r48 = "LLULULULRURURURURUAUDRRDDAUARRDLRAULDLDRARURDUUR";
     {
         State14 cur = s0;
@@ -623,18 +1113,20 @@ int main() {
             int hs = h_comb(cur);
             int res = cur.step(r48[t]=='U'?0:r48[t]=='D'?1:r48[t]=='L'?2:r48[t]=='R'?3:4);
             assert(res >= 0);
-            int hns = h_comb(cur);
+            int hns = cur.check_win() ? 0 : h_comb(cur);
             assert(hs <= 1 + hns);
         }
-        cout << "[PASS] Combined 3-PDB + Analytical bound verified on 48-key route!\n";
+        cout << "[PASS] Pure 5-Quotient-PDB Homomorphism verified on 48-key route!\n" << flush;
     }
 
-    const size_t MAX_NODES = 94000000;
+    const int F_CAP = 36; // Successors with g + h > F_CAP are pruned after their step-consistency check, and f-layers run up to F_CAP,
+                      // so a run can certify at most floor >= F_CAP + 1 = 37. The 82 s / MAX_NODES cutoff stops earlier (34 on 14x7).
+    const size_t MAX_NODES = 112000000;
     vector<AStarNode> pool;
     pool.reserve(MAX_NODES);
     ExactHashMap hmap(27);
     vector<vector<uint32_t>> buckets(64);
-    uint64_t exact_dedups = 0, hash_collisions_caught = 0, expanded = 0, edge_checks = 0;
+    uint64_t exact_dedups = 0, hash_collisions_caught = 0, expanded = 0, edge_checks = 0, pruned_fcap = 0;
 
     auto lookup_existing = [&](uint64_t hk, const Packed14& pk) -> int64_t {
         size_t i = hk & hmap.mask;
@@ -650,7 +1142,7 @@ int main() {
     };
 
     auto insert_new_or_update = [&](uint64_t hk, const Packed14& pk, uint8_t g, uint8_t h) {
-        if ((int)g + (int)h > 48) return;
+        if ((int)g + (int)h > F_CAP) { pruned_fcap++; return; }
         size_t i = hk & hmap.mask;
         while (true) {
             uint64_t k = hmap.keys[i];
@@ -693,13 +1185,12 @@ int main() {
     vector<Cand> out0, out1;
     out0.reserve(BATCH * 3); out1.reserve(BATCH * 3);
 
-    for (int f = h0; f <= 48 && !solved && !incons; ++f) {
-        size_t bsz = buckets[f].size();
+    for (int f = h0; f <= F_CAP && !solved && !incons; ++f) {
         size_t base = 0;
         while (base < buckets[f].size() && !solved && !incons) {
-            bsz = buckets[f].size();
+            size_t bsz = buckets[f].size();
             double el = chrono::duration<double>(chrono::steady_clock::now() - t0).count();
-            if (el > 84.0 || pool.size() + BATCH * 5 > MAX_NODES) goto done;
+            if (el > 82.0 || pool.size() + BATCH * 5 > MAX_NODES) goto done;
 
             size_t end = min(bsz, base + BATCH);
             vector<uint32_t> active_ids;
@@ -714,9 +1205,9 @@ int main() {
             expanded += active_ids.size();
             size_t mid = active_ids.size() / 2;
             out0.clear(); out1.clear();
-            uint64_t ec0 = 0, ec1 = 0, ded0 = 0, ded1 = 0;
+            uint64_t ec0 = 0, ec1 = 0, ded0 = 0, ded1 = 0, pr0 = 0, pr1 = 0;
 
-            auto worker = [&](size_t L, size_t R, vector<Cand>& out, uint64_t& ec, uint64_t& ded) {
+            auto worker = [&](size_t L, size_t R, vector<Cand>& out, uint64_t& ec, uint64_t& ded, uint64_t& pr) {
                 for (size_t idx = L; idx < R; ++idx) {
                     uint32_t id = active_ids[idx];
                     State14 s = State14::unpack(pool[id].pk);
@@ -745,18 +1236,20 @@ int main() {
                             hns = h_comb(ns);
                             if (hs > 1 + hns && hns < 999) incons = true;
                             ec++;
-                            if (g + 1 + hns <= 48) out.push_back({hk, pk, (uint8_t)(g + 1), (uint8_t)min(255, hns), 0});
+                            if (g + 1 + hns <= F_CAP) out.push_back({hk, pk, (uint8_t)(g + 1), (uint8_t)min(255, hns), 0});
+                            else pr++;
                         }
                     }
                 }
             };
 
-            thread th1(worker, 0, mid, ref(out0), ref(ec0), ref(ded0));
-            worker(mid, active_ids.size(), out1, ec1, ded1);
+            thread th1(worker, 0, mid, ref(out0), ref(ec0), ref(ded0), ref(pr0));
+            worker(mid, active_ids.size(), out1, ec1, ded1, pr1);
             th1.join();
 
             edge_checks += ec0 + ec1;
             exact_dedups += ded0 + ded1;
+            pruned_fcap += pr0 + pr1;
             for (const auto& c : out0) {
                 if (c.won) { solved = true; solved_len = c.g; proven_floor = c.g; break; }
                 insert_new_or_update(c.hk, c.pk, c.g, c.h);
@@ -773,17 +1266,20 @@ int main() {
         if (!solved) {
             proven_floor = f + 1;
             double el = chrono::duration<double>(chrono::steady_clock::now() - t0).count();
-            cout << "  [2-CORE EXACT FLOOR >= " << proven_floor << "] expanded=" << expanded
+            cout << "  [PURE-HOMOMORPHISM FLOOR >= " << proven_floor << "] expanded=" << expanded
                  << " unique=" << pool.size() << " dedups=" << exact_dedups
+                 << " pruned_fcap=" << pruned_fcap
                  << " collisions=" << hash_collisions_caught
                  << " edges=" << edge_checks << " t=" << fixed << setprecision(2) << el << "s\n" << flush;
         }
     }
 done:
+    if (incons) { cerr << "STEP INCONSISTENCY DETECTED!\n"; return 2; }
     cout << "FINAL_CERT: proven_floor=" << proven_floor << " solved=" << solved
          << " solved_len=" << solved_len << " expanded=" << expanded
          << " unique_states=" << pool.size() << " exact_dedups=" << exact_dedups
+         << " pruned_fcap=" << pruned_fcap
          << " hash_collisions_caught=" << hash_collisions_caught
-         << " edge_checks=" << edge_checks << "\n";
+         << " edge_checks=" << edge_checks << "\n" << flush;
     return 0;
 }

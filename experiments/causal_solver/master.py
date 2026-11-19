@@ -5,8 +5,6 @@ prefix, then hold both heroes and active identity after its first win. No
 artificial initial inputs are needed. The selected material landmark must be
 at or before that first terminal frame.
 """
-from collections import deque
-
 import z3
 
 from experiments.transport_relaxation import allocation, cut_certificate
@@ -104,8 +102,10 @@ def validate_assignment(assignment, horizon):
     return first_win
 
 
-def evaluate_flow(universe, assignment):
+def evaluate_flow(universe, assignment, *, cut_selection='source_minimal'):
     """Evaluate the fixed universal network after validating absorbed heroes."""
+    universal_flow.validate_cut_selection(cut_selection, len(universe.node_labels),
+                                          universe.source, universe.sink)
     validate_assignment(assignment, universe.horizon)
     network = flow_allocation.Dinic()
     for label in universe.node_labels:
@@ -114,13 +114,8 @@ def evaluate_flow(universe, assignment):
     for arc, capacity in zip(universe.edges, capacities):
         network.add_edge(arc.source, arc.target, capacity)
     value = network.max_flow(universe.source, universe.sink)
-    source_side, pending = {universe.source}, deque([universe.source])
-    while pending:
-        node = pending.popleft()
-        for edge in network.graph[node]:
-            if edge.capacity > 0 and edge.to not in source_side:
-                source_side.add(edge.to)
-                pending.append(edge.to)
+    source_side = universal_flow.residual_source_partition(
+        network, universe.source, universe.sink, cut_selection)
     crossing = [arc.edge_id for arc in universe.edges
                 if arc.source in source_side and arc.target not in source_side]
     if sum(capacities[i] for i in crossing) != value:
@@ -133,7 +128,7 @@ def evaluate_flow(universe, assignment):
             ids = [labels[label] for label in path]
             paths.append([edges[pair] for pair in zip(ids, ids[1:])])
         cut_certificate.check_flow_witness(universe, assignment, paths)
-    return {'flow_value': value, 'source_side': sorted(source_side),
+    return {'flow_value': value, 'source_side': sorted(source_side), 'cut_selection': cut_selection,
             'crossing_ids': crossing, 'crossing_capacity': value,
             'flow_edge_paths': paths}
 

@@ -65,8 +65,10 @@ def pin_heroes(master, assignment):
 
 
 def search(output: Path, horizon: int, timeout_seconds=120, max_iterations=200,
-           proof_checker=None, control=False):
+           proof_checker=None, control=False, *, cut_selection='source_minimal'):
     """Complete the loop or return explicit unknown with durable progress."""
+    if cut_selection not in universal_flow.CUT_SELECTIONS:
+        raise ValueError('invalid cut selection')
     began = time.monotonic()
     deadline = began + timeout_seconds
     initial_sources = source_identity()
@@ -75,6 +77,7 @@ def search(output: Path, horizon: int, timeout_seconds=120, max_iterations=200,
         'kind': 'reference_master_control' if control else 'global_flow_cut_search',
         'status': 'running', 'phase': 'build', 'iterations': 0, 'cuts_checked': 0,
         'timeout_seconds': timeout_seconds, 'max_iterations': max_iterations,
+        'cut_selection': cut_selection,
         'source_sha256': initial_sources, 'z3_version': z3.get_version_string(),
         'record_claim': False, 'original_game_equivalence_proved': False,
         'search_restrictions': ['reference_actions_and_hero_positions'] if control else [],
@@ -154,7 +157,7 @@ def search(output: Path, horizon: int, timeout_seconds=120, max_iterations=200,
             step_dir.mkdir()
             write_json(step_dir / 'assignment.json', assignment)
             flow_started = time.monotonic()
-            evaluation = universal_flow.evaluate_flow(universe, assignment)
+            evaluation = universal_flow.evaluate_flow(universe, assignment, cut_selection=cut_selection)
             flow_seconds = time.monotonic() - flow_started
             remaining()
             step = {'iteration': iteration, 'master_seconds': solve_seconds,
@@ -215,6 +218,8 @@ def main():
     parser.add_argument('--timeout-seconds', type=float, default=120)
     parser.add_argument('--max-iterations', type=int, default=200)
     parser.add_argument('--proof-checker', type=Path)
+    parser.add_argument('--cut-selection', choices=universal_flow.CUT_SELECTIONS,
+                        default='source_minimal')
     parser.add_argument('--worker', action='store_true', help=argparse.SUPPRESS)
     args = parser.parse_args()
     args.horizon = (48 if args.command == 'control' else 47) if args.horizon is None else args.horizon
@@ -228,7 +233,8 @@ def main():
     if args.worker:
         try:
             result = search(args.output, args.horizon, args.timeout_seconds,
-                            args.max_iterations, args.proof_checker, args.command == 'control')
+                            args.max_iterations, args.proof_checker, args.command == 'control',
+                            cut_selection=args.cut_selection)
         except Exception as error:
             result = {'status': 'error', 'reason': str(error), 'record_claim': False}
             write_json(args.output / 'result.json', result)
@@ -241,7 +247,8 @@ def main():
     command = [sys.executable, '-m', 'experiments.transport_relaxation.global_search',
                args.command, '--output', str(args.output), '--horizon', str(args.horizon),
                '--timeout-seconds', str(args.timeout_seconds),
-               '--max-iterations', str(args.max_iterations), '--worker']
+               '--max-iterations', str(args.max_iterations),
+               '--cut-selection', args.cut_selection, '--worker']
     if args.proof_checker is not None:
         command += ['--proof-checker', str(args.proof_checker)]
     worker_started = time.monotonic()
@@ -260,12 +267,14 @@ def main():
             progress = args.output / 'progress.json'
             result = json.loads(progress.read_text()) if progress.exists() else {}
             result.update(status='unknown', reason='outer wall-clock budget exhausted',
-                          elapsed_seconds=time.monotonic() - worker_started, record_claim=False)
+                          elapsed_seconds=time.monotonic() - worker_started, record_claim=False,
+                          cut_selection=args.cut_selection)
             write_json(args.output / 'result.json', result)
         else:
             if not (args.output / 'result.json').exists():
                 write_json(args.output / 'result.json', {'status': 'error',
-                    'reason': f'worker exited {worker.returncode} without a result', 'record_claim': False})
+                    'reason': f'worker exited {worker.returncode} without a result', 'record_claim': False,
+                    'cut_selection': args.cut_selection})
     print((args.output / 'result.json').read_text())
 
 
