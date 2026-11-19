@@ -1,0 +1,689 @@
+{
+  "epistemic_status": "VERIFIED",
+  "task_ref": "ahrazzle/soko#53 C2 & ahrazzle/soko#22 item 3",
+  "rooms": {
+    "III-21": {
+      "room_id": "III-21",
+      "hero_labels": [
+        "F",
+        "T",
+        "W",
+        "P",
+        "B",
+        "D"
+      ],
+      "goals": [
+        [
+          10,
+          1
+        ],
+        [
+          12,
+          1
+        ],
+        [
+          10,
+          6
+        ],
+        [
+          12,
+          6
+        ],
+        [
+          10,
+          11
+        ],
+        [
+          12,
+          11
+        ]
+      ],
+      "root_h_oc_rational": "21",
+      "root_h_oc_ceil_int": 21,
+      "root_disjoint_druid_cuts": 3,
+      "root_cycle_switch_tax": 5,
+      "root_ray_assignment_primal": "13",
+      "root_ray_assignment_dual_u": [
+        "2",
+        "2",
+        "2",
+        "2",
+        "2",
+        "3"
+      ],
+      "root_ray_assignment_dual_v": [
+        "0",
+        "0",
+        "0",
+        "0",
+        "0",
+        "0"
+      ],
+      "solo_walk_convert_matrix": [
+        [
+          9,
+          11,
+          14,
+          15,
+          20,
+          21
+        ],
+        [
+          14,
+          16,
+          9,
+          11,
+          14,
+          16
+        ],
+        [
+          21,
+          23,
+          16,
+          18,
+          13,
+          15
+        ],
+        [
+          11,
+          9,
+          15,
+          14,
+          21,
+          20
+        ],
+        [
+          16,
+          14,
+          11,
+          9,
+          17,
+          15
+        ],
+        [
+          21,
+          20,
+          16,
+          14,
+          13,
+          11
+        ]
+      ],
+      "solo_min_sum": 60,
+      "solo_max_sum": 108,
+      "total_bijections_enumerated": 720,
+      "top_5_solo_bijections": [
+        {
+          "perm": [
+            0,
+            2,
+            4,
+            1,
+            3,
+            5
+          ],
+          "solo_sum_cost": 60,
+          "mapping": {
+            "F": [
+              10,
+              1
+            ],
+            "T": [
+              10,
+              6
+            ],
+            "W": [
+              10,
+              11
+            ],
+            "P": [
+              12,
+              1
+            ],
+            "B": [
+              12,
+              6
+            ],
+            "D": [
+              12,
+              11
+            ]
+          }
+        },
+        {
+          "perm": [
+            0,
+            2,
+            5,
+            1,
+            3,
+            4
+          ],
+          "solo_sum_cost": 64,
+          "mapping": {
+            "F": [
+              10,
+              1
+            ],
+            "T": [
+              10,
+              6
+            ],
+            "W": [
+              12,
+              11
+            ],
+            "P": [
+              12,
+              1
+            ],
+            "B": [
+              12,
+              6
+            ],
+            "D": [
+              10,
+              11
+            ]
+          }
+        },
+        {
+          "perm": [
+            0,
+            3,
+            4,
+            1,
+            2,
+            5
+          ],
+          "solo_sum_cost": 64,
+          "mapping": {
+            "F": [
+              10,
+              1
+            ],
+            "T": [
+              12,
+              6
+            ],
+            "W": [
+              10,
+              11
+            ],
+            "P": [
+              12,
+              1
+            ],
+            "B": [
+              10,
+              6
+            ],
+            "D": [
+              12,
+              11
+            ]
+          }
+        },
+        {
+          "perm": [
+            1,
+            2,
+            4,
+            0,
+            3,
+            5
+          ],
+          "solo_sum_cost": 64,
+          "mapping": {
+            "F": [
+              12,
+              1
+            ],
+            "T": [
+              10,
+              6
+            ],
+            "W": [
+              10,
+              11
+            ],
+            "P": [
+              10,
+              1
+            ],
+            "B": [
+              12,
+              6
+            ],
+            "D": [
+              12,
+              11
+            ]
+          }
+        },
+        {
+          "perm": [
+            0,
+            3,
+            5,
+            1,
+            2,
+            4
+          ],
+          "solo_sum_cost": 68,
+          "mapping": {
+            "F": [
+              10,
+              1
+            ],
+            "T": [
+              12,
+              6
+            ],
+            "W": [
+              12,
+              11
+            ],
+            "P": [
+              12,
+              1
+            ],
+            "B": [
+              10,
+              6
+            ],
+            "D": [
+              10,
+              11
+            ]
+          }
+        }
+      ],
+      "witness_realized_mapping": {
+        "F": [
+          12,
+          11
+        ],
+        "T": [
+          12,
+          6
+        ],
+        "W": [
+          10,
+          11
+        ],
+        "P": [
+          10,
+          1
+        ],
+        "B": [
+          12,
+          1
+        ],
+        "D": [
+          10,
+          6
+        ]
+      },
+      "witness_solo_sum_cost": 86,
+      "reference_route_len": 316,
+      "states_audited": 561,
+      "edges_audited": 606,
+      "admissibility_violations": 0,
+      "rational_step_violations": 0,
+      "ceil_int_step_violations": 0,
+      "route_trace_samples": [
+        {
+          "t": 0,
+          "remaining_route_keys": 316,
+          "h_oc_rational": "21",
+          "h_oc_ceil_int": 21
+        },
+        {
+          "t": 79,
+          "remaining_route_keys": 237,
+          "h_oc_rational": "21",
+          "h_oc_ceil_int": 21
+        },
+        {
+          "t": 158,
+          "remaining_route_keys": 158,
+          "h_oc_rational": "20",
+          "h_oc_ceil_int": 20
+        },
+        {
+          "t": 237,
+          "remaining_route_keys": 79,
+          "h_oc_rational": "5",
+          "h_oc_ceil_int": 5
+        },
+        {
+          "t": 315,
+          "remaining_route_keys": 1,
+          "h_oc_rational": "1",
+          "h_oc_ceil_int": 1
+        }
+      ]
+    },
+    "III-20": {
+      "room_id": "III-20",
+      "hero_labels": [
+        "F",
+        "T",
+        "W",
+        "P",
+        "D"
+      ],
+      "goals": [
+        [
+          13,
+          1
+        ],
+        [
+          13,
+          3
+        ],
+        [
+          7,
+          4
+        ],
+        [
+          13,
+          5
+        ],
+        [
+          13,
+          7
+        ]
+      ],
+      "root_h_oc_rational": "14/5",
+      "root_h_oc_ceil_int": 3,
+      "root_disjoint_druid_cuts": 0,
+      "root_cycle_switch_tax": 0,
+      "root_ray_assignment_primal": "14",
+      "root_ray_assignment_dual_u": [
+        "3",
+        "3",
+        "3",
+        "3",
+        "3"
+      ],
+      "root_ray_assignment_dual_v": [
+        "0",
+        "0",
+        "-1",
+        "0",
+        "0"
+      ],
+      "solo_walk_convert_matrix": [
+        [
+          6,
+          6,
+          4,
+          8,
+          10
+        ],
+        [
+          14,
+          12,
+          4,
+          10,
+          10
+        ],
+        [
+          10,
+          10,
+          4,
+          12,
+          14
+        ],
+        [
+          17,
+          15,
+          7,
+          15,
+          17
+        ],
+        [
+          10,
+          8,
+          4,
+          6,
+          6
+        ]
+      ],
+      "solo_min_sum": 39,
+      "solo_max_sum": 55,
+      "total_bijections_enumerated": 120,
+      "top_5_solo_bijections": [
+        {
+          "perm": [
+            0,
+            3,
+            1,
+            2,
+            4
+          ],
+          "solo_sum_cost": 39,
+          "mapping": {
+            "F": [
+              13,
+              1
+            ],
+            "T": [
+              13,
+              5
+            ],
+            "W": [
+              13,
+              3
+            ],
+            "P": [
+              7,
+              4
+            ],
+            "D": [
+              13,
+              7
+            ]
+          }
+        },
+        {
+          "perm": [
+            0,
+            4,
+            1,
+            2,
+            3
+          ],
+          "solo_sum_cost": 39,
+          "mapping": {
+            "F": [
+              13,
+              1
+            ],
+            "T": [
+              13,
+              7
+            ],
+            "W": [
+              13,
+              3
+            ],
+            "P": [
+              7,
+              4
+            ],
+            "D": [
+              13,
+              5
+            ]
+          }
+        },
+        {
+          "perm": [
+            1,
+            3,
+            0,
+            2,
+            4
+          ],
+          "solo_sum_cost": 39,
+          "mapping": {
+            "F": [
+              13,
+              3
+            ],
+            "T": [
+              13,
+              5
+            ],
+            "W": [
+              13,
+              1
+            ],
+            "P": [
+              7,
+              4
+            ],
+            "D": [
+              13,
+              7
+            ]
+          }
+        },
+        {
+          "perm": [
+            1,
+            4,
+            0,
+            2,
+            3
+          ],
+          "solo_sum_cost": 39,
+          "mapping": {
+            "F": [
+              13,
+              3
+            ],
+            "T": [
+              13,
+              7
+            ],
+            "W": [
+              13,
+              1
+            ],
+            "P": [
+              7,
+              4
+            ],
+            "D": [
+              13,
+              5
+            ]
+          }
+        },
+        {
+          "perm": [
+            0,
+            2,
+            1,
+            3,
+            4
+          ],
+          "solo_sum_cost": 41,
+          "mapping": {
+            "F": [
+              13,
+              1
+            ],
+            "T": [
+              7,
+              4
+            ],
+            "W": [
+              13,
+              3
+            ],
+            "P": [
+              13,
+              5
+            ],
+            "D": [
+              13,
+              7
+            ]
+          }
+        }
+      ],
+      "witness_realized_mapping": {
+        "F": [
+          13,
+          5
+        ],
+        "T": [
+          13,
+          7
+        ],
+        "W": [
+          13,
+          1
+        ],
+        "P": [
+          7,
+          4
+        ],
+        "D": [
+          13,
+          3
+        ]
+      },
+      "witness_solo_sum_cost": 43,
+      "reference_route_len": 84,
+      "states_audited": 265,
+      "edges_audited": 305,
+      "admissibility_violations": 0,
+      "rational_step_violations": 0,
+      "ceil_int_step_violations": 0,
+      "route_trace_samples": [
+        {
+          "t": 0,
+          "remaining_route_keys": 84,
+          "h_oc_rational": "14/5",
+          "h_oc_ceil_int": 3
+        },
+        {
+          "t": 21,
+          "remaining_route_keys": 63,
+          "h_oc_rational": "12/5",
+          "h_oc_ceil_int": 3
+        },
+        {
+          "t": 42,
+          "remaining_route_keys": 42,
+          "h_oc_rational": "2",
+          "h_oc_ceil_int": 2
+        },
+        {
+          "t": 63,
+          "remaining_route_keys": 21,
+          "h_oc_rational": "2",
+          "h_oc_ceil_int": 2
+        },
+        {
+          "t": 83,
+          "remaining_route_keys": 1,
+          "h_oc_rational": "1",
+          "h_oc_ceil_int": 1
+        }
+      ]
+    }
+  },
+  "must_fail_controls": {
+    "naive_bard_shared_aura_rejected": true,
+    "naive_wizard_ray_swap_rejected": true,
+    "tampered_hungarian_dual_rejected": true,
+    "strict_parser_bool_float_dupe_rejected": true
+  }
+}

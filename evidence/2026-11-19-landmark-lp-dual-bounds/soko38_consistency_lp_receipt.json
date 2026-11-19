@@ -1,0 +1,55 @@
+{
+  "epistemic_status": "VERIFIED",
+  "issue_ref": "ahrazzle/soko#38",
+  "counterexample_board_rows": [
+    "#####.#########",
+    "#.............#",
+    "**#*}}}.]]]]].#",
+    "D#*5*}}.]G.G].#",
+    "...**}*#]]]]].#",
+    "..............#",
+    "#......########"
+  ],
+  "transition_tested": {
+    "active_hero": "D",
+    "from": [
+      0,
+      3
+    ],
+    "action": "R",
+    "transmuted_cell": [
+      1,
+      3
+    ],
+    "change": "# -> *"
+  },
+  "raw_unrepaired": {
+    "h_before": 12,
+    "h_after": 10,
+    "drop": 2,
+    "violations_in_ball": 3
+  },
+  "prefunded_potential_repair": {
+    "h_before": 11,
+    "h_after": 10,
+    "drop": 1,
+    "vertices_checked": 164,
+    "edges_checked": 379,
+    "violations": 0
+  },
+  "quotient_1lipschitz_lp_repair": {
+    "h_before": "11",
+    "h_after": "10",
+    "primal_objective_sum": "2119",
+    "dual_objective_sum": "2119",
+    "strong_duality_exact": true,
+    "second_checker_valid": true,
+    "witness_chain_len_at_counterexample": 2
+  },
+  "must_fail_controls": {
+    "unrepaired_soko38_drop2_rejected": true,
+    "inflated_primal_12_rejected": true,
+    "forged_farkas_witness_rejected": true,
+    "nonzero_goal_potential_rejected": true
+  }
+}
