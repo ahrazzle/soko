@@ -25,61 +25,21 @@ MAX_CELL_TIMEOUT_SEC = 4.0
 VALID_SOKO_KEYS = frozenset({"U", "D", "L", "R", "A"})
 SHA256_64_RE = re.compile(r"^[0-9a-f]{64}$")
 
-FORBIDDEN_CELL_IMPORTS: frozenset[str] = frozenset(
+# Fail-closed allowlist: a cell may import only these pure-computation stdlib roots.
+ALLOWED_CELL_IMPORTS: frozenset[str] = frozenset(
     {
-        "soko_mcp",
-        "mde_soko",
-        "mcproof",
-        "socket",
-        "ssl",
-        "urllib",
-        "http",
-        "ftplib",
-        "poplib",
-        "imaplib",
-        "smtplib",
-        "telnetlib",
-        "xmlrpc",
-        "requests",
-        "httpx",
-        "aiohttp",
-        "websocket",
-        "websockets",
-        "subprocess",
-        "multiprocessing",
-        "concurrent",
-        "pty",
-        "tty",
-        "fcntl",
-        "termios",
-        "resource",
-        "signal",
-        "ctypes",
-        "cffi",
-        "mmap",
-        "webbrowser",
-        "os",
-        "sys",
-        "pathlib",
-        "shutil",
-        "glob",
-        "fnmatch",
-        "tempfile",
-        "io",
-        "importlib",
-        "builtins",
-        "inspect",
-        "gc",
-        "code",
-        "codeop",
-        "runpy",
-        "pkgutil",
-        "zipimport",
-        "marshal",
-        "pickle",
-        "shelve",
-        "sqlite3",
-        "dbm",
+        "__future__",
+        "array",
+        "bisect",
+        "collections",
+        "copy",
+        "fractions",
+        "functools",
+        "heapq",
+        "itertools",
+        "json",
+        "math",
+        "typing",
     }
 )
 FORBIDDEN_CELL_CALLS: frozenset[str] = frozenset(
@@ -112,6 +72,80 @@ FORBIDDEN_DUNDER_ATTRS: frozenset[str] = frozenset(
         "__dict__",
     }
 )
+
+# Dunder attributes a cell may use; every other `__x__` attribute can reach builtins or globals.
+SAFE_CELL_DUNDER_ATTRS: frozenset[str] = frozenset(
+    {
+        "__init__",
+        "__name__",
+        "__len__",
+        "__iter__",
+        "__next__",
+        "__eq__",
+        "__hash__",
+        "__lt__",
+        "__repr__",
+        "__str__",
+        "__contains__",
+        "__getitem__",
+    }
+)
+# Attributes that hop from an allowed module to a forbidden one (e.g. `json.codecs.sys`).
+FORBIDDEN_MODULE_HOP_ATTRS: frozenset[str] = frozenset(
+    {
+        "sys",
+        "_sys",
+        "os",
+        "_os",
+        "posix",
+        "_posixsubprocess",
+        "nt",
+        "modules",
+        "builtins",
+        "_builtins",
+        "codecs",
+        "io",
+        "_io",
+        "importlib",
+        "_imp",
+        "_frozen_importlib",
+        "inspect",
+        "types",
+        "subprocess",
+        "shutil",
+        "pathlib",
+        # Frame/generator/coroutine/traceback introspection attributes (bypass dunder checks).
+        "gi_frame",
+        "gi_code",
+        "gi_yieldfrom",
+        "cr_frame",
+        "cr_code",
+        "cr_await",
+        "ag_frame",
+        "ag_code",
+        "tb_frame",
+        "tb_next",
+        "f_builtins",
+        "f_globals",
+        "f_locals",
+        "f_back",
+        "f_code",
+        "func_globals",
+        "func_code",
+        "im_func",
+        "im_self",
+        "im_class",
+        "co_consts",
+        "co_names",
+        "co_varnames",
+        "mro",
+    }
+)
+
+
+def _is_dunder(name: str) -> bool:
+    return len(name) > 4 and name.startswith("__") and name.endswith("__")
+
 
 _WORD_RE = re.compile(r"[A-Za-z_][A-Za-z0-9_]{2,}")
 _PYTHON_FENCE_RE = re.compile(r"```(?:python|py)?\s*\n(.*?)```", re.DOTALL | re.IGNORECASE)
@@ -202,7 +236,7 @@ def extract_python_cell(raw_text: str) -> str | None:
 
 
 def audit_zero_import_cell(code: str) -> list[dict[str, Any]]:
-    """Static AST gate rejecting network, filesystem, `soko_mcp`, dunder reflection, and dynamic eval."""
+    """Static AST gate: stdlib import allowlist (fail closed), no dunder reflection, no dynamic eval."""
     try:
         tree = ast.parse(code)
     except SyntaxError as exc:
@@ -218,35 +252,60 @@ def audit_zero_import_cell(code: str) -> list[dict[str, Any]]:
     for node in ast.walk(tree):
         if isinstance(node, ast.Import):
             for alias in node.names:
-                root_mod = alias.name.split(".")[0]
-                if root_mod in FORBIDDEN_CELL_IMPORTS:
+                parts = alias.name.split(".")
+                root_mod = parts[0]
+                if (
+                    root_mod not in ALLOWED_CELL_IMPORTS
+                    or any(p.startswith("_") and p != "__future__" for p in parts)
+                    or any(p in FORBIDDEN_MODULE_HOP_ATTRS for p in parts)
+                ):
                     findings.append(
                         {
                             "rule": "FORBIDDEN_CELL_IMPORT",
                             "line": getattr(node, "lineno", 1),
-                            "message": f"Import `{alias.name}` is forbidden in 4-second notebook cells.",
+                            "message": f"Import `{alias.name}` is not on the 4-second notebook cell allowlist.",
                         }
                     )
         elif isinstance(node, ast.ImportFrom):
-            root_mod = (node.module or "").split(".")[0]
-            if node.level > 0 or root_mod in FORBIDDEN_CELL_IMPORTS:
+            parts = (node.module or "").split(".")
+            root_mod = parts[0]
+            bad_mod = (
+                node.level > 0
+                or root_mod not in ALLOWED_CELL_IMPORTS
+                or any(p.startswith("_") and p != "__future__" for p in parts)
+                or any(p in FORBIDDEN_MODULE_HOP_ATTRS for p in parts)
+            )
+            if bad_mod:
                 findings.append(
                     {
                         "rule": "FORBIDDEN_CELL_IMPORT",
                         "line": getattr(node, "lineno", 1),
-                        "message": f"From-import `{node.module or '.'}` is forbidden in 4-second notebook cells.",
+                        "message": f"From-import `{node.module or '.'}` is not on the 4-second notebook cell allowlist.",
                     }
                 )
+            else:
+                for alias in node.names:
+                    if (
+                        alias.name == "*"
+                        or alias.name.startswith("_")
+                        or alias.name in FORBIDDEN_MODULE_HOP_ATTRS
+                    ):
+                        findings.append(
+                            {
+                                "rule": "FORBIDDEN_CELL_IMPORT",
+                                "line": getattr(node, "lineno", 1),
+                                "message": f"From-import symbol `{node.module}.{alias.name}` is forbidden in 4-second notebook cells.",
+                            }
+                        )
         elif isinstance(node, ast.Call):
-            if isinstance(node.func, ast.Name) and node.func.id in FORBIDDEN_CELL_CALLS:
-                findings.append(
-                    {
-                        "rule": "FORBIDDEN_CELL_CALL",
-                        "line": getattr(node, "lineno", 1),
-                        "message": f"Builtin call `{node.func.id}(...)` is forbidden in sandboxed cells.",
-                    }
-                )
-            elif isinstance(node.func, ast.Attribute) and node.func.attr in ("system", "popen", "urlopen"):
+            if isinstance(node.func, ast.Attribute) and node.func.attr in (
+                "system",
+                "popen",
+                "urlopen",
+                "import_module",
+                "exec_module",
+                "load_module",
+            ):
                 findings.append(
                     {
                         "rule": "FORBIDDEN_CELL_CALL",
@@ -254,14 +313,35 @@ def audit_zero_import_cell(code: str) -> list[dict[str, Any]]:
                         "message": f"Method call `.{node.func.attr}(...)` is forbidden in sandboxed cells.",
                     }
                 )
-        elif isinstance(node, ast.Attribute) and node.attr in FORBIDDEN_DUNDER_ATTRS:
+        elif isinstance(node, ast.Attribute) and (
+            node.attr in FORBIDDEN_DUNDER_ATTRS
+            or (_is_dunder(node.attr) and node.attr not in SAFE_CELL_DUNDER_ATTRS)
+            or node.attr in FORBIDDEN_MODULE_HOP_ATTRS
+        ):
             findings.append(
                 {
                     "rule": "FORBIDDEN_CELL_DUNDER",
                     "line": getattr(node, "lineno", 1),
-                    "message": f"Dunder attribute `.{node.attr}` is forbidden in sandboxed cells.",
+                    "message": f"Attribute `.{node.attr}` is forbidden in sandboxed cells.",
                 }
             )
+        elif isinstance(node, ast.Name):
+            if node.id in FORBIDDEN_CELL_CALLS:
+                findings.append(
+                    {
+                        "rule": "FORBIDDEN_CELL_CALL",
+                        "line": getattr(node, "lineno", 1),
+                        "message": f"Builtin `{node.id}` is forbidden in sandboxed cells.",
+                    }
+                )
+            elif _is_dunder(node.id) and node.id not in ("__name__", "__future__"):
+                findings.append(
+                    {
+                        "rule": "FORBIDDEN_CELL_DUNDER",
+                        "line": getattr(node, "lineno", 1),
+                        "message": f"Dunder name `{node.id}` is forbidden in sandboxed cells.",
+                    }
+                )
     return findings
 
 
@@ -607,6 +687,9 @@ class SokoPlaySession:
         return {"ok": False, "error": f"unsupported_action:{action!r}", "budget": self.budget.to_dict()}
 
 
+CERTIFIED_STATUSES: frozenset[str] = frozenset({"VERIFIED", "PROVEN", "LOWER_BOUND"})
+
+
 def audit_soko_certificate(cert: Mapping[str, Any]) -> dict[str, Any]:
     """Fail-closed auditor rejecting all 8 historical & live unsound-certificate failure modes (`F-01`..`F-08`)."""
     findings: list[dict[str, str]] = []
@@ -631,8 +714,10 @@ def audit_soko_certificate(cert: Mapping[str, Any]) -> dict[str, Any]:
         )
 
     pins = cert.get("tcb_pins")
-    if status in ("VERIFIED", "PROVEN", "LOWER_BOUND") and isinstance(pins, Mapping):
-        if not pins.get("tcb_manifest_verified", False) or not SHA256_64_RE.match(
+    if status in CERTIFIED_STATUSES:
+        if not isinstance(pins, Mapping):
+            pins = {}
+        if pins.get("tcb_manifest_verified", False) is not True or not SHA256_64_RE.match(
             str(pins.get("checker_auditor_py_sha256", ""))
         ):
             findings.append(
@@ -697,9 +782,9 @@ def audit_soko_certificate(cert: Mapping[str, Any]) -> dict[str, Any]:
             }
         )
 
-    if "witness_or_proof_sha256" in cert and status in ("VERIFIED", "PROVEN"):
-        w_sha = str(cert.get("witness_or_proof_sha256", ""))
-        if not SHA256_64_RE.match(w_sha):
+    if status in CERTIFIED_STATUSES:
+        w_sha = cert.get("witness_or_proof_sha256")
+        if not isinstance(w_sha, str) or not SHA256_64_RE.match(w_sha):
             findings.append(
                 {
                     "rule": "F08_INVALID_WITNESS_SHA256",

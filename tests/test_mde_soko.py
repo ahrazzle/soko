@@ -164,8 +164,32 @@ class MdeSokoTests(unittest.TestCase):
 
         _require(len(audit_zero_import_cell("from soko_mcp.catalog import get_room\n")) >= 1, "Must block soko_mcp")
         _require(len(audit_zero_import_cell("import os\n")) >= 1, "Must block os import")
+        _require(len(audit_zero_import_cell("import posix\n")) >= 1, "Must block posix import")
+        _require(len(audit_zero_import_cell("import _io\n")) >= 1, "Must block _io import")
+        _require(len(audit_zero_import_cell("from _io import open\n")) >= 1, "Must block from _io import")
+        _require(len(audit_zero_import_cell("from . import secret\n")) >= 1, "Must block relative import")
+        _require(len(audit_zero_import_cell("import importlib\n")) >= 1, "Must block importlib")
+        _require(len(audit_zero_import_cell("__import__('os')\n")) >= 1, "Must block __import__")
+        _require(len(audit_zero_import_cell("imp = __import__\nimp('os')\n")) >= 1, "Must block aliased __import__")
+        _require(len(audit_zero_import_cell("from json import codecs\n")) >= 1, "Must block module hop from-import")
+        _require(len(audit_zero_import_cell("import json\njson.codecs\n")) >= 1, "Must block module hop attr")
         _require(len(audit_zero_import_cell("open('SHA256SUMS')\n")) >= 1, "Must block open() call")
         _require(len(audit_zero_import_cell("().__class__.__base__.__subclasses__()\n")) >= 1, "Must block dunders")
+        _require(len(audit_zero_import_cell("(1).__class__\n")) >= 1, "Must block __class__ dunder")
+        gen_escape = (
+            "def g():\n    yield 1\n"
+            "gen = g()\n"
+            "print(gen.gi_frame.f_builtins['__import__']('os').listdir('.'))\n"
+        )
+        _require(len(audit_zero_import_cell(gen_escape)) >= 1, "Must block generator frame escape")
+        gen_exec = execute_sandbox_cell(gen_escape, timeout_sec=1.0)
+        _require((not bool(gen_exec["ok"])) and bool(gen_exec["ast_rejected"]), f"Sandbox executed frame escape: {gen_exec}")
+
+        posix_exec = execute_sandbox_cell("import posix\nprint(posix.listdir('.'))\n", timeout_sec=1.0)
+        _require(
+            (not bool(posix_exec["ok"])) and bool(posix_exec["ast_rejected"]),
+            f"Sandbox executed disallowed import posix: {posix_exec}",
+        )
 
         t0 = time.monotonic()
         to_res = execute_sandbox_cell("while True:\n    pass\n", timeout_sec=0.6)
@@ -226,6 +250,61 @@ class MdeSokoTests(unittest.TestCase):
                 (not bool(res["passed"])) and any(str(f["rule"]).startswith(prefix) for f in res["findings"]),
                 f"Expected {prefix} rejection, got {res}",
             )
+
+        for status in ("PROVEN", "VERIFIED", "LOWER_BOUND"):
+            bare = audit_soko_certificate({"epistemic_status": status})
+            rules = {str(f["rule"]) for f in bare["findings"]}
+            _require(
+                (not bool(bare["passed"]))
+                and any(r.startswith("F03") for r in rules)
+                and any(r.startswith("F08") for r in rules),
+                f"Bare {status} certificate must fail closed with F03 and F08, got {bare}",
+            )
+
+        no_pins = {k: v for k, v in valid_cert.items() if k != "tcb_pins"}
+        res_no_pins = audit_soko_certificate(no_pins)
+        _require(
+            (not bool(res_no_pins["passed"]))
+            and any(str(f["rule"]).startswith("F03") for f in res_no_pins["findings"]),
+            f"Missing tcb_pins must trigger F03, got {res_no_pins}",
+        )
+
+        no_sha = {k: v for k, v in valid_cert.items() if k != "witness_or_proof_sha256"}
+        res_no_sha = audit_soko_certificate(no_sha)
+        _require(
+            (not bool(res_no_sha["passed"]))
+            and any(str(f["rule"]).startswith("F08") for f in res_no_sha["findings"]),
+            f"Missing witness_or_proof_sha256 must trigger F08, got {res_no_sha}",
+        )
+
+        conjecture = audit_soko_certificate({"epistemic_status": "CONJECTURE"})
+        _require(bool(conjecture["passed"]), f"CONJECTURE tier should not require F03/F08 pins: {conjecture}")
+
+    def test_dual_strict_corpse_parity_on_fatal_steps(self) -> None:
+        r_ii4 = get_room("II-4")
+        ii4_res = verify_route_dual_strict(r_ii4["part"], r_ii4["grid"], "RRR")
+        _require(
+            bool(ii4_res["dual_oracle_parity"])
+            and ii4_res["failure_rule"] == "HERO_DIED"
+            and "X" in str(ii4_res["final_ascii"]),
+            f"II-4 RRR dual parity failed: {ii4_res}",
+        )
+
+        drag_res = verify_route_dual_strict(2, ["######", "#R..G#", "#..F.#", "######"], "U")
+        _require(
+            bool(drag_res["dual_oracle_parity"])
+            and drag_res["failure_rule"] == "HERO_DIED"
+            and "X" in str(drag_res["final_ascii"]),
+            f"Dragon fatal dual parity failed: {drag_res}",
+        )
+
+        sw_res = verify_route_dual_strict(2, ["#######", "#F{O.G#", "#[....#", "#######"], "R")
+        _require(
+            bool(sw_res["dual_oracle_parity"])
+            and sw_res["failure_rule"] == "HERO_DIED"
+            and "[" in str(sw_res["final_ascii"]),
+            f"Switch-death dual parity failed: {sw_res}",
+        )
 
     def test_slab_and_certificate_gate_separation_stdlib(self) -> None:
         npz_path = MDE_DIR / "artifacts" / "harvested_soko_activations.npz"

@@ -1,5 +1,5 @@
 {
-  "corpus_tree_sha256": "34d7b53a35b506f597dcb8b7395ffc6c6f57622622fd5fa12abb90a5244b00c6",
+  "corpus_tree_sha256": "ca7f16d0ec7e81e371f7afac11fd44bc1c489d6a36d695709b6ee658f92abca6",
   "domain_id": "mde:soko-eval",
   "partition_counts": {
     "benchmark_rooms": 18,

@@ -3,14 +3,14 @@
     "com.siliconcordat.warp.lineage/v1": {
       "adapter_id": "mde:soko-eval",
       "base_weights_sha256": "10cc391b403021dd11c614679d2fd92f611c3681d29e29651b717316965d61e1",
-      "binding_sha256": "9c7773e6a8b49b69012b22ce0ae8df7aa42ee11e6f6dc879f53f38ad3bd868be",
+      "binding_sha256": "aa3a57bded1833ecabd130f51569092265eacef74225306e9248fee6a31eaeab",
       "certificate_sha256": "aae2c30c50745b9f573a4441b1ee9de08c090b676bbee2b057d1aa032491403b",
       "factor_digest": "2606b178ffb3dc606a7d9bc0e4fd6c4160c5fc8eed3c73fdbcfdfcdf481b4de8",
       "has_ssm_recurrent": true,
       "source_lineage": {
         "contested_heads": [],
-        "corpus_tree_sha256": "34d7b53a35b506f597dcb8b7395ffc6c6f57622622fd5fa12abb90a5244b00c6",
-        "soko_sha256sums_digest": "63d05d41938a02afdeeadeeefb9594d58ac1c19af729b13adf743d7d47e9c791"
+        "corpus_tree_sha256": "ca7f16d0ec7e81e371f7afac11fd44bc1c489d6a36d695709b6ee658f92abca6",
+        "soko_sha256sums_digest": "96191efd46860503d27ddb59c18421be360048963f4d5048e5a2228034f80257"
       },
       "zone_manifest_id": "sha256:4cf8df174c942632ed0798b333f7e5d17295cb5e16cc9281db0139e42272a4db"
     }
