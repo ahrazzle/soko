@@ -24,9 +24,10 @@
 
 ## Outbound Sokoban Findings Fed Back to Domain-General Verification
 
-1. **Quotient-homomorphism plus deficit step bounds**: Combining a zero-self-loop quotient heuristic with a bounded deficit term preserves global 1-step consistency (`H(s) - H(s') <= 1`) when operator costs stay non-negative, generalizing Sokoban border-wall harvest bounds to abstract transition graphs.
-2. **Rational-ceiling step consistency**: Taking `ceil(h_Q(s))` over any 1-step-consistent rational LP dual preserves integer 1-step consistency for reopened-free layered A* search.
+1. **Quotient-homomorphism plus deficit step bounds (`Mcproof.Spec.quotientHeuristic_step_consistent`, `Mcproof.Spec.zeroSelfLoop_deficit_composition`)**: Combining a zero-self-loop quotient heuristic with a bounded deficit term preserves 1-step consistency (`H(s) - H(s') <= 1`), generalizing Sokoban border-wall harvest bounds to abstract transition graphs (`prefundedHeuristic_step_consistent`).
+2. **Rational-ceiling step consistency (`Mcproof.Spec.ceilDiv_step_consistent_and_admissible`, `Mcproof.Spec.operatorCounting_dual_div_admissible`)**: Taking `ceil(h_Q(s))` over any 1-step-consistent rational LP dual preserves integer 1-step consistency for reopened-free layered A* search.
 3. **Timeout vs transition-bug repair branching**: In `S3` 4-second zero-import Python synthesis, code-execution timeouts require state-tuple compression and `visited` deduplication on enqueue, whereas `HERO_DIED` or `SURVIVED_WITHOUT_GOAL` failures require transition-rule repair (all-switch door coverage and Wizard ray-first swap).
+4. **Post-death `final_ascii` differential catch (`II-4`, `route = "RRR"`)**: Live `S3` dual-oracle checking exposed that on fatal Goblin collision (`"RRR"`), `PuzzleScriptOracle` renders corpse `'X'` (`#....XO.#...#`) while `FlatBitmaskOracle` renders `'F'` (`#....FO.#...#`), despite matching `alive == False` and `traj_fnv64`. Full-tuple `F01`/`F02` comparison catches drift on terminal error states.
 
 ## What Is Not Claimed
 
