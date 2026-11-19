@@ -45,10 +45,75 @@ class NativeDifferentialTests(unittest.TestCase):
                     self.assertEqual(native["traj_fnv64"], readable["traj_fnv64"])
                     for key in ("alive", "exact_win", "premature_win", "steps_executed"):
                         self.assertEqual(native[key], readable[key], key)
-                    # After a death the readable oracle renders the corpse frame while
-                    # the native engine keeps the last live frame; neither can win.
-                    if readable["alive"]:
-                        self.assertEqual(native["final_ascii"], readable["final_ascii"])
+                    self.assertEqual(native["final_ascii"], readable["final_ascii"])
+
+    def test_post_death_late_phase_finishes_kills_doors_and_monster_gate(self):
+        from soko_mcp.engine_bridge import _invoke_cpp
+
+        # 1. Hero killed by one goblin while adjacent to a second goblin: remaining
+        #    goblin-goblin mutual kills and monster-gate opening must still complete.
+        board_simul_gate = [
+            "#########",
+            "#F.O.OGM#",
+            "#..O.2..#",
+            "#########",
+        ]
+        for route in ("R", "RR"):
+            readable = replay_oracle(2, board_simul_gate, route)
+            native = _invoke_cpp("verify", 2, board_simul_gate, 0, 0, 0, route)
+            self.assertIsNotNone(native)
+            self.assertFalse(readable["alive"])
+            self.assertEqual(native["alive"], readable["alive"])
+            self.assertEqual(native["final_ascii"], readable["final_ascii"])
+            self.assertEqual(
+                native["final_ascii"].replace("X", "."),
+                readable["final_ascii"].replace("X", "."),
+            )
+
+        # 2. Hero steps onto a switch next to a goblin while another hero previously
+        #    opened the yellow door: dying hero turns into a corpse (not weighing),
+        #    so the yellow door closes on the same late phase.
+        board_switch_death = [
+            "##########",
+            "#*{.[..GG#",
+            "#.F.O..2.#",
+            "##########",
+        ]
+        # Step 1 ('U' blocked or 'R' next to O): test hero killed on switch `{`
+        board_hero_on_sw = [
+            "##########",
+            "#..[...GG#",
+            "#.F{.O.2.#",
+            "##########",
+        ]
+        for route in ("R", "RR"):
+            readable = replay_oracle(2, board_hero_on_sw, route)
+            native = _invoke_cpp("verify", 2, board_hero_on_sw, 0, 0, 0, route)
+            self.assertIsNotNone(native)
+            self.assertEqual(native["alive"], readable["alive"])
+            self.assertEqual(native["final_ascii"], readable["final_ascii"])
+
+        # 3. Closing yellow door crushes inactive hero in doorway AND crushes last monster
+        #    in second doorway, opening the monster gate 'M' in the same late phase.
+        board_door_crush = [
+            "###########",
+            "#F*..[.[MG#",
+            "#..{...O2G#",
+            "###########",
+        ]
+        # Push crate onto '{' to open both '[' doors, move '2' and 'O' or test direct crush:
+        board_door_crush2 = [
+            "###########",
+            "#F{..[.[MG#",
+            "#....2..OG#",
+            "###########",
+        ]
+        for route in ("R", "RAUU", "RAAUL"):
+            readable = replay_oracle(2, board_door_crush2, route)
+            native = _invoke_cpp("verify", 2, board_door_crush2, 0, 0, 0, route)
+            self.assertIsNotNone(native)
+            self.assertEqual(native["alive"], readable["alive"])
+            self.assertEqual(native["final_ascii"], readable["final_ascii"])
 
 
 if __name__ == "__main__":

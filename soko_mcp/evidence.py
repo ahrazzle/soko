@@ -51,3 +51,107 @@ def problem_identity(part: int, grid: list[str]) -> dict:
         "termination": "alive and first win on final key", "cost": "number of UDLRA keys",
     }
     return {"problem": problem, "instance_sha256": digest(problem)}
+
+
+def must_fail(name: str, predicate_holds: bool, log: list[str]) -> None:
+    """Record a must-fail negative control (modeled on Foundation-0 certlib.must_fail).
+
+    `predicate_holds` is the checker's acceptance verdict on a deliberately broken
+    or tautological input. The control passes only when `predicate_holds` is False.
+    """
+    if not isinstance(name, str) or not name.strip():
+        raise ValueError("must_fail control name must be a non-empty string")
+    if bool(predicate_holds):
+        raise ValueError(f"must_fail control '{name}' was wrongly accepted")
+    log.append(name.strip())
+
+
+def verify_certificate_gate(cert: dict) -> dict:
+    """Fail-closed certificate gate enforcing `must_fail_controls`, hash integrity, and anti-tier-swap rules."""
+    if not isinstance(cert, dict):
+        return {"passed": False, "epistemic_status": "REJECTED_MALFORMED_CERTIFICATE", "reason": "certificate must be a dict"}
+
+    if "certificate_sha256" in cert:
+        expected_hash = digest({k: v for k, v in cert.items() if k != "certificate_sha256"})
+        if cert.get("certificate_sha256") != expected_hash:
+            return {
+                "passed": False,
+                "epistemic_status": "REJECTED_CERTIFICATE_HASH_MISMATCH",
+                "reason": "certificate_sha256 does not match canonical payload digest",
+            }
+
+    status = str(cert.get("epistemic_status", "")).strip()
+    if not status:
+        return {"passed": False, "epistemic_status": "REJECTED_MISSING_STATUS", "reason": "missing epistemic_status"}
+
+    controls = cert.get("must_fail_controls")
+    if status in ("PROVEN", "VERIFIED", "LOWER_BOUND", "LOWER_BOUND_UNWITNESSED"):
+        if (
+            not isinstance(controls, list)
+            or len(controls) == 0
+            or any(not isinstance(c, str) or not c.strip() for c in controls)
+            or len(set(controls)) != len(controls)
+        ):
+            return {
+                "passed": False,
+                "epistemic_status": "REJECTED_MISSING_MUST_FAIL_CONTROLS",
+                "reason": "certificate must carry a non-empty list of distinct must_fail_controls names",
+            }
+
+    # Anti-tier-swap checks (LOWER_BOUND / LINT_PASS / bounded-subgraph promoted to VERIFIED or PROVEN)
+    kind = str(cert.get("certificate_kind", ""))
+    claim_kind = str(cert.get("claim_kind", "")).lower()
+    if status == "VERIFIED":
+        if cert.get("mode") in ("single_checker", "dual_checker"):
+            return {
+                "passed": False,
+                "epistemic_status": "REJECTED_TIER_SWAP",
+                "reason": "static AST lint report cannot claim VERIFIED (must be LINT_PASS)",
+            }
+        if claim_kind in ("lower_bound", "bound") and not cert.get("exact_optimum_reached", False):
+            return {
+                "passed": False,
+                "epistemic_status": "REJECTED_TIER_SWAP",
+                "reason": "lower-bound claim without exact optimal witness cannot be promoted to VERIFIED",
+            }
+        if "proven_floor" in cert and "exact_optimum_reached" in cert:
+            witness = cert.get("winning_witness")
+            if (
+                not bool(cert.get("exact_optimum_reached"))
+                or cert.get("optimality_proven") is False
+                or (int(cert.get("proven_floor") or 0) > 0 and not isinstance(witness, dict))
+                or (isinstance(witness, dict) and witness.get("route_len") != cert.get("proven_floor"))
+            ):
+                return {
+                    "passed": False,
+                    "epistemic_status": "REJECTED_TIER_SWAP",
+                    "reason": "unwitnessed or non-exact floor bound cannot be promoted to VERIFIED",
+                }
+        if kind.endswith("_LOWER_BOUND") and not cert.get("winning_witness"):
+            return {
+                "passed": False,
+                "epistemic_status": "REJECTED_TIER_SWAP",
+                "reason": f"lower-bound certificate ({kind}) without matching primal witness cannot claim VERIFIED",
+            }
+        if "valid_winning_route" in cert and cert.get("valid_winning_route") is not True:
+            return {
+                "passed": False,
+                "epistemic_status": "REJECTED_TIER_SWAP",
+                "reason": "rejected route certificate cannot be promoted to VERIFIED",
+            }
+
+    if status == "PROVEN":
+        if cert.get("complete_domain_closed") is False:
+            return {
+                "passed": False,
+                "epistemic_status": "REJECTED_TIER_SWAP",
+                "reason": "bounded-subgraph check (complete_domain_closed=False) cannot be promoted to PROVEN",
+            }
+        if "proven_floor" in cert and not cert.get("formal_proof_checked", False):
+            return {
+                "passed": False,
+                "epistemic_status": "REJECTED_TIER_SWAP",
+                "reason": "empirical search floor without formal proof cannot be promoted to PROVEN",
+            }
+
+    return {"passed": True, "epistemic_status": status, "must_fail_controls": list(controls or [])}

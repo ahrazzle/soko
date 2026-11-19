@@ -191,7 +191,7 @@ def audit_dual_checkers(
     if impl_source is None or not impl_source.strip():
         verdict = "PASS" if s_rep["clean"] else "FAIL"
         return {
-            "epistemic_status": "VERIFIED" if verdict == "PASS" else "REJECTED_CHECKER_HAZARD",
+            "epistemic_status": "LINT_PASS" if verdict == "PASS" else "REJECTED_CHECKER_HAZARD",
             "mode": "single_checker",
             "verdict": verdict,
             "spec_audit": s_rep,
@@ -203,7 +203,7 @@ def audit_dual_checkers(
     distinct = s_skel != i_skel
     verdict = "PASS" if (distinct and s_rep["clean"] and i_rep["clean"]) else "FAIL"
     return {
-        "epistemic_status": "VERIFIED" if verdict == "PASS" else "REJECTED_CHECKER_HAZARD",
+        "epistemic_status": "LINT_PASS" if verdict == "PASS" else "REJECTED_CHECKER_HAZARD",
         "mode": "dual_checker",
         "verdict": verdict,
         "distinct_alpha_skeleton": distinct,

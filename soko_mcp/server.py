@@ -146,9 +146,16 @@ TOOLS: List[Dict[str, Any]] = [
                 "budget_sec": {
                     "type": "integer",
                     "default": 35,
-                    "minimum": 4,
+                    "minimum": 0,
                     "maximum": 180,
-                    "description": "Total compute budget in seconds across optimization stages.",
+                    "description": "Compute time budget in seconds (pass 0 with max_states > 0 for deterministic wall-clock-free search).",
+                },
+                "max_states": {
+                    "type": "integer",
+                    "default": 0,
+                    "minimum": 0,
+                    "maximum": 50000000,
+                    "description": "Deterministic per-stage state cap for Chiral-Mirror and Iterative Tube Beam.",
                 },
             },
             "additionalProperties": False,
@@ -846,9 +853,13 @@ def dispatch_tool_call(name: str, args: Dict[str, Any]) -> Dict[str, Any]:
             beam_width=int(args.get("beam_width", 40000)),
             window_len=int(args.get("window_len", 14)),
             budget_sec=int(args.get("budget_sec", 35)),
+            max_states=int(args.get("max_states", 0)),
         )
         if rid:
             res["room_id"] = rid
+            if "certificate_sha256" in res:
+                res.pop("certificate_sha256", None)
+                res["certificate_sha256"] = digest(res)
         return res
 
     if name == "soko_solve_room":
@@ -862,6 +873,9 @@ def dispatch_tool_call(name: str, args: Dict[str, Any]) -> Dict[str, Any]:
         )
         if rid:
             res["room_id"] = rid
+            if "certificate_sha256" in res:
+                res.pop("certificate_sha256", None)
+                res["certificate_sha256"] = digest(res)
         return res
 
     if name == "soko_prove_floor":
@@ -874,6 +888,9 @@ def dispatch_tool_call(name: str, args: Dict[str, Any]) -> Dict[str, Any]:
         )
         if rid:
             res["room_id"] = rid
+            if "certificate_sha256" in res:
+                res.pop("certificate_sha256", None)
+                res["certificate_sha256"] = digest(res)
         return res
 
     if name == "soko_run_planted_bug_audit":

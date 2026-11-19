@@ -13,10 +13,30 @@
  *   - Collision-safe bucket chaining in `exact_window_shortcut`.
  */
 
-#include <bits/stdc++.h>
+#include <algorithm>
+#include <array>
+#include <atomic>
+#include <chrono>
+#include <cmath>
+#include <cstdint>
+#include <cstdio>
+#include <cstring>
+#include <iomanip>
+#include <iostream>
+#include <mutex>
+#include <numeric>
+#include <queue>
+#include <sstream>
+#include <string>
+#include <thread>
+#include <unordered_map>
+#include <unordered_set>
+#include <utility>
+#include <vector>
 using namespace std;
 
 static constexpr int MAX_CELLS = 512;
+static constexpr uint8_t OBJ_CORPSE = 21;
 static const int DX[4] = {0, 0, -1, 1};
 static const int DY[4] = {-1, 1, 0, 0};
 static const char DCH[5] = {'U', 'D', 'L', 'R', 'A'};
@@ -145,6 +165,7 @@ bool run_late(const LevelMeta& M, DynState& s) {
                 }
             }
     }
+    bool corpse = false;
     if (M.part >= 2) {
         for (int y = 0; y < M.h; ++y)
             for (int x = 0; x < M.w; ++x)
@@ -169,7 +190,7 @@ bool run_late(const LevelMeta& M, DynState& s) {
         for (int i = 0; i < M.n; ++i) {
             if (dying[i]) {
                 if (is_monster(M.part, s.obj[i])) s.obj[i] = 0;
-                else if (is_hero(s.obj[i])) return true;
+                else if (is_hero(s.obj[i])) { s.obj[i] = OBJ_CORPSE; corpse = true; }
             }
         }
     }
@@ -181,7 +202,7 @@ bool run_late(const LevelMeta& M, DynState& s) {
             for (int idx : M.y_doors_init) if (s.obj[idx] == 18) s.obj[idx] = 0;
         } else if (any_u && s.y_open) {
             s.y_open = 0;
-            for (int idx : M.y_doors_init) { if (is_hero(s.obj[idx])) return true; s.obj[idx] = 18; }
+            for (int idx : M.y_doors_init) { if (is_hero(s.obj[idx])) corpse = true; s.obj[idx] = 18; }
         }
     }
     if (!M.p_switches.empty()) {
@@ -192,7 +213,7 @@ bool run_late(const LevelMeta& M, DynState& s) {
             for (int idx : M.p_doors_init) if (s.obj[idx] == 19) s.obj[idx] = 0;
         } else if (any_u && s.p_open) {
             s.p_open = 0;
-            for (int idx : M.p_doors_init) { if (is_hero(s.obj[idx])) return true; s.obj[idx] = 19; }
+            for (int idx : M.p_doors_init) { if (is_hero(s.obj[idx])) corpse = true; s.obj[idx] = 19; }
         }
     }
     // The monster gate opens after the door phase: a closing colored door may
@@ -205,7 +226,7 @@ bool run_late(const LevelMeta& M, DynState& s) {
     if (M.has_bard) {
         for (int i = 0; i < M.n; ++i) if (s.has_note(i) && !is_moveable(M.part, s.obj[i])) s.notes[i >> 6] &= ~(1ULL << (i & 63));
     }
-    return false;
+    return corpse;
 }
 
 inline bool check_win(const LevelMeta& M, const DynState& s) {
@@ -535,6 +556,7 @@ string render_ascii(const LevelMeta& M, const DynState& s) {
             else if (o == 15) ch = 'O'; else if (o == 16) ch = 'L';
             else if (o == 17) ch = 'R'; else if (o == 18) ch = '[';
             else if (o == 19) ch = ']'; else if (o == 20) ch = 'M';
+            else if (o == OBJ_CORPSE) ch = 'X';
             else if (M.floor_grid[i] == 1) ch = 'G';
             else if (M.floor_grid[i] == 2) ch = '{';
             else if (M.floor_grid[i] == 3) ch = '}';
@@ -590,7 +612,8 @@ inline int compact_bucket16(const LevelMeta& M, const DynState& s) {
 }
 
 string tube_beam_refine(const LevelMeta& M, const DynState& start, const vector<DynState>& target,
-                        int max_d, int beam_w, int cap_bkt, bool role_agnostic, double budget_s) {
+                        int max_d, int beam_w, int cap_bkt, bool role_agnostic, double budget_s,
+                        size_t max_states = 13000000, uint64_t* states_accum = nullptr) {
     auto t0 = chrono::steady_clock::now();
     int N = (int)target.size() - 1;
     auto norm_v = [&](uint8_t v) -> uint8_t {
@@ -612,7 +635,7 @@ string tube_beam_refine(const LevelMeta& M, const DynState& start, const vector<
     string best_win;
 
     for (int d = 1; d <= max_d; ++d) {
-        if (chrono::duration<double>(chrono::steady_clock::now() - t0).count() > budget_s || seen.cnt > 13000000) break;
+        if ((budget_s > 0.0 && chrono::duration<double>(chrono::steady_clock::now() - t0).count() > budget_s) || seen.cnt > max_states) break;
         vector<DynState> c_states;
         vector<PRec> c_precs;
         vector<int> c_bkt;
@@ -676,6 +699,7 @@ string tube_beam_refine(const LevelMeta& M, const DynState& start, const vector<
         }
         cur.swap(nxt);
     }
+    if (states_accum) *states_accum += seen.cnt;
     return best_win;
 }
 
@@ -1354,14 +1378,18 @@ int main() {
     ios::sync_with_stdio(false);
     cin.tie(nullptr);
 
+    string header_line;
+    if (!getline(cin, header_line)) return 1;
+    istringstream hs(header_line);
     string mode;
     int part, w, h, p1, p2, p3;
-    if (!(cin >> mode >> part >> w >> h >> p1 >> p2 >> p3)) return 1;
+    long long p4 = 0;
+    if (!(hs >> mode >> part >> w >> h >> p1 >> p2 >> p3)) return 1;
+    hs >> p4;
     if (w * h > MAX_CELLS) {
         cout << "{\"error\":\"grid exceeds MAX_CELLS (512)\"}\n";
         return 1;
     }
-    string dummy; getline(cin, dummy);
     vector<string> rows(h);
     for (int y = 0; y < h; ++y) getline(cin, rows[y]);
     string seed_route;
@@ -1433,13 +1461,15 @@ int main() {
         int beam_w = max(2000, p1);
         int win_len = max(8, p2);
         double total_budget = max(0.0, (double)p3);
+        size_t stage_state_cap = p4 > 0 ? (size_t)p4 : (size_t)13000000;
         string best = seed_route;
         vector<string> log_entries;
+        uint64_t opt_states_seen = 0;
         auto opt_t0 = chrono::steady_clock::now();
-        if (total_budget <= 0.0) {
+        if (total_budget <= 0.0 && p4 <= 0) {
             cout << "{\"initial_len\":" << seed_route.size() << ",\"best_len\":" << seed_route.size()
                  << ",\"improved\":false,\"best_route\":\"" << seed_route << "\",\"stages\":[]"
-                 << ",\"timed_out\":true}\n";
+                 << ",\"states_seen\":0,\"timed_out\":true}\n";
             return 0;
         }
 
@@ -1464,7 +1494,7 @@ int main() {
         vector<pair<int, int>> axes;
         for (int sm : {1, 2, 3}) axes.push_back({sym_diff(sm), sm});
         sort(axes.begin(), axes.end());
-        double per_stage = total_budget / 2.2;
+        double per_stage = total_budget > 0.0 ? (total_budget / 2.2) : 0.0;
 
         if (axes[0].first <= M.n / 5) {
             int best_sym = axes[0].second;
@@ -1472,7 +1502,7 @@ int main() {
             DynState cur = s0;
             mir_traj.push_back(transform_state(M, cur, best_sym));
             for (char c : best) { step_state(M, cur, d_idx(c), false); mir_traj.push_back(transform_state(M, cur, best_sym)); }
-            string m_hit = tube_beam_refine(M, s0, mir_traj, (int)best.size() - 1, beam_w, 240, true, per_stage);
+            string m_hit = tube_beam_refine(M, s0, mir_traj, (int)best.size() - 1, beam_w, 240, true, per_stage, stage_state_cap, &opt_states_seen);
             if (!m_hit.empty() && m_hit.size() < best.size()) {
                 log_entries.push_back("chiral_sym_" + to_string(best_sym) + ":" + to_string(best.size()) + "->" + to_string(m_hit.size()));
                 best = m_hit;
@@ -1482,7 +1512,7 @@ int main() {
         for (int iter = 0; iter < 2; ++iter) {
             vector<DynState> ref_traj = {s0};
             for (char c : best) { DynState nx = ref_traj.back(); step_state(M, nx, d_idx(c), false); ref_traj.push_back(nx); }
-            string r_hit = tube_beam_refine(M, s0, ref_traj, (int)best.size() - 1, max(32000, (beam_w * 4) / 5), 240, true, per_stage);
+            string r_hit = tube_beam_refine(M, s0, ref_traj, (int)best.size() - 1, max(32000, (beam_w * 4) / 5), 240, true, per_stage, stage_state_cap, &opt_states_seen);
             if (!r_hit.empty() && r_hit.size() < best.size()) {
                 log_entries.push_back("iter_tube_" + to_string(iter + 1) + ":" + to_string(best.size()) + "->" + to_string(r_hit.size()));
                 best = r_hit;
@@ -1500,12 +1530,14 @@ int main() {
             if (i) log_str += ",";
             log_str += "\"" + log_entries[i] + "\"";
         }
+        bool timed_out_flag = (total_budget > 0.0) && (chrono::duration<double>(chrono::steady_clock::now() - opt_t0).count() > total_budget);
         cout << "{\"initial_len\":" << seed_route.size()
              << ",\"best_len\":" << best.size()
              << ",\"improved\":" << (best.size() < seed_route.size() ? "true" : "false")
              << ",\"best_route\":\"" << best << "\""
              << ",\"stages\":[" << log_str << "]"
-             << ",\"timed_out\":" << (chrono::duration<double>(chrono::steady_clock::now() - opt_t0).count() > total_budget ? "true" : "false")
+             << ",\"states_seen\":" << opt_states_seen
+             << ",\"timed_out\":" << (timed_out_flag ? "true" : "false")
              << "}\n";
         return 0;
     }
