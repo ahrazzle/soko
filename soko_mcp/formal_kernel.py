@@ -66,6 +66,9 @@ _FORBIDDEN_CALL_NAMES: Set[str] = {
     "property",
 }
 
+# Builtins that can return floats from exact inputs (pow(2, -1) == 0.5).
+_FLOAT_PRODUCING_NAMES: Set[str] = {"pow", "float", "complex"}
+
 SAFE_BUILTINS: Dict[str, Any] = {
     "abs": abs,
     "all": all,
@@ -129,6 +132,10 @@ def validate_pure_ast(code: str, label: str, exact_arithmetic_only: bool = True)
             raise ValueError(f"[{label}] Mutable global/nonlocal state is forbidden for deterministic verification.")
         if isinstance(node, (ast.AsyncFunctionDef, ast.Await, ast.AsyncFor, ast.AsyncWith, ast.Yield, ast.YieldFrom)):
             raise ValueError(f"[{label}] Async/generator constructs are forbidden inside formal specifications.")
+        if isinstance(node, ast.ClassDef):
+            raise ValueError(f"[{label}] Class definitions are forbidden inside formal modules.")
+        if isinstance(node, ast.FunctionDef) and node.name.startswith("__"):
+            raise ValueError(f"[{label}] Dunder function name {node.name!r} is forbidden inside formal modules.")
         if isinstance(node, ast.Try):
             for handler in node.handlers:
                 if handler.type is None:
@@ -149,6 +156,22 @@ def validate_pure_ast(code: str, label: str, exact_arithmetic_only: bool = True)
                 raise ValueError(
                     f"[{label}] Floating-point '/' division rejected under exact_arithmetic_only=True "
                     "(use integer '//' or Fraction(a, b))."
+                )
+            if isinstance(node, (ast.BinOp, ast.AugAssign)) and isinstance(node.op, ast.Pow):
+                exponent = node.right if isinstance(node, ast.BinOp) else node.value
+                if not (
+                    isinstance(exponent, ast.Constant)
+                    and isinstance(exponent.value, int)
+                    and not isinstance(exponent.value, bool)
+                    and exponent.value >= 0
+                ):
+                    raise ValueError(
+                        f"[{label}] '**' with a negative or non-literal exponent rejected under "
+                        "exact_arithmetic_only=True (int ** -k and Fraction ** non-integer produce floats)."
+                    )
+            if isinstance(node, ast.Name) and node.id in _FLOAT_PRODUCING_NAMES:
+                raise ValueError(
+                    f"[{label}] Float-producing builtin {node.id!r} rejected under exact_arithmetic_only=True."
                 )
 
     skeleton = _alpha_normalize_skeleton(tree)
@@ -244,6 +267,19 @@ def assert_exact_immutable(val: Any, ctx: str, exact_only: bool = True) -> None:
     )
 
 
+def _require_exact_number(val: Any, ctx: str, exact_only: bool = True) -> Any:
+    """Fail closed unless `val` is an exact int or Fraction (finite float only when not exact_only)."""
+    if type(val) is int or type(val) is Fraction:
+        return val
+    if type(val) is float:
+        if exact_only:
+            raise TypeError(f"[{ctx}] Float potential {val!r} forbidden under exact_arithmetic_only=True.")
+        if not math.isfinite(val):
+            raise TypeError(f"[{ctx}] Non-finite potential {val!r} rejected (NaN/inf comparisons are unsound).")
+        return val
+    raise TypeError(f"[{ctx}] Potential must be exact int or Fraction, got {type(val).__name__}.")
+
+
 def _canonical_repr(val: Any) -> str:
     if isinstance(val, frozenset):
         items = sorted(_canonical_repr(x) for x in val)
@@ -312,7 +348,7 @@ class CompiledChecker:
         if fn is None:
             return 1
         c = fn(state, action, next_state)
-        if not isinstance(c, int) or isinstance(c, bool) or c < 0:
+        if type(c) is not int or c < 0:
             raise ValueError(f"[{self.label}.step_cost] Step cost must be a non-negative integer, got {c!r}")
         return c
 
@@ -545,9 +581,7 @@ def define_formal_system(
     s0 = spec.initial_state()
     u0 = impl.initial_state()
     q: deque[Tuple[Any, Any, Tuple[Any, ...]]] = deque([(s0, u0, ())])
-    obs0 = spec.project_obs(s0)
-    inv0_s, _ = spec.invariant(s0)
-    seen_obs: Set[Any] = {(obs0, spec.is_goal(s0), inv0_s)}
+    seen_pairs: Set[Tuple[Any, Any]] = {(s0, u0)}
     fuzz_states = 0
     fuzz_edges = 0
     fuzz_sample_traces: List[Tuple[Any, ...]] = []
@@ -631,10 +665,23 @@ def define_formal_system(
                     "impl_goal": goal_nu,
                     "reason": "successor goal predicate mismatch (not masked by duplicate project_obs)",
                 }
-            inv_ns, _ = spec.invariant(ns)
-            obs_key = (obs_ns, goal_ns, inv_ns)
-            if obs_key not in seen_obs and len(seen_obs) < max(1, int(bounded_fuzz_nodes)):
-                seen_obs.add(obs_key)
+            inv_ns, rsn_ns = spec.invariant(ns)
+            inv_nu, rsn_nu = impl.invariant(nu)
+            acts_ns = spec.actions(ns)
+            acts_nu = impl.actions(nu)
+            if inv_ns != inv_nu or set(acts_ns) != set(acts_nu):
+                return {
+                    "epistemic_status": "REJECTED_DIFFERENTIAL_MISMATCH",
+                    "tcb_locked": False,
+                    "system_id": sid,
+                    "diverging_trace": [_canonical_repr(a) for a in path + (act,)],
+                    "spec_inv_actions": [inv_ns, rsn_ns, sorted(_canonical_repr(a) for a in acts_ns)],
+                    "impl_inv_actions": [inv_nu, rsn_nu, sorted(_canonical_repr(a) for a in acts_nu)],
+                    "reason": "successor invariant or action-set mismatch (checked on every edge, not masked by project_obs)",
+                }
+            pair_next = (ns, nu)
+            if pair_next not in seen_pairs and len(seen_pairs) < max(1, int(bounded_fuzz_nodes)):
+                seen_pairs.add(pair_next)
                 q.append((ns, nu, path + (act,)))
 
     # 4. Planted-Mutation Adequacy Gate (every planted bug must be killed by witnesses, controls, or fuzz traces!)
@@ -1036,6 +1083,10 @@ def solve_formal_system(
         best_g: Dict[Tuple[Any, Any], int] = {(s0, u0): 0}
         seen_spec_states: Set[Any] = {s0}
         truncated_by_budget = False
+        # Smallest cost-to-reach among successors dropped by the max_states budget. A goal popped
+        # at cost g is optimal only if g <= this value (pruning by max_cost drops only paths with
+        # cost > max_cost >= g, so it cannot hide a cheaper goal).
+        min_state_pruned_g: Optional[int] = None
         edges_checked = 0
 
         while pq:
@@ -1066,6 +1117,24 @@ def solve_formal_system(
 
             if mode == "reach_goal" and inv_ok and spec.is_goal(s_cur):
                 ver = verify_formal_trace(system_id, path, verification_goal="goal_witness", require_exact_terminal_goal=True)
+                if min_state_pruned_g is not None and min_state_pruned_g < g:
+                    # A state dropped by the max_states budget could lead to a cheaper goal.
+                    return {
+                        "epistemic_status": "VERIFIED_FEASIBLE_NOT_PROVEN_OPTIMAL" if ver["verified"] else "REJECTED",
+                        "certificate_kind": None,
+                        "system_id": reg.system_id,
+                        "mode": mode,
+                        "solved": ver["verified"],
+                        "optimal_cost": None,
+                        "best_found_cost": g,
+                        "unexplored_lower_bound": min_state_pruned_g,
+                        "truncated_by_budget": True,
+                        "steps": len(path),
+                        "states_explored": len(seen_spec_states),
+                        "edges_checked": edges_checked,
+                        "trace": list(path),
+                        "verification": ver,
+                    }
                 # Since Dijkstra expands states in non-decreasing exact integer step_cost >= 0,
                 # the first valid goal popped is guaranteed minimum-cost!
                 cert_out = {
@@ -1122,6 +1191,8 @@ def solve_formal_system(
                 if pair_next not in best_g or ng < best_g[pair_next]:
                     if pair_next not in best_g and len(best_g) >= max_states:
                         truncated_by_budget = True
+                        if min_state_pruned_g is None or ng < min_state_pruned_g:
+                            min_state_pruned_g = ng
                         continue
                     best_g[pair_next] = ng
                     seen_spec_states.add(ns)
@@ -1256,6 +1327,8 @@ def certify_formal_lower_bound(
     universe_code: Optional[str] = None,
 ) -> Dict[str, Any]:
     """Machine-check a lower bound (`OPT >= B`) via Quotient Homomorphism or Inductive Potential Certificate."""
+    if type(claimed_lower_bound) is not int:
+        raise TypeError(f"claimed_lower_bound must be an exact int, got {type(claimed_lower_bound).__name__}")
     reg = _get_locked_system(system_id)
     spec = reg.spec
     impl = reg.impl
@@ -1389,9 +1462,16 @@ def certify_formal_lower_bound(
         complete_space = not truncated
 
     if proof_mode == "inductive_potential":
-        pot_fn = cert_ns.get("potential")
-        if not callable(pot_fn):
+        raw_pot_fn = cert_ns.get("potential")
+        if not callable(raw_pot_fn):
             raise ValueError("certificate_code must define `potential(state) -> int | Fraction` for proof_mode='inductive_potential'")
+        pot_cache: Dict[Any, Any] = {}
+
+        def pot_fn(state: Any) -> Any:
+            if state not in pot_cache:
+                pot_cache[state] = _require_exact_number(raw_pot_fn(state), "potential(state)", reg.exact_only)
+            return pot_cache[state]
+
         if not complete_space:
             return {
                 "epistemic_status": "REJECTED_INCOMPLETE_CONCRETE_GRAPH_FOR_POTENTIAL",
@@ -1424,7 +1504,10 @@ def certify_formal_lower_bound(
         for st, act, ns, cost in concrete_edges:
             vs = pot_fn(st)
             vns = pot_fn(ns)
-            if vs > cost + vns:
+            rhs = cost + vns
+            if type(rhs) is float and not math.isfinite(rhs):
+                raise TypeError(f"[potential(state)] Non-finite edge sum {rhs!r} rejected.")
+            if vs > rhs:
                 return {
                     "epistemic_status": "REJECTED_STEP_CONSISTENCY_VIOLATION",
                     "system_id": reg.system_id,
@@ -1501,7 +1584,7 @@ def certify_formal_lower_bound(
             abs_rev_adj.setdefault(v_abs, []).append((u_abs, cost))
 
         # Exact backward Dijkstra from abstract goals in Quotient Graph
-        INF = 10**15
+        # Unreachable abstract states are simply absent from h_abs (no finite sentinel).
         h_abs: Dict[Any, int] = {g: 0 for g in abs_goals}
         pq_abs: List[Tuple[int, int, Any]] = []
         ctr = 0
@@ -1511,32 +1594,33 @@ def certify_formal_lower_bound(
 
         while pq_abs:
             d, _, v_abs = heapq.heappop(pq_abs)
-            if d > h_abs.get(v_abs, INF):
+            if d > h_abs[v_abs]:
                 continue
             for u_abs, w_cost in abs_rev_adj.get(v_abs, ()):
                 nd = d + w_cost
-                if nd < h_abs.get(u_abs, INF):
+                if u_abs not in h_abs or nd < h_abs[u_abs]:
                     h_abs[u_abs] = nd
                     ctr += 1
                     heapq.heappush(pq_abs, (nd, ctr, u_abs))
 
         # Exhaustively machine-check concrete homomorphism step-consistency: h(pi(s)) <= cost(s,a,s') + h(pi(s'))
         for st, act, ns, cost in concrete_edges:
-            hs = h_abs.get(proj_fn(st), INF)
-            hns = h_abs.get(proj_fn(ns), INF)
-            if hs > cost + hns:
+            hs = h_abs.get(proj_fn(st))
+            hns = h_abs.get(proj_fn(ns))
+            # h(pi(s)) <= cost + h(pi(s')); an unreachable successor makes the right side infinite.
+            if hns is not None and (hs is None or hs > cost + hns):
                 return {
                     "epistemic_status": "REJECTED_HOMOMORPHISM_INCONSISTENT",
                     "system_id": reg.system_id,
                     "violating_transition": [_canonical_repr(st), _canonical_repr(act), _canonical_repr(ns)],
                 }
 
-        h0 = h_abs.get(proj_fn(s0), INF)
-        if h0 < claimed_lower_bound:
+        h0 = h_abs.get(proj_fn(s0))
+        if h0 is not None and h0 < claimed_lower_bound:
             return {
                 "epistemic_status": "REJECTED_QUOTIENT_BOUND_TOO_WEAK",
                 "system_id": reg.system_id,
-                "quotient_initial_bound": None if h0 >= INF else h0,
+                "quotient_initial_bound": h0,
                 "claimed_lower_bound": claimed_lower_bound,
             }
 
@@ -1545,7 +1629,7 @@ def certify_formal_lower_bound(
             "certificate_kind": "QUOTIENT_HOMOMORPHISM_LOWER_BOUND",
             "system_id": reg.system_id,
             "certified_lower_bound": claimed_lower_bound,
-            "quotient_exact_bound": "UNREACHABLE_INF" if h0 >= INF else h0,
+            "quotient_exact_bound": "UNREACHABLE_INF" if h0 is None else h0,
             "concrete_states_verified": len(concrete_states),
             "quotient_states": len(abs_nodes),
             "compression_ratio": round(len(concrete_states) / max(1, len(abs_nodes)), 3),
@@ -1599,7 +1683,7 @@ def certify_formal_lower_bound(
             w_sum = Fraction(0, 1)
             for m_idx, (pname, _pfn, wfn) in enumerate(parsed_projs):
                 raw_w = wfn(st, act, ns)
-                if isinstance(raw_w, bool) or not isinstance(raw_w, (int, Fraction)):
+                if type(raw_w) is not int and type(raw_w) is not Fraction:
                     raise TypeError(f"Weight function {pname!r} must return exact int or Fraction, got {type(raw_w).__name__}")
                 wf = Fraction(raw_w)
                 if wf < 0:
@@ -1622,7 +1706,6 @@ def certify_formal_lower_bound(
                 }
 
         # Step 2: Solve exact Fraction backward Dijkstra on each Quotient Graph Q_m and machine-check step consistency!
-        INF_F = Fraction(10**18, 1)
         total_exact_bound = Fraction(0, 1)
         component_reports: List[Dict[str, Any]] = []
         unreachable_any = False
@@ -1650,20 +1733,20 @@ def certify_formal_lower_bound(
                 heapq.heappush(pq_f, (Fraction(0, 1), ctr, g))
             while pq_f:
                 d_f, _, v_a = heapq.heappop(pq_f)
-                if d_f > h_abs_f.get(v_a, INF_F):
+                if d_f > h_abs_f[v_a]:
                     continue
                 for u_a, w_f in abs_rev.get(v_a, ()):
                     nd_f = d_f + w_f
-                    if nd_f < h_abs_f.get(u_a, INF_F):
+                    if u_a not in h_abs_f or nd_f < h_abs_f[u_a]:
                         h_abs_f[u_a] = nd_f
                         ctr += 1
                         heapq.heappush(pq_f, (nd_f, ctr, u_a))
 
             for e_idx, (st, act, ns, _cost) in enumerate(concrete_edges):
-                hs_f = h_abs_f.get(pfn(st), INF_F)
-                hns_f = h_abs_f.get(pfn(ns), INF_F)
+                hs_f = h_abs_f.get(pfn(st))
+                hns_f = h_abs_f.get(pfn(ns))
                 wf = edge_weights_per_m[m_idx][e_idx]
-                if hs_f > wf + hns_f:
+                if hns_f is not None and (hs_f is None or hs_f > wf + hns_f):
                     return {
                         "epistemic_status": "REJECTED_HOMOMORPHISM_INCONSISTENT",
                         "system_id": reg.system_id,
@@ -1671,25 +1754,27 @@ def certify_formal_lower_bound(
                         "violating_transition": [_canonical_repr(st), _canonical_repr(act), _canonical_repr(ns)],
                     }
 
-            h0_f = h_abs_f.get(pfn(s0), INF_F)
-            if h0_f >= INF_F:
+            h0_f = h_abs_f.get(pfn(s0))
+            if h0_f is None:
                 unreachable_any = True
             else:
                 total_exact_bound += h0_f
             component_reports.append({
                 "name": pname,
                 "quotient_states": len(abs_nodes),
-                "exact_initial_bound": "UNREACHABLE_INF" if h0_f >= INF_F else str(h0_f),
+                "exact_initial_bound": "UNREACHABLE_INF" if h0_f is None else str(h0_f),
             })
 
         # Since all concrete step costs are integers, ceil(total_exact_bound) is a valid integer lower bound!
         if unreachable_any:
-            certified_int_bound = 10**15
+            # Some quotient cannot reach its abstract goals from pi(s0), so no concrete plan exists
+            # and every finite claimed bound holds. No finite sentinel stands in for infinity.
+            certified_int_bound = None
         else:
             num, den = total_exact_bound.numerator, total_exact_bound.denominator
             certified_int_bound = -(-num // den)
 
-        if certified_int_bound < claimed_lower_bound:
+        if certified_int_bound is not None and certified_int_bound < claimed_lower_bound:
             return {
                 "epistemic_status": "REJECTED_PARTITIONED_BOUND_TOO_WEAK",
                 "system_id": reg.system_id,
@@ -1747,7 +1832,7 @@ def certify_formal_lower_bound(
             tup = tuple(seq)
             out_v: List[Fraction] = []
             for item in tup:
-                if isinstance(item, bool) or not isinstance(item, (int, Fraction)):
+                if type(item) is not int and type(item) is not Fraction:
                     raise TypeError(f"[{ctx_label}] Expected exact int or Fraction, got {type(item).__name__}")
                 out_v.append(Fraction(item))
             return tuple(out_v)
