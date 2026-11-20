@@ -1,0 +1,40 @@
+SHOT plans=1 secs=90 width=40000 cap=6000000
+
+======== cal_246_official prefix=246 remaining<= 69 assign=F(12,11) T(12,6) W(10,11) P(10,1) B(12,1) D(10,6)
+  jobs Shaft(1) > WFree > Deliver > Win
+  start sh1=## sh2=## Wfree=false mid=0 right=0 w1010=false w1210=true gate=false hog=1 act=B guide=117 Shaft(1) > WFree > Deliver > Win
+  d=1 kept=4 best_h=108 sh1=## sh2=## Wfree=false mid=0 right=0 w1010=false w1210=true gate=false hog=1 act=D seen=5 t=0.0s
+  d=2 kept=12 best_h=102 sh1=## sh2=## Wfree=false mid=0 right=0 w1010=false w1210=true gate=false hog=1 act=D seen=17 t=0.0s
+  d=3 kept=44 best_h=102 sh1=## sh2=## Wfree=false mid=0 right=0 w1010=false w1210=true gate=false hog=1 act=D seen=61 t=0.0s
+  d=4 kept=135 best_h=100 sh1=## sh2=## Wfree=false mid=0 right=0 w1010=false w1210=true gate=false hog=1 act=D seen=196 t=0.0s
+  d=5 kept=382 best_h=100 sh1=## sh2=## Wfree=false mid=0 right=0 w1010=false w1210=true gate=false hog=1 act=D seen=578 t=0.0s
+  d=7 kept=3022 best_h=96 sh1=## sh2=## Wfree=false mid=0 right=0 w1010=false w1210=true gate=false hog=1 act=D seen=4688 t=0.0s
+  d=9 kept=21959 best_h=95 sh1=## sh2=## Wfree=false mid=0 right=0 w1010=false w1210=true gate=false hog=0 act=D seen=34938 t=0.2s
+  d=10 kept=40000 best_h=93 sh1=## sh2=## Wfree=false mid=0 right=0 w1010=false w1210=true gate=false hog=0 act=D seen=92127 t=0.4s
+  d=11 kept=40000 best_h=91 sh1=## sh2=## Wfree=false mid=0 right=0 w1010=false w1210=true gate=false hog=0 act=D seen=195880 t=0.8s
+  d=12 kept=40000 best_h=89 sh1=## sh2=## Wfree=false mid=0 right=0 w1010=false w1210=true gate=false hog=0 act=D seen=303964 t=1.2s
+  d=13 kept=40000 best_h=87 sh1=## sh2=## Wfree=false mid=0 right=0 w1010=false w1210=true gate=false hog=0 act=D seen=419443 t=1.5s
+  d=14 kept=40000 best_h=85 sh1=## sh2=## Wfree=false mid=0 right=0 w1010=false w1210=true gate=false hog=0 act=D seen=538381 t=1.7s
+  d=15 kept=40000 best_h=84 sh1=## sh2=## Wfree=false mid=0 right=0 w1010=false w1210=true gate=false hog=1 act=D seen=659530 t=1.9s
+  d=19 kept=40000 best_h=82 sh1=## sh2=## Wfree=false mid=0 right=0 w1010=true w1210=true gate=false hog=1 act=D seen=1138037 t=2.7s
+  d=20 kept=40000 best_h=82 sh1=## sh2=## Wfree=false mid=0 right=0 w1010=true w1210=true gate=false hog=1 act=D seen=1251487 t=2.9s
+  d=21 kept=40000 best_h=81 sh1=## sh2=## Wfree=false mid=0 right=0 w1010=true w1210=true gate=false hog=0 act=D seen=1360784 t=3.1s
+  d=22 kept=40000 best_h=79 sh1=## sh2=## Wfree=false mid=0 right=0 w1010=true w1210=true gate=false hog=0 act=D seen=1466955 t=3.3s
+  d=23 kept=40000 best_h=77 sh1=## sh2=## Wfree=false mid=0 right=0 w1010=true w1210=true gate=false hog=0 act=D seen=1571634 t=3.4s
+  d=25 kept=40000 best_h=77 sh1=## sh2=## Wfree=false mid=0 right=0 w1010=true w1210=true gate=false hog=0 act=D seen=1774177 t=3.8s
+  d=26 kept=40000 best_h=75 sh1=## sh2=## Wfree=false mid=0 right=0 w1010=true w1210=true gate=false hog=0 act=D seen=1872845 t=3.9s
+  d=27 kept=40000 best_h=74 sh1=## sh2=## Wfree=false mid=0 right=0 w1010=true w1210=true gate=false hog=1 act=D seen=1969915 t=4.1s
+  d=29 kept=40000 best_h=73 sh1=## sh2=## Wfree=false mid=0 right=0 w1010=true w1210=true gate=false hog=0 act=D seen=2156394 t=4.4s
+  d=30 kept=40000 best_h=72 sh1=## sh2=## Wfree=false mid=0 right=0 w1010=true w1210=true gate=false hog=1 act=D seen=2242884 t=4.6s
+  d=35 kept=40000 best_h=72 sh1=## sh2=## Wfree=false mid=0 right=0 w1010=true w1210=true gate=false hog=1 act=D seen=2668410 t=5.4s
+  d=38 kept=40000 best_h=71 sh1=## sh2=## Wfree=false mid=0 right=0 w1010=true w1210=true gate=false hog=2 act=D seen=2928594 t=5.8s
+  d=40 kept=40000 best_h=71 sh1=## sh2=## Wfree=false mid=0 right=0 w1010=true w1210=true gate=false hog=2 act=D seen=3103806 t=6.1s
+  d=45 kept=40000 best_h=71 sh1=## sh2=## Wfree=false mid=0 right=0 w1010=true w1210=true gate=false hog=2 act=D seen=3564743 t=7.0s
+  d=50 kept=40000 best_h=71 sh1=## sh2=## Wfree=false mid=0 right=0 w1010=true w1210=true gate=false hog=2 act=D seen=4044528 t=9.7s
+  d=55 kept=40000 best_h=72 sh1=## sh2=## Wfree=false mid=0 right=0 w1010=true w1210=true gate=false hog=1 act=D seen=4513985 t=10.6s
+  d=60 kept=40000 best_h=72 sh1=## sh2=## Wfree=false mid=0 right=0 w1010=true w1210=true gate=false hog=1 act=D seen=4945347 t=11.6s
+  d=65 kept=40000 best_h=72 sh1=## sh2=## Wfree=false mid=0 right=0 w1010=true w1210=true gate=false hog=1 act=D seen=5365170 t=12.5s
+  result maxd exp=2394938 seen=5738276 path_len=0
+  CALIBRATION MISSED (guide or engine needs work)
+
+SHOT DONE cal_ok=false best=316 

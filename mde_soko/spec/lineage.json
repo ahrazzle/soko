@@ -1,0 +1,21 @@
+{
+  "domain_id": "mde:soko-eval",
+  "locked_soko_file_count": 21,
+  "locked_soko_sha256sums_verified": true,
+  "plane1_spec_bytes": 11932,
+  "plane1_spec_relpath": "mde_soko/spec/plane1_soko_spec.md",
+  "plane1_spec_sha256": "aa628857cb0b372be14caccd71864af6462c0b46295c568e2c172015b9a2630b",
+  "plane1_spec_word_count": 1760,
+  "schema": "mde-soko-lineage/v0.1",
+  "source_lineage": {
+    "contested_heads": [],
+    "corpus_tree_sha256": "c324eb1ec07a3cd3c0bb1473cd3ffb9274d5f06c81b8a0f226076ebb2bec242a",
+    "soko_sha256sums_digest": "39eed1a3f8450141265af0bfba5e04030ba160fbe031bd47253493aacc7668d1"
+  },
+  "tracked_plane1_files": {
+    "SHA256SUMS": "39eed1a3f8450141265af0bfba5e04030ba160fbe031bd47253493aacc7668d1",
+    "mde_soko/spec/plane1_soko_spec.md": "aa628857cb0b372be14caccd71864af6462c0b46295c568e2c172015b9a2630b",
+    "mde_soko/spec/zone-manifest.soko_eval.v0.1.json": "5cb21cc6011ff81c6464dc8951e65ca589f374de89b428cab1f97ca7e6842f2e"
+  },
+  "zone_manifest_id": "sha256:4cf8df174c942632ed0798b333f7e5d17295cb5e16cc9281db0139e42272a4db"
+}

@@ -7,8 +7,10 @@ from typing import Any, Callable, Dict, List, Optional, Set, Tuple
 from .formal_kernel import (
     SAFE_BUILTINS,
     _canonical_repr,
+    _check_dual_state_parity,
     _get_locked_system,
     _sha256_hex,
+    _verify_reachable_dual_parity,
     assert_exact_immutable,
     kernel_sha256,
     validate_pure_ast,
@@ -63,29 +65,55 @@ def synthesize_formal_invariant(
                 if ns not in state_set:
                     return {"epistemic_status": "REJECTED_DOMAIN_NOT_INDUCTIVELY_CLOSED", "system_id": reg.system_id}
                 concrete_edges.append((st, act, ns))
+        reach_mismatch = _verify_reachable_dual_parity(
+            reg.system_id,
+            spec,
+            impl,
+            check_step_cost=False,
+            max_pairs=max(max_concrete_states, len(state_set) * 2),
+        )
+        if reach_mismatch is not None:
+            return reach_mismatch
         complete_space = True
     else:
-        q: deque[Tuple[Any, Any]] = deque([(s0, u0)])
-        visited: Set[Any] = {s0}
+        q: deque[Tuple[Any, Any, Tuple[Any, ...]]] = deque([(s0, u0, ())])
+        visited_pairs: Set[Tuple[Any, Any]] = {(s0, u0)}
+        seen_concrete: Set[Any] = {s0}
+        seen_edges: Set[Tuple[Any, Any, Any]] = set()
         truncated = False
         while q:
-            sc, uc = q.popleft()
-            if spec.project_obs(sc) != impl.project_obs(uc):
-                raise RuntimeError("SPEC/IMPL divergence")
-            concrete_states.append(sc)
+            sc, uc, path = q.popleft()
+            mismatch = _check_dual_state_parity(reg.system_id, spec, impl, sc, uc, path)
+            if mismatch is not None:
+                return mismatch
+            if sc not in concrete_states:
+                concrete_states.append(sc)
             for act in spec.actions(sc):
                 ns, nu = spec.step(sc, act), impl.step(uc, act)
+                npath = path + (act,)
                 if (ns is None) != (nu is None):
-                    raise RuntimeError("SPEC/IMPL survival divergence")
+                    return {
+                        "epistemic_status": "REJECTED_STEP_SURVIVAL_DIVERGENCE",
+                        "system_id": reg.system_id,
+                        "diverging_trace": [_canonical_repr(a) for a in npath],
+                    }
                 if ns is None:
                     continue
-                concrete_edges.append((sc, act, ns))
-                if ns not in visited:
-                    if len(visited) >= max_concrete_states:
+                next_mismatch = _check_dual_state_parity(reg.system_id, spec, impl, ns, nu, npath)
+                if next_mismatch is not None:
+                    return next_mismatch
+                edge_tup = (sc, act, ns)
+                if edge_tup not in seen_edges:
+                    seen_edges.add(edge_tup)
+                    concrete_edges.append(edge_tup)
+                pair = (ns, nu)
+                if pair not in visited_pairs:
+                    if ns not in seen_concrete and len(seen_concrete) >= max_concrete_states:
                         truncated = True
                         continue
-                    visited.add(ns)
-                    q.append((ns, nu))
+                    visited_pairs.add(pair)
+                    seen_concrete.add(ns)
+                    q.append((ns, nu, npath))
         complete_space = not truncated
 
     state_idx = {st: i for i, st in enumerate(concrete_states)}

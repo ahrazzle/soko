@@ -1,0 +1,127 @@
+SHOT plans=1 secs=90 width=40000 cap=10000000
+
+======== cal_246_official prefix=246 remaining<= 70 assign=F(12,11) T(12,6) W(10,11) P(10,1) B(12,1) D(10,6)
+  jobs GateHeld > Shaft(1) > WFree > Open(10,10) > Deliver > Win
+  start sh1=## sh2=## Wfree=false mid=0 right=0 w1010=false w1210=true gate=false hog=1 act=B done=0 prog=3 guide=83 GateHeld > Shaft(1) > WFree > Open(10,10) > Deliver > Win
+  -- GateHeld states=1 already=0 path=0 left=70
+    bfs GateHeld depth 0 seen=5 exp=1 hits=0 t=0.0s
+    bfs GateHeld depth 1 seen=17 exp=5 hits=0 t=0.0s
+    bfs GateHeld depth 2 seen=61 exp=17 hits=0 t=0.0s
+    bfs GateHeld FIRST at g=4 sh1=## sh2=## Wfree=false mid=0 right=0 w1010=false w1210=true gate=true hog=0 act=B seen=89 t=0.0s
+    bfs GateHeld depth 3 seen=196 exp=61 hits=1 t=0.0s
+    bfs GateHeld depth 4 seen=578 exp=196 hits=4 t=0.0s
+    bfs GateHeld depth 5 seen=1666 exp=578 hits=8 t=0.0s
+    bfs GateHeld depth 6 seen=4688 exp=1666 hits=8 t=0.0s
+    bfs GateHeld depth 7 seen=12979 exp=4688 hits=8 t=0.0s
+    bfs GateHeld collected hits=8 best_len=4 exp=4688 seen=12979 t=0.0s
+    selected n=8 best_total_est=79 sh1=## sh2=## Wfree=false mid=0 right=0 w1010=false w1210=true gate=true hog=0 act=D path_len=5
+    realized GateHeld n=8 best_len=4 sh1=## sh2=## Wfree=false mid=0 right=0 w1010=false w1210=true gate=true hog=0 act=B path=LLLL
+    selected n=8 best_total_est=79 sh1=## sh2=## Wfree=false mid=0 right=0 w1010=false w1210=true gate=true hog=0 act=D path_len=5
+  -- Shaft(1) states=8 already=0 path=4 left=66
+    bfs Shaft(1)-wall1 depth 0 seen=30 exp=8 hits=0 t=0.0s
+    bfs Shaft(1)-wall1 depth 1 seen=95 exp=30 hits=0 t=0.0s
+    bfs Shaft(1)-wall1 depth 2 seen=306 exp=95 hits=0 t=0.0s
+    bfs Shaft(1)-wall1 FIRST at g=4 sh1=*# sh2=## Wfree=false mid=0 right=0 w1010=false w1210=true gate=true hog=0 act=D seen=682 t=0.0s
+    bfs Shaft(1)-wall1 depth 3 seen=927 exp=306 hits=4 t=0.0s
+    bfs Shaft(1)-wall1 depth 4 seen=2698 exp=927 hits=8 t=0.0s
+    bfs Shaft(1)-wall1 depth 5 seen=7516 exp=2698 hits=8 t=0.0s
+    bfs Shaft(1)-wall1 depth 6 seen=20088 exp=7516 hits=8 t=0.1s
+    bfs Shaft(1)-wall1 depth 7 seen=51518 exp=20088 hits=8 t=0.2s
+    bfs Shaft(1)-wall1 depth 8 seen=127144 exp=51518 hits=8 t=0.4s
+    bfs Shaft(1)-wall1 collected hits=8 best_len=10 exp=51518 seen=127144 t=0.4s
+    shaft wall1 n=8 best_len=10 sh1=*# sh2=## Wfree=false mid=0 right=0 w1010=false w1210=true gate=true hog=0 act=D
+    bfs Shaft(1)-open depth 0 seen=48 exp=8 hits=0 t=0.0s
+    bfs Shaft(1)-open depth 1 seen=178 exp=48 hits=0 t=0.0s
+    bfs Shaft(1)-open depth 2 seen=587 exp=178 hits=0 t=0.0s
+    bfs Shaft(1)-open depth 3 seen=1794 exp=587 hits=0 t=0.0s
+    bfs Shaft(1)-open depth 4 seen=5153 exp=1794 hits=0 t=0.0s
+    bfs Shaft(1)-open depth 5 seen=14082 exp=5153 hits=0 t=0.0s
+    bfs Shaft(1)-open depth 6 seen=36814 exp=14082 hits=0 t=0.1s
+    bfs Shaft(1)-open depth 7 seen=92438 exp=36814 hits=0 t=0.2s
+    bfs Shaft(1)-open depth 8 seen=223162 exp=92438 hits=0 t=0.6s
+    bfs Shaft(1)-open depth 9 seen=518284 exp=223162 hits=0 t=1.1s
+    bfs Shaft(1)-open depth 10 seen=1160084 exp=518284 hits=0 t=1.9s
+    bfs Shaft(1)-open depth 11 seen=2508531 exp=1160084 hits=0 t=3.4s
+    bfs Shaft(1)-open depth 12 seen=5255101 exp=2508531 hits=0 t=8.7s
+    bfs Shaft(1)-open FIRST at g=14 sh1=.* sh2=*# Wfree=false mid=0 right=0 w1010=false w1210=true gate=true hog=0 act=D seen=6767889 t=10.8s
+    bfs Shaft(1)-open cap at g=13 seen=10000000 exp=4902914 hits=1
+    bfs Shaft(1)-open cap hits=1 best_len=24 exp=4902914 seen=10000000 t=18.5s
+    seed official Shaft(1) at 28 sh1=.* sh2=*# Wfree=false mid=0 right=0 w1010=false w1210=true gate=true hog=1 act=D
+    selected n=2 best_total_est=100 sh1=.* sh2=*# Wfree=false mid=0 right=0 w1010=false w1210=true gate=true hog=1 act=D path_len=28
+    realized Shaft(1) n=2 best_len=24 sh1=.* sh2=*# Wfree=false mid=0 right=0 w1010=false w1210=true gate=true hog=0 act=D path=LLLLLLLADDRDAAAAALDURADD
+    selected n=2 best_total_est=100 sh1=.* sh2=*# Wfree=false mid=0 right=0 w1010=false w1210=true gate=true hog=1 act=D path_len=28
+  -- WFree states=2 already=0 path=24 left=46
+    bfs WFree depth 0 seen=12 exp=2 hits=0 t=0.0s
+    bfs WFree depth 1 seen=44 exp=12 hits=0 t=0.0s
+    bfs WFree depth 2 seen=143 exp=44 hits=0 t=0.0s
+    bfs WFree FIRST at g=4 sh1=.. sh2=*# Wfree=true mid=0 right=0 w1010=false w1210=true gate=true hog=1 act=W seen=286 t=0.0s
+    bfs WFree depth 3 seen=436 exp=143 hits=2 t=0.0s
+    bfs WFree depth 4 seen=1269 exp=436 hits=16 t=0.0s
+    bfs WFree depth 5 seen=3585 exp=1269 hits=16 t=0.0s
+    bfs WFree depth 6 seen=9825 exp=3585 hits=16 t=0.0s
+    bfs WFree depth 7 seen=26068 exp=9825 hits=16 t=0.1s
+    bfs WFree depth 8 seen=67020 exp=26068 hits=16 t=0.2s
+    bfs WFree depth 9 seen=167128 exp=67020 hits=16 t=0.4s
+    bfs WFree depth 10 seen=404485 exp=167128 hits=16 t=0.8s
+    bfs WFree depth 11 seen=950925 exp=404485 hits=16 t=1.6s
+    bfs WFree depth 12 seen=2175132 exp=950925 hits=16 t=3.2s
+    bfs WFree depth 13 seen=4851134 exp=2175132 hits=16 t=7.9s
+    bfs WFree cap at g=14 seen=10000001 exp=4575806 hits=16
+    bfs WFree cap hits=16 best_len=28 exp=4575806 seen=10000001 t=19.0s
+    seed official WFree at 34 sh1=.. sh2=*# Wfree=true mid=0 right=0 w1010=false w1210=true gate=true hog=1 act=W
+    selected n=8 best_total_est=108 sh1=.. sh2=*# Wfree=true mid=0 right=0 w1010=false w1210=true gate=true hog=1 act=P path_len=33
+    realized WFree n=8 best_len=32 sh1=.. sh2=*# Wfree=true mid=0 right=0 w1010=false w1210=true gate=true hog=1 act=W path=LLLLLLLADDRDALDDAUAAALDURADDAAAU
+    selected n=8 best_total_est=108 sh1=.. sh2=*# Wfree=true mid=0 right=0 w1010=false w1210=true gate=true hog=1 act=P path_len=33
+  -- Open(10, 10) states=8 already=0 path=32 left=38
+    bfs Open(10, 10) depth 0 seen=15 exp=8 hits=0 t=0.0s
+    bfs Open(10, 10) depth 1 seen=22 exp=15 hits=0 t=0.0s
+    bfs Open(10, 10) depth 2 seen=30 exp=22 hits=0 t=0.0s
+    bfs Open(10, 10) depth 3 seen=54 exp=30 hits=0 t=0.0s
+    bfs Open(10, 10) depth 4 seen=112 exp=54 hits=0 t=0.0s
+    bfs Open(10, 10) depth 5 seen=241 exp=112 hits=0 t=0.0s
+    bfs Open(10, 10) depth 6 seen=511 exp=241 hits=0 t=0.0s
+    bfs Open(10, 10) depth 7 seen=1035 exp=511 hits=0 t=0.0s
+    bfs Open(10, 10) depth 8 seen=2001 exp=1035 hits=0 t=0.0s
+    bfs Open(10, 10) depth 9 seen=3605 exp=2001 hits=0 t=0.0s
+    bfs Open(10, 10) depth 10 seen=5948 exp=3605 hits=0 t=0.0s
+    bfs Open(10, 10) depth 11 seen=8940 exp=5948 hits=0 t=0.0s
+    bfs Open(10, 10) depth 12 seen=12323 exp=8940 hits=0 t=0.0s
+    bfs Open(10, 10) depth 13 seen=15745 exp=12323 hits=0 t=0.0s
+    bfs Open(10, 10) depth 14 seen=18837 exp=15745 hits=0 t=0.0s
+    bfs Open(10, 10) depth 15 seen=21302 exp=18837 hits=0 t=0.0s
+    bfs Open(10, 10) depth 16 seen=22996 exp=21302 hits=0 t=0.0s
+    bfs Open(10, 10) depth 17 seen=23964 exp=22996 hits=0 t=0.1s
+    bfs Open(10, 10) depth 18 seen=24400 exp=23964 hits=0 t=0.1s
+    bfs Open(10, 10) depth 19 seen=24543 exp=24400 hits=0 t=0.1s
+    bfs Open(10, 10) depth 20 seen=24573 exp=24543 hits=0 t=0.1s
+    bfs Open(10, 10) depth 21 seen=24576 exp=24573 hits=0 t=0.1s
+    bfs Open(10, 10) exhausted hits=0 best_len=0 exp=24576 seen=24576 t=0.1s
+    guided Open(10, 10) est=13 exact_hits=0 (exhausted)
+    guided Open(10, 10) d=1 kept=2 prog=3082 h=71 sh1=.. sh2=*# Wfree=true mid=0 right=0 w1010=false w1210=true gate=true hog=1 act=B seen=3 t=0.0s
+    guided Open(10, 10) d=2 kept=6 prog=3082 h=68 sh1=.. sh2=*# Wfree=true mid=0 right=0 w1010=false w1210=true gate=true hog=1 act=D seen=9 t=0.0s
+    guided Open(10, 10) d=3 kept=14 prog=3082 h=66 sh1=.. sh2=*# Wfree=true mid=0 right=0 w1010=false w1210=true gate=true hog=1 act=D seen=23 t=0.0s
+    guided Open(10, 10) d=5 kept=112 prog=3083 h=68 sh1=.. sh2=.# Wfree=true mid=0 right=0 w1010=false w1210=true gate=true hog=1 act=B seen=173 t=0.0s
+    guided Open(10, 10) d=10 kept=17616 prog=3083 h=51 sh1=.. sh2=*# Wfree=true mid=0 right=0 w1010=false w1210=true gate=true hog=1 act=D seen=28134 t=0.1s
+    guided Open(10, 10) d=15 kept=40000 prog=3086 h=43 sh1=.. sh2=*# Wfree=true mid=0 right=0 w1010=false w1210=true gate=false hog=1 act=B seen=459173 t=1.3s
+    guided Open(10, 10) d=20 kept=40000 prog=3091 h=47 sh1=.. sh2=*# Wfree=true mid=0 right=0 w1010=false w1210=true gate=false hog=1 act=B seen=1025109 t=2.2s
+    guided Open(10, 10) HIT at d=23 n=4 sh1=.. sh2=*# Wfree=true mid=0 right=0 w1010=true w1210=true gate=false hog=1 act=D t=2.7s
+    guided Open(10, 10) hit hits=4 exp=508134 seen=1352372
+    guided Open(10, 10) d=1 kept=3 prog=3083 h=77 sh1=.. sh2=*# Wfree=true mid=0 right=0 w1010=false w1210=true gate=true hog=1 act=W seen=4 t=0.0s
+    guided Open(10, 10) d=2 kept=7 prog=3083 h=74 sh1=.. sh2=*# Wfree=true mid=0 right=0 w1010=false w1210=true gate=true hog=1 act=P seen=11 t=0.0s
+    guided Open(10, 10) d=3 kept=19 prog=3083 h=71 sh1=.. sh2=*# Wfree=true mid=0 right=0 w1010=false w1210=true gate=true hog=1 act=B seen=30 t=0.0s
+    guided Open(10, 10) d=5 kept=122 prog=3083 h=66 sh1=.. sh2=*# Wfree=true mid=0 right=0 w1010=false w1210=true gate=true hog=1 act=D seen=200 t=0.0s
+    guided Open(10, 10) d=10 kept=19997 prog=3084 h=51 sh1=.. sh2=*# Wfree=true mid=0 right=0 w1010=false w1210=true gate=true hog=1 act=B seen=31315 t=0.1s
+    guided Open(10, 10) d=15 kept=40000 prog=3089 h=37 sh1=.. sh2=*# Wfree=true mid=0 right=0 w1010=false w1210=true gate=false hog=1 act=B seen=520602 t=1.2s
+    guided Open(10, 10) HIT at d=20 n=4 sh1=.. sh2=*# Wfree=true mid=0 right=0 w1010=true w1210=true gate=false hog=1 act=D t=2.2s
+    guided Open(10, 10) hit hits=4 exp=391315 seen=1036927
+    seed official Open(10, 10) at 56 sh1=.. sh2=*# Wfree=true mid=0 right=0 w1010=true w1210=true gate=false hog=3 act=D
+    selected n=8 best_total_est=90 sh1=.. sh2=*# Wfree=true mid=0 right=0 w1010=true w1210=true gate=false hog=1 act=D path_len=52
+    realized Open(10, 10) n=8 best_len=52 sh1=.. sh2=*# Wfree=true mid=0 right=0 w1010=true w1210=true gate=false hog=1 act=D path=LLLLLLLADDRDALDDAUAAALDURADDAAAUUUUDAARRRRRRRRDRADDD
+    selected n=8 best_total_est=90 sh1=.. sh2=*# Wfree=true mid=0 right=0 w1010=true w1210=true gate=false hog=1 act=D path_len=52
+  -- Deliver states=8 already=0 path=52 left=18
+    official suffix WIN at 70 sh1=.. sh2=*# Wfree=true mid=0 right=0 w1010=true w1210=true gate=false hog=6 act=P
+  CALIBRATION OK total=316
+  rust-verify alive=true win=true steps=316 total=316
+  wrote /workspace/soko-search/planner/runs/candidate-cal_246_official-316.txt
+
+SHOT DONE cal_ok=true best=316 

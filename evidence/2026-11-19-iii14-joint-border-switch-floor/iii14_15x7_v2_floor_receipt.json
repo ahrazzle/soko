@@ -1,0 +1,57 @@
+{
+  "room_id": "III-14-15x7",
+  "board_width": 15,
+  "board_height": 7,
+  "board_sha256_lf": "300563ca68370b85e44b73f0361320bc79948849f59897a3dd0b5cc470bf351c",
+  "prover_source_sha256": "4e6120553b8bd9d1d04cd77c3c818ee4609f4df8047c4e84a6d637d0ab1c05bc",
+  "epistemic_status": "LOWER_BOUND_UNWITNESSED",
+  "exact_optimum_reached": false,
+  "certified_15x7_floor": 42,
+  "reference_upper_bound": 48,
+  "root_h": 29,
+  "soko38_counterexample_h_before": 16,
+  "soko38_counterexample_h_after": 16,
+  "stop_reason": "state_cap_during_layer_42",
+  "packed24_bijective_states_checked": 1000000,
+  "exhaustive_quotient_edge_audit": {
+    "total_forward_quotient_edges_checked": 26424384555,
+    "total_violations": 0,
+    "bedrock_conserved_switch3x3": {"vertices": 992023200, "reachable": 500782016, "edges": 4125601380, "violations": 0},
+    "petrified_col_flow": {"vertices": 909397320, "reachable": 686385760, "edges": 22298783175, "violations": 0}
+  },
+  "concrete_random_walk_audit": {
+    "edges_checked": 55000021,
+    "violations": 0
+  },
+  "must_fail_controls": {
+    "sticky_door_34_route_rejected_at_step_30": true,
+    "corrupted_quotient_plus2_caught_by_edge_auditor": true,
+    "soko38_raw_drop2_repaired_to_consistent": true,
+    "r48_48step_witness_admissible_every_step": true
+  },
+  "astar_summary": {
+    "shards": 256,
+    "packed_bytes_per_state": 24,
+    "expanded_states": 267155728,
+    "unique_canonical_states": 741241265,
+    "concrete_edges_checked": 1239248858,
+    "hash_collisions_prevented_by_full_key": 994308435,
+    "bellman_violations": 0,
+    "total_elapsed_s": 413.637
+  },
+  "completed_f_layers": [
+    {"f": 29, "certified_floor": 30, "expanded": 3, "unique_states": 14, "edges_checked": 15, "collisions_prevented": 0, "elapsed_s": 0.002},
+    {"f": 30, "certified_floor": 31, "expanded": 210, "unique_states": 736, "edges_checked": 985, "collisions_prevented": 0, "elapsed_s": 0.010},
+    {"f": 31, "certified_floor": 32, "expanded": 719, "unique_states": 2592, "edges_checked": 3509, "collisions_prevented": 0, "elapsed_s": 0.020},
+    {"f": 32, "certified_floor": 33, "expanded": 5185, "unique_states": 18059, "edges_checked": 24939, "collisions_prevented": 0, "elapsed_s": 0.050},
+    {"f": 33, "certified_floor": 34, "expanded": 16706, "unique_states": 57459, "edges_checked": 81126, "collisions_prevented": 3, "elapsed_s": 0.110},
+    {"f": 34, "certified_floor": 35, "expanded": 62935, "unique_states": 206072, "edges_checked": 302688, "collisions_prevented": 25, "elapsed_s": 0.256},
+    {"f": 35, "certified_floor": 36, "expanded": 210110, "unique_states": 666460, "edges_checked": 1000478, "collisions_prevented": 256, "elapsed_s": 0.404},
+    {"f": 36, "certified_floor": 37, "expanded": 675401, "unique_states": 2093289, "edges_checked": 3195609, "collisions_prevented": 2524, "elapsed_s": 0.545},
+    {"f": 37, "certified_floor": 38, "expanded": 2219716, "unique_states": 6767349, "edges_checked": 10433186, "collisions_prevented": 26585, "elapsed_s": 0.911},
+    {"f": 38, "certified_floor": 39, "expanded": 6991617, "unique_states": 21028585, "edges_checked": 32803746, "collisions_prevented": 260512, "elapsed_s": 1.916},
+    {"f": 39, "certified_floor": 40, "expanded": 22400061, "unique_states": 66421410, "edges_checked": 104666448, "collisions_prevented": 2721815, "elapsed_s": 4.992},
+    {"f": 40, "certified_floor": 41, "expanded": 68659449, "unique_states": 200419558, "edges_checked": 319817625, "collisions_prevented": 28527620, "elapsed_s": 13.915},
+    {"f": 41, "certified_floor": 42, "expanded": 212609019, "unique_states": 612628443, "edges_checked": 986342539, "collisions_prevented": 489093954, "elapsed_s": 88.279}
+  ]
+}

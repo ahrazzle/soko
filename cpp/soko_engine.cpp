@@ -13,10 +13,31 @@
  *   - Collision-safe bucket chaining in `exact_window_shortcut`.
  */
 
-#include <bits/stdc++.h>
+#include <algorithm>
+#include <array>
+#include <atomic>
+#include <chrono>
+#include <cmath>
+#include <cstdint>
+#include <cstdio>
+#include <cstring>
+#include <functional>
+#include <iomanip>
+#include <iostream>
+#include <mutex>
+#include <numeric>
+#include <queue>
+#include <sstream>
+#include <string>
+#include <thread>
+#include <unordered_map>
+#include <unordered_set>
+#include <utility>
+#include <vector>
 using namespace std;
 
 static constexpr int MAX_CELLS = 512;
+static constexpr uint8_t OBJ_CORPSE = 21;
 static const int DX[4] = {0, 0, -1, 1};
 static const int DY[4] = {-1, 1, 0, 0};
 static const char DCH[5] = {'U', 'D', 'L', 'R', 'A'};
@@ -50,19 +71,26 @@ struct DynState {
         return true;
     }
 
+    // Each 8-byte word is absorbed with a multiply followed by an xorshift.
+    // A multiply alone (the earlier FNV-style loop) only carries bits upward,
+    // so states that differed only in the high bytes of a word collided:
+    // 0.2-0.8% of distinct states shared a full 64-bit hash, against about
+    // 1e-6 expected from the birthday bound. Exact-state tables still compare
+    // full states; the hash-only sets in the beam modes now lose almost none.
+    static inline uint64_t absorb(uint64_t h, uint64_t w) {
+        h ^= w; h *= 0xbf58476d1ce4e5b9ULL; return h ^ (h >> 31);
+    }
     uint64_t hash64(int n, bool check_notes) const {
         uint64_t h = 1469598103934665603ULL;
-        int q = n >> 3;
-        const uint64_t* p = reinterpret_cast<const uint64_t*>(obj);
-        for (int i = 0; i < q; ++i) { h ^= p[i] + 0x9e3779b97f4a7c15ULL; h *= 1099511628211ULL; }
-        for (int i = q << 3; i < n; ++i) { h ^= obj[i]; h *= 1099511628211ULL; }
-        h ^= ((uint64_t)y_open << 8) | p_open;
-        h *= 1099511628211ULL;
+        int i = 0;
+        for (; i + 8 <= n; i += 8) { uint64_t w; memcpy(&w, obj + i, 8); h = absorb(h, w); }
+        if (i < n) { uint64_t w = 0; memcpy(&w, obj + i, n - i); h = absorb(h, w ^ ((uint64_t)(n - i) << 56)); }
+        h = absorb(h, ((uint64_t)y_open << 8) | p_open | 0x10000ULL);
         if (check_notes) {
             int nw = (n + 63) >> 6;
-            for (int i = 0; i < nw; ++i) if (notes[i]) { h ^= notes[i] + (uint64_t)i; h *= 1099511628211ULL; }
+            for (int k = 0; k < nw; ++k) if (notes[k]) h = absorb(h ^ ((uint64_t)k << 58), notes[k]);
         }
-        return h ^ (h >> 31);
+        h ^= h >> 33; h *= 0x94d049bb133111ebULL; return h ^ (h >> 29);
     }
 };
 
@@ -138,6 +166,7 @@ bool run_late(const LevelMeta& M, DynState& s) {
                 }
             }
     }
+    bool corpse = false;
     if (M.part >= 2) {
         for (int y = 0; y < M.h; ++y)
             for (int x = 0; x < M.w; ++x)
@@ -159,16 +188,11 @@ bool run_late(const LevelMeta& M, DynState& s) {
                     }
                 }
             }
-        int monsters_left = 0;
         for (int i = 0; i < M.n; ++i) {
             if (dying[i]) {
                 if (is_monster(M.part, s.obj[i])) s.obj[i] = 0;
-                else if (is_hero(s.obj[i])) return true;
+                else if (is_hero(s.obj[i])) { s.obj[i] = OBJ_CORPSE; corpse = true; }
             }
-            if (is_monster(M.part, s.obj[i])) monsters_left++;
-        }
-        if (monsters_left == 0) {
-            for (int i = 0; i < M.n; ++i) if (s.obj[i] == 20) s.obj[i] = 0;
         }
     }
     if (!M.y_switches.empty()) {
@@ -179,7 +203,7 @@ bool run_late(const LevelMeta& M, DynState& s) {
             for (int idx : M.y_doors_init) if (s.obj[idx] == 18) s.obj[idx] = 0;
         } else if (any_u && s.y_open) {
             s.y_open = 0;
-            for (int idx : M.y_doors_init) { if (is_hero(s.obj[idx])) return true; s.obj[idx] = 18; }
+            for (int idx : M.y_doors_init) { if (is_hero(s.obj[idx])) corpse = true; s.obj[idx] = 18; }
         }
     }
     if (!M.p_switches.empty()) {
@@ -190,13 +214,20 @@ bool run_late(const LevelMeta& M, DynState& s) {
             for (int idx : M.p_doors_init) if (s.obj[idx] == 19) s.obj[idx] = 0;
         } else if (any_u && s.p_open) {
             s.p_open = 0;
-            for (int idx : M.p_doors_init) { if (is_hero(s.obj[idx])) return true; s.obj[idx] = 19; }
+            for (int idx : M.p_doors_init) { if (is_hero(s.obj[idx])) corpse = true; s.obj[idx] = 19; }
         }
+    }
+    // The monster gate opens after the door phase: a closing colored door may
+    // crush the last monster on this same turn (original rule order).
+    if (M.part >= 2) {
+        bool any_monster = false;
+        for (int i = 0; i < M.n && !any_monster; ++i) any_monster = is_monster(M.part, s.obj[i]);
+        if (!any_monster) for (int i = 0; i < M.n; ++i) if (s.obj[i] == 20) s.obj[i] = 0;
     }
     if (M.has_bard) {
         for (int i = 0; i < M.n; ++i) if (s.has_note(i) && !is_moveable(M.part, s.obj[i])) s.notes[i >> 6] &= ~(1ULL << (i & 63));
     }
-    return false;
+    return corpse;
 }
 
 inline bool check_win(const LevelMeta& M, const DynState& s) {
@@ -206,7 +237,134 @@ inline bool check_win(const LevelMeta& M, const DynState& s) {
     return hc == (int)M.goals.size();
 }
 
+// Several simultaneously active heroes (e.g. I-22, II-12, III-22). PuzzleScript
+// assigns directions to every Player at once and resolves ability rules before
+// ordinary movement; this mirrors PuzzleScriptOracle._step_multiple.
+// Scope: it mirrors the oracle under default flags only. The oracle's planted-bug
+// mutators (BUG_09 cycle order, BUG_10 cancel exemption) have no native plumbing,
+// like the rest of this engine, so do not assume flag parity with the oracle.
+int multi_step_state(const LevelMeta& M, DynState& s, int mv, bool prune_noop) {
+    const DynState snap = s;
+    int players[MAX_CELLS], np = 0;
+    uint8_t initial[MAX_CELLS];
+    for (int i = 0; i < M.n; ++i) if (is_active(s.obj[i])) players[np++] = i;
+    for (int k = 0; k < np; ++k) initial[k] = s.obj[players[k]];
+    auto cancel = [&]() {
+        s = snap;
+        return prune_noop ? -1 : (check_win(M, s) ? 1 : 0);
+    };
+    auto finish = [&]() {
+        if (M.part == 2)
+            for (int k = 0; k < np; ++k) if (is_active(s.obj[players[k]])) return cancel();
+        if (run_late(M, s)) return -1;
+        if (prune_noop && s.eq(snap, M.n, M.has_bard)) return -1;
+        return check_win(M, s) ? 1 : 0;
+    };
+
+    if (mv == 4) {
+        bool pending[MAX_CELLS] = {};
+        for (int k = 0; k < np; ++k) pending[k] = true;
+        for (int offset = 1; offset < M.max_heroes; ++offset)
+            for (int slot = 0; slot < M.max_heroes; ++slot) {
+                uint8_t identity = (uint8_t)(slot + 7);
+                for (int k = 0; k < np; ++k) {
+                    if (!pending[k] || initial[k] + 6 != identity) continue;
+                    uint8_t target = (uint8_t)(((slot + offset) % M.max_heroes) + 7);
+                    int f = -1;
+                    for (int x = 0; x < M.w && f < 0; ++x)
+                        for (int y = 0; y < M.h; ++y)
+                            if (s.obj[y * M.w + x] == target) { f = y * M.w + x; break; }
+                    if (f >= 0) { s.obj[players[k]] = identity; s.obj[f] = (uint8_t)(target - 6); pending[k] = false; }
+                }
+            }
+        return finish();
+    }
+
+    const int dx = DX[mv], dy = DY[mv];
+    auto adj = [&](int i) {
+        int x = i % M.w + dx, y = i / M.w + dy;
+        return (x >= 0 && x < M.w && y >= 0 && y < M.h) ? y * M.w + x : -1;
+    };
+    bool motion[MAX_CELLS] = {};
+    for (int k = 0; k < np; ++k) motion[players[k]] = true;
+    for (int k = 0; k < np; ++k) {
+        int src = players[k];
+        if (initial[k] == 1) {
+            for (int t = adj(src); t >= 0 && is_moveable(M.part, s.obj[t]); t = adj(t)) motion[t] = true;
+        } else if (initial[k] == 2) {
+            int x = src % M.w - dx, y = src / M.w - dy;
+            if (x >= 0 && x < M.w && y >= 0 && y < M.h && is_moveable(M.part, s.obj[y * M.w + x])) motion[y * M.w + x] = true;
+        }
+    }
+    for (int k = 0; k < np; ++k) {  // Wizard warpballs pass through active heroes.
+        if (initial[k] != 3) continue;
+        int src = players[k];
+        motion[src] = false;
+        int t = adj(src);
+        while (t >= 0) {
+            uint8_t o = s.obj[t];
+            if (is_static_obj(o)) { motion[src] = true; break; }
+            if (is_moveable(M.part, o)) { s.obj[src] = o; s.obj[t] = 3; break; }
+            t = adj(t);
+        }
+        if (t < 0 && M.part == 3) motion[src] = true;
+    }
+    for (int k = 0; k < np; ++k) {  // Druid transformations precede movement.
+        int src = players[k];
+        if (initial[k] != 6 || s.obj[src] != 6) continue;
+        int t = adj(src);
+        if (t < 0 || s.obj[t] == 0) continue;
+        motion[src] = false;
+        uint8_t o = s.obj[t];
+        if (o == 14 || o == 15 || o == 13) s.obj[t] = (o == 13) ? 14 : 13;
+        else if (is_hero(o) && !is_healer(o)) {
+            bool shielded = false;
+            int tx = t % M.w, ty = t / M.w;
+            for (int d = 0; d < 4; ++d) {
+                int hx = tx + DX[d], hy = ty + DY[d];
+                if (hx >= 0 && hx < M.w && hy >= 0 && hy < M.h && is_healer(s.obj[hy * M.w + hx])) shielded = true;
+            }
+            if (!shielded) s.obj[t] = 13;
+        }
+    }
+    bool bard[MAX_CELLS] = {};
+    bool any_bard = false;
+    for (int k = 0; k < np; ++k)
+        if (initial[k] == 5 && s.obj[players[k]] == 5) { bard[players[k]] = true; any_bard = true; }
+    if (any_bard) {  // Bard pseudo-movement overwrites other active heroes.
+        bool pending[MAX_CELLS] = {};
+        for (int i = 0; i < M.n; ++i) {
+            pending[i] = bard[i] || (s.has_note(i) && is_moveable(M.part, s.obj[i]));
+            if (bard[i]) motion[i] = false;
+        }
+        for (bool progress = true; progress;) {
+            progress = false;
+            for (int i = 0; i < M.n; ++i) {
+                if (!pending[i]) continue;
+                int t = adj(i);
+                if (t >= 0 && (s.obj[t] == 0 || (is_active(s.obj[t]) && s.obj[t] != 5))) {
+                    s.obj[t] = s.obj[i]; s.obj[i] = 0; pending[i] = false; progress = true;
+                }
+            }
+        }
+        for (int i = 0; i < M.n; ++i) if (pending[i] && bard[i]) return cancel();
+    }
+    if (M.has_bard) s.clr_notes();
+    for (bool progress = true; progress;) {
+        progress = false;
+        for (int i = 0; i < M.n; ++i) {
+            if (!motion[i]) continue;
+            int t = adj(i);
+            if (t >= 0 && s.obj[t] == 0) { s.obj[t] = s.obj[i]; s.obj[i] = 0; motion[i] = false; progress = true; }
+        }
+    }
+    return finish();
+}
+
 int step_state(const LevelMeta& M, DynState& s, int mv, bool prune_noop = true) {
+    int active_count = 0;
+    for (int i = 0; i < M.n && active_count < 2; ++i) if (is_active(s.obj[i])) ++active_count;
+    if (active_count > 1) return multi_step_state(M, s, mv, prune_noop);
     int ai = -1;
     for (int i = 0; i < M.n; ++i) if (is_active(s.obj[i])) { ai = i; break; }
     if (ai < 0) return -1;
@@ -399,6 +557,7 @@ string render_ascii(const LevelMeta& M, const DynState& s) {
             else if (o == 15) ch = 'O'; else if (o == 16) ch = 'L';
             else if (o == 17) ch = 'R'; else if (o == 18) ch = '[';
             else if (o == 19) ch = ']'; else if (o == 20) ch = 'M';
+            else if (o == OBJ_CORPSE) ch = 'X';
             else if (M.floor_grid[i] == 1) ch = 'G';
             else if (M.floor_grid[i] == 2) ch = '{';
             else if (M.floor_grid[i] == 3) ch = '}';
@@ -454,7 +613,8 @@ inline int compact_bucket16(const LevelMeta& M, const DynState& s) {
 }
 
 string tube_beam_refine(const LevelMeta& M, const DynState& start, const vector<DynState>& target,
-                        int max_d, int beam_w, int cap_bkt, bool role_agnostic, double budget_s) {
+                        int max_d, int beam_w, int cap_bkt, bool role_agnostic, double budget_s,
+                        size_t max_states = 13000000, uint64_t* states_accum = nullptr) {
     auto t0 = chrono::steady_clock::now();
     int N = (int)target.size() - 1;
     auto norm_v = [&](uint8_t v) -> uint8_t {
@@ -476,7 +636,7 @@ string tube_beam_refine(const LevelMeta& M, const DynState& start, const vector<
     string best_win;
 
     for (int d = 1; d <= max_d; ++d) {
-        if (chrono::duration<double>(chrono::steady_clock::now() - t0).count() > budget_s || seen.cnt > 13000000) break;
+        if ((budget_s > 0.0 && chrono::duration<double>(chrono::steady_clock::now() - t0).count() > budget_s) || seen.cnt > max_states) break;
         vector<DynState> c_states;
         vector<PRec> c_precs;
         vector<int> c_bkt;
@@ -540,6 +700,7 @@ string tube_beam_refine(const LevelMeta& M, const DynState& start, const vector<
         }
         cur.swap(nxt);
     }
+    if (states_accum) *states_accum += seen.cnt;
     return best_win;
 }
 
@@ -1218,14 +1379,18 @@ int main() {
     ios::sync_with_stdio(false);
     cin.tie(nullptr);
 
+    string header_line;
+    if (!getline(cin, header_line)) return 1;
+    istringstream hs(header_line);
     string mode;
     int part, w, h, p1, p2, p3;
-    if (!(cin >> mode >> part >> w >> h >> p1 >> p2 >> p3)) return 1;
+    long long p4 = 0;
+    if (!(hs >> mode >> part >> w >> h >> p1 >> p2 >> p3)) return 1;
+    hs >> p4;
     if (w * h > MAX_CELLS) {
         cout << "{\"error\":\"grid exceeds MAX_CELLS (512)\"}\n";
         return 1;
     }
-    string dummy; getline(cin, dummy);
     vector<string> rows(h);
     for (int y = 0; y < h; ++y) getline(cin, rows[y]);
     string seed_route;
@@ -1233,6 +1398,40 @@ int main() {
     if (seed_route == "-") seed_route.clear();
 
     auto [M, s0] = parse_level(part, w, h, rows);
+
+    if (mode == "perft") {
+        // Move-generator check in the style of chess perft: for each depth up to p1,
+        // the number of distinct states first reached at that depth (no-op moves
+        // pruned, deaths dropped) and an order-independent hash of those states
+        // (sum mod 2^64 of their FNV-1a frame digests). Equal counts alone miss
+        // engines that reach different states; the hash does not.
+        int depth = max(0, min(p1, 64));
+        unordered_map<uint64_t, vector<DynState>> seen;
+        auto add = [&](const DynState& st) {
+            auto& bucket = seen[st.hash64(M.n, M.has_bard)];
+            for (const auto& t : bucket) if (t.eq(st, M.n, M.has_bard)) return false;
+            bucket.push_back(st);
+            return true;
+        };
+        add(s0);
+        vector<DynState> layer = {s0};
+        cout << "{\"layers\":[";
+        for (int d = 1; d <= depth; ++d) {
+            vector<DynState> next;
+            uint64_t sum = 0;
+            for (const auto& st : layer)
+                for (int mv = 0; mv < 5; ++mv) {
+                    DynState ns = st;
+                    if (step_state(M, ns, mv, true) < 0) continue;
+                    if (add(ns)) { next.push_back(ns); sum += fold_traj_fnv64(M, ns, 14695981039346656037ULL); }
+                }
+            char hex[17]; snprintf(hex, sizeof hex, "%016llx", (unsigned long long)sum);
+            cout << (d > 1 ? "," : "") << "[" << next.size() << ",\"" << hex << "\"]";
+            layer.swap(next);
+        }
+        cout << "]}\n";
+        return 0;
+    }
 
     if (mode == "verify") {
         DynState cur = s0;
@@ -1262,9 +1461,18 @@ int main() {
     if (mode == "optimize") {
         int beam_w = max(2000, p1);
         int win_len = max(8, p2);
-        double total_budget = max(4.0, (double)p3);
+        double total_budget = max(0.0, (double)p3);
+        size_t stage_state_cap = p4 > 0 ? (size_t)p4 : (size_t)13000000;
         string best = seed_route;
         vector<string> log_entries;
+        uint64_t opt_states_seen = 0;
+        auto opt_t0 = chrono::steady_clock::now();
+        if (total_budget <= 0.0 && p4 <= 0) {
+            cout << "{\"initial_len\":" << seed_route.size() << ",\"best_len\":" << seed_route.size()
+                 << ",\"improved\":false,\"best_route\":\"" << seed_route << "\",\"stages\":[]"
+                 << ",\"states_seen\":0,\"timed_out\":true}\n";
+            return 0;
+        }
 
         string w_opt = exact_window_shortcut(M, s0, best, win_len);
         if (w_opt.size() < best.size()) {
@@ -1287,7 +1495,7 @@ int main() {
         vector<pair<int, int>> axes;
         for (int sm : {1, 2, 3}) axes.push_back({sym_diff(sm), sm});
         sort(axes.begin(), axes.end());
-        double per_stage = total_budget / 2.2;
+        double per_stage = total_budget > 0.0 ? (total_budget / 2.2) : 0.0;
 
         if (axes[0].first <= M.n / 5) {
             int best_sym = axes[0].second;
@@ -1295,7 +1503,7 @@ int main() {
             DynState cur = s0;
             mir_traj.push_back(transform_state(M, cur, best_sym));
             for (char c : best) { step_state(M, cur, d_idx(c), false); mir_traj.push_back(transform_state(M, cur, best_sym)); }
-            string m_hit = tube_beam_refine(M, s0, mir_traj, (int)best.size() - 1, beam_w, 240, true, per_stage);
+            string m_hit = tube_beam_refine(M, s0, mir_traj, (int)best.size() - 1, beam_w, 240, true, per_stage, stage_state_cap, &opt_states_seen);
             if (!m_hit.empty() && m_hit.size() < best.size()) {
                 log_entries.push_back("chiral_sym_" + to_string(best_sym) + ":" + to_string(best.size()) + "->" + to_string(m_hit.size()));
                 best = m_hit;
@@ -1305,7 +1513,7 @@ int main() {
         for (int iter = 0; iter < 2; ++iter) {
             vector<DynState> ref_traj = {s0};
             for (char c : best) { DynState nx = ref_traj.back(); step_state(M, nx, d_idx(c), false); ref_traj.push_back(nx); }
-            string r_hit = tube_beam_refine(M, s0, ref_traj, (int)best.size() - 1, max(32000, (beam_w * 4) / 5), 240, true, per_stage);
+            string r_hit = tube_beam_refine(M, s0, ref_traj, (int)best.size() - 1, max(32000, (beam_w * 4) / 5), 240, true, per_stage, stage_state_cap, &opt_states_seen);
             if (!r_hit.empty() && r_hit.size() < best.size()) {
                 log_entries.push_back("iter_tube_" + to_string(iter + 1) + ":" + to_string(best.size()) + "->" + to_string(r_hit.size()));
                 best = r_hit;
@@ -1323,19 +1531,32 @@ int main() {
             if (i) log_str += ",";
             log_str += "\"" + log_entries[i] + "\"";
         }
+        bool timed_out_flag = (total_budget > 0.0) && (chrono::duration<double>(chrono::steady_clock::now() - opt_t0).count() > total_budget);
         cout << "{\"initial_len\":" << seed_route.size()
              << ",\"best_len\":" << best.size()
              << ",\"improved\":" << (best.size() < seed_route.size() ? "true" : "false")
              << ",\"best_route\":\"" << best << "\""
-             << ",\"stages\":[" << log_str << "]}\n";
+             << ",\"stages\":[" << log_str << "]"
+             << ",\"states_seen\":" << opt_states_seen
+             << ",\"timed_out\":" << (timed_out_flag ? "true" : "false")
+             << "}\n";
         return 0;
     }
 
     if (mode == "solve") {
-        int max_d = max(1, p1), beam_w = max(2000, p2);
-        double budget_s = max(2.0, (double)p3);
+        int max_d = max(0, p1), beam_w = max(2000, p2);
+        double budget_s = max(0.0, (double)p3);
         auto t0 = chrono::steady_clock::now();
-        if (check_win(M, s0)) { cout << "{\"solved\":true,\"len\":0,\"route\":\"\",\"explored\":1}\n"; return 0; }
+        if (check_win(M, s0)) {
+            cout << "{\"solved\":true,\"len\":0,\"route\":\"\",\"explored\":1,\"nodes_expanded\":0"
+                 << ",\"completed_depth\":0,\"termination_reason\":\"solved\",\"timed_out\":false"
+                 << ",\"search_algorithm\":\"bucketed_beam\"}\n";
+            return 0;
+        }
+        uint64_t solve_nodes = 0;
+        int solve_completed = 0;
+        string solve_term = "depth_limit";
+        bool solve_timed_out = false;
 
         struct PRec { int prev; char mv; };
         vector<vector<PRec>> trace(max_d + 1);
@@ -1346,7 +1567,10 @@ int main() {
         string best_win;
 
         for (int d = 1; d <= max_d; ++d) {
-            if (chrono::duration<double>(chrono::steady_clock::now() - t0).count() > budget_s || seen.cnt > 12000000) break;
+            if (chrono::duration<double>(chrono::steady_clock::now() - t0).count() >= budget_s) {
+                solve_timed_out = true; solve_term = "time_budget"; break;
+            }
+            if (seen.cnt > 12000000) { solve_term = "state_limit"; break; }
             vector<DynState> c_states;
             vector<PRec> c_precs;
             vector<int> c_bkt;
@@ -1357,6 +1581,7 @@ int main() {
             order_keys.reserve(cur.size() * 4);
 
             for (int i = 0; i < (int)cur.size(); ++i) {
+                ++solve_nodes;
                 for (int mv = 0; mv < 5; ++mv) {
                     DynState ns = cur[i];
                     int res = step_state(M, ns, mv, true);
@@ -1391,7 +1616,9 @@ int main() {
                 }
                 if (!best_win.empty()) break;
             }
-            if (!best_win.empty() || c_states.empty()) break;
+            if (!best_win.empty()) { solve_term = "solved"; break; }
+            if (c_states.empty()) { solve_term = "exhausted"; break; }
+            solve_completed = d;
             sort(order_keys.begin(), order_keys.end());
             unordered_map<int, int> bc;
             vector<DynState> nxt;
@@ -1414,13 +1641,24 @@ int main() {
         cout << "{\"solved\":" << (!best_win.empty() ? "true" : "false")
              << ",\"len\":" << best_win.size()
              << ",\"route\":\"" << best_win << "\""
-             << ",\"explored\":" << seen.cnt << "}\n";
+             << ",\"explored\":" << seen.cnt
+             << ",\"nodes_expanded\":" << solve_nodes
+             << ",\"completed_depth\":" << solve_completed
+             << ",\"termination_reason\":\"" << solve_term << "\""
+             << ",\"timed_out\":" << (solve_timed_out ? "true" : "false")
+             << ",\"search_algorithm\":\"bucketed_beam\"}\n";
         return 0;
     }
 
     if (mode == "prove_lb") {
-        int max_bound = max(1, p1);
-        double budget_s = max(2.0, (double)p3);
+        // Contract: VERIFIED only with a witness; otherwise EXHAUSTIVE_LOWER_BOUND.
+        // A floor never exceeds max_bound + 1 and nothing is claimed before the
+        // start node has been expanded. A zero budget or state cap is honored.
+        // g and h are stored in uint8_t, so the bound is clamped to 250.
+        int requested_bound = max(0, p1);
+        int max_bound = min(requested_bound, 250);
+        double budget_s = max(0.0, (double)p3);
+        size_t state_cap = p2 > 0 ? (size_t)p2 : 0;
         auto t0 = chrono::steady_clock::now();
         bool has_druid = false, has_wizard = false, has_fighter = false;
         for (int i = 0; i < M.n; ++i) {
@@ -1485,6 +1723,8 @@ int main() {
                  << ",\"wizard_ray_bound_enabled\":" << (wiz_bound.enabled ? "true" : "false")
                  << ",\"exact_state_tt\":true,\"exact_tt_prunes\":0,\"hash_collisions_prevented\":0"
                  << ",\"nodes_expanded\":0,\"edge_consistency_checks\":0"
+                 << ",\"completed_depth\":-1,\"termination_reason\":\"solved\",\"timed_out\":false"
+                 << ",\"states_seen\":1,\"search_algorithm\":\"trivial_initial_win\""
                  << ",\"winning_witness\":\"\",\"epistemic_status\":\"VERIFIED\"}\n";
             return 0;
         }
@@ -1520,14 +1760,15 @@ int main() {
                 return true;
             };
 
-            const size_t MAX_ASTAR_NODES = (budget_s >= 25.0) ? 15000000 : ((budget_s >= 10.0) ? 8000000 : 4000000);
+            const size_t MAX_ASTAR_NODES = state_cap ? state_cap
+                : ((budget_s >= 25.0) ? 15000000 : ((budget_s >= 10.0) ? 8000000 : 4000000));
             const size_t HBITS = (budget_s >= 25.0) ? 25 : ((budget_s >= 10.0) ? 24 : 23); // 8,388,608 hash slots
             vector<uint64_t> hkeys(1ULL << HBITS, 0);
             vector<uint32_t> hvals(1ULL << HBITS, 0xFFFFFFFFu);
             const size_t HMASK = (1ULL << HBITS) - 1;
 
             vector<CompactNode> pool;
-            pool.reserve(MAX_ASTAR_NODES);
+            pool.reserve(min<size_t>(MAX_ASTAR_NODES, 4000000));
             vector<vector<uint32_t>> buckets(max_bound + 4);
 
             uint64_t edge_checks = 0, total_nodes = 0, exact_dedups = 0, hash_collisions_prevented = 0;
@@ -1579,14 +1820,39 @@ int main() {
                 }
             };
 
+            string termination = "max_bound";
+            bool timed_out = false, start_expanded = false;
+            auto elapsed = [&]() { return chrono::duration<double>(chrono::steady_clock::now() - t0).count(); };
             if (h0 <= max_bound) {
                 uint64_t hk0 = s0.hash64(M.n, M.has_bard); if (!hk0) hk0 = 1;
                 upsert_node(hk0, s0, 0, (uint8_t)min(255, h0), 0xFFFFFFFFu, 0);
+            } else if (budget_s <= 0.0 || (state_cap && state_cap <= 1)) {
+                timed_out = budget_s <= 0.0;
+                termination = timed_out ? "time_budget" : "state_limit";
             } else {
-                proven_floor = h0;
+                // The start heuristic already exceeds the bound. Expand the start node so the
+                // claim max_bound + 1 rests on checked transitions, not on h(s0) alone.
+                bool any_successor = false;
+                for (int mv = 0; mv < 5 && !consistency_violated; ++mv) {
+                    DynState ns = s0;
+                    int res = step_state(M, ns, mv, true);
+                    if (res < 0) continue;
+                    any_successor = true;
+                    int hns = (res == 1) ? 0 : h_admissible(ns);
+                    edge_checks++;
+                    if (h0 > 1 + hns && hns < 999) consistency_violated = true;
+                }
+                total_nodes = 1;
+                start_expanded = true;
+                termination = any_successor ? "heuristic_exceeds_bound" : "exhausted";
+                proven_floor = max_bound + 1;
             }
 
-            const unsigned n_threads = max(1u, min(8u, thread::hardware_concurrency()));
+            // SOKO_ENGINE_THREADS overrides the thread count, so tests can check that the
+            // reported counts do not depend on it.
+            const char* threads_env = getenv("SOKO_ENGINE_THREADS");
+            const unsigned n_threads = threads_env && atoi(threads_env) > 0
+                ? (unsigned)min(64, atoi(threads_env)) : max(1u, min(8u, thread::hardware_concurrency()));
             const size_t BATCH = 16384;
             struct CandRec { uint64_t hk; DynState ns; uint8_t g, h, won; uint32_t par; char mv; };
             atomic<bool> incons_flag{false};
@@ -1595,11 +1861,12 @@ int main() {
                 size_t base = 0;
                 bool stopped_early = false;
                 while (base < buckets[f].size() && !solved && !consistency_violated) {
-                    if (chrono::duration<double>(chrono::steady_clock::now() - t0).count() > budget_s ||
-                        pool.size() + BATCH * 5 > MAX_ASTAR_NODES) {
-                        stopped_early = true; break;
+                    if (elapsed() >= budget_s) { stopped_early = true; timed_out = true; termination = "time_budget"; break; }
+                    if (state_cap ? pool.size() >= MAX_ASTAR_NODES : pool.size() + BATCH * 5 > MAX_ASTAR_NODES) {
+                        stopped_early = true; termination = "state_limit"; break;
                     }
-                    size_t end = min(buckets[f].size(), base + BATCH);
+                    // With an explicit state cap, expand one node at a time so the cap is exact.
+                    size_t end = min(buckets[f].size(), base + (state_cap ? (size_t)1 : BATCH));
                     vector<uint32_t> active;
                     active.reserve(end - base);
                     for (size_t idx = base; idx < end; ++idx) {
@@ -1611,6 +1878,7 @@ int main() {
                     base = end;
                     if (active.empty()) continue;
                     total_nodes += active.size();
+                    start_expanded = true;
 
                     unsigned nt = (active.size() >= 128) ? n_threads : 1u;
                     vector<vector<CandRec>> outs(nt);
@@ -1662,9 +1930,11 @@ int main() {
                         for (auto& t : ths) t.join();
                     }
                     if (incons_flag.load()) { consistency_violated = true; break; }
+                    // Every edge in the batch was checked, so count them all before merging.
+                    // Stopping at the thread that holds the win made the count depend on how
+                    // many threads split the batch.
+                    for (unsigned tid = 0; tid < nt; ++tid) { edge_checks += ecs[tid]; exact_dedups += deds[tid]; }
                     for (unsigned tid = 0; tid < nt; ++tid) {
-                        edge_checks += ecs[tid];
-                        exact_dedups += deds[tid];
                         for (const auto& c : outs[tid]) {
                             if (c.won) {
                                 solved = true;
@@ -1686,8 +1956,17 @@ int main() {
                 }
                 vector<uint32_t>().swap(buckets[f]);
                 if (consistency_violated || stopped_early) break;
-                if (!solved) proven_floor = f + 1;
+                if (!solved) {
+                    proven_floor = f + 1;
+                    bool open_left = false;
+                    for (int g2 = f + 1; g2 <= max_bound && !open_left; ++g2) open_left = !buckets[g2].empty();
+                    if (!open_left) { termination = "exhausted"; proven_floor = max_bound + 1; break; }
+                }
             }
+            if (solved) termination = "solved";
+            // Nothing is claimed unless the start node was actually expanded.
+            if (!solved && !start_expanded) proven_floor = 0;
+            if (!solved) proven_floor = min(proven_floor, max_bound + 1);
 
             if (consistency_violated) {
                 cout << "{\"proven_floor\":0,\"exact_optimum_reached\":false,\"nodes_expanded\":" << total_nodes
@@ -1706,8 +1985,15 @@ int main() {
                  << ",\"hash_collisions_prevented\":" << hash_collisions_prevented
                  << ",\"nodes_expanded\":" << total_nodes
                  << ",\"edge_consistency_checks\":" << edge_checks
+                 << ",\"completed_depth\":" << (proven_floor - 1)
+                 << ",\"termination_reason\":\"" << termination << "\""
+                 << ",\"timed_out\":" << (timed_out ? "true" : "false")
+                 << ",\"states_seen\":" << pool.size()
+                 << ",\"start_heuristic\":" << h0
+                 << ",\"requested_bound\":" << requested_bound << ",\"effective_bound\":" << max_bound
+                 << ",\"search_algorithm\":\"exact_state_bucketed_astar\""
                  << ",\"winning_witness\":\"" << winning_witness << "\""
-                 << ",\"epistemic_status\":\"VERIFIED\"}\n";
+                 << ",\"epistemic_status\":\"" << (solved ? "VERIFIED" : "EXHAUSTIVE_LOWER_BOUND") << "\"}\n";
             return 0;
         }
 
@@ -1725,11 +2011,11 @@ int main() {
 
         uint64_t edge_checks = 0, total_nodes = 0, exact_tt_prunes = 0, hash_collisions_prevented = 0;
         int proven_floor = h_admissible(s0);
-        bool solved = false, consistency_violated = false;
+        bool solved = false, consistency_violated = false, any_timed_out = false;
         string winning_witness;
 
         for (int bound = proven_floor; !solved && !consistency_violated && bound <= max_bound; ++bound) {
-            if (chrono::duration<double>(chrono::steady_clock::now() - t0).count() > budget_s) break;
+            if (chrono::duration<double>(chrono::steady_clock::now() - t0).count() > budget_s) { any_timed_out = true; break; }
             uint16_t iter_id = (uint16_t)(bound + 1);
             bool found = false, timed_out = false;
             int h0 = h_admissible(s0);
@@ -1784,10 +2070,13 @@ int main() {
                 }
             };
             dfs(s0, 0, h0);
+            if (timed_out) any_timed_out = true;
             if (consistency_violated || timed_out) break;
             if (found) { solved = true; proven_floor = bound; break; }
             else proven_floor = bound + 1;
         }
+        if (!solved && total_nodes == 0) proven_floor = 0;
+        if (!solved) proven_floor = min(proven_floor, max_bound + 1);
 
         if (consistency_violated) {
             cout << "{\"proven_floor\":0,\"exact_optimum_reached\":false,\"nodes_expanded\":" << total_nodes
@@ -1806,8 +2095,17 @@ int main() {
              << ",\"hash_collisions_prevented\":" << hash_collisions_prevented
              << ",\"nodes_expanded\":" << total_nodes
              << ",\"edge_consistency_checks\":" << edge_checks
+             << ",\"completed_depth\":" << (proven_floor - 1)
+             << ",\"termination_reason\":\""
+             << (solved ? "solved" : any_timed_out ? "time_budget" : total_nodes == 0 ? "not_started" : "max_bound") << "\""
+             << ",\"timed_out\":" << (any_timed_out ? "true" : "false")
+             // IDA* re-expands states in every iteration, so this counts expansions, not distinct states.
+             << ",\"states_seen\":" << total_nodes
+             << ",\"states_seen_counts_reexpansions\":true"
+             << ",\"requested_bound\":" << requested_bound << ",\"effective_bound\":" << max_bound
+             << ",\"search_algorithm\":\"exact_state_ida_star\""
              << ",\"winning_witness\":\"" << winning_witness << "\""
-             << ",\"epistemic_status\":\"VERIFIED\"}\n";
+             << ",\"epistemic_status\":\"" << (solved ? "VERIFIED" : "EXHAUSTIVE_LOWER_BOUND") << "\"}\n";
         return 0;
     }
 

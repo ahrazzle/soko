@@ -1,0 +1,63 @@
+{
+  "epistemic_status": "LOWER_BOUND_UNWITNESSED",
+  "room_id": "III-14-15x7",
+  "board_sha256_lf": "300563ca68370b85e44b73f0361320bc79948849f59897a3dd0b5cc470bf351c",
+  "prover_source_sha256": "4d137f05837ba51e2312764f46eb6d95ca7c2b1f42720ac7b82000709a54363c",
+  "self_test_mode": false,
+  "exact_optimum_reached": false,
+  "certified_15x7_floor": 40,
+  "root_h_s0": 27,
+  "soko38_counterexample_check": {
+    "h_before": 16,
+    "h_after": 16,
+    "step_drop": 0,
+    "consistent": true
+  },
+  "exhaustive_quotient_edge_audit": {
+    "epistemic_status": "VERIFIED",
+    "total_forward_quotient_edges_checked": 4699457514,
+    "total_violations": 0,
+    "switch3x3_pdb": {"vertices": 248005800, "reachable": 158584082, "forward_edges": 1174609579, "violations": 0},
+    "harvest_adj_pdb": {"vertices": 71516160, "reachable": 47515526, "forward_edges": 718663785, "violations": 0},
+    "ringflow5_pdb": {"vertices": 55745040, "reachable": 43295666, "forward_edges": 1520134958, "violations": 0},
+    "orthoflow5_pdb": {"vertices": 55745040, "reachable": 43295666, "forward_edges": 1286049192, "violations": 0}
+  },
+  "concrete_random_walk_audit": {
+    "edges_checked": 55000021,
+    "violations": 0
+  },
+  "must_fail_controls": {
+    "sticky_door_34_rejected_at_step_30": true,
+    "planted_quotient_drop2_caught": true,
+    "planted_soko38_drop2_caught": true,
+    "planted_tail_overestimate_caught": true
+  },
+  "astar_summary": {
+    "stop_reason": "state_cap_during_layer_40",
+    "expanded_states": 242199597,
+    "unique_canonical_states": 663700313,
+    "concrete_edges_checked": 1129623605,
+    "hash_collisions_prevented": 204666188,
+    "bellman_violations": 0,
+    "build_time_s": 15.277,
+    "quotient_audit_time_s": 2.902,
+    "walk_audit_time_s": 1.112,
+    "astar_time_s": 56.253,
+    "total_time_s": 76.203
+  },
+  "completed_f_layers": [
+    {"f": 27, "certified_floor": 28, "expanded": 5, "unique_canon_states": 22, "edges_checked": 25, "collisions_prevented": 0, "elapsed_s": 0.001},
+    {"f": 28, "certified_floor": 29, "expanded": 78, "unique_canon_states": 283, "edges_checked": 386, "collisions_prevented": 0, "elapsed_s": 0.005},
+    {"f": 29, "certified_floor": 30, "expanded": 570, "unique_canon_states": 2020, "edges_checked": 2761, "collisions_prevented": 0, "elapsed_s": 0.009},
+    {"f": 30, "certified_floor": 31, "expanded": 2607, "unique_canon_states": 8944, "edges_checked": 12615, "collisions_prevented": 0, "elapsed_s": 0.014},
+    {"f": 31, "certified_floor": 32, "expanded": 11513, "unique_canon_states": 38611, "edges_checked": 55687, "collisions_prevented": 0, "elapsed_s": 0.022},
+    {"f": 32, "certified_floor": 33, "expanded": 38723, "unique_canon_states": 125447, "edges_checked": 186539, "collisions_prevented": 44, "elapsed_s": 0.042},
+    {"f": 33, "certified_floor": 34, "expanded": 136961, "unique_canon_states": 428987, "edges_checked": 655927, "collisions_prevented": 435, "elapsed_s": 0.072},
+    {"f": 34, "certified_floor": 35, "expanded": 433143, "unique_canon_states": 1335999, "edges_checked": 2063870, "collisions_prevented": 4383, "elapsed_s": 0.144},
+    {"f": 35, "certified_floor": 36, "expanded": 1380190, "unique_canon_states": 4178236, "edges_checked": 6544241, "collisions_prevented": 25088, "elapsed_s": 0.340},
+    {"f": 36, "certified_floor": 37, "expanded": 4226498, "unique_canon_states": 12643235, "edges_checked": 19959902, "collisions_prevented": 136468, "elapsed_s": 0.862},
+    {"f": 37, "certified_floor": 38, "expanded": 12897385, "unique_canon_states": 38051059, "edges_checked": 60768444, "collisions_prevented": 767208, "elapsed_s": 2.364},
+    {"f": 38, "certified_floor": 39, "expanded": 38294993, "unique_canon_states": 111356411, "edges_checked": 179795871, "collisions_prevented": 5122173, "elapsed_s": 6.680},
+    {"f": 39, "certified_floor": 40, "expanded": 112337002, "unique_canon_states": 321478457, "edges_checked": 525838149, "collisions_prevented": 40466546, "elapsed_s": 20.442}
+  ]
+}

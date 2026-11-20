@@ -146,9 +146,16 @@ TOOLS: List[Dict[str, Any]] = [
                 "budget_sec": {
                     "type": "integer",
                     "default": 35,
-                    "minimum": 4,
+                    "minimum": 0,
                     "maximum": 180,
-                    "description": "Total compute budget in seconds across optimization stages.",
+                    "description": "Compute time budget in seconds (pass 0 with max_states > 0 for deterministic wall-clock-free search).",
+                },
+                "max_states": {
+                    "type": "integer",
+                    "default": 0,
+                    "minimum": 0,
+                    "maximum": 50000000,
+                    "description": "Deterministic per-stage state cap for Chiral-Mirror and Iterative Tube Beam.",
                 },
             },
             "additionalProperties": False,
@@ -217,7 +224,7 @@ TOOLS: List[Dict[str, Any]] = [
     {
         "name": "soko_verify_tcb_lock",
         "title": "Verify Runtime SHA256SUMS Manifest & TCB Checker Pins",
-        "description": "Verify runtime cryptographic SHA-256 hashes of all tracked repository files against SHA256SUMS and return SHA-256 pins for every Python and C++20 checker.",
+        "description": "Check the SHA-256 hashes of the checker and prover sources listed in SHA256SUMS (docs, tests, ledgers and the compiled binary are not listed), without compiling anything, and return SHA-256 pins for the Python checkers and the C++ engine source. The local engine binary, if one exists, is hashed and reported separately; it is never accepted as a manifest entry.",
         "inputSchema": {"type": "object", "additionalProperties": False},
         "annotations": {"readOnlyHint": True, "idempotentHint": True, "openWorldHint": False},
     },
@@ -814,18 +821,29 @@ def dispatch_tool_call(name: str, args: Dict[str, Any]) -> Dict[str, Any]:
         res = verify_route_dual(
             part,
             grid,
-            str(args["route"]),
+            args["route"],
             require_cpp=bool(args.get("require_cpp", False)),
         )
         if rid:
+            # The certificate must cover the room binding too, so recompute it.
             res["room_id"] = rid
+            res.pop("certificate_sha256", None)
+            res["certificate_sha256"] = digest(res)
         return res
 
     if name == "soko_optimize_route":
         rid, part, grid, meta = resolve_room_input(args.get("room_id"), args.get("part"), args.get("grid"))
         seed = args.get("seed_route")
-        if not seed and meta:
-            seed = meta.get("prior_record_route_87") or meta.get("reference_route")
+        if not seed:
+            # Catalog rooms do not carry the prior 87-key III-20 record; take it from the
+            # fixture for the identical board so the 87 -> 84 generator control still runs.
+            # The board match also covers callers that pass part and grid without a room_id.
+            prior = (meta or {}).get("prior_record_route_87") or next(
+                (f["prior_record_route_87"] for f in FRONTIER_ROOMS.values()
+                 if f.get("prior_record_route_87") and f["part"] == part and list(f["grid"]) == list(grid)),
+                None,
+            )
+            seed = prior or (meta or {}).get("reference_route")
         if not seed:
             raise ValueError("Provide 'seed_route' (or specify a built-in 'room_id' with a reference route).")
         res = optimize_route_verified(
@@ -835,9 +853,13 @@ def dispatch_tool_call(name: str, args: Dict[str, Any]) -> Dict[str, Any]:
             beam_width=int(args.get("beam_width", 40000)),
             window_len=int(args.get("window_len", 14)),
             budget_sec=int(args.get("budget_sec", 35)),
+            max_states=int(args.get("max_states", 0)),
         )
         if rid:
             res["room_id"] = rid
+            if "certificate_sha256" in res:
+                res.pop("certificate_sha256", None)
+                res["certificate_sha256"] = digest(res)
         return res
 
     if name == "soko_solve_room":
@@ -851,6 +873,9 @@ def dispatch_tool_call(name: str, args: Dict[str, Any]) -> Dict[str, Any]:
         )
         if rid:
             res["room_id"] = rid
+            if "certificate_sha256" in res:
+                res.pop("certificate_sha256", None)
+                res["certificate_sha256"] = digest(res)
         return res
 
     if name == "soko_prove_floor":
@@ -863,6 +888,9 @@ def dispatch_tool_call(name: str, args: Dict[str, Any]) -> Dict[str, Any]:
         )
         if rid:
             res["room_id"] = rid
+            if "certificate_sha256" in res:
+                res.pop("certificate_sha256", None)
+                res["certificate_sha256"] = digest(res)
         return res
 
     if name == "soko_run_planted_bug_audit":

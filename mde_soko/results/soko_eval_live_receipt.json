@@ -1,0 +1,2096 @@
+{
+  "benchmark_18_trilogy": {
+    "S0_b0_open_loop": {
+      "bare_json_count": 11,
+      "bare_json_rate": 0.611111,
+      "failure_histogram": {
+        "GOALS_NOT_MET": 11,
+        "MISSING_JSON_KEYS": 7
+      },
+      "lexicographic_score": {
+        "horizon_charged_mean_keys": 240.0,
+        "horizon_charged_total_keys": 4320,
+        "horizon_keys_cap": 240,
+        "lexicographic_key": [
+          1,
+          0,
+          -4320
+        ],
+        "protocol_violations": 0,
+        "qualified": true,
+        "solved_count": 0,
+        "total_rooms": 18
+      },
+      "rooms": [
+        {
+          "alive": true,
+          "bare_json": true,
+          "completion_tokens": 7,
+          "failure_rule": "GOALS_NOT_MET",
+          "part": 1,
+          "premature_win": false,
+          "prompt_tokens": 107,
+          "room_id": "I-1",
+          "route_len": 1,
+          "solved": false,
+          "wall_ms": 1560.81
+        },
+        {
+          "alive": true,
+          "bare_json": true,
+          "completion_tokens": 7,
+          "failure_rule": "GOALS_NOT_MET",
+          "part": 1,
+          "premature_win": false,
+          "prompt_tokens": 117,
+          "room_id": "I-2",
+          "route_len": 1,
+          "solved": false,
+          "wall_ms": 1623.9
+        },
+        {
+          "alive": true,
+          "bare_json": true,
+          "completion_tokens": 7,
+          "failure_rule": "GOALS_NOT_MET",
+          "part": 1,
+          "premature_win": false,
+          "prompt_tokens": 120,
+          "room_id": "I-3",
+          "route_len": 1,
+          "solved": false,
+          "wall_ms": 1623.17
+        },
+        {
+          "alive": true,
+          "bare_json": true,
+          "completion_tokens": 7,
+          "failure_rule": "GOALS_NOT_MET",
+          "part": 1,
+          "premature_win": false,
+          "prompt_tokens": 119,
+          "room_id": "I-5",
+          "route_len": 1,
+          "solved": false,
+          "wall_ms": 1622.92
+        },
+        {
+          "alive": true,
+          "bare_json": true,
+          "completion_tokens": 7,
+          "failure_rule": "GOALS_NOT_MET",
+          "part": 1,
+          "premature_win": false,
+          "prompt_tokens": 119,
+          "room_id": "I-8",
+          "route_len": 1,
+          "solved": false,
+          "wall_ms": 1620.76
+        },
+        {
+          "alive": true,
+          "bare_json": true,
+          "completion_tokens": 7,
+          "failure_rule": "GOALS_NOT_MET",
+          "part": 1,
+          "premature_win": false,
+          "prompt_tokens": 114,
+          "room_id": "I-20",
+          "route_len": 1,
+          "solved": false,
+          "wall_ms": 1621.17
+        },
+        {
+          "alive": true,
+          "bare_json": true,
+          "completion_tokens": 7,
+          "failure_rule": "GOALS_NOT_MET",
+          "part": 2,
+          "premature_win": false,
+          "prompt_tokens": 127,
+          "room_id": "II-4",
+          "route_len": 1,
+          "solved": false,
+          "wall_ms": 1496.72
+        },
+        {
+          "alive": false,
+          "bare_json": false,
+          "completion_tokens": 256,
+          "failure_rule": "MISSING_JSON_KEYS",
+          "part": 2,
+          "premature_win": false,
+          "prompt_tokens": 147,
+          "room_id": "II-5",
+          "route_len": 0,
+          "solved": false,
+          "wall_ms": 19643.47
+        },
+        {
+          "alive": false,
+          "bare_json": false,
+          "completion_tokens": 256,
+          "failure_rule": "MISSING_JSON_KEYS",
+          "part": 2,
+          "premature_win": false,
+          "prompt_tokens": 141,
+          "room_id": "II-8",
+          "route_len": 0,
+          "solved": false,
+          "wall_ms": 18517.46
+        },
+        {
+          "alive": false,
+          "bare_json": false,
+          "completion_tokens": 256,
+          "failure_rule": "MISSING_JSON_KEYS",
+          "part": 2,
+          "premature_win": false,
+          "prompt_tokens": 130,
+          "room_id": "II-10",
+          "route_len": 0,
+          "solved": false,
+          "wall_ms": 18555.11
+        },
+        {
+          "alive": true,
+          "bare_json": true,
+          "completion_tokens": 7,
+          "failure_rule": "GOALS_NOT_MET",
+          "part": 2,
+          "premature_win": false,
+          "prompt_tokens": 126,
+          "room_id": "II-13",
+          "route_len": 1,
+          "solved": false,
+          "wall_ms": 1529.37
+        },
+        {
+          "alive": false,
+          "bare_json": false,
+          "completion_tokens": 256,
+          "failure_rule": "MISSING_JSON_KEYS",
+          "part": 2,
+          "premature_win": false,
+          "prompt_tokens": 134,
+          "room_id": "II-15",
+          "route_len": 0,
+          "solved": false,
+          "wall_ms": 18555.17
+        },
+        {
+          "alive": true,
+          "bare_json": true,
+          "completion_tokens": 7,
+          "failure_rule": "GOALS_NOT_MET",
+          "part": 3,
+          "premature_win": false,
+          "prompt_tokens": 120,
+          "room_id": "III-2",
+          "route_len": 1,
+          "solved": false,
+          "wall_ms": 1531.54
+        },
+        {
+          "alive": false,
+          "bare_json": false,
+          "completion_tokens": 256,
+          "failure_rule": "MISSING_JSON_KEYS",
+          "part": 3,
+          "premature_win": false,
+          "prompt_tokens": 132,
+          "room_id": "III-4",
+          "route_len": 0,
+          "solved": false,
+          "wall_ms": 18555.3
+        },
+        {
+          "alive": true,
+          "bare_json": true,
+          "completion_tokens": 7,
+          "failure_rule": "GOALS_NOT_MET",
+          "part": 3,
+          "premature_win": false,
+          "prompt_tokens": 118,
+          "room_id": "III-5",
+          "route_len": 1,
+          "solved": false,
+          "wall_ms": 1408.52
+        },
+        {
+          "alive": true,
+          "bare_json": true,
+          "completion_tokens": 7,
+          "failure_rule": "GOALS_NOT_MET",
+          "part": 3,
+          "premature_win": false,
+          "prompt_tokens": 124,
+          "room_id": "III-10",
+          "route_len": 1,
+          "solved": false,
+          "wall_ms": 970.04
+        },
+        {
+          "alive": false,
+          "bare_json": false,
+          "completion_tokens": 256,
+          "failure_rule": "MISSING_JSON_KEYS",
+          "part": 3,
+          "premature_win": false,
+          "prompt_tokens": 130,
+          "room_id": "III-14",
+          "route_len": 0,
+          "solved": false,
+          "wall_ms": 17172.3
+        },
+        {
+          "alive": false,
+          "bare_json": false,
+          "completion_tokens": 256,
+          "failure_rule": "MISSING_JSON_KEYS",
+          "part": 3,
+          "premature_win": false,
+          "prompt_tokens": 132,
+          "room_id": "III-22",
+          "route_len": 0,
+          "solved": false,
+          "wall_ms": 17159.22
+        }
+      ],
+      "solved_count": 0,
+      "solved_rate": 0.0,
+      "solved_rooms": [],
+      "total_rooms": 18
+    },
+    "S1_p2b_open_loop": {
+      "bare_json_count": 11,
+      "bare_json_rate": 0.611111,
+      "failure_histogram": {
+        "GOALS_NOT_MET": 11,
+        "MISSING_JSON_KEYS": 7
+      },
+      "lexicographic_score": {
+        "horizon_charged_mean_keys": 240.0,
+        "horizon_charged_total_keys": 4320,
+        "horizon_keys_cap": 240,
+        "lexicographic_key": [
+          1,
+          0,
+          -4320
+        ],
+        "protocol_violations": 0,
+        "qualified": true,
+        "solved_count": 0,
+        "total_rooms": 18
+      },
+      "rooms": [
+        {
+          "alive": true,
+          "bare_json": true,
+          "completion_tokens": 7,
+          "failure_rule": "GOALS_NOT_MET",
+          "part": 1,
+          "premature_win": false,
+          "prompt_tokens": 107,
+          "room_id": "I-1",
+          "route_len": 2,
+          "solved": false,
+          "wall_ms": 1741.02
+        },
+        {
+          "alive": true,
+          "bare_json": true,
+          "completion_tokens": 7,
+          "failure_rule": "GOALS_NOT_MET",
+          "part": 1,
+          "premature_win": false,
+          "prompt_tokens": 117,
+          "room_id": "I-2",
+          "route_len": 1,
+          "solved": false,
+          "wall_ms": 1739.98
+        },
+        {
+          "alive": true,
+          "bare_json": true,
+          "completion_tokens": 7,
+          "failure_rule": "GOALS_NOT_MET",
+          "part": 1,
+          "premature_win": false,
+          "prompt_tokens": 120,
+          "room_id": "I-3",
+          "route_len": 1,
+          "solved": false,
+          "wall_ms": 1737.72
+        },
+        {
+          "alive": true,
+          "bare_json": true,
+          "completion_tokens": 7,
+          "failure_rule": "GOALS_NOT_MET",
+          "part": 1,
+          "premature_win": false,
+          "prompt_tokens": 119,
+          "room_id": "I-5",
+          "route_len": 1,
+          "solved": false,
+          "wall_ms": 1734.74
+        },
+        {
+          "alive": true,
+          "bare_json": true,
+          "completion_tokens": 7,
+          "failure_rule": "GOALS_NOT_MET",
+          "part": 1,
+          "premature_win": false,
+          "prompt_tokens": 119,
+          "room_id": "I-8",
+          "route_len": 2,
+          "solved": false,
+          "wall_ms": 1738.02
+        },
+        {
+          "alive": true,
+          "bare_json": true,
+          "completion_tokens": 7,
+          "failure_rule": "GOALS_NOT_MET",
+          "part": 1,
+          "premature_win": false,
+          "prompt_tokens": 114,
+          "room_id": "I-20",
+          "route_len": 1,
+          "solved": false,
+          "wall_ms": 1739.44
+        },
+        {
+          "alive": true,
+          "bare_json": true,
+          "completion_tokens": 7,
+          "failure_rule": "GOALS_NOT_MET",
+          "part": 2,
+          "premature_win": false,
+          "prompt_tokens": 127,
+          "room_id": "II-4",
+          "route_len": 1,
+          "solved": false,
+          "wall_ms": 1736.17
+        },
+        {
+          "alive": false,
+          "bare_json": false,
+          "completion_tokens": 256,
+          "failure_rule": "MISSING_JSON_KEYS",
+          "part": 2,
+          "premature_win": false,
+          "prompt_tokens": 147,
+          "room_id": "II-5",
+          "route_len": 0,
+          "solved": false,
+          "wall_ms": 20471.17
+        },
+        {
+          "alive": false,
+          "bare_json": false,
+          "completion_tokens": 256,
+          "failure_rule": "MISSING_JSON_KEYS",
+          "part": 2,
+          "premature_win": false,
+          "prompt_tokens": 141,
+          "room_id": "II-8",
+          "route_len": 0,
+          "solved": false,
+          "wall_ms": 19284.4
+        },
+        {
+          "alive": false,
+          "bare_json": false,
+          "completion_tokens": 256,
+          "failure_rule": "MISSING_JSON_KEYS",
+          "part": 2,
+          "premature_win": false,
+          "prompt_tokens": 130,
+          "room_id": "II-10",
+          "route_len": 0,
+          "solved": false,
+          "wall_ms": 19284.39
+        },
+        {
+          "alive": true,
+          "bare_json": true,
+          "completion_tokens": 7,
+          "failure_rule": "GOALS_NOT_MET",
+          "part": 2,
+          "premature_win": false,
+          "prompt_tokens": 126,
+          "room_id": "II-13",
+          "route_len": 1,
+          "solved": false,
+          "wall_ms": 1779.65
+        },
+        {
+          "alive": false,
+          "bare_json": false,
+          "completion_tokens": 256,
+          "failure_rule": "MISSING_JSON_KEYS",
+          "part": 2,
+          "premature_win": false,
+          "prompt_tokens": 134,
+          "room_id": "II-15",
+          "route_len": 0,
+          "solved": false,
+          "wall_ms": 19283.56
+        },
+        {
+          "alive": true,
+          "bare_json": true,
+          "completion_tokens": 7,
+          "failure_rule": "GOALS_NOT_MET",
+          "part": 3,
+          "premature_win": false,
+          "prompt_tokens": 120,
+          "room_id": "III-2",
+          "route_len": 1,
+          "solved": false,
+          "wall_ms": 1782.25
+        },
+        {
+          "alive": false,
+          "bare_json": false,
+          "completion_tokens": 256,
+          "failure_rule": "MISSING_JSON_KEYS",
+          "part": 3,
+          "premature_win": false,
+          "prompt_tokens": 132,
+          "room_id": "III-4",
+          "route_len": 0,
+          "solved": false,
+          "wall_ms": 19282.74
+        },
+        {
+          "alive": true,
+          "bare_json": true,
+          "completion_tokens": 7,
+          "failure_rule": "GOALS_NOT_MET",
+          "part": 3,
+          "premature_win": false,
+          "prompt_tokens": 118,
+          "room_id": "III-5",
+          "route_len": 1,
+          "solved": false,
+          "wall_ms": 1778.17
+        },
+        {
+          "alive": true,
+          "bare_json": true,
+          "completion_tokens": 7,
+          "failure_rule": "GOALS_NOT_MET",
+          "part": 3,
+          "premature_win": false,
+          "prompt_tokens": 124,
+          "room_id": "III-10",
+          "route_len": 1,
+          "solved": false,
+          "wall_ms": 1062.43
+        },
+        {
+          "alive": false,
+          "bare_json": false,
+          "completion_tokens": 256,
+          "failure_rule": "MISSING_JSON_KEYS",
+          "part": 3,
+          "premature_win": false,
+          "prompt_tokens": 130,
+          "room_id": "III-14",
+          "route_len": 0,
+          "solved": false,
+          "wall_ms": 17655.13
+        },
+        {
+          "alive": false,
+          "bare_json": false,
+          "completion_tokens": 256,
+          "failure_rule": "MISSING_JSON_KEYS",
+          "part": 3,
+          "premature_win": false,
+          "prompt_tokens": 132,
+          "room_id": "III-22",
+          "route_len": 0,
+          "solved": false,
+          "wall_ms": 17655.76
+        }
+      ],
+      "solved_count": 0,
+      "solved_rate": 0.0,
+      "solved_rooms": [],
+      "total_rooms": 18
+    },
+    "S2_p2b_stateful_probe_loop": {
+      "lexicographic_score": {
+        "horizon_charged_mean_keys": 227.1111,
+        "horizon_charged_total_keys": 4088,
+        "horizon_keys_cap": 240,
+        "lexicographic_key": [
+          1,
+          1,
+          -4088
+        ],
+        "protocol_violations": 0,
+        "qualified": true,
+        "solved_count": 1,
+        "total_rooms": 18
+      },
+      "probed_rooms_count": 18,
+      "probed_rooms_rate": 1.0,
+      "rooms": [
+        {
+          "completion_tokens": 169,
+          "failure_rule": "",
+          "fatal_rollbacks": 0,
+          "part": 1,
+          "probed_before_commit": true,
+          "probes_used": 5,
+          "prompt_tokens": 5437,
+          "resets_used": 0,
+          "room_id": "I-1",
+          "route_len": 8,
+          "solved": true,
+          "stagnation_events": 1,
+          "turns_used": 13
+        },
+        {
+          "completion_tokens": 182,
+          "failure_rule": "GOALS_NOT_MET",
+          "fatal_rollbacks": 0,
+          "part": 1,
+          "probed_before_commit": true,
+          "probes_used": 1,
+          "prompt_tokens": 5944,
+          "resets_used": 0,
+          "room_id": "I-2",
+          "route_len": 13,
+          "solved": false,
+          "stagnation_events": 0,
+          "turns_used": 14
+        },
+        {
+          "completion_tokens": 182,
+          "failure_rule": "GOALS_NOT_MET",
+          "fatal_rollbacks": 0,
+          "part": 1,
+          "probed_before_commit": true,
+          "probes_used": 11,
+          "prompt_tokens": 6120,
+          "resets_used": 0,
+          "room_id": "I-3",
+          "route_len": 3,
+          "solved": false,
+          "stagnation_events": 3,
+          "turns_used": 14
+        },
+        {
+          "completion_tokens": 182,
+          "failure_rule": "GOALS_NOT_MET",
+          "fatal_rollbacks": 0,
+          "part": 1,
+          "probed_before_commit": true,
+          "probes_used": 1,
+          "prompt_tokens": 5989,
+          "resets_used": 0,
+          "room_id": "I-5",
+          "route_len": 13,
+          "solved": false,
+          "stagnation_events": 0,
+          "turns_used": 14
+        },
+        {
+          "completion_tokens": 182,
+          "failure_rule": "GOALS_NOT_MET",
+          "fatal_rollbacks": 0,
+          "part": 1,
+          "probed_before_commit": true,
+          "probes_used": 7,
+          "prompt_tokens": 6003,
+          "resets_used": 0,
+          "room_id": "I-8",
+          "route_len": 7,
+          "solved": false,
+          "stagnation_events": 0,
+          "turns_used": 14
+        },
+        {
+          "completion_tokens": 182,
+          "failure_rule": "GOALS_NOT_MET",
+          "fatal_rollbacks": 0,
+          "part": 1,
+          "probed_before_commit": true,
+          "probes_used": 7,
+          "prompt_tokens": 5928,
+          "resets_used": 0,
+          "room_id": "I-20",
+          "route_len": 7,
+          "solved": false,
+          "stagnation_events": 0,
+          "turns_used": 14
+        },
+        {
+          "completion_tokens": 182,
+          "failure_rule": "GOALS_NOT_MET",
+          "fatal_rollbacks": 0,
+          "part": 2,
+          "probed_before_commit": true,
+          "probes_used": 11,
+          "prompt_tokens": 6178,
+          "resets_used": 0,
+          "room_id": "II-4",
+          "route_len": 3,
+          "solved": false,
+          "stagnation_events": 2,
+          "turns_used": 14
+        },
+        {
+          "completion_tokens": 182,
+          "failure_rule": "GOALS_NOT_MET",
+          "fatal_rollbacks": 0,
+          "part": 2,
+          "probed_before_commit": true,
+          "probes_used": 6,
+          "prompt_tokens": 6359,
+          "resets_used": 0,
+          "room_id": "II-5",
+          "route_len": 8,
+          "solved": false,
+          "stagnation_events": 0,
+          "turns_used": 14
+        },
+        {
+          "completion_tokens": 182,
+          "failure_rule": "GOALS_NOT_MET",
+          "fatal_rollbacks": 0,
+          "part": 2,
+          "probed_before_commit": true,
+          "probes_used": 7,
+          "prompt_tokens": 6302,
+          "resets_used": 0,
+          "room_id": "II-8",
+          "route_len": 7,
+          "solved": false,
+          "stagnation_events": 0,
+          "turns_used": 14
+        },
+        {
+          "completion_tokens": 182,
+          "failure_rule": "GOALS_NOT_MET",
+          "fatal_rollbacks": 0,
+          "part": 2,
+          "probed_before_commit": true,
+          "probes_used": 2,
+          "prompt_tokens": 6143,
+          "resets_used": 0,
+          "room_id": "II-10",
+          "route_len": 12,
+          "solved": false,
+          "stagnation_events": 0,
+          "turns_used": 14
+        },
+        {
+          "completion_tokens": 182,
+          "failure_rule": "GOALS_NOT_MET",
+          "fatal_rollbacks": 0,
+          "part": 2,
+          "probed_before_commit": true,
+          "probes_used": 4,
+          "prompt_tokens": 6083,
+          "resets_used": 0,
+          "room_id": "II-13",
+          "route_len": 10,
+          "solved": false,
+          "stagnation_events": 0,
+          "turns_used": 14
+        },
+        {
+          "completion_tokens": 182,
+          "failure_rule": "GOALS_NOT_MET",
+          "fatal_rollbacks": 0,
+          "part": 2,
+          "probed_before_commit": true,
+          "probes_used": 6,
+          "prompt_tokens": 6213,
+          "resets_used": 0,
+          "room_id": "II-15",
+          "route_len": 8,
+          "solved": false,
+          "stagnation_events": 0,
+          "turns_used": 14
+        },
+        {
+          "completion_tokens": 182,
+          "failure_rule": "GOALS_NOT_MET",
+          "fatal_rollbacks": 0,
+          "part": 3,
+          "probed_before_commit": true,
+          "probes_used": 7,
+          "prompt_tokens": 6008,
+          "resets_used": 0,
+          "room_id": "III-2",
+          "route_len": 7,
+          "solved": false,
+          "stagnation_events": 0,
+          "turns_used": 14
+        },
+        {
+          "completion_tokens": 182,
+          "failure_rule": "GOALS_NOT_MET",
+          "fatal_rollbacks": 1,
+          "part": 3,
+          "probed_before_commit": true,
+          "probes_used": 9,
+          "prompt_tokens": 6248,
+          "resets_used": 0,
+          "room_id": "III-4",
+          "route_len": 4,
+          "solved": false,
+          "stagnation_events": 2,
+          "turns_used": 14
+        },
+        {
+          "completion_tokens": 182,
+          "failure_rule": "GOALS_NOT_MET",
+          "fatal_rollbacks": 4,
+          "part": 3,
+          "probed_before_commit": true,
+          "probes_used": 7,
+          "prompt_tokens": 6015,
+          "resets_used": 0,
+          "room_id": "III-5",
+          "route_len": 3,
+          "solved": false,
+          "stagnation_events": 0,
+          "turns_used": 14
+        },
+        {
+          "completion_tokens": 182,
+          "failure_rule": "GOALS_NOT_MET",
+          "fatal_rollbacks": 0,
+          "part": 3,
+          "probed_before_commit": true,
+          "probes_used": 7,
+          "prompt_tokens": 6064,
+          "resets_used": 0,
+          "room_id": "III-10",
+          "route_len": 7,
+          "solved": false,
+          "stagnation_events": 0,
+          "turns_used": 14
+        },
+        {
+          "completion_tokens": 182,
+          "failure_rule": "GOALS_NOT_MET",
+          "fatal_rollbacks": 0,
+          "part": 3,
+          "probed_before_commit": true,
+          "probes_used": 7,
+          "prompt_tokens": 6144,
+          "resets_used": 0,
+          "room_id": "III-14",
+          "route_len": 7,
+          "solved": false,
+          "stagnation_events": 0,
+          "turns_used": 14
+        },
+        {
+          "completion_tokens": 182,
+          "failure_rule": "GOALS_NOT_MET",
+          "fatal_rollbacks": 0,
+          "part": 3,
+          "probed_before_commit": true,
+          "probes_used": 7,
+          "prompt_tokens": 6200,
+          "resets_used": 0,
+          "room_id": "III-22",
+          "route_len": 7,
+          "solved": false,
+          "stagnation_events": 0,
+          "turns_used": 14
+        }
+      ],
+      "solved_count": 1,
+      "solved_rate": 0.055556,
+      "solved_rooms": [
+        "I-1"
+      ],
+      "total_fatal_rollbacks_recovered": 5,
+      "total_rooms": 18,
+      "total_stagnation_events": 8
+    },
+    "S3_p2b_plane1_python_cell_repair": {
+      "cell_timeouts": 2,
+      "forbidden_import_rejections": 1,
+      "lexicographic_score": {
+        "horizon_charged_mean_keys": 240.0,
+        "horizon_charged_total_keys": 4320,
+        "horizon_keys_cap": 240,
+        "lexicographic_key": [
+          1,
+          0,
+          -4320
+        ],
+        "protocol_violations": 0,
+        "qualified": true,
+        "solved_count": 0,
+        "total_rooms": 18
+      },
+      "rooms": [
+        {
+          "cell_timeouts": 0,
+          "completion_tokens": 1268,
+          "final_failure_rule": "PREMATURE_WIN_EXTRA_KEYS",
+          "forbidden_import_rejections": 0,
+          "part": 1,
+          "prompt_tokens": 2998,
+          "room_id": "I-1",
+          "route_len": 0,
+          "solved": false,
+          "solved_at_k1": false,
+          "solved_at_k2": false,
+          "solved_at_k4": false,
+          "solved_turn": null,
+          "stagnation_events": 1,
+          "stagnation_recovered": false,
+          "turns": [
+            {
+              "failure_rule": "GOALS_NOT_MET",
+              "passed": false,
+              "stagnant": false,
+              "turn": 1
+            },
+            {
+              "failure_rule": "INVALID_KEY_ALPHABET",
+              "passed": false,
+              "stagnant": false,
+              "turn": 2
+            },
+            {
+              "failure_rule": "PREMATURE_WIN_EXTRA_KEYS",
+              "passed": false,
+              "stagnant": false,
+              "turn": 3
+            },
+            {
+              "failure_rule": "PREMATURE_WIN_EXTRA_KEYS",
+              "passed": false,
+              "stagnant": true,
+              "turn": 4
+            }
+          ]
+        },
+        {
+          "cell_timeouts": 1,
+          "completion_tokens": 2397,
+          "final_failure_rule": "INVALID_KEY_ALPHABET",
+          "forbidden_import_rejections": 0,
+          "part": 1,
+          "prompt_tokens": 3099,
+          "room_id": "I-2",
+          "route_len": 0,
+          "solved": false,
+          "solved_at_k1": false,
+          "solved_at_k2": false,
+          "solved_at_k4": false,
+          "solved_turn": null,
+          "stagnation_events": 0,
+          "stagnation_recovered": false,
+          "turns": [
+            {
+              "failure_rule": "CELL_TIMEOUT_EXCEEDED",
+              "passed": false,
+              "stagnant": false,
+              "turn": 1
+            },
+            {
+              "failure_rule": "CELL_RUNTIME_ERROR",
+              "passed": false,
+              "stagnant": false,
+              "turn": 2
+            },
+            {
+              "failure_rule": "GOALS_NOT_MET",
+              "passed": false,
+              "stagnant": false,
+              "turn": 3
+            },
+            {
+              "failure_rule": "INVALID_KEY_ALPHABET",
+              "passed": false,
+              "stagnant": false,
+              "turn": 4
+            }
+          ]
+        },
+        {
+          "cell_timeouts": 0,
+          "completion_tokens": 3840,
+          "final_failure_rule": "MISSING_PYTHON_CELL",
+          "forbidden_import_rejections": 0,
+          "part": 1,
+          "prompt_tokens": 3251,
+          "room_id": "I-3",
+          "route_len": 0,
+          "solved": false,
+          "solved_at_k1": false,
+          "solved_at_k2": false,
+          "solved_at_k4": false,
+          "solved_turn": null,
+          "stagnation_events": 3,
+          "stagnation_recovered": false,
+          "turns": [
+            {
+              "failure_rule": "MISSING_PYTHON_CELL",
+              "passed": false,
+              "stagnant": false,
+              "turn": 1
+            },
+            {
+              "failure_rule": "MISSING_PYTHON_CELL",
+              "passed": false,
+              "stagnant": true,
+              "turn": 2
+            },
+            {
+              "failure_rule": "MISSING_PYTHON_CELL",
+              "passed": false,
+              "stagnant": true,
+              "turn": 3
+            },
+            {
+              "failure_rule": "MISSING_PYTHON_CELL",
+              "passed": false,
+              "stagnant": true,
+              "turn": 4
+            }
+          ]
+        },
+        {
+          "cell_timeouts": 0,
+          "completion_tokens": 3488,
+          "final_failure_rule": "MISSING_PYTHON_CELL",
+          "forbidden_import_rejections": 0,
+          "part": 1,
+          "prompt_tokens": 3167,
+          "room_id": "I-5",
+          "route_len": 0,
+          "solved": false,
+          "solved_at_k1": false,
+          "solved_at_k2": false,
+          "solved_at_k4": false,
+          "solved_turn": null,
+          "stagnation_events": 2,
+          "stagnation_recovered": false,
+          "turns": [
+            {
+              "failure_rule": "MISSING_PYTHON_CELL",
+              "passed": false,
+              "stagnant": false,
+              "turn": 1
+            },
+            {
+              "failure_rule": "GOALS_NOT_MET",
+              "passed": false,
+              "stagnant": false,
+              "turn": 2
+            },
+            {
+              "failure_rule": "MISSING_PYTHON_CELL",
+              "passed": false,
+              "stagnant": true,
+              "turn": 3
+            },
+            {
+              "failure_rule": "MISSING_PYTHON_CELL",
+              "passed": false,
+              "stagnant": true,
+              "turn": 4
+            }
+          ]
+        },
+        {
+          "cell_timeouts": 0,
+          "completion_tokens": 3011,
+          "final_failure_rule": "CELL_RUNTIME_ERROR",
+          "forbidden_import_rejections": 0,
+          "part": 1,
+          "prompt_tokens": 3187,
+          "room_id": "I-8",
+          "route_len": 0,
+          "solved": false,
+          "solved_at_k1": false,
+          "solved_at_k2": false,
+          "solved_at_k4": false,
+          "solved_turn": null,
+          "stagnation_events": 2,
+          "stagnation_recovered": false,
+          "turns": [
+            {
+              "failure_rule": "MISSING_PYTHON_CELL",
+              "passed": false,
+              "stagnant": false,
+              "turn": 1
+            },
+            {
+              "failure_rule": "MISSING_PYTHON_CELL",
+              "passed": false,
+              "stagnant": true,
+              "turn": 2
+            },
+            {
+              "failure_rule": "CELL_RUNTIME_ERROR",
+              "passed": false,
+              "stagnant": false,
+              "turn": 3
+            },
+            {
+              "failure_rule": "CELL_RUNTIME_ERROR",
+              "passed": false,
+              "stagnant": true,
+              "turn": 4
+            }
+          ]
+        },
+        {
+          "cell_timeouts": 0,
+          "completion_tokens": 3232,
+          "final_failure_rule": "INVALID_KEY_ALPHABET",
+          "forbidden_import_rejections": 0,
+          "part": 1,
+          "prompt_tokens": 3089,
+          "room_id": "I-20",
+          "route_len": 0,
+          "solved": false,
+          "solved_at_k1": false,
+          "solved_at_k2": false,
+          "solved_at_k4": false,
+          "solved_turn": null,
+          "stagnation_events": 1,
+          "stagnation_recovered": false,
+          "turns": [
+            {
+              "failure_rule": "MISSING_PYTHON_CELL",
+              "passed": false,
+              "stagnant": false,
+              "turn": 1
+            },
+            {
+              "failure_rule": "CELL_RUNTIME_ERROR",
+              "passed": false,
+              "stagnant": false,
+              "turn": 2
+            },
+            {
+              "failure_rule": "INVALID_KEY_ALPHABET",
+              "passed": false,
+              "stagnant": false,
+              "turn": 3
+            },
+            {
+              "failure_rule": "INVALID_KEY_ALPHABET",
+              "passed": false,
+              "stagnant": true,
+              "turn": 4
+            }
+          ]
+        },
+        {
+          "cell_timeouts": 0,
+          "completion_tokens": 2783,
+          "final_failure_rule": "CELL_RUNTIME_ERROR",
+          "forbidden_import_rejections": 0,
+          "part": 2,
+          "prompt_tokens": 3306,
+          "room_id": "II-4",
+          "route_len": 0,
+          "solved": false,
+          "solved_at_k1": false,
+          "solved_at_k2": false,
+          "solved_at_k4": false,
+          "solved_turn": null,
+          "stagnation_events": 2,
+          "stagnation_recovered": false,
+          "turns": [
+            {
+              "failure_rule": "DUAL_ORACLE_MISMATCH",
+              "passed": false,
+              "stagnant": false,
+              "turn": 1
+            },
+            {
+              "failure_rule": "CELL_RUNTIME_ERROR",
+              "passed": false,
+              "stagnant": false,
+              "turn": 2
+            },
+            {
+              "failure_rule": "CELL_RUNTIME_ERROR",
+              "passed": false,
+              "stagnant": true,
+              "turn": 3
+            },
+            {
+              "failure_rule": "CELL_RUNTIME_ERROR",
+              "passed": false,
+              "stagnant": true,
+              "turn": 4
+            }
+          ]
+        },
+        {
+          "cell_timeouts": 0,
+          "completion_tokens": 1946,
+          "final_failure_rule": "GOALS_NOT_MET",
+          "forbidden_import_rejections": 0,
+          "part": 2,
+          "prompt_tokens": 3337,
+          "room_id": "II-5",
+          "route_len": 0,
+          "solved": false,
+          "solved_at_k1": false,
+          "solved_at_k2": false,
+          "solved_at_k4": false,
+          "solved_turn": null,
+          "stagnation_events": 1,
+          "stagnation_recovered": false,
+          "turns": [
+            {
+              "failure_rule": "GOALS_NOT_MET",
+              "passed": false,
+              "stagnant": false,
+              "turn": 1
+            },
+            {
+              "failure_rule": "CELL_RUNTIME_ERROR",
+              "passed": false,
+              "stagnant": false,
+              "turn": 2
+            },
+            {
+              "failure_rule": "INVALID_KEY_ALPHABET",
+              "passed": false,
+              "stagnant": false,
+              "turn": 3
+            },
+            {
+              "failure_rule": "GOALS_NOT_MET",
+              "passed": false,
+              "stagnant": true,
+              "turn": 4
+            }
+          ]
+        },
+        {
+          "cell_timeouts": 0,
+          "completion_tokens": 3840,
+          "final_failure_rule": "MISSING_PYTHON_CELL",
+          "forbidden_import_rejections": 0,
+          "part": 2,
+          "prompt_tokens": 3439,
+          "room_id": "II-8",
+          "route_len": 0,
+          "solved": false,
+          "solved_at_k1": false,
+          "solved_at_k2": false,
+          "solved_at_k4": false,
+          "solved_turn": null,
+          "stagnation_events": 3,
+          "stagnation_recovered": false,
+          "turns": [
+            {
+              "failure_rule": "MISSING_PYTHON_CELL",
+              "passed": false,
+              "stagnant": false,
+              "turn": 1
+            },
+            {
+              "failure_rule": "MISSING_PYTHON_CELL",
+              "passed": false,
+              "stagnant": true,
+              "turn": 2
+            },
+            {
+              "failure_rule": "MISSING_PYTHON_CELL",
+              "passed": false,
+              "stagnant": true,
+              "turn": 3
+            },
+            {
+              "failure_rule": "MISSING_PYTHON_CELL",
+              "passed": false,
+              "stagnant": true,
+              "turn": 4
+            }
+          ]
+        },
+        {
+          "cell_timeouts": 0,
+          "completion_tokens": 3840,
+          "final_failure_rule": "MISSING_PYTHON_CELL",
+          "forbidden_import_rejections": 0,
+          "part": 2,
+          "prompt_tokens": 3323,
+          "room_id": "II-10",
+          "route_len": 0,
+          "solved": false,
+          "solved_at_k1": false,
+          "solved_at_k2": false,
+          "solved_at_k4": false,
+          "solved_turn": null,
+          "stagnation_events": 3,
+          "stagnation_recovered": false,
+          "turns": [
+            {
+              "failure_rule": "MISSING_PYTHON_CELL",
+              "passed": false,
+              "stagnant": false,
+              "turn": 1
+            },
+            {
+              "failure_rule": "MISSING_PYTHON_CELL",
+              "passed": false,
+              "stagnant": true,
+              "turn": 2
+            },
+            {
+              "failure_rule": "MISSING_PYTHON_CELL",
+              "passed": false,
+              "stagnant": true,
+              "turn": 3
+            },
+            {
+              "failure_rule": "MISSING_PYTHON_CELL",
+              "passed": false,
+              "stagnant": true,
+              "turn": 4
+            }
+          ]
+        },
+        {
+          "cell_timeouts": 0,
+          "completion_tokens": 3005,
+          "final_failure_rule": "MISSING_PYTHON_CELL",
+          "forbidden_import_rejections": 0,
+          "part": 2,
+          "prompt_tokens": 3270,
+          "room_id": "II-13",
+          "route_len": 0,
+          "solved": false,
+          "solved_at_k1": false,
+          "solved_at_k2": false,
+          "solved_at_k4": false,
+          "solved_turn": null,
+          "stagnation_events": 1,
+          "stagnation_recovered": false,
+          "turns": [
+            {
+              "failure_rule": "CELL_RUNTIME_ERROR",
+              "passed": false,
+              "stagnant": false,
+              "turn": 1
+            },
+            {
+              "failure_rule": "GOALS_NOT_MET",
+              "passed": false,
+              "stagnant": false,
+              "turn": 2
+            },
+            {
+              "failure_rule": "GOALS_NOT_MET",
+              "passed": false,
+              "stagnant": true,
+              "turn": 3
+            },
+            {
+              "failure_rule": "MISSING_PYTHON_CELL",
+              "passed": false,
+              "stagnant": false,
+              "turn": 4
+            }
+          ]
+        },
+        {
+          "cell_timeouts": 0,
+          "completion_tokens": 3197,
+          "final_failure_rule": "GOALS_NOT_MET",
+          "forbidden_import_rejections": 0,
+          "part": 2,
+          "prompt_tokens": 3376,
+          "room_id": "II-15",
+          "route_len": 0,
+          "solved": false,
+          "solved_at_k1": false,
+          "solved_at_k2": false,
+          "solved_at_k4": false,
+          "solved_turn": null,
+          "stagnation_events": 1,
+          "stagnation_recovered": false,
+          "turns": [
+            {
+              "failure_rule": "CELL_RUNTIME_ERROR",
+              "passed": false,
+              "stagnant": false,
+              "turn": 1
+            },
+            {
+              "failure_rule": "CELL_RUNTIME_ERROR",
+              "passed": false,
+              "stagnant": true,
+              "turn": 2
+            },
+            {
+              "failure_rule": "MISSING_PYTHON_CELL",
+              "passed": false,
+              "stagnant": false,
+              "turn": 3
+            },
+            {
+              "failure_rule": "GOALS_NOT_MET",
+              "passed": false,
+              "stagnant": false,
+              "turn": 4
+            }
+          ]
+        },
+        {
+          "cell_timeouts": 1,
+          "completion_tokens": 3598,
+          "final_failure_rule": "GOALS_NOT_MET",
+          "forbidden_import_rejections": 0,
+          "part": 3,
+          "prompt_tokens": 3157,
+          "room_id": "III-2",
+          "route_len": 0,
+          "solved": false,
+          "solved_at_k1": false,
+          "solved_at_k2": false,
+          "solved_at_k4": false,
+          "solved_turn": null,
+          "stagnation_events": 1,
+          "stagnation_recovered": false,
+          "turns": [
+            {
+              "failure_rule": "CELL_TIMEOUT_EXCEEDED",
+              "passed": false,
+              "stagnant": false,
+              "turn": 1
+            },
+            {
+              "failure_rule": "MISSING_PYTHON_CELL",
+              "passed": false,
+              "stagnant": false,
+              "turn": 2
+            },
+            {
+              "failure_rule": "MISSING_PYTHON_CELL",
+              "passed": false,
+              "stagnant": true,
+              "turn": 3
+            },
+            {
+              "failure_rule": "GOALS_NOT_MET",
+              "passed": false,
+              "stagnant": false,
+              "turn": 4
+            }
+          ]
+        },
+        {
+          "cell_timeouts": 0,
+          "completion_tokens": 3327,
+          "final_failure_rule": "CELL_RUNTIME_ERROR",
+          "forbidden_import_rejections": 0,
+          "part": 3,
+          "prompt_tokens": 3366,
+          "room_id": "III-4",
+          "route_len": 0,
+          "solved": false,
+          "solved_at_k1": false,
+          "solved_at_k2": false,
+          "solved_at_k4": false,
+          "solved_turn": null,
+          "stagnation_events": 2,
+          "stagnation_recovered": false,
+          "turns": [
+            {
+              "failure_rule": "CELL_RUNTIME_ERROR",
+              "passed": false,
+              "stagnant": false,
+              "turn": 1
+            },
+            {
+              "failure_rule": "MISSING_PYTHON_CELL",
+              "passed": false,
+              "stagnant": false,
+              "turn": 2
+            },
+            {
+              "failure_rule": "CELL_RUNTIME_ERROR",
+              "passed": false,
+              "stagnant": true,
+              "turn": 3
+            },
+            {
+              "failure_rule": "CELL_RUNTIME_ERROR",
+              "passed": false,
+              "stagnant": true,
+              "turn": 4
+            }
+          ]
+        },
+        {
+          "cell_timeouts": 0,
+          "completion_tokens": 3049,
+          "final_failure_rule": "MISSING_PYTHON_CELL",
+          "forbidden_import_rejections": 0,
+          "part": 3,
+          "prompt_tokens": 3090,
+          "room_id": "III-5",
+          "route_len": 0,
+          "solved": false,
+          "solved_at_k1": false,
+          "solved_at_k2": false,
+          "solved_at_k4": false,
+          "solved_turn": null,
+          "stagnation_events": 1,
+          "stagnation_recovered": false,
+          "turns": [
+            {
+              "failure_rule": "GOALS_NOT_MET",
+              "passed": false,
+              "stagnant": false,
+              "turn": 1
+            },
+            {
+              "failure_rule": "MISSING_PYTHON_CELL",
+              "passed": false,
+              "stagnant": false,
+              "turn": 2
+            },
+            {
+              "failure_rule": "CELL_RUNTIME_ERROR",
+              "passed": false,
+              "stagnant": false,
+              "turn": 3
+            },
+            {
+              "failure_rule": "MISSING_PYTHON_CELL",
+              "passed": false,
+              "stagnant": true,
+              "turn": 4
+            }
+          ]
+        },
+        {
+          "cell_timeouts": 0,
+          "completion_tokens": 3840,
+          "final_failure_rule": "MISSING_PYTHON_CELL",
+          "forbidden_import_rejections": 0,
+          "part": 3,
+          "prompt_tokens": 3259,
+          "room_id": "III-10",
+          "route_len": 0,
+          "solved": false,
+          "solved_at_k1": false,
+          "solved_at_k2": false,
+          "solved_at_k4": false,
+          "solved_turn": null,
+          "stagnation_events": 3,
+          "stagnation_recovered": false,
+          "turns": [
+            {
+              "failure_rule": "MISSING_PYTHON_CELL",
+              "passed": false,
+              "stagnant": false,
+              "turn": 1
+            },
+            {
+              "failure_rule": "MISSING_PYTHON_CELL",
+              "passed": false,
+              "stagnant": true,
+              "turn": 2
+            },
+            {
+              "failure_rule": "MISSING_PYTHON_CELL",
+              "passed": false,
+              "stagnant": true,
+              "turn": 3
+            },
+            {
+              "failure_rule": "MISSING_PYTHON_CELL",
+              "passed": false,
+              "stagnant": true,
+              "turn": 4
+            }
+          ]
+        },
+        {
+          "cell_timeouts": 0,
+          "completion_tokens": 3282,
+          "final_failure_rule": "CELL_RUNTIME_ERROR",
+          "forbidden_import_rejections": 1,
+          "part": 3,
+          "prompt_tokens": 3193,
+          "room_id": "III-14",
+          "route_len": 0,
+          "solved": false,
+          "solved_at_k1": false,
+          "solved_at_k2": false,
+          "solved_at_k4": false,
+          "solved_turn": null,
+          "stagnation_events": 1,
+          "stagnation_recovered": false,
+          "turns": [
+            {
+              "failure_rule": "CELL_SYNTAX_ERROR",
+              "passed": false,
+              "stagnant": false,
+              "turn": 1
+            },
+            {
+              "failure_rule": "CELL_RUNTIME_ERROR",
+              "passed": false,
+              "stagnant": false,
+              "turn": 2
+            },
+            {
+              "failure_rule": "MISSING_PYTHON_CELL",
+              "passed": false,
+              "stagnant": false,
+              "turn": 3
+            },
+            {
+              "failure_rule": "CELL_RUNTIME_ERROR",
+              "passed": false,
+              "stagnant": true,
+              "turn": 4
+            }
+          ]
+        },
+        {
+          "cell_timeouts": 0,
+          "completion_tokens": 3440,
+          "final_failure_rule": "MISSING_PYTHON_CELL",
+          "forbidden_import_rejections": 0,
+          "part": 3,
+          "prompt_tokens": 3356,
+          "room_id": "III-22",
+          "route_len": 0,
+          "solved": false,
+          "solved_at_k1": false,
+          "solved_at_k2": false,
+          "solved_at_k4": false,
+          "solved_turn": null,
+          "stagnation_events": 2,
+          "stagnation_recovered": false,
+          "turns": [
+            {
+              "failure_rule": "MISSING_PYTHON_CELL",
+              "passed": false,
+              "stagnant": false,
+              "turn": 1
+            },
+            {
+              "failure_rule": "CELL_RUNTIME_ERROR",
+              "passed": false,
+              "stagnant": false,
+              "turn": 2
+            },
+            {
+              "failure_rule": "MISSING_PYTHON_CELL",
+              "passed": false,
+              "stagnant": true,
+              "turn": 3
+            },
+            {
+              "failure_rule": "MISSING_PYTHON_CELL",
+              "passed": false,
+              "stagnant": true,
+              "turn": 4
+            }
+          ]
+        }
+      ],
+      "solved_at_k1_count": 0,
+      "solved_at_k1_rate": 0.0,
+      "solved_at_k2_count": 0,
+      "solved_at_k2_rate": 0.0,
+      "solved_at_k4_count": 0,
+      "solved_at_k4_rate": 0.0,
+      "solved_rooms_k1": [],
+      "solved_rooms_k2": [],
+      "solved_rooms_k4": [],
+      "stagnation_recoveries": 0,
+      "total_rooms": 18,
+      "total_stagnation_events": 30,
+      "turn_failure_histogram": {
+        "CELL_RUNTIME_ERROR": 18,
+        "CELL_SYNTAX_ERROR": 1,
+        "CELL_TIMEOUT_EXCEEDED": 2,
+        "DUAL_ORACLE_MISMATCH": 1,
+        "GOALS_NOT_MET": 10,
+        "INVALID_KEY_ALPHABET": 5,
+        "MISSING_PYTHON_CELL": 33,
+        "PREMATURE_WIN_EXTRA_KEYS": 2
+      }
+    }
+  },
+  "domain_id": "mde:soko-eval",
+  "evidence_status": "historical_archive",
+  "evidence_note": "Archive of a single live llama-server run pinned to provenance.git_head_sha=382e9dafbe4ce500f454feafcae1a7e7c859333a. This file is not current evidence for PR head: do not treat it as automatically reproducible without the same GGUF, llama-server build, and commit. The S3 II-4 DUAL_ORACLE_MISMATCH row predates FlatBitmaskOracle corpse rendering (_CORPSE/X); dual-oracle parity on II-4 RRR holds after the TCB fix in #60/this branch. Regenerate with: python3 -B -m mde_soko eval --base-gguf <Qwen3.5-4B-Q8_0.gguf>.",
+  "provenance": {
+    "base_gguf_filename": "Qwen3.5-4B-Q8_0.gguf",
+    "base_gguf_sha256": "10cc391b403021dd11c614679d2fd92f611c3681d29e29651b717316965d61e1",
+    "git_head_sha": "382e9dafbe4ce500f454feafcae1a7e7c859333a",
+    "llama_server_commit": "7fe450e19",
+    "llama_server_version": "version: 0.5.0 (build 11146, commit 7fe450e19)",
+    "p2a_lora_relpath": "mde_soko/artifacts/p2a/soko-eval.p2a.f16.gguf",
+    "p2a_lora_sha256": "df9b1abe1e398cf886ce570530d6fd585f96c49eb0eea8bf96df45888e6e6fa5",
+    "p2b_lora_relpath": "mde_soko/artifacts/p2b/soko-eval.p2b.f16.gguf",
+    "p2b_lora_sha256": "c8005037fc040fe69a039c02b2d3571f687c519956dbea5b77c10c4d78f5260a",
+    "sampling": {
+      "seed": 20261119,
+      "temperature": 0.0,
+      "thinking": false,
+      "top_p": 1.0
+    },
+    "server_props": {
+      "chat_template_present": true,
+      "total_slots": 8
+    }
+  },
+  "schema": "mde-soko-eval-receipt/v0.1",
+  "step0_y0_anchor_retention": {
+    "P2-A_vs_B0": {
+      "max_abs_top1_logprob_delta": 3.965778,
+      "mean_abs_top1_logprob_delta": 0.500661,
+      "n_anchors": 24,
+      "step0_top1_agreement_count": 20,
+      "step0_top1_agreement_rate": 0.833333
+    },
+    "P2-B_vs_B0": {
+      "max_abs_top1_logprob_delta": 0.002904,
+      "mean_abs_top1_logprob_delta": 0.000533,
+      "n_anchors": 24,
+      "step0_top1_agreement_count": 24,
+      "step0_top1_agreement_rate": 1.0
+    }
+  },
+  "validation_16": {
+    "B0": {
+      "by_family": {
+        "H_CELL": {
+          "passed": 0,
+          "total": 2
+        },
+        "H_PROBE": {
+          "passed": 0,
+          "total": 5
+        },
+        "H_ROUTE": {
+          "passed": 0,
+          "total": 5
+        },
+        "H_RULE": {
+          "passed": 4,
+          "total": 4
+        }
+      },
+      "items": [
+        {
+          "family": "H_ROUTE",
+          "id": "SOKO-VAL-01",
+          "passed": false,
+          "room_id": "I-4",
+          "wall_ms": 4615.74
+        },
+        {
+          "family": "H_PROBE",
+          "id": "SOKO-VAL-02",
+          "passed": false,
+          "room_id": "I-11",
+          "wall_ms": 6214.26
+        },
+        {
+          "family": "H_RULE",
+          "id": "SOKO-VAL-03",
+          "passed": true,
+          "room_id": "I-17",
+          "wall_ms": 10827.14
+        },
+        {
+          "family": "H_ROUTE",
+          "id": "SOKO-VAL-04",
+          "passed": false,
+          "room_id": "I-21",
+          "wall_ms": 3013.24
+        },
+        {
+          "family": "H_PROBE",
+          "id": "SOKO-VAL-05",
+          "passed": false,
+          "room_id": "II-2",
+          "wall_ms": 5706.49
+        },
+        {
+          "family": "H_RULE",
+          "id": "SOKO-VAL-06",
+          "passed": true,
+          "room_id": "II-7",
+          "wall_ms": 10978.39
+        },
+        {
+          "family": "H_ROUTE",
+          "id": "SOKO-VAL-07",
+          "passed": false,
+          "room_id": "II-12",
+          "wall_ms": 2908.69
+        },
+        {
+          "family": "H_PROBE",
+          "id": "SOKO-VAL-08",
+          "passed": false,
+          "room_id": "II-17",
+          "wall_ms": 5235.4
+        },
+        {
+          "family": "H_RULE",
+          "id": "SOKO-VAL-09",
+          "passed": true,
+          "room_id": "II-20",
+          "wall_ms": 8562.46
+        },
+        {
+          "family": "H_ROUTE",
+          "id": "SOKO-VAL-10",
+          "passed": false,
+          "room_id": "III-1",
+          "wall_ms": 2117.78
+        },
+        {
+          "family": "H_PROBE",
+          "id": "SOKO-VAL-11",
+          "passed": false,
+          "room_id": "III-11",
+          "wall_ms": 4375.52
+        },
+        {
+          "family": "H_RULE",
+          "id": "SOKO-VAL-12",
+          "passed": true,
+          "room_id": "III-15",
+          "wall_ms": 7483.19
+        },
+        {
+          "family": "H_ROUTE",
+          "id": "SOKO-VAL-13",
+          "passed": false,
+          "room_id": "III-18",
+          "wall_ms": 2401.64
+        },
+        {
+          "family": "H_PROBE",
+          "id": "SOKO-VAL-14",
+          "passed": false,
+          "room_id": "III-21",
+          "wall_ms": 4195.87
+        },
+        {
+          "family": "H_CELL",
+          "id": "SOKO-VAL-15",
+          "passed": false,
+          "room_id": "I-16",
+          "wall_ms": 24063.47
+        },
+        {
+          "family": "H_CELL",
+          "id": "SOKO-VAL-16",
+          "passed": false,
+          "room_id": "III-9",
+          "wall_ms": 34361.59
+        }
+      ],
+      "pass_rate": 0.25,
+      "passed": 4,
+      "total": 16
+    },
+    "P2-A": {
+      "by_family": {
+        "H_CELL": {
+          "passed": 0,
+          "total": 2
+        },
+        "H_PROBE": {
+          "passed": 0,
+          "total": 5
+        },
+        "H_ROUTE": {
+          "passed": 0,
+          "total": 5
+        },
+        "H_RULE": {
+          "passed": 1,
+          "total": 4
+        }
+      },
+      "items": [
+        {
+          "family": "H_ROUTE",
+          "id": "SOKO-VAL-01",
+          "passed": false,
+          "room_id": "I-4",
+          "wall_ms": 2744.09
+        },
+        {
+          "family": "H_PROBE",
+          "id": "SOKO-VAL-02",
+          "passed": false,
+          "room_id": "I-11",
+          "wall_ms": 2745.14
+        },
+        {
+          "family": "H_RULE",
+          "id": "SOKO-VAL-03",
+          "passed": false,
+          "room_id": "I-17",
+          "wall_ms": 5399.97
+        },
+        {
+          "family": "H_ROUTE",
+          "id": "SOKO-VAL-04",
+          "passed": false,
+          "room_id": "I-21",
+          "wall_ms": 1763.0
+        },
+        {
+          "family": "H_PROBE",
+          "id": "SOKO-VAL-05",
+          "passed": false,
+          "room_id": "II-2",
+          "wall_ms": 2805.26
+        },
+        {
+          "family": "H_RULE",
+          "id": "SOKO-VAL-06",
+          "passed": false,
+          "room_id": "II-7",
+          "wall_ms": 5522.42
+        },
+        {
+          "family": "H_ROUTE",
+          "id": "SOKO-VAL-07",
+          "passed": false,
+          "room_id": "II-12",
+          "wall_ms": 1882.95
+        },
+        {
+          "family": "H_PROBE",
+          "id": "SOKO-VAL-08",
+          "passed": false,
+          "room_id": "II-17",
+          "wall_ms": 2542.84
+        },
+        {
+          "family": "H_RULE",
+          "id": "SOKO-VAL-09",
+          "passed": false,
+          "room_id": "II-20",
+          "wall_ms": 3861.55
+        },
+        {
+          "family": "H_ROUTE",
+          "id": "SOKO-VAL-10",
+          "passed": false,
+          "room_id": "III-1",
+          "wall_ms": 16518.43
+        },
+        {
+          "family": "H_PROBE",
+          "id": "SOKO-VAL-11",
+          "passed": false,
+          "room_id": "III-11",
+          "wall_ms": 1710.79
+        },
+        {
+          "family": "H_RULE",
+          "id": "SOKO-VAL-12",
+          "passed": true,
+          "room_id": "III-15",
+          "wall_ms": 3506.61
+        },
+        {
+          "family": "H_ROUTE",
+          "id": "SOKO-VAL-13",
+          "passed": false,
+          "room_id": "III-18",
+          "wall_ms": 15966.17
+        },
+        {
+          "family": "H_PROBE",
+          "id": "SOKO-VAL-14",
+          "passed": false,
+          "room_id": "III-21",
+          "wall_ms": 1526.65
+        },
+        {
+          "family": "H_CELL",
+          "id": "SOKO-VAL-15",
+          "passed": false,
+          "room_id": "I-16",
+          "wall_ms": 14420.64
+        },
+        {
+          "family": "H_CELL",
+          "id": "SOKO-VAL-16",
+          "passed": false,
+          "room_id": "III-9",
+          "wall_ms": 23001.72
+        }
+      ],
+      "pass_rate": 0.0625,
+      "passed": 1,
+      "total": 16
+    },
+    "P2-B": {
+      "by_family": {
+        "H_CELL": {
+          "passed": 0,
+          "total": 2
+        },
+        "H_PROBE": {
+          "passed": 0,
+          "total": 5
+        },
+        "H_ROUTE": {
+          "passed": 0,
+          "total": 5
+        },
+        "H_RULE": {
+          "passed": 1,
+          "total": 4
+        }
+      },
+      "items": [
+        {
+          "family": "H_ROUTE",
+          "id": "SOKO-VAL-01",
+          "passed": false,
+          "room_id": "I-4",
+          "wall_ms": 2573.7
+        },
+        {
+          "family": "H_PROBE",
+          "id": "SOKO-VAL-02",
+          "passed": false,
+          "room_id": "I-11",
+          "wall_ms": 2510.27
+        },
+        {
+          "family": "H_RULE",
+          "id": "SOKO-VAL-03",
+          "passed": false,
+          "room_id": "I-17",
+          "wall_ms": 5146.65
+        },
+        {
+          "family": "H_ROUTE",
+          "id": "SOKO-VAL-04",
+          "passed": false,
+          "room_id": "I-21",
+          "wall_ms": 1744.04
+        },
+        {
+          "family": "H_PROBE",
+          "id": "SOKO-VAL-05",
+          "passed": false,
+          "room_id": "II-2",
+          "wall_ms": 2617.39
+        },
+        {
+          "family": "H_RULE",
+          "id": "SOKO-VAL-06",
+          "passed": false,
+          "room_id": "II-7",
+          "wall_ms": 5272.38
+        },
+        {
+          "family": "H_ROUTE",
+          "id": "SOKO-VAL-07",
+          "passed": false,
+          "room_id": "II-12",
+          "wall_ms": 1658.88
+        },
+        {
+          "family": "H_PROBE",
+          "id": "SOKO-VAL-08",
+          "passed": false,
+          "room_id": "II-17",
+          "wall_ms": 2370.96
+        },
+        {
+          "family": "H_RULE",
+          "id": "SOKO-VAL-09",
+          "passed": false,
+          "room_id": "II-20",
+          "wall_ms": 3704.29
+        },
+        {
+          "family": "H_ROUTE",
+          "id": "SOKO-VAL-10",
+          "passed": false,
+          "room_id": "III-1",
+          "wall_ms": 13568.44
+        },
+        {
+          "family": "H_PROBE",
+          "id": "SOKO-VAL-11",
+          "passed": false,
+          "room_id": "III-11",
+          "wall_ms": 1606.92
+        },
+        {
+          "family": "H_RULE",
+          "id": "SOKO-VAL-12",
+          "passed": true,
+          "room_id": "III-15",
+          "wall_ms": 3356.93
+        },
+        {
+          "family": "H_ROUTE",
+          "id": "SOKO-VAL-13",
+          "passed": false,
+          "room_id": "III-18",
+          "wall_ms": 13057.66
+        },
+        {
+          "family": "H_PROBE",
+          "id": "SOKO-VAL-14",
+          "passed": false,
+          "room_id": "III-21",
+          "wall_ms": 1428.45
+        },
+        {
+          "family": "H_CELL",
+          "id": "SOKO-VAL-15",
+          "passed": false,
+          "room_id": "I-16",
+          "wall_ms": 11620.84
+        },
+        {
+          "family": "H_CELL",
+          "id": "SOKO-VAL-16",
+          "passed": false,
+          "room_id": "III-9",
+          "wall_ms": 12652.4
+        }
+      ],
+      "pass_rate": 0.0625,
+      "passed": 1,
+      "total": 16
+    }
+  }
+}

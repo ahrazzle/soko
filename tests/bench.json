@@ -1,0 +1,94 @@
+{
+ "perft": {
+  "I-22@10": [
+   "1:2ffbcc13050af9d2",
+   "1:675b40cfdf80f53e",
+   "1:508bbbd20cf694b2",
+   "1:00a54457a64a8d5e",
+   "1:0b1f653b176b9392",
+   "1:c2c09f0ed90bb73e",
+   "1:bfe874ac76566a72",
+   "1:516a1e6446697f5e",
+   "1:b8d65a6712294f52",
+   "1:78193ec3c553593e"
+  ],
+  "II-12@8": [
+   "4:9610eb156ab07cbe",
+   "11:ca9ce52f0fee7c00",
+   "23:a87bad1ba2198876",
+   "46:f4848eacb742b8ce",
+   "92:e06027108bdb84d4",
+   "194:8f557fd712c41da6",
+   "389:885f459e5bb7f070",
+   "736:8f42eae99f1758d0"
+  ],
+  "III-14@7": [
+   "5:6344ada200c9da0d",
+   "16:1d885fb4146cedb8",
+   "50:2323e19cc3130951",
+   "131:cd99edbfbc46f4a7",
+   "307:21cb269aabdb3991",
+   "729:b750932cbd28cab3",
+   "1667:85402f4bb5c3a5b8"
+  ],
+  "III-21@7": [
+   "4:7f565006bd595b9a",
+   "11:824bc27dd5f6c56e",
+   "31:9521838a7d581cfc",
+   "86:d8b0ed7a5abe3766",
+   "227:55d104529437854a",
+   "601:dc787ef6809eb045",
+   "1610:4a4054ec2173be32"
+  ]
+ },
+ "prove_lb": {
+  "I-22@20": {
+   "edge_consistency_checks": 19,
+   "nodes_expanded": 10,
+   "proven_floor": 10,
+   "states_seen": 10,
+   "termination_reason": "solved",
+   "winning_witness": "RRRRRRRRRR"
+  },
+  "II-12@30": {
+   "edge_consistency_checks": 1252678,
+   "nodes_expanded": 412703,
+   "proven_floor": 26,
+   "states_seen": 437054,
+   "termination_reason": "solved",
+   "winning_witness": "LURURDDLLLRURDLDRRLURRDRRR"
+  },
+  "II-22@30": {
+   "edge_consistency_checks": 1107488,
+   "nodes_expanded": 302159,
+   "proven_floor": 31,
+   "states_seen": 302159,
+   "termination_reason": "exhausted",
+   "winning_witness": ""
+  },
+  "III-15@30": {
+   "edge_consistency_checks": 406303,
+   "nodes_expanded": 106903,
+   "proven_floor": 31,
+   "states_seen": 106903,
+   "termination_reason": "exhausted",
+   "winning_witness": ""
+  },
+  "III-20@30": {
+   "edge_consistency_checks": 264142,
+   "nodes_expanded": 115420,
+   "proven_floor": 31,
+   "states_seen": 115420,
+   "termination_reason": "exhausted",
+   "winning_witness": ""
+  },
+  "III-22@12": {
+   "edge_consistency_checks": 49460,
+   "nodes_expanded": 10918,
+   "proven_floor": 9,
+   "states_seen": 31869,
+   "termination_reason": "solved",
+   "winning_witness": "RRRRRRRRR"
+  }
+ }
+}
