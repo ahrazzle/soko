@@ -491,36 +491,16 @@
      "open 5,7"
     ],
     [
-     34,
-     "kill 6,7"
-    ],
-    [
-     35,
-     "kill 8,7"
-    ],
-    [
      42,
      "open 9,1"
     ],
     [
      45,
-     "kill 4,7"
+     "kill 6,7"
     ],
     [
      45,
-     "kill 6,7 #2"
-    ],
-    [
-     56,
-     "kill 6,4"
-    ],
-    [
-     58,
-     "kill 8,4"
-    ],
-    [
-     59,
-     "kill 8,1"
+     "kill 8,7"
     ]
    ]
   },
@@ -546,52 +526,12 @@
      "open 9,1"
     ],
     [
-     36,
+     56,
      "kill 6,1"
     ],
     [
-     37,
+     56,
      "kill 6,4"
-    ],
-    [
-     39,
-     "kill 8,4"
-    ],
-    [
-     40,
-     "kill 8,7"
-    ],
-    [
-     44,
-     "kill 5,4"
-    ],
-    [
-     45,
-     "kill 8,4 #2"
-    ],
-    [
-     46,
-     "kill 8,1"
-    ],
-    [
-     56,
-     "kill 4,1"
-    ],
-    [
-     56,
-     "kill 6,1 #2"
-    ],
-    [
-     71,
-     "kill 5,6"
-    ],
-    [
-     72,
-     "kill 5,4 #2"
-    ],
-    [
-     75,
-     "kill 6,7"
     ]
    ]
   },
@@ -617,32 +557,12 @@
      "open 9,7"
     ],
     [
-     37,
+     48,
      "kill 6,7"
     ],
     [
-     38,
+     48,
      "kill 8,7"
-    ],
-    [
-     48,
-     "kill 4,7"
-    ],
-    [
-     48,
-     "kill 6,7 #2"
-    ],
-    [
-     62,
-     "kill 6,4"
-    ],
-    [
-     64,
-     "kill 8,4"
-    ],
-    [
-     65,
-     "kill 8,1"
     ]
    ]
   },
@@ -668,40 +588,12 @@
      "open 9,7"
     ],
     [
-     40,
+     62,
      "kill 6,1"
     ],
     [
-     41,
+     62,
      "kill 6,4"
-    ],
-    [
-     43,
-     "kill 8,4"
-    ],
-    [
-     44,
-     "kill 8,7"
-    ],
-    [
-     48,
-     "kill 5,4"
-    ],
-    [
-     49,
-     "kill 8,4 #2"
-    ],
-    [
-     50,
-     "kill 8,1"
-    ],
-    [
-     62,
-     "kill 4,1"
-    ],
-    [
-     62,
-     "kill 6,1 #2"
     ]
    ]
   },
@@ -717,10 +609,6 @@
     [
      14,
      "open 5,1"
-    ],
-    [
-     33,
-     "kill 6,1"
     ],
     [
      40,
@@ -741,10 +629,6 @@
     [
      54,
      "kill 8,4"
-    ],
-    [
-     58,
-     "kill 8,1"
     ],
     [
      64,
@@ -778,10 +662,6 @@
      "open 5,1"
     ],
     [
-     33,
-     "kill 6,1"
-    ],
-    [
      40,
      "open 9,1"
     ],
@@ -800,10 +680,6 @@
     [
      54,
      "kill 8,4"
-    ],
-    [
-     58,
-     "kill 8,1"
     ],
     [
      64,
@@ -839,10 +715,6 @@
     [
      20,
      "open 5,1"
-    ],
-    [
-     39,
-     "kill 6,1"
     ],
     [
      46,
@@ -884,10 +756,6 @@
      "open 5,1"
     ],
     [
-     39,
-     "kill 6,1"
-    ],
-    [
      61,
      "kill 8,1"
     ],
@@ -897,11 +765,7 @@
     ],
     [
      71,
-     "wall 10,3"
-    ],
-    [
-     71,
-     "kill 10,3"
+     "petrify 10,3"
     ]
    ]
   },
@@ -921,10 +785,6 @@
     [
      25,
      "open 5,1"
-    ],
-    [
-     44,
-     "kill 6,1"
     ],
     [
      68,
@@ -959,7 +819,7 @@
     ],
     [
      163,
-     "kill 12,8"
+     "kill 11,4"
     ],
     [
      163,
@@ -1030,7 +890,7 @@
     ],
     [
      158,
-     "kill 12,8"
+     "kill 11,4"
     ],
     [
      158,
@@ -1101,7 +961,7 @@
     ],
     [
      158,
-     "kill 12,8"
+     "kill 11,4"
     ],
     [
      158,
@@ -1172,7 +1032,7 @@
     ],
     [
      158,
-     "kill 12,8"
+     "kill 11,4"
     ],
     [
      158,
@@ -1239,7 +1099,7 @@
    "milestones": [
     [
      153,
-     "kill 12,8"
+     "kill 11,4"
     ],
     [
      153,
@@ -1306,7 +1166,7 @@
    "milestones": [
     [
      153,
-     "kill 12,8"
+     "kill 11,4"
     ],
     [
      153,
@@ -1373,7 +1233,7 @@
    "milestones": [
     [
      153,
-     "kill 12,8"
+     "kill 11,4"
     ],
     [
      153,
@@ -1429,11 +1289,7 @@
     ],
     [
      279,
-     "wall 5,5"
-    ],
-    [
-     279,
-     "kill 5,5"
+     "petrify 5,5"
     ]
    ]
   },
@@ -1452,7 +1308,7 @@
     ],
     [
      159,
-     "kill 12,8"
+     "kill 11,4"
     ],
     [
      159,
@@ -1471,16 +1327,12 @@
      "open 12,10"
     ],
     [
-     222,
-     "kill 17,7"
+     254,
+     "kill 5,5"
     ],
     [
      254,
-     "kill 5,4"
-    ],
-    [
-     254,
-     "kill 5,6"
+     "kill 5,7"
     ],
     [
      263,
@@ -1519,7 +1371,7 @@
    "milestones": [
     [
      153,
-     "kill 12,8"
+     "kill 11,4"
     ],
     [
      153,
@@ -1567,19 +1419,11 @@
     ],
     [
      257,
-     "wall 5,5"
-    ],
-    [
-     257,
-     "kill 5,5"
+     "petrify 5,5"
     ],
     [
      258,
-     "wall 5,7"
-    ],
-    [
-     258,
-     "kill 5,7"
+     "petrify 5,7"
     ],
     [
      260,
@@ -1614,7 +1458,7 @@
     ],
     [
      159,
-     "kill 12,8"
+     "kill 11,4"
     ],
     [
      159,
@@ -1633,16 +1477,12 @@
      "open 12,10"
     ],
     [
-     222,
-     "kill 17,7"
+     254,
+     "kill 5,5"
     ],
     [
      254,
-     "kill 5,4"
-    ],
-    [
-     254,
-     "kill 5,6"
+     "kill 5,7"
     ],
     [
      261,
@@ -1681,7 +1521,7 @@
     ],
     [
      159,
-     "kill 12,8"
+     "kill 11,4"
     ],
     [
      159,
@@ -1700,16 +1540,12 @@
      "wall 11,9"
     ],
     [
-     222,
-     "kill 17,7"
+     254,
+     "kill 5,5"
     ],
     [
      254,
-     "kill 5,4"
-    ],
-    [
-     254,
-     "kill 5,6"
+     "kill 5,7"
     ],
     [
      264,
@@ -1740,7 +1576,7 @@
     ],
     [
      158,
-     "kill 12,8"
+     "kill 11,4"
     ],
     [
      158,
@@ -1759,16 +1595,12 @@
      "open 12,10"
     ],
     [
-     221,
-     "kill 17,7"
+     254,
+     "kill 5,5"
     ],
     [
      254,
-     "kill 5,4"
-    ],
-    [
-     254,
-     "kill 5,6"
+     "kill 5,7"
     ],
     [
      264,
@@ -1799,7 +1631,7 @@
     ],
     [
      167,
-     "kill 12,8"
+     "kill 11,4"
     ],
     [
      167,
@@ -1818,16 +1650,12 @@
      "open 12,10"
     ],
     [
-     230,
-     "kill 17,7"
+     263,
+     "kill 5,5"
     ],
     [
      263,
-     "kill 5,4"
-    ],
-    [
-     263,
-     "kill 5,6"
+     "kill 5,7"
     ],
     [
      273,
@@ -1858,7 +1686,7 @@
     ],
     [
      167,
-     "kill 12,8"
+     "kill 11,4"
     ],
     [
      167,
@@ -1877,16 +1705,12 @@
      "open 12,10"
     ],
     [
-     230,
-     "kill 17,7"
+     263,
+     "kill 5,5"
     ],
     [
      263,
-     "kill 5,4"
-    ],
-    [
-     263,
-     "kill 5,6"
+     "kill 5,7"
     ],
     [
      280,
@@ -1909,7 +1733,7 @@
    "milestones": [
     [
      163,
-     "kill 12,8"
+     "kill 11,4"
     ],
     [
      163,
@@ -1933,19 +1757,11 @@
     ],
     [
      259,
-     "wall 5,7"
-    ],
-    [
-     259,
-     "kill 5,7"
+     "petrify 5,7"
     ],
     [
      260,
-     "wall 5,5"
-    ],
-    [
-     260,
-     "kill 5,5"
+     "petrify 5,5"
     ],
     [
      274,
@@ -1968,7 +1784,7 @@
    "milestones": [
     [
      163,
-     "kill 12,8"
+     "kill 11,4"
     ],
     [
      163,
@@ -1992,19 +1808,11 @@
     ],
     [
      259,
-     "wall 5,7"
-    ],
-    [
-     259,
-     "kill 5,7"
+     "petrify 5,7"
     ],
     [
      260,
-     "wall 5,5"
-    ],
-    [
-     260,
-     "kill 5,5"
+     "petrify 5,5"
     ],
     [
      274,
@@ -2027,7 +1835,7 @@
    "milestones": [
     [
      162,
-     "kill 12,8"
+     "kill 11,4"
     ],
     [
      162,
@@ -2051,19 +1859,11 @@
     ],
     [
      260,
-     "wall 5,5"
-    ],
-    [
-     260,
-     "kill 5,5"
+     "petrify 5,5"
     ],
     [
      261,
-     "wall 5,7"
-    ],
-    [
-     261,
-     "kill 5,7"
+     "petrify 5,7"
     ],
     [
      275,
@@ -2090,7 +1890,7 @@
     ],
     [
      167,
-     "kill 12,8"
+     "kill 11,4"
     ],
     [
      167,
@@ -2110,19 +1910,11 @@
     ],
     [
      260,
-     "wall 5,5"
-    ],
-    [
-     260,
-     "kill 5,5"
+     "petrify 5,5"
     ],
     [
      261,
-     "wall 5,7"
-    ],
-    [
-     261,
-     "kill 5,7"
+     "petrify 5,7"
     ],
     [
      288,
@@ -2149,7 +1941,7 @@
     ],
     [
      167,
-     "kill 12,8"
+     "kill 11,4"
     ],
     [
      167,
@@ -2169,19 +1961,11 @@
     ],
     [
      262,
-     "wall 5,5"
-    ],
-    [
-     262,
-     "kill 5,5"
+     "petrify 5,5"
     ],
     [
      263,
-     "wall 5,7"
-    ],
-    [
-     263,
-     "kill 5,7"
+     "petrify 5,7"
     ],
     [
      290,
@@ -2204,7 +1988,7 @@
    "milestones": [
     [
      162,
-     "kill 12,8"
+     "kill 11,4"
     ],
     [
      162,
@@ -2224,19 +2008,11 @@
     ],
     [
      274,
-     "wall 5,5"
-    ],
-    [
-     274,
-     "kill 5,5"
+     "petrify 5,5"
     ],
     [
      275,
-     "wall 5,7"
-    ],
-    [
-     275,
-     "kill 5,7"
+     "petrify 5,7"
     ],
     [
      301,
@@ -2259,7 +2035,7 @@
    "milestones": [
     [
      162,
-     "kill 12,8"
+     "kill 11,4"
     ],
     [
      162,
@@ -2279,19 +2055,11 @@
     ],
     [
      274,
-     "wall 5,5"
-    ],
-    [
-     274,
-     "kill 5,5"
+     "petrify 5,5"
     ],
     [
      275,
-     "wall 5,7"
-    ],
-    [
-     275,
-     "kill 5,7"
+     "petrify 5,7"
     ],
     [
      301,
@@ -2314,7 +2082,7 @@
    "milestones": [
     [
      162,
-     "kill 12,8"
+     "kill 11,4"
     ],
     [
      162,
@@ -2334,19 +2102,11 @@
     ],
     [
      288,
-     "wall 5,7"
-    ],
-    [
-     288,
-     "kill 5,7"
+     "petrify 5,7"
     ],
     [
      289,
-     "wall 5,5"
-    ],
-    [
-     289,
-     "kill 5,5"
+     "petrify 5,5"
     ],
     [
      305,
@@ -2369,7 +2129,7 @@
    "milestones": [
     [
      162,
-     "kill 12,8"
+     "kill 11,4"
     ],
     [
      162,
@@ -2389,19 +2149,11 @@
     ],
     [
      291,
-     "wall 5,7"
-    ],
-    [
-     291,
-     "kill 5,7"
+     "petrify 5,7"
     ],
     [
      292,
-     "wall 5,5"
-    ],
-    [
-     292,
-     "kill 5,5"
+     "petrify 5,5"
     ],
     [
      308,
@@ -2424,7 +2176,7 @@
    "milestones": [
     [
      162,
-     "kill 12,8"
+     "kill 11,4"
     ],
     [
      162,
@@ -2444,19 +2196,11 @@
     ],
     [
      294,
-     "wall 5,7"
-    ],
-    [
-     294,
-     "kill 5,7"
+     "petrify 5,7"
     ],
     [
      295,
-     "wall 5,5"
-    ],
-    [
-     295,
-     "kill 5,5"
+     "petrify 5,5"
     ],
     [
      311,
@@ -2479,7 +2223,7 @@
    "milestones": [
     [
      162,
-     "kill 12,8"
+     "kill 11,4"
     ],
     [
      162,
@@ -2499,19 +2243,11 @@
     ],
     [
      294,
-     "wall 5,7"
-    ],
-    [
-     294,
-     "kill 5,7"
+     "petrify 5,7"
     ],
     [
      295,
-     "wall 5,5"
-    ],
-    [
-     295,
-     "kill 5,5"
+     "petrify 5,5"
     ],
     [
      311,
@@ -2534,7 +2270,7 @@
    "milestones": [
     [
      162,
-     "kill 12,8"
+     "kill 11,4"
     ],
     [
      162,
@@ -2554,19 +2290,11 @@
     ],
     [
      299,
-     "wall 5,7"
-    ],
-    [
-     299,
-     "kill 5,7"
+     "petrify 5,7"
     ],
     [
      300,
-     "wall 5,5"
-    ],
-    [
-     300,
-     "kill 5,5"
+     "petrify 5,5"
     ],
     [
      316,
@@ -2589,7 +2317,7 @@
    "milestones": [
     [
      162,
-     "kill 12,8"
+     "kill 11,4"
     ],
     [
      162,
@@ -2609,19 +2337,11 @@
     ],
     [
      300,
-     "wall 5,7"
-    ],
-    [
-     300,
-     "kill 5,7"
+     "petrify 5,7"
     ],
     [
      301,
-     "wall 5,5"
-    ],
-    [
-     301,
-     "kill 5,5"
+     "petrify 5,5"
     ],
     [
      317,
@@ -2648,7 +2368,7 @@
     ],
     [
      169,
-     "kill 12,8"
+     "kill 11,4"
     ],
     [
      169,
@@ -2664,19 +2384,11 @@
     ],
     [
      316,
-     "wall 5,5"
-    ],
-    [
-     316,
-     "kill 5,5"
+     "petrify 5,5"
     ],
     [
      317,
-     "wall 5,7"
-    ],
-    [
-     317,
-     "kill 5,7"
+     "petrify 5,7"
     ],
     [
      344,
@@ -2699,7 +2411,7 @@
    "milestones": [
     [
      163,
-     "kill 12,8"
+     "kill 11,4"
     ],
     [
      163,
@@ -2719,19 +2431,11 @@
     ],
     [
      316,
-     "wall 5,5"
-    ],
-    [
-     316,
-     "kill 5,5"
+     "petrify 5,5"
     ],
     [
      317,
-     "wall 5,7"
-    ],
-    [
-     317,
-     "kill 5,7"
+     "petrify 5,7"
     ],
     [
      331,
@@ -2754,7 +2458,7 @@
    "milestones": [
     [
      210,
-     "kill 12,8"
+     "kill 11,4"
     ],
     [
      210,
@@ -2774,19 +2478,11 @@
     ],
     [
      427,
-     "wall 5,5"
-    ],
-    [
-     427,
-     "kill 5,5"
+     "petrify 5,5"
     ],
     [
      428,
-     "wall 5,7"
-    ],
-    [
-     428,
-     "kill 5,7"
+     "petrify 5,7"
     ],
     [
      442,
@@ -2798,11 +2494,11 @@
     ],
     [
      494,
-     "kill 17,6"
+     "kill 17,5"
     ],
     [
      494,
-     "kill 17,8"
+     "kill 17,7"
     ]
    ]
   }
@@ -3261,22 +2957,17 @@
    "room": "III-20",
    "a": 140,
    "b": 130,
-   "events": 0.389,
-   "order": 0.619,
+   "events": 0.25,
+   "order": 1.0,
    "states": 0.006,
    "only_a": [
-    "kill 4,7",
-    "kill 6,7 #2",
+    "kill 6,7",
+    "kill 8,7",
     "open 5,7"
    ],
    "only_b": [
-    "kill 4,1",
-    "kill 5,4",
-    "kill 5,4 #2",
-    "kill 5,6",
     "kill 6,1",
-    "kill 6,1 #2",
-    "kill 8,4 #2",
+    "kill 6,4",
     "open 5,1"
    ]
   },
@@ -3285,7 +2976,7 @@
    "a": 140,
    "b": 128,
    "events": 1.0,
-   "order": 0.889,
+   "order": 0.7,
    "states": 0.006,
    "only_a": [],
    "only_b": []
@@ -3294,21 +2985,17 @@
    "room": "III-20",
    "a": 140,
    "b": 124,
-   "events": 0.375,
-   "order": 0.733,
+   "events": 0.25,
+   "order": 0.0,
    "states": 0.006,
    "only_a": [
-    "kill 4,7",
     "kill 6,7",
-    "kill 6,7 #2",
+    "kill 8,7",
     "open 5,7"
    ],
    "only_b": [
-    "kill 4,1",
-    "kill 5,4",
     "kill 6,1",
-    "kill 6,1 #2",
-    "kill 8,4 #2",
+    "kill 6,4",
     "open 5,1"
    ]
   },
@@ -3316,13 +3003,11 @@
    "room": "III-20",
    "a": 140,
    "b": 119,
-   "events": 0.222,
-   "order": 1.0,
+   "events": 0.071,
+   "order": null,
    "states": 0.005,
    "only_a": [
-    "kill 4,7",
     "kill 6,7",
-    "kill 6,7 #2",
     "kill 8,7",
     "open 5,7",
     "open 9,7"
@@ -3330,9 +3015,10 @@
    "only_b": [
     "kill 10,3",
     "kill 10,5",
-    "kill 6,1",
+    "kill 6,4",
     "kill 7,3",
     "kill 7,5",
+    "kill 8,4",
     "open 10,2",
     "open 11,3",
     "open 5,1"
@@ -3342,13 +3028,11 @@
    "room": "III-20",
    "a": 140,
    "b": 102,
-   "events": 0.222,
-   "order": 1.0,
+   "events": 0.071,
+   "order": null,
    "states": 0.005,
    "only_a": [
-    "kill 4,7",
     "kill 6,7",
-    "kill 6,7 #2",
     "kill 8,7",
     "open 5,7",
     "open 9,7"
@@ -3356,9 +3040,10 @@
    "only_b": [
     "kill 10,3",
     "kill 10,5",
-    "kill 6,1",
+    "kill 6,4",
     "kill 7,3",
     "kill 7,5",
+    "kill 8,4",
     "open 10,2",
     "open 11,4",
     "open 5,1"
@@ -3368,14 +3053,11 @@
    "room": "III-20",
    "a": 140,
    "b": 96,
-   "events": 0.2,
-   "order": 0.667,
+   "events": 0.091,
+   "order": null,
    "states": 0.005,
    "only_a": [
-    "kill 4,7",
-    "kill 6,4",
     "kill 6,7",
-    "kill 6,7 #2",
     "kill 8,7",
     "open 5,7",
     "open 9,7"
@@ -3383,7 +3065,8 @@
    "only_b": [
     "kill 10,3",
     "kill 10,5",
-    "kill 6,1",
+    "kill 8,1",
+    "kill 8,4",
     "open 10,2",
     "open 5,1"
    ]
@@ -3392,45 +3075,40 @@
    "room": "III-20",
    "a": 140,
    "b": 84,
-   "events": 0.214,
-   "order": 0.667,
+   "events": 0.111,
+   "order": null,
    "states": 0.005,
    "only_a": [
-    "kill 4,7",
-    "kill 6,4",
     "kill 6,7",
-    "kill 6,7 #2",
     "kill 8,7",
     "open 5,7",
     "open 9,7"
    ],
    "only_b": [
-    "kill 10,3",
-    "kill 6,1",
+    "kill 8,1",
+    "kill 8,4",
     "open 5,1",
-    "wall 10,3"
+    "petrify 10,3"
    ]
   },
   {
    "room": "III-20",
    "a": 140,
    "b": 64,
-   "events": 0.214,
-   "order": 0.667,
+   "events": 0.1,
+   "order": null,
    "states": 0.009,
    "only_a": [
-    "kill 4,7",
-    "kill 6,4",
     "kill 6,7",
-    "kill 6,7 #2",
     "kill 8,7",
     "open 5,7",
     "open 9,7"
    ],
    "only_b": [
     "kill 10,3",
-    "kill 6,1",
     "kill 7,3",
+    "kill 8,1",
+    "kill 8,4",
     "open 5,1"
    ]
   },
@@ -3438,22 +3116,17 @@
    "room": "III-20",
    "a": 130,
    "b": 128,
-   "events": 0.389,
-   "order": 0.667,
+   "events": 0.25,
+   "order": 0.0,
    "states": 0.011,
    "only_a": [
-    "kill 4,1",
-    "kill 5,4",
-    "kill 5,4 #2",
-    "kill 5,6",
     "kill 6,1",
-    "kill 6,1 #2",
-    "kill 8,4 #2",
+    "kill 6,4",
     "open 5,1"
    ],
    "only_b": [
-    "kill 4,7",
-    "kill 6,7 #2",
+    "kill 6,7",
+    "kill 8,7",
     "open 5,7"
    ]
   },
@@ -3461,32 +3134,21 @@
    "room": "III-20",
    "a": 130,
    "b": 124,
-   "events": 0.8,
-   "order": 0.97,
+   "events": 1.0,
+   "order": 0.8,
    "states": 0.011,
-   "only_a": [
-    "kill 5,4 #2",
-    "kill 5,6",
-    "kill 6,7"
-   ],
+   "only_a": [],
    "only_b": []
   },
   {
    "room": "III-20",
    "a": 130,
    "b": 119,
-   "events": 0.286,
-   "order": 0.933,
+   "events": 0.25,
+   "order": 1.0,
    "states": 0.011,
    "only_a": [
-    "kill 4,1",
-    "kill 5,4",
-    "kill 5,4 #2",
-    "kill 5,6",
-    "kill 6,1 #2",
-    "kill 6,7",
-    "kill 8,4 #2",
-    "kill 8,7",
+    "kill 6,1",
     "open 9,7"
    ],
    "only_b": [
@@ -3494,6 +3156,7 @@
     "kill 10,5",
     "kill 7,3",
     "kill 7,5",
+    "kill 8,4",
     "open 10,2",
     "open 11,3"
    ]
@@ -3502,18 +3165,11 @@
    "room": "III-20",
    "a": 130,
    "b": 102,
-   "events": 0.286,
-   "order": 0.933,
+   "events": 0.25,
+   "order": 1.0,
    "states": 0.011,
    "only_a": [
-    "kill 4,1",
-    "kill 5,4",
-    "kill 5,4 #2",
-    "kill 5,6",
-    "kill 6,1 #2",
-    "kill 6,7",
-    "kill 8,4 #2",
-    "kill 8,7",
+    "kill 6,1",
     "open 9,7"
    ],
    "only_b": [
@@ -3521,6 +3177,7 @@
     "kill 10,5",
     "kill 7,3",
     "kill 7,5",
+    "kill 8,4",
     "open 10,2",
     "open 11,4"
    ]
@@ -3529,24 +3186,19 @@
    "room": "III-20",
    "a": 130,
    "b": 96,
-   "events": 0.278,
-   "order": 0.8,
+   "events": 0.2,
+   "order": 0.0,
    "states": 0.01,
    "only_a": [
-    "kill 4,1",
-    "kill 5,4",
-    "kill 5,4 #2",
-    "kill 5,6",
-    "kill 6,1 #2",
+    "kill 6,1",
     "kill 6,4",
-    "kill 6,7",
-    "kill 8,4 #2",
-    "kill 8,7",
     "open 9,7"
    ],
    "only_b": [
     "kill 10,3",
     "kill 10,5",
+    "kill 8,1",
+    "kill 8,4",
     "open 10,2"
    ]
   },
@@ -3554,69 +3206,54 @@
    "room": "III-20",
    "a": 130,
    "b": 84,
-   "events": 0.294,
-   "order": 0.8,
+   "events": 0.25,
+   "order": 0.0,
    "states": 0.01,
    "only_a": [
-    "kill 4,1",
-    "kill 5,4",
-    "kill 5,4 #2",
-    "kill 5,6",
-    "kill 6,1 #2",
+    "kill 6,1",
     "kill 6,4",
-    "kill 6,7",
-    "kill 8,4 #2",
-    "kill 8,7",
     "open 9,7"
    ],
    "only_b": [
-    "kill 10,3",
-    "wall 10,3"
+    "kill 8,1",
+    "kill 8,4",
+    "petrify 10,3"
    ]
   },
   {
    "room": "III-20",
    "a": 130,
    "b": 64,
-   "events": 0.294,
-   "order": 0.8,
+   "events": 0.222,
+   "order": 0.0,
    "states": 0.004,
    "only_a": [
-    "kill 4,1",
-    "kill 5,4",
-    "kill 5,4 #2",
-    "kill 5,6",
-    "kill 6,1 #2",
+    "kill 6,1",
     "kill 6,4",
-    "kill 6,7",
-    "kill 8,4 #2",
-    "kill 8,7",
     "open 9,7"
    ],
    "only_b": [
     "kill 10,3",
-    "kill 7,3"
+    "kill 7,3",
+    "kill 8,1",
+    "kill 8,4"
    ]
   },
   {
    "room": "III-20",
    "a": 128,
    "b": 124,
-   "events": 0.375,
-   "order": 0.867,
+   "events": 0.25,
+   "order": 1.0,
    "states": 0.017,
    "only_a": [
-    "kill 4,7",
     "kill 6,7",
-    "kill 6,7 #2",
+    "kill 8,7",
     "open 5,7"
    ],
    "only_b": [
-    "kill 4,1",
-    "kill 5,4",
     "kill 6,1",
-    "kill 6,1 #2",
-    "kill 8,4 #2",
+    "kill 6,4",
     "open 5,1"
    ]
   },
@@ -3624,13 +3261,11 @@
    "room": "III-20",
    "a": 128,
    "b": 119,
-   "events": 0.222,
-   "order": 1.0,
+   "events": 0.071,
+   "order": null,
    "states": 0.016,
    "only_a": [
-    "kill 4,7",
     "kill 6,7",
-    "kill 6,7 #2",
     "kill 8,7",
     "open 5,7",
     "open 9,7"
@@ -3638,9 +3273,10 @@
    "only_b": [
     "kill 10,3",
     "kill 10,5",
-    "kill 6,1",
+    "kill 6,4",
     "kill 7,3",
     "kill 7,5",
+    "kill 8,4",
     "open 10,2",
     "open 11,3",
     "open 5,1"
@@ -3650,13 +3286,11 @@
    "room": "III-20",
    "a": 128,
    "b": 102,
-   "events": 0.222,
-   "order": 1.0,
+   "events": 0.071,
+   "order": null,
    "states": 0.016,
    "only_a": [
-    "kill 4,7",
     "kill 6,7",
-    "kill 6,7 #2",
     "kill 8,7",
     "open 5,7",
     "open 9,7"
@@ -3664,9 +3298,10 @@
    "only_b": [
     "kill 10,3",
     "kill 10,5",
-    "kill 6,1",
+    "kill 6,4",
     "kill 7,3",
     "kill 7,5",
+    "kill 8,4",
     "open 10,2",
     "open 11,4",
     "open 5,1"
@@ -3676,14 +3311,11 @@
    "room": "III-20",
    "a": 128,
    "b": 96,
-   "events": 0.2,
-   "order": 0.667,
+   "events": 0.091,
+   "order": null,
    "states": 0.02,
    "only_a": [
-    "kill 4,7",
-    "kill 6,4",
     "kill 6,7",
-    "kill 6,7 #2",
     "kill 8,7",
     "open 5,7",
     "open 9,7"
@@ -3691,7 +3323,8 @@
    "only_b": [
     "kill 10,3",
     "kill 10,5",
-    "kill 6,1",
+    "kill 8,1",
+    "kill 8,4",
     "open 10,2",
     "open 5,1"
    ]
@@ -3700,45 +3333,40 @@
    "room": "III-20",
    "a": 128,
    "b": 84,
-   "events": 0.214,
-   "order": 0.667,
+   "events": 0.111,
+   "order": null,
    "states": 0.019,
    "only_a": [
-    "kill 4,7",
-    "kill 6,4",
     "kill 6,7",
-    "kill 6,7 #2",
     "kill 8,7",
     "open 5,7",
     "open 9,7"
    ],
    "only_b": [
-    "kill 10,3",
-    "kill 6,1",
+    "kill 8,1",
+    "kill 8,4",
     "open 5,1",
-    "wall 10,3"
+    "petrify 10,3"
    ]
   },
   {
    "room": "III-20",
    "a": 128,
    "b": 64,
-   "events": 0.214,
-   "order": 0.667,
+   "events": 0.1,
+   "order": null,
    "states": 0.004,
    "only_a": [
-    "kill 4,7",
-    "kill 6,4",
     "kill 6,7",
-    "kill 6,7 #2",
     "kill 8,7",
     "open 5,7",
     "open 9,7"
    ],
    "only_b": [
     "kill 10,3",
-    "kill 6,1",
     "kill 7,3",
+    "kill 8,1",
+    "kill 8,4",
     "open 5,1"
    ]
   },
@@ -3746,15 +3374,11 @@
    "room": "III-20",
    "a": 124,
    "b": 119,
-   "events": 0.333,
-   "order": 0.933,
+   "events": 0.25,
+   "order": 1.0,
    "states": 0.111,
    "only_a": [
-    "kill 4,1",
-    "kill 5,4",
-    "kill 6,1 #2",
-    "kill 8,4 #2",
-    "kill 8,7",
+    "kill 6,1",
     "open 9,7"
    ],
    "only_b": [
@@ -3762,6 +3386,7 @@
     "kill 10,5",
     "kill 7,3",
     "kill 7,5",
+    "kill 8,4",
     "open 10,2",
     "open 11,3"
    ]
@@ -3770,15 +3395,11 @@
    "room": "III-20",
    "a": 124,
    "b": 102,
-   "events": 0.333,
-   "order": 0.933,
+   "events": 0.25,
+   "order": 1.0,
    "states": 0.091,
    "only_a": [
-    "kill 4,1",
-    "kill 5,4",
-    "kill 6,1 #2",
-    "kill 8,4 #2",
-    "kill 8,7",
+    "kill 6,1",
     "open 9,7"
    ],
    "only_b": [
@@ -3786,6 +3407,7 @@
     "kill 10,5",
     "kill 7,3",
     "kill 7,5",
+    "kill 8,4",
     "open 10,2",
     "open 11,4"
    ]
@@ -3794,21 +3416,19 @@
    "room": "III-20",
    "a": 124,
    "b": 96,
-   "events": 0.333,
-   "order": 0.8,
+   "events": 0.2,
+   "order": 0.0,
    "states": 0.015,
    "only_a": [
-    "kill 4,1",
-    "kill 5,4",
-    "kill 6,1 #2",
+    "kill 6,1",
     "kill 6,4",
-    "kill 8,4 #2",
-    "kill 8,7",
     "open 9,7"
    ],
    "only_b": [
     "kill 10,3",
     "kill 10,5",
+    "kill 8,1",
+    "kill 8,4",
     "open 10,2"
    ]
   },
@@ -3816,49 +3436,44 @@
    "room": "III-20",
    "a": 124,
    "b": 84,
-   "events": 0.357,
-   "order": 0.8,
+   "events": 0.25,
+   "order": 0.0,
    "states": 0.014,
    "only_a": [
-    "kill 4,1",
-    "kill 5,4",
-    "kill 6,1 #2",
+    "kill 6,1",
     "kill 6,4",
-    "kill 8,4 #2",
-    "kill 8,7",
     "open 9,7"
    ],
    "only_b": [
-    "kill 10,3",
-    "wall 10,3"
+    "kill 8,1",
+    "kill 8,4",
+    "petrify 10,3"
    ]
   },
   {
    "room": "III-20",
    "a": 124,
    "b": 64,
-   "events": 0.357,
-   "order": 0.8,
+   "events": 0.222,
+   "order": 0.0,
    "states": 0.004,
    "only_a": [
-    "kill 4,1",
-    "kill 5,4",
-    "kill 6,1 #2",
+    "kill 6,1",
     "kill 6,4",
-    "kill 8,4 #2",
-    "kill 8,7",
     "open 9,7"
    ],
    "only_b": [
     "kill 10,3",
-    "kill 7,3"
+    "kill 7,3",
+    "kill 8,1",
+    "kill 8,4"
    ]
   },
   {
    "room": "III-20",
    "a": 119,
    "b": 102,
-   "events": 0.846,
+   "events": 0.818,
    "order": 1.0,
    "states": 0.602,
    "only_a": [
@@ -3872,8 +3487,8 @@
    "room": "III-20",
    "a": 119,
    "b": 96,
-   "events": 0.667,
-   "order": 0.821,
+   "events": 0.545,
+   "order": 0.867,
    "states": 0.019,
    "only_a": [
     "kill 6,4",
@@ -3881,16 +3496,19 @@
     "kill 7,5",
     "open 11,3"
    ],
-   "only_b": []
+   "only_b": [
+    "kill 8,1"
+   ]
   },
   {
    "room": "III-20",
    "a": 119,
    "b": 84,
-   "events": 0.462,
-   "order": 0.8,
+   "events": 0.25,
+   "order": 0.667,
    "states": 0.042,
    "only_a": [
+    "kill 10,3",
     "kill 10,5",
     "kill 6,4",
     "kill 7,3",
@@ -3899,15 +3517,16 @@
     "open 11,3"
    ],
    "only_b": [
-    "wall 10,3"
+    "kill 8,1",
+    "petrify 10,3"
    ]
   },
   {
    "room": "III-20",
    "a": 119,
    "b": 64,
-   "events": 0.583,
-   "order": 0.762,
+   "events": 0.455,
+   "order": 0.8,
    "states": 0.03,
    "only_a": [
     "kill 10,5",
@@ -3916,14 +3535,16 @@
     "open 10,2",
     "open 11,3"
    ],
-   "only_b": []
+   "only_b": [
+    "kill 8,1"
+   ]
   },
   {
    "room": "III-20",
    "a": 102,
    "b": 96,
-   "events": 0.667,
-   "order": 0.821,
+   "events": 0.545,
+   "order": 0.867,
    "states": 0.019,
    "only_a": [
     "kill 6,4",
@@ -3931,16 +3552,19 @@
     "kill 7,5",
     "open 11,4"
    ],
-   "only_b": []
+   "only_b": [
+    "kill 8,1"
+   ]
   },
   {
    "room": "III-20",
    "a": 102,
    "b": 84,
-   "events": 0.462,
-   "order": 0.8,
+   "events": 0.25,
+   "order": 0.667,
    "states": 0.042,
    "only_a": [
+    "kill 10,3",
     "kill 10,5",
     "kill 6,4",
     "kill 7,3",
@@ -3949,15 +3573,16 @@
     "open 11,4"
    ],
    "only_b": [
-    "wall 10,3"
+    "kill 8,1",
+    "petrify 10,3"
    ]
   },
   {
    "room": "III-20",
    "a": 102,
    "b": 64,
-   "events": 0.583,
-   "order": 0.762,
+   "events": 0.455,
+   "order": 0.8,
    "states": 0.029,
    "only_a": [
     "kill 10,5",
@@ -3966,29 +3591,32 @@
     "open 10,2",
     "open 11,4"
    ],
-   "only_b": []
+   "only_b": [
+    "kill 8,1"
+   ]
   },
   {
    "room": "III-20",
    "a": 96,
    "b": 84,
-   "events": 0.667,
+   "events": 0.5,
    "order": 1.0,
    "states": 0.237,
    "only_a": [
+    "kill 10,3",
     "kill 10,5",
     "open 10,2"
    ],
    "only_b": [
-    "wall 10,3"
+    "petrify 10,3"
    ]
   },
   {
    "room": "III-20",
    "a": 96,
    "b": 64,
-   "events": 0.667,
-   "order": 0.867,
+   "events": 0.625,
+   "order": 0.8,
    "states": 0.169,
    "only_a": [
     "kill 10,5",
@@ -4002,13 +3630,14 @@
    "room": "III-20",
    "a": 84,
    "b": 64,
-   "events": 0.75,
-   "order": 0.867,
+   "events": 0.571,
+   "order": 1.0,
    "states": 0.217,
    "only_a": [
-    "wall 10,3"
+    "petrify 10,3"
    ],
    "only_b": [
+    "kill 10,3",
     "kill 7,3"
    ]
   },
@@ -4076,7 +3705,7 @@
    "room": "III-21",
    "a": 159,
    "b": 153,
-   "events": 0.722,
+   "events": 0.765,
    "order": 0.974,
    "states": 0.061,
    "only_a": [
@@ -4084,20 +3713,20 @@
     "wall 11,8"
    ],
    "only_b": [
-    "kill 5,5",
     "open 13,8",
-    "wall 5,5"
+    "petrify 5,5"
    ]
   },
   {
    "room": "III-21",
    "a": 159,
    "b": 152,
-   "events": 0.364,
-   "order": 0.964,
+   "events": 0.318,
+   "order": 0.952,
    "states": 0.05,
    "only_a": [
     "kill 17,5",
+    "kill 17,7",
     "open 1,9",
     "open 10,10",
     "open 13,7",
@@ -4106,8 +3735,8 @@
     "wall 11,8"
    ],
    "only_b": [
-    "kill 5,4",
-    "kill 5,6",
+    "kill 5,5",
+    "kill 5,7",
     "open 2,9",
     "open 3,7",
     "open 4,7",
@@ -4119,7 +3748,7 @@
    "room": "III-21",
    "a": 159,
    "b": 151,
-   "events": 0.458,
+   "events": 0.5,
    "order": 0.927,
    "states": 0.06,
    "only_a": [
@@ -4129,26 +3758,25 @@
     "wall 11,8"
    ],
    "only_b": [
-    "kill 5,5",
-    "kill 5,7",
     "open 13,10",
     "open 14,10",
     "open 2,9",
     "open 3,7",
     "open 4,7",
-    "wall 5,5",
-    "wall 5,7"
+    "petrify 5,5",
+    "petrify 5,7"
    ]
   },
   {
    "room": "III-21",
    "a": 159,
    "b": 150,
-   "events": 0.381,
-   "order": 0.964,
+   "events": 0.333,
+   "order": 1.0,
    "states": 0.05,
    "only_a": [
     "kill 17,5",
+    "kill 17,7",
     "open 1,8",
     "open 1,9",
     "open 10,10",
@@ -4157,8 +3785,8 @@
     "wall 11,8"
    ],
    "only_b": [
-    "kill 5,4",
-    "kill 5,6",
+    "kill 5,5",
+    "kill 5,7",
     "open 2,9",
     "open 3,7",
     "open 4,7",
@@ -4169,11 +3797,12 @@
    "room": "III-21",
    "a": 159,
    "b": 149,
-   "events": 0.421,
-   "order": 0.964,
+   "events": 0.368,
+   "order": 1.0,
    "states": 0.066,
    "only_a": [
     "kill 17,5",
+    "kill 17,7",
     "open 1,8",
     "open 1,9",
     "open 10,10",
@@ -4182,8 +3811,8 @@
     "wall 11,8"
    ],
    "only_b": [
-    "kill 5,4",
-    "kill 5,6",
+    "kill 5,5",
+    "kill 5,7",
     "open 2,9",
     "wall 11,9"
    ]
@@ -4192,11 +3821,12 @@
    "room": "III-21",
    "a": 159,
    "b": 147,
-   "events": 0.421,
-   "order": 0.964,
+   "events": 0.368,
+   "order": 1.0,
    "states": 0.094,
    "only_a": [
     "kill 17,5",
+    "kill 17,7",
     "open 1,8",
     "open 1,9",
     "open 10,10",
@@ -4205,8 +3835,8 @@
     "wall 11,8"
    ],
    "only_b": [
-    "kill 5,4",
-    "kill 5,6",
+    "kill 5,5",
+    "kill 5,7",
     "open 2,9",
     "wall 11,9"
    ]
@@ -4215,11 +3845,12 @@
    "room": "III-21",
    "a": 159,
    "b": 146,
-   "events": 0.421,
-   "order": 0.964,
+   "events": 0.368,
+   "order": 1.0,
    "states": 0.044,
    "only_a": [
     "kill 17,5",
+    "kill 17,7",
     "open 1,8",
     "open 1,9",
     "open 10,10",
@@ -4228,8 +3859,8 @@
     "wall 11,8"
    ],
    "only_b": [
-    "kill 5,4",
-    "kill 5,6",
+    "kill 5,5",
+    "kill 5,7",
     "open 2,9",
     "wall 11,9"
    ]
@@ -4238,11 +3869,12 @@
    "room": "III-21",
    "a": 159,
    "b": 145,
-   "events": 0.368,
+   "events": 0.316,
    "order": 1.0,
    "states": 0.043,
    "only_a": [
     "kill 17,5",
+    "kill 17,7",
     "open 1,8",
     "open 1,9",
     "open 10,10",
@@ -4252,8 +3884,8 @@
     "wall 11,8"
    ],
    "only_b": [
-    "kill 5,4",
-    "kill 5,6",
+    "kill 5,5",
+    "kill 5,7",
     "open 2,9",
     "wall 11,9"
    ]
@@ -4262,7 +3894,7 @@
    "room": "III-21",
    "a": 159,
    "b": 143,
-   "events": 0.227,
+   "events": 0.25,
    "order": 0.8,
    "states": 0.047,
    "only_a": [
@@ -4278,20 +3910,18 @@
     "wall 11,8"
    ],
    "only_b": [
-    "kill 5,5",
-    "kill 5,7",
     "open 11,10",
     "open 13,6",
     "open 2,9",
-    "wall 5,5",
-    "wall 5,7"
+    "petrify 5,5",
+    "petrify 5,7"
    ]
   },
   {
    "room": "III-21",
    "a": 159,
    "b": 142,
-   "events": 0.227,
+   "events": 0.25,
    "order": 0.8,
    "states": 0.046,
    "only_a": [
@@ -4307,20 +3937,18 @@
     "wall 11,8"
    ],
    "only_b": [
-    "kill 5,5",
-    "kill 5,7",
     "open 11,10",
     "open 13,6",
     "open 2,9",
-    "wall 5,5",
-    "wall 5,7"
+    "petrify 5,5",
+    "petrify 5,7"
    ]
   },
   {
    "room": "III-21",
    "a": 159,
    "b": 141,
-   "events": 0.227,
+   "events": 0.25,
    "order": 0.8,
    "states": 0.04,
    "only_a": [
@@ -4336,20 +3964,18 @@
     "wall 11,8"
    ],
    "only_b": [
-    "kill 5,5",
-    "kill 5,7",
     "open 11,10",
     "open 13,6",
     "open 2,9",
-    "wall 5,5",
-    "wall 5,7"
+    "petrify 5,5",
+    "petrify 5,7"
    ]
   },
   {
    "room": "III-21",
    "a": 159,
    "b": 139,
-   "events": 0.227,
+   "events": 0.25,
    "order": 1.0,
    "states": 0.035,
    "only_a": [
@@ -4365,20 +3991,18 @@
     "wall 11,8"
    ],
    "only_b": [
-    "kill 5,5",
-    "kill 5,7",
     "open 11,10",
     "open 13,6",
     "open 2,9",
-    "wall 5,5",
-    "wall 5,7"
+    "petrify 5,5",
+    "petrify 5,7"
    ]
   },
   {
    "room": "III-21",
    "a": 159,
    "b": 138,
-   "events": 0.227,
+   "events": 0.25,
    "order": 1.0,
    "states": 0.035,
    "only_a": [
@@ -4394,20 +4018,18 @@
     "wall 11,8"
    ],
    "only_b": [
-    "kill 5,5",
-    "kill 5,7",
     "open 11,10",
     "open 13,6",
     "open 2,9",
-    "wall 5,5",
-    "wall 5,7"
+    "petrify 5,5",
+    "petrify 5,7"
    ]
   },
   {
    "room": "III-21",
    "a": 159,
    "b": 136,
-   "events": 0.182,
+   "events": 0.2,
    "order": 0.667,
    "states": 0.111,
    "only_a": [
@@ -4424,20 +4046,18 @@
     "wall 11,8"
    ],
    "only_b": [
-    "kill 5,5",
-    "kill 5,7",
     "open 11,10",
     "open 13,6",
     "open 2,9",
-    "wall 5,5",
-    "wall 5,7"
+    "petrify 5,5",
+    "petrify 5,7"
    ]
   },
   {
    "room": "III-21",
    "a": 159,
    "b": 134,
-   "events": 0.182,
+   "events": 0.2,
    "order": 0.667,
    "states": 0.111,
    "only_a": [
@@ -4454,20 +4074,18 @@
     "wall 11,8"
    ],
    "only_b": [
-    "kill 5,5",
-    "kill 5,7",
     "open 11,10",
     "open 13,6",
     "open 2,9",
-    "wall 5,5",
-    "wall 5,7"
+    "petrify 5,5",
+    "petrify 5,7"
    ]
   },
   {
    "room": "III-21",
    "a": 159,
    "b": 133,
-   "events": 0.182,
+   "events": 0.2,
    "order": 0.667,
    "states": 0.111,
    "only_a": [
@@ -4484,20 +4102,18 @@
     "wall 11,8"
    ],
    "only_b": [
-    "kill 5,5",
-    "kill 5,7",
     "open 11,10",
     "open 13,6",
     "open 2,9",
-    "wall 5,5",
-    "wall 5,7"
+    "petrify 5,5",
+    "petrify 5,7"
    ]
   },
   {
    "room": "III-21",
    "a": 159,
    "b": 132,
-   "events": 0.182,
+   "events": 0.2,
    "order": 0.667,
    "states": 0.11,
    "only_a": [
@@ -4514,20 +4130,18 @@
     "wall 11,8"
    ],
    "only_b": [
-    "kill 5,5",
-    "kill 5,7",
     "open 11,10",
     "open 13,6",
     "open 2,9",
-    "wall 5,5",
-    "wall 5,7"
+    "petrify 5,5",
+    "petrify 5,7"
    ]
   },
   {
    "room": "III-21",
    "a": 159,
    "b": 129,
-   "events": 0.182,
+   "events": 0.2,
    "order": 0.667,
    "states": 0.11,
    "only_a": [
@@ -4544,20 +4158,18 @@
     "wall 11,8"
    ],
    "only_b": [
-    "kill 5,5",
-    "kill 5,7",
     "open 11,10",
     "open 13,6",
     "open 2,9",
-    "wall 5,5",
-    "wall 5,7"
+    "petrify 5,5",
+    "petrify 5,7"
    ]
   },
   {
    "room": "III-21",
    "a": 159,
    "b": 121,
-   "events": 0.182,
+   "events": 0.2,
    "order": 0.667,
    "states": 0.109,
    "only_a": [
@@ -4574,20 +4186,18 @@
     "wall 11,8"
    ],
    "only_b": [
-    "kill 5,5",
-    "kill 5,7",
     "open 11,10",
     "open 13,6",
     "open 2,9",
-    "wall 5,5",
-    "wall 5,7"
+    "petrify 5,5",
+    "petrify 5,7"
    ]
   },
   {
    "room": "III-21",
    "a": 159,
    "b": 112,
-   "events": 0.182,
+   "events": 0.2,
    "order": 0.667,
    "states": 0.108,
    "only_a": [
@@ -4604,20 +4214,18 @@
     "wall 11,8"
    ],
    "only_b": [
-    "kill 5,5",
-    "kill 5,7",
     "open 11,10",
     "open 13,6",
     "open 2,9",
-    "wall 5,5",
-    "wall 5,7"
+    "petrify 5,5",
+    "petrify 5,7"
    ]
   },
   {
    "room": "III-21",
    "a": 159,
    "b": 100,
-   "events": 0.182,
+   "events": 0.2,
    "order": 0.667,
    "states": 0.108,
    "only_a": [
@@ -4634,20 +4242,18 @@
     "wall 11,8"
    ],
    "only_b": [
-    "kill 5,5",
-    "kill 5,7",
     "open 11,10",
     "open 13,6",
     "open 2,9",
-    "wall 5,5",
-    "wall 5,7"
+    "petrify 5,5",
+    "petrify 5,7"
    ]
   },
   {
    "room": "III-21",
    "a": 159,
    "b": 97,
-   "events": 0.182,
+   "events": 0.2,
    "order": 1.0,
    "states": 0.042,
    "only_a": [
@@ -4664,20 +4270,18 @@
     "wall 11,8"
    ],
    "only_b": [
-    "kill 5,5",
-    "kill 5,7",
     "open 11,10",
     "open 13,6",
     "open 2,9",
-    "wall 5,5",
-    "wall 5,7"
+    "petrify 5,5",
+    "petrify 5,7"
    ]
   },
   {
    "room": "III-21",
    "a": 159,
    "b": 88,
-   "events": 0.182,
+   "events": 0.2,
    "order": 0.667,
    "states": 0.055,
    "only_a": [
@@ -4694,25 +4298,21 @@
     "wall 11,8"
    ],
    "only_b": [
-    "kill 5,5",
-    "kill 5,7",
     "open 11,10",
     "open 13,6",
     "open 2,9",
-    "wall 5,5",
-    "wall 5,7"
+    "petrify 5,5",
+    "petrify 5,7"
    ]
   },
   {
    "room": "III-21",
    "a": 159,
    "b": 65,
-   "events": 0.167,
-   "order": 0.667,
+   "events": 0.3,
+   "order": 0.733,
    "states": 0.026,
    "only_a": [
-    "kill 17,5",
-    "kill 17,7",
     "open 1,8",
     "open 1,9",
     "open 10,10",
@@ -4724,15 +4324,11 @@
     "wall 11,8"
    ],
    "only_b": [
-    "kill 17,6",
-    "kill 17,8",
-    "kill 5,5",
-    "kill 5,7",
     "open 11,10",
     "open 13,6",
     "open 2,9",
-    "wall 5,5",
-    "wall 5,7"
+    "petrify 5,5",
+    "petrify 5,7"
    ]
   },
   {
@@ -4789,7 +4385,7 @@
    "room": "III-21",
    "a": 158,
    "b": 153,
-   "events": 0.722,
+   "events": 0.765,
    "order": 0.974,
    "states": 0.128,
    "only_a": [
@@ -4797,20 +4393,20 @@
     "wall 11,8"
    ],
    "only_b": [
-    "kill 5,5",
     "open 13,8",
-    "wall 5,5"
+    "petrify 5,5"
    ]
   },
   {
    "room": "III-21",
    "a": 158,
    "b": 152,
-   "events": 0.364,
-   "order": 0.964,
+   "events": 0.318,
+   "order": 0.952,
    "states": 0.05,
    "only_a": [
     "kill 17,5",
+    "kill 17,7",
     "open 1,9",
     "open 10,10",
     "open 13,7",
@@ -4819,8 +4415,8 @@
     "wall 11,8"
    ],
    "only_b": [
-    "kill 5,4",
-    "kill 5,6",
+    "kill 5,5",
+    "kill 5,7",
     "open 2,9",
     "open 3,7",
     "open 4,7",
@@ -4832,7 +4428,7 @@
    "room": "III-21",
    "a": 158,
    "b": 151,
-   "events": 0.458,
+   "events": 0.5,
    "order": 0.927,
    "states": 0.118,
    "only_a": [
@@ -4842,26 +4438,25 @@
     "wall 11,8"
    ],
    "only_b": [
-    "kill 5,5",
-    "kill 5,7",
     "open 13,10",
     "open 14,10",
     "open 2,9",
     "open 3,7",
     "open 4,7",
-    "wall 5,5",
-    "wall 5,7"
+    "petrify 5,5",
+    "petrify 5,7"
    ]
   },
   {
    "room": "III-21",
    "a": 158,
    "b": 150,
-   "events": 0.381,
-   "order": 0.964,
+   "events": 0.333,
+   "order": 1.0,
    "states": 0.049,
    "only_a": [
     "kill 17,5",
+    "kill 17,7",
     "open 1,8",
     "open 1,9",
     "open 10,10",
@@ -4870,8 +4465,8 @@
     "wall 11,8"
    ],
    "only_b": [
-    "kill 5,4",
-    "kill 5,6",
+    "kill 5,5",
+    "kill 5,7",
     "open 2,9",
     "open 3,7",
     "open 4,7",
@@ -4882,11 +4477,12 @@
    "room": "III-21",
    "a": 158,
    "b": 149,
-   "events": 0.421,
-   "order": 0.964,
+   "events": 0.368,
+   "order": 1.0,
    "states": 0.066,
    "only_a": [
     "kill 17,5",
+    "kill 17,7",
     "open 1,8",
     "open 1,9",
     "open 10,10",
@@ -4895,8 +4491,8 @@
     "wall 11,8"
    ],
    "only_b": [
-    "kill 5,4",
-    "kill 5,6",
+    "kill 5,5",
+    "kill 5,7",
     "open 2,9",
     "wall 11,9"
    ]
@@ -4905,11 +4501,12 @@
    "room": "III-21",
    "a": 158,
    "b": 147,
-   "events": 0.421,
-   "order": 0.964,
+   "events": 0.368,
+   "order": 1.0,
    "states": 0.107,
    "only_a": [
     "kill 17,5",
+    "kill 17,7",
     "open 1,8",
     "open 1,9",
     "open 10,10",
@@ -4918,8 +4515,8 @@
     "wall 11,8"
    ],
    "only_b": [
-    "kill 5,4",
-    "kill 5,6",
+    "kill 5,5",
+    "kill 5,7",
     "open 2,9",
     "wall 11,9"
    ]
@@ -4928,11 +4525,12 @@
    "room": "III-21",
    "a": 158,
    "b": 146,
-   "events": 0.421,
-   "order": 0.964,
+   "events": 0.368,
+   "order": 1.0,
    "states": 0.043,
    "only_a": [
     "kill 17,5",
+    "kill 17,7",
     "open 1,8",
     "open 1,9",
     "open 10,10",
@@ -4941,8 +4539,8 @@
     "wall 11,8"
    ],
    "only_b": [
-    "kill 5,4",
-    "kill 5,6",
+    "kill 5,5",
+    "kill 5,7",
     "open 2,9",
     "wall 11,9"
    ]
@@ -4951,11 +4549,12 @@
    "room": "III-21",
    "a": 158,
    "b": 145,
-   "events": 0.368,
+   "events": 0.316,
    "order": 1.0,
    "states": 0.043,
    "only_a": [
     "kill 17,5",
+    "kill 17,7",
     "open 1,8",
     "open 1,9",
     "open 10,10",
@@ -4965,8 +4564,8 @@
     "wall 11,8"
    ],
    "only_b": [
-    "kill 5,4",
-    "kill 5,6",
+    "kill 5,5",
+    "kill 5,7",
     "open 2,9",
     "wall 11,9"
    ]
@@ -4975,7 +4574,7 @@
    "room": "III-21",
    "a": 158,
    "b": 143,
-   "events": 0.227,
+   "events": 0.25,
    "order": 0.8,
    "states": 0.046,
    "only_a": [
@@ -4991,20 +4590,18 @@
     "wall 11,8"
    ],
    "only_b": [
-    "kill 5,5",
-    "kill 5,7",
     "open 11,10",
     "open 13,6",
     "open 2,9",
-    "wall 5,5",
-    "wall 5,7"
+    "petrify 5,5",
+    "petrify 5,7"
    ]
   },
   {
    "room": "III-21",
    "a": 158,
    "b": 142,
-   "events": 0.227,
+   "events": 0.25,
    "order": 0.8,
    "states": 0.046,
    "only_a": [
@@ -5020,20 +4617,18 @@
     "wall 11,8"
    ],
    "only_b": [
-    "kill 5,5",
-    "kill 5,7",
     "open 11,10",
     "open 13,6",
     "open 2,9",
-    "wall 5,5",
-    "wall 5,7"
+    "petrify 5,5",
+    "petrify 5,7"
    ]
   },
   {
    "room": "III-21",
    "a": 158,
    "b": 141,
-   "events": 0.227,
+   "events": 0.25,
    "order": 0.8,
    "states": 0.04,
    "only_a": [
@@ -5049,20 +4644,18 @@
     "wall 11,8"
    ],
    "only_b": [
-    "kill 5,5",
-    "kill 5,7",
     "open 11,10",
     "open 13,6",
     "open 2,9",
-    "wall 5,5",
-    "wall 5,7"
+    "petrify 5,5",
+    "petrify 5,7"
    ]
   },
   {
    "room": "III-21",
    "a": 158,
    "b": 139,
-   "events": 0.227,
+   "events": 0.25,
    "order": 1.0,
    "states": 0.035,
    "only_a": [
@@ -5078,20 +4671,18 @@
     "wall 11,8"
    ],
    "only_b": [
-    "kill 5,5",
-    "kill 5,7",
     "open 11,10",
     "open 13,6",
     "open 2,9",
-    "wall 5,5",
-    "wall 5,7"
+    "petrify 5,5",
+    "petrify 5,7"
    ]
   },
   {
    "room": "III-21",
    "a": 158,
    "b": 138,
-   "events": 0.227,
+   "events": 0.25,
    "order": 1.0,
    "states": 0.035,
    "only_a": [
@@ -5107,20 +4698,18 @@
     "wall 11,8"
    ],
    "only_b": [
-    "kill 5,5",
-    "kill 5,7",
     "open 11,10",
     "open 13,6",
     "open 2,9",
-    "wall 5,5",
-    "wall 5,7"
+    "petrify 5,5",
+    "petrify 5,7"
    ]
   },
   {
    "room": "III-21",
    "a": 158,
    "b": 136,
-   "events": 0.182,
+   "events": 0.2,
    "order": 0.667,
    "states": 0.111,
    "only_a": [
@@ -5137,20 +4726,18 @@
     "wall 11,8"
    ],
    "only_b": [
-    "kill 5,5",
-    "kill 5,7",
     "open 11,10",
     "open 13,6",
     "open 2,9",
-    "wall 5,5",
-    "wall 5,7"
+    "petrify 5,5",
+    "petrify 5,7"
    ]
   },
   {
    "room": "III-21",
    "a": 158,
    "b": 134,
-   "events": 0.182,
+   "events": 0.2,
    "order": 0.667,
    "states": 0.111,
    "only_a": [
@@ -5167,20 +4754,18 @@
     "wall 11,8"
    ],
    "only_b": [
-    "kill 5,5",
-    "kill 5,7",
     "open 11,10",
     "open 13,6",
     "open 2,9",
-    "wall 5,5",
-    "wall 5,7"
+    "petrify 5,5",
+    "petrify 5,7"
    ]
   },
   {
    "room": "III-21",
    "a": 158,
    "b": 133,
-   "events": 0.182,
+   "events": 0.2,
    "order": 0.667,
    "states": 0.11,
    "only_a": [
@@ -5197,20 +4782,18 @@
     "wall 11,8"
    ],
    "only_b": [
-    "kill 5,5",
-    "kill 5,7",
     "open 11,10",
     "open 13,6",
     "open 2,9",
-    "wall 5,5",
-    "wall 5,7"
+    "petrify 5,5",
+    "petrify 5,7"
    ]
   },
   {
    "room": "III-21",
    "a": 158,
    "b": 132,
-   "events": 0.182,
+   "events": 0.2,
    "order": 0.667,
    "states": 0.11,
    "only_a": [
@@ -5227,20 +4810,18 @@
     "wall 11,8"
    ],
    "only_b": [
-    "kill 5,5",
-    "kill 5,7",
     "open 11,10",
     "open 13,6",
     "open 2,9",
-    "wall 5,5",
-    "wall 5,7"
+    "petrify 5,5",
+    "petrify 5,7"
    ]
   },
   {
    "room": "III-21",
    "a": 158,
    "b": 129,
-   "events": 0.182,
+   "events": 0.2,
    "order": 0.667,
    "states": 0.109,
    "only_a": [
@@ -5257,20 +4838,18 @@
     "wall 11,8"
    ],
    "only_b": [
-    "kill 5,5",
-    "kill 5,7",
     "open 11,10",
     "open 13,6",
     "open 2,9",
-    "wall 5,5",
-    "wall 5,7"
+    "petrify 5,5",
+    "petrify 5,7"
    ]
   },
   {
    "room": "III-21",
    "a": 158,
    "b": 121,
-   "events": 0.182,
+   "events": 0.2,
    "order": 0.667,
    "states": 0.108,
    "only_a": [
@@ -5287,20 +4866,18 @@
     "wall 11,8"
    ],
    "only_b": [
-    "kill 5,5",
-    "kill 5,7",
     "open 11,10",
     "open 13,6",
     "open 2,9",
-    "wall 5,5",
-    "wall 5,7"
+    "petrify 5,5",
+    "petrify 5,7"
    ]
   },
   {
    "room": "III-21",
    "a": 158,
    "b": 112,
-   "events": 0.182,
+   "events": 0.2,
    "order": 0.667,
    "states": 0.108,
    "only_a": [
@@ -5317,20 +4894,18 @@
     "wall 11,8"
    ],
    "only_b": [
-    "kill 5,5",
-    "kill 5,7",
     "open 11,10",
     "open 13,6",
     "open 2,9",
-    "wall 5,5",
-    "wall 5,7"
+    "petrify 5,5",
+    "petrify 5,7"
    ]
   },
   {
    "room": "III-21",
    "a": 158,
    "b": 100,
-   "events": 0.182,
+   "events": 0.2,
    "order": 0.667,
    "states": 0.108,
    "only_a": [
@@ -5347,20 +4922,18 @@
     "wall 11,8"
    ],
    "only_b": [
-    "kill 5,5",
-    "kill 5,7",
     "open 11,10",
     "open 13,6",
     "open 2,9",
-    "wall 5,5",
-    "wall 5,7"
+    "petrify 5,5",
+    "petrify 5,7"
    ]
   },
   {
    "room": "III-21",
    "a": 158,
    "b": 97,
-   "events": 0.182,
+   "events": 0.2,
    "order": 1.0,
    "states": 0.042,
    "only_a": [
@@ -5377,20 +4950,18 @@
     "wall 11,8"
    ],
    "only_b": [
-    "kill 5,5",
-    "kill 5,7",
     "open 11,10",
     "open 13,6",
     "open 2,9",
-    "wall 5,5",
-    "wall 5,7"
+    "petrify 5,5",
+    "petrify 5,7"
    ]
   },
   {
    "room": "III-21",
    "a": 158,
    "b": 88,
-   "events": 0.182,
+   "events": 0.2,
    "order": 0.667,
    "states": 0.055,
    "only_a": [
@@ -5407,25 +4978,21 @@
     "wall 11,8"
    ],
    "only_b": [
-    "kill 5,5",
-    "kill 5,7",
     "open 11,10",
     "open 13,6",
     "open 2,9",
-    "wall 5,5",
-    "wall 5,7"
+    "petrify 5,5",
+    "petrify 5,7"
    ]
   },
   {
    "room": "III-21",
    "a": 158,
    "b": 65,
-   "events": 0.167,
-   "order": 0.667,
+   "events": 0.3,
+   "order": 0.733,
    "states": 0.026,
    "only_a": [
-    "kill 17,5",
-    "kill 17,7",
     "open 1,8",
     "open 1,9",
     "open 10,10",
@@ -5437,15 +5004,11 @@
     "wall 11,8"
    ],
    "only_b": [
-    "kill 17,6",
-    "kill 17,8",
-    "kill 5,5",
-    "kill 5,7",
     "open 11,10",
     "open 13,6",
     "open 2,9",
-    "wall 5,5",
-    "wall 5,7"
+    "petrify 5,5",
+    "petrify 5,7"
    ]
   },
   {
@@ -5492,7 +5055,7 @@
    "room": "III-21",
    "a": 157,
    "b": 153,
-   "events": 0.722,
+   "events": 0.765,
    "order": 0.974,
    "states": 0.127,
    "only_a": [
@@ -5500,20 +5063,20 @@
     "wall 11,8"
    ],
    "only_b": [
-    "kill 5,5",
     "open 13,8",
-    "wall 5,5"
+    "petrify 5,5"
    ]
   },
   {
    "room": "III-21",
    "a": 157,
    "b": 152,
-   "events": 0.364,
-   "order": 0.964,
+   "events": 0.318,
+   "order": 0.952,
    "states": 0.05,
    "only_a": [
     "kill 17,5",
+    "kill 17,7",
     "open 1,9",
     "open 10,10",
     "open 13,7",
@@ -5522,8 +5085,8 @@
     "wall 11,8"
    ],
    "only_b": [
-    "kill 5,4",
-    "kill 5,6",
+    "kill 5,5",
+    "kill 5,7",
     "open 2,9",
     "open 3,7",
     "open 4,7",
@@ -5535,7 +5098,7 @@
    "room": "III-21",
    "a": 157,
    "b": 151,
-   "events": 0.458,
+   "events": 0.5,
    "order": 0.927,
    "states": 0.118,
    "only_a": [
@@ -5545,26 +5108,25 @@
     "wall 11,8"
    ],
    "only_b": [
-    "kill 5,5",
-    "kill 5,7",
     "open 13,10",
     "open 14,10",
     "open 2,9",
     "open 3,7",
     "open 4,7",
-    "wall 5,5",
-    "wall 5,7"
+    "petrify 5,5",
+    "petrify 5,7"
    ]
   },
   {
    "room": "III-21",
    "a": 157,
    "b": 150,
-   "events": 0.381,
-   "order": 0.964,
+   "events": 0.333,
+   "order": 1.0,
    "states": 0.049,
    "only_a": [
     "kill 17,5",
+    "kill 17,7",
     "open 1,8",
     "open 1,9",
     "open 10,10",
@@ -5573,8 +5135,8 @@
     "wall 11,8"
    ],
    "only_b": [
-    "kill 5,4",
-    "kill 5,6",
+    "kill 5,5",
+    "kill 5,7",
     "open 2,9",
     "open 3,7",
     "open 4,7",
@@ -5585,11 +5147,12 @@
    "room": "III-21",
    "a": 157,
    "b": 149,
-   "events": 0.421,
-   "order": 0.964,
+   "events": 0.368,
+   "order": 1.0,
    "states": 0.066,
    "only_a": [
     "kill 17,5",
+    "kill 17,7",
     "open 1,8",
     "open 1,9",
     "open 10,10",
@@ -5598,8 +5161,8 @@
     "wall 11,8"
    ],
    "only_b": [
-    "kill 5,4",
-    "kill 5,6",
+    "kill 5,5",
+    "kill 5,7",
     "open 2,9",
     "wall 11,9"
    ]
@@ -5608,11 +5171,12 @@
    "room": "III-21",
    "a": 157,
    "b": 147,
-   "events": 0.421,
-   "order": 0.964,
+   "events": 0.368,
+   "order": 1.0,
    "states": 0.107,
    "only_a": [
     "kill 17,5",
+    "kill 17,7",
     "open 1,8",
     "open 1,9",
     "open 10,10",
@@ -5621,8 +5185,8 @@
     "wall 11,8"
    ],
    "only_b": [
-    "kill 5,4",
-    "kill 5,6",
+    "kill 5,5",
+    "kill 5,7",
     "open 2,9",
     "wall 11,9"
    ]
@@ -5631,11 +5195,12 @@
    "room": "III-21",
    "a": 157,
    "b": 146,
-   "events": 0.421,
-   "order": 0.964,
+   "events": 0.368,
+   "order": 1.0,
    "states": 0.043,
    "only_a": [
     "kill 17,5",
+    "kill 17,7",
     "open 1,8",
     "open 1,9",
     "open 10,10",
@@ -5644,8 +5209,8 @@
     "wall 11,8"
    ],
    "only_b": [
-    "kill 5,4",
-    "kill 5,6",
+    "kill 5,5",
+    "kill 5,7",
     "open 2,9",
     "wall 11,9"
    ]
@@ -5654,11 +5219,12 @@
    "room": "III-21",
    "a": 157,
    "b": 145,
-   "events": 0.368,
+   "events": 0.316,
    "order": 1.0,
    "states": 0.043,
    "only_a": [
     "kill 17,5",
+    "kill 17,7",
     "open 1,8",
     "open 1,9",
     "open 10,10",
@@ -5668,8 +5234,8 @@
     "wall 11,8"
    ],
    "only_b": [
-    "kill 5,4",
-    "kill 5,6",
+    "kill 5,5",
+    "kill 5,7",
     "open 2,9",
     "wall 11,9"
    ]
@@ -5678,7 +5244,7 @@
    "room": "III-21",
    "a": 157,
    "b": 143,
-   "events": 0.227,
+   "events": 0.25,
    "order": 0.8,
    "states": 0.046,
    "only_a": [
@@ -5694,20 +5260,18 @@
     "wall 11,8"
    ],
    "only_b": [
-    "kill 5,5",
-    "kill 5,7",
     "open 11,10",
     "open 13,6",
     "open 2,9",
-    "wall 5,5",
-    "wall 5,7"
+    "petrify 5,5",
+    "petrify 5,7"
    ]
   },
   {
    "room": "III-21",
    "a": 157,
    "b": 142,
-   "events": 0.227,
+   "events": 0.25,
    "order": 0.8,
    "states": 0.046,
    "only_a": [
@@ -5723,20 +5287,18 @@
     "wall 11,8"
    ],
    "only_b": [
-    "kill 5,5",
-    "kill 5,7",
     "open 11,10",
     "open 13,6",
     "open 2,9",
-    "wall 5,5",
-    "wall 5,7"
+    "petrify 5,5",
+    "petrify 5,7"
    ]
   },
   {
    "room": "III-21",
    "a": 157,
    "b": 141,
-   "events": 0.227,
+   "events": 0.25,
    "order": 0.8,
    "states": 0.04,
    "only_a": [
@@ -5752,20 +5314,18 @@
     "wall 11,8"
    ],
    "only_b": [
-    "kill 5,5",
-    "kill 5,7",
     "open 11,10",
     "open 13,6",
     "open 2,9",
-    "wall 5,5",
-    "wall 5,7"
+    "petrify 5,5",
+    "petrify 5,7"
    ]
   },
   {
    "room": "III-21",
    "a": 157,
    "b": 139,
-   "events": 0.227,
+   "events": 0.25,
    "order": 1.0,
    "states": 0.035,
    "only_a": [
@@ -5781,20 +5341,18 @@
     "wall 11,8"
    ],
    "only_b": [
-    "kill 5,5",
-    "kill 5,7",
     "open 11,10",
     "open 13,6",
     "open 2,9",
-    "wall 5,5",
-    "wall 5,7"
+    "petrify 5,5",
+    "petrify 5,7"
    ]
   },
   {
    "room": "III-21",
    "a": 157,
    "b": 138,
-   "events": 0.227,
+   "events": 0.25,
    "order": 1.0,
    "states": 0.035,
    "only_a": [
@@ -5810,20 +5368,18 @@
     "wall 11,8"
    ],
    "only_b": [
-    "kill 5,5",
-    "kill 5,7",
     "open 11,10",
     "open 13,6",
     "open 2,9",
-    "wall 5,5",
-    "wall 5,7"
+    "petrify 5,5",
+    "petrify 5,7"
    ]
   },
   {
    "room": "III-21",
    "a": 157,
    "b": 136,
-   "events": 0.182,
+   "events": 0.2,
    "order": 0.667,
    "states": 0.111,
    "only_a": [
@@ -5840,20 +5396,18 @@
     "wall 11,8"
    ],
    "only_b": [
-    "kill 5,5",
-    "kill 5,7",
     "open 11,10",
     "open 13,6",
     "open 2,9",
-    "wall 5,5",
-    "wall 5,7"
+    "petrify 5,5",
+    "petrify 5,7"
    ]
   },
   {
    "room": "III-21",
    "a": 157,
    "b": 134,
-   "events": 0.182,
+   "events": 0.2,
    "order": 0.667,
    "states": 0.111,
    "only_a": [
@@ -5870,20 +5424,18 @@
     "wall 11,8"
    ],
    "only_b": [
-    "kill 5,5",
-    "kill 5,7",
     "open 11,10",
     "open 13,6",
     "open 2,9",
-    "wall 5,5",
-    "wall 5,7"
+    "petrify 5,5",
+    "petrify 5,7"
    ]
   },
   {
    "room": "III-21",
    "a": 157,
    "b": 133,
-   "events": 0.182,
+   "events": 0.2,
    "order": 0.667,
    "states": 0.11,
    "only_a": [
@@ -5900,20 +5452,18 @@
     "wall 11,8"
    ],
    "only_b": [
-    "kill 5,5",
-    "kill 5,7",
     "open 11,10",
     "open 13,6",
     "open 2,9",
-    "wall 5,5",
-    "wall 5,7"
+    "petrify 5,5",
+    "petrify 5,7"
    ]
   },
   {
    "room": "III-21",
    "a": 157,
    "b": 132,
-   "events": 0.182,
+   "events": 0.2,
    "order": 0.667,
    "states": 0.11,
    "only_a": [
@@ -5930,20 +5480,18 @@
     "wall 11,8"
    ],
    "only_b": [
-    "kill 5,5",
-    "kill 5,7",
     "open 11,10",
     "open 13,6",
     "open 2,9",
-    "wall 5,5",
-    "wall 5,7"
+    "petrify 5,5",
+    "petrify 5,7"
    ]
   },
   {
    "room": "III-21",
    "a": 157,
    "b": 129,
-   "events": 0.182,
+   "events": 0.2,
    "order": 0.667,
    "states": 0.109,
    "only_a": [
@@ -5960,20 +5508,18 @@
     "wall 11,8"
    ],
    "only_b": [
-    "kill 5,5",
-    "kill 5,7",
     "open 11,10",
     "open 13,6",
     "open 2,9",
-    "wall 5,5",
-    "wall 5,7"
+    "petrify 5,5",
+    "petrify 5,7"
    ]
   },
   {
    "room": "III-21",
    "a": 157,
    "b": 121,
-   "events": 0.182,
+   "events": 0.2,
    "order": 0.667,
    "states": 0.108,
    "only_a": [
@@ -5990,20 +5536,18 @@
     "wall 11,8"
    ],
    "only_b": [
-    "kill 5,5",
-    "kill 5,7",
     "open 11,10",
     "open 13,6",
     "open 2,9",
-    "wall 5,5",
-    "wall 5,7"
+    "petrify 5,5",
+    "petrify 5,7"
    ]
   },
   {
    "room": "III-21",
    "a": 157,
    "b": 112,
-   "events": 0.182,
+   "events": 0.2,
    "order": 0.667,
    "states": 0.108,
    "only_a": [
@@ -6020,20 +5564,18 @@
     "wall 11,8"
    ],
    "only_b": [
-    "kill 5,5",
-    "kill 5,7",
     "open 11,10",
     "open 13,6",
     "open 2,9",
-    "wall 5,5",
-    "wall 5,7"
+    "petrify 5,5",
+    "petrify 5,7"
    ]
   },
   {
    "room": "III-21",
    "a": 157,
    "b": 100,
-   "events": 0.182,
+   "events": 0.2,
    "order": 0.667,
    "states": 0.107,
    "only_a": [
@@ -6050,20 +5592,18 @@
     "wall 11,8"
    ],
    "only_b": [
-    "kill 5,5",
-    "kill 5,7",
     "open 11,10",
     "open 13,6",
     "open 2,9",
-    "wall 5,5",
-    "wall 5,7"
+    "petrify 5,5",
+    "petrify 5,7"
    ]
   },
   {
    "room": "III-21",
    "a": 157,
    "b": 97,
-   "events": 0.182,
+   "events": 0.2,
    "order": 1.0,
    "states": 0.041,
    "only_a": [
@@ -6080,20 +5620,18 @@
     "wall 11,8"
    ],
    "only_b": [
-    "kill 5,5",
-    "kill 5,7",
     "open 11,10",
     "open 13,6",
     "open 2,9",
-    "wall 5,5",
-    "wall 5,7"
+    "petrify 5,5",
+    "petrify 5,7"
    ]
   },
   {
    "room": "III-21",
    "a": 157,
    "b": 88,
-   "events": 0.182,
+   "events": 0.2,
    "order": 0.667,
    "states": 0.055,
    "only_a": [
@@ -6110,25 +5648,21 @@
     "wall 11,8"
    ],
    "only_b": [
-    "kill 5,5",
-    "kill 5,7",
     "open 11,10",
     "open 13,6",
     "open 2,9",
-    "wall 5,5",
-    "wall 5,7"
+    "petrify 5,5",
+    "petrify 5,7"
    ]
   },
   {
    "room": "III-21",
    "a": 157,
    "b": 65,
-   "events": 0.167,
-   "order": 0.667,
+   "events": 0.3,
+   "order": 0.733,
    "states": 0.026,
    "only_a": [
-    "kill 17,5",
-    "kill 17,7",
     "open 1,8",
     "open 1,9",
     "open 10,10",
@@ -6140,15 +5674,11 @@
     "wall 11,8"
    ],
    "only_b": [
-    "kill 17,6",
-    "kill 17,8",
-    "kill 5,5",
-    "kill 5,7",
     "open 11,10",
     "open 13,6",
     "open 2,9",
-    "wall 5,5",
-    "wall 5,7"
+    "petrify 5,5",
+    "petrify 5,7"
    ]
   },
   {
@@ -6185,7 +5715,7 @@
    "room": "III-21",
    "a": 156,
    "b": 153,
-   "events": 0.722,
+   "events": 0.765,
    "order": 0.974,
    "states": 0.127,
    "only_a": [
@@ -6193,20 +5723,20 @@
     "wall 11,8"
    ],
    "only_b": [
-    "kill 5,5",
     "open 13,8",
-    "wall 5,5"
+    "petrify 5,5"
    ]
   },
   {
    "room": "III-21",
    "a": 156,
    "b": 152,
-   "events": 0.364,
-   "order": 0.964,
+   "events": 0.318,
+   "order": 0.952,
    "states": 0.05,
    "only_a": [
     "kill 17,5",
+    "kill 17,7",
     "open 1,9",
     "open 10,10",
     "open 13,7",
@@ -6215,8 +5745,8 @@
     "wall 11,8"
    ],
    "only_b": [
-    "kill 5,4",
-    "kill 5,6",
+    "kill 5,5",
+    "kill 5,7",
     "open 2,9",
     "open 3,7",
     "open 4,7",
@@ -6228,7 +5758,7 @@
    "room": "III-21",
    "a": 156,
    "b": 151,
-   "events": 0.458,
+   "events": 0.5,
    "order": 0.927,
    "states": 0.118,
    "only_a": [
@@ -6238,26 +5768,25 @@
     "wall 11,8"
    ],
    "only_b": [
-    "kill 5,5",
-    "kill 5,7",
     "open 13,10",
     "open 14,10",
     "open 2,9",
     "open 3,7",
     "open 4,7",
-    "wall 5,5",
-    "wall 5,7"
+    "petrify 5,5",
+    "petrify 5,7"
    ]
   },
   {
    "room": "III-21",
    "a": 156,
    "b": 150,
-   "events": 0.381,
-   "order": 0.964,
+   "events": 0.333,
+   "order": 1.0,
    "states": 0.049,
    "only_a": [
     "kill 17,5",
+    "kill 17,7",
     "open 1,8",
     "open 1,9",
     "open 10,10",
@@ -6266,8 +5795,8 @@
     "wall 11,8"
    ],
    "only_b": [
-    "kill 5,4",
-    "kill 5,6",
+    "kill 5,5",
+    "kill 5,7",
     "open 2,9",
     "open 3,7",
     "open 4,7",
@@ -6278,11 +5807,12 @@
    "room": "III-21",
    "a": 156,
    "b": 149,
-   "events": 0.421,
-   "order": 0.964,
+   "events": 0.368,
+   "order": 1.0,
    "states": 0.066,
    "only_a": [
     "kill 17,5",
+    "kill 17,7",
     "open 1,8",
     "open 1,9",
     "open 10,10",
@@ -6291,8 +5821,8 @@
     "wall 11,8"
    ],
    "only_b": [
-    "kill 5,4",
-    "kill 5,6",
+    "kill 5,5",
+    "kill 5,7",
     "open 2,9",
     "wall 11,9"
    ]
@@ -6301,11 +5831,12 @@
    "room": "III-21",
    "a": 156,
    "b": 147,
-   "events": 0.421,
-   "order": 0.964,
+   "events": 0.368,
+   "order": 1.0,
    "states": 0.106,
    "only_a": [
     "kill 17,5",
+    "kill 17,7",
     "open 1,8",
     "open 1,9",
     "open 10,10",
@@ -6314,8 +5845,8 @@
     "wall 11,8"
    ],
    "only_b": [
-    "kill 5,4",
-    "kill 5,6",
+    "kill 5,5",
+    "kill 5,7",
     "open 2,9",
     "wall 11,9"
    ]
@@ -6324,11 +5855,12 @@
    "room": "III-21",
    "a": 156,
    "b": 146,
-   "events": 0.421,
-   "order": 0.964,
+   "events": 0.368,
+   "order": 1.0,
    "states": 0.043,
    "only_a": [
     "kill 17,5",
+    "kill 17,7",
     "open 1,8",
     "open 1,9",
     "open 10,10",
@@ -6337,8 +5869,8 @@
     "wall 11,8"
    ],
    "only_b": [
-    "kill 5,4",
-    "kill 5,6",
+    "kill 5,5",
+    "kill 5,7",
     "open 2,9",
     "wall 11,9"
    ]
@@ -6347,11 +5879,12 @@
    "room": "III-21",
    "a": 156,
    "b": 145,
-   "events": 0.368,
+   "events": 0.316,
    "order": 1.0,
    "states": 0.043,
    "only_a": [
     "kill 17,5",
+    "kill 17,7",
     "open 1,8",
     "open 1,9",
     "open 10,10",
@@ -6361,8 +5894,8 @@
     "wall 11,8"
    ],
    "only_b": [
-    "kill 5,4",
-    "kill 5,6",
+    "kill 5,5",
+    "kill 5,7",
     "open 2,9",
     "wall 11,9"
    ]
@@ -6371,7 +5904,7 @@
    "room": "III-21",
    "a": 156,
    "b": 143,
-   "events": 0.227,
+   "events": 0.25,
    "order": 0.8,
    "states": 0.046,
    "only_a": [
@@ -6387,20 +5920,18 @@
     "wall 11,8"
    ],
    "only_b": [
-    "kill 5,5",
-    "kill 5,7",
     "open 11,10",
     "open 13,6",
     "open 2,9",
-    "wall 5,5",
-    "wall 5,7"
+    "petrify 5,5",
+    "petrify 5,7"
    ]
   },
   {
    "room": "III-21",
    "a": 156,
    "b": 142,
-   "events": 0.227,
+   "events": 0.25,
    "order": 0.8,
    "states": 0.046,
    "only_a": [
@@ -6416,20 +5947,18 @@
     "wall 11,8"
    ],
    "only_b": [
-    "kill 5,5",
-    "kill 5,7",
     "open 11,10",
     "open 13,6",
     "open 2,9",
-    "wall 5,5",
-    "wall 5,7"
+    "petrify 5,5",
+    "petrify 5,7"
    ]
   },
   {
    "room": "III-21",
    "a": 156,
    "b": 141,
-   "events": 0.227,
+   "events": 0.25,
    "order": 0.8,
    "states": 0.039,
    "only_a": [
@@ -6445,20 +5974,18 @@
     "wall 11,8"
    ],
    "only_b": [
-    "kill 5,5",
-    "kill 5,7",
     "open 11,10",
     "open 13,6",
     "open 2,9",
-    "wall 5,5",
-    "wall 5,7"
+    "petrify 5,5",
+    "petrify 5,7"
    ]
   },
   {
    "room": "III-21",
    "a": 156,
    "b": 139,
-   "events": 0.227,
+   "events": 0.25,
    "order": 1.0,
    "states": 0.035,
    "only_a": [
@@ -6474,20 +6001,18 @@
     "wall 11,8"
    ],
    "only_b": [
-    "kill 5,5",
-    "kill 5,7",
     "open 11,10",
     "open 13,6",
     "open 2,9",
-    "wall 5,5",
-    "wall 5,7"
+    "petrify 5,5",
+    "petrify 5,7"
    ]
   },
   {
    "room": "III-21",
    "a": 156,
    "b": 138,
-   "events": 0.227,
+   "events": 0.25,
    "order": 1.0,
    "states": 0.035,
    "only_a": [
@@ -6503,20 +6028,18 @@
     "wall 11,8"
    ],
    "only_b": [
-    "kill 5,5",
-    "kill 5,7",
     "open 11,10",
     "open 13,6",
     "open 2,9",
-    "wall 5,5",
-    "wall 5,7"
+    "petrify 5,5",
+    "petrify 5,7"
    ]
   },
   {
    "room": "III-21",
    "a": 156,
    "b": 136,
-   "events": 0.182,
+   "events": 0.2,
    "order": 0.667,
    "states": 0.111,
    "only_a": [
@@ -6533,20 +6056,18 @@
     "wall 11,8"
    ],
    "only_b": [
-    "kill 5,5",
-    "kill 5,7",
     "open 11,10",
     "open 13,6",
     "open 2,9",
-    "wall 5,5",
-    "wall 5,7"
+    "petrify 5,5",
+    "petrify 5,7"
    ]
   },
   {
    "room": "III-21",
    "a": 156,
    "b": 134,
-   "events": 0.182,
+   "events": 0.2,
    "order": 0.667,
    "states": 0.111,
    "only_a": [
@@ -6563,20 +6084,18 @@
     "wall 11,8"
    ],
    "only_b": [
-    "kill 5,5",
-    "kill 5,7",
     "open 11,10",
     "open 13,6",
     "open 2,9",
-    "wall 5,5",
-    "wall 5,7"
+    "petrify 5,5",
+    "petrify 5,7"
    ]
   },
   {
    "room": "III-21",
    "a": 156,
    "b": 133,
-   "events": 0.182,
+   "events": 0.2,
    "order": 0.667,
    "states": 0.11,
    "only_a": [
@@ -6593,20 +6112,18 @@
     "wall 11,8"
    ],
    "only_b": [
-    "kill 5,5",
-    "kill 5,7",
     "open 11,10",
     "open 13,6",
     "open 2,9",
-    "wall 5,5",
-    "wall 5,7"
+    "petrify 5,5",
+    "petrify 5,7"
    ]
   },
   {
    "room": "III-21",
    "a": 156,
    "b": 132,
-   "events": 0.182,
+   "events": 0.2,
    "order": 0.667,
    "states": 0.11,
    "only_a": [
@@ -6623,20 +6140,18 @@
     "wall 11,8"
    ],
    "only_b": [
-    "kill 5,5",
-    "kill 5,7",
     "open 11,10",
     "open 13,6",
     "open 2,9",
-    "wall 5,5",
-    "wall 5,7"
+    "petrify 5,5",
+    "petrify 5,7"
    ]
   },
   {
    "room": "III-21",
    "a": 156,
    "b": 129,
-   "events": 0.182,
+   "events": 0.2,
    "order": 0.667,
    "states": 0.109,
    "only_a": [
@@ -6653,20 +6168,18 @@
     "wall 11,8"
    ],
    "only_b": [
-    "kill 5,5",
-    "kill 5,7",
     "open 11,10",
     "open 13,6",
     "open 2,9",
-    "wall 5,5",
-    "wall 5,7"
+    "petrify 5,5",
+    "petrify 5,7"
    ]
   },
   {
    "room": "III-21",
    "a": 156,
    "b": 121,
-   "events": 0.182,
+   "events": 0.2,
    "order": 0.667,
    "states": 0.108,
    "only_a": [
@@ -6683,20 +6196,18 @@
     "wall 11,8"
    ],
    "only_b": [
-    "kill 5,5",
-    "kill 5,7",
     "open 11,10",
     "open 13,6",
     "open 2,9",
-    "wall 5,5",
-    "wall 5,7"
+    "petrify 5,5",
+    "petrify 5,7"
    ]
   },
   {
    "room": "III-21",
    "a": 156,
    "b": 112,
-   "events": 0.182,
+   "events": 0.2,
    "order": 0.667,
    "states": 0.107,
    "only_a": [
@@ -6713,20 +6224,18 @@
     "wall 11,8"
    ],
    "only_b": [
-    "kill 5,5",
-    "kill 5,7",
     "open 11,10",
     "open 13,6",
     "open 2,9",
-    "wall 5,5",
-    "wall 5,7"
+    "petrify 5,5",
+    "petrify 5,7"
    ]
   },
   {
    "room": "III-21",
    "a": 156,
    "b": 100,
-   "events": 0.182,
+   "events": 0.2,
    "order": 0.667,
    "states": 0.107,
    "only_a": [
@@ -6743,20 +6252,18 @@
     "wall 11,8"
    ],
    "only_b": [
-    "kill 5,5",
-    "kill 5,7",
     "open 11,10",
     "open 13,6",
     "open 2,9",
-    "wall 5,5",
-    "wall 5,7"
+    "petrify 5,5",
+    "petrify 5,7"
    ]
   },
   {
    "room": "III-21",
    "a": 156,
    "b": 97,
-   "events": 0.182,
+   "events": 0.2,
    "order": 1.0,
    "states": 0.041,
    "only_a": [
@@ -6773,20 +6280,18 @@
     "wall 11,8"
    ],
    "only_b": [
-    "kill 5,5",
-    "kill 5,7",
     "open 11,10",
     "open 13,6",
     "open 2,9",
-    "wall 5,5",
-    "wall 5,7"
+    "petrify 5,5",
+    "petrify 5,7"
    ]
   },
   {
    "room": "III-21",
    "a": 156,
    "b": 88,
-   "events": 0.182,
+   "events": 0.2,
    "order": 0.667,
    "states": 0.055,
    "only_a": [
@@ -6803,25 +6308,21 @@
     "wall 11,8"
    ],
    "only_b": [
-    "kill 5,5",
-    "kill 5,7",
     "open 11,10",
     "open 13,6",
     "open 2,9",
-    "wall 5,5",
-    "wall 5,7"
+    "petrify 5,5",
+    "petrify 5,7"
    ]
   },
   {
    "room": "III-21",
    "a": 156,
    "b": 65,
-   "events": 0.167,
-   "order": 0.667,
+   "events": 0.3,
+   "order": 0.733,
    "states": 0.026,
    "only_a": [
-    "kill 17,5",
-    "kill 17,7",
     "open 1,8",
     "open 1,9",
     "open 10,10",
@@ -6833,15 +6334,11 @@
     "wall 11,8"
    ],
    "only_b": [
-    "kill 17,6",
-    "kill 17,8",
-    "kill 5,5",
-    "kill 5,7",
     "open 11,10",
     "open 13,6",
     "open 2,9",
-    "wall 5,5",
-    "wall 5,7"
+    "petrify 5,5",
+    "petrify 5,7"
    ]
   },
   {
@@ -6858,24 +6355,24 @@
    "room": "III-21",
    "a": 155,
    "b": 153,
-   "events": 0.875,
+   "events": 0.933,
    "order": 1.0,
    "states": 0.695,
    "only_a": [],
    "only_b": [
-    "kill 5,5",
-    "wall 5,5"
+    "petrify 5,5"
    ]
   },
   {
    "room": "III-21",
    "a": 155,
    "b": 152,
-   "events": 0.381,
-   "order": 0.893,
+   "events": 0.333,
+   "order": 0.857,
    "states": 0.043,
    "only_a": [
     "kill 17,5",
+    "kill 17,7",
     "open 1,9",
     "open 13,7",
     "open 13,8",
@@ -6883,8 +6380,8 @@
     "open 9,6"
    ],
    "only_b": [
-    "kill 5,4",
-    "kill 5,6",
+    "kill 5,5",
+    "kill 5,7",
     "open 2,9",
     "open 3,7",
     "open 4,7",
@@ -6896,7 +6393,7 @@
    "room": "III-21",
    "a": 155,
    "b": 151,
-   "events": 0.478,
+   "events": 0.524,
    "order": 0.964,
    "states": 0.475,
    "only_a": [
@@ -6905,26 +6402,25 @@
     "open 13,8"
    ],
    "only_b": [
-    "kill 5,5",
-    "kill 5,7",
     "open 13,10",
     "open 14,10",
     "open 2,9",
     "open 3,7",
     "open 4,7",
-    "wall 5,5",
-    "wall 5,7"
+    "petrify 5,5",
+    "petrify 5,7"
    ]
   },
   {
    "room": "III-21",
    "a": 155,
    "b": 150,
-   "events": 0.4,
-   "order": 0.893,
+   "events": 0.35,
+   "order": 0.905,
    "states": 0.043,
    "only_a": [
     "kill 17,5",
+    "kill 17,7",
     "open 1,8",
     "open 1,9",
     "open 13,7",
@@ -6932,8 +6428,8 @@
     "open 16,9"
    ],
    "only_b": [
-    "kill 5,4",
-    "kill 5,6",
+    "kill 5,5",
+    "kill 5,7",
     "open 2,9",
     "open 3,7",
     "open 4,7",
@@ -6944,11 +6440,12 @@
    "room": "III-21",
    "a": 155,
    "b": 149,
-   "events": 0.444,
-   "order": 0.893,
+   "events": 0.389,
+   "order": 0.905,
    "states": 0.041,
    "only_a": [
     "kill 17,5",
+    "kill 17,7",
     "open 1,8",
     "open 1,9",
     "open 13,7",
@@ -6956,8 +6453,8 @@
     "open 16,9"
    ],
    "only_b": [
-    "kill 5,4",
-    "kill 5,6",
+    "kill 5,5",
+    "kill 5,7",
     "open 2,9",
     "wall 11,9"
    ]
@@ -6966,11 +6463,12 @@
    "room": "III-21",
    "a": 155,
    "b": 147,
-   "events": 0.444,
-   "order": 0.893,
+   "events": 0.389,
+   "order": 0.905,
    "states": 0.146,
    "only_a": [
     "kill 17,5",
+    "kill 17,7",
     "open 1,8",
     "open 1,9",
     "open 13,7",
@@ -6978,8 +6476,8 @@
     "open 16,9"
    ],
    "only_b": [
-    "kill 5,4",
-    "kill 5,6",
+    "kill 5,5",
+    "kill 5,7",
     "open 2,9",
     "wall 11,9"
    ]
@@ -6988,11 +6486,12 @@
    "room": "III-21",
    "a": 155,
    "b": 146,
-   "events": 0.444,
-   "order": 0.893,
+   "events": 0.389,
+   "order": 0.905,
    "states": 0.042,
    "only_a": [
     "kill 17,5",
+    "kill 17,7",
     "open 1,8",
     "open 1,9",
     "open 13,7",
@@ -7000,8 +6499,8 @@
     "open 16,9"
    ],
    "only_b": [
-    "kill 5,4",
-    "kill 5,6",
+    "kill 5,5",
+    "kill 5,7",
     "open 2,9",
     "wall 11,9"
    ]
@@ -7010,11 +6509,12 @@
    "room": "III-21",
    "a": 155,
    "b": 145,
-   "events": 0.389,
-   "order": 0.905,
+   "events": 0.333,
+   "order": 0.867,
    "states": 0.041,
    "only_a": [
     "kill 17,5",
+    "kill 17,7",
     "open 1,8",
     "open 1,9",
     "open 13,7",
@@ -7023,8 +6523,8 @@
     "open 9,6"
    ],
    "only_b": [
-    "kill 5,4",
-    "kill 5,6",
+    "kill 5,5",
+    "kill 5,7",
     "open 2,9",
     "wall 11,9"
    ]
@@ -7033,7 +6533,7 @@
    "room": "III-21",
    "a": 155,
    "b": 143,
-   "events": 0.238,
+   "events": 0.263,
    "order": 1.0,
    "states": 0.04,
    "only_a": [
@@ -7048,20 +6548,18 @@
     "open 9,6"
    ],
    "only_b": [
-    "kill 5,5",
-    "kill 5,7",
     "open 11,10",
     "open 13,6",
     "open 2,9",
-    "wall 5,5",
-    "wall 5,7"
+    "petrify 5,5",
+    "petrify 5,7"
    ]
   },
   {
    "room": "III-21",
    "a": 155,
    "b": 142,
-   "events": 0.238,
+   "events": 0.263,
    "order": 1.0,
    "states": 0.039,
    "only_a": [
@@ -7076,20 +6574,18 @@
     "open 9,6"
    ],
    "only_b": [
-    "kill 5,5",
-    "kill 5,7",
     "open 11,10",
     "open 13,6",
     "open 2,9",
-    "wall 5,5",
-    "wall 5,7"
+    "petrify 5,5",
+    "petrify 5,7"
    ]
   },
   {
    "room": "III-21",
    "a": 155,
    "b": 141,
-   "events": 0.238,
+   "events": 0.263,
    "order": 1.0,
    "states": 0.066,
    "only_a": [
@@ -7104,20 +6600,18 @@
     "open 9,6"
    ],
    "only_b": [
-    "kill 5,5",
-    "kill 5,7",
     "open 11,10",
     "open 13,6",
     "open 2,9",
-    "wall 5,5",
-    "wall 5,7"
+    "petrify 5,5",
+    "petrify 5,7"
    ]
   },
   {
    "room": "III-21",
    "a": 155,
    "b": 139,
-   "events": 0.238,
+   "events": 0.263,
    "order": 0.8,
    "states": 0.069,
    "only_a": [
@@ -7132,20 +6626,18 @@
     "open 9,6"
    ],
    "only_b": [
-    "kill 5,5",
-    "kill 5,7",
     "open 11,10",
     "open 13,6",
     "open 2,9",
-    "wall 5,5",
-    "wall 5,7"
+    "petrify 5,5",
+    "petrify 5,7"
    ]
   },
   {
    "room": "III-21",
    "a": 155,
    "b": 138,
-   "events": 0.238,
+   "events": 0.263,
    "order": 0.8,
    "states": 0.069,
    "only_a": [
@@ -7160,20 +6652,18 @@
     "open 9,6"
    ],
    "only_b": [
-    "kill 5,5",
-    "kill 5,7",
     "open 11,10",
     "open 13,6",
     "open 2,9",
-    "wall 5,5",
-    "wall 5,7"
+    "petrify 5,5",
+    "petrify 5,7"
    ]
   },
   {
    "room": "III-21",
    "a": 155,
    "b": 136,
-   "events": 0.19,
+   "events": 0.211,
    "order": 1.0,
    "states": 0.061,
    "only_a": [
@@ -7189,20 +6679,18 @@
     "open 9,6"
    ],
    "only_b": [
-    "kill 5,5",
-    "kill 5,7",
     "open 11,10",
     "open 13,6",
     "open 2,9",
-    "wall 5,5",
-    "wall 5,7"
+    "petrify 5,5",
+    "petrify 5,7"
    ]
   },
   {
    "room": "III-21",
    "a": 155,
    "b": 134,
-   "events": 0.19,
+   "events": 0.211,
    "order": 1.0,
    "states": 0.061,
    "only_a": [
@@ -7218,20 +6706,18 @@
     "open 9,6"
    ],
    "only_b": [
-    "kill 5,5",
-    "kill 5,7",
     "open 11,10",
     "open 13,6",
     "open 2,9",
-    "wall 5,5",
-    "wall 5,7"
+    "petrify 5,5",
+    "petrify 5,7"
    ]
   },
   {
    "room": "III-21",
    "a": 155,
    "b": 133,
-   "events": 0.19,
+   "events": 0.211,
    "order": 1.0,
    "states": 0.06,
    "only_a": [
@@ -7247,20 +6733,18 @@
     "open 9,6"
    ],
    "only_b": [
-    "kill 5,5",
-    "kill 5,7",
     "open 11,10",
     "open 13,6",
     "open 2,9",
-    "wall 5,5",
-    "wall 5,7"
+    "petrify 5,5",
+    "petrify 5,7"
    ]
   },
   {
    "room": "III-21",
    "a": 155,
    "b": 132,
-   "events": 0.19,
+   "events": 0.211,
    "order": 1.0,
    "states": 0.06,
    "only_a": [
@@ -7276,20 +6760,18 @@
     "open 9,6"
    ],
    "only_b": [
-    "kill 5,5",
-    "kill 5,7",
     "open 11,10",
     "open 13,6",
     "open 2,9",
-    "wall 5,5",
-    "wall 5,7"
+    "petrify 5,5",
+    "petrify 5,7"
    ]
   },
   {
    "room": "III-21",
    "a": 155,
    "b": 129,
-   "events": 0.19,
+   "events": 0.211,
    "order": 1.0,
    "states": 0.06,
    "only_a": [
@@ -7305,20 +6787,18 @@
     "open 9,6"
    ],
    "only_b": [
-    "kill 5,5",
-    "kill 5,7",
     "open 11,10",
     "open 13,6",
     "open 2,9",
-    "wall 5,5",
-    "wall 5,7"
+    "petrify 5,5",
+    "petrify 5,7"
    ]
   },
   {
    "room": "III-21",
    "a": 155,
    "b": 121,
-   "events": 0.19,
+   "events": 0.211,
    "order": 1.0,
    "states": 0.059,
    "only_a": [
@@ -7334,20 +6814,18 @@
     "open 9,6"
    ],
    "only_b": [
-    "kill 5,5",
-    "kill 5,7",
     "open 11,10",
     "open 13,6",
     "open 2,9",
-    "wall 5,5",
-    "wall 5,7"
+    "petrify 5,5",
+    "petrify 5,7"
    ]
   },
   {
    "room": "III-21",
    "a": 155,
    "b": 112,
-   "events": 0.19,
+   "events": 0.211,
    "order": 1.0,
    "states": 0.059,
    "only_a": [
@@ -7363,20 +6841,18 @@
     "open 9,6"
    ],
    "only_b": [
-    "kill 5,5",
-    "kill 5,7",
     "open 11,10",
     "open 13,6",
     "open 2,9",
-    "wall 5,5",
-    "wall 5,7"
+    "petrify 5,5",
+    "petrify 5,7"
    ]
   },
   {
    "room": "III-21",
    "a": 155,
    "b": 100,
-   "events": 0.19,
+   "events": 0.211,
    "order": 1.0,
    "states": 0.059,
    "only_a": [
@@ -7392,20 +6868,18 @@
     "open 9,6"
    ],
    "only_b": [
-    "kill 5,5",
-    "kill 5,7",
     "open 11,10",
     "open 13,6",
     "open 2,9",
-    "wall 5,5",
-    "wall 5,7"
+    "petrify 5,5",
+    "petrify 5,7"
    ]
   },
   {
    "room": "III-21",
    "a": 155,
    "b": 97,
-   "events": 0.19,
+   "events": 0.211,
    "order": 0.667,
    "states": 0.065,
    "only_a": [
@@ -7421,20 +6895,18 @@
     "open 9,6"
    ],
    "only_b": [
-    "kill 5,5",
-    "kill 5,7",
     "open 11,10",
     "open 13,6",
     "open 2,9",
-    "wall 5,5",
-    "wall 5,7"
+    "petrify 5,5",
+    "petrify 5,7"
    ]
   },
   {
    "room": "III-21",
    "a": 155,
    "b": 88,
-   "events": 0.19,
+   "events": 0.211,
    "order": 1.0,
    "states": 0.091,
    "only_a": [
@@ -7450,25 +6922,21 @@
     "open 9,6"
    ],
    "only_b": [
-    "kill 5,5",
-    "kill 5,7",
     "open 11,10",
     "open 13,6",
     "open 2,9",
-    "wall 5,5",
-    "wall 5,7"
+    "petrify 5,5",
+    "petrify 5,7"
    ]
   },
   {
    "room": "III-21",
    "a": 155,
    "b": 65,
-   "events": 0.174,
-   "order": 1.0,
+   "events": 0.316,
+   "order": 0.867,
    "states": 0.026,
    "only_a": [
-    "kill 17,5",
-    "kill 17,7",
     "open 1,8",
     "open 1,9",
     "open 12,10",
@@ -7479,39 +6947,35 @@
     "open 9,6"
    ],
    "only_b": [
-    "kill 17,6",
-    "kill 17,8",
-    "kill 5,5",
-    "kill 5,7",
     "open 11,10",
     "open 13,6",
     "open 2,9",
-    "wall 5,5",
-    "wall 5,7"
+    "petrify 5,5",
+    "petrify 5,7"
    ]
   },
   {
    "room": "III-21",
    "a": 154,
    "b": 153,
-   "events": 0.875,
+   "events": 0.933,
    "order": 1.0,
    "states": 0.746,
    "only_a": [],
    "only_b": [
-    "kill 5,5",
-    "wall 5,5"
+    "petrify 5,5"
    ]
   },
   {
    "room": "III-21",
    "a": 154,
    "b": 152,
-   "events": 0.381,
-   "order": 0.893,
+   "events": 0.333,
+   "order": 0.857,
    "states": 0.043,
    "only_a": [
     "kill 17,5",
+    "kill 17,7",
     "open 1,9",
     "open 13,7",
     "open 13,8",
@@ -7519,8 +6983,8 @@
     "open 9,6"
    ],
    "only_b": [
-    "kill 5,4",
-    "kill 5,6",
+    "kill 5,5",
+    "kill 5,7",
     "open 2,9",
     "open 3,7",
     "open 4,7",
@@ -7532,7 +6996,7 @@
    "room": "III-21",
    "a": 154,
    "b": 151,
-   "events": 0.478,
+   "events": 0.524,
    "order": 0.964,
    "states": 0.471,
    "only_a": [
@@ -7541,26 +7005,25 @@
     "open 13,8"
    ],
    "only_b": [
-    "kill 5,5",
-    "kill 5,7",
     "open 13,10",
     "open 14,10",
     "open 2,9",
     "open 3,7",
     "open 4,7",
-    "wall 5,5",
-    "wall 5,7"
+    "petrify 5,5",
+    "petrify 5,7"
    ]
   },
   {
    "room": "III-21",
    "a": 154,
    "b": 150,
-   "events": 0.4,
-   "order": 0.893,
+   "events": 0.35,
+   "order": 0.905,
    "states": 0.042,
    "only_a": [
     "kill 17,5",
+    "kill 17,7",
     "open 1,8",
     "open 1,9",
     "open 13,7",
@@ -7568,8 +7031,8 @@
     "open 16,9"
    ],
    "only_b": [
-    "kill 5,4",
-    "kill 5,6",
+    "kill 5,5",
+    "kill 5,7",
     "open 2,9",
     "open 3,7",
     "open 4,7",
@@ -7580,11 +7043,12 @@
    "room": "III-21",
    "a": 154,
    "b": 149,
-   "events": 0.444,
-   "order": 0.893,
+   "events": 0.389,
+   "order": 0.905,
    "states": 0.04,
    "only_a": [
     "kill 17,5",
+    "kill 17,7",
     "open 1,8",
     "open 1,9",
     "open 13,7",
@@ -7592,8 +7056,8 @@
     "open 16,9"
    ],
    "only_b": [
-    "kill 5,4",
-    "kill 5,6",
+    "kill 5,5",
+    "kill 5,7",
     "open 2,9",
     "wall 11,9"
    ]
@@ -7602,11 +7066,12 @@
    "room": "III-21",
    "a": 154,
    "b": 147,
-   "events": 0.444,
-   "order": 0.893,
+   "events": 0.389,
+   "order": 0.905,
    "states": 0.145,
    "only_a": [
     "kill 17,5",
+    "kill 17,7",
     "open 1,8",
     "open 1,9",
     "open 13,7",
@@ -7614,8 +7079,8 @@
     "open 16,9"
    ],
    "only_b": [
-    "kill 5,4",
-    "kill 5,6",
+    "kill 5,5",
+    "kill 5,7",
     "open 2,9",
     "wall 11,9"
    ]
@@ -7624,11 +7089,12 @@
    "room": "III-21",
    "a": 154,
    "b": 146,
-   "events": 0.444,
-   "order": 0.893,
+   "events": 0.389,
+   "order": 0.905,
    "states": 0.041,
    "only_a": [
     "kill 17,5",
+    "kill 17,7",
     "open 1,8",
     "open 1,9",
     "open 13,7",
@@ -7636,8 +7102,8 @@
     "open 16,9"
    ],
    "only_b": [
-    "kill 5,4",
-    "kill 5,6",
+    "kill 5,5",
+    "kill 5,7",
     "open 2,9",
     "wall 11,9"
    ]
@@ -7646,11 +7112,12 @@
    "room": "III-21",
    "a": 154,
    "b": 145,
-   "events": 0.389,
-   "order": 0.905,
+   "events": 0.333,
+   "order": 0.867,
    "states": 0.041,
    "only_a": [
     "kill 17,5",
+    "kill 17,7",
     "open 1,8",
     "open 1,9",
     "open 13,7",
@@ -7659,8 +7126,8 @@
     "open 9,6"
    ],
    "only_b": [
-    "kill 5,4",
-    "kill 5,6",
+    "kill 5,5",
+    "kill 5,7",
     "open 2,9",
     "wall 11,9"
    ]
@@ -7669,7 +7136,7 @@
    "room": "III-21",
    "a": 154,
    "b": 143,
-   "events": 0.238,
+   "events": 0.263,
    "order": 1.0,
    "states": 0.04,
    "only_a": [
@@ -7684,20 +7151,18 @@
     "open 9,6"
    ],
    "only_b": [
-    "kill 5,5",
-    "kill 5,7",
     "open 11,10",
     "open 13,6",
     "open 2,9",
-    "wall 5,5",
-    "wall 5,7"
+    "petrify 5,5",
+    "petrify 5,7"
    ]
   },
   {
    "room": "III-21",
    "a": 154,
    "b": 142,
-   "events": 0.238,
+   "events": 0.263,
    "order": 1.0,
    "states": 0.039,
    "only_a": [
@@ -7712,20 +7177,18 @@
     "open 9,6"
    ],
    "only_b": [
-    "kill 5,5",
-    "kill 5,7",
     "open 11,10",
     "open 13,6",
     "open 2,9",
-    "wall 5,5",
-    "wall 5,7"
+    "petrify 5,5",
+    "petrify 5,7"
    ]
   },
   {
    "room": "III-21",
    "a": 154,
    "b": 141,
-   "events": 0.238,
+   "events": 0.263,
    "order": 1.0,
    "states": 0.065,
    "only_a": [
@@ -7740,20 +7203,18 @@
     "open 9,6"
    ],
    "only_b": [
-    "kill 5,5",
-    "kill 5,7",
     "open 11,10",
     "open 13,6",
     "open 2,9",
-    "wall 5,5",
-    "wall 5,7"
+    "petrify 5,5",
+    "petrify 5,7"
    ]
   },
   {
    "room": "III-21",
    "a": 154,
    "b": 139,
-   "events": 0.238,
+   "events": 0.263,
    "order": 0.8,
    "states": 0.068,
    "only_a": [
@@ -7768,20 +7229,18 @@
     "open 9,6"
    ],
    "only_b": [
-    "kill 5,5",
-    "kill 5,7",
     "open 11,10",
     "open 13,6",
     "open 2,9",
-    "wall 5,5",
-    "wall 5,7"
+    "petrify 5,5",
+    "petrify 5,7"
    ]
   },
   {
    "room": "III-21",
    "a": 154,
    "b": 138,
-   "events": 0.238,
+   "events": 0.263,
    "order": 0.8,
    "states": 0.068,
    "only_a": [
@@ -7796,20 +7255,18 @@
     "open 9,6"
    ],
    "only_b": [
-    "kill 5,5",
-    "kill 5,7",
     "open 11,10",
     "open 13,6",
     "open 2,9",
-    "wall 5,5",
-    "wall 5,7"
+    "petrify 5,5",
+    "petrify 5,7"
    ]
   },
   {
    "room": "III-21",
    "a": 154,
    "b": 136,
-   "events": 0.19,
+   "events": 0.211,
    "order": 1.0,
    "states": 0.06,
    "only_a": [
@@ -7825,20 +7282,18 @@
     "open 9,6"
    ],
    "only_b": [
-    "kill 5,5",
-    "kill 5,7",
     "open 11,10",
     "open 13,6",
     "open 2,9",
-    "wall 5,5",
-    "wall 5,7"
+    "petrify 5,5",
+    "petrify 5,7"
    ]
   },
   {
    "room": "III-21",
    "a": 154,
    "b": 134,
-   "events": 0.19,
+   "events": 0.211,
    "order": 1.0,
    "states": 0.06,
    "only_a": [
@@ -7854,20 +7309,18 @@
     "open 9,6"
    ],
    "only_b": [
-    "kill 5,5",
-    "kill 5,7",
     "open 11,10",
     "open 13,6",
     "open 2,9",
-    "wall 5,5",
-    "wall 5,7"
+    "petrify 5,5",
+    "petrify 5,7"
    ]
   },
   {
    "room": "III-21",
    "a": 154,
    "b": 133,
-   "events": 0.19,
+   "events": 0.211,
    "order": 1.0,
    "states": 0.06,
    "only_a": [
@@ -7883,20 +7336,18 @@
     "open 9,6"
    ],
    "only_b": [
-    "kill 5,5",
-    "kill 5,7",
     "open 11,10",
     "open 13,6",
     "open 2,9",
-    "wall 5,5",
-    "wall 5,7"
+    "petrify 5,5",
+    "petrify 5,7"
    ]
   },
   {
    "room": "III-21",
    "a": 154,
    "b": 132,
-   "events": 0.19,
+   "events": 0.211,
    "order": 1.0,
    "states": 0.06,
    "only_a": [
@@ -7912,20 +7363,18 @@
     "open 9,6"
    ],
    "only_b": [
-    "kill 5,5",
-    "kill 5,7",
     "open 11,10",
     "open 13,6",
     "open 2,9",
-    "wall 5,5",
-    "wall 5,7"
+    "petrify 5,5",
+    "petrify 5,7"
    ]
   },
   {
    "room": "III-21",
    "a": 154,
    "b": 129,
-   "events": 0.19,
+   "events": 0.211,
    "order": 1.0,
    "states": 0.059,
    "only_a": [
@@ -7941,20 +7390,18 @@
     "open 9,6"
    ],
    "only_b": [
-    "kill 5,5",
-    "kill 5,7",
     "open 11,10",
     "open 13,6",
     "open 2,9",
-    "wall 5,5",
-    "wall 5,7"
+    "petrify 5,5",
+    "petrify 5,7"
    ]
   },
   {
    "room": "III-21",
    "a": 154,
    "b": 121,
-   "events": 0.19,
+   "events": 0.211,
    "order": 1.0,
    "states": 0.059,
    "only_a": [
@@ -7970,20 +7417,18 @@
     "open 9,6"
    ],
    "only_b": [
-    "kill 5,5",
-    "kill 5,7",
     "open 11,10",
     "open 13,6",
     "open 2,9",
-    "wall 5,5",
-    "wall 5,7"
+    "petrify 5,5",
+    "petrify 5,7"
    ]
   },
   {
    "room": "III-21",
    "a": 154,
    "b": 112,
-   "events": 0.19,
+   "events": 0.211,
    "order": 1.0,
    "states": 0.059,
    "only_a": [
@@ -7999,20 +7444,18 @@
     "open 9,6"
    ],
    "only_b": [
-    "kill 5,5",
-    "kill 5,7",
     "open 11,10",
     "open 13,6",
     "open 2,9",
-    "wall 5,5",
-    "wall 5,7"
+    "petrify 5,5",
+    "petrify 5,7"
    ]
   },
   {
    "room": "III-21",
    "a": 154,
    "b": 100,
-   "events": 0.19,
+   "events": 0.211,
    "order": 1.0,
    "states": 0.058,
    "only_a": [
@@ -8028,20 +7471,18 @@
     "open 9,6"
    ],
    "only_b": [
-    "kill 5,5",
-    "kill 5,7",
     "open 11,10",
     "open 13,6",
     "open 2,9",
-    "wall 5,5",
-    "wall 5,7"
+    "petrify 5,5",
+    "petrify 5,7"
    ]
   },
   {
    "room": "III-21",
    "a": 154,
    "b": 97,
-   "events": 0.19,
+   "events": 0.211,
    "order": 0.667,
    "states": 0.065,
    "only_a": [
@@ -8057,20 +7498,18 @@
     "open 9,6"
    ],
    "only_b": [
-    "kill 5,5",
-    "kill 5,7",
     "open 11,10",
     "open 13,6",
     "open 2,9",
-    "wall 5,5",
-    "wall 5,7"
+    "petrify 5,5",
+    "petrify 5,7"
    ]
   },
   {
    "room": "III-21",
    "a": 154,
    "b": 88,
-   "events": 0.19,
+   "events": 0.211,
    "order": 1.0,
    "states": 0.09,
    "only_a": [
@@ -8086,25 +7525,21 @@
     "open 9,6"
    ],
    "only_b": [
-    "kill 5,5",
-    "kill 5,7",
     "open 11,10",
     "open 13,6",
     "open 2,9",
-    "wall 5,5",
-    "wall 5,7"
+    "petrify 5,5",
+    "petrify 5,7"
    ]
   },
   {
    "room": "III-21",
    "a": 154,
    "b": 65,
-   "events": 0.174,
-   "order": 1.0,
+   "events": 0.316,
+   "order": 0.867,
    "states": 0.026,
    "only_a": [
-    "kill 17,5",
-    "kill 17,7",
     "open 1,8",
     "open 1,9",
     "open 12,10",
@@ -8115,37 +7550,33 @@
     "open 9,6"
    ],
    "only_b": [
-    "kill 17,6",
-    "kill 17,8",
-    "kill 5,5",
-    "kill 5,7",
     "open 11,10",
     "open 13,6",
     "open 2,9",
-    "wall 5,5",
-    "wall 5,7"
+    "petrify 5,5",
+    "petrify 5,7"
    ]
   },
   {
    "room": "III-21",
    "a": 153,
    "b": 152,
-   "events": 0.348,
-   "order": 0.893,
+   "events": 0.318,
+   "order": 0.857,
    "states": 0.043,
    "only_a": [
     "kill 17,5",
-    "kill 5,5",
+    "kill 17,7",
     "open 1,9",
     "open 13,7",
     "open 13,8",
     "open 16,9",
     "open 9,6",
-    "wall 5,5"
+    "petrify 5,5"
    ],
    "only_b": [
-    "kill 5,4",
-    "kill 5,6",
+    "kill 5,5",
+    "kill 5,7",
     "open 2,9",
     "open 3,7",
     "open 4,7",
@@ -8157,8 +7588,8 @@
    "room": "III-21",
    "a": 153,
    "b": 151,
-   "events": 0.565,
-   "order": 0.949,
+   "events": 0.571,
+   "order": 0.955,
    "states": 0.47,
    "only_a": [
     "open 1,8",
@@ -8166,35 +7597,34 @@
     "open 13,8"
    ],
    "only_b": [
-    "kill 5,7",
     "open 13,10",
     "open 14,10",
     "open 2,9",
     "open 3,7",
     "open 4,7",
-    "wall 5,7"
+    "petrify 5,7"
    ]
   },
   {
    "room": "III-21",
    "a": 153,
    "b": 150,
-   "events": 0.364,
-   "order": 0.893,
+   "events": 0.333,
+   "order": 0.905,
    "states": 0.042,
    "only_a": [
     "kill 17,5",
-    "kill 5,5",
+    "kill 17,7",
     "open 1,8",
     "open 1,9",
     "open 13,7",
     "open 13,8",
     "open 16,9",
-    "wall 5,5"
+    "petrify 5,5"
    ],
    "only_b": [
-    "kill 5,4",
-    "kill 5,6",
+    "kill 5,5",
+    "kill 5,7",
     "open 2,9",
     "open 3,7",
     "open 4,7",
@@ -8205,22 +7635,22 @@
    "room": "III-21",
    "a": 153,
    "b": 149,
-   "events": 0.4,
-   "order": 0.893,
+   "events": 0.368,
+   "order": 0.905,
    "states": 0.04,
    "only_a": [
     "kill 17,5",
-    "kill 5,5",
+    "kill 17,7",
     "open 1,8",
     "open 1,9",
     "open 13,7",
     "open 13,8",
     "open 16,9",
-    "wall 5,5"
+    "petrify 5,5"
    ],
    "only_b": [
-    "kill 5,4",
-    "kill 5,6",
+    "kill 5,5",
+    "kill 5,7",
     "open 2,9",
     "wall 11,9"
    ]
@@ -8229,22 +7659,22 @@
    "room": "III-21",
    "a": 153,
    "b": 147,
-   "events": 0.4,
-   "order": 0.893,
+   "events": 0.368,
+   "order": 0.905,
    "states": 0.145,
    "only_a": [
     "kill 17,5",
-    "kill 5,5",
+    "kill 17,7",
     "open 1,8",
     "open 1,9",
     "open 13,7",
     "open 13,8",
     "open 16,9",
-    "wall 5,5"
+    "petrify 5,5"
    ],
    "only_b": [
-    "kill 5,4",
-    "kill 5,6",
+    "kill 5,5",
+    "kill 5,7",
     "open 2,9",
     "wall 11,9"
    ]
@@ -8253,22 +7683,22 @@
    "room": "III-21",
    "a": 153,
    "b": 146,
-   "events": 0.4,
-   "order": 0.893,
+   "events": 0.368,
+   "order": 0.905,
    "states": 0.041,
    "only_a": [
     "kill 17,5",
-    "kill 5,5",
+    "kill 17,7",
     "open 1,8",
     "open 1,9",
     "open 13,7",
     "open 13,8",
     "open 16,9",
-    "wall 5,5"
+    "petrify 5,5"
    ],
    "only_b": [
-    "kill 5,4",
-    "kill 5,6",
+    "kill 5,5",
+    "kill 5,7",
     "open 2,9",
     "wall 11,9"
    ]
@@ -8277,23 +7707,23 @@
    "room": "III-21",
    "a": 153,
    "b": 145,
-   "events": 0.35,
-   "order": 0.905,
+   "events": 0.316,
+   "order": 0.867,
    "states": 0.041,
    "only_a": [
     "kill 17,5",
-    "kill 5,5",
+    "kill 17,7",
     "open 1,8",
     "open 1,9",
     "open 13,7",
     "open 13,8",
     "open 16,9",
     "open 9,6",
-    "wall 5,5"
+    "petrify 5,5"
    ],
    "only_b": [
-    "kill 5,4",
-    "kill 5,6",
+    "kill 5,5",
+    "kill 5,7",
     "open 2,9",
     "wall 11,9"
    ]
@@ -8302,8 +7732,8 @@
    "room": "III-21",
    "a": 153,
    "b": 143,
-   "events": 0.333,
-   "order": 0.905,
+   "events": 0.316,
+   "order": 0.933,
    "states": 0.04,
    "only_a": [
     "kill 17,5",
@@ -8317,19 +7747,18 @@
     "open 9,6"
    ],
    "only_b": [
-    "kill 5,7",
     "open 11,10",
     "open 13,6",
     "open 2,9",
-    "wall 5,7"
+    "petrify 5,7"
    ]
   },
   {
    "room": "III-21",
    "a": 153,
    "b": 142,
-   "events": 0.333,
-   "order": 0.905,
+   "events": 0.316,
+   "order": 0.933,
    "states": 0.039,
    "only_a": [
     "kill 17,5",
@@ -8343,19 +7772,18 @@
     "open 9,6"
    ],
    "only_b": [
-    "kill 5,7",
     "open 11,10",
     "open 13,6",
     "open 2,9",
-    "wall 5,7"
+    "petrify 5,7"
    ]
   },
   {
    "room": "III-21",
    "a": 153,
    "b": 141,
-   "events": 0.333,
-   "order": 0.905,
+   "events": 0.316,
+   "order": 0.933,
    "states": 0.065,
    "only_a": [
     "kill 17,5",
@@ -8369,19 +7797,18 @@
     "open 9,6"
    ],
    "only_b": [
-    "kill 5,7",
     "open 11,10",
     "open 13,6",
     "open 2,9",
-    "wall 5,7"
+    "petrify 5,7"
    ]
   },
   {
    "room": "III-21",
    "a": 153,
    "b": 139,
-   "events": 0.333,
-   "order": 0.81,
+   "events": 0.316,
+   "order": 0.8,
    "states": 0.068,
    "only_a": [
     "kill 17,5",
@@ -8395,19 +7822,18 @@
     "open 9,6"
    ],
    "only_b": [
-    "kill 5,7",
     "open 11,10",
     "open 13,6",
     "open 2,9",
-    "wall 5,7"
+    "petrify 5,7"
    ]
   },
   {
    "room": "III-21",
    "a": 153,
    "b": 138,
-   "events": 0.333,
-   "order": 0.81,
+   "events": 0.316,
+   "order": 0.8,
    "states": 0.068,
    "only_a": [
     "kill 17,5",
@@ -8421,19 +7847,18 @@
     "open 9,6"
    ],
    "only_b": [
-    "kill 5,7",
     "open 11,10",
     "open 13,6",
     "open 2,9",
-    "wall 5,7"
+    "petrify 5,7"
    ]
   },
   {
    "room": "III-21",
    "a": 153,
    "b": 136,
-   "events": 0.286,
-   "order": 0.867,
+   "events": 0.263,
+   "order": 0.9,
    "states": 0.06,
    "only_a": [
     "kill 17,5",
@@ -8448,19 +7873,18 @@
     "open 9,6"
    ],
    "only_b": [
-    "kill 5,7",
     "open 11,10",
     "open 13,6",
     "open 2,9",
-    "wall 5,7"
+    "petrify 5,7"
    ]
   },
   {
    "room": "III-21",
    "a": 153,
    "b": 134,
-   "events": 0.286,
-   "order": 0.867,
+   "events": 0.263,
+   "order": 0.9,
    "states": 0.06,
    "only_a": [
     "kill 17,5",
@@ -8475,19 +7899,18 @@
     "open 9,6"
    ],
    "only_b": [
-    "kill 5,7",
     "open 11,10",
     "open 13,6",
     "open 2,9",
-    "wall 5,7"
+    "petrify 5,7"
    ]
   },
   {
    "room": "III-21",
    "a": 153,
    "b": 133,
-   "events": 0.286,
-   "order": 0.867,
+   "events": 0.263,
+   "order": 0.9,
    "states": 0.06,
    "only_a": [
     "kill 17,5",
@@ -8502,19 +7925,18 @@
     "open 9,6"
    ],
    "only_b": [
-    "kill 5,7",
     "open 11,10",
     "open 13,6",
     "open 2,9",
-    "wall 5,7"
+    "petrify 5,7"
    ]
   },
   {
    "room": "III-21",
    "a": 153,
    "b": 132,
-   "events": 0.286,
-   "order": 0.867,
+   "events": 0.263,
+   "order": 0.9,
    "states": 0.06,
    "only_a": [
     "kill 17,5",
@@ -8529,19 +7951,18 @@
     "open 9,6"
    ],
    "only_b": [
-    "kill 5,7",
     "open 11,10",
     "open 13,6",
     "open 2,9",
-    "wall 5,7"
+    "petrify 5,7"
    ]
   },
   {
    "room": "III-21",
    "a": 153,
    "b": 129,
-   "events": 0.286,
-   "order": 0.867,
+   "events": 0.263,
+   "order": 0.9,
    "states": 0.059,
    "only_a": [
     "kill 17,5",
@@ -8556,19 +7977,18 @@
     "open 9,6"
    ],
    "only_b": [
-    "kill 5,7",
     "open 11,10",
     "open 13,6",
     "open 2,9",
-    "wall 5,7"
+    "petrify 5,7"
    ]
   },
   {
    "room": "III-21",
    "a": 153,
    "b": 121,
-   "events": 0.286,
-   "order": 0.867,
+   "events": 0.263,
+   "order": 0.9,
    "states": 0.059,
    "only_a": [
     "kill 17,5",
@@ -8583,19 +8003,18 @@
     "open 9,6"
    ],
    "only_b": [
-    "kill 5,7",
     "open 11,10",
     "open 13,6",
     "open 2,9",
-    "wall 5,7"
+    "petrify 5,7"
    ]
   },
   {
    "room": "III-21",
    "a": 153,
    "b": 112,
-   "events": 0.286,
-   "order": 0.867,
+   "events": 0.263,
+   "order": 0.9,
    "states": 0.058,
    "only_a": [
     "kill 17,5",
@@ -8610,19 +8029,18 @@
     "open 9,6"
    ],
    "only_b": [
-    "kill 5,7",
     "open 11,10",
     "open 13,6",
     "open 2,9",
-    "wall 5,7"
+    "petrify 5,7"
    ]
   },
   {
    "room": "III-21",
    "a": 153,
    "b": 100,
-   "events": 0.286,
-   "order": 0.867,
+   "events": 0.263,
+   "order": 0.9,
    "states": 0.058,
    "only_a": [
     "kill 17,5",
@@ -8637,19 +8055,18 @@
     "open 9,6"
    ],
    "only_b": [
-    "kill 5,7",
     "open 11,10",
     "open 13,6",
     "open 2,9",
-    "wall 5,7"
+    "petrify 5,7"
    ]
   },
   {
    "room": "III-21",
    "a": 153,
    "b": 97,
-   "events": 0.286,
-   "order": 0.733,
+   "events": 0.263,
+   "order": 0.7,
    "states": 0.065,
    "only_a": [
     "kill 17,5",
@@ -8664,19 +8081,18 @@
     "open 9,6"
    ],
    "only_b": [
-    "kill 5,7",
     "open 11,10",
     "open 13,6",
     "open 2,9",
-    "wall 5,7"
+    "petrify 5,7"
    ]
   },
   {
    "room": "III-21",
    "a": 153,
    "b": 88,
-   "events": 0.286,
-   "order": 0.867,
+   "events": 0.263,
+   "order": 0.9,
    "states": 0.09,
    "only_a": [
     "kill 17,5",
@@ -8691,23 +8107,20 @@
     "open 9,6"
    ],
    "only_b": [
-    "kill 5,7",
     "open 11,10",
     "open 13,6",
     "open 2,9",
-    "wall 5,7"
+    "petrify 5,7"
    ]
   },
   {
    "room": "III-21",
    "a": 153,
    "b": 65,
-   "events": 0.261,
-   "order": 0.867,
+   "events": 0.368,
+   "order": 0.762,
    "states": 0.026,
    "only_a": [
-    "kill 17,5",
-    "kill 17,7",
     "open 1,8",
     "open 1,9",
     "open 12,10",
@@ -8718,47 +8131,43 @@
     "open 9,6"
    ],
    "only_b": [
-    "kill 17,6",
-    "kill 17,8",
-    "kill 5,7",
     "open 11,10",
     "open 13,6",
     "open 2,9",
-    "wall 5,7"
+    "petrify 5,7"
    ]
   },
   {
    "room": "III-21",
    "a": 152,
    "b": 151,
-   "events": 0.4,
-   "order": 0.956,
+   "events": 0.391,
+   "order": 0.944,
    "states": 0.042,
    "only_a": [
-    "kill 5,4",
-    "kill 5,6",
+    "kill 5,5",
+    "kill 5,7",
     "open 1,8",
     "open 6,7",
     "wall 11,9"
    ],
    "only_b": [
     "kill 17,5",
-    "kill 5,5",
-    "kill 5,7",
+    "kill 17,7",
     "open 13,10",
     "open 13,7",
     "open 14,10",
     "open 16,9",
     "open 9,6",
-    "wall 5,5",
-    "wall 5,7"
+    "petrify 5,5",
+    "petrify 5,7"
    ]
   },
   {
    "room": "III-21",
    "a": 152,
    "b": 150,
-   "events": 0.812,
+   "events": 0.8,
    "order": 1.0,
    "states": 0.632,
    "only_a": [
@@ -8773,8 +8182,8 @@
    "room": "III-21",
    "a": 152,
    "b": 149,
-   "events": 0.688,
-   "order": 0.982,
+   "events": 0.667,
+   "order": 0.978,
    "states": 0.463,
    "only_a": [
     "open 1,8",
@@ -8790,7 +8199,7 @@
    "room": "III-21",
    "a": 152,
    "b": 147,
-   "events": 0.688,
+   "events": 0.667,
    "order": 1.0,
    "states": 0.095,
    "only_a": [
@@ -8807,7 +8216,7 @@
    "room": "III-21",
    "a": 152,
    "b": 146,
-   "events": 0.688,
+   "events": 0.667,
    "order": 1.0,
    "states": 0.042,
    "only_a": [
@@ -8824,7 +8233,7 @@
    "room": "III-21",
    "a": 152,
    "b": 145,
-   "events": 0.733,
+   "events": 0.714,
    "order": 1.0,
    "states": 0.042,
    "only_a": [
@@ -8839,13 +8248,12 @@
    "room": "III-21",
    "a": 152,
    "b": 143,
-   "events": 0.227,
+   "events": 0.263,
    "order": 0.8,
    "states": 0.045,
    "only_a": [
-    "kill 17,7",
-    "kill 5,4",
-    "kill 5,6",
+    "kill 5,5",
+    "kill 5,7",
     "open 1,8",
     "open 12,10",
     "open 17,9",
@@ -8855,26 +8263,23 @@
     "wall 11,9"
    ],
    "only_b": [
-    "kill 5,5",
-    "kill 5,7",
     "open 11,10",
     "open 13,6",
     "open 13,7",
-    "wall 5,5",
-    "wall 5,7"
+    "petrify 5,5",
+    "petrify 5,7"
    ]
   },
   {
    "room": "III-21",
    "a": 152,
    "b": 142,
-   "events": 0.227,
+   "events": 0.263,
    "order": 0.8,
    "states": 0.045,
    "only_a": [
-    "kill 17,7",
-    "kill 5,4",
-    "kill 5,6",
+    "kill 5,5",
+    "kill 5,7",
     "open 1,8",
     "open 12,10",
     "open 17,9",
@@ -8884,26 +8289,23 @@
     "wall 11,9"
    ],
    "only_b": [
-    "kill 5,5",
-    "kill 5,7",
     "open 11,10",
     "open 13,6",
     "open 13,7",
-    "wall 5,5",
-    "wall 5,7"
+    "petrify 5,5",
+    "petrify 5,7"
    ]
   },
   {
    "room": "III-21",
    "a": 152,
    "b": 141,
-   "events": 0.227,
+   "events": 0.263,
    "order": 0.8,
    "states": 0.06,
    "only_a": [
-    "kill 17,7",
-    "kill 5,4",
-    "kill 5,6",
+    "kill 5,5",
+    "kill 5,7",
     "open 1,8",
     "open 12,10",
     "open 17,9",
@@ -8913,26 +8315,23 @@
     "wall 11,9"
    ],
    "only_b": [
-    "kill 5,5",
-    "kill 5,7",
     "open 11,10",
     "open 13,6",
     "open 13,7",
-    "wall 5,5",
-    "wall 5,7"
+    "petrify 5,5",
+    "petrify 5,7"
    ]
   },
   {
    "room": "III-21",
    "a": 152,
    "b": 139,
-   "events": 0.227,
+   "events": 0.263,
    "order": 1.0,
    "states": 0.034,
    "only_a": [
-    "kill 17,7",
-    "kill 5,4",
-    "kill 5,6",
+    "kill 5,5",
+    "kill 5,7",
     "open 1,8",
     "open 12,10",
     "open 17,9",
@@ -8942,26 +8341,23 @@
     "wall 11,9"
    ],
    "only_b": [
-    "kill 5,5",
-    "kill 5,7",
     "open 11,10",
     "open 13,6",
     "open 13,7",
-    "wall 5,5",
-    "wall 5,7"
+    "petrify 5,5",
+    "petrify 5,7"
    ]
   },
   {
    "room": "III-21",
    "a": 152,
    "b": 138,
-   "events": 0.227,
+   "events": 0.263,
    "order": 1.0,
    "states": 0.034,
    "only_a": [
-    "kill 17,7",
-    "kill 5,4",
-    "kill 5,6",
+    "kill 5,5",
+    "kill 5,7",
     "open 1,8",
     "open 12,10",
     "open 17,9",
@@ -8971,26 +8367,23 @@
     "wall 11,9"
    ],
    "only_b": [
-    "kill 5,5",
-    "kill 5,7",
     "open 11,10",
     "open 13,6",
     "open 13,7",
-    "wall 5,5",
-    "wall 5,7"
+    "petrify 5,5",
+    "petrify 5,7"
    ]
   },
   {
    "room": "III-21",
    "a": 152,
    "b": 136,
-   "events": 0.238,
+   "events": 0.278,
    "order": 0.8,
    "states": 0.038,
    "only_a": [
-    "kill 17,7",
-    "kill 5,4",
-    "kill 5,6",
+    "kill 5,5",
+    "kill 5,7",
     "open 1,8",
     "open 12,10",
     "open 17,9",
@@ -9000,25 +8393,22 @@
     "wall 11,9"
    ],
    "only_b": [
-    "kill 5,5",
-    "kill 5,7",
     "open 11,10",
     "open 13,6",
-    "wall 5,5",
-    "wall 5,7"
+    "petrify 5,5",
+    "petrify 5,7"
    ]
   },
   {
    "room": "III-21",
    "a": 152,
    "b": 134,
-   "events": 0.238,
+   "events": 0.278,
    "order": 0.8,
    "states": 0.038,
    "only_a": [
-    "kill 17,7",
-    "kill 5,4",
-    "kill 5,6",
+    "kill 5,5",
+    "kill 5,7",
     "open 1,8",
     "open 12,10",
     "open 17,9",
@@ -9028,25 +8418,22 @@
     "wall 11,9"
    ],
    "only_b": [
-    "kill 5,5",
-    "kill 5,7",
     "open 11,10",
     "open 13,6",
-    "wall 5,5",
-    "wall 5,7"
+    "petrify 5,5",
+    "petrify 5,7"
    ]
   },
   {
    "room": "III-21",
    "a": 152,
    "b": 133,
-   "events": 0.238,
+   "events": 0.278,
    "order": 0.8,
    "states": 0.037,
    "only_a": [
-    "kill 17,7",
-    "kill 5,4",
-    "kill 5,6",
+    "kill 5,5",
+    "kill 5,7",
     "open 1,8",
     "open 12,10",
     "open 17,9",
@@ -9056,25 +8443,22 @@
     "wall 11,9"
    ],
    "only_b": [
-    "kill 5,5",
-    "kill 5,7",
     "open 11,10",
     "open 13,6",
-    "wall 5,5",
-    "wall 5,7"
+    "petrify 5,5",
+    "petrify 5,7"
    ]
   },
   {
    "room": "III-21",
    "a": 152,
    "b": 132,
-   "events": 0.238,
+   "events": 0.278,
    "order": 0.8,
    "states": 0.037,
    "only_a": [
-    "kill 17,7",
-    "kill 5,4",
-    "kill 5,6",
+    "kill 5,5",
+    "kill 5,7",
     "open 1,8",
     "open 12,10",
     "open 17,9",
@@ -9084,25 +8468,22 @@
     "wall 11,9"
    ],
    "only_b": [
-    "kill 5,5",
-    "kill 5,7",
     "open 11,10",
     "open 13,6",
-    "wall 5,5",
-    "wall 5,7"
+    "petrify 5,5",
+    "petrify 5,7"
    ]
   },
   {
    "room": "III-21",
    "a": 152,
    "b": 129,
-   "events": 0.238,
+   "events": 0.278,
    "order": 0.8,
    "states": 0.037,
    "only_a": [
-    "kill 17,7",
-    "kill 5,4",
-    "kill 5,6",
+    "kill 5,5",
+    "kill 5,7",
     "open 1,8",
     "open 12,10",
     "open 17,9",
@@ -9112,25 +8493,22 @@
     "wall 11,9"
    ],
    "only_b": [
-    "kill 5,5",
-    "kill 5,7",
     "open 11,10",
     "open 13,6",
-    "wall 5,5",
-    "wall 5,7"
+    "petrify 5,5",
+    "petrify 5,7"
    ]
   },
   {
    "room": "III-21",
    "a": 152,
    "b": 121,
-   "events": 0.238,
+   "events": 0.278,
    "order": 0.8,
    "states": 0.037,
    "only_a": [
-    "kill 17,7",
-    "kill 5,4",
-    "kill 5,6",
+    "kill 5,5",
+    "kill 5,7",
     "open 1,8",
     "open 12,10",
     "open 17,9",
@@ -9140,25 +8518,22 @@
     "wall 11,9"
    ],
    "only_b": [
-    "kill 5,5",
-    "kill 5,7",
     "open 11,10",
     "open 13,6",
-    "wall 5,5",
-    "wall 5,7"
+    "petrify 5,5",
+    "petrify 5,7"
    ]
   },
   {
    "room": "III-21",
    "a": 152,
    "b": 112,
-   "events": 0.238,
+   "events": 0.278,
    "order": 0.8,
    "states": 0.036,
    "only_a": [
-    "kill 17,7",
-    "kill 5,4",
-    "kill 5,6",
+    "kill 5,5",
+    "kill 5,7",
     "open 1,8",
     "open 12,10",
     "open 17,9",
@@ -9168,25 +8543,22 @@
     "wall 11,9"
    ],
    "only_b": [
-    "kill 5,5",
-    "kill 5,7",
     "open 11,10",
     "open 13,6",
-    "wall 5,5",
-    "wall 5,7"
+    "petrify 5,5",
+    "petrify 5,7"
    ]
   },
   {
    "room": "III-21",
    "a": 152,
    "b": 100,
-   "events": 0.238,
+   "events": 0.278,
    "order": 0.8,
    "states": 0.036,
    "only_a": [
-    "kill 17,7",
-    "kill 5,4",
-    "kill 5,6",
+    "kill 5,5",
+    "kill 5,7",
     "open 1,8",
     "open 12,10",
     "open 17,9",
@@ -9196,25 +8568,22 @@
     "wall 11,9"
    ],
    "only_b": [
-    "kill 5,5",
-    "kill 5,7",
     "open 11,10",
     "open 13,6",
-    "wall 5,5",
-    "wall 5,7"
+    "petrify 5,5",
+    "petrify 5,7"
    ]
   },
   {
    "room": "III-21",
    "a": 152,
    "b": 97,
-   "events": 0.238,
+   "events": 0.278,
    "order": 1.0,
    "states": 0.06,
    "only_a": [
-    "kill 17,7",
-    "kill 5,4",
-    "kill 5,6",
+    "kill 5,5",
+    "kill 5,7",
     "open 1,8",
     "open 12,10",
     "open 17,9",
@@ -9224,25 +8593,22 @@
     "wall 11,9"
    ],
    "only_b": [
-    "kill 5,5",
-    "kill 5,7",
     "open 11,10",
     "open 13,6",
-    "wall 5,5",
-    "wall 5,7"
+    "petrify 5,5",
+    "petrify 5,7"
    ]
   },
   {
    "room": "III-21",
    "a": 152,
    "b": 88,
-   "events": 0.238,
+   "events": 0.278,
    "order": 0.8,
    "states": 0.059,
    "only_a": [
-    "kill 17,7",
-    "kill 5,4",
-    "kill 5,6",
+    "kill 5,5",
+    "kill 5,7",
     "open 1,8",
     "open 12,10",
     "open 17,9",
@@ -9252,25 +8618,22 @@
     "wall 11,9"
    ],
    "only_b": [
-    "kill 5,5",
-    "kill 5,7",
     "open 11,10",
     "open 13,6",
-    "wall 5,5",
-    "wall 5,7"
+    "petrify 5,5",
+    "petrify 5,7"
    ]
   },
   {
    "room": "III-21",
    "a": 152,
    "b": 65,
-   "events": 0.217,
+   "events": 0.25,
    "order": 0.8,
    "states": 0.026,
    "only_a": [
-    "kill 17,7",
-    "kill 5,4",
-    "kill 5,6",
+    "kill 5,5",
+    "kill 5,7",
     "open 1,8",
     "open 12,10",
     "open 17,9",
@@ -9280,37 +8643,34 @@
     "wall 11,9"
    ],
    "only_b": [
-    "kill 17,6",
-    "kill 17,8",
-    "kill 5,5",
-    "kill 5,7",
+    "kill 17,5",
+    "kill 17,7",
     "open 11,10",
     "open 13,6",
-    "wall 5,5",
-    "wall 5,7"
+    "petrify 5,5",
+    "petrify 5,7"
    ]
   },
   {
    "room": "III-21",
    "a": 151,
    "b": 150,
-   "events": 0.478,
-   "order": 0.964,
+   "events": 0.476,
+   "order": 0.956,
    "states": 0.042,
    "only_a": [
     "kill 17,5",
-    "kill 5,5",
-    "kill 5,7",
+    "kill 17,7",
     "open 13,10",
     "open 13,7",
     "open 14,10",
     "open 16,9",
-    "wall 5,5",
-    "wall 5,7"
+    "petrify 5,5",
+    "petrify 5,7"
    ],
    "only_b": [
-    "kill 5,4",
-    "kill 5,6",
+    "kill 5,5",
+    "kill 5,7",
     "wall 11,9"
    ]
   },
@@ -9318,25 +8678,24 @@
    "room": "III-21",
    "a": 151,
    "b": 149,
-   "events": 0.391,
-   "order": 0.944,
+   "events": 0.381,
+   "order": 0.929,
    "states": 0.04,
    "only_a": [
     "kill 17,5",
-    "kill 5,5",
-    "kill 5,7",
+    "kill 17,7",
     "open 13,10",
     "open 13,7",
     "open 14,10",
     "open 16,9",
     "open 3,7",
     "open 4,7",
-    "wall 5,5",
-    "wall 5,7"
+    "petrify 5,5",
+    "petrify 5,7"
    ],
    "only_b": [
-    "kill 5,4",
-    "kill 5,6",
+    "kill 5,5",
+    "kill 5,7",
     "wall 11,9"
    ]
   },
@@ -9344,25 +8703,24 @@
    "room": "III-21",
    "a": 151,
    "b": 147,
-   "events": 0.391,
-   "order": 0.944,
+   "events": 0.381,
+   "order": 0.929,
    "states": 0.143,
    "only_a": [
     "kill 17,5",
-    "kill 5,5",
-    "kill 5,7",
+    "kill 17,7",
     "open 13,10",
     "open 13,7",
     "open 14,10",
     "open 16,9",
     "open 3,7",
     "open 4,7",
-    "wall 5,5",
-    "wall 5,7"
+    "petrify 5,5",
+    "petrify 5,7"
    ],
    "only_b": [
-    "kill 5,4",
-    "kill 5,6",
+    "kill 5,5",
+    "kill 5,7",
     "wall 11,9"
    ]
   },
@@ -9370,25 +8728,24 @@
    "room": "III-21",
    "a": 151,
    "b": 146,
-   "events": 0.391,
-   "order": 0.944,
+   "events": 0.381,
+   "order": 0.929,
    "states": 0.041,
    "only_a": [
     "kill 17,5",
-    "kill 5,5",
-    "kill 5,7",
+    "kill 17,7",
     "open 13,10",
     "open 13,7",
     "open 14,10",
     "open 16,9",
     "open 3,7",
     "open 4,7",
-    "wall 5,5",
-    "wall 5,7"
+    "petrify 5,5",
+    "petrify 5,7"
    ],
    "only_b": [
-    "kill 5,4",
-    "kill 5,6",
+    "kill 5,5",
+    "kill 5,7",
     "wall 11,9"
    ]
   },
@@ -9396,13 +8753,12 @@
    "room": "III-21",
    "a": 151,
    "b": 145,
-   "events": 0.348,
-   "order": 0.929,
+   "events": 0.333,
+   "order": 0.905,
    "states": 0.04,
    "only_a": [
     "kill 17,5",
-    "kill 5,5",
-    "kill 5,7",
+    "kill 17,7",
     "open 13,10",
     "open 13,7",
     "open 14,10",
@@ -9410,12 +8766,12 @@
     "open 3,7",
     "open 4,7",
     "open 9,6",
-    "wall 5,5",
-    "wall 5,7"
+    "petrify 5,5",
+    "petrify 5,7"
    ],
    "only_b": [
-    "kill 5,4",
-    "kill 5,6",
+    "kill 5,5",
+    "kill 5,7",
     "wall 11,9"
    ]
   },
@@ -9423,8 +8779,8 @@
    "room": "III-21",
    "a": 151,
    "b": 143,
-   "events": 0.455,
-   "order": 0.911,
+   "events": 0.4,
+   "order": 0.964,
    "states": 0.039,
    "only_a": [
     "kill 17,5",
@@ -9447,8 +8803,8 @@
    "room": "III-21",
    "a": 151,
    "b": 142,
-   "events": 0.455,
-   "order": 0.911,
+   "events": 0.4,
+   "order": 0.964,
    "states": 0.039,
    "only_a": [
     "kill 17,5",
@@ -9471,7 +8827,7 @@
    "room": "III-21",
    "a": 151,
    "b": 141,
-   "events": 0.455,
+   "events": 0.4,
    "order": 1.0,
    "states": 0.064,
    "only_a": [
@@ -9495,8 +8851,8 @@
    "room": "III-21",
    "a": 151,
    "b": 139,
-   "events": 0.455,
-   "order": 0.956,
+   "events": 0.4,
+   "order": 0.929,
    "states": 0.067,
    "only_a": [
     "kill 17,5",
@@ -9519,8 +8875,8 @@
    "room": "III-21",
    "a": 151,
    "b": 138,
-   "events": 0.455,
-   "order": 0.956,
+   "events": 0.4,
+   "order": 0.929,
    "states": 0.067,
    "only_a": [
     "kill 17,5",
@@ -9543,7 +8899,7 @@
    "room": "III-21",
    "a": 151,
    "b": 136,
-   "events": 0.409,
+   "events": 0.35,
    "order": 1.0,
    "states": 0.06,
    "only_a": [
@@ -9568,7 +8924,7 @@
    "room": "III-21",
    "a": 151,
    "b": 134,
-   "events": 0.409,
+   "events": 0.35,
    "order": 1.0,
    "states": 0.059,
    "only_a": [
@@ -9593,8 +8949,8 @@
    "room": "III-21",
    "a": 151,
    "b": 133,
-   "events": 0.409,
-   "order": 0.889,
+   "events": 0.35,
+   "order": 0.952,
    "states": 0.059,
    "only_a": [
     "kill 17,5",
@@ -9618,8 +8974,8 @@
    "room": "III-21",
    "a": 151,
    "b": 132,
-   "events": 0.409,
-   "order": 0.889,
+   "events": 0.35,
+   "order": 0.952,
    "states": 0.059,
    "only_a": [
     "kill 17,5",
@@ -9643,8 +8999,8 @@
    "room": "III-21",
    "a": 151,
    "b": 129,
-   "events": 0.409,
-   "order": 0.889,
+   "events": 0.35,
+   "order": 0.952,
    "states": 0.059,
    "only_a": [
     "kill 17,5",
@@ -9668,8 +9024,8 @@
    "room": "III-21",
    "a": 151,
    "b": 121,
-   "events": 0.409,
-   "order": 0.889,
+   "events": 0.35,
+   "order": 0.952,
    "states": 0.058,
    "only_a": [
     "kill 17,5",
@@ -9693,8 +9049,8 @@
    "room": "III-21",
    "a": 151,
    "b": 112,
-   "events": 0.409,
-   "order": 0.889,
+   "events": 0.35,
+   "order": 0.952,
    "states": 0.058,
    "only_a": [
     "kill 17,5",
@@ -9718,8 +9074,8 @@
    "room": "III-21",
    "a": 151,
    "b": 100,
-   "events": 0.409,
-   "order": 0.889,
+   "events": 0.35,
+   "order": 0.952,
    "states": 0.058,
    "only_a": [
     "kill 17,5",
@@ -9743,8 +9099,8 @@
    "room": "III-21",
    "a": 151,
    "b": 97,
-   "events": 0.409,
-   "order": 0.944,
+   "events": 0.35,
+   "order": 0.905,
    "states": 0.064,
    "only_a": [
     "kill 17,5",
@@ -9768,7 +9124,7 @@
    "room": "III-21",
    "a": 151,
    "b": 88,
-   "events": 0.409,
+   "events": 0.35,
    "order": 1.0,
    "states": 0.089,
    "only_a": [
@@ -9793,12 +9149,10 @@
    "room": "III-21",
    "a": 151,
    "b": 65,
-   "events": 0.375,
-   "order": 1.0,
+   "events": 0.45,
+   "order": 0.778,
    "states": 0.025,
    "only_a": [
-    "kill 17,5",
-    "kill 17,7",
     "open 12,10",
     "open 13,10",
     "open 13,7",
@@ -9810,8 +9164,6 @@
     "open 9,6"
    ],
    "only_b": [
-    "kill 17,6",
-    "kill 17,8",
     "open 11,10",
     "open 13,6"
    ]
@@ -9820,8 +9172,8 @@
    "room": "III-21",
    "a": 150,
    "b": 149,
-   "events": 0.857,
-   "order": 0.985,
+   "events": 0.846,
+   "order": 0.982,
    "states": 0.457,
    "only_a": [
     "open 3,7",
@@ -9833,7 +9185,7 @@
    "room": "III-21",
    "a": 150,
    "b": 147,
-   "events": 0.857,
+   "events": 0.846,
    "order": 1.0,
    "states": 0.094,
    "only_a": [
@@ -9846,7 +9198,7 @@
    "room": "III-21",
    "a": 150,
    "b": 146,
-   "events": 0.857,
+   "events": 0.846,
    "order": 1.0,
    "states": 0.042,
    "only_a": [
@@ -9859,7 +9211,7 @@
    "room": "III-21",
    "a": 150,
    "b": 145,
-   "events": 0.786,
+   "events": 0.769,
    "order": 1.0,
    "states": 0.042,
    "only_a": [
@@ -9873,13 +9225,12 @@
    "room": "III-21",
    "a": 150,
    "b": 143,
-   "events": 0.238,
+   "events": 0.278,
    "order": 0.8,
    "states": 0.045,
    "only_a": [
-    "kill 17,7",
-    "kill 5,4",
-    "kill 5,6",
+    "kill 5,5",
+    "kill 5,7",
     "open 12,10",
     "open 17,9",
     "open 3,7",
@@ -9888,26 +9239,23 @@
     "wall 11,9"
    ],
    "only_b": [
-    "kill 5,5",
-    "kill 5,7",
     "open 11,10",
     "open 13,6",
     "open 13,7",
-    "wall 5,5",
-    "wall 5,7"
+    "petrify 5,5",
+    "petrify 5,7"
    ]
   },
   {
    "room": "III-21",
    "a": 150,
    "b": 142,
-   "events": 0.238,
+   "events": 0.278,
    "order": 0.8,
    "states": 0.044,
    "only_a": [
-    "kill 17,7",
-    "kill 5,4",
-    "kill 5,6",
+    "kill 5,5",
+    "kill 5,7",
     "open 12,10",
     "open 17,9",
     "open 3,7",
@@ -9916,26 +9264,23 @@
     "wall 11,9"
    ],
    "only_b": [
-    "kill 5,5",
-    "kill 5,7",
     "open 11,10",
     "open 13,6",
     "open 13,7",
-    "wall 5,5",
-    "wall 5,7"
+    "petrify 5,5",
+    "petrify 5,7"
    ]
   },
   {
    "room": "III-21",
    "a": 150,
    "b": 141,
-   "events": 0.238,
+   "events": 0.278,
    "order": 0.8,
    "states": 0.059,
    "only_a": [
-    "kill 17,7",
-    "kill 5,4",
-    "kill 5,6",
+    "kill 5,5",
+    "kill 5,7",
     "open 12,10",
     "open 17,9",
     "open 3,7",
@@ -9944,26 +9289,23 @@
     "wall 11,9"
    ],
    "only_b": [
-    "kill 5,5",
-    "kill 5,7",
     "open 11,10",
     "open 13,6",
     "open 13,7",
-    "wall 5,5",
-    "wall 5,7"
+    "petrify 5,5",
+    "petrify 5,7"
    ]
   },
   {
    "room": "III-21",
    "a": 150,
    "b": 139,
-   "events": 0.238,
+   "events": 0.278,
    "order": 1.0,
    "states": 0.034,
    "only_a": [
-    "kill 17,7",
-    "kill 5,4",
-    "kill 5,6",
+    "kill 5,5",
+    "kill 5,7",
     "open 12,10",
     "open 17,9",
     "open 3,7",
@@ -9972,26 +9314,23 @@
     "wall 11,9"
    ],
    "only_b": [
-    "kill 5,5",
-    "kill 5,7",
     "open 11,10",
     "open 13,6",
     "open 13,7",
-    "wall 5,5",
-    "wall 5,7"
+    "petrify 5,5",
+    "petrify 5,7"
    ]
   },
   {
    "room": "III-21",
    "a": 150,
    "b": 138,
-   "events": 0.238,
+   "events": 0.278,
    "order": 1.0,
    "states": 0.034,
    "only_a": [
-    "kill 17,7",
-    "kill 5,4",
-    "kill 5,6",
+    "kill 5,5",
+    "kill 5,7",
     "open 12,10",
     "open 17,9",
     "open 3,7",
@@ -10000,26 +9339,23 @@
     "wall 11,9"
    ],
    "only_b": [
-    "kill 5,5",
-    "kill 5,7",
     "open 11,10",
     "open 13,6",
     "open 13,7",
-    "wall 5,5",
-    "wall 5,7"
+    "petrify 5,5",
+    "petrify 5,7"
    ]
   },
   {
    "room": "III-21",
    "a": 150,
    "b": 136,
-   "events": 0.25,
+   "events": 0.294,
    "order": 0.8,
    "states": 0.037,
    "only_a": [
-    "kill 17,7",
-    "kill 5,4",
-    "kill 5,6",
+    "kill 5,5",
+    "kill 5,7",
     "open 12,10",
     "open 17,9",
     "open 3,7",
@@ -10028,25 +9364,22 @@
     "wall 11,9"
    ],
    "only_b": [
-    "kill 5,5",
-    "kill 5,7",
     "open 11,10",
     "open 13,6",
-    "wall 5,5",
-    "wall 5,7"
+    "petrify 5,5",
+    "petrify 5,7"
    ]
   },
   {
    "room": "III-21",
    "a": 150,
    "b": 134,
-   "events": 0.25,
+   "events": 0.294,
    "order": 0.8,
    "states": 0.037,
    "only_a": [
-    "kill 17,7",
-    "kill 5,4",
-    "kill 5,6",
+    "kill 5,5",
+    "kill 5,7",
     "open 12,10",
     "open 17,9",
     "open 3,7",
@@ -10055,25 +9388,22 @@
     "wall 11,9"
    ],
    "only_b": [
-    "kill 5,5",
-    "kill 5,7",
     "open 11,10",
     "open 13,6",
-    "wall 5,5",
-    "wall 5,7"
+    "petrify 5,5",
+    "petrify 5,7"
    ]
   },
   {
    "room": "III-21",
    "a": 150,
    "b": 133,
-   "events": 0.25,
+   "events": 0.294,
    "order": 0.8,
    "states": 0.037,
    "only_a": [
-    "kill 17,7",
-    "kill 5,4",
-    "kill 5,6",
+    "kill 5,5",
+    "kill 5,7",
     "open 12,10",
     "open 17,9",
     "open 3,7",
@@ -10082,25 +9412,22 @@
     "wall 11,9"
    ],
    "only_b": [
-    "kill 5,5",
-    "kill 5,7",
     "open 11,10",
     "open 13,6",
-    "wall 5,5",
-    "wall 5,7"
+    "petrify 5,5",
+    "petrify 5,7"
    ]
   },
   {
    "room": "III-21",
    "a": 150,
    "b": 132,
-   "events": 0.25,
+   "events": 0.294,
    "order": 0.8,
    "states": 0.037,
    "only_a": [
-    "kill 17,7",
-    "kill 5,4",
-    "kill 5,6",
+    "kill 5,5",
+    "kill 5,7",
     "open 12,10",
     "open 17,9",
     "open 3,7",
@@ -10109,25 +9436,22 @@
     "wall 11,9"
    ],
    "only_b": [
-    "kill 5,5",
-    "kill 5,7",
     "open 11,10",
     "open 13,6",
-    "wall 5,5",
-    "wall 5,7"
+    "petrify 5,5",
+    "petrify 5,7"
    ]
   },
   {
    "room": "III-21",
    "a": 150,
    "b": 129,
-   "events": 0.25,
+   "events": 0.294,
    "order": 0.8,
    "states": 0.037,
    "only_a": [
-    "kill 17,7",
-    "kill 5,4",
-    "kill 5,6",
+    "kill 5,5",
+    "kill 5,7",
     "open 12,10",
     "open 17,9",
     "open 3,7",
@@ -10136,25 +9460,22 @@
     "wall 11,9"
    ],
    "only_b": [
-    "kill 5,5",
-    "kill 5,7",
     "open 11,10",
     "open 13,6",
-    "wall 5,5",
-    "wall 5,7"
+    "petrify 5,5",
+    "petrify 5,7"
    ]
   },
   {
    "room": "III-21",
    "a": 150,
    "b": 121,
-   "events": 0.25,
+   "events": 0.294,
    "order": 0.8,
    "states": 0.036,
    "only_a": [
-    "kill 17,7",
-    "kill 5,4",
-    "kill 5,6",
+    "kill 5,5",
+    "kill 5,7",
     "open 12,10",
     "open 17,9",
     "open 3,7",
@@ -10163,25 +9484,22 @@
     "wall 11,9"
    ],
    "only_b": [
-    "kill 5,5",
-    "kill 5,7",
     "open 11,10",
     "open 13,6",
-    "wall 5,5",
-    "wall 5,7"
+    "petrify 5,5",
+    "petrify 5,7"
    ]
   },
   {
    "room": "III-21",
    "a": 150,
    "b": 112,
-   "events": 0.25,
+   "events": 0.294,
    "order": 0.8,
    "states": 0.036,
    "only_a": [
-    "kill 17,7",
-    "kill 5,4",
-    "kill 5,6",
+    "kill 5,5",
+    "kill 5,7",
     "open 12,10",
     "open 17,9",
     "open 3,7",
@@ -10190,25 +9508,22 @@
     "wall 11,9"
    ],
    "only_b": [
-    "kill 5,5",
-    "kill 5,7",
     "open 11,10",
     "open 13,6",
-    "wall 5,5",
-    "wall 5,7"
+    "petrify 5,5",
+    "petrify 5,7"
    ]
   },
   {
    "room": "III-21",
    "a": 150,
    "b": 100,
-   "events": 0.25,
+   "events": 0.294,
    "order": 0.8,
    "states": 0.036,
    "only_a": [
-    "kill 17,7",
-    "kill 5,4",
-    "kill 5,6",
+    "kill 5,5",
+    "kill 5,7",
     "open 12,10",
     "open 17,9",
     "open 3,7",
@@ -10217,25 +9532,22 @@
     "wall 11,9"
    ],
    "only_b": [
-    "kill 5,5",
-    "kill 5,7",
     "open 11,10",
     "open 13,6",
-    "wall 5,5",
-    "wall 5,7"
+    "petrify 5,5",
+    "petrify 5,7"
    ]
   },
   {
    "room": "III-21",
    "a": 150,
    "b": 97,
-   "events": 0.25,
+   "events": 0.294,
    "order": 1.0,
    "states": 0.06,
    "only_a": [
-    "kill 17,7",
-    "kill 5,4",
-    "kill 5,6",
+    "kill 5,5",
+    "kill 5,7",
     "open 12,10",
     "open 17,9",
     "open 3,7",
@@ -10244,25 +9556,22 @@
     "wall 11,9"
    ],
    "only_b": [
-    "kill 5,5",
-    "kill 5,7",
     "open 11,10",
     "open 13,6",
-    "wall 5,5",
-    "wall 5,7"
+    "petrify 5,5",
+    "petrify 5,7"
    ]
   },
   {
    "room": "III-21",
    "a": 150,
    "b": 88,
-   "events": 0.25,
+   "events": 0.294,
    "order": 0.8,
    "states": 0.059,
    "only_a": [
-    "kill 17,7",
-    "kill 5,4",
-    "kill 5,6",
+    "kill 5,5",
+    "kill 5,7",
     "open 12,10",
     "open 17,9",
     "open 3,7",
@@ -10271,25 +9580,22 @@
     "wall 11,9"
    ],
    "only_b": [
-    "kill 5,5",
-    "kill 5,7",
     "open 11,10",
     "open 13,6",
-    "wall 5,5",
-    "wall 5,7"
+    "petrify 5,5",
+    "petrify 5,7"
    ]
   },
   {
    "room": "III-21",
    "a": 150,
    "b": 65,
-   "events": 0.227,
+   "events": 0.263,
    "order": 0.8,
    "states": 0.025,
    "only_a": [
-    "kill 17,7",
-    "kill 5,4",
-    "kill 5,6",
+    "kill 5,5",
+    "kill 5,7",
     "open 12,10",
     "open 17,9",
     "open 3,7",
@@ -10298,14 +9604,12 @@
     "wall 11,9"
    ],
    "only_b": [
-    "kill 17,6",
-    "kill 17,8",
-    "kill 5,5",
-    "kill 5,7",
+    "kill 17,5",
+    "kill 17,7",
     "open 11,10",
     "open 13,6",
-    "wall 5,5",
-    "wall 5,7"
+    "petrify 5,5",
+    "petrify 5,7"
    ]
   },
   {
@@ -10313,7 +9617,7 @@
    "a": 149,
    "b": 147,
    "events": 1.0,
-   "order": 0.985,
+   "order": 0.982,
    "states": 0.143,
    "only_a": [],
    "only_b": []
@@ -10323,7 +9627,7 @@
    "a": 149,
    "b": 146,
    "events": 1.0,
-   "order": 0.985,
+   "order": 0.982,
    "states": 0.084,
    "only_a": [],
    "only_b": []
@@ -10332,8 +9636,8 @@
    "room": "III-21",
    "a": 149,
    "b": 145,
-   "events": 0.917,
-   "order": 0.982,
+   "events": 0.909,
+   "order": 0.978,
    "states": 0.046,
    "only_a": [
     "open 9,6"
@@ -10344,407 +9648,359 @@
    "room": "III-21",
    "a": 149,
    "b": 143,
-   "events": 0.263,
+   "events": 0.312,
    "order": 0.8,
    "states": 0.042,
    "only_a": [
-    "kill 17,7",
-    "kill 5,4",
-    "kill 5,6",
+    "kill 5,5",
+    "kill 5,7",
     "open 12,10",
     "open 17,9",
     "open 9,6",
     "wall 11,9"
    ],
    "only_b": [
-    "kill 5,5",
-    "kill 5,7",
     "open 11,10",
     "open 13,6",
     "open 13,7",
-    "wall 5,5",
-    "wall 5,7"
+    "petrify 5,5",
+    "petrify 5,7"
    ]
   },
   {
    "room": "III-21",
    "a": 149,
    "b": 142,
-   "events": 0.263,
+   "events": 0.312,
    "order": 0.8,
    "states": 0.041,
    "only_a": [
-    "kill 17,7",
-    "kill 5,4",
-    "kill 5,6",
+    "kill 5,5",
+    "kill 5,7",
     "open 12,10",
     "open 17,9",
     "open 9,6",
     "wall 11,9"
    ],
    "only_b": [
-    "kill 5,5",
-    "kill 5,7",
     "open 11,10",
     "open 13,6",
     "open 13,7",
-    "wall 5,5",
-    "wall 5,7"
+    "petrify 5,5",
+    "petrify 5,7"
    ]
   },
   {
    "room": "III-21",
    "a": 149,
    "b": 141,
-   "events": 0.263,
+   "events": 0.312,
    "order": 0.8,
    "states": 0.035,
    "only_a": [
-    "kill 17,7",
-    "kill 5,4",
-    "kill 5,6",
+    "kill 5,5",
+    "kill 5,7",
     "open 12,10",
     "open 17,9",
     "open 9,6",
     "wall 11,9"
    ],
    "only_b": [
-    "kill 5,5",
-    "kill 5,7",
     "open 11,10",
     "open 13,6",
     "open 13,7",
-    "wall 5,5",
-    "wall 5,7"
+    "petrify 5,5",
+    "petrify 5,7"
    ]
   },
   {
    "room": "III-21",
    "a": 149,
    "b": 139,
-   "events": 0.263,
+   "events": 0.312,
    "order": 1.0,
    "states": 0.031,
    "only_a": [
-    "kill 17,7",
-    "kill 5,4",
-    "kill 5,6",
+    "kill 5,5",
+    "kill 5,7",
     "open 12,10",
     "open 17,9",
     "open 9,6",
     "wall 11,9"
    ],
    "only_b": [
-    "kill 5,5",
-    "kill 5,7",
     "open 11,10",
     "open 13,6",
     "open 13,7",
-    "wall 5,5",
-    "wall 5,7"
+    "petrify 5,5",
+    "petrify 5,7"
    ]
   },
   {
    "room": "III-21",
    "a": 149,
    "b": 138,
-   "events": 0.263,
+   "events": 0.312,
    "order": 1.0,
    "states": 0.031,
    "only_a": [
-    "kill 17,7",
-    "kill 5,4",
-    "kill 5,6",
+    "kill 5,5",
+    "kill 5,7",
     "open 12,10",
     "open 17,9",
     "open 9,6",
     "wall 11,9"
    ],
    "only_b": [
-    "kill 5,5",
-    "kill 5,7",
     "open 11,10",
     "open 13,6",
     "open 13,7",
-    "wall 5,5",
-    "wall 5,7"
+    "petrify 5,5",
+    "petrify 5,7"
    ]
   },
   {
    "room": "III-21",
    "a": 149,
    "b": 136,
-   "events": 0.278,
+   "events": 0.333,
    "order": 0.8,
    "states": 0.058,
    "only_a": [
-    "kill 17,7",
-    "kill 5,4",
-    "kill 5,6",
+    "kill 5,5",
+    "kill 5,7",
     "open 12,10",
     "open 17,9",
     "open 9,6",
     "wall 11,9"
    ],
    "only_b": [
-    "kill 5,5",
-    "kill 5,7",
     "open 11,10",
     "open 13,6",
-    "wall 5,5",
-    "wall 5,7"
+    "petrify 5,5",
+    "petrify 5,7"
    ]
   },
   {
    "room": "III-21",
    "a": 149,
    "b": 134,
-   "events": 0.278,
+   "events": 0.333,
    "order": 0.8,
    "states": 0.058,
    "only_a": [
-    "kill 17,7",
-    "kill 5,4",
-    "kill 5,6",
+    "kill 5,5",
+    "kill 5,7",
     "open 12,10",
     "open 17,9",
     "open 9,6",
     "wall 11,9"
    ],
    "only_b": [
-    "kill 5,5",
-    "kill 5,7",
     "open 11,10",
     "open 13,6",
-    "wall 5,5",
-    "wall 5,7"
+    "petrify 5,5",
+    "petrify 5,7"
    ]
   },
   {
    "room": "III-21",
    "a": 149,
    "b": 133,
-   "events": 0.278,
+   "events": 0.333,
    "order": 0.8,
    "states": 0.057,
    "only_a": [
-    "kill 17,7",
-    "kill 5,4",
-    "kill 5,6",
+    "kill 5,5",
+    "kill 5,7",
     "open 12,10",
     "open 17,9",
     "open 9,6",
     "wall 11,9"
    ],
    "only_b": [
-    "kill 5,5",
-    "kill 5,7",
     "open 11,10",
     "open 13,6",
-    "wall 5,5",
-    "wall 5,7"
+    "petrify 5,5",
+    "petrify 5,7"
    ]
   },
   {
    "room": "III-21",
    "a": 149,
    "b": 132,
-   "events": 0.278,
+   "events": 0.333,
    "order": 0.8,
    "states": 0.057,
    "only_a": [
-    "kill 17,7",
-    "kill 5,4",
-    "kill 5,6",
+    "kill 5,5",
+    "kill 5,7",
     "open 12,10",
     "open 17,9",
     "open 9,6",
     "wall 11,9"
    ],
    "only_b": [
-    "kill 5,5",
-    "kill 5,7",
     "open 11,10",
     "open 13,6",
-    "wall 5,5",
-    "wall 5,7"
+    "petrify 5,5",
+    "petrify 5,7"
    ]
   },
   {
    "room": "III-21",
    "a": 149,
    "b": 129,
-   "events": 0.278,
+   "events": 0.333,
    "order": 0.8,
    "states": 0.057,
    "only_a": [
-    "kill 17,7",
-    "kill 5,4",
-    "kill 5,6",
+    "kill 5,5",
+    "kill 5,7",
     "open 12,10",
     "open 17,9",
     "open 9,6",
     "wall 11,9"
    ],
    "only_b": [
-    "kill 5,5",
-    "kill 5,7",
     "open 11,10",
     "open 13,6",
-    "wall 5,5",
-    "wall 5,7"
+    "petrify 5,5",
+    "petrify 5,7"
    ]
   },
   {
    "room": "III-21",
    "a": 149,
    "b": 121,
-   "events": 0.278,
+   "events": 0.333,
    "order": 0.8,
    "states": 0.056,
    "only_a": [
-    "kill 17,7",
-    "kill 5,4",
-    "kill 5,6",
+    "kill 5,5",
+    "kill 5,7",
     "open 12,10",
     "open 17,9",
     "open 9,6",
     "wall 11,9"
    ],
    "only_b": [
-    "kill 5,5",
-    "kill 5,7",
     "open 11,10",
     "open 13,6",
-    "wall 5,5",
-    "wall 5,7"
+    "petrify 5,5",
+    "petrify 5,7"
    ]
   },
   {
    "room": "III-21",
    "a": 149,
    "b": 112,
-   "events": 0.278,
+   "events": 0.333,
    "order": 0.8,
    "states": 0.056,
    "only_a": [
-    "kill 17,7",
-    "kill 5,4",
-    "kill 5,6",
+    "kill 5,5",
+    "kill 5,7",
     "open 12,10",
     "open 17,9",
     "open 9,6",
     "wall 11,9"
    ],
    "only_b": [
-    "kill 5,5",
-    "kill 5,7",
     "open 11,10",
     "open 13,6",
-    "wall 5,5",
-    "wall 5,7"
+    "petrify 5,5",
+    "petrify 5,7"
    ]
   },
   {
    "room": "III-21",
    "a": 149,
    "b": 100,
-   "events": 0.278,
+   "events": 0.333,
    "order": 0.8,
    "states": 0.056,
    "only_a": [
-    "kill 17,7",
-    "kill 5,4",
-    "kill 5,6",
+    "kill 5,5",
+    "kill 5,7",
     "open 12,10",
     "open 17,9",
     "open 9,6",
     "wall 11,9"
    ],
    "only_b": [
-    "kill 5,5",
-    "kill 5,7",
     "open 11,10",
     "open 13,6",
-    "wall 5,5",
-    "wall 5,7"
+    "petrify 5,5",
+    "petrify 5,7"
    ]
   },
   {
    "room": "III-21",
    "a": 149,
    "b": 97,
-   "events": 0.278,
+   "events": 0.333,
    "order": 1.0,
    "states": 0.038,
    "only_a": [
-    "kill 17,7",
-    "kill 5,4",
-    "kill 5,6",
+    "kill 5,5",
+    "kill 5,7",
     "open 12,10",
     "open 17,9",
     "open 9,6",
     "wall 11,9"
    ],
    "only_b": [
-    "kill 5,5",
-    "kill 5,7",
     "open 11,10",
     "open 13,6",
-    "wall 5,5",
-    "wall 5,7"
+    "petrify 5,5",
+    "petrify 5,7"
    ]
   },
   {
    "room": "III-21",
    "a": 149,
    "b": 88,
-   "events": 0.278,
+   "events": 0.333,
    "order": 0.8,
    "states": 0.037,
    "only_a": [
-    "kill 17,7",
-    "kill 5,4",
-    "kill 5,6",
+    "kill 5,5",
+    "kill 5,7",
     "open 12,10",
     "open 17,9",
     "open 9,6",
     "wall 11,9"
    ],
    "only_b": [
-    "kill 5,5",
-    "kill 5,7",
     "open 11,10",
     "open 13,6",
-    "wall 5,5",
-    "wall 5,7"
+    "petrify 5,5",
+    "petrify 5,7"
    ]
   },
   {
    "room": "III-21",
    "a": 149,
    "b": 65,
-   "events": 0.25,
+   "events": 0.294,
    "order": 0.8,
    "states": 0.025,
    "only_a": [
-    "kill 17,7",
-    "kill 5,4",
-    "kill 5,6",
+    "kill 5,5",
+    "kill 5,7",
     "open 12,10",
     "open 17,9",
     "open 9,6",
     "wall 11,9"
    ],
    "only_b": [
-    "kill 17,6",
-    "kill 17,8",
-    "kill 5,5",
-    "kill 5,7",
+    "kill 17,5",
+    "kill 17,7",
     "open 11,10",
     "open 13,6",
-    "wall 5,5",
-    "wall 5,7"
+    "petrify 5,5",
+    "petrify 5,7"
    ]
   },
   {
@@ -10761,7 +10017,7 @@
    "room": "III-21",
    "a": 147,
    "b": 145,
-   "events": 0.917,
+   "events": 0.909,
    "order": 1.0,
    "states": 0.049,
    "only_a": [
@@ -10773,414 +10029,366 @@
    "room": "III-21",
    "a": 147,
    "b": 143,
-   "events": 0.263,
+   "events": 0.312,
    "order": 0.8,
    "states": 0.039,
    "only_a": [
-    "kill 17,7",
-    "kill 5,4",
-    "kill 5,6",
+    "kill 5,5",
+    "kill 5,7",
     "open 12,10",
     "open 17,9",
     "open 9,6",
     "wall 11,9"
    ],
    "only_b": [
-    "kill 5,5",
-    "kill 5,7",
     "open 11,10",
     "open 13,6",
     "open 13,7",
-    "wall 5,5",
-    "wall 5,7"
+    "petrify 5,5",
+    "petrify 5,7"
    ]
   },
   {
    "room": "III-21",
    "a": 147,
    "b": 142,
-   "events": 0.263,
+   "events": 0.312,
    "order": 0.8,
    "states": 0.038,
    "only_a": [
-    "kill 17,7",
-    "kill 5,4",
-    "kill 5,6",
+    "kill 5,5",
+    "kill 5,7",
     "open 12,10",
     "open 17,9",
     "open 9,6",
     "wall 11,9"
    ],
    "only_b": [
-    "kill 5,5",
-    "kill 5,7",
     "open 11,10",
     "open 13,6",
     "open 13,7",
-    "wall 5,5",
-    "wall 5,7"
+    "petrify 5,5",
+    "petrify 5,7"
    ]
   },
   {
    "room": "III-21",
    "a": 147,
    "b": 141,
-   "events": 0.263,
+   "events": 0.312,
    "order": 0.8,
    "states": 0.035,
    "only_a": [
-    "kill 17,7",
-    "kill 5,4",
-    "kill 5,6",
+    "kill 5,5",
+    "kill 5,7",
     "open 12,10",
     "open 17,9",
     "open 9,6",
     "wall 11,9"
    ],
    "only_b": [
-    "kill 5,5",
-    "kill 5,7",
     "open 11,10",
     "open 13,6",
     "open 13,7",
-    "wall 5,5",
-    "wall 5,7"
+    "petrify 5,5",
+    "petrify 5,7"
    ]
   },
   {
    "room": "III-21",
    "a": 147,
    "b": 139,
-   "events": 0.263,
+   "events": 0.312,
    "order": 1.0,
    "states": 0.037,
    "only_a": [
-    "kill 17,7",
-    "kill 5,4",
-    "kill 5,6",
+    "kill 5,5",
+    "kill 5,7",
     "open 12,10",
     "open 17,9",
     "open 9,6",
     "wall 11,9"
    ],
    "only_b": [
-    "kill 5,5",
-    "kill 5,7",
     "open 11,10",
     "open 13,6",
     "open 13,7",
-    "wall 5,5",
-    "wall 5,7"
+    "petrify 5,5",
+    "petrify 5,7"
    ]
   },
   {
    "room": "III-21",
    "a": 147,
    "b": 138,
-   "events": 0.263,
+   "events": 0.312,
    "order": 1.0,
    "states": 0.036,
    "only_a": [
-    "kill 17,7",
-    "kill 5,4",
-    "kill 5,6",
+    "kill 5,5",
+    "kill 5,7",
     "open 12,10",
     "open 17,9",
     "open 9,6",
     "wall 11,9"
    ],
    "only_b": [
-    "kill 5,5",
-    "kill 5,7",
     "open 11,10",
     "open 13,6",
     "open 13,7",
-    "wall 5,5",
-    "wall 5,7"
+    "petrify 5,5",
+    "petrify 5,7"
    ]
   },
   {
    "room": "III-21",
    "a": 147,
    "b": 136,
-   "events": 0.278,
+   "events": 0.333,
    "order": 0.8,
    "states": 0.091,
    "only_a": [
-    "kill 17,7",
-    "kill 5,4",
-    "kill 5,6",
+    "kill 5,5",
+    "kill 5,7",
     "open 12,10",
     "open 17,9",
     "open 9,6",
     "wall 11,9"
    ],
    "only_b": [
-    "kill 5,5",
-    "kill 5,7",
     "open 11,10",
     "open 13,6",
-    "wall 5,5",
-    "wall 5,7"
+    "petrify 5,5",
+    "petrify 5,7"
    ]
   },
   {
    "room": "III-21",
    "a": 147,
    "b": 134,
-   "events": 0.278,
+   "events": 0.333,
    "order": 0.8,
    "states": 0.091,
    "only_a": [
-    "kill 17,7",
-    "kill 5,4",
-    "kill 5,6",
+    "kill 5,5",
+    "kill 5,7",
     "open 12,10",
     "open 17,9",
     "open 9,6",
     "wall 11,9"
    ],
    "only_b": [
-    "kill 5,5",
-    "kill 5,7",
     "open 11,10",
     "open 13,6",
-    "wall 5,5",
-    "wall 5,7"
+    "petrify 5,5",
+    "petrify 5,7"
    ]
   },
   {
    "room": "III-21",
    "a": 147,
    "b": 133,
-   "events": 0.278,
+   "events": 0.333,
    "order": 0.8,
    "states": 0.09,
    "only_a": [
-    "kill 17,7",
-    "kill 5,4",
-    "kill 5,6",
+    "kill 5,5",
+    "kill 5,7",
     "open 12,10",
     "open 17,9",
     "open 9,6",
     "wall 11,9"
    ],
    "only_b": [
-    "kill 5,5",
-    "kill 5,7",
     "open 11,10",
     "open 13,6",
-    "wall 5,5",
-    "wall 5,7"
+    "petrify 5,5",
+    "petrify 5,7"
    ]
   },
   {
    "room": "III-21",
    "a": 147,
    "b": 132,
-   "events": 0.278,
+   "events": 0.333,
    "order": 0.8,
    "states": 0.09,
    "only_a": [
-    "kill 17,7",
-    "kill 5,4",
-    "kill 5,6",
+    "kill 5,5",
+    "kill 5,7",
     "open 12,10",
     "open 17,9",
     "open 9,6",
     "wall 11,9"
    ],
    "only_b": [
-    "kill 5,5",
-    "kill 5,7",
     "open 11,10",
     "open 13,6",
-    "wall 5,5",
-    "wall 5,7"
+    "petrify 5,5",
+    "petrify 5,7"
    ]
   },
   {
    "room": "III-21",
    "a": 147,
    "b": 129,
-   "events": 0.278,
+   "events": 0.333,
    "order": 0.8,
    "states": 0.089,
    "only_a": [
-    "kill 17,7",
-    "kill 5,4",
-    "kill 5,6",
+    "kill 5,5",
+    "kill 5,7",
     "open 12,10",
     "open 17,9",
     "open 9,6",
     "wall 11,9"
    ],
    "only_b": [
-    "kill 5,5",
-    "kill 5,7",
     "open 11,10",
     "open 13,6",
-    "wall 5,5",
-    "wall 5,7"
+    "petrify 5,5",
+    "petrify 5,7"
    ]
   },
   {
    "room": "III-21",
    "a": 147,
    "b": 121,
-   "events": 0.278,
+   "events": 0.333,
    "order": 0.8,
    "states": 0.089,
    "only_a": [
-    "kill 17,7",
-    "kill 5,4",
-    "kill 5,6",
+    "kill 5,5",
+    "kill 5,7",
     "open 12,10",
     "open 17,9",
     "open 9,6",
     "wall 11,9"
    ],
    "only_b": [
-    "kill 5,5",
-    "kill 5,7",
     "open 11,10",
     "open 13,6",
-    "wall 5,5",
-    "wall 5,7"
+    "petrify 5,5",
+    "petrify 5,7"
    ]
   },
   {
    "room": "III-21",
    "a": 147,
    "b": 112,
-   "events": 0.278,
+   "events": 0.333,
    "order": 0.8,
    "states": 0.088,
    "only_a": [
-    "kill 17,7",
-    "kill 5,4",
-    "kill 5,6",
+    "kill 5,5",
+    "kill 5,7",
     "open 12,10",
     "open 17,9",
     "open 9,6",
     "wall 11,9"
    ],
    "only_b": [
-    "kill 5,5",
-    "kill 5,7",
     "open 11,10",
     "open 13,6",
-    "wall 5,5",
-    "wall 5,7"
+    "petrify 5,5",
+    "petrify 5,7"
    ]
   },
   {
    "room": "III-21",
    "a": 147,
    "b": 100,
-   "events": 0.278,
+   "events": 0.333,
    "order": 0.8,
    "states": 0.088,
    "only_a": [
-    "kill 17,7",
-    "kill 5,4",
-    "kill 5,6",
+    "kill 5,5",
+    "kill 5,7",
     "open 12,10",
     "open 17,9",
     "open 9,6",
     "wall 11,9"
    ],
    "only_b": [
-    "kill 5,5",
-    "kill 5,7",
     "open 11,10",
     "open 13,6",
-    "wall 5,5",
-    "wall 5,7"
+    "petrify 5,5",
+    "petrify 5,7"
    ]
   },
   {
    "room": "III-21",
    "a": 147,
    "b": 97,
-   "events": 0.278,
+   "events": 0.333,
    "order": 1.0,
    "states": 0.035,
    "only_a": [
-    "kill 17,7",
-    "kill 5,4",
-    "kill 5,6",
+    "kill 5,5",
+    "kill 5,7",
     "open 12,10",
     "open 17,9",
     "open 9,6",
     "wall 11,9"
    ],
    "only_b": [
-    "kill 5,5",
-    "kill 5,7",
     "open 11,10",
     "open 13,6",
-    "wall 5,5",
-    "wall 5,7"
+    "petrify 5,5",
+    "petrify 5,7"
    ]
   },
   {
    "room": "III-21",
    "a": 147,
    "b": 88,
-   "events": 0.278,
+   "events": 0.333,
    "order": 0.8,
    "states": 0.058,
    "only_a": [
-    "kill 17,7",
-    "kill 5,4",
-    "kill 5,6",
+    "kill 5,5",
+    "kill 5,7",
     "open 12,10",
     "open 17,9",
     "open 9,6",
     "wall 11,9"
    ],
    "only_b": [
-    "kill 5,5",
-    "kill 5,7",
     "open 11,10",
     "open 13,6",
-    "wall 5,5",
-    "wall 5,7"
+    "petrify 5,5",
+    "petrify 5,7"
    ]
   },
   {
    "room": "III-21",
    "a": 147,
    "b": 65,
-   "events": 0.25,
+   "events": 0.294,
    "order": 0.8,
    "states": 0.024,
    "only_a": [
-    "kill 17,7",
-    "kill 5,4",
-    "kill 5,6",
+    "kill 5,5",
+    "kill 5,7",
     "open 12,10",
     "open 17,9",
     "open 9,6",
     "wall 11,9"
    ],
    "only_b": [
-    "kill 17,6",
-    "kill 17,8",
-    "kill 5,5",
-    "kill 5,7",
+    "kill 17,5",
+    "kill 17,7",
     "open 11,10",
     "open 13,6",
-    "wall 5,5",
-    "wall 5,7"
+    "petrify 5,5",
+    "petrify 5,7"
    ]
   },
   {
    "room": "III-21",
    "a": 146,
    "b": 145,
-   "events": 0.917,
+   "events": 0.909,
    "order": 1.0,
    "states": 0.622,
    "only_a": [
@@ -11192,798 +10400,702 @@
    "room": "III-21",
    "a": 146,
    "b": 143,
-   "events": 0.263,
+   "events": 0.312,
    "order": 0.8,
    "states": 0.149,
    "only_a": [
-    "kill 17,7",
-    "kill 5,4",
-    "kill 5,6",
+    "kill 5,5",
+    "kill 5,7",
     "open 12,10",
     "open 17,9",
     "open 9,6",
     "wall 11,9"
    ],
    "only_b": [
-    "kill 5,5",
-    "kill 5,7",
     "open 11,10",
     "open 13,6",
     "open 13,7",
-    "wall 5,5",
-    "wall 5,7"
+    "petrify 5,5",
+    "petrify 5,7"
    ]
   },
   {
    "room": "III-21",
    "a": 146,
    "b": 142,
-   "events": 0.263,
+   "events": 0.312,
    "order": 0.8,
    "states": 0.146,
    "only_a": [
-    "kill 17,7",
-    "kill 5,4",
-    "kill 5,6",
+    "kill 5,5",
+    "kill 5,7",
     "open 12,10",
     "open 17,9",
     "open 9,6",
     "wall 11,9"
    ],
    "only_b": [
-    "kill 5,5",
-    "kill 5,7",
     "open 11,10",
     "open 13,6",
     "open 13,7",
-    "wall 5,5",
-    "wall 5,7"
+    "petrify 5,5",
+    "petrify 5,7"
    ]
   },
   {
    "room": "III-21",
    "a": 146,
    "b": 141,
-   "events": 0.263,
+   "events": 0.312,
    "order": 0.8,
    "states": 0.06,
    "only_a": [
-    "kill 17,7",
-    "kill 5,4",
-    "kill 5,6",
+    "kill 5,5",
+    "kill 5,7",
     "open 12,10",
     "open 17,9",
     "open 9,6",
     "wall 11,9"
    ],
    "only_b": [
-    "kill 5,5",
-    "kill 5,7",
     "open 11,10",
     "open 13,6",
     "open 13,7",
-    "wall 5,5",
-    "wall 5,7"
+    "petrify 5,5",
+    "petrify 5,7"
    ]
   },
   {
    "room": "III-21",
    "a": 146,
    "b": 139,
-   "events": 0.263,
+   "events": 0.312,
    "order": 1.0,
    "states": 0.066,
    "only_a": [
-    "kill 17,7",
-    "kill 5,4",
-    "kill 5,6",
+    "kill 5,5",
+    "kill 5,7",
     "open 12,10",
     "open 17,9",
     "open 9,6",
     "wall 11,9"
    ],
    "only_b": [
-    "kill 5,5",
-    "kill 5,7",
     "open 11,10",
     "open 13,6",
     "open 13,7",
-    "wall 5,5",
-    "wall 5,7"
+    "petrify 5,5",
+    "petrify 5,7"
    ]
   },
   {
    "room": "III-21",
    "a": 146,
    "b": 138,
-   "events": 0.263,
+   "events": 0.312,
    "order": 1.0,
    "states": 0.065,
    "only_a": [
-    "kill 17,7",
-    "kill 5,4",
-    "kill 5,6",
+    "kill 5,5",
+    "kill 5,7",
     "open 12,10",
     "open 17,9",
     "open 9,6",
     "wall 11,9"
    ],
    "only_b": [
-    "kill 5,5",
-    "kill 5,7",
     "open 11,10",
     "open 13,6",
     "open 13,7",
-    "wall 5,5",
-    "wall 5,7"
+    "petrify 5,5",
+    "petrify 5,7"
    ]
   },
   {
    "room": "III-21",
    "a": 146,
    "b": 136,
-   "events": 0.278,
+   "events": 0.333,
    "order": 0.8,
    "states": 0.107,
    "only_a": [
-    "kill 17,7",
-    "kill 5,4",
-    "kill 5,6",
+    "kill 5,5",
+    "kill 5,7",
     "open 12,10",
     "open 17,9",
     "open 9,6",
     "wall 11,9"
    ],
    "only_b": [
-    "kill 5,5",
-    "kill 5,7",
     "open 11,10",
     "open 13,6",
-    "wall 5,5",
-    "wall 5,7"
+    "petrify 5,5",
+    "petrify 5,7"
    ]
   },
   {
    "room": "III-21",
    "a": 146,
    "b": 134,
-   "events": 0.278,
+   "events": 0.333,
    "order": 0.8,
    "states": 0.107,
    "only_a": [
-    "kill 17,7",
-    "kill 5,4",
-    "kill 5,6",
+    "kill 5,5",
+    "kill 5,7",
     "open 12,10",
     "open 17,9",
     "open 9,6",
     "wall 11,9"
    ],
    "only_b": [
-    "kill 5,5",
-    "kill 5,7",
     "open 11,10",
     "open 13,6",
-    "wall 5,5",
-    "wall 5,7"
+    "petrify 5,5",
+    "petrify 5,7"
    ]
   },
   {
    "room": "III-21",
    "a": 146,
    "b": 133,
-   "events": 0.278,
+   "events": 0.333,
    "order": 0.8,
    "states": 0.106,
    "only_a": [
-    "kill 17,7",
-    "kill 5,4",
-    "kill 5,6",
+    "kill 5,5",
+    "kill 5,7",
     "open 12,10",
     "open 17,9",
     "open 9,6",
     "wall 11,9"
    ],
    "only_b": [
-    "kill 5,5",
-    "kill 5,7",
     "open 11,10",
     "open 13,6",
-    "wall 5,5",
-    "wall 5,7"
+    "petrify 5,5",
+    "petrify 5,7"
    ]
   },
   {
    "room": "III-21",
    "a": 146,
    "b": 132,
-   "events": 0.278,
+   "events": 0.333,
    "order": 0.8,
    "states": 0.106,
    "only_a": [
-    "kill 17,7",
-    "kill 5,4",
-    "kill 5,6",
+    "kill 5,5",
+    "kill 5,7",
     "open 12,10",
     "open 17,9",
     "open 9,6",
     "wall 11,9"
    ],
    "only_b": [
-    "kill 5,5",
-    "kill 5,7",
     "open 11,10",
     "open 13,6",
-    "wall 5,5",
-    "wall 5,7"
+    "petrify 5,5",
+    "petrify 5,7"
    ]
   },
   {
    "room": "III-21",
    "a": 146,
    "b": 129,
-   "events": 0.278,
+   "events": 0.333,
    "order": 0.8,
    "states": 0.105,
    "only_a": [
-    "kill 17,7",
-    "kill 5,4",
-    "kill 5,6",
+    "kill 5,5",
+    "kill 5,7",
     "open 12,10",
     "open 17,9",
     "open 9,6",
     "wall 11,9"
    ],
    "only_b": [
-    "kill 5,5",
-    "kill 5,7",
     "open 11,10",
     "open 13,6",
-    "wall 5,5",
-    "wall 5,7"
+    "petrify 5,5",
+    "petrify 5,7"
    ]
   },
   {
    "room": "III-21",
    "a": 146,
    "b": 121,
-   "events": 0.278,
+   "events": 0.333,
    "order": 0.8,
    "states": 0.105,
    "only_a": [
-    "kill 17,7",
-    "kill 5,4",
-    "kill 5,6",
+    "kill 5,5",
+    "kill 5,7",
     "open 12,10",
     "open 17,9",
     "open 9,6",
     "wall 11,9"
    ],
    "only_b": [
-    "kill 5,5",
-    "kill 5,7",
     "open 11,10",
     "open 13,6",
-    "wall 5,5",
-    "wall 5,7"
+    "petrify 5,5",
+    "petrify 5,7"
    ]
   },
   {
    "room": "III-21",
    "a": 146,
    "b": 112,
-   "events": 0.278,
+   "events": 0.333,
    "order": 0.8,
    "states": 0.104,
    "only_a": [
-    "kill 17,7",
-    "kill 5,4",
-    "kill 5,6",
+    "kill 5,5",
+    "kill 5,7",
     "open 12,10",
     "open 17,9",
     "open 9,6",
     "wall 11,9"
    ],
    "only_b": [
-    "kill 5,5",
-    "kill 5,7",
     "open 11,10",
     "open 13,6",
-    "wall 5,5",
-    "wall 5,7"
+    "petrify 5,5",
+    "petrify 5,7"
    ]
   },
   {
    "room": "III-21",
    "a": 146,
    "b": 100,
-   "events": 0.278,
+   "events": 0.333,
    "order": 0.8,
    "states": 0.104,
    "only_a": [
-    "kill 17,7",
-    "kill 5,4",
-    "kill 5,6",
+    "kill 5,5",
+    "kill 5,7",
     "open 12,10",
     "open 17,9",
     "open 9,6",
     "wall 11,9"
    ],
    "only_b": [
-    "kill 5,5",
-    "kill 5,7",
     "open 11,10",
     "open 13,6",
-    "wall 5,5",
-    "wall 5,7"
+    "petrify 5,5",
+    "petrify 5,7"
    ]
   },
   {
    "room": "III-21",
    "a": 146,
    "b": 97,
-   "events": 0.278,
+   "events": 0.333,
    "order": 1.0,
    "states": 0.094,
    "only_a": [
-    "kill 17,7",
-    "kill 5,4",
-    "kill 5,6",
+    "kill 5,5",
+    "kill 5,7",
     "open 12,10",
     "open 17,9",
     "open 9,6",
     "wall 11,9"
    ],
    "only_b": [
-    "kill 5,5",
-    "kill 5,7",
     "open 11,10",
     "open 13,6",
-    "wall 5,5",
-    "wall 5,7"
+    "petrify 5,5",
+    "petrify 5,7"
    ]
   },
   {
    "room": "III-21",
    "a": 146,
    "b": 88,
-   "events": 0.278,
+   "events": 0.333,
    "order": 0.8,
    "states": 0.105,
    "only_a": [
-    "kill 17,7",
-    "kill 5,4",
-    "kill 5,6",
+    "kill 5,5",
+    "kill 5,7",
     "open 12,10",
     "open 17,9",
     "open 9,6",
     "wall 11,9"
    ],
    "only_b": [
-    "kill 5,5",
-    "kill 5,7",
     "open 11,10",
     "open 13,6",
-    "wall 5,5",
-    "wall 5,7"
+    "petrify 5,5",
+    "petrify 5,7"
    ]
   },
   {
    "room": "III-21",
    "a": 146,
    "b": 65,
-   "events": 0.25,
+   "events": 0.294,
    "order": 0.8,
    "states": 0.025,
    "only_a": [
-    "kill 17,7",
-    "kill 5,4",
-    "kill 5,6",
+    "kill 5,5",
+    "kill 5,7",
     "open 12,10",
     "open 17,9",
     "open 9,6",
     "wall 11,9"
    ],
    "only_b": [
-    "kill 17,6",
-    "kill 17,8",
-    "kill 5,5",
-    "kill 5,7",
+    "kill 17,5",
+    "kill 17,7",
     "open 11,10",
     "open 13,6",
-    "wall 5,5",
-    "wall 5,7"
+    "petrify 5,5",
+    "petrify 5,7"
    ]
   },
   {
    "room": "III-21",
    "a": 145,
    "b": 143,
-   "events": 0.278,
+   "events": 0.333,
    "order": 0.8,
    "states": 0.148,
    "only_a": [
-    "kill 17,7",
-    "kill 5,4",
-    "kill 5,6",
+    "kill 5,5",
+    "kill 5,7",
     "open 12,10",
     "open 17,9",
     "wall 11,9"
    ],
    "only_b": [
-    "kill 5,5",
-    "kill 5,7",
     "open 11,10",
     "open 13,6",
     "open 13,7",
-    "wall 5,5",
-    "wall 5,7"
+    "petrify 5,5",
+    "petrify 5,7"
    ]
   },
   {
    "room": "III-21",
    "a": 145,
    "b": 142,
-   "events": 0.278,
+   "events": 0.333,
    "order": 0.8,
    "states": 0.145,
    "only_a": [
-    "kill 17,7",
-    "kill 5,4",
-    "kill 5,6",
+    "kill 5,5",
+    "kill 5,7",
     "open 12,10",
     "open 17,9",
     "wall 11,9"
    ],
    "only_b": [
-    "kill 5,5",
-    "kill 5,7",
     "open 11,10",
     "open 13,6",
     "open 13,7",
-    "wall 5,5",
-    "wall 5,7"
+    "petrify 5,5",
+    "petrify 5,7"
    ]
   },
   {
    "room": "III-21",
    "a": 145,
    "b": 141,
-   "events": 0.278,
+   "events": 0.333,
    "order": 0.8,
    "states": 0.059,
    "only_a": [
-    "kill 17,7",
-    "kill 5,4",
-    "kill 5,6",
+    "kill 5,5",
+    "kill 5,7",
     "open 12,10",
     "open 17,9",
     "wall 11,9"
    ],
    "only_b": [
-    "kill 5,5",
-    "kill 5,7",
     "open 11,10",
     "open 13,6",
     "open 13,7",
-    "wall 5,5",
-    "wall 5,7"
+    "petrify 5,5",
+    "petrify 5,7"
    ]
   },
   {
    "room": "III-21",
    "a": 145,
    "b": 139,
-   "events": 0.278,
+   "events": 0.333,
    "order": 1.0,
    "states": 0.065,
    "only_a": [
-    "kill 17,7",
-    "kill 5,4",
-    "kill 5,6",
+    "kill 5,5",
+    "kill 5,7",
     "open 12,10",
     "open 17,9",
     "wall 11,9"
    ],
    "only_b": [
-    "kill 5,5",
-    "kill 5,7",
     "open 11,10",
     "open 13,6",
     "open 13,7",
-    "wall 5,5",
-    "wall 5,7"
+    "petrify 5,5",
+    "petrify 5,7"
    ]
   },
   {
    "room": "III-21",
    "a": 145,
    "b": 138,
-   "events": 0.278,
+   "events": 0.333,
    "order": 1.0,
    "states": 0.065,
    "only_a": [
-    "kill 17,7",
-    "kill 5,4",
-    "kill 5,6",
+    "kill 5,5",
+    "kill 5,7",
     "open 12,10",
     "open 17,9",
     "wall 11,9"
    ],
    "only_b": [
-    "kill 5,5",
-    "kill 5,7",
     "open 11,10",
     "open 13,6",
     "open 13,7",
-    "wall 5,5",
-    "wall 5,7"
+    "petrify 5,5",
+    "petrify 5,7"
    ]
   },
   {
    "room": "III-21",
    "a": 145,
    "b": 136,
-   "events": 0.294,
+   "events": 0.357,
    "order": 0.8,
    "states": 0.106,
    "only_a": [
-    "kill 17,7",
-    "kill 5,4",
-    "kill 5,6",
+    "kill 5,5",
+    "kill 5,7",
     "open 12,10",
     "open 17,9",
     "wall 11,9"
    ],
    "only_b": [
-    "kill 5,5",
-    "kill 5,7",
     "open 11,10",
     "open 13,6",
-    "wall 5,5",
-    "wall 5,7"
+    "petrify 5,5",
+    "petrify 5,7"
    ]
   },
   {
    "room": "III-21",
    "a": 145,
    "b": 134,
-   "events": 0.294,
+   "events": 0.357,
    "order": 0.8,
    "states": 0.106,
    "only_a": [
-    "kill 17,7",
-    "kill 5,4",
-    "kill 5,6",
+    "kill 5,5",
+    "kill 5,7",
     "open 12,10",
     "open 17,9",
     "wall 11,9"
    ],
    "only_b": [
-    "kill 5,5",
-    "kill 5,7",
     "open 11,10",
     "open 13,6",
-    "wall 5,5",
-    "wall 5,7"
+    "petrify 5,5",
+    "petrify 5,7"
    ]
   },
   {
    "room": "III-21",
    "a": 145,
    "b": 133,
-   "events": 0.294,
+   "events": 0.357,
    "order": 0.8,
    "states": 0.106,
    "only_a": [
-    "kill 17,7",
-    "kill 5,4",
-    "kill 5,6",
+    "kill 5,5",
+    "kill 5,7",
     "open 12,10",
     "open 17,9",
     "wall 11,9"
    ],
    "only_b": [
-    "kill 5,5",
-    "kill 5,7",
     "open 11,10",
     "open 13,6",
-    "wall 5,5",
-    "wall 5,7"
+    "petrify 5,5",
+    "petrify 5,7"
    ]
   },
   {
    "room": "III-21",
    "a": 145,
    "b": 132,
-   "events": 0.294,
+   "events": 0.357,
    "order": 0.8,
    "states": 0.105,
    "only_a": [
-    "kill 17,7",
-    "kill 5,4",
-    "kill 5,6",
+    "kill 5,5",
+    "kill 5,7",
     "open 12,10",
     "open 17,9",
     "wall 11,9"
    ],
    "only_b": [
-    "kill 5,5",
-    "kill 5,7",
     "open 11,10",
     "open 13,6",
-    "wall 5,5",
-    "wall 5,7"
+    "petrify 5,5",
+    "petrify 5,7"
    ]
   },
   {
    "room": "III-21",
    "a": 145,
    "b": 129,
-   "events": 0.294,
+   "events": 0.357,
    "order": 0.8,
    "states": 0.105,
    "only_a": [
-    "kill 17,7",
-    "kill 5,4",
-    "kill 5,6",
+    "kill 5,5",
+    "kill 5,7",
     "open 12,10",
     "open 17,9",
     "wall 11,9"
    ],
    "only_b": [
-    "kill 5,5",
-    "kill 5,7",
     "open 11,10",
     "open 13,6",
-    "wall 5,5",
-    "wall 5,7"
+    "petrify 5,5",
+    "petrify 5,7"
    ]
   },
   {
    "room": "III-21",
    "a": 145,
    "b": 121,
-   "events": 0.294,
+   "events": 0.357,
    "order": 0.8,
    "states": 0.104,
    "only_a": [
-    "kill 17,7",
-    "kill 5,4",
-    "kill 5,6",
+    "kill 5,5",
+    "kill 5,7",
     "open 12,10",
     "open 17,9",
     "wall 11,9"
    ],
    "only_b": [
-    "kill 5,5",
-    "kill 5,7",
     "open 11,10",
     "open 13,6",
-    "wall 5,5",
-    "wall 5,7"
+    "petrify 5,5",
+    "petrify 5,7"
    ]
   },
   {
    "room": "III-21",
    "a": 145,
    "b": 112,
-   "events": 0.294,
+   "events": 0.357,
    "order": 0.8,
    "states": 0.103,
    "only_a": [
-    "kill 17,7",
-    "kill 5,4",
-    "kill 5,6",
+    "kill 5,5",
+    "kill 5,7",
     "open 12,10",
     "open 17,9",
     "wall 11,9"
    ],
    "only_b": [
-    "kill 5,5",
-    "kill 5,7",
     "open 11,10",
     "open 13,6",
-    "wall 5,5",
-    "wall 5,7"
+    "petrify 5,5",
+    "petrify 5,7"
    ]
   },
   {
    "room": "III-21",
    "a": 145,
    "b": 100,
-   "events": 0.294,
+   "events": 0.357,
    "order": 0.8,
    "states": 0.103,
    "only_a": [
-    "kill 17,7",
-    "kill 5,4",
-    "kill 5,6",
+    "kill 5,5",
+    "kill 5,7",
     "open 12,10",
     "open 17,9",
     "wall 11,9"
    ],
    "only_b": [
-    "kill 5,5",
-    "kill 5,7",
     "open 11,10",
     "open 13,6",
-    "wall 5,5",
-    "wall 5,7"
+    "petrify 5,5",
+    "petrify 5,7"
    ]
   },
   {
    "room": "III-21",
    "a": 145,
    "b": 97,
-   "events": 0.294,
+   "events": 0.357,
    "order": 1.0,
    "states": 0.094,
    "only_a": [
-    "kill 17,7",
-    "kill 5,4",
-    "kill 5,6",
+    "kill 5,5",
+    "kill 5,7",
     "open 12,10",
     "open 17,9",
     "wall 11,9"
    ],
    "only_b": [
-    "kill 5,5",
-    "kill 5,7",
     "open 11,10",
     "open 13,6",
-    "wall 5,5",
-    "wall 5,7"
+    "petrify 5,5",
+    "petrify 5,7"
    ]
   },
   {
    "room": "III-21",
    "a": 145,
    "b": 88,
-   "events": 0.294,
+   "events": 0.357,
    "order": 0.8,
    "states": 0.104,
    "only_a": [
-    "kill 17,7",
-    "kill 5,4",
-    "kill 5,6",
+    "kill 5,5",
+    "kill 5,7",
     "open 12,10",
     "open 17,9",
     "wall 11,9"
    ],
    "only_b": [
-    "kill 5,5",
-    "kill 5,7",
     "open 11,10",
     "open 13,6",
-    "wall 5,5",
-    "wall 5,7"
+    "petrify 5,5",
+    "petrify 5,7"
    ]
   },
   {
    "room": "III-21",
    "a": 145,
    "b": 65,
-   "events": 0.263,
+   "events": 0.312,
    "order": 0.8,
    "states": 0.025,
    "only_a": [
-    "kill 17,7",
-    "kill 5,4",
-    "kill 5,6",
+    "kill 5,5",
+    "kill 5,7",
     "open 12,10",
     "open 17,9",
     "wall 11,9"
    ],
    "only_b": [
-    "kill 17,6",
-    "kill 17,8",
-    "kill 5,5",
-    "kill 5,7",
+    "kill 17,5",
+    "kill 17,7",
     "open 11,10",
     "open 13,6",
-    "wall 5,5",
-    "wall 5,7"
+    "petrify 5,5",
+    "petrify 5,7"
    ]
   },
   {
@@ -12001,7 +11113,7 @@
    "a": 143,
    "b": 141,
    "events": 1.0,
-   "order": 0.939,
+   "order": 0.978,
    "states": 0.212,
    "only_a": [],
    "only_b": []
@@ -12011,7 +11123,7 @@
    "a": 143,
    "b": 139,
    "events": 1.0,
-   "order": 0.909,
+   "order": 0.933,
    "states": 0.098,
    "only_a": [],
    "only_b": []
@@ -12021,7 +11133,7 @@
    "a": 143,
    "b": 138,
    "events": 1.0,
-   "order": 0.909,
+   "order": 0.933,
    "states": 0.096,
    "only_a": [],
    "only_b": []
@@ -12030,8 +11142,8 @@
    "room": "III-21",
    "a": 143,
    "b": 136,
-   "events": 0.917,
-   "order": 0.927,
+   "events": 0.9,
+   "order": 0.972,
    "states": 0.12,
    "only_a": [
     "open 13,7"
@@ -12042,8 +11154,8 @@
    "room": "III-21",
    "a": 143,
    "b": 134,
-   "events": 0.917,
-   "order": 0.927,
+   "events": 0.9,
+   "order": 0.972,
    "states": 0.12,
    "only_a": [
     "open 13,7"
@@ -12054,7 +11166,7 @@
    "room": "III-21",
    "a": 143,
    "b": 133,
-   "events": 0.917,
+   "events": 0.9,
    "order": 1.0,
    "states": 0.12,
    "only_a": [
@@ -12066,7 +11178,7 @@
    "room": "III-21",
    "a": 143,
    "b": 132,
-   "events": 0.917,
+   "events": 0.9,
    "order": 1.0,
    "states": 0.119,
    "only_a": [
@@ -12078,7 +11190,7 @@
    "room": "III-21",
    "a": 143,
    "b": 129,
-   "events": 0.917,
+   "events": 0.9,
    "order": 1.0,
    "states": 0.119,
    "only_a": [
@@ -12090,7 +11202,7 @@
    "room": "III-21",
    "a": 143,
    "b": 121,
-   "events": 0.917,
+   "events": 0.9,
    "order": 1.0,
    "states": 0.118,
    "only_a": [
@@ -12102,7 +11214,7 @@
    "room": "III-21",
    "a": 143,
    "b": 112,
-   "events": 0.917,
+   "events": 0.9,
    "order": 1.0,
    "states": 0.117,
    "only_a": [
@@ -12114,7 +11226,7 @@
    "room": "III-21",
    "a": 143,
    "b": 100,
-   "events": 0.917,
+   "events": 0.9,
    "order": 1.0,
    "states": 0.117,
    "only_a": [
@@ -12126,8 +11238,8 @@
    "room": "III-21",
    "a": 143,
    "b": 97,
-   "events": 0.917,
-   "order": 0.891,
+   "events": 0.9,
+   "order": 0.917,
    "states": 0.097,
    "only_a": [
     "open 13,7"
@@ -12138,8 +11250,8 @@
    "room": "III-21",
    "a": 143,
    "b": 88,
-   "events": 0.917,
-   "order": 0.927,
+   "events": 0.9,
+   "order": 0.972,
    "states": 0.133,
    "only_a": [
     "open 13,7"
@@ -12150,15 +11262,15 @@
    "room": "III-21",
    "a": 143,
    "b": 65,
-   "events": 0.786,
-   "order": 0.927,
+   "events": 0.75,
+   "order": 0.972,
    "states": 0.024,
    "only_a": [
     "open 13,7"
    ],
    "only_b": [
-    "kill 17,6",
-    "kill 17,8"
+    "kill 17,5",
+    "kill 17,7"
    ]
   },
   {
@@ -12166,7 +11278,7 @@
    "a": 142,
    "b": 141,
    "events": 1.0,
-   "order": 0.939,
+   "order": 0.978,
    "states": 0.244,
    "only_a": [],
    "only_b": []
@@ -12176,7 +11288,7 @@
    "a": 142,
    "b": 139,
    "events": 1.0,
-   "order": 0.909,
+   "order": 0.933,
    "states": 0.097,
    "only_a": [],
    "only_b": []
@@ -12186,7 +11298,7 @@
    "a": 142,
    "b": 138,
    "events": 1.0,
-   "order": 0.909,
+   "order": 0.933,
    "states": 0.095,
    "only_a": [],
    "only_b": []
@@ -12195,8 +11307,8 @@
    "room": "III-21",
    "a": 142,
    "b": 136,
-   "events": 0.917,
-   "order": 0.927,
+   "events": 0.9,
+   "order": 0.972,
    "states": 0.119,
    "only_a": [
     "open 13,7"
@@ -12207,8 +11319,8 @@
    "room": "III-21",
    "a": 142,
    "b": 134,
-   "events": 0.917,
-   "order": 0.927,
+   "events": 0.9,
+   "order": 0.972,
    "states": 0.119,
    "only_a": [
     "open 13,7"
@@ -12219,7 +11331,7 @@
    "room": "III-21",
    "a": 142,
    "b": 133,
-   "events": 0.917,
+   "events": 0.9,
    "order": 1.0,
    "states": 0.118,
    "only_a": [
@@ -12231,7 +11343,7 @@
    "room": "III-21",
    "a": 142,
    "b": 132,
-   "events": 0.917,
+   "events": 0.9,
    "order": 1.0,
    "states": 0.117,
    "only_a": [
@@ -12243,7 +11355,7 @@
    "room": "III-21",
    "a": 142,
    "b": 129,
-   "events": 0.917,
+   "events": 0.9,
    "order": 1.0,
    "states": 0.117,
    "only_a": [
@@ -12255,7 +11367,7 @@
    "room": "III-21",
    "a": 142,
    "b": 121,
-   "events": 0.917,
+   "events": 0.9,
    "order": 1.0,
    "states": 0.116,
    "only_a": [
@@ -12267,7 +11379,7 @@
    "room": "III-21",
    "a": 142,
    "b": 112,
-   "events": 0.917,
+   "events": 0.9,
    "order": 1.0,
    "states": 0.115,
    "only_a": [
@@ -12279,7 +11391,7 @@
    "room": "III-21",
    "a": 142,
    "b": 100,
-   "events": 0.917,
+   "events": 0.9,
    "order": 1.0,
    "states": 0.115,
    "only_a": [
@@ -12291,8 +11403,8 @@
    "room": "III-21",
    "a": 142,
    "b": 97,
-   "events": 0.917,
-   "order": 0.891,
+   "events": 0.9,
+   "order": 0.917,
    "states": 0.095,
    "only_a": [
     "open 13,7"
@@ -12303,8 +11415,8 @@
    "room": "III-21",
    "a": 142,
    "b": 88,
-   "events": 0.917,
-   "order": 0.927,
+   "events": 0.9,
+   "order": 0.972,
    "states": 0.132,
    "only_a": [
     "open 13,7"
@@ -12315,15 +11427,15 @@
    "room": "III-21",
    "a": 142,
    "b": 65,
-   "events": 0.786,
-   "order": 0.927,
+   "events": 0.75,
+   "order": 0.972,
    "states": 0.024,
    "only_a": [
     "open 13,7"
    ],
    "only_b": [
-    "kill 17,6",
-    "kill 17,8"
+    "kill 17,5",
+    "kill 17,7"
    ]
   },
   {
@@ -12331,7 +11443,7 @@
    "a": 141,
    "b": 139,
    "events": 1.0,
-   "order": 0.97,
+   "order": 0.956,
    "states": 0.225,
    "only_a": [],
    "only_b": []
@@ -12341,7 +11453,7 @@
    "a": 141,
    "b": 138,
    "events": 1.0,
-   "order": 0.97,
+   "order": 0.956,
    "states": 0.222,
    "only_a": [],
    "only_b": []
@@ -12350,7 +11462,7 @@
    "room": "III-21",
    "a": 141,
    "b": 136,
-   "events": 0.917,
+   "events": 0.9,
    "order": 1.0,
    "states": 0.099,
    "only_a": [
@@ -12362,7 +11474,7 @@
    "room": "III-21",
    "a": 141,
    "b": 134,
-   "events": 0.917,
+   "events": 0.9,
    "order": 1.0,
    "states": 0.098,
    "only_a": [
@@ -12374,8 +11486,8 @@
    "room": "III-21",
    "a": 141,
    "b": 133,
-   "events": 0.917,
-   "order": 0.927,
+   "events": 0.9,
+   "order": 0.972,
    "states": 0.098,
    "only_a": [
     "open 13,7"
@@ -12386,8 +11498,8 @@
    "room": "III-21",
    "a": 141,
    "b": 132,
-   "events": 0.917,
-   "order": 0.927,
+   "events": 0.9,
+   "order": 0.972,
    "states": 0.098,
    "only_a": [
     "open 13,7"
@@ -12398,8 +11510,8 @@
    "room": "III-21",
    "a": 141,
    "b": 129,
-   "events": 0.917,
-   "order": 0.927,
+   "events": 0.9,
+   "order": 0.972,
    "states": 0.097,
    "only_a": [
     "open 13,7"
@@ -12410,8 +11522,8 @@
    "room": "III-21",
    "a": 141,
    "b": 121,
-   "events": 0.917,
-   "order": 0.927,
+   "events": 0.9,
+   "order": 0.972,
    "states": 0.096,
    "only_a": [
     "open 13,7"
@@ -12422,8 +11534,8 @@
    "room": "III-21",
    "a": 141,
    "b": 112,
-   "events": 0.917,
-   "order": 0.927,
+   "events": 0.9,
+   "order": 0.972,
    "states": 0.096,
    "only_a": [
     "open 13,7"
@@ -12434,8 +11546,8 @@
    "room": "III-21",
    "a": 141,
    "b": 100,
-   "events": 0.917,
-   "order": 0.927,
+   "events": 0.9,
+   "order": 0.972,
    "states": 0.096,
    "only_a": [
     "open 13,7"
@@ -12446,8 +11558,8 @@
    "room": "III-21",
    "a": 141,
    "b": 97,
-   "events": 0.917,
-   "order": 0.964,
+   "events": 0.9,
+   "order": 0.944,
    "states": 0.08,
    "only_a": [
     "open 13,7"
@@ -12458,7 +11570,7 @@
    "room": "III-21",
    "a": 141,
    "b": 88,
-   "events": 0.917,
+   "events": 0.9,
    "order": 1.0,
    "states": 0.117,
    "only_a": [
@@ -12470,15 +11582,15 @@
    "room": "III-21",
    "a": 141,
    "b": 65,
-   "events": 0.786,
+   "events": 0.75,
    "order": 1.0,
    "states": 0.02,
    "only_a": [
     "open 13,7"
    ],
    "only_b": [
-    "kill 17,6",
-    "kill 17,8"
+    "kill 17,5",
+    "kill 17,7"
    ]
   },
   {
@@ -12495,8 +11607,8 @@
    "room": "III-21",
    "a": 139,
    "b": 136,
-   "events": 0.917,
-   "order": 0.964,
+   "events": 0.9,
+   "order": 0.944,
    "states": 0.055,
    "only_a": [
     "open 13,7"
@@ -12507,8 +11619,8 @@
    "room": "III-21",
    "a": 139,
    "b": 134,
-   "events": 0.917,
-   "order": 0.964,
+   "events": 0.9,
+   "order": 0.944,
    "states": 0.055,
    "only_a": [
     "open 13,7"
@@ -12519,8 +11631,8 @@
    "room": "III-21",
    "a": 139,
    "b": 133,
-   "events": 0.917,
-   "order": 0.891,
+   "events": 0.9,
+   "order": 0.917,
    "states": 0.055,
    "only_a": [
     "open 13,7"
@@ -12531,8 +11643,8 @@
    "room": "III-21",
    "a": 139,
    "b": 132,
-   "events": 0.917,
-   "order": 0.891,
+   "events": 0.9,
+   "order": 0.917,
    "states": 0.055,
    "only_a": [
     "open 13,7"
@@ -12543,8 +11655,8 @@
    "room": "III-21",
    "a": 139,
    "b": 129,
-   "events": 0.917,
-   "order": 0.891,
+   "events": 0.9,
+   "order": 0.917,
    "states": 0.054,
    "only_a": [
     "open 13,7"
@@ -12555,8 +11667,8 @@
    "room": "III-21",
    "a": 139,
    "b": 121,
-   "events": 0.917,
-   "order": 0.891,
+   "events": 0.9,
+   "order": 0.917,
    "states": 0.054,
    "only_a": [
     "open 13,7"
@@ -12567,8 +11679,8 @@
    "room": "III-21",
    "a": 139,
    "b": 112,
-   "events": 0.917,
-   "order": 0.891,
+   "events": 0.9,
+   "order": 0.917,
    "states": 0.054,
    "only_a": [
     "open 13,7"
@@ -12579,8 +11691,8 @@
    "room": "III-21",
    "a": 139,
    "b": 100,
-   "events": 0.917,
-   "order": 0.891,
+   "events": 0.9,
+   "order": 0.917,
    "states": 0.054,
    "only_a": [
     "open 13,7"
@@ -12591,7 +11703,7 @@
    "room": "III-21",
    "a": 139,
    "b": 97,
-   "events": 0.917,
+   "events": 0.9,
    "order": 1.0,
    "states": 0.056,
    "only_a": [
@@ -12603,8 +11715,8 @@
    "room": "III-21",
    "a": 139,
    "b": 88,
-   "events": 0.917,
-   "order": 0.964,
+   "events": 0.9,
+   "order": 0.944,
    "states": 0.079,
    "only_a": [
     "open 13,7"
@@ -12615,23 +11727,23 @@
    "room": "III-21",
    "a": 139,
    "b": 65,
-   "events": 0.786,
-   "order": 0.964,
+   "events": 0.75,
+   "order": 0.944,
    "states": 0.02,
    "only_a": [
     "open 13,7"
    ],
    "only_b": [
-    "kill 17,6",
-    "kill 17,8"
+    "kill 17,5",
+    "kill 17,7"
    ]
   },
   {
    "room": "III-21",
    "a": 138,
    "b": 136,
-   "events": 0.917,
-   "order": 0.964,
+   "events": 0.9,
+   "order": 0.944,
    "states": 0.055,
    "only_a": [
     "open 13,7"
@@ -12642,8 +11754,8 @@
    "room": "III-21",
    "a": 138,
    "b": 134,
-   "events": 0.917,
-   "order": 0.964,
+   "events": 0.9,
+   "order": 0.944,
    "states": 0.055,
    "only_a": [
     "open 13,7"
@@ -12654,8 +11766,8 @@
    "room": "III-21",
    "a": 138,
    "b": 133,
-   "events": 0.917,
-   "order": 0.891,
+   "events": 0.9,
+   "order": 0.917,
    "states": 0.055,
    "only_a": [
     "open 13,7"
@@ -12666,8 +11778,8 @@
    "room": "III-21",
    "a": 138,
    "b": 132,
-   "events": 0.917,
-   "order": 0.891,
+   "events": 0.9,
+   "order": 0.917,
    "states": 0.054,
    "only_a": [
     "open 13,7"
@@ -12678,8 +11790,8 @@
    "room": "III-21",
    "a": 138,
    "b": 129,
-   "events": 0.917,
-   "order": 0.891,
+   "events": 0.9,
+   "order": 0.917,
    "states": 0.054,
    "only_a": [
     "open 13,7"
@@ -12690,8 +11802,8 @@
    "room": "III-21",
    "a": 138,
    "b": 121,
-   "events": 0.917,
-   "order": 0.891,
+   "events": 0.9,
+   "order": 0.917,
    "states": 0.054,
    "only_a": [
     "open 13,7"
@@ -12702,8 +11814,8 @@
    "room": "III-21",
    "a": 138,
    "b": 112,
-   "events": 0.917,
-   "order": 0.891,
+   "events": 0.9,
+   "order": 0.917,
    "states": 0.053,
    "only_a": [
     "open 13,7"
@@ -12714,8 +11826,8 @@
    "room": "III-21",
    "a": 138,
    "b": 100,
-   "events": 0.917,
-   "order": 0.891,
+   "events": 0.9,
+   "order": 0.917,
    "states": 0.053,
    "only_a": [
     "open 13,7"
@@ -12726,7 +11838,7 @@
    "room": "III-21",
    "a": 138,
    "b": 97,
-   "events": 0.917,
+   "events": 0.9,
    "order": 1.0,
    "states": 0.056,
    "only_a": [
@@ -12738,8 +11850,8 @@
    "room": "III-21",
    "a": 138,
    "b": 88,
-   "events": 0.917,
-   "order": 0.964,
+   "events": 0.9,
+   "order": 0.944,
    "states": 0.079,
    "only_a": [
     "open 13,7"
@@ -12750,15 +11862,15 @@
    "room": "III-21",
    "a": 138,
    "b": 65,
-   "events": 0.786,
-   "order": 0.964,
+   "events": 0.75,
+   "order": 0.944,
    "states": 0.02,
    "only_a": [
     "open 13,7"
    ],
    "only_b": [
-    "kill 17,6",
-    "kill 17,8"
+    "kill 17,5",
+    "kill 17,7"
    ]
   },
   {
@@ -12776,7 +11888,7 @@
    "a": 136,
    "b": 133,
    "events": 1.0,
-   "order": 0.927,
+   "order": 0.972,
    "states": 0.641,
    "only_a": [],
    "only_b": []
@@ -12786,7 +11898,7 @@
    "a": 136,
    "b": 132,
    "events": 1.0,
-   "order": 0.927,
+   "order": 0.972,
    "states": 0.485,
    "only_a": [],
    "only_b": []
@@ -12796,7 +11908,7 @@
    "a": 136,
    "b": 129,
    "events": 1.0,
-   "order": 0.927,
+   "order": 0.972,
    "states": 0.48,
    "only_a": [],
    "only_b": []
@@ -12806,7 +11918,7 @@
    "a": 136,
    "b": 121,
    "events": 1.0,
-   "order": 0.927,
+   "order": 0.972,
    "states": 0.422,
    "only_a": [],
    "only_b": []
@@ -12816,7 +11928,7 @@
    "a": 136,
    "b": 112,
    "events": 1.0,
-   "order": 0.927,
+   "order": 0.972,
    "states": 0.418,
    "only_a": [],
    "only_b": []
@@ -12826,7 +11938,7 @@
    "a": 136,
    "b": 100,
    "events": 1.0,
-   "order": 0.927,
+   "order": 0.972,
    "states": 0.418,
    "only_a": [],
    "only_b": []
@@ -12836,7 +11948,7 @@
    "a": 136,
    "b": 97,
    "events": 1.0,
-   "order": 0.964,
+   "order": 0.944,
    "states": 0.064,
    "only_a": [],
    "only_b": []
@@ -12855,13 +11967,13 @@
    "room": "III-21",
    "a": 136,
    "b": 65,
-   "events": 0.846,
+   "events": 0.818,
    "order": 1.0,
    "states": 0.021,
    "only_a": [],
    "only_b": [
-    "kill 17,6",
-    "kill 17,8"
+    "kill 17,5",
+    "kill 17,7"
    ]
   },
   {
@@ -12869,7 +11981,7 @@
    "a": 134,
    "b": 133,
    "events": 1.0,
-   "order": 0.927,
+   "order": 0.972,
    "states": 0.725,
    "only_a": [],
    "only_b": []
@@ -12879,7 +11991,7 @@
    "a": 134,
    "b": 132,
    "events": 1.0,
-   "order": 0.927,
+   "order": 0.972,
    "states": 0.553,
    "only_a": [],
    "only_b": []
@@ -12889,7 +12001,7 @@
    "a": 134,
    "b": 129,
    "events": 1.0,
-   "order": 0.927,
+   "order": 0.972,
    "states": 0.547,
    "only_a": [],
    "only_b": []
@@ -12899,7 +12011,7 @@
    "a": 134,
    "b": 121,
    "events": 1.0,
-   "order": 0.927,
+   "order": 0.972,
    "states": 0.421,
    "only_a": [],
    "only_b": []
@@ -12909,7 +12021,7 @@
    "a": 134,
    "b": 112,
    "events": 1.0,
-   "order": 0.927,
+   "order": 0.972,
    "states": 0.418,
    "only_a": [],
    "only_b": []
@@ -12919,7 +12031,7 @@
    "a": 134,
    "b": 100,
    "events": 1.0,
-   "order": 0.927,
+   "order": 0.972,
    "states": 0.417,
    "only_a": [],
    "only_b": []
@@ -12929,7 +12041,7 @@
    "a": 134,
    "b": 97,
    "events": 1.0,
-   "order": 0.964,
+   "order": 0.944,
    "states": 0.063,
    "only_a": [],
    "only_b": []
@@ -12948,13 +12060,13 @@
    "room": "III-21",
    "a": 134,
    "b": 65,
-   "events": 0.846,
+   "events": 0.818,
    "order": 1.0,
    "states": 0.021,
    "only_a": [],
    "only_b": [
-    "kill 17,6",
-    "kill 17,8"
+    "kill 17,5",
+    "kill 17,7"
    ]
   },
   {
@@ -13012,7 +12124,7 @@
    "a": 133,
    "b": 97,
    "events": 1.0,
-   "order": 0.891,
+   "order": 0.917,
    "states": 0.063,
    "only_a": [],
    "only_b": []
@@ -13022,7 +12134,7 @@
    "a": 133,
    "b": 88,
    "events": 1.0,
-   "order": 0.927,
+   "order": 0.972,
    "states": 0.137,
    "only_a": [],
    "only_b": []
@@ -13031,13 +12143,13 @@
    "room": "III-21",
    "a": 133,
    "b": 65,
-   "events": 0.846,
-   "order": 0.927,
+   "events": 0.818,
+   "order": 0.972,
    "states": 0.021,
    "only_a": [],
    "only_b": [
-    "kill 17,6",
-    "kill 17,8"
+    "kill 17,5",
+    "kill 17,7"
    ]
   },
   {
@@ -13085,7 +12197,7 @@
    "a": 132,
    "b": 97,
    "events": 1.0,
-   "order": 0.891,
+   "order": 0.917,
    "states": 0.063,
    "only_a": [],
    "only_b": []
@@ -13095,7 +12207,7 @@
    "a": 132,
    "b": 88,
    "events": 1.0,
-   "order": 0.927,
+   "order": 0.972,
    "states": 0.137,
    "only_a": [],
    "only_b": []
@@ -13104,13 +12216,13 @@
    "room": "III-21",
    "a": 132,
    "b": 65,
-   "events": 0.846,
-   "order": 0.927,
+   "events": 0.818,
+   "order": 0.972,
    "states": 0.021,
    "only_a": [],
    "only_b": [
-    "kill 17,6",
-    "kill 17,8"
+    "kill 17,5",
+    "kill 17,7"
    ]
   },
   {
@@ -13148,7 +12260,7 @@
    "a": 129,
    "b": 97,
    "events": 1.0,
-   "order": 0.891,
+   "order": 0.917,
    "states": 0.063,
    "only_a": [],
    "only_b": []
@@ -13158,7 +12270,7 @@
    "a": 129,
    "b": 88,
    "events": 1.0,
-   "order": 0.927,
+   "order": 0.972,
    "states": 0.136,
    "only_a": [],
    "only_b": []
@@ -13167,13 +12279,13 @@
    "room": "III-21",
    "a": 129,
    "b": 65,
-   "events": 0.846,
-   "order": 0.927,
+   "events": 0.818,
+   "order": 0.972,
    "states": 0.021,
    "only_a": [],
    "only_b": [
-    "kill 17,6",
-    "kill 17,8"
+    "kill 17,5",
+    "kill 17,7"
    ]
   },
   {
@@ -13201,7 +12313,7 @@
    "a": 121,
    "b": 97,
    "events": 1.0,
-   "order": 0.891,
+   "order": 0.917,
    "states": 0.062,
    "only_a": [],
    "only_b": []
@@ -13211,7 +12323,7 @@
    "a": 121,
    "b": 88,
    "events": 1.0,
-   "order": 0.927,
+   "order": 0.972,
    "states": 0.135,
    "only_a": [],
    "only_b": []
@@ -13220,13 +12332,13 @@
    "room": "III-21",
    "a": 121,
    "b": 65,
-   "events": 0.846,
-   "order": 0.927,
+   "events": 0.818,
+   "order": 0.972,
    "states": 0.021,
    "only_a": [],
    "only_b": [
-    "kill 17,6",
-    "kill 17,8"
+    "kill 17,5",
+    "kill 17,7"
    ]
   },
   {
@@ -13244,7 +12356,7 @@
    "a": 112,
    "b": 97,
    "events": 1.0,
-   "order": 0.891,
+   "order": 0.917,
    "states": 0.062,
    "only_a": [],
    "only_b": []
@@ -13254,7 +12366,7 @@
    "a": 112,
    "b": 88,
    "events": 1.0,
-   "order": 0.927,
+   "order": 0.972,
    "states": 0.134,
    "only_a": [],
    "only_b": []
@@ -13263,13 +12375,13 @@
    "room": "III-21",
    "a": 112,
    "b": 65,
-   "events": 0.846,
-   "order": 0.927,
+   "events": 0.818,
+   "order": 0.972,
    "states": 0.021,
    "only_a": [],
    "only_b": [
-    "kill 17,6",
-    "kill 17,8"
+    "kill 17,5",
+    "kill 17,7"
    ]
   },
   {
@@ -13277,7 +12389,7 @@
    "a": 100,
    "b": 97,
    "events": 1.0,
-   "order": 0.891,
+   "order": 0.917,
    "states": 0.062,
    "only_a": [],
    "only_b": []
@@ -13287,7 +12399,7 @@
    "a": 100,
    "b": 88,
    "events": 1.0,
-   "order": 0.927,
+   "order": 0.972,
    "states": 0.134,
    "only_a": [],
    "only_b": []
@@ -13296,13 +12408,13 @@
    "room": "III-21",
    "a": 100,
    "b": 65,
-   "events": 0.846,
-   "order": 0.927,
+   "events": 0.818,
+   "order": 0.972,
    "states": 0.021,
    "only_a": [],
    "only_b": [
-    "kill 17,6",
-    "kill 17,8"
+    "kill 17,5",
+    "kill 17,7"
    ]
   },
   {
@@ -13310,7 +12422,7 @@
    "a": 97,
    "b": 88,
    "events": 1.0,
-   "order": 0.964,
+   "order": 0.944,
    "states": 0.157,
    "only_a": [],
    "only_b": []
@@ -13319,26 +12431,26 @@
    "room": "III-21",
    "a": 97,
    "b": 65,
-   "events": 0.846,
-   "order": 0.964,
+   "events": 0.818,
+   "order": 0.944,
    "states": 0.022,
    "only_a": [],
    "only_b": [
-    "kill 17,6",
-    "kill 17,8"
+    "kill 17,5",
+    "kill 17,7"
    ]
   },
   {
    "room": "III-21",
    "a": 88,
    "b": 65,
-   "events": 0.846,
+   "events": 0.818,
    "order": 1.0,
    "states": 0.022,
    "only_a": [],
    "only_b": [
-    "kill 17,6",
-    "kill 17,8"
+    "kill 17,5",
+    "kill 17,7"
    ]
   }
  ]

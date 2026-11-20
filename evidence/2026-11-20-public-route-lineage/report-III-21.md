@@ -13,30 +13,30 @@
 
 | Before | After | Saved | Authors | Milestones | Order | States | Same milestones |
 | ---: | ---: | ---: | --- | ---: | ---: | ---: | --- |
-| 589 | 469 | 120 | Claude Fable 5.2 -> tomhaverford24 | 0.85 | 1.0 | 0.02 | no |
-| 469 | 458 | 11 | tomhaverford24 | 1.00 | 0.964 | 0.16 | yes |
-| 458 | 433 | 25 | tomhaverford24 | 1.00 | 0.891 | 0.06 | yes |
+| 589 | 469 | 120 | Claude Fable 5.2 -> tomhaverford24 | 0.82 | 1.0 | 0.02 | no |
+| 469 | 458 | 11 | tomhaverford24 | 1.00 | 0.944 | 0.16 | yes |
+| 458 | 433 | 25 | tomhaverford24 | 1.00 | 0.917 | 0.06 | yes |
 | 433 | 432 | 1 | tomhaverford24 -> ddallaire25 | 1.00 | 1.0 | 0.97 | yes |
 | 432 | 427 | 5 | ddallaire25 -> tomhaverford24 | 1.00 | 1.0 | 0.77 | yes |
 | 427 | 421 | 6 | tomhaverford24 | 1.00 | 1.0 | 0.79 | yes |
 | 421 | 418 | 3 | tomhaverford24 -> NaviXBT | 1.00 | 1.0 | 0.74 | yes |
 | 418 | 415 | 3 | NaviXBT | 1.00 | 1.0 | 0.68 | yes |
-| 415 | 411 | 4 | NaviXBT | 1.00 | 0.927 | 0.72 | yes |
+| 415 | 411 | 4 | NaviXBT | 1.00 | 0.972 | 0.72 | yes |
 | 411 | 410 | 1 | NaviXBT | 1.00 | 1.0 | 0.89 | yes |
-| 410 | 394 | 16 | NaviXBT -> SJanuskas | 0.92 | 0.964 | 0.06 | no |
+| 410 | 394 | 16 | NaviXBT -> SJanuskas | 0.90 | 0.944 | 0.06 | no |
 | 394 | 392 | 2 | SJanuskas -> NaviXBT | 1.00 | 1.0 | 0.89 | yes |
-| 392 | 390 | 2 | NaviXBT -> SJanuskas | 1.00 | 0.97 | 0.23 | yes |
-| 390 | 389 | 1 | SJanuskas | 1.00 | 0.939 | 0.24 | yes |
+| 392 | 390 | 2 | NaviXBT -> SJanuskas | 1.00 | 0.956 | 0.23 | yes |
+| 390 | 389 | 1 | SJanuskas | 1.00 | 0.978 | 0.24 | yes |
 | 389 | 379 | 10 | SJanuskas | 1.00 | 1.0 | 0.73 | yes |
-| 379 | 357 | 22 | SJanuskas | 0.28 | 0.8 | 0.15 | no |
-| 357 | 353 | 4 | SJanuskas | 0.92 | 1.0 | 0.62 | no |
+| 379 | 357 | 22 | SJanuskas | 0.33 | 0.8 | 0.15 | no |
+| 357 | 353 | 4 | SJanuskas | 0.91 | 1.0 | 0.62 | no |
 | 353 | 344 | 9 | SJanuskas -> bitcoinduke | 1.00 | 1.0 | 0.15 | yes |
-| 344 | 341 | 3 | bitcoinduke | 1.00 | 0.985 | 0.14 | yes |
-| 341 | 339 | 2 | bitcoinduke -> futarchist | 0.86 | 0.985 | 0.46 | no |
-| 339 | 335 | 4 | futarchist | 0.48 | 0.964 | 0.04 | no |
-| 335 | 333 | 2 | futarchist | 0.40 | 0.956 | 0.04 | no |
-| 333 | 326 | 7 | futarchist | 0.35 | 0.893 | 0.04 | no |
-| 326 | 325 | 1 | futarchist | 0.88 | 1.0 | 0.75 | no |
+| 344 | 341 | 3 | bitcoinduke | 1.00 | 0.982 | 0.14 | yes |
+| 341 | 339 | 2 | bitcoinduke -> futarchist | 0.85 | 0.982 | 0.46 | no |
+| 339 | 335 | 4 | futarchist | 0.48 | 0.956 | 0.04 | no |
+| 335 | 333 | 2 | futarchist | 0.39 | 0.944 | 0.04 | no |
+| 333 | 326 | 7 | futarchist | 0.32 | 0.857 | 0.04 | no |
+| 326 | 325 | 1 | futarchist | 0.93 | 1.0 | 0.75 | no |
 | 325 | 321 | 4 | futarchist | 1.00 | 1.0 | 0.91 | yes |
 | 321 | 319 | 2 | futarchist | 0.81 | 0.974 | 0.13 | no |
 | 319 | 318 | 1 | futarchist | 1.00 | 1.0 | 0.80 | yes |

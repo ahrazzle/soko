@@ -65,7 +65,7 @@ Searches started from the 316 route have all returned 316: window scans, suffix 
 
 A cold-start search that never reads the record ([experiments/cold_start_macro](../experiments/cold_start_macro/README.md)) does not yet reach a win on III-21 within its limits. See that README for the measured runs.
 
-The public record history is narrower than it looks. The [2026-11-20 lineage audit](../evidence/2026-11-20-public-route-lineage/README.md) finds that the 30 public III-21 routes, by 7 authors, are 3 plans and 1 hybrid. Every one opens with the same goblin-pair kill (Fact 4), at keys 153 to 167 in every record since the 433. All later progress came after that kill, and the cold search cannot reach it.
+The public record history is narrower than it looks. The [2026-11-20 lineage audit](../evidence/2026-11-20-public-route-lineage/README.md) finds that the 30 public III-21 routes, by 7 authors, are 3 plans and 1 hybrid. All 30 make their first kill with the same move: the Fighter at (12,6) pushes the Priest and the goblin down, killing the goblins from (11,4) and (13,9) together (Fact 4). That kill falls at keys 153 to 167 in every record since the 433. The work around it has been reordered, but the move itself has never varied, and the cold search cannot reach any goblin-pair kill.
 
 ## Reproduce
 

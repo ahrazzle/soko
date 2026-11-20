@@ -5,8 +5,16 @@ For each route, replay it in the spec oracle and record its *milestones*: the
 irreversible changes to the board, in the order they first happen.
 
 - ``open x,y``: an interior wall cell stops being a wall (the Druid turned it into a crate).
-- ``wall x,y``: a cell that was not a wall becomes one (petrified goblin or hero, crate set as wall).
-- ``kill x,y``: a goblin dies; the cell is where it stood on the previous frame.
+- ``wall x,y``: a cell that was not a wall becomes one (crate set as wall, petrified hero).
+- ``kill x,y``: the goblin that *started* at (x,y) dies.
+- ``petrify x,y``: the goblin that started at (x,y) is turned into a wall.
+
+Goblins carry an identity through every push, pull, swap and carry: each one is a
+``str`` subclass equal to ``"O"``, so the oracle moves it unchanged. A death is
+recorded where the oracle removes goblins (``_run_late``), so a goblin pushed or
+swapped along is never mistaken for a dead one. (Before 2026-11-20 the labels
+were guessed from board differences, which invented kills on chain pushes, Wizard
+swaps and petrifications.)
 
 A route's plan is its milestone list. Two routes have the same plan when they
 reach the same milestones in the same order. Two numbers compare routes A and B:
@@ -44,15 +52,45 @@ def grid(room: str) -> list[str]:
     return _GRIDS[room]
 
 
+class _Goblin(str):
+    """A goblin that remembers its starting cell. Equal to "O" everywhere the oracle looks."""
+
+    def __new__(cls, start: tuple[int, int]):
+        g = super().__new__(cls, "O")
+        g.start = start
+        return g
+
+    __hash__ = str.__hash__
+
+
+class _TrackedOracle(PuzzleScriptOracle):
+    """Records which goblins the late phase removes (deaths), by identity."""
+
+    def _run_late(self) -> bool:
+        before = _goblins(self)
+        alive = super()._run_late()
+        after = _goblins(self)
+        self.deaths = getattr(self, "deaths", []) + [g for g in before if g not in after]
+        return alive
+
+
+def _goblins(o: PuzzleScriptOracle) -> dict[tuple[int, int], tuple[int, int]]:
+    """Map each goblin's starting cell to its current cell."""
+    return {o.obj[y][x].start: (x, y) for y in range(o.h) for x in range(o.w) if isinstance(o.obj[y][x], _Goblin)}
+
+
 def cells(o: PuzzleScriptOracle, ch: str) -> set[tuple[int, int]]:
     return {(x, y) for y in range(o.h) for x in range(o.w) if o.obj[y][x] == ch}
 
 
 def milestones(room: str, keys: str) -> dict:
     g = grid(room)
-    o = PuzzleScriptOracle(int(room.split("-")[0].count("I")), g)
-    walls0 = cells(o, "#")
-    walls, gobs = set(walls0), cells(o, "O")
+    o = _TrackedOracle(int(room.split("-")[0].count("I")), g)
+    for y in range(o.h):
+        for x in range(o.w):
+            if o.obj[y][x] == "O":
+                o.obj[y][x] = _Goblin((x, y))
+    walls = cells(o, "#")
     seen: dict[tuple, int] = {}
     events: list[list] = []
     states = {o.fold_canonical_digest(0xCBF29CE484222325)}
@@ -64,22 +102,27 @@ def milestones(room: str, keys: str) -> dict:
         events.append([t, label])
 
     for t, k in enumerate(keys, 1):
+        before = _goblins(o)
+        o.deaths = []
         o.step(k)
         states.add(o.fold_canonical_digest(0xCBF29CE484222325))
-        w, gb = cells(o, "#"), cells(o, "O")
+        after, w = _goblins(o), cells(o, "#")
+        petrified = set()
+        for start, c in sorted(before.items()):
+            if start in after:
+                continue
+            if start in o.deaths:
+                note("kill", start, t)
+            elif c in w:
+                note("petrify", start, t)
+                petrified.add(c)
+            else:
+                raise RuntimeError(f"goblin from {start} vanished at key {t} without dying or petrifying")
         for c in sorted(walls - w):
             note("open", c, t)
-        for c in sorted(w - walls):
+        for c in sorted(w - walls - petrified):
             note("wall", c, t)
-        # A goblin that left without a goblin appearing next to it died (pushes move one cell).
-        appeared = gb - gobs
-        for c in sorted(gobs - gb):
-            near = [a for a in appeared if abs(a[0] - c[0]) + abs(a[1] - c[1]) == 1]
-            if near:
-                appeared.discard(near[0])
-            else:
-                note("kill", c, t)
-        walls, gobs = w, gb
+        walls = w
     return {"events": events, "won": o.check_win(), "states": states}
 
 

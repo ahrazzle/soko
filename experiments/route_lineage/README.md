@@ -3,7 +3,7 @@
 These tools ask whether a set of winning routes are independent attempts or one plan polished many times. The 2026-11-13 [stall result](../../evidence/2026-11-13-seeded-search-stall/README.md) explains why that matters: searches that share a starting route count as one observation.
 
 - `fetch_public.py` downloads every public record route for some Frontier rooms.
-- `lineage.py` replays each route in the spec oracle and lists its milestones: `open x,y` (a wall stops being a wall), `wall x,y` (a cell becomes a wall) and `kill x,y` (a goblin dies). It compares every pair of routes in a room three ways:
+- `lineage.py` replays each route in the spec oracle and lists its milestones: `open x,y` (a wall stops being a wall), `wall x,y` (a cell becomes a wall), `kill x,y` (the goblin that started at (x,y) dies) and `petrify x,y` (that goblin is turned into a wall). Goblins keep their identity through pushes, swaps and carries, so a moved goblin is never counted as dead. It compares every pair of routes in a room three ways:
   - **milestones:** Jaccard overlap of the milestone sets;
   - **order:** order agreement on the milestones both routes share;
   - **states:** Jaccard overlap of the exact board states visited.

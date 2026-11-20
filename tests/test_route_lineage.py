@@ -9,6 +9,7 @@ import random
 import unittest
 from pathlib import Path
 
+from experiments.route_lineage import lineage
 from experiments.route_lineage.lineage import compare, milestones
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -66,7 +67,28 @@ class TestRouteLineage(unittest.TestCase):
         # Every public III-21 route kills the goblins from (11,4) and (13,9) together.
         for r in rs:
             kills = {e[1]: e[0] for e in r["milestones"] if e[1].startswith("kill")}
-            self.assertEqual(kills["kill 12,8"], kills["kill 13,9"], r["id"])
+            self.assertEqual(kills["kill 11,4"], kills["kill 13,9"], r["id"])
+
+
+class TestGoblinIdentity(unittest.TestCase):
+    """A moved goblin is not a dead goblin (cases found by the 2026-11-20 review)."""
+
+    def run_case(self, rows, keys):
+        room = f"III-T{len(lineage._GRIDS)}"
+        lineage._GRIDS[room] = rows
+        return [e[1] for e in milestones(room, keys)["events"]]
+
+    def test_chain_push_kills_nothing(self):
+        # Fighter pushes crate, goblin, crate, goblin left; both goblins live.
+        self.assertEqual(self.run_case(["#########", "#..O*O*F#", "#G.......", "#########"], "L"), [])
+
+    def test_wizard_swap_kills_nothing(self):
+        # The warpball swaps the Wizard with a goblin three cells away.
+        self.assertEqual(self.run_case(["#########", "#W..O...#", "#G......#", "#########"], "R"), [])
+
+    def test_petrification_is_one_event(self):
+        # The Druid turns the goblin into a wall: one petrify event, no wall or kill event.
+        self.assertEqual(self.run_case(["#########", "#.DO....#", "#G4.....#", "#########"], "R"), ["petrify 3,1"])
 
 
 if __name__ == "__main__":
