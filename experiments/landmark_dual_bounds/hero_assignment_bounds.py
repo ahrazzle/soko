@@ -62,7 +62,7 @@ def parse_strict_fraction(value: Any) -> Fraction:
             raise ValueError("Fraction component exceeds 10^60 bound")
         return value
     if isinstance(value, str):
-        if not _STRICT_FRAC_RE.match(value):
+        if not _STRICT_FRAC_RE.fullmatch(value):
             raise ValueError(f"Invalid canonical rational string: {value!r}")
         if "/" in value:
             num_s, den_s = value.split("/", 1)
