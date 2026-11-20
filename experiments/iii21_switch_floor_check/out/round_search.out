@@ -1,0 +1,11 @@
+== record handoff key 195: active F, keys 195
+S1 Druid-first visit: 2560 states, exhausted=True, druid_cuts at start=3, least reached=3, 85s
+S2 layer p=0 (active hero alone): 227584 states, exhausted=True, win=False, 287s
+  sample layer-1 closure (next hero alone): 30001 states, exhausted=False
+  sample layer-1 closure (next hero alone): 30001 states, exhausted=False
+  sample layer-1 closure (next hero alone): 30001 states, exhausted=False
+  sample layer-1 closure (next hero alone): 30001 states, exhausted=False
+  sample layer-1 closure (next hero alone): 30001 states, exhausted=False
+  sample layer-1 closure (next hero alone): 1 states, exhausted=True
+  sample layer-1 closure (next hero alone): 30001 states, exhausted=False
+  sample layer-1 closure (next hero alone): 30001 states, exhausted=False

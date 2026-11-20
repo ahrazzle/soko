@@ -1,0 +1,211 @@
+{
+  "room": "III-21",
+  "part": 3,
+  "room_number": 21,
+  "cutoff_excluded": 269,
+  "certified_lower_bound": 270,
+  "convention": "deferred",
+  "doorway_northern_supply": true,
+  "suffix_assignments": true,
+  "suffix_axes": true,
+  "opening_cost": 52,
+  "universal_entrance_floors": {
+    "actor_0_mouth_248": 75,
+    "actor_0_mouth_271": 74,
+    "actor_1_mouth_248": 76,
+    "actor_1_mouth_271": 74
+  },
+  "earliest_omitted_western_handoff": 200,
+  "omitted_western_fits_cutoff": false,
+  "eligible_handoff_groups": 25,
+  "total_joined_seeds": 47644,
+  "digests_sha256": {
+    "inventory.tsv": "889fad257836d733be0dff57190f852715152d5a2d954253223418177c170821",
+    "five.tsv": "8a2fd19d421847454570f52d7fc20015c14cc8602d6d45f484e544c2e9b653f4",
+    "six.tsv": "8c06dbebc9c54e55dcf9f6a38f6b6b395d8006cdbab1d19664e862100c379516",
+    "east.tsv": "61b471935df223bc13eb94e01da0143a42dde4d60eba67b7a59c6aa3367112bc",
+    "opening.json": "bba07a2758aeafca1434e13d586bd431fac94621d5ee9a07c1b33037b9d0226d",
+    "northern-crossings.tsv": "cdb21c852432afe09c1229e61f6e04805458c6f25b58b13901a37d3295babdcf",
+    "northern-supply.tsv": "1ec6f08875d6ac7dcc9012c5ba052028a0213adedce329c9e349b8568a8f9f3a",
+    "run.log": "22217a21c2865cdc58b639dbb81569ca6941b01460d4551d0c85deb9b8b27e1a",
+    "rem15.log": "9066756d7985f5fa18fa93435b631c67e69db4cb4938fb322de3c0c4264090da",
+    "t190_271_all.log": "ea3a963511dcda7541621b27b0793c669cb6b3413ee06eef249ae89d74222b5d"
+  },
+  "groups": [
+    {
+      "paid": 188,
+      "actor": 0,
+      "mouth": 248,
+      "seeds": 4,
+      "evidence": "run.log"
+    },
+    {
+      "paid": 188,
+      "actor": 0,
+      "mouth": 271,
+      "seeds": 4,
+      "evidence": "run.log"
+    },
+    {
+      "paid": 189,
+      "actor": 0,
+      "mouth": 248,
+      "seeds": 36,
+      "evidence": "run.log"
+    },
+    {
+      "paid": 189,
+      "actor": 0,
+      "mouth": 271,
+      "seeds": 24,
+      "evidence": "run.log"
+    },
+    {
+      "paid": 190,
+      "actor": 0,
+      "mouth": 248,
+      "seeds": 156,
+      "evidence": "run.log"
+    },
+    {
+      "paid": 190,
+      "actor": 0,
+      "mouth": 271,
+      "seeds": 88,
+      "evidence": "run.log"
+    },
+    {
+      "paid": 190,
+      "actor": 1,
+      "mouth": 248,
+      "seeds": 4,
+      "evidence": "run.log"
+    },
+    {
+      "paid": 190,
+      "actor": 1,
+      "mouth": 271,
+      "seeds": 4,
+      "evidence": "t190_271_all.log"
+    },
+    {
+      "paid": 191,
+      "actor": 0,
+      "mouth": 248,
+      "seeds": 520,
+      "evidence": "run.log"
+    },
+    {
+      "paid": 191,
+      "actor": 0,
+      "mouth": 271,
+      "seeds": 298,
+      "evidence": "run.log"
+    },
+    {
+      "paid": 191,
+      "actor": 1,
+      "mouth": 248,
+      "seeds": 38,
+      "evidence": "rem15.log"
+    },
+    {
+      "paid": 191,
+      "actor": 1,
+      "mouth": 271,
+      "seeds": 26,
+      "evidence": "rem15.log"
+    },
+    {
+      "paid": 192,
+      "actor": 0,
+      "mouth": 248,
+      "seeds": 1560,
+      "evidence": "rem15.log"
+    },
+    {
+      "paid": 192,
+      "actor": 0,
+      "mouth": 271,
+      "seeds": 884,
+      "evidence": "rem15.log"
+    },
+    {
+      "paid": 192,
+      "actor": 1,
+      "mouth": 248,
+      "seeds": 180,
+      "evidence": "rem15.log"
+    },
+    {
+      "paid": 192,
+      "actor": 1,
+      "mouth": 271,
+      "seeds": 106,
+      "evidence": "rem15.log"
+    },
+    {
+      "paid": 193,
+      "actor": 0,
+      "mouth": 248,
+      "seeds": 4232,
+      "evidence": "rem15.log"
+    },
+    {
+      "paid": 193,
+      "actor": 0,
+      "mouth": 271,
+      "seeds": 2338,
+      "evidence": "rem15.log"
+    },
+    {
+      "paid": 193,
+      "actor": 1,
+      "mouth": 248,
+      "seeds": 698,
+      "evidence": "rem15.log"
+    },
+    {
+      "paid": 193,
+      "actor": 1,
+      "mouth": 271,
+      "seeds": 418,
+      "evidence": "rem15.log"
+    },
+    {
+      "paid": 194,
+      "actor": 0,
+      "mouth": 248,
+      "seeds": 10620,
+      "evidence": "rem15.log"
+    },
+    {
+      "paid": 194,
+      "actor": 0,
+      "mouth": 271,
+      "seeds": 5822,
+      "evidence": "rem15.log"
+    },
+    {
+      "paid": 194,
+      "actor": 1,
+      "mouth": 271,
+      "seeds": 1456,
+      "evidence": "rem15.log"
+    },
+    {
+      "paid": 195,
+      "actor": 0,
+      "mouth": 271,
+      "seeds": 13746,
+      "evidence": "rem15.log"
+    },
+    {
+      "paid": 195,
+      "actor": 1,
+      "mouth": 271,
+      "seeds": 4382,
+      "evidence": "rem15.log"
+    }
+  ]
+}
