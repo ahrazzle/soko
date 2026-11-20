@@ -1,0 +1,48 @@
+{
+  "run_id": "G1",
+  "seed_desc": "S87 prior record (positive control)",
+  "seed_len": 87,
+  "seed_sha256": "536fabbaba35e466d91cfad83013783bcc1fe33610cedb34c699bb7963f93bf0",
+  "tool_params": {
+    "beam_width": 200000,
+    "window_len": 16,
+    "max_states_per_stage": 13000000,
+    "budget_sec": 0
+  },
+  "consumer_path": "optimize_route_verified",
+  "wall_sec": 53.4,
+  "backend": "cpp20_zero_alloc_engine",
+  "initial_len": 87,
+  "best_len": 87,
+  "keys_saved": 0,
+  "improved": false,
+  "stages_log": [],
+  "states_seen": 26391969,
+  "best_route_sha256": "536fabbaba35e466d91cfad83013783bcc1fe33610cedb34c699bb7963f93bf0",
+  "best_route": "RAUUURRRADAAADLURAAUAAALULLALAUAAARRDLRDRULURURDDAARAULLRRRRRDDRARRRRALUURDRUURARRDDRDR",
+  "dual_gate": {
+    "engines_executed": [
+      "python_spec_oracle",
+      "python_flat_bitmask_oracle",
+      "cpp20_soko_engine"
+    ],
+    "differential_match": true,
+    "trajectory_digest_match": true,
+    "alive": true,
+    "exact_win": true,
+    "premature_win": false,
+    "steps_executed": 87,
+    "final_ascii_match": true,
+    "traj_fnv64": "106d14c485ba2096",
+    "route_len": 87,
+    "route_sha256": "536fabbaba35e466d91cfad83013783bcc1fe33610cedb34c699bb7963f93bf0",
+    "epistemic_status": "VERIFIED",
+    "must_fail_controls": [
+      "rejected_route_promoted_to_verified",
+      "truncated_prefix_rejected",
+      "post_win_extra_key_rejected"
+    ]
+  },
+  "valid_sub84": false,
+  "oracle_disagreement": false
+}
