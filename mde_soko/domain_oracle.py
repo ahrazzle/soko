@@ -717,7 +717,7 @@ def audit_soko_certificate(cert: Mapping[str, Any]) -> dict[str, Any]:
     if status in CERTIFIED_STATUSES:
         if not isinstance(pins, Mapping):
             pins = {}
-        if pins.get("tcb_manifest_verified", False) is not True or not SHA256_64_RE.match(
+        if pins.get("tcb_manifest_verified", False) is not True or not SHA256_64_RE.fullmatch(
             str(pins.get("checker_auditor_py_sha256", ""))
         ):
             findings.append(
@@ -784,7 +784,7 @@ def audit_soko_certificate(cert: Mapping[str, Any]) -> dict[str, Any]:
 
     if status in CERTIFIED_STATUSES:
         w_sha = cert.get("witness_or_proof_sha256")
-        if not isinstance(w_sha, str) or not SHA256_64_RE.match(w_sha):
+        if not isinstance(w_sha, str) or not SHA256_64_RE.fullmatch(w_sha):
             findings.append(
                 {
                     "rule": "F08_INVALID_WITNESS_SHA256",
