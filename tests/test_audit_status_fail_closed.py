@@ -2,8 +2,9 @@
 
 The auditor used to return VERIFIED whenever it found no red-flag field.
 A certificate with no status has no such field, so `{}` passed. The same
-path relabeled REJECTED and CONJECTURE as VERIFIED. CONJECTURE still needs
-no pins. It keeps its own status.
+path relabeled REJECTED and CONJECTURE as VERIFIED, and PROVEN as VERIFIED.
+CONJECTURE still needs no pins. Every recognized status that passes keeps
+its own name.
 """
 
 from __future__ import annotations
@@ -54,6 +55,40 @@ class AuditStatusFailClosedTests(unittest.TestCase):
         result = audit_soko_certificate(cert)
         _require(bool(result["passed"]), f"pinned VERIFIED certificate rejected: {result}")
         self.assertEqual(result["epistemic_status"], "VERIFIED")
+
+    def test_pinned_proven_keeps_its_own_status(self) -> None:
+        cert = {
+            "epistemic_status": "PROVEN",
+            "tcb_pins": {
+                "tcb_manifest_verified": True,
+                "checker_auditor_py_sha256": HEX64,
+            },
+            "witness_or_proof_sha256": "b" * 64,
+        }
+        result = audit_soko_certificate(cert)
+        _require(bool(result["passed"]), f"pinned PROVEN certificate rejected: {result}")
+        self.assertEqual(result["epistemic_status"], "PROVEN")
+
+    def test_every_passing_recognized_status_keeps_its_name(self) -> None:
+        pins = {"tcb_manifest_verified": True, "checker_auditor_py_sha256": HEX64}
+        for status in ("VERIFIED", "PROVEN", "LOWER_BOUND"):
+            result = audit_soko_certificate(
+                {"epistemic_status": status, "tcb_pins": pins, "witness_or_proof_sha256": "b" * 64}
+            )
+            _require(bool(result["passed"]), f"{status} with pins rejected: {result}")
+            self.assertEqual(result["epistemic_status"], status)
+        for status in ("CONJECTURE", "REJECTED", "LINT_PASS", "LOWER_BOUND_UNWITNESSED", "UNVERIFIED_CALLER_BOUNDS"):
+            result = audit_soko_certificate({"epistemic_status": status})
+            self.assertEqual(result["epistemic_status"], status)
+        bounded = audit_soko_certificate(
+            {"epistemic_status": "VERIFIED_ON_BOUNDED_REACHABLE_SUBGRAPH", "complete_space": True}
+        )
+        self.assertEqual(bounded["epistemic_status"], "VERIFIED_ON_BOUNDED_REACHABLE_SUBGRAPH")
+
+    def test_bare_proven_is_still_rejected(self) -> None:
+        result = audit_soko_certificate({"epistemic_status": "PROVEN"})
+        _require(not bool(result["passed"]), f"bare PROVEN passed: {result}")
+        self.assertEqual(result["epistemic_status"], "REJECTED")
 
 
 if __name__ == "__main__":

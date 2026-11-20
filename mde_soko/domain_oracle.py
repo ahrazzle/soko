@@ -826,13 +826,8 @@ def audit_soko_certificate(cert: Mapping[str, Any]) -> dict[str, Any]:
         )
 
     passed = len(findings) == 0
-    # Do not relabel a lower bound, a conjecture, or a rejection as VERIFIED.
-    if not passed:
-        out_status = "REJECTED"
-    elif status in ("VERIFIED", "PROVEN"):
-        out_status = "VERIFIED"
-    else:
-        out_status = status
+    # A record that clears every check keeps its own recognized status.
+    out_status = status if passed else "REJECTED"
     return {
         "passed": passed,
         "epistemic_status": out_status,
