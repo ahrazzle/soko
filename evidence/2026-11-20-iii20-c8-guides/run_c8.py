@@ -2,7 +2,7 @@
 """C8 slice driver (soko-mozi-01): locked spec leo-02, transforms via the
 UNMODIFIED consumer soko_optimize_route backend (optimize_route_verified).
 
-Locked params: beam_width=120000, window_len=16, max_states=6M/stage, budget_sec=0.
+Locked params: beam_width=200000, window_len=16, max_states=13M/stage, budget_sec=0.
 T1 (rot90 input mutation) and T4 (84-seed) and G1 (87 control) are expressible
 through the locked consumer. T2 (role-aware distance) and T3 (offset guide)
 require a guide/distance knob the locked interface does not expose (see
@@ -48,9 +48,9 @@ def _load_verify_consts():
 S84 = _load_verify_consts()
 assert len(S84) == 84, len(S84)
 
-BEAM_WIDTH = 120000
+BEAM_WIDTH = 200000
 WINDOW_LEN = 16
-MAX_STATES = 6000000
+MAX_STATES = 13000000
 BUDGET_SEC = 0
 
 S87 = str(FRONTIER_ROOMS["III-20"]["prior_record_route_87"]).strip().upper()
