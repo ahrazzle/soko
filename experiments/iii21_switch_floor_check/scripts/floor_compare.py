@@ -12,7 +12,8 @@ def cyc_dist(a, b): return (CYC.index(b) - CYC.index(a)) % 6
 def metrics(o):
     labels, goals, mat = H.solo_walk_plus_wall_convert_matrix(o)
     rows = H.enumerate_all_goal_bijections(labels, goals, mat)
-    assert len(rows) == 720
+    if len(rows) != 720:
+        raise SystemExit(f"CHECK FAILED: expected 720 assignments, got {len(rows)}")
     a = rows[0]["solo_sum_cost"]
     act = active(o); ong = on_goal(o)
     need = [h for h in CYC if h not in ong]

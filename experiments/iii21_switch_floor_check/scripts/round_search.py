@@ -34,7 +34,8 @@ def run(prefix, label, cap1, cap2, maxp):
     s = o
     for _ in range((CYC_IDX["D"] - CYC_IDX[active(o)]) % 6):
         s = s.clone(); s.step("A")
-    assert active(s) == "D", active(s)
+    if active(s) != "D":
+        raise SystemExit(f"CHECK FAILED: expected the Druid active, got {active(s)}")
     t = time.time()
     states, ex = closure([s], cap1)
     best = min(druid_cuts(x) for x in states)
@@ -57,7 +58,16 @@ def run(prefix, label, cap1, cap2, maxp):
     res.update({"S2_layer0_states": len(cl0), "S2_layer0_exhausted": ex0, "S2_layer0_win": win0, "S2_layer1_samples": sizes})
     return res
 CYC_IDX = {h: i for i, h in enumerate(ORDER)}
+def _replay(prefix):
+    o = new_oracle()
+    for k in prefix: o.step(k)
+    return o
 if __name__ == "__main__":
     r = ROOM["reference_route"]
+    # must-fail control: the win test used by S2 has to fire one key before the record ends
+    ctl, _ = closure([_replay(r[:-1])], 50000)
+    if not any(x.check_win() for x in ctl):
+        raise SystemExit("CONTROL FAILED: closure one key before the record's end shows no win")
+    print("control: closure one key before the record's end contains a win", flush=True)
     out = [run(r[:195], "record handoff key 195", 400000, 400000, 0)]
     (HERE.parent / "out/round_search.json").write_text(json.dumps(out, indent=1))

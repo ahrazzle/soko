@@ -4,12 +4,13 @@ Scripts that test, on the repo's own oracle and assignment code, what the publis
 handoff floors for Room III-21 can and cannot say about the cost of hero-switch presses.
 
 Run from `scripts/` with Python 3 (standard library only). Each script also runs under
-`python3 -O -B -W error`. Each has a control that must fail.
+`python3 -O -B -W error`. `layer_table.py`, `winding_identity.py`, `floor_compare.py` and
+`round_search.py` each run a control that must fail. The two sampling scripts only generate input.
 
 | Script | What it checks |
 | --- | --- |
 | `layer_table.py` | Positions left to exclude when the floors rise by k = 0..6, for targets 270, 271, 272, from the published handoff tables in `web/`. |
-| `winding_identity.py` | For every Part III catalog route, the count of A presses equals the winding of the activation order. |
+| `winding_identity.py` | For every Part III catalog route, the count of A presses equals the winding of the activation order. Each press moves the turn one hero forward, so this holds unless a route presses A once per hero or more in a row, or ends on presses. It checks that records waste no full cycle. It does not show that any winding bound is tight. |
 | `sample_handoffs.py`, `sample_lower.py` | Breadth-first search from record-route states to real positions right after the crate enters the Druid's chamber. |
 | `floor_compare.py` | For each sampled position: least move total over the 720 hero-to-exit assignments, least switch presses, their sum, and the repo's operator-counting bound. |
 | `round_search.py` | Bounded exact searches from the record handoff: first Druid visit, and the active hero alone. |
