@@ -62,6 +62,15 @@ The capped search finds routes, not optimal ones. That made it useful as a seed 
 | K 24, default | Exhausted at cost cap 900 without a win; 113,812 expanded, the same 1,584 cells |
 | K 8, `--freedom 1 --rel-all 1` | Stopped at the 12,000,000-state cap at cost 61, far short of any win; 361,908 expanded, 8,386 cells |
 
+With `--goal-gob 4` (stop at the first state with at most 4 of the 6 goblins left; added 2026-11-20), neither filter reaches the first goblin-pair kill:
+
+| Flags | Result |
+| --- | --- |
+| K 8, default | Exhausted at cost cap 220; 95,831 expanded, the same 1,584 cells |
+| K 4, `--freedom 1 --rel-all 1` | Stopped at the 9,000,000-state cap at cost 57; 271,459 expanded, 7,077 cells |
+
+Every public route makes that kill with the same Priest-shield push ([lineage audit](../../evidence/2026-11-20-public-route-lineage/README.md)). `--heroes MASK` restricts which heroes may act (bit h-1: Fighter 1, Thief 2, Wizard 4, Priest 8, Bard 16, Druid 32). An exact run with only the Fighter and Priest finds no such kill within 90 keys.
+
 The default cells saturate on III-21. Every hero starts sealed in, so "can walk to an exit" stays false for all six through most of any route. The search therefore cannot tell "Priest freed" from "nothing happened". See [docs/iii21-anatomy.md](../../docs/iii21-anatomy.md) for the room's structure.
 
 ## III-21 facts

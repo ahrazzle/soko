@@ -8,7 +8,7 @@
 #include <mutex>
 
 struct Node { uint32_t parent; uint16_t g; string keys; };
-static LevelMeta M; static int K = 8; static int NOV = 1; static int FREEDOM = 0; static int RELALL = 0; static int GMAX = 400; static double TLIM = 600; static int MAXN = 30000000;
+static LevelMeta M; static int K = 8; static int NOV = 1; static int FREEDOM = 0; static int RELALL = 0; static int GMAX = 400; static double TLIM = 600; static int MAXN = 30000000; static int GOAL_GOB = -1; static int HMASK = 63; // --heroes MASK: only these heroes may act (bit h-1; F=1, T=2, W=4, P=8, B=16, D=32) // --goal-gob N: stop at N goblins left (a subgoal), not at the room's win
 static vector<int> interior_wall0;
 
 struct Rel : RelevanceFn {
@@ -67,7 +67,7 @@ static H128 hash_state(const DynState& s) {
 int main(int argc, char** argv) {
   for (int i = 1; i < argc; i++) { string a = argv[i];
     if (a == "--K") K = atoi(argv[++i]); else if (a == "--nov") NOV = atoi(argv[++i]); else if (a == "--freedom") FREEDOM = atoi(argv[++i]); else if (a == "--rel-all") RELALL = atoi(argv[++i]); else if (a == "--gmax") GMAX = atoi(argv[++i]);
-    else if (a == "--time") TLIM = atof(argv[++i]); else if (a == "--maxn") MAXN = atoi(argv[++i]); }
+    else if (a == "--time") TLIM = atof(argv[++i]); else if (a == "--maxn") MAXN = atoi(argv[++i]); else if (a == "--goal-gob") GOAL_GOB = atoi(argv[++i]); else if (a == "--heroes") HMASK = atoi(argv[++i]); }
   int w, h; cin >> w >> h; vector<string> rows(h); for (auto& r : rows) cin >> r;
   auto pr = parse_lv(3, w, h, rows); M = pr.first; DynState s0 = pr.second;
   for (int i = 0; i < M.n; i++) { int x = i % w, y = i / w; if (s0.obj[i] == 13 && x > 0 && y > 0 && x < w - 1 && y < h - 1) interior_wall0.push_back(i); }
@@ -90,10 +90,12 @@ int main(int argc, char** argv) {
           if (!bits[a]) { bits[a] = 1; novel = true; } } }
       if (ce >= K && !novel) { cells_full_skips++; continue; } ce++;
       nexp++;
-      vector<Macro> ms; gen_macros(M, s, 63, &rel, ms);
+      vector<Macro> ms; gen_macros(M, s, HMASK, &rel, ms);
       for (auto& m : ms) {
         int ng = g + m.cost; if (ng > GMAX) continue;
-        bool win = check_win(M, m.s);
+        bool win;
+        if (GOAL_GOB >= 0) { int ng_ = 0; for (int i = 0; i < M.n; i++) ng_ += m.s.obj[i] == 15; win = ng_ <= GOAL_GOB; }
+        else win = check_win(M, m.s);
         H128 hm = hash_state(m.s); auto bt = best.find(hm); if (bt != best.end() && bt->second <= ng) continue; best[hm] = ng;
         nodes.push_back({id, (uint16_t)ng, m.keys}); ngen++;
         if (win) {

@@ -1,0 +1,9 @@
+g=0 exp=1 gen=11 cells=1 t=0.0
+g=10 exp=268 gen=1239 cells=4 t=0.0
+g=20 exp=1645 gen=2973 cells=6 t=0.3
+g=30 exp=3294 gen=6243 cells=8 t=0.7
+g=40 exp=6095 gen=19472 cells=12 t=1.4
+g=50 exp=14708 gen=47360 cells=14 t=3.8
+g=60 exp=39450 gen=134545 cells=18 t=11.1
+g=70 exp=137750 gen=536008 cells=18 t=43.2
+g=80 exp=538373 gen=1881984 cells=18 t=197.2

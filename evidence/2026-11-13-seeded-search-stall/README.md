@@ -55,7 +55,7 @@ Routes are in `open-room-draws/`. Two draws are a tiny sample. They show only th
 
 Three other records in this group describe the same mechanism without using this repository's words. Each was found independently, and none cites the others.
 
-- `Moissanite-Labs/weft`, `docs/program/experiments/razi-cells-laws-2026-11/IDEAS.md`, law L7: "Inheritance anchors. On compress the blank arm found the ceiling body in 2 of 3 runs and heredity in 0 of 3. A fresh newborn is an independent draw. An heir stays near the first body. Where the best body is a different idea and not a refinement, draws beat inheritance."
+- `Moissanite-Labs/weft`, `docs/program/experiments/razi-cells-laws-2026-11/IDEAS.md` at commit `273031b`, law L7. On 2026-11-14 the file moved to `Moissanite-Labs/weft-loom`, `experiments/razi-cells-laws-2026-11/IDEAS.md`. The law reads: "Inheritance anchors. On compress the blank arm found the ceiling body in 2 of 3 runs and heredity in 0 of 3. A fresh newborn is an independent draw. An heir stays near the first body. Where the best body is a different idea and not a refinement, draws beat inheritance."
 - The same file, K11: "'Nothing left to find' and 'nothing tried' look the same from above. ... A part that stopped at +0% after a cheap try is not evidence of no headroom until a stronger try (model, effort, or a note) has also failed."
 - `Foundation-0/f0`, `docs/research/gf2m-circuits/index.html`: "Walks within AES's usual way of writing the field stalled at 110." The record came from a sweep over 244,800 ways of writing the field.
 - `Foundation-0/f0`, `docs/research/machine-mathematics/index.html`: "The minimum holds only inside that template, not for every possible counterexample."
@@ -65,11 +65,11 @@ Stripped of domain words, they share one mechanism. A search that starts from an
 1. Searches that share a seed are one observation, however many there are.
 2. Only two things measure a gap: a bound that covers the whole space, or draws that do not inherit the seed (a cold start, another representation, another plan order).
 
-`Foundation-0/f0` `deep-fields/scouting/mathematics.md` adds the other half: the quiet places are "the proof and upper-bound side of tables", and "most gaps come from weak upper bounds". On the Frontier, the only accepted floor proofs listed on 2026-11-13 are banteg's three, for III-14, III-20 and III-21. Every player's proof count is 0.
+`Foundation-0/f0` `deep-fields/scouting/mathematics.md` adds the other half: the quiet places are "the proof and upper-bound side of tables", and "most gaps come from weak upper bounds". On the Frontier, the only accepted floor proofs listed on 2026-11-13 are banteg's three, for III-14, III-20 and III-21. Every player's proof count is 0. On 2026-11-20 there are six accepted proofs, all banteg's, and every other player still shows 0.
 
 ## Defect found on the way (recorded, not fixed here)
 
-The optimizer first rejected every seed, including proven-optimal routes, with `seed_route (len=45) is not a valid winning route ... alive=True, exact_win=True, premature_win=False`. The real status was `REJECTED_TCB_UNLOCKED`. On first use, `ensure_cpp_engine` in `soko_mcp/engine_bridge.py` rebuilt the tracked `cpp/build/soko_engine` because its mtime looked older than the source. That changed its hash, so `sha256sum -c SHA256SUMS` failed. To reproduce deterministically: `touch cpp/soko_engine.cpp`, then run `verify`. Whether a fresh clone hits this depends on checkout timestamps; one clone in this session did, a second did not. The runs above used the committed binary, restored with `git checkout cpp/build/soko_engine`, with `SHA256SUMS` verifying. Under the GitHub SOP's one-gap-per-lane rule it is filed as [issue 49](https://github.com/ahrazzle/soko/issues/49) and not fixed here.
+The optimizer first rejected every seed, including proven-optimal routes, with `seed_route (len=45) is not a valid winning route ... alive=True, exact_win=True, premature_win=False`. The real status was `REJECTED_TCB_UNLOCKED`. On first use, `ensure_cpp_engine` in `soko_mcp/engine_bridge.py` rebuilt the tracked `cpp/build/soko_engine` because its mtime looked older than the source. That changed its hash, so `sha256sum -c SHA256SUMS` failed. To reproduce deterministically: `touch cpp/soko_engine.cpp`, then run `verify`. Whether a fresh clone hits this depends on checkout timestamps; one clone in this session did, a second did not. The runs above used the committed binary, restored with `git checkout cpp/build/soko_engine`, with `SHA256SUMS` verifying. Under the GitHub SOP's one-gap-per-lane rule it is filed as [issue 49](https://github.com/ahrazzle/soko/issues/49) and not fixed here. PR 52 fixed it, and the issue was closed on 2026-11-14.
 
 ## Reproduce
 
@@ -78,7 +78,7 @@ sha256sum -c SHA256SUMS          # must pass, or every route is rejected (see ab
 python3 experiments/cold_start_macro/known_answer.py --output /tmp/known-answer.json
 ```
 
-Runtime is about 20 minutes on 4 cores. Environment: base commit `9fcb6cf`, g++ 13.3.0, Python 3.13. Source hashes: `strat.cpp` `02535961c21f`, `macro.hpp` `12c191e36820`, `native_engine.hpp` `8f472c0a0373`.
+Runtime is about 20 minutes on 4 cores. Environment: base commit `9fcb6cf`, g++ 13.3.0, Python 3.13. Source hashes: `strat.cpp` `02535961c21f`, `macro.hpp` `12c191e36820`, `native_engine.hpp` `8f472c0a0373`. On 2026-11-20 `strat.cpp` gained two flags, `--goal-gob` and `--heroes`. Their defaults leave the search unchanged, and the new build still reproduces `seeds/III-16.cold` byte for byte.
 
 ## Files
 

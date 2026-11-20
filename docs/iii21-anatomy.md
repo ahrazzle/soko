@@ -1,6 +1,6 @@
 # III-21: how the room is built (2026-11-13)
 
-III-21 is the last open Frontier room with a large gap: the record is 316 keys (futarchist) and the accepted floor is 269 (banteg, observed 2026-11-13 08:40 UTC from `/api/frontier`). This note lists facts about the room that any new plan has to respect. Each fact was computed from the pinned grid or from replaying the 316 record in the spec oracle; the commands are at the end.
+III-21 is the last open Frontier room with a large gap: the record is 316 keys (futarchist) and the accepted floor is 270 (banteg). The floor was 269 when this note was written on 2026-11-13 and 270 on 2026-11-20, both read from `/api/frontier`. This note lists facts about the room that any new plan has to respect. Each fact was computed from the pinned grid or from replaying the 316 record in the spec oracle; the commands are at the end.
 
 ## The board
 
@@ -64,6 +64,8 @@ A plan with fewer laps saves 6 keys per lap removed. Laps are forced by dependen
 Searches started from the 316 route have all returned 316: window scans, suffix replanning, the exact FIFO macro scheduler (see [the scheduler README](../experiments/macro_scheduler/README.md) and [issue 22](https://github.com/ahrazzle/soko/issues/22)). The [2026-11-13 known-answer test](../evidence/2026-11-13-seeded-search-stall/README.md) shows why that result is not evidence that 316 is close to optimal: the same optimizer stops 30 keys above the proven optimum on III-16 and gives the same "no improvement" answer it gives on the optimal route.
 
 A cold-start search that never reads the record ([experiments/cold_start_macro](../experiments/cold_start_macro/README.md)) does not yet reach a win on III-21 within its limits. See that README for the measured runs.
+
+The public record history is narrower than it looks. The [2026-11-20 lineage audit](../evidence/2026-11-20-public-route-lineage/README.md) finds that the 30 public III-21 routes, by 7 authors, are 3 plans and 1 hybrid. Every one opens with the same goblin-pair kill (Fact 4), at keys 153 to 167 in every record since the 433. All later progress came after that kill, and the cold search cannot reach it.
 
 ## Reproduce
 

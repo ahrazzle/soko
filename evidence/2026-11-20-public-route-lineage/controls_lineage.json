@@ -1,0 +1,1697 @@
+{
+ "routes": [
+  {
+   "room": "III-10",
+   "id": "III-10:cold",
+   "keys": "LLARLLLLALLLLLALLDDRRRRARRRRRRDDLARRRRLLLLALLLL",
+   "won": true,
+   "milestones": [
+    [
+     2,
+     "open 8,1"
+    ],
+    [
+     14,
+     "wall 4,1"
+    ],
+    [
+     33,
+     "open 10,3"
+    ]
+   ]
+  },
+  {
+   "room": "III-10",
+   "id": "III-10:ref",
+   "keys": "LLARLLLLALLLLLRRRRRRDDLALLDDRRRRRRRRLLLLALLLL",
+   "won": true,
+   "milestones": [
+    [
+     2,
+     "open 8,1"
+    ],
+    [
+     14,
+     "wall 4,1"
+    ],
+    [
+     23,
+     "open 10,3"
+    ]
+   ]
+  },
+  {
+   "room": "III-12",
+   "id": "III-12:cold",
+   "keys": "LULRULRUULRALLLLADDDRRURURURRURADADLRUURURDURDRDAURRDRRDDDADD",
+   "won": true,
+   "milestones": [
+    [
+     1,
+     "open 1,5"
+    ],
+    [
+     3,
+     "open 1,4"
+    ],
+    [
+     4,
+     "open 3,4"
+    ],
+    [
+     6,
+     "open 1,3"
+    ],
+    [
+     7,
+     "open 3,3"
+    ],
+    [
+     9,
+     "wall 2,1"
+    ],
+    [
+     10,
+     "open 1,2"
+    ],
+    [
+     11,
+     "open 3,2"
+    ],
+    [
+     23,
+     "open 4,4"
+    ],
+    [
+     25,
+     "open 5,4"
+    ],
+    [
+     27,
+     "open 6,4"
+    ],
+    [
+     29,
+     "open 8,5"
+    ],
+    [
+     31,
+     "open 8,4"
+    ],
+    [
+     36,
+     "open 6,2"
+    ],
+    [
+     37,
+     "open 8,2"
+    ],
+    [
+     39,
+     "open 7,0"
+    ],
+    [
+     41,
+     "open 8,0"
+    ],
+    [
+     43,
+     "open 9,2"
+    ],
+    [
+     44,
+     "open 9,0"
+    ],
+    [
+     46,
+     "open 10,2"
+    ],
+    [
+     48,
+     "open 11,2"
+    ]
+   ]
+  },
+  {
+   "room": "III-12",
+   "id": "III-12:ref",
+   "keys": "UUUUALLLLADDDRRRRRADAURURURUDRDAURRRDRDDDADD",
+   "won": true,
+   "milestones": [
+    [
+     4,
+     "wall 2,1"
+    ],
+    [
+     22,
+     "open 7,0"
+    ],
+    [
+     24,
+     "open 8,0"
+    ],
+    [
+     26,
+     "open 9,0"
+    ],
+    [
+     28,
+     "open 10,0"
+    ],
+    [
+     29,
+     "open 10,2"
+    ],
+    [
+     31,
+     "open 11,2"
+    ]
+   ]
+  },
+  {
+   "room": "III-12",
+   "id": "III-12:cold.best",
+   "keys": "LULRULRUUALLLLADDDRRRRRULRADAURURUDRDRDAURRDRRDDDADD",
+   "won": true,
+   "milestones": [
+    [
+     1,
+     "open 1,5"
+    ],
+    [
+     3,
+     "open 1,4"
+    ],
+    [
+     4,
+     "open 3,4"
+    ],
+    [
+     6,
+     "open 1,3"
+    ],
+    [
+     7,
+     "open 3,3"
+    ],
+    [
+     9,
+     "wall 2,1"
+    ],
+    [
+     25,
+     "open 6,4"
+    ],
+    [
+     26,
+     "open 8,4"
+    ],
+    [
+     30,
+     "open 7,0"
+    ],
+    [
+     32,
+     "open 8,0"
+    ],
+    [
+     34,
+     "open 9,0"
+    ],
+    [
+     35,
+     "open 9,2"
+    ],
+    [
+     37,
+     "open 10,2"
+    ],
+    [
+     39,
+     "open 11,2"
+    ]
+   ]
+  },
+  {
+   "room": "III-13",
+   "id": "III-13:cold",
+   "keys": "DADARURRUULULDARRULLAALAURRRDARRRARRURUALAARRDRRARRRAAUARDRUARRRRRD",
+   "won": true,
+   "milestones": [
+    [
+     7,
+     "wall 7,2"
+    ],
+    [
+     7,
+     "kill 7,2"
+    ],
+    [
+     8,
+     "open 7,2"
+    ],
+    [
+     10,
+     "open 6,0"
+    ],
+    [
+     12,
+     "open 5,0"
+    ],
+    [
+     23,
+     "wall 1,2"
+    ],
+    [
+     23,
+     "kill 1,2"
+    ],
+    [
+     39,
+     "wall 5,0"
+    ],
+    [
+     48,
+     "open 9,2"
+    ]
+   ]
+  },
+  {
+   "room": "III-13",
+   "id": "III-13:ref",
+   "keys": "DRADAURRULLDARRULLLAALADARRDARRRRRRRARRURRRAAUARDRUAURRRD",
+   "won": true,
+   "milestones": [
+    [
+     7,
+     "wall 7,2"
+    ],
+    [
+     7,
+     "kill 7,2"
+    ],
+    [
+     8,
+     "open 7,2"
+    ],
+    [
+     22,
+     "wall 1,2"
+    ],
+    [
+     22,
+     "kill 1,2"
+    ],
+    [
+     36,
+     "open 9,2"
+    ]
+   ]
+  },
+  {
+   "room": "III-15",
+   "id": "III-15:cold",
+   "keys": "AULADDLAULAURAULADLUALRADLADAURAULAULDAULAULAUADRADLADLUADLADLAUAURAULADLUADLALDRULALUALU",
+   "won": true,
+   "milestones": [
+    [
+     2,
+     "open 7,2"
+    ],
+    [
+     3,
+     "open 6,3"
+    ],
+    [
+     9,
+     "wall 7,1"
+    ],
+    [
+     10,
+     "open 6,2"
+    ],
+    [
+     15,
+     "open 6,1"
+    ],
+    [
+     16,
+     "open 5,2"
+    ],
+    [
+     22,
+     "open 5,3"
+    ],
+    [
+     23,
+     "wall 7,3"
+    ],
+    [
+     28,
+     "wall 6,3"
+    ],
+    [
+     33,
+     "open 5,1"
+    ],
+    [
+     34,
+     "open 4,2"
+    ],
+    [
+     40,
+     "open 5,0"
+    ],
+    [
+     41,
+     "open 4,1"
+    ],
+    [
+     46,
+     "wall 5,1"
+    ],
+    [
+     51,
+     "open 4,3"
+    ],
+    [
+     52,
+     "open 3,2"
+    ],
+    [
+     58,
+     "open 4,4"
+    ],
+    [
+     59,
+     "open 3,3"
+    ],
+    [
+     64,
+     "wall 4,1"
+    ],
+    [
+     69,
+     "open 3,1"
+    ],
+    [
+     70,
+     "open 2,2"
+    ],
+    [
+     76,
+     "open 3,4"
+    ],
+    [
+     77,
+     "open 2,3"
+    ],
+    [
+     86,
+     "open 1,2"
+    ]
+   ]
+  },
+  {
+   "room": "III-15",
+   "id": "III-15:ref",
+   "keys": "AULADDALAULDRALAULDALALURALADLUALALDRALAULDALALURALADLUALALDLRAUAULLU",
+   "won": true,
+   "milestones": [
+    [
+     2,
+     "open 7,2"
+    ],
+    [
+     3,
+     "open 6,3"
+    ],
+    [
+     8,
+     "open 6,2"
+    ],
+    [
+     15,
+     "open 5,3"
+    ],
+    [
+     21,
+     "open 5,2"
+    ],
+    [
+     27,
+     "open 4,2"
+    ],
+    [
+     33,
+     "open 4,3"
+    ],
+    [
+     39,
+     "open 3,3"
+    ],
+    [
+     45,
+     "open 3,2"
+    ],
+    [
+     51,
+     "open 2,2"
+    ],
+    [
+     57,
+     "open 2,3"
+    ],
+    [
+     64,
+     "open 1,2"
+    ]
+   ]
+  },
+  {
+   "room": "III-15",
+   "id": "III-15:cold.best",
+   "keys": "AULADDALALURAULAULDLALAURDLUALADLALAURDLALAULALADRALAULDLALAULRDLADALD",
+   "won": true,
+   "milestones": [
+    [
+     2,
+     "open 7,2"
+    ],
+    [
+     3,
+     "open 6,3"
+    ],
+    [
+     8,
+     "open 6,2"
+    ],
+    [
+     14,
+     "open 6,1"
+    ],
+    [
+     15,
+     "open 5,2"
+    ],
+    [
+     22,
+     "open 5,1"
+    ],
+    [
+     30,
+     "open 4,2"
+    ],
+    [
+     35,
+     "open 4,1"
+    ],
+    [
+     42,
+     "open 3,1"
+    ],
+    [
+     47,
+     "open 3,2"
+    ],
+    [
+     52,
+     "open 2,2"
+    ],
+    [
+     59,
+     "open 2,1"
+    ],
+    [
+     67,
+     "open 1,2"
+    ]
+   ]
+  },
+  {
+   "room": "III-16",
+   "id": "III-16:cold",
+   "keys": "RARUURLUALUUAUADARDRDUAURRUALDAURRLLADLRRDRALDALADALRADARALUARURURUUADRADAUUURRRRRRR",
+   "won": true,
+   "milestones": [
+    [
+     3,
+     "open 4,5"
+    ],
+    [
+     5,
+     "open 3,3"
+    ],
+    [
+     6,
+     "open 4,4"
+    ],
+    [
+     8,
+     "open 2,3"
+    ],
+    [
+     14,
+     "wall 1,1"
+    ],
+    [
+     19,
+     "wall 2,4"
+    ],
+    [
+     21,
+     "wall 3,4"
+    ],
+    [
+     22,
+     "open 3,2"
+    ],
+    [
+     30,
+     "open 2,2"
+    ],
+    [
+     39,
+     "wall 1,2"
+    ],
+    [
+     41,
+     "open 4,2"
+    ],
+    [
+     43,
+     "open 4,3"
+    ],
+    [
+     52,
+     "open 0,4"
+    ],
+    [
+     53,
+     "open 2,4"
+    ],
+    [
+     57,
+     "wall 2,5"
+    ],
+    [
+     68,
+     "open 4,0"
+    ],
+    [
+     73,
+     "wall 4,2"
+    ]
+   ]
+  },
+  {
+   "room": "III-16",
+   "id": "III-16:ref",
+   "keys": "UUUURRRRLLLAULURALDDDRULDRAUUUAULAULARRUURRRRRR",
+   "won": true,
+   "milestones": [
+    [
+     13,
+     "open 3,3"
+    ],
+    [
+     15,
+     "open 2,3"
+    ],
+    [
+     30,
+     "open 3,2"
+    ],
+    [
+     36,
+     "wall 2,1"
+    ]
+   ]
+  },
+  {
+   "room": "III-16",
+   "id": "III-16:cold.best",
+   "keys": "RARUURLUALUUAUADARDRDUAURRUALDAURRLLADLRRDRLDALDDDLARAUALRURURUUADRUUURRRRRRR",
+   "won": true,
+   "milestones": [
+    [
+     3,
+     "open 4,5"
+    ],
+    [
+     5,
+     "open 3,3"
+    ],
+    [
+     6,
+     "open 4,4"
+    ],
+    [
+     8,
+     "open 2,3"
+    ],
+    [
+     14,
+     "wall 1,1"
+    ],
+    [
+     19,
+     "wall 2,4"
+    ],
+    [
+     21,
+     "wall 3,4"
+    ],
+    [
+     22,
+     "open 3,2"
+    ],
+    [
+     30,
+     "open 2,2"
+    ],
+    [
+     39,
+     "wall 1,2"
+    ],
+    [
+     41,
+     "open 4,2"
+    ],
+    [
+     43,
+     "open 4,3"
+    ],
+    [
+     45,
+     "open 2,4"
+    ],
+    [
+     53,
+     "wall 2,5"
+    ],
+    [
+     57,
+     "open 0,4"
+    ],
+    [
+     64,
+     "open 4,0"
+    ]
+   ]
+  },
+  {
+   "room": "III-14",
+   "id": "III-14:K4nov1freedom1.cold",
+   "keys": "DDLDLULULULUULRURURURURURURURUADRRRRRULAURADRULDDARRDDDAURDDLAULLUULLDRDRDLURDDLDLARUURRADR",
+   "won": true,
+   "milestones": [
+    [
+     2,
+     "open 2,6"
+    ],
+    [
+     4,
+     "open 1,6"
+    ],
+    [
+     5,
+     "open 0,5"
+    ],
+    [
+     7,
+     "open 0,4"
+    ],
+    [
+     9,
+     "open 0,3"
+    ],
+    [
+     11,
+     "open 0,2"
+    ],
+    [
+     13,
+     "open 1,0"
+    ],
+    [
+     14,
+     "open 0,1"
+    ],
+    [
+     16,
+     "open 2,0"
+    ],
+    [
+     18,
+     "open 3,0"
+    ],
+    [
+     20,
+     "open 4,0"
+    ],
+    [
+     22,
+     "open 5,0"
+    ],
+    [
+     24,
+     "open 6,0"
+    ],
+    [
+     26,
+     "open 7,0"
+    ],
+    [
+     28,
+     "open 8,0"
+    ],
+    [
+     30,
+     "open 9,0"
+    ],
+    [
+     42,
+     "open 10,0"
+    ],
+    [
+     52,
+     "wall 10,0"
+    ],
+    [
+     70,
+     "wall 5,1"
+    ],
+    [
+     75,
+     "wall 6,2"
+    ],
+    [
+     77,
+     "wall 8,1"
+    ],
+    [
+     80,
+     "wall 6,3"
+    ],
+    [
+     82,
+     "wall 6,4"
+    ]
+   ]
+  },
+  {
+   "room": "III-14",
+   "id": "III-14:K4nov1freedom1.polished",
+   "keys": "LLULULUULRURURRURURUADRRRRUDDRALLDADLARDDLDLDRARRRUU",
+   "won": true,
+   "milestones": [
+    [
+     2,
+     "open 0,4"
+    ],
+    [
+     4,
+     "open 0,3"
+    ],
+    [
+     6,
+     "open 0,2"
+    ],
+    [
+     8,
+     "open 1,0"
+    ],
+    [
+     9,
+     "open 0,1"
+    ],
+    [
+     11,
+     "open 2,0"
+    ],
+    [
+     13,
+     "open 3,0"
+    ],
+    [
+     16,
+     "open 5,0"
+    ],
+    [
+     18,
+     "open 6,0"
+    ],
+    [
+     20,
+     "open 7,0"
+    ],
+    [
+     34,
+     "wall 6,2"
+    ],
+    [
+     42,
+     "wall 6,3"
+    ],
+    [
+     44,
+     "wall 6,4"
+    ]
+   ]
+  },
+  {
+   "room": "III-14",
+   "id": "III-14:K16nov1freedom1relall1.cold",
+   "keys": "DDLDLULULULUULRURURURURUADRRRAUDDDDDLDLDARRDUUADALDDARRDRDRDADARRRUUUULLLLLLDLDARRUADAUARDRRDRDAR",
+   "won": true,
+   "milestones": [
+    [
+     2,
+     "open 2,6"
+    ],
+    [
+     4,
+     "open 1,6"
+    ],
+    [
+     5,
+     "open 0,5"
+    ],
+    [
+     7,
+     "open 0,4"
+    ],
+    [
+     9,
+     "open 0,3"
+    ],
+    [
+     11,
+     "open 0,2"
+    ],
+    [
+     13,
+     "open 1,0"
+    ],
+    [
+     14,
+     "open 0,1"
+    ],
+    [
+     16,
+     "open 2,0"
+    ],
+    [
+     18,
+     "open 3,0"
+    ],
+    [
+     20,
+     "open 4,0"
+    ],
+    [
+     22,
+     "open 5,0"
+    ],
+    [
+     24,
+     "open 6,0"
+    ],
+    [
+     31,
+     "open 7,0"
+    ],
+    [
+     36,
+     "open 7,6"
+    ],
+    [
+     38,
+     "open 6,6"
+    ],
+    [
+     40,
+     "open 5,6"
+    ],
+    [
+     48,
+     "wall 7,4"
+    ],
+    [
+     56,
+     "open 8,6"
+    ],
+    [
+     58,
+     "open 9,6"
+    ],
+    [
+     60,
+     "open 10,6"
+    ],
+    [
+     79,
+     "wall 6,3"
+    ],
+    [
+     85,
+     "open 6,3"
+    ],
+    [
+     95,
+     "wall 10,4"
+    ],
+    [
+     97,
+     "open 10,4"
+    ]
+   ]
+  },
+  {
+   "room": "III-14",
+   "id": "III-14:K16nov1freedom1relall1.polished",
+   "keys": "LLDLUULULUURURURURURURUADRRRRRULDALADDRUADLRDDDLLURRURARRU",
+   "won": true,
+   "milestones": [
+    [
+     2,
+     "open 0,4"
+    ],
+    [
+     4,
+     "open 0,5"
+    ],
+    [
+     7,
+     "open 0,3"
+    ],
+    [
+     9,
+     "open 0,2"
+    ],
+    [
+     11,
+     "open 1,0"
+    ],
+    [
+     13,
+     "open 2,0"
+    ],
+    [
+     15,
+     "open 3,0"
+    ],
+    [
+     17,
+     "open 4,0"
+    ],
+    [
+     19,
+     "open 5,0"
+    ],
+    [
+     21,
+     "open 6,0"
+    ],
+    [
+     23,
+     "open 7,0"
+    ],
+    [
+     42,
+     "wall 7,3"
+    ],
+    [
+     43,
+     "wall 6,2"
+    ],
+    [
+     50,
+     "wall 6,4"
+    ]
+   ]
+  },
+  {
+   "room": "III-14",
+   "id": "III-14:pub48",
+   "keys": "LLULULULRURURURURUAUDRRDDAUARRDLRAULDLDRARURDUUR",
+   "won": true,
+   "milestones": [
+    [
+     2,
+     "open 0,4"
+    ],
+    [
+     4,
+     "open 0,3"
+    ],
+    [
+     6,
+     "open 0,2"
+    ],
+    [
+     8,
+     "open 0,1"
+    ],
+    [
+     10,
+     "open 2,0"
+    ],
+    [
+     12,
+     "open 3,0"
+    ],
+    [
+     14,
+     "open 4,0"
+    ],
+    [
+     16,
+     "open 5,0"
+    ],
+    [
+     18,
+     "open 6,0"
+    ],
+    [
+     27,
+     "wall 6,2"
+    ],
+    [
+     36,
+     "wall 6,3"
+    ],
+    [
+     38,
+     "wall 6,4"
+    ]
+   ]
+  },
+  {
+   "room": "III-21",
+   "id": "III-21:316",
+   "keys": "RRRDRRDRRRURRDRRUURRRRRLLLLDDAUAADLLULLLLLDDAAALLLULDDDRDLULDDLLUUAAAULLULAAUADLLLLLAAADLAAALDADRAAAALLDAULAALARUAAARRRRRAUAARDRAAARRDRRUADDRRDDRLAAUAAAULLRRURURDDAURULDDRRRRLLLLAAUUAAARDDRRRDRRRRRAAAAAULLULULULLLDUURLDLLUALLLUUAAAALLLLLDLLLDULLULLLLLLLADDRDALDDAUAAALDURADDUUAAAUAARRRRRRRRUUURUUADRDDDAAAUUURDDDAUUL",
+   "won": true,
+   "milestones": [
+    [
+     103,
+     "open 18,10"
+    ],
+    [
+     163,
+     "kill 12,8"
+    ],
+    [
+     163,
+     "kill 13,9"
+    ],
+    [
+     206,
+     "open 17,9"
+    ],
+    [
+     208,
+     "open 16,9"
+    ],
+    [
+     214,
+     "open 12,10"
+    ],
+    [
+     217,
+     "open 13,7"
+    ],
+    [
+     219,
+     "wall 11,8"
+    ],
+    [
+     222,
+     "open 9,6"
+    ],
+    [
+     228,
+     "kill 17,5"
+    ],
+    [
+     228,
+     "kill 17,7"
+    ],
+    [
+     256,
+     "open 1,8"
+    ],
+    [
+     258,
+     "open 2,8"
+    ],
+    [
+     274,
+     "open 1,9"
+    ],
+    [
+     302,
+     "open 10,10"
+    ]
+   ]
+  },
+  {
+   "room": "III-21",
+   "id": "III-21:316+lap",
+   "keys": "RRRDRRDRRRURRDRRUURRRRRLLLLDDAUAADLLULLLLLDDAAALLLULDDDRDLULDDLLUUAAAULLULAAUADLLLLLAAADLAAALDADRAAAAAAAAAALLDAULAALARUAAARRRRRAUAARDRAAARRDRRUADDRRDDRLAAUAAAULLRRURURDDAURULDDRRRRLLLLAAUUAAARDDRRRDRRRRRAAAAAULLULULULLLDUURLDLLUALLLUUAAAALLLLLDLLLDULLULLLLLLLADDRDALDDAUAAALDURADDUUAAAUAARRRRRRRRUUURUUADRDDDAAAUUURDDDAUUL",
+   "won": true,
+   "milestones": [
+    [
+     109,
+     "open 18,10"
+    ],
+    [
+     169,
+     "kill 12,8"
+    ],
+    [
+     169,
+     "kill 13,9"
+    ],
+    [
+     212,
+     "open 17,9"
+    ],
+    [
+     214,
+     "open 16,9"
+    ],
+    [
+     220,
+     "open 12,10"
+    ],
+    [
+     223,
+     "open 13,7"
+    ],
+    [
+     225,
+     "wall 11,8"
+    ],
+    [
+     228,
+     "open 9,6"
+    ],
+    [
+     234,
+     "kill 17,5"
+    ],
+    [
+     234,
+     "kill 17,7"
+    ],
+    [
+     262,
+     "open 1,8"
+    ],
+    [
+     264,
+     "open 2,8"
+    ],
+    [
+     280,
+     "open 1,9"
+    ],
+    [
+     308,
+     "open 10,10"
+    ]
+   ]
+  }
+ ],
+ "pairs": [
+  {
+   "room": "III-10",
+   "a": "III-10:cold",
+   "b": "III-10:ref",
+   "events": 1.0,
+   "order": 1.0,
+   "states": 0.446,
+   "only_a": [],
+   "only_b": []
+  },
+  {
+   "room": "III-12",
+   "a": "III-12:cold",
+   "b": "III-12:ref",
+   "events": 0.273,
+   "order": 1.0,
+   "states": 0.009,
+   "only_a": [
+    "open 1,2",
+    "open 1,3",
+    "open 1,4",
+    "open 1,5",
+    "open 3,2",
+    "open 3,3",
+    "open 3,4",
+    "open 4,4",
+    "open 5,4",
+    "open 6,2",
+    "open 6,4",
+    "open 8,2",
+    "open 8,4",
+    "open 8,5",
+    "open 9,2"
+   ],
+   "only_b": [
+    "open 10,0"
+   ]
+  },
+  {
+   "room": "III-12",
+   "a": "III-12:cold",
+   "b": "III-12:cold.best",
+   "events": 0.667,
+   "order": 0.989,
+   "states": 0.095,
+   "only_a": [
+    "open 1,2",
+    "open 3,2",
+    "open 4,4",
+    "open 5,4",
+    "open 6,2",
+    "open 8,2",
+    "open 8,5"
+   ],
+   "only_b": []
+  },
+  {
+   "room": "III-12",
+   "a": "III-12:ref",
+   "b": "III-12:cold.best",
+   "events": 0.4,
+   "order": 1.0,
+   "states": 0.01,
+   "only_a": [
+    "open 10,0"
+   ],
+   "only_b": [
+    "open 1,3",
+    "open 1,4",
+    "open 1,5",
+    "open 3,3",
+    "open 3,4",
+    "open 6,4",
+    "open 8,4",
+    "open 9,2"
+   ]
+  },
+  {
+   "room": "III-13",
+   "a": "III-13:cold",
+   "b": "III-13:ref",
+   "events": 0.667,
+   "order": 1.0,
+   "states": 0.016,
+   "only_a": [
+    "open 5,0",
+    "open 6,0",
+    "wall 5,0"
+   ],
+   "only_b": []
+  },
+  {
+   "room": "III-15",
+   "a": "III-15:cold",
+   "b": "III-15:ref",
+   "events": 0.5,
+   "order": 0.97,
+   "states": 0.046,
+   "only_a": [
+    "open 3,1",
+    "open 3,4",
+    "open 4,1",
+    "open 4,4",
+    "open 5,0",
+    "open 5,1",
+    "open 6,1",
+    "wall 4,1",
+    "wall 5,1",
+    "wall 6,3",
+    "wall 7,1",
+    "wall 7,3"
+   ],
+   "only_b": []
+  },
+  {
+   "room": "III-15",
+   "a": "III-15:cold",
+   "b": "III-15:cold.best",
+   "events": 0.48,
+   "order": 0.985,
+   "states": 0.045,
+   "only_a": [
+    "open 2,3",
+    "open 3,3",
+    "open 3,4",
+    "open 4,3",
+    "open 4,4",
+    "open 5,0",
+    "open 5,3",
+    "wall 4,1",
+    "wall 5,1",
+    "wall 6,3",
+    "wall 7,1",
+    "wall 7,3"
+   ],
+   "only_b": [
+    "open 2,1"
+   ]
+  },
+  {
+   "room": "III-15",
+   "a": "III-15:ref",
+   "b": "III-15:cold.best",
+   "events": 0.471,
+   "order": 1.0,
+   "states": 0.076,
+   "only_a": [
+    "open 2,3",
+    "open 3,3",
+    "open 4,3",
+    "open 5,3"
+   ],
+   "only_b": [
+    "open 2,1",
+    "open 3,1",
+    "open 4,1",
+    "open 5,1",
+    "open 6,1"
+   ]
+  },
+  {
+   "room": "III-16",
+   "a": "III-16:cold",
+   "b": "III-16:ref",
+   "events": 0.167,
+   "order": 1.0,
+   "states": 0.008,
+   "only_a": [
+    "open 0,4",
+    "open 2,2",
+    "open 2,4",
+    "open 4,0",
+    "open 4,2",
+    "open 4,3",
+    "open 4,4",
+    "open 4,5",
+    "wall 1,1",
+    "wall 1,2",
+    "wall 2,4",
+    "wall 2,5",
+    "wall 3,4",
+    "wall 4,2"
+   ],
+   "only_b": [
+    "wall 2,1"
+   ]
+  },
+  {
+   "room": "III-16",
+   "a": "III-16:cold",
+   "b": "III-16:cold.best",
+   "events": 0.941,
+   "order": 0.983,
+   "states": 0.509,
+   "only_a": [
+    "wall 4,2"
+   ],
+   "only_b": []
+  },
+  {
+   "room": "III-16",
+   "a": "III-16:ref",
+   "b": "III-16:cold.best",
+   "events": 0.176,
+   "order": 1.0,
+   "states": 0.008,
+   "only_a": [
+    "wall 2,1"
+   ],
+   "only_b": [
+    "open 0,4",
+    "open 2,2",
+    "open 2,4",
+    "open 4,0",
+    "open 4,2",
+    "open 4,3",
+    "open 4,4",
+    "open 4,5",
+    "wall 1,1",
+    "wall 1,2",
+    "wall 2,4",
+    "wall 2,5",
+    "wall 3,4"
+   ]
+  },
+  {
+   "room": "III-14",
+   "a": "III-14:K4nov1freedom1.cold",
+   "b": "III-14:K4nov1freedom1.polished",
+   "events": 0.565,
+   "order": 1.0,
+   "states": 0.007,
+   "only_a": [
+    "open 0,5",
+    "open 1,6",
+    "open 10,0",
+    "open 2,6",
+    "open 4,0",
+    "open 8,0",
+    "open 9,0",
+    "wall 10,0",
+    "wall 5,1",
+    "wall 8,1"
+   ],
+   "only_b": []
+  },
+  {
+   "room": "III-14",
+   "a": "III-14:K4nov1freedom1.cold",
+   "b": "III-14:K16nov1freedom1relall1.cold",
+   "events": 0.455,
+   "order": 1.0,
+   "states": 0.152,
+   "only_a": [
+    "open 10,0",
+    "open 8,0",
+    "open 9,0",
+    "wall 10,0",
+    "wall 5,1",
+    "wall 6,2",
+    "wall 6,4",
+    "wall 8,1"
+   ],
+   "only_b": [
+    "open 10,4",
+    "open 10,6",
+    "open 5,6",
+    "open 6,3",
+    "open 6,6",
+    "open 7,6",
+    "open 8,6",
+    "open 9,6",
+    "wall 10,4",
+    "wall 7,4"
+   ]
+  },
+  {
+   "room": "III-14",
+   "a": "III-14:K4nov1freedom1.cold",
+   "b": "III-14:K16nov1freedom1relall1.polished",
+   "events": 0.542,
+   "order": 0.987,
+   "states": 0.007,
+   "only_a": [
+    "open 0,1",
+    "open 1,6",
+    "open 10,0",
+    "open 2,6",
+    "open 8,0",
+    "open 9,0",
+    "wall 10,0",
+    "wall 5,1",
+    "wall 6,3",
+    "wall 8,1"
+   ],
+   "only_b": [
+    "wall 7,3"
+   ]
+  },
+  {
+   "room": "III-14",
+   "a": "III-14:K4nov1freedom1.cold",
+   "b": "III-14:pub48",
+   "events": 0.522,
+   "order": 1.0,
+   "states": 0.007,
+   "only_a": [
+    "open 0,5",
+    "open 1,0",
+    "open 1,6",
+    "open 10,0",
+    "open 2,6",
+    "open 7,0",
+    "open 8,0",
+    "open 9,0",
+    "wall 10,0",
+    "wall 5,1",
+    "wall 8,1"
+   ],
+   "only_b": []
+  },
+  {
+   "room": "III-14",
+   "a": "III-14:K4nov1freedom1.polished",
+   "b": "III-14:K16nov1freedom1relall1.cold",
+   "events": 0.407,
+   "order": 1.0,
+   "states": 0.007,
+   "only_a": [
+    "wall 6,2",
+    "wall 6,4"
+   ],
+   "only_b": [
+    "open 0,5",
+    "open 1,6",
+    "open 10,4",
+    "open 10,6",
+    "open 2,6",
+    "open 4,0",
+    "open 5,6",
+    "open 6,3",
+    "open 6,6",
+    "open 7,6",
+    "open 8,6",
+    "open 9,6",
+    "wall 10,4",
+    "wall 7,4"
+   ]
+  },
+  {
+   "room": "III-14",
+   "a": "III-14:K4nov1freedom1.polished",
+   "b": "III-14:K16nov1freedom1relall1.polished",
+   "events": 0.688,
+   "order": 1.0,
+   "states": 0.028,
+   "only_a": [
+    "open 0,1",
+    "wall 6,3"
+   ],
+   "only_b": [
+    "open 0,5",
+    "open 4,0",
+    "wall 7,3"
+   ]
+  },
+  {
+   "room": "III-14",
+   "a": "III-14:K4nov1freedom1.polished",
+   "b": "III-14:pub48",
+   "events": 0.786,
+   "order": 1.0,
+   "states": 0.085,
+   "only_a": [
+    "open 1,0",
+    "open 7,0"
+   ],
+   "only_b": [
+    "open 4,0"
+   ]
+  },
+  {
+   "room": "III-14",
+   "a": "III-14:K16nov1freedom1relall1.cold",
+   "b": "III-14:K16nov1freedom1relall1.polished",
+   "events": 0.393,
+   "order": 0.982,
+   "states": 0.006,
+   "only_a": [
+    "open 0,1",
+    "open 1,6",
+    "open 10,4",
+    "open 10,6",
+    "open 2,6",
+    "open 5,6",
+    "open 6,3",
+    "open 6,6",
+    "open 7,6",
+    "open 8,6",
+    "open 9,6",
+    "wall 10,4",
+    "wall 6,3",
+    "wall 7,4"
+   ],
+   "only_b": [
+    "wall 6,2",
+    "wall 6,4",
+    "wall 7,3"
+   ]
+  },
+  {
+   "room": "III-14",
+   "a": "III-14:K16nov1freedom1relall1.cold",
+   "b": "III-14:pub48",
+   "events": 0.37,
+   "order": 1.0,
+   "states": 0.007,
+   "only_a": [
+    "open 0,5",
+    "open 1,0",
+    "open 1,6",
+    "open 10,4",
+    "open 10,6",
+    "open 2,6",
+    "open 5,6",
+    "open 6,3",
+    "open 6,6",
+    "open 7,0",
+    "open 7,6",
+    "open 8,6",
+    "open 9,6",
+    "wall 10,4",
+    "wall 7,4"
+   ],
+   "only_b": [
+    "wall 6,2",
+    "wall 6,4"
+   ]
+  },
+  {
+   "room": "III-14",
+   "a": "III-14:K16nov1freedom1relall1.polished",
+   "b": "III-14:pub48",
+   "events": 0.625,
+   "order": 1.0,
+   "states": 0.029,
+   "only_a": [
+    "open 0,5",
+    "open 1,0",
+    "open 7,0",
+    "wall 7,3"
+   ],
+   "only_b": [
+    "open 0,1",
+    "wall 6,3"
+   ]
+  },
+  {
+   "room": "III-21",
+   "a": "III-21:316",
+   "b": "III-21:316+lap",
+   "events": 1.0,
+   "order": 1.0,
+   "states": 0.997,
+   "only_a": [],
+   "only_b": []
+  }
+ ]
+}
