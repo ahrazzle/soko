@@ -13,6 +13,13 @@ Values are exact (int or Fraction). The checks raise through unittest, so they a
 
 Every positive check is paired with a control that must be rejected: bounds and quotients known
 to be wrong, and corrupted copies of the real values. If a control is accepted the gate cannot fail.
+
+The switch-cycle controls use two checks. The edge check asks whether each concrete key maps to an
+abstract edge. The value check runs the automaton's exact abstract distance through `gate`. The
+edge check sees every step where the quotient does not commute with the rules. The value check sees
+only the steps where that makes the distance drop by more than 1.
+
+The catalogued floor is checked against the best known route in tests/test_catalog.py.
 """
 from __future__ import annotations
 
@@ -66,19 +73,6 @@ def gate(values, route_len):
     if Fraction(values[-1]) > 0:
         out.append(("goal", route_len, values[-1]))
     return out
-
-
-class CatalogFloorTests(unittest.TestCase):
-    def test_floor_does_not_exceed_best_known_route(self):
-        for rid, r in ROOMS.items():
-            with self.subTest(room=rid):
-                self.assertLessEqual(r["proven_floor"], r["shortest_known"])
-                self.assertEqual(r["shortest_known"], len(r["reference_route"]))
-
-    def test_floor_check_can_fail(self):
-        r = dict(ROOMS["III-14"])
-        r["proven_floor"] = r["shortest_known"] + 1
-        self.assertGreater(r["proven_floor"], r["shortest_known"])
 
 
 class OperatorCountingRouteTests(unittest.TestCase):
@@ -152,6 +146,30 @@ def switch_automaton_has_edge(act0, mask0, key, act1, mask1):
     return act1 == act0 and not (mask1 - mask0) and all(b == act0 for b in (mask0 - mask1))
 
 
+def switch_automaton_distance():
+    """Exact distance to an empty mask in the automaton above, for all 6 * 64 abstract states."""
+    states = [(a, frozenset(n for i, n in enumerate(NAMES) if bits >> i & 1)) for a in NAMES for bits in range(64)]
+    dist = {}
+    for start in states:
+        seen = {start: 0}
+        queue = [start]
+        for u in queue:
+            act, mask = u
+            if not mask:
+                dist[start] = seen[u]
+                break
+            nxt = [(NAMES[(NAMES.index(act) + 1) % 6], mask)]
+            if act in mask:
+                nxt.append((act, mask - {act}))
+            for v in nxt:
+                if v not in seen:
+                    seen[v] = seen[u] + 1
+                    queue.append(v)
+    if len(dist) != 384:
+        raise RuntimeError("switch automaton distance table is incomplete")
+    return dist
+
+
 class MustFailControls(unittest.TestCase):
     """Each control is a bound or quotient that is wrong. The gate must reject it."""
 
@@ -164,9 +182,22 @@ class MustFailControls(unittest.TestCase):
             ps.step(key)
             if not switch_automaton_has_edge(a0, m0, key, ps.find_active()[2], need_mask(ps)):
                 bad.append(i)
-        self.assertEqual(len(bad), 19)
-        self.assertEqual(bad[0], 58)
-        self.assertEqual(bad[-1], 310)
+        self.assertEqual(
+            bad, [58, 61, 62, 143, 159, 162, 163, 240, 241, 242, 243, 245, 247, 287, 288, 289, 290, 291, 310]
+        )
+
+    def test_switch_automaton_distance_rejected_by_gate_on_iii21_record(self):
+        dist = switch_automaton_distance()
+        r = ROOMS["III-21"]
+        ps = PuzzleScriptOracle(3, r["grid"])
+        values = [dist[(ps.find_active()[2], frozenset(need_mask(ps)))]]
+        for key in r["reference_route"]:
+            ps.step(key)
+            values.append(dist[(ps.find_active()[2], frozenset(need_mask(ps)))])
+        found = gate(values, len(r["reference_route"]))
+        self.assertEqual(values[0], 11)
+        # Index t is the drop from s_t to s_{t+1}, so these are keys 241, 243, 289 and 310.
+        self.assertEqual([(v[0], v[1]) for v in found], [("step", 240), ("step", 242), ("step", 288), ("step", 309)])
 
     def test_five_passive_move_boards_rejected(self):
         def board(rows, goal=None):
