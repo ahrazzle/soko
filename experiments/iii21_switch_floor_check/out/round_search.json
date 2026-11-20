@@ -1,0 +1,46 @@
+[
+ {
+  "label": "record handoff key 195",
+  "S1_states": 2560,
+  "S1_exhausted": true,
+  "S1_cuts_start": 3,
+  "S1_cuts_least": 3,
+  "S2_layer0_states": 227584,
+  "S2_layer0_exhausted": true,
+  "S2_layer0_win": false,
+  "S2_layer1_samples": [
+   [
+    30001,
+    false
+   ],
+   [
+    30001,
+    false
+   ],
+   [
+    30001,
+    false
+   ],
+   [
+    30001,
+    false
+   ],
+   [
+    30001,
+    false
+   ],
+   [
+    1,
+    true
+   ],
+   [
+    30001,
+    false
+   ],
+   [
+    30001,
+    false
+   ]
+  ]
+ }
+]

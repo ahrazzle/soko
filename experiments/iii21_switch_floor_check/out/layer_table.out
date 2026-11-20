@@ -1,0 +1,230 @@
+pure floor bound (earliest handoff + floor + k), no search: {0: 262, 1: 263, 2: 264, 3: 265, 4: 266, 5: 267, 6: 268} ; k=9 gives 271
+[
+ {
+  "target": 270,
+  "k": 0,
+  "groups": 25,
+  "published_groups": 25,
+  "positions_published": 47644,
+  "groups_beyond_published_table": 0,
+  "first_unpublished": []
+ },
+ {
+  "target": 270,
+  "k": 1,
+  "groups": 21,
+  "published_groups": 21,
+  "positions_published": 18198,
+  "groups_beyond_published_table": 0,
+  "first_unpublished": []
+ },
+ {
+  "target": 270,
+  "k": 2,
+  "groups": 17,
+  "published_groups": 17,
+  "positions_published": 6508,
+  "groups_beyond_published_table": 0,
+  "first_unpublished": []
+ },
+ {
+  "target": 270,
+  "k": 3,
+  "groups": 13,
+  "published_groups": 13,
+  "positions_published": 2154,
+  "groups_beyond_published_table": 0,
+  "first_unpublished": []
+ },
+ {
+  "target": 270,
+  "k": 4,
+  "groups": 9,
+  "published_groups": 9,
+  "positions_published": 640,
+  "groups_beyond_published_table": 0,
+  "first_unpublished": []
+ },
+ {
+  "target": 270,
+  "k": 5,
+  "groups": 6,
+  "published_groups": 6,
+  "positions_published": 160,
+  "groups_beyond_published_table": 0,
+  "first_unpublished": []
+ },
+ {
+  "target": 270,
+  "k": 6,
+  "groups": 3,
+  "published_groups": 3,
+  "positions_published": 32,
+  "groups_beyond_published_table": 0,
+  "first_unpublished": []
+ },
+ {
+  "target": 271,
+  "k": 0,
+  "groups": 29,
+  "published_groups": 25,
+  "positions_published": 47644,
+  "groups_beyond_published_table": 4,
+  "first_unpublished": [
+   "194 T upper",
+   "195 F upper",
+   "196 F lower",
+   "196 T lower"
+  ]
+ },
+ {
+  "target": 271,
+  "k": 1,
+  "groups": 25,
+  "published_groups": 25,
+  "positions_published": 47644,
+  "groups_beyond_published_table": 0,
+  "first_unpublished": []
+ },
+ {
+  "target": 271,
+  "k": 2,
+  "groups": 21,
+  "published_groups": 21,
+  "positions_published": 18198,
+  "groups_beyond_published_table": 0,
+  "first_unpublished": []
+ },
+ {
+  "target": 271,
+  "k": 3,
+  "groups": 17,
+  "published_groups": 17,
+  "positions_published": 6508,
+  "groups_beyond_published_table": 0,
+  "first_unpublished": []
+ },
+ {
+  "target": 271,
+  "k": 4,
+  "groups": 13,
+  "published_groups": 13,
+  "positions_published": 2154,
+  "groups_beyond_published_table": 0,
+  "first_unpublished": []
+ },
+ {
+  "target": 271,
+  "k": 5,
+  "groups": 9,
+  "published_groups": 9,
+  "positions_published": 640,
+  "groups_beyond_published_table": 0,
+  "first_unpublished": []
+ },
+ {
+  "target": 271,
+  "k": 6,
+  "groups": 6,
+  "published_groups": 6,
+  "positions_published": 160,
+  "groups_beyond_published_table": 0,
+  "first_unpublished": []
+ },
+ {
+  "target": 272,
+  "k": 0,
+  "groups": 33,
+  "published_groups": 25,
+  "positions_published": 47644,
+  "groups_beyond_published_table": 8,
+  "first_unpublished": [
+   "194 T upper",
+   "195 F upper",
+   "195 T upper",
+   "196 F lower"
+  ]
+ },
+ {
+  "target": 272,
+  "k": 1,
+  "groups": 29,
+  "published_groups": 25,
+  "positions_published": 47644,
+  "groups_beyond_published_table": 4,
+  "first_unpublished": [
+   "194 T upper",
+   "195 F upper",
+   "196 F lower",
+   "196 T lower"
+  ]
+ },
+ {
+  "target": 272,
+  "k": 2,
+  "groups": 25,
+  "published_groups": 25,
+  "positions_published": 47644,
+  "groups_beyond_published_table": 0,
+  "first_unpublished": []
+ },
+ {
+  "target": 272,
+  "k": 3,
+  "groups": 21,
+  "published_groups": 21,
+  "positions_published": 18198,
+  "groups_beyond_published_table": 0,
+  "first_unpublished": []
+ },
+ {
+  "target": 272,
+  "k": 4,
+  "groups": 17,
+  "published_groups": 17,
+  "positions_published": 6508,
+  "groups_beyond_published_table": 0,
+  "first_unpublished": []
+ },
+ {
+  "target": 272,
+  "k": 5,
+  "groups": 13,
+  "published_groups": 13,
+  "positions_published": 2154,
+  "groups_beyond_published_table": 0,
+  "first_unpublished": []
+ },
+ {
+  "target": 272,
+  "k": 6,
+  "groups": 9,
+  "published_groups": 9,
+  "positions_published": 640,
+  "groups_beyond_published_table": 0,
+  "first_unpublished": []
+ }
+]
+
+target k  groups pub_positions  beyond_table
+270 0 25 47644 0
+270 1 21 18198 0
+270 2 17 6508 0
+270 3 13 2154 0
+270 4 9 640 0
+270 5 6 160 0
+270 6 3 32 0
+271 0 29 47644 4
+271 1 25 47644 0
+271 2 21 18198 0
+271 3 17 6508 0
+271 4 13 2154 0
+271 5 9 640 0
+271 6 6 160 0
+272 0 33 47644 8
+272 1 29 47644 4
+272 2 25 47644 0
+272 3 21 18198 0
+272 4 17 6508 0
+272 5 13 2154 0
+272 6 9 640 0

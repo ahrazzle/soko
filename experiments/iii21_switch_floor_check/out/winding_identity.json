@@ -1,0 +1,232 @@
+{
+ "III-1": {
+  "presses": 3,
+  "winding": 3,
+  "tail_presses_after_last_action": 0,
+  "transitions": 3,
+  "mismatched_transitions": [],
+  "n_mismatch": 0,
+  "identity_holds": true,
+  "won": true
+ },
+ "III-2": {
+  "presses": 0,
+  "winding": 0,
+  "tail_presses_after_last_action": 0,
+  "transitions": 0,
+  "mismatched_transitions": [],
+  "n_mismatch": 0,
+  "identity_holds": true,
+  "won": true
+ },
+ "III-3": {
+  "presses": 0,
+  "winding": 0,
+  "tail_presses_after_last_action": 0,
+  "transitions": 0,
+  "mismatched_transitions": [],
+  "n_mismatch": 0,
+  "identity_holds": true,
+  "won": true
+ },
+ "III-4": {
+  "presses": 0,
+  "winding": 0,
+  "tail_presses_after_last_action": 0,
+  "transitions": 0,
+  "mismatched_transitions": [],
+  "n_mismatch": 0,
+  "identity_holds": true,
+  "won": true
+ },
+ "III-5": {
+  "presses": 4,
+  "winding": 4,
+  "tail_presses_after_last_action": 0,
+  "transitions": 4,
+  "mismatched_transitions": [],
+  "n_mismatch": 0,
+  "identity_holds": true,
+  "won": true
+ },
+ "III-6": {
+  "presses": 6,
+  "winding": 6,
+  "tail_presses_after_last_action": 0,
+  "transitions": 6,
+  "mismatched_transitions": [],
+  "n_mismatch": 0,
+  "identity_holds": true,
+  "won": true
+ },
+ "III-7": {
+  "presses": 19,
+  "winding": 19,
+  "tail_presses_after_last_action": 0,
+  "transitions": 19,
+  "mismatched_transitions": [],
+  "n_mismatch": 0,
+  "identity_holds": true,
+  "won": true
+ },
+ "III-8": {
+  "presses": 4,
+  "winding": 4,
+  "tail_presses_after_last_action": 0,
+  "transitions": 4,
+  "mismatched_transitions": [],
+  "n_mismatch": 0,
+  "identity_holds": true,
+  "won": true
+ },
+ "III-9": {
+  "presses": 9,
+  "winding": 9,
+  "tail_presses_after_last_action": 0,
+  "transitions": 7,
+  "mismatched_transitions": [],
+  "n_mismatch": 0,
+  "identity_holds": true,
+  "won": true
+ },
+ "III-10": {
+  "presses": 4,
+  "winding": 4,
+  "tail_presses_after_last_action": 0,
+  "transitions": 4,
+  "mismatched_transitions": [],
+  "n_mismatch": 0,
+  "identity_holds": true,
+  "won": true
+ },
+ "III-11": {
+  "presses": 18,
+  "winding": 18,
+  "tail_presses_after_last_action": 0,
+  "transitions": 18,
+  "mismatched_transitions": [],
+  "n_mismatch": 0,
+  "identity_holds": true,
+  "won": true
+ },
+ "III-12": {
+  "presses": 6,
+  "winding": 6,
+  "tail_presses_after_last_action": 0,
+  "transitions": 6,
+  "mismatched_transitions": [],
+  "n_mismatch": 0,
+  "identity_holds": true,
+  "won": true
+ },
+ "III-13": {
+  "presses": 13,
+  "winding": 13,
+  "tail_presses_after_last_action": 0,
+  "transitions": 11,
+  "mismatched_transitions": [],
+  "n_mismatch": 0,
+  "identity_holds": true,
+  "won": true
+ },
+ "III-14": {
+  "presses": 5,
+  "winding": 5,
+  "tail_presses_after_last_action": 0,
+  "transitions": 5,
+  "mismatched_transitions": [],
+  "n_mismatch": 0,
+  "identity_holds": true,
+  "won": true
+ },
+ "III-15": {
+  "presses": 22,
+  "winding": 22,
+  "tail_presses_after_last_action": 0,
+  "transitions": 22,
+  "mismatched_transitions": [],
+  "n_mismatch": 0,
+  "identity_holds": true,
+  "won": true
+ },
+ "III-16": {
+  "presses": 6,
+  "winding": 6,
+  "tail_presses_after_last_action": 0,
+  "transitions": 6,
+  "mismatched_transitions": [],
+  "n_mismatch": 0,
+  "identity_holds": true,
+  "won": true
+ },
+ "III-17": {
+  "presses": 12,
+  "winding": 12,
+  "tail_presses_after_last_action": 0,
+  "transitions": 10,
+  "mismatched_transitions": [],
+  "n_mismatch": 0,
+  "identity_holds": true,
+  "won": true
+ },
+ "III-18": {
+  "presses": 15,
+  "winding": 15,
+  "tail_presses_after_last_action": 0,
+  "transitions": 10,
+  "mismatched_transitions": [],
+  "n_mismatch": 0,
+  "identity_holds": true,
+  "won": true
+ },
+ "III-19": {
+  "presses": 24,
+  "winding": 24,
+  "tail_presses_after_last_action": 0,
+  "transitions": 14,
+  "mismatched_transitions": [],
+  "n_mismatch": 0,
+  "identity_holds": true,
+  "won": true
+ },
+ "III-20": {
+  "presses": 23,
+  "winding": 23,
+  "tail_presses_after_last_action": 0,
+  "transitions": 15,
+  "mismatched_transitions": [],
+  "n_mismatch": 0,
+  "identity_holds": true,
+  "won": true
+ },
+ "III-21": {
+  "presses": 75,
+  "winding": 75,
+  "tail_presses_after_last_action": 0,
+  "transitions": 36,
+  "mismatched_transitions": [],
+  "n_mismatch": 0,
+  "identity_holds": true,
+  "won": true
+ },
+ "III-22": {
+  "presses": 0,
+  "winding": 0,
+  "tail_presses_after_last_action": 0,
+  "transitions": 0,
+  "mismatched_transitions": [],
+  "n_mismatch": 0,
+  "identity_holds": true,
+  "won": true
+ },
+ "III-21-suffix-195": {
+  "presses": 27,
+  "winding": 27,
+  "tail_presses_after_last_action": 0,
+  "transitions": 13,
+  "mismatched_transitions": [],
+  "n_mismatch": 0,
+  "identity_holds": true,
+  "won": true
+ }
+}
