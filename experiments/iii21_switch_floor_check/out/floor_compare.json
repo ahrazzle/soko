@@ -1,0 +1,1541 @@
+[
+ {
+  "t": 195,
+  "actor": "F",
+  "entrance": "upper",
+  "published_floor": 75,
+  "active": "F",
+  "on_goal": [
+   "P"
+  ],
+  "need_strict": [
+   "F",
+   "T",
+   "W",
+   "B",
+   "D"
+  ],
+  "a_min_assignment_sum": 58,
+  "best_perm": [
+   0,
+   2,
+   4,
+   3,
+   1,
+   5
+  ],
+  "b_strict_all_unfinished_act": 5,
+  "b_druid_only": 5,
+  "c_strict": 63,
+  "c_druid": 63,
+  "h_OC": "20",
+  "H_OC": 20,
+  "gap_to_floor_a": 17,
+  "gap_to_floor_c_strict": 12,
+  "prefix_sha": "3ea248ab1583",
+  "prefix": "RRRDRRDRRRURRDRRUURRRRRLLLLDDAUAADLLULLLLLDDAAALLLULDDDRDLULDDLLUUAAAULLULAAUADLLLLLAAADLAAALDADRAAAALLDAULAALARUAAARRRRRAUAARDRAAARRDRRUADDRRDDRLAAUAAAULLRRURURDDAURULDDRRRRLLLLAAUUAAARDDRRRDRRR"
+ },
+ {
+  "t": 202,
+  "actor": "F",
+  "entrance": "upper",
+  "published_floor": 75,
+  "active": "F",
+  "on_goal": [
+   "P"
+  ],
+  "need_strict": [
+   "F",
+   "T",
+   "W",
+   "B",
+   "D"
+  ],
+  "a_min_assignment_sum": 59,
+  "best_perm": [
+   0,
+   2,
+   4,
+   3,
+   1,
+   5
+  ],
+  "b_strict_all_unfinished_act": 5,
+  "b_druid_only": 5,
+  "c_strict": 64,
+  "c_druid": 64,
+  "h_OC": "21",
+  "H_OC": 21,
+  "gap_to_floor_a": 16,
+  "gap_to_floor_c_strict": 11,
+  "prefix_sha": "7749a6b57054",
+  "prefix": "RRRDRRDRRRURRDRRUURRRRRLLLLDDAUAADLLULLLLLDDAAALLLULDDDRDLULDDLLUUAAAULLULAAUADLLLLLAAADLAAALDADRAAAALLDAULAALARUAAARRRRRAUAARDRAAARRDRRUADDRRDDRLAAUAAAULLRRURURDDAURULDDRRRRLLLLAAUUAAARDDRRRDRRAAAAAUAR"
+ },
+ {
+  "t": 198,
+  "actor": "F",
+  "entrance": "lower",
+  "published_floor": 74,
+  "active": "F",
+  "on_goal": [
+   "P"
+  ],
+  "need_strict": [
+   "F",
+   "T",
+   "W",
+   "B",
+   "D"
+  ],
+  "a_min_assignment_sum": 59,
+  "best_perm": [
+   0,
+   2,
+   4,
+   3,
+   1,
+   5
+  ],
+  "b_strict_all_unfinished_act": 5,
+  "b_druid_only": 5,
+  "c_strict": 64,
+  "c_druid": 64,
+  "h_OC": "21",
+  "H_OC": 21,
+  "gap_to_floor_a": 15,
+  "gap_to_floor_c_strict": 10,
+  "prefix_sha": "d8a2d719988e",
+  "prefix": "RRRDRRDRRRURRDRRUURRRRRLLLLDDAUAADLLULLLLLDDAAALLLULDDDRDLULDDLLUUAAAULLULAAUADLLLLLAAADLAAALDADRAAAALDLUDAULAALARUAAARRRRRAUAARDRAAARRDRRUADDRRDDRLAAUAAAULLRRURURDDAURULDDRRRRLLLLAAUUAAARDDRRRDDRRR"
+ },
+ {
+  "t": 205,
+  "actor": "F",
+  "entrance": "lower",
+  "published_floor": 74,
+  "active": "F",
+  "on_goal": [
+   "P"
+  ],
+  "need_strict": [
+   "F",
+   "T",
+   "W",
+   "B",
+   "D"
+  ],
+  "a_min_assignment_sum": 58,
+  "best_perm": [
+   5,
+   2,
+   4,
+   0,
+   1,
+   3
+  ],
+  "b_strict_all_unfinished_act": 5,
+  "b_druid_only": 5,
+  "c_strict": 63,
+  "c_druid": 63,
+  "h_OC": "20",
+  "H_OC": 20,
+  "gap_to_floor_a": 16,
+  "gap_to_floor_c_strict": 11,
+  "prefix_sha": "dd66096e7fae",
+  "prefix": "RRRDRRDRRRURRDRRUURRRRRLLLLDDAUAADLLULLLLLDDAAALLLULDDDRDLULDDLLUUAAAULLULAAUADLLLLLAAADLAAALDADRAAAALDLUDAULAALARUAAARRRRRAUAARDRAAARRDRRUADDRRDDRLAAUAAAULLRRURURDDAURULDDRRRRLLLLAAUUAAARDDRRRDDRRAAAAAUAR"
+ },
+ {
+  "t": 205,
+  "actor": "F",
+  "entrance": "lower",
+  "published_floor": 74,
+  "active": "F",
+  "on_goal": [
+   "P"
+  ],
+  "need_strict": [
+   "F",
+   "T",
+   "W",
+   "B",
+   "D"
+  ],
+  "a_min_assignment_sum": 59,
+  "best_perm": [
+   0,
+   2,
+   4,
+   3,
+   1,
+   5
+  ],
+  "b_strict_all_unfinished_act": 5,
+  "b_druid_only": 5,
+  "c_strict": 64,
+  "c_druid": 64,
+  "h_OC": "21",
+  "H_OC": 21,
+  "gap_to_floor_a": 15,
+  "gap_to_floor_c_strict": 10,
+  "prefix_sha": "39cb0b27433e",
+  "prefix": "RRRDRRDRRRURRDRRUURRRRRLLLLDDAUAADLLULLLLLDDAAALLLULDDDRDLULDDLLUUAAAULLULAAUADLLLLLAAADLAAALDADRAAAALDLUDAULAALARUAAARRRRRAUAARDRAAARRDRRUADDRRDDRLAAUAAAULLRRURURDDAURULDDRRRRLLLLAAUUAAARDDRRRDDRRAAAAADAR"
+ },
+ {
+  "t": 205,
+  "actor": "F",
+  "entrance": "upper",
+  "published_floor": 75,
+  "active": "F",
+  "on_goal": [
+   "P"
+  ],
+  "need_strict": [
+   "F",
+   "T",
+   "W",
+   "B",
+   "D"
+  ],
+  "a_min_assignment_sum": 59,
+  "best_perm": [
+   0,
+   2,
+   4,
+   3,
+   1,
+   5
+  ],
+  "b_strict_all_unfinished_act": 5,
+  "b_druid_only": 5,
+  "c_strict": 64,
+  "c_druid": 64,
+  "h_OC": "21",
+  "H_OC": 21,
+  "gap_to_floor_a": 16,
+  "gap_to_floor_c_strict": 11,
+  "prefix_sha": "53182b194100",
+  "prefix": "RRRDRRDRRRURRDRRUURRRRRLLLLDDAUAADLLULLLLLDDAAALLLULDDDRDLULDDLLUUAAAULLULAAUADLLLLLAAADLAAALDADRAAAALDLUDAULAALARUAAARRRRRAUAARDRAAARRDRRUADDRRDDRLAAUAAAULLRRURURDDAURULDDRRRRLLLLAAUUAAARDDRRRDRRAAAAAULAR"
+ },
+ {
+  "t": 206,
+  "actor": "F",
+  "entrance": "lower",
+  "published_floor": 74,
+  "active": "F",
+  "on_goal": [
+   "P"
+  ],
+  "need_strict": [
+   "F",
+   "T",
+   "W",
+   "B",
+   "D"
+  ],
+  "a_min_assignment_sum": 59,
+  "best_perm": [
+   0,
+   2,
+   4,
+   3,
+   1,
+   5
+  ],
+  "b_strict_all_unfinished_act": 5,
+  "b_druid_only": 5,
+  "c_strict": 64,
+  "c_druid": 64,
+  "h_OC": "21",
+  "H_OC": 21,
+  "gap_to_floor_a": 15,
+  "gap_to_floor_c_strict": 10,
+  "prefix_sha": "8d7e23682c68",
+  "prefix": "RRRDRRDRRRURRDRRUURRRRRLLLLDDAUAADLLULLLLLDDAAALLLULDDDRDLULDDLLUUAAAULLULAAUADLLLLLAAADLAAALDADRAAAALDLUDAULAALARUAAARRRRRAUAARDRAAARRDRRUADDRRDDRLAAUAAAULLRRURURDDAURULDDRRRRLLLLAAUUAAARDDRRLLULRDRRRDDRRR"
+ },
+ {
+  "t": 206,
+  "actor": "F",
+  "entrance": "lower",
+  "published_floor": 74,
+  "active": "F",
+  "on_goal": [
+   "P"
+  ],
+  "need_strict": [
+   "F",
+   "T",
+   "W",
+   "B",
+   "D"
+  ],
+  "a_min_assignment_sum": 57,
+  "best_perm": [
+   5,
+   2,
+   4,
+   0,
+   1,
+   3
+  ],
+  "b_strict_all_unfinished_act": 5,
+  "b_druid_only": 5,
+  "c_strict": 62,
+  "c_druid": 62,
+  "h_OC": "20",
+  "H_OC": 20,
+  "gap_to_floor_a": 17,
+  "gap_to_floor_c_strict": 12,
+  "prefix_sha": "64786b6fc37a",
+  "prefix": "RRRDRRDRRRURRDRRUURRRRRLLLLDDAUAADLLULLLLLDDAAALLLULDDDRDLULDDLLUUAAAULLULAAUADLLLLLAAADLAAALDADRAAAALDLUDAULAALARUAAARRRRRAUAARDRAAARRDRRUADDRRDDRLAAUAAAULLRRURURDDAURULDDRRRRLLLLAAUUAAARDDRRRDDRRAUAAAAUAR"
+ },
+ {
+  "t": 206,
+  "actor": "F",
+  "entrance": "lower",
+  "published_floor": 74,
+  "active": "F",
+  "on_goal": [
+   "P"
+  ],
+  "need_strict": [
+   "F",
+   "T",
+   "W",
+   "B",
+   "D"
+  ],
+  "a_min_assignment_sum": 58,
+  "best_perm": [
+   0,
+   2,
+   4,
+   3,
+   1,
+   5
+  ],
+  "b_strict_all_unfinished_act": 5,
+  "b_druid_only": 5,
+  "c_strict": 63,
+  "c_druid": 63,
+  "h_OC": "21",
+  "H_OC": 21,
+  "gap_to_floor_a": 16,
+  "gap_to_floor_c_strict": 11,
+  "prefix_sha": "f83a639861d7",
+  "prefix": "RRRDRRDRRRURRDRRUURRRRRLLLLDDAUAADLLULLLLLDDAAALLLULDDDRDLULDDLLUUAAAULLULAAUADLLLLLAAADLAAALDADRAAAALDLUDAULAALARUAAARRRRRAUAARDRAAARRDRRUADDRRDDRLAAUAAAULLRRURURDDAURULDDRRRRLLLLAAUUAAARDDRRRDDRRAUAAAADAR"
+ },
+ {
+  "t": 206,
+  "actor": "F",
+  "entrance": "lower",
+  "published_floor": 74,
+  "active": "F",
+  "on_goal": [
+   "P"
+  ],
+  "need_strict": [
+   "F",
+   "T",
+   "W",
+   "B",
+   "D"
+  ],
+  "a_min_assignment_sum": 58,
+  "best_perm": [
+   4,
+   2,
+   0,
+   3,
+   1,
+   5
+  ],
+  "b_strict_all_unfinished_act": 5,
+  "b_druid_only": 5,
+  "c_strict": 63,
+  "c_druid": 63,
+  "h_OC": "20",
+  "H_OC": 20,
+  "gap_to_floor_a": 16,
+  "gap_to_floor_c_strict": 11,
+  "prefix_sha": "fc2ca935b853",
+  "prefix": "RRRDRRDRRRURRDRRUURRRRRLLLLDDAUAADLLULLLLLDDAAALLLULDDDRDLULDDLLUUAAAULLULAAUADLLLLLAAADLAAALDADRAAAALDLUDAULAALARUAAARRRRRAUAARDRAAARRDRRUADDRRDDRLAAUAAAULLRRURURDDAURULDDRRRRLLLLAAUUAAARDDRRRDDRRAAUAAAUAR"
+ },
+ {
+  "t": 206,
+  "actor": "F",
+  "entrance": "lower",
+  "published_floor": 74,
+  "active": "F",
+  "on_goal": [
+   "P"
+  ],
+  "need_strict": [
+   "F",
+   "T",
+   "W",
+   "B",
+   "D"
+  ],
+  "a_min_assignment_sum": 58,
+  "best_perm": [
+   4,
+   2,
+   0,
+   3,
+   1,
+   5
+  ],
+  "b_strict_all_unfinished_act": 5,
+  "b_druid_only": 5,
+  "c_strict": 63,
+  "c_druid": 63,
+  "h_OC": "21",
+  "H_OC": 21,
+  "gap_to_floor_a": 16,
+  "gap_to_floor_c_strict": 11,
+  "prefix_sha": "c7f1d28c5aba",
+  "prefix": "RRRDRRDRRRURRDRRUURRRRRLLLLDDAUAADLLULLLLLDDAAALLLULDDDRDLULDDLLUUAAAULLULAAUADLLLLLAAADLAAALDADRAAAALDLUDAULAALARUAAARRRRRAUAARDRAAARRDRRUADDRRDDRLAAUAAAULLRRURURDDAURULDDRRRRLLLLAAUUAAARDDRRRDDRRAAUAAADAR"
+ },
+ {
+  "t": 206,
+  "actor": "F",
+  "entrance": "lower",
+  "published_floor": 74,
+  "active": "F",
+  "on_goal": [
+   "P"
+  ],
+  "need_strict": [
+   "F",
+   "T",
+   "W",
+   "B",
+   "D"
+  ],
+  "a_min_assignment_sum": 57,
+  "best_perm": [
+   5,
+   2,
+   4,
+   0,
+   1,
+   3
+  ],
+  "b_strict_all_unfinished_act": 5,
+  "b_druid_only": 5,
+  "c_strict": 62,
+  "c_druid": 62,
+  "h_OC": "20",
+  "H_OC": 20,
+  "gap_to_floor_a": 17,
+  "gap_to_floor_c_strict": 12,
+  "prefix_sha": "4d0e897ac09e",
+  "prefix": "RRRDRRDRRRURRDRRUURRRRRLLLLDDAUAADLLULLLLLDDAAALLLULDDDRDLULDDLLUUAAAULLULAAUADLLLLLAAADLAAALDADRAAAALDLUDAULAALARUAAARRRRRAUAARDRAAARRDRRUADDRRDDRLAAUAAAULLRRURURDDAURULDDRRRRLLLLAAUUAAARDDRRRDDRRAARAAAUAR"
+ },
+ {
+  "t": 206,
+  "actor": "F",
+  "entrance": "lower",
+  "published_floor": 74,
+  "active": "F",
+  "on_goal": [
+   "P"
+  ],
+  "need_strict": [
+   "F",
+   "T",
+   "W",
+   "B",
+   "D"
+  ],
+  "a_min_assignment_sum": 58,
+  "best_perm": [
+   0,
+   2,
+   4,
+   3,
+   1,
+   5
+  ],
+  "b_strict_all_unfinished_act": 5,
+  "b_druid_only": 5,
+  "c_strict": 63,
+  "c_druid": 63,
+  "h_OC": "21",
+  "H_OC": 21,
+  "gap_to_floor_a": 16,
+  "gap_to_floor_c_strict": 11,
+  "prefix_sha": "60cb2ff98e55",
+  "prefix": "RRRDRRDRRRURRDRRUURRRRRLLLLDDAUAADLLULLLLLDDAAALLLULDDDRDLULDDLLUUAAAULLULAAUADLLLLLAAADLAAALDADRAAAALDLUDAULAALARUAAARRRRRAUAARDRAAARRDRRUADDRRDDRLAAUAAAULLRRURURDDAURULDDRRRRLLLLAAUUAAARDDRRRDDRRAARAAADAR"
+ },
+ {
+  "t": 206,
+  "actor": "F",
+  "entrance": "lower",
+  "published_floor": 74,
+  "active": "F",
+  "on_goal": [],
+  "need_strict": [
+   "F",
+   "T",
+   "W",
+   "P",
+   "B",
+   "D"
+  ],
+  "a_min_assignment_sum": 57,
+  "best_perm": [
+   5,
+   2,
+   4,
+   0,
+   1,
+   3
+  ],
+  "b_strict_all_unfinished_act": 5,
+  "b_druid_only": 5,
+  "c_strict": 62,
+  "c_druid": 62,
+  "h_OC": "20",
+  "H_OC": 20,
+  "gap_to_floor_a": 17,
+  "gap_to_floor_c_strict": 12,
+  "prefix_sha": "c0901cf65191",
+  "prefix": "RRRDRRDRRRURRDRRUURRRRRLLLLDDAUAADLLULLLLLDDAAALLLULDDDRDLULDDLLUUAAAULLULAAUADLLLLLAAADLAAALDADRAAAALDLUDAULAALARUAAARRRRRAUAARDRAAARRDRRUADDRRDDRLAAUAAAULLRRURURDDAURULDDRRRRLLLLAAUUAAARDDRRRDDRRAAAUAAUAR"
+ },
+ {
+  "t": 206,
+  "actor": "F",
+  "entrance": "lower",
+  "published_floor": 74,
+  "active": "F",
+  "on_goal": [],
+  "need_strict": [
+   "F",
+   "T",
+   "W",
+   "P",
+   "B",
+   "D"
+  ],
+  "a_min_assignment_sum": 58,
+  "best_perm": [
+   3,
+   2,
+   4,
+   0,
+   1,
+   5
+  ],
+  "b_strict_all_unfinished_act": 5,
+  "b_druid_only": 5,
+  "c_strict": 63,
+  "c_druid": 63,
+  "h_OC": "21",
+  "H_OC": 21,
+  "gap_to_floor_a": 16,
+  "gap_to_floor_c_strict": 11,
+  "prefix_sha": "2c5bd35ad6c9",
+  "prefix": "RRRDRRDRRRURRDRRUURRRRRLLLLDDAUAADLLULLLLLDDAAALLLULDDDRDLULDDLLUUAAAULLULAAUADLLLLLAAADLAAALDADRAAAALDLUDAULAALARUAAARRRRRAUAARDRAAARRDRRUADDRRDDRLAAUAAAULLRRURURDDAURULDDRRRRLLLLAAUUAAARDDRRRDDRRAAAUAADAR"
+ },
+ {
+  "t": 206,
+  "actor": "F",
+  "entrance": "lower",
+  "published_floor": 74,
+  "active": "F",
+  "on_goal": [],
+  "need_strict": [
+   "F",
+   "T",
+   "W",
+   "P",
+   "B",
+   "D"
+  ],
+  "a_min_assignment_sum": 59,
+  "best_perm": [
+   5,
+   2,
+   4,
+   0,
+   1,
+   3
+  ],
+  "b_strict_all_unfinished_act": 5,
+  "b_druid_only": 5,
+  "c_strict": 64,
+  "c_druid": 64,
+  "h_OC": "20",
+  "H_OC": 20,
+  "gap_to_floor_a": 15,
+  "gap_to_floor_c_strict": 10,
+  "prefix_sha": "791c2cf22410",
+  "prefix": "RRRDRRDRRRURRDRRUURRRRRLLLLDDAUAADLLULLLLLDDAAALLLULDDDRDLULDDLLUUAAAULLULAAUADLLLLLAAADLAAALDADRAAAALDLUDAULAALARUAAARRRRRAUAARDRAAARRDRRUADDRRDDRLAAUAAAULLRRURURDDAURULDDRRRRLLLLAAUUAAARDDRRRDDRRAAADAAUAR"
+ },
+ {
+  "t": 206,
+  "actor": "F",
+  "entrance": "lower",
+  "published_floor": 74,
+  "active": "F",
+  "on_goal": [],
+  "need_strict": [
+   "F",
+   "T",
+   "W",
+   "P",
+   "B",
+   "D"
+  ],
+  "a_min_assignment_sum": 60,
+  "best_perm": [
+   0,
+   2,
+   4,
+   3,
+   1,
+   5
+  ],
+  "b_strict_all_unfinished_act": 5,
+  "b_druid_only": 5,
+  "c_strict": 65,
+  "c_druid": 65,
+  "h_OC": "21",
+  "H_OC": 21,
+  "gap_to_floor_a": 14,
+  "gap_to_floor_c_strict": 9,
+  "prefix_sha": "8cfe7d4e6bb7",
+  "prefix": "RRRDRRDRRRURRDRRUURRRRRLLLLDDAUAADLLULLLLLDDAAALLLULDDDRDLULDDLLUUAAAULLULAAUADLLLLLAAADLAAALDADRAAAALDLUDAULAALARUAAARRRRRAUAARDRAAARRDRRUADDRRDDRLAAUAAAULLRRURURDDAURULDDRRRRLLLLAAUUAAARDDRRRDDRRAAADAADAR"
+ },
+ {
+  "t": 206,
+  "actor": "F",
+  "entrance": "lower",
+  "published_floor": 74,
+  "active": "F",
+  "on_goal": [],
+  "need_strict": [
+   "F",
+   "T",
+   "W",
+   "P",
+   "B",
+   "D"
+  ],
+  "a_min_assignment_sum": 57,
+  "best_perm": [
+   5,
+   2,
+   4,
+   0,
+   1,
+   3
+  ],
+  "b_strict_all_unfinished_act": 5,
+  "b_druid_only": 5,
+  "c_strict": 62,
+  "c_druid": 62,
+  "h_OC": "20",
+  "H_OC": 20,
+  "gap_to_floor_a": 17,
+  "gap_to_floor_c_strict": 12,
+  "prefix_sha": "566301d3a2f6",
+  "prefix": "RRRDRRDRRRURRDRRUURRRRRLLLLDDAUAADLLULLLLLDDAAALLLULDDDRDLULDDLLUUAAAULLULAAUADLLLLLAAADLAAALDADRAAAALDLUDAULAALARUAAARRRRRAUAARDRAAARRDRRUADDRRDDRLAAUAAAULLRRURURDDAURULDDRRRRLLLLAAUUAAARDDRRRDDRRAAALAAUAR"
+ },
+ {
+  "t": 206,
+  "actor": "F",
+  "entrance": "lower",
+  "published_floor": 74,
+  "active": "F",
+  "on_goal": [],
+  "need_strict": [
+   "F",
+   "T",
+   "W",
+   "P",
+   "B",
+   "D"
+  ],
+  "a_min_assignment_sum": 58,
+  "best_perm": [
+   3,
+   2,
+   4,
+   0,
+   1,
+   5
+  ],
+  "b_strict_all_unfinished_act": 5,
+  "b_druid_only": 5,
+  "c_strict": 63,
+  "c_druid": 63,
+  "h_OC": "21",
+  "H_OC": 21,
+  "gap_to_floor_a": 16,
+  "gap_to_floor_c_strict": 11,
+  "prefix_sha": "a0776cfba91a",
+  "prefix": "RRRDRRDRRRURRDRRUURRRRRLLLLDDAUAADLLULLLLLDDAAALLLULDDDRDLULDDLLUUAAAULLULAAUADLLLLLAAADLAAALDADRAAAALDLUDAULAALARUAAARRRRRAUAARDRAAARRDRRUADDRRDDRLAAUAAAULLRRURURDDAURULDDRRRRLLLLAAUUAAARDDRRRDDRRAAALAADAR"
+ },
+ {
+  "t": 206,
+  "actor": "F",
+  "entrance": "lower",
+  "published_floor": 74,
+  "active": "F",
+  "on_goal": [
+   "P"
+  ],
+  "need_strict": [
+   "F",
+   "T",
+   "W",
+   "B",
+   "D"
+  ],
+  "a_min_assignment_sum": 59,
+  "best_perm": [
+   5,
+   2,
+   4,
+   0,
+   1,
+   3
+  ],
+  "b_strict_all_unfinished_act": 5,
+  "b_druid_only": 5,
+  "c_strict": 64,
+  "c_druid": 64,
+  "h_OC": "20",
+  "H_OC": 20,
+  "gap_to_floor_a": 15,
+  "gap_to_floor_c_strict": 10,
+  "prefix_sha": "38c77a9daebc",
+  "prefix": "RRRDRRDRRRURRDRRUURRRRRLLLLDDAUAADLLULLLLLDDAAALLLULDDDRDLULDDLLUUAAAULLULAAUADLLLLLAAADLAAALDADRAAAALDLUDAULAALARUAAARRRRRAUAARDRAAARRDRRUADDRRDDRLAAUAAAULLRRURURDDAURULDDRRRRLLLLAAUUAAARDDRRRDDRRAAAAUAUAR"
+ },
+ {
+  "t": 206,
+  "actor": "F",
+  "entrance": "lower",
+  "published_floor": 74,
+  "active": "F",
+  "on_goal": [
+   "P"
+  ],
+  "need_strict": [
+   "F",
+   "T",
+   "W",
+   "B",
+   "D"
+  ],
+  "a_min_assignment_sum": 60,
+  "best_perm": [
+   0,
+   2,
+   4,
+   3,
+   1,
+   5
+  ],
+  "b_strict_all_unfinished_act": 5,
+  "b_druid_only": 5,
+  "c_strict": 65,
+  "c_druid": 65,
+  "h_OC": "21",
+  "H_OC": 21,
+  "gap_to_floor_a": 14,
+  "gap_to_floor_c_strict": 9,
+  "prefix_sha": "af06b25cde0f",
+  "prefix": "RRRDRRDRRRURRDRRUURRRRRLLLLDDAUAADLLULLLLLDDAAALLLULDDDRDLULDDLLUUAAAULLULAAUADLLLLLAAADLAAALDADRAAAALDLUDAULAALARUAAARRRRRAUAARDRAAARRDRRUADDRRDDRLAAUAAAULLRRURURDDAURULDDRRRRLLLLAAUUAAARDDRRRDDRRAAAAUADAR"
+ },
+ {
+  "t": 206,
+  "actor": "F",
+  "entrance": "lower",
+  "published_floor": 74,
+  "active": "F",
+  "on_goal": [
+   "P"
+  ],
+  "need_strict": [
+   "F",
+   "T",
+   "W",
+   "B",
+   "D"
+  ],
+  "a_min_assignment_sum": 59,
+  "best_perm": [
+   5,
+   2,
+   4,
+   0,
+   1,
+   3
+  ],
+  "b_strict_all_unfinished_act": 5,
+  "b_druid_only": 5,
+  "c_strict": 64,
+  "c_druid": 64,
+  "h_OC": "20",
+  "H_OC": 20,
+  "gap_to_floor_a": 15,
+  "gap_to_floor_c_strict": 10,
+  "prefix_sha": "0643678d6d35",
+  "prefix": "RRRDRRDRRRURRDRRUURRRRRLLLLDDAUAADLLULLLLLDDAAALLLULDDDRDLULDDLLUUAAAULLULAAUADLLLLLAAADLAAALDADRAAAALDLUDAULAALARUAAARRRRRAUAARDRAAARRDRRUADDRRDDRLAAUAAAULLRRURURDDAURULDDRRRRLLLLAAUUAAARDDRRRDDRRAAAADAUAR"
+ },
+ {
+  "t": 206,
+  "actor": "F",
+  "entrance": "lower",
+  "published_floor": 74,
+  "active": "F",
+  "on_goal": [
+   "P"
+  ],
+  "need_strict": [
+   "F",
+   "T",
+   "W",
+   "B",
+   "D"
+  ],
+  "a_min_assignment_sum": 60,
+  "best_perm": [
+   0,
+   2,
+   4,
+   3,
+   1,
+   5
+  ],
+  "b_strict_all_unfinished_act": 5,
+  "b_druid_only": 5,
+  "c_strict": 65,
+  "c_druid": 65,
+  "h_OC": "21",
+  "H_OC": 21,
+  "gap_to_floor_a": 14,
+  "gap_to_floor_c_strict": 9,
+  "prefix_sha": "6d3a6780c238",
+  "prefix": "RRRDRRDRRRURRDRRUURRRRRLLLLDDAUAADLLULLLLLDDAAALLLULDDDRDLULDDLLUUAAAULLULAAUADLLLLLAAADLAAALDADRAAAALDLUDAULAALARUAAARRRRRAUAARDRAAARRDRRUADDRRDDRLAAUAAAULLRRURURDDAURULDDRRRRLLLLAAUUAAARDDRRRDDRRAAAADADAR"
+ },
+ {
+  "t": 206,
+  "actor": "F",
+  "entrance": "lower",
+  "published_floor": 74,
+  "active": "F",
+  "on_goal": [
+   "P"
+  ],
+  "need_strict": [
+   "F",
+   "T",
+   "W",
+   "B",
+   "D"
+  ],
+  "a_min_assignment_sum": 57,
+  "best_perm": [
+   5,
+   2,
+   4,
+   0,
+   1,
+   3
+  ],
+  "b_strict_all_unfinished_act": 5,
+  "b_druid_only": 5,
+  "c_strict": 62,
+  "c_druid": 62,
+  "h_OC": "20",
+  "H_OC": 20,
+  "gap_to_floor_a": 17,
+  "gap_to_floor_c_strict": 12,
+  "prefix_sha": "d4c6c2c486b0",
+  "prefix": "RRRDRRDRRRURRDRRUURRRRRLLLLDDAUAADLLULLLLLDDAAALLLULDDDRDLULDDLLUUAAAULLULAAUADLLLLLAAADLAAALDADRAAAALDLUDAULAALARUAAARRRRRAUAARDRAAARRDRRUADDRRDDRLAAUAAAULLRRURURDDAURULDDRRRRLLLLAAUUAAARDDRRRDDRRAAAALAUAR"
+ },
+ {
+  "t": 206,
+  "actor": "F",
+  "entrance": "lower",
+  "published_floor": 74,
+  "active": "F",
+  "on_goal": [
+   "P"
+  ],
+  "need_strict": [
+   "F",
+   "T",
+   "W",
+   "B",
+   "D"
+  ],
+  "a_min_assignment_sum": 58,
+  "best_perm": [
+   0,
+   2,
+   4,
+   3,
+   1,
+   5
+  ],
+  "b_strict_all_unfinished_act": 5,
+  "b_druid_only": 5,
+  "c_strict": 63,
+  "c_druid": 63,
+  "h_OC": "21",
+  "H_OC": 21,
+  "gap_to_floor_a": 16,
+  "gap_to_floor_c_strict": 11,
+  "prefix_sha": "8f22c29bfd21",
+  "prefix": "RRRDRRDRRRURRDRRUURRRRRLLLLDDAUAADLLULLLLLDDAAALLLULDDDRDLULDDLLUUAAAULLULAAUADLLLLLAAADLAAALDADRAAAALDLUDAULAALARUAAARRRRRAUAARDRAAARRDRRUADDRRDDRLAAUAAAULLRRURURDDAURULDDRRRRLLLLAAUUAAARDDRRRDDRRAAAALADAR"
+ },
+ {
+  "t": 206,
+  "actor": "F",
+  "entrance": "lower",
+  "published_floor": 74,
+  "active": "F",
+  "on_goal": [
+   "P"
+  ],
+  "need_strict": [
+   "F",
+   "T",
+   "W",
+   "B",
+   "D"
+  ],
+  "a_min_assignment_sum": 59,
+  "best_perm": [
+   5,
+   2,
+   4,
+   0,
+   1,
+   3
+  ],
+  "b_strict_all_unfinished_act": 5,
+  "b_druid_only": 5,
+  "c_strict": 64,
+  "c_druid": 64,
+  "h_OC": "20",
+  "H_OC": 20,
+  "gap_to_floor_a": 15,
+  "gap_to_floor_c_strict": 10,
+  "prefix_sha": "7172ed71ee67",
+  "prefix": "RRRDRRDRRRURRDRRUURRRRRLLLLDDAUAADLLULLLLLDDAAALLLULDDDRDLULDDLLUUAAAULLULAAUADLLLLLAAADLAAALDADRAAAALDLUDAULAALARUAAARRRRRAUAARDRAAARRDRRUADDRRDDRLAAUAAAULLRRURURDDAURULDDRRRRLLLLAAUUAAARDDRRRDDRRAAAARAUAR"
+ },
+ {
+  "t": 206,
+  "actor": "F",
+  "entrance": "lower",
+  "published_floor": 74,
+  "active": "F",
+  "on_goal": [
+   "P"
+  ],
+  "need_strict": [
+   "F",
+   "T",
+   "W",
+   "B",
+   "D"
+  ],
+  "a_min_assignment_sum": 60,
+  "best_perm": [
+   0,
+   2,
+   4,
+   3,
+   1,
+   5
+  ],
+  "b_strict_all_unfinished_act": 5,
+  "b_druid_only": 5,
+  "c_strict": 65,
+  "c_druid": 65,
+  "h_OC": "21",
+  "H_OC": 21,
+  "gap_to_floor_a": 14,
+  "gap_to_floor_c_strict": 9,
+  "prefix_sha": "f29e4c1e5c57",
+  "prefix": "RRRDRRDRRRURRDRRUURRRRRLLLLDDAUAADLLULLLLLDDAAALLLULDDDRDLULDDLLUUAAAULLULAAUADLLLLLAAADLAAALDADRAAAALDLUDAULAALARUAAARRRRRAUAARDRAAARRDRRUADDRRDDRLAAUAAAULLRRURURDDAURULDDRRRRLLLLAAUUAAARDDRRRDDRRAAAARADAR"
+ },
+ {
+  "t": 206,
+  "actor": "F",
+  "entrance": "lower",
+  "published_floor": 74,
+  "active": "F",
+  "on_goal": [
+   "P"
+  ],
+  "need_strict": [
+   "F",
+   "T",
+   "W",
+   "B",
+   "D"
+  ],
+  "a_min_assignment_sum": 58,
+  "best_perm": [
+   5,
+   2,
+   4,
+   0,
+   1,
+   3
+  ],
+  "b_strict_all_unfinished_act": 5,
+  "b_druid_only": 5,
+  "c_strict": 63,
+  "c_druid": 63,
+  "h_OC": "20",
+  "H_OC": 20,
+  "gap_to_floor_a": 16,
+  "gap_to_floor_c_strict": 11,
+  "prefix_sha": "e51fed6f725a",
+  "prefix": "RRRDRRDRRRURRDRRUURRRRRLLLLDDAUAADLLULLLLLDDAAALLLULDDDRDLULDDLLUUAAAULLULAAUADLLLLLAAADLAAALDADRAAAALDLUDAULAALARUAAARRRRRAUAARDRAAARRDRRUADDRRDDRLAAUAAAULLRRURURDDAURULDDRRRRLLLLAAUUAAARDDRRRDDRRAAAAAUUAR"
+ },
+ {
+  "t": 206,
+  "actor": "F",
+  "entrance": "lower",
+  "published_floor": 74,
+  "active": "F",
+  "on_goal": [
+   "P"
+  ],
+  "need_strict": [
+   "F",
+   "T",
+   "W",
+   "B",
+   "D"
+  ],
+  "a_min_assignment_sum": 57,
+  "best_perm": [
+   5,
+   2,
+   4,
+   0,
+   1,
+   3
+  ],
+  "b_strict_all_unfinished_act": 5,
+  "b_druid_only": 5,
+  "c_strict": 62,
+  "c_druid": 62,
+  "h_OC": "20",
+  "H_OC": 20,
+  "gap_to_floor_a": 17,
+  "gap_to_floor_c_strict": 12,
+  "prefix_sha": "78fed024912d",
+  "prefix": "RRRDRRDRRRURRDRRUURRRRRLLLLDDAUAADLLULLLLLDDAAALLLULDDDRDLULDDLLUUAAAULLULAAUADLLLLLAAADLAAALDADRAAAALDLUDAULAALARUAAARRRRRAUAARDRAAARRDRRUADDRRDDRLAAUAAAULLRRURURDDAURULDDRRRRLLLLAAUUAAARDDRRRDDRRAAAAAULAR"
+ },
+ {
+  "t": 206,
+  "actor": "F",
+  "entrance": "lower",
+  "published_floor": 74,
+  "active": "F",
+  "on_goal": [
+   "P"
+  ],
+  "need_strict": [
+   "F",
+   "T",
+   "W",
+   "B",
+   "D"
+  ],
+  "a_min_assignment_sum": 58,
+  "best_perm": [
+   5,
+   2,
+   4,
+   0,
+   1,
+   3
+  ],
+  "b_strict_all_unfinished_act": 5,
+  "b_druid_only": 5,
+  "c_strict": 63,
+  "c_druid": 63,
+  "h_OC": "20",
+  "H_OC": 20,
+  "gap_to_floor_a": 16,
+  "gap_to_floor_c_strict": 11,
+  "prefix_sha": "135ee0c1d7f5",
+  "prefix": "RRRDRRDRRRURRDRRUURRRRRLLLLDDAUAADLLULLLLLDDAAALLLULDDDRDLULDDLLUUAAAULLULAAUADLLLLLAAADLAAALDADRAAAALDLUDAULAALARUAAARRRRRAUAARDRAAARRDRRUADDRRDDRLAAUAAAULLRRURURDDAURULDDRRRRLLLLAAUUAAARDDRRRDDRRAAAAADUAR"
+ },
+ {
+  "t": 206,
+  "actor": "F",
+  "entrance": "upper",
+  "published_floor": 75,
+  "active": "F",
+  "on_goal": [
+   "P"
+  ],
+  "need_strict": [
+   "F",
+   "T",
+   "W",
+   "B",
+   "D"
+  ],
+  "a_min_assignment_sum": 58,
+  "best_perm": [
+   0,
+   2,
+   4,
+   3,
+   1,
+   5
+  ],
+  "b_strict_all_unfinished_act": 5,
+  "b_druid_only": 5,
+  "c_strict": 63,
+  "c_druid": 63,
+  "h_OC": "21",
+  "H_OC": 21,
+  "gap_to_floor_a": 17,
+  "gap_to_floor_c_strict": 12,
+  "prefix_sha": "c436b8c3af69",
+  "prefix": "RRRDRRDRRRURRDRRUURRRRRLLLLDDAUAADLLULLLLLDDAAALLLULDDDRDLULDDLLUUAAAULLULAAUADLLLLLAAADLAAALDADRAAAALDLUDAULAALARUAAARRRRRAUAARDRAAARRDRRUADDRRDDRLAAUAAAULLRRURURDDAURULDDRRRRLLLLAAUUAAARDDRRRDRRAUAAAAULAR"
+ },
+ {
+  "t": 206,
+  "actor": "F",
+  "entrance": "upper",
+  "published_floor": 75,
+  "active": "F",
+  "on_goal": [
+   "P"
+  ],
+  "need_strict": [
+   "F",
+   "T",
+   "W",
+   "B",
+   "D"
+  ],
+  "a_min_assignment_sum": 60,
+  "best_perm": [
+   0,
+   2,
+   4,
+   3,
+   1,
+   5
+  ],
+  "b_strict_all_unfinished_act": 5,
+  "b_druid_only": 5,
+  "c_strict": 65,
+  "c_druid": 65,
+  "h_OC": "21",
+  "H_OC": 21,
+  "gap_to_floor_a": 15,
+  "gap_to_floor_c_strict": 10,
+  "prefix_sha": "0e42b2473b32",
+  "prefix": "RRRDRRDRRRURRDRRUURRRRRLLLLDDAUAADLLULLLLLDDAAALLLULDDDRDLULDDLLUUAAAULLULAAUADLLLLLAAADLAAALDADRAAAALDLUDAULAALARUAAARRRRRAUAARDRAAARRDRRUADDRRDDRLAAUAAAULLRRURURDDAURULDDRRRRLLLLAAUUAAARDDRRRDRRAAUAAAULAR"
+ },
+ {
+  "t": 206,
+  "actor": "F",
+  "entrance": "upper",
+  "published_floor": 75,
+  "active": "F",
+  "on_goal": [
+   "P"
+  ],
+  "need_strict": [
+   "F",
+   "T",
+   "W",
+   "B",
+   "D"
+  ],
+  "a_min_assignment_sum": 58,
+  "best_perm": [
+   0,
+   2,
+   4,
+   3,
+   1,
+   5
+  ],
+  "b_strict_all_unfinished_act": 5,
+  "b_druid_only": 5,
+  "c_strict": 63,
+  "c_druid": 63,
+  "h_OC": "21",
+  "H_OC": 21,
+  "gap_to_floor_a": 17,
+  "gap_to_floor_c_strict": 12,
+  "prefix_sha": "36f091f912a7",
+  "prefix": "RRRDRRDRRRURRDRRUURRRRRLLLLDDAUAADLLULLLLLDDAAALLLULDDDRDLULDDLLUUAAAULLULAAUADLLLLLAAADLAAALDADRAAAALDLUDAULAALARUAAARRRRRAUAARDRAAARRDRRUADDRRDDRLAAUAAAULLRRURURDDAURULDDRRRRLLLLAAUUAAARDDRRRDRRAARAAAULAR"
+ },
+ {
+  "t": 206,
+  "actor": "F",
+  "entrance": "upper",
+  "published_floor": 75,
+  "active": "F",
+  "on_goal": [],
+  "need_strict": [
+   "F",
+   "T",
+   "W",
+   "P",
+   "B",
+   "D"
+  ],
+  "a_min_assignment_sum": 58,
+  "best_perm": [
+   3,
+   2,
+   4,
+   0,
+   1,
+   5
+  ],
+  "b_strict_all_unfinished_act": 5,
+  "b_druid_only": 5,
+  "c_strict": 63,
+  "c_druid": 63,
+  "h_OC": "21",
+  "H_OC": 21,
+  "gap_to_floor_a": 17,
+  "gap_to_floor_c_strict": 12,
+  "prefix_sha": "d8dd59133a85",
+  "prefix": "RRRDRRDRRRURRDRRUURRRRRLLLLDDAUAADLLULLLLLDDAAALLLULDDDRDLULDDLLUUAAAULLULAAUADLLLLLAAADLAAALDADRAAAALDLUDAULAALARUAAARRRRRAUAARDRAAARRDRRUADDRRDDRLAAUAAAULLRRURURDDAURULDDRRRRLLLLAAUUAAARDDRRRDRRAAAUAAULAR"
+ },
+ {
+  "t": 206,
+  "actor": "F",
+  "entrance": "upper",
+  "published_floor": 75,
+  "active": "F",
+  "on_goal": [],
+  "need_strict": [
+   "F",
+   "T",
+   "W",
+   "P",
+   "B",
+   "D"
+  ],
+  "a_min_assignment_sum": 60,
+  "best_perm": [
+   0,
+   2,
+   4,
+   3,
+   1,
+   5
+  ],
+  "b_strict_all_unfinished_act": 5,
+  "b_druid_only": 5,
+  "c_strict": 65,
+  "c_druid": 65,
+  "h_OC": "21",
+  "H_OC": 21,
+  "gap_to_floor_a": 15,
+  "gap_to_floor_c_strict": 10,
+  "prefix_sha": "b15f7dead7cb",
+  "prefix": "RRRDRRDRRRURRDRRUURRRRRLLLLDDAUAADLLULLLLLDDAAALLLULDDDRDLULDDLLUUAAAULLULAAUADLLLLLAAADLAAALDADRAAAALDLUDAULAALARUAAARRRRRAUAARDRAAARRDRRUADDRRDDRLAAUAAAULLRRURURDDAURULDDRRRRLLLLAAUUAAARDDRRRDRRAAADAAULAR"
+ },
+ {
+  "t": 206,
+  "actor": "F",
+  "entrance": "upper",
+  "published_floor": 75,
+  "active": "F",
+  "on_goal": [],
+  "need_strict": [
+   "F",
+   "T",
+   "W",
+   "P",
+   "B",
+   "D"
+  ],
+  "a_min_assignment_sum": 58,
+  "best_perm": [
+   3,
+   2,
+   4,
+   0,
+   1,
+   5
+  ],
+  "b_strict_all_unfinished_act": 5,
+  "b_druid_only": 5,
+  "c_strict": 63,
+  "c_druid": 63,
+  "h_OC": "21",
+  "H_OC": 21,
+  "gap_to_floor_a": 17,
+  "gap_to_floor_c_strict": 12,
+  "prefix_sha": "683882605cc3",
+  "prefix": "RRRDRRDRRRURRDRRUURRRRRLLLLDDAUAADLLULLLLLDDAAALLLULDDDRDLULDDLLUUAAAULLULAAUADLLLLLAAADLAAALDADRAAAALDLUDAULAALARUAAARRRRRAUAARDRAAARRDRRUADDRRDDRLAAUAAAULLRRURURDDAURULDDRRRRLLLLAAUUAAARDDRRRDRRAAALAAULAR"
+ },
+ {
+  "t": 206,
+  "actor": "F",
+  "entrance": "upper",
+  "published_floor": 75,
+  "active": "F",
+  "on_goal": [
+   "P"
+  ],
+  "need_strict": [
+   "F",
+   "T",
+   "W",
+   "B",
+   "D"
+  ],
+  "a_min_assignment_sum": 60,
+  "best_perm": [
+   0,
+   2,
+   4,
+   3,
+   1,
+   5
+  ],
+  "b_strict_all_unfinished_act": 5,
+  "b_druid_only": 5,
+  "c_strict": 65,
+  "c_druid": 65,
+  "h_OC": "21",
+  "H_OC": 21,
+  "gap_to_floor_a": 15,
+  "gap_to_floor_c_strict": 10,
+  "prefix_sha": "d35027de92d3",
+  "prefix": "RRRDRRDRRRURRDRRUURRRRRLLLLDDAUAADLLULLLLLDDAAALLLULDDDRDLULDDLLUUAAAULLULAAUADLLLLLAAADLAAALDADRAAAALDLUDAULAALARUAAARRRRRAUAARDRAAARRDRRUADDRRDDRLAAUAAAULLRRURURDDAURULDDRRRRLLLLAAUUAAARDDRRRDRRAAAAUAULAR"
+ },
+ {
+  "t": 206,
+  "actor": "F",
+  "entrance": "upper",
+  "published_floor": 75,
+  "active": "F",
+  "on_goal": [
+   "P"
+  ],
+  "need_strict": [
+   "F",
+   "T",
+   "W",
+   "B",
+   "D"
+  ],
+  "a_min_assignment_sum": 60,
+  "best_perm": [
+   0,
+   2,
+   4,
+   3,
+   1,
+   5
+  ],
+  "b_strict_all_unfinished_act": 5,
+  "b_druid_only": 5,
+  "c_strict": 65,
+  "c_druid": 65,
+  "h_OC": "21",
+  "H_OC": 21,
+  "gap_to_floor_a": 15,
+  "gap_to_floor_c_strict": 10,
+  "prefix_sha": "52e436839515",
+  "prefix": "RRRDRRDRRRURRDRRUURRRRRLLLLDDAUAADLLULLLLLDDAAALLLULDDDRDLULDDLLUUAAAULLULAAUADLLLLLAAADLAAALDADRAAAALDLUDAULAALARUAAARRRRRAUAARDRAAARRDRRUADDRRDDRLAAUAAAULLRRURURDDAURULDDRRRRLLLLAAUUAAARDDRRRDRRAAAADAULAR"
+ },
+ {
+  "t": 206,
+  "actor": "F",
+  "entrance": "upper",
+  "published_floor": 75,
+  "active": "F",
+  "on_goal": [
+   "P"
+  ],
+  "need_strict": [
+   "F",
+   "T",
+   "W",
+   "B",
+   "D"
+  ],
+  "a_min_assignment_sum": 58,
+  "best_perm": [
+   0,
+   2,
+   4,
+   3,
+   1,
+   5
+  ],
+  "b_strict_all_unfinished_act": 5,
+  "b_druid_only": 5,
+  "c_strict": 63,
+  "c_druid": 63,
+  "h_OC": "21",
+  "H_OC": 21,
+  "gap_to_floor_a": 17,
+  "gap_to_floor_c_strict": 12,
+  "prefix_sha": "15b1874fe4cb",
+  "prefix": "RRRDRRDRRRURRDRRUURRRRRLLLLDDAUAADLLULLLLLDDAAALLLULDDDRDLULDDLLUUAAAULLULAAUADLLLLLAAADLAAALDADRAAAALDLUDAULAALARUAAARRRRRAUAARDRAAARRDRRUADDRRDDRLAAUAAAULLRRURURDDAURULDDRRRRLLLLAAUUAAARDDRRRDRRAAAALAULAR"
+ },
+ {
+  "t": 206,
+  "actor": "F",
+  "entrance": "upper",
+  "published_floor": 75,
+  "active": "F",
+  "on_goal": [
+   "P"
+  ],
+  "need_strict": [
+   "F",
+   "T",
+   "W",
+   "B",
+   "D"
+  ],
+  "a_min_assignment_sum": 60,
+  "best_perm": [
+   0,
+   2,
+   4,
+   3,
+   1,
+   5
+  ],
+  "b_strict_all_unfinished_act": 5,
+  "b_druid_only": 5,
+  "c_strict": 65,
+  "c_druid": 65,
+  "h_OC": "21",
+  "H_OC": 21,
+  "gap_to_floor_a": 15,
+  "gap_to_floor_c_strict": 10,
+  "prefix_sha": "8fcc894c8dfe",
+  "prefix": "RRRDRRDRRRURRDRRUURRRRRLLLLDDAUAADLLULLLLLDDAAALLLULDDDRDLULDDLLUUAAAULLULAAUADLLLLLAAADLAAALDADRAAAALDLUDAULAALARUAAARRRRRAUAARDRAAARRDRRUADDRRDDRLAAUAAAULLRRURURDDAURULDDRRRRLLLLAAUUAAARDDRRRDRRAAAARAULAR"
+ },
+ {
+  "t": 206,
+  "actor": "F",
+  "entrance": "upper",
+  "published_floor": 75,
+  "active": "F",
+  "on_goal": [
+   "P"
+  ],
+  "need_strict": [
+   "F",
+   "T",
+   "W",
+   "B",
+   "D"
+  ],
+  "a_min_assignment_sum": 59,
+  "best_perm": [
+   0,
+   2,
+   4,
+   3,
+   1,
+   5
+  ],
+  "b_strict_all_unfinished_act": 5,
+  "b_druid_only": 5,
+  "c_strict": 64,
+  "c_druid": 64,
+  "h_OC": "21",
+  "H_OC": 21,
+  "gap_to_floor_a": 16,
+  "gap_to_floor_c_strict": 11,
+  "prefix_sha": "8b7f0e496bd4",
+  "prefix": "RRRDRRDRRRURRDRRUURRRRRLLLLDDAUAADLLULLLLLDDAAALLLULDDDRDLULDDLLUUAAAULLULAAUADLLLLLAAADLAAALDADRAAAALDLUDAULAALARUAAARRRRRAUAARDRAAARRDRRUADDRRDDRLAAUAAAULLRRURURDDAURULDDRRRRLLLLAAUUAAARDDRRRDRRAAAAAUULAR"
+ },
+ {
+  "t": 206,
+  "actor": "F",
+  "entrance": "upper",
+  "published_floor": 75,
+  "active": "F",
+  "on_goal": [
+   "P"
+  ],
+  "need_strict": [
+   "F",
+   "T",
+   "W",
+   "B",
+   "D"
+  ],
+  "a_min_assignment_sum": 57,
+  "best_perm": [
+   0,
+   2,
+   4,
+   3,
+   1,
+   5
+  ],
+  "b_strict_all_unfinished_act": 5,
+  "b_druid_only": 5,
+  "c_strict": 62,
+  "c_druid": 62,
+  "h_OC": "20",
+  "H_OC": 20,
+  "gap_to_floor_a": 18,
+  "gap_to_floor_c_strict": 13,
+  "prefix_sha": "2810f3f17eb3",
+  "prefix": "RRRDRRDRRRURRDRRUURRRRRLLLLDDAUAADLLULLLLLDDAAALLLULDDDRDLULDDLLUUAAAULLULAAUADLLLLLAAADLAAALDADRAAAALDLUDAULAALARUAAARRRRRAUAARDRAAARRDRRUADDRRDDRLAAUAAAULLRRURURDDAURULDDRRRRLLLLAAUUAAARDDRRRDRRAAAAAULDAR"
+ },
+ {
+  "t": 206,
+  "actor": "F",
+  "entrance": "upper",
+  "published_floor": 75,
+  "active": "F",
+  "on_goal": [
+   "P"
+  ],
+  "need_strict": [
+   "F",
+   "T",
+   "W",
+   "B",
+   "D"
+  ],
+  "a_min_assignment_sum": 59,
+  "best_perm": [
+   0,
+   2,
+   4,
+   3,
+   1,
+   5
+  ],
+  "b_strict_all_unfinished_act": 5,
+  "b_druid_only": 5,
+  "c_strict": 64,
+  "c_druid": 64,
+  "h_OC": "21",
+  "H_OC": 21,
+  "gap_to_floor_a": 16,
+  "gap_to_floor_c_strict": 11,
+  "prefix_sha": "ccd2fa851662",
+  "prefix": "RRRDRRDRRRURRDRRUURRRRRLLLLDDAUAADLLULLLLLDDAAALLLULDDDRDLULDDLLUUAAAULLULAAUADLLLLLAAADLAAALDADRAAAALDLUDAULAALARUAAARRRRRAUAARDRAAARRDRRUADDRRDDRLAAUAAAULLRRURURDDAURULDDRRRRLLLLAAUUAAARDDRRRDRRAAAAADULAR"
+ }
+]
