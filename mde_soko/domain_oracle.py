@@ -688,6 +688,16 @@ class SokoPlaySession:
 
 
 CERTIFIED_STATUSES: frozenset[str] = frozenset({"VERIFIED", "PROVEN", "LOWER_BOUND"})
+RECOGNIZED_CERT_STATUSES: frozenset[str] = CERTIFIED_STATUSES | frozenset(
+    {
+        "CONJECTURE",
+        "LOWER_BOUND_UNWITNESSED",
+        "LINT_PASS",
+        "VERIFIED_ON_BOUNDED_REACHABLE_SUBGRAPH",
+        "REJECTED",
+        "UNVERIFIED_CALLER_BOUNDS",
+    }
+)
 
 
 def audit_soko_certificate(cert: Mapping[str, Any]) -> dict[str, Any]:
@@ -695,6 +705,22 @@ def audit_soko_certificate(cert: Mapping[str, Any]) -> dict[str, Any]:
     findings: list[dict[str, str]] = []
     status = str(cert.get("epistemic_status", "")).strip().upper()
     proof_mode = str(cert.get("proof_mode", "")).strip().lower()
+
+    # An omitted or invented status has no checks to fail, so it must not pass.
+    if not status:
+        findings.append(
+            {
+                "rule": "F00_STATUS_ABSENT",
+                "message": "Certificate omits epistemic_status.",
+            }
+        )
+    elif status not in RECOGNIZED_CERT_STATUSES:
+        findings.append(
+            {
+                "rule": "F00_STATUS_UNKNOWN",
+                "message": f"epistemic_status {status!r} is not a recognized certificate status.",
+            }
+        )
 
     engines = cert.get("oracles_checked") or cert.get("engines_verified") or []
     if cert.get("differential_match") is True and (not isinstance(engines, list) or len(engines) < 2):
@@ -800,9 +826,11 @@ def audit_soko_certificate(cert: Mapping[str, Any]) -> dict[str, Any]:
         )
 
     passed = len(findings) == 0
+    # A record that clears every check keeps its own recognized status.
+    out_status = status if passed else "REJECTED"
     return {
         "passed": passed,
-        "epistemic_status": "VERIFIED" if passed else "REJECTED",
+        "epistemic_status": out_status,
         "finding_count": len(findings),
         "findings": findings,
     }
