@@ -1,0 +1,58 @@
+{
+  "epistemic_status": "VERIFIED",
+  "evidence_level": "differential_replay",
+  "formal_proof_checked": false,
+  "external_spec_pinned": false,
+  "source_lock_asserted": false,
+  "problem": {
+    "adapter": "heroes-of-sokoban-ascii-v1",
+    "part": 1,
+    "grid": [
+      "F.G"
+    ],
+    "goal": "heroes occupy exactly the goal cells",
+    "termination": "alive and first win on final key",
+    "cost": "number of UDLRA keys"
+  },
+  "instance_sha256": "4e08241b460e35a3edaacbd69d392dbfd5e4d68267129f71eaba1615d266a4c6",
+  "route_sha256": "e6c5af58dda1be3d2123e9274eac9111265d7619cb9f70f5d545704d56eb1996",
+  "valid_winning_route": true,
+  "route_len": 2,
+  "route_sha256_12": "e6c5af58dda1",
+  "traj_fnv64": "001adc89fea934c7",
+  "trajectory_digest_match": true,
+  "alive": true,
+  "exact_win": true,
+  "premature_win": false,
+  "steps_executed": 2,
+  "engines_executed": [
+    "python_spec_oracle",
+    "python_flat_bitmask_oracle",
+    "cpp20_soko_engine"
+  ],
+  "engines_count": 3,
+  "dual_engine_checked": true,
+  "triple_oracle_checked": true,
+  "differential_match": true,
+  "must_fail_controls": [
+    "rejected_route_promoted_to_verified",
+    "truncated_prefix_rejected",
+    "post_win_extra_key_rejected"
+  ],
+  "checker_pins": {
+    "oracle_py_sha256": "8145f311051a3f6bfa94467da7a6d9a30535f9edf1bb00662982da70e9cc9853",
+    "flat_oracle_py_sha256": "9e8540bfda9cb467bc842711296948172bca50ea35a70b8387d7e7de2ad110e7",
+    "engine_bridge_py_sha256": "c84eef014119ff2e0c1ba815c3c696700fff82713981edd78eabcde9d017b450",
+    "evidence_py_sha256": "84797aa46359316ecf75c48483865ceeee21441a690ef3896000ee76da115ab3",
+    "integrity_py_sha256": "b3ab54723b90072e92fd91affe560b2a07c957f42b3137ed3870478be200f2b2",
+    "catalog_py_sha256": "43d8b8aaf29c3e9fb857ea803a40edf5cc6e230e8e81e2c8eb002d41364f75ed",
+    "cpp_soko_engine_src_sha256": "4da54c90582c69327f29105b426df475dd613668486e5bdfabc3c697835aa699",
+    "cpp_soko_engine_bin_sha256": "b11cf187cdebd71e7b4380c90d6547460c98be2f68fce315aa79b2e56eef8a36",
+    "formal_kernel_py_sha256": "0a3557fa10865270258570aed9f310a4860870a4469e583d61bb3693a3234e49",
+    "checker_auditor_py_sha256": "24fdc7a595cae79cc48ca059980c36aec95be916817fb4380e650331540b4259"
+  },
+  "checker_pins_ok": true,
+  "final_ascii": "..F",
+  "route": "RR",
+  "certificate_sha256": "8c17234878b89aaa5859ce91ee916ec8926426d68e6ed159a540cc859484a55d"
+}
