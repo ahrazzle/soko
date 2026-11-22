@@ -1,0 +1,159 @@
+{
+  "code_sha": "983ae52517797e2a3e1d2cc9cb04890d8ec307f1",
+  "floor": 77,
+  "floor_provenance": "frontier-import PR57 (not repo-proved)",
+  "oracle_versions": {
+    "flat": "python_flat_bitmask_oracle@soko_mcp/oracle.py#8145f311051a",
+    "spec": "python_spec_oracle@soko_mcp/oracle.py#8145f311051a"
+  },
+  "positive_control": {
+    "agreement": true,
+    "best_len": 87,
+    "budget_sec": 0,
+    "engines_executed": [
+      "python_spec_oracle",
+      "python_flat_bitmask_oracle",
+      "cpp20_soko_engine"
+    ],
+    "exit_code": 3,
+    "improved": false,
+    "max_states_per_stage": 13000000,
+    "beam_width": 200000,
+    "window_len": 16,
+    "oracle_disagreement": false,
+    "outcome": "NO_GAIN_CONTROL_FAILED_AGAIN_BLOCKED",
+    "per_run_record": "run_G1.json",
+    "seed_len": 87,
+    "seed_sha256": "536fabbaba35e466d91cfad83013783bcc1fe33610cedb34c699bb7963f93bf0",
+    "states_seen": 26391969,
+    "wall_sec": 53.4
+  },
+  "reference_best": 84,
+  "room": "III-20",
+  "runs": [
+    {
+      "best_len": null,
+      "edge_consistency_checks": null,
+      "gain_vs_84": null,
+      "nodes_expanded_total": null,
+      "outcome": "NOTRUN_G1_GATE",
+      "reason": "G1 positive control failed again at the re-locked budgets (87-seed held at 87, exit 3); RE-LOCK-C8 s5 stop condition forbids proceeding",
+      "stages": {
+        "refine": {
+          "best_len": null,
+          "nodes_expanded": null
+        },
+        "tube": {
+          "best_len": null,
+          "nodes_expanded": null
+        },
+        "window_bfs": {
+          "best_len": null,
+          "nodes_expanded": null
+        }
+      },
+      "states_seen": null,
+      "transform_id": "T1"
+    },
+    {
+      "best_len": null,
+      "edge_consistency_checks": null,
+      "gain_vs_84": null,
+      "nodes_expanded_total": null,
+      "outcome": "NOTRUN_SPEC_DEFERRED",
+      "reason": "spec-deferred per RE-LOCK-C8 s4: no guide/role knob through the locked D4 consumer; consumer knob = D4 owner follow-up",
+      "stages": {
+        "refine": {
+          "best_len": null,
+          "nodes_expanded": null
+        },
+        "tube": {
+          "best_len": null,
+          "nodes_expanded": null
+        },
+        "window_bfs": {
+          "best_len": null,
+          "nodes_expanded": null
+        }
+      },
+      "states_seen": null,
+      "transform_id": "T2"
+    },
+    {
+      "best_len": null,
+      "edge_consistency_checks": null,
+      "gain_vs_84": null,
+      "nodes_expanded_total": null,
+      "outcome": "NOTRUN_SPEC_DEFERRED",
+      "reason": "spec-deferred per RE-LOCK-C8 s4: no offset knob; truncated seed rejected by the verifier; consumer knob = D4 owner follow-up",
+      "stages": {
+        "refine": {
+          "best_len": null,
+          "nodes_expanded": null
+        },
+        "tube": {
+          "best_len": null,
+          "nodes_expanded": null
+        },
+        "window_bfs": {
+          "best_len": null,
+          "nodes_expanded": null
+        }
+      },
+      "states_seen": null,
+      "transform_id": "T3"
+    },
+    {
+      "best_len": null,
+      "edge_consistency_checks": null,
+      "gain_vs_84": null,
+      "nodes_expanded_total": null,
+      "outcome": "NOTRUN_G1_GATE",
+      "reason": "G1 positive control failed again at the re-locked budgets (87-seed held at 87, exit 3); RE-LOCK-C8 s5 stop condition forbids proceeding",
+      "stages": {
+        "refine": {
+          "best_len": null,
+          "nodes_expanded": null
+        },
+        "tube": {
+          "best_len": null,
+          "nodes_expanded": null
+        },
+        "window_bfs": {
+          "best_len": null,
+          "nodes_expanded": null
+        }
+      },
+      "states_seen": null,
+      "transform_id": "T4"
+    }
+  ],
+  "seed": {
+    "len": 84,
+    "sha256": "eecbea96b09117b108c35cacaa5c3dd39530343d50d7a8b0e48c35ac87a1bca6"
+  },
+  "slice_outcome": "BLOCKED_G1_FAILURE_SECOND_NO_WIDENING",
+  "tool_params": {
+    "beam_width": 200000,
+    "budget_sec": 0,
+    "max_states_per_stage": 13000000,
+    "window_len": 16
+  },
+  "baseline_delta": {
+    "baseline": {
+      "budgets": "beam 120000 / window 16 / 6M / 0",
+      "best_len": 87,
+      "states_seen": 12434306,
+      "wall_sec": 24.1
+    },
+    "rerun": {
+      "budgets": "beam 200000 / window 16 / 13M / 0",
+      "best_len": 87,
+      "states_seen": 26391969,
+      "wall_sec": 53.4
+    },
+    "states_delta": 13957663,
+    "best_len_delta": 0,
+    "note": "Second G1 failure at the shipped-mirror width; stages=[] both runs; no widening per RE-LOCK-C8 s5."
+  }
+}
